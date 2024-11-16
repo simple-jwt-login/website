@@ -6,6 +6,9 @@ import clsx from 'clsx';
 import styles from './styles.module.css';
 // import Card from "../components/card";
 
+
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 const awesomeFeatures = [
   {
     title: <>Auto Login</>,
@@ -200,21 +203,6 @@ function Review({ title, description ,numberOfStars ,author, link}) {
   );
 }
 
-// @ts-ignore
-function Sponsor({name, link, description, image}) {
-  return (
-      <div className={styles.sponsorItem}>
-        <Link to={link} title={name}>
-          <img src={image} alt={name} title={name}/>
-        </Link>
-        <p>{description}</p>
-        <p>
-          <Link to={link} title={name}>{link}</Link>
-        </p>
-      </div>
-  )
-}
-
 function RecentPosts(){
   // TODO: add recent posts back
   const recentPosts = null // require("../../.docusaurus/docusaurus-plugin-content-blog/default/blog-archive-80c.json");
@@ -269,7 +257,7 @@ function Docs() {
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <img src={"assets/favicons/apple-touch-icon.png"}  alt={"Simple JWT Login logo"} title={"Simple JWT Login logo"} width="180" height="180"/>
-          <h1 className="hero__title">Simple JWT Login</h1>
+          <h1 className="hero__title">Simple JWT Login - { process.env.REACT_APP_DOMAIN}</h1>
           <p>Simple JWT Login is a FREE WordPress plugin that allows you to use a JWT on WordPress REST endpoints.</p>
           <span>
               <Link

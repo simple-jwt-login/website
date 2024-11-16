@@ -8,5 +8,7 @@ COPY . /app
 WORKDIR /app
 
 RUN yarn clear
+RUN yarn add docusaurus-plugin-dotenv
+
 
 CMD ["yarn", "start", "--host", "0.0.0.0"]
