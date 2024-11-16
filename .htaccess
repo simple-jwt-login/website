@@ -1,0 +1,9 @@
+<FilesMatch "\.(ico|jpg|jpeg|gif|png|pdf|mp3|mp4|svg)$">
+Header set Cache-Control "public, max-age=2630000, no-transform"
+</FilesMatch>
+
+<FilesMatch "\.(html|htm|xml|txt|xsl|js|css)$">
+Header set Cache-Control "public, max-age=3600, must-revalidate"
+</FilesMatch>
+
+ErrorDocument 404 https://simplejwtlogin.com/404.html
