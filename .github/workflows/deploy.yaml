@@ -22,6 +22,7 @@ jobs:
 
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder.
         run: |
+          npm install
           npm run build
           ls 
 
