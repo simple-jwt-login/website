@@ -1,0 +1,91 @@
+---
+slug: /auth-codes
+title: Auth Codes
+sidebar_position: 1
+author: Nicu Micle
+author_url: https://github.com/nicumicle
+---
+
+Sort description about the page
+
+## Endpoint
+
+**METHOD**:  `POST`
+
+**ENDPOINT**: `/endpoint`
+
+**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users&JWT={{JWT}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
+
+**PARAMETERS**:
+
+| Parameter       |   Type           |   Description|
+| :-------------: | :--------------: | ------------ |
+|   JWT  | `required` `string` | Your JWT |
+| param1 | `optional` `string` | Auth Code from the "Auth codes" section. Required only if "Delete User Requires Auth Code" is enabled.
+| param2 | `optional` `number` | Auth Code from the "Auth codes" section. Required only if "Delete User Requires Auth Code" is enabled.
+
+
+
+Describe how parameters can be sent ( query, body, formData)
+
+## Request
+
+```json
+{
+  "username" : "test",
+  "password" : "test"
+}
+```
+
+## Responses
+
+### 200
+
+```json
+{
+  "success": true,
+  "data" : {}
+}
+```
+
+### 400
+
+```json
+{
+  "success": false,
+  "error" : "Error message"
+}
+```
+
+## Examples
+
+### SHELL
+
+```shell
+curl -X POST https://simplejwtlogin.com -d '{"param1":"value"}'
+```
+
+### PHP
+
+```php
+$simpleJWT = new \SimpleJwtLoginClient\SimpleJwtLoginClient('https://simplejwtlogin.com', '/simple-jwt-login-v1');
+$simpleJWT->login('Your JWT');
+```
+
+## Screenshot
+
+![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-2.png?raw=true)
+
+
+## Features
+
+### Feature subtitle
+
+Feature description
+
+---
+
+## FAQ
+
+### How we can set up?
+In order to set up, please follow the guidelines.

@@ -1,0 +1,51 @@
+---
+slug: /mailpoet/
+title: MailPoet
+sidebar_position: 1
+author: Nicu Micle
+author_url: https://github.com/nicumicle
+---
+
+import styles from '../styles.module.css';
+
+The MailPoet add-on allows you to automatically login users from the newsletter sent by MailPoet into a WordPress website using a JWT.
+
+This add-on will generate short codes that can be used in your MailPoet templates.
+
+<p class={styles.textCenter}>
+    <a href="https://wordpress.org/plugins/simple-jwt-login-mailpoet" class={styles.btn}>Download</a>
+</p>
+
+
+## Short Code parameters
+
+- **text** : The text for the link
+- **class**: Class added for the link
+- **style**: Custom CSS added to the link
+- **validity**: The Valability of the JWT. Default value is one week
+- **authCode**: Auth Code that is required by Autologin. You will find this in Simple-JWT-Login plugin -> Auth Codes
+- **redirectUrl**: This URL will overwrite the SimpleJWTLogin settings, and it will specify where users will be redirected after autologin.
+
+
+```
+[custom:simple-jwt-login text="Login" class="myClassName" style="color:red;" validity="604800" authCode="1" redirectUrl="https://simplejwtlogin.com"]
+```
+
+## Installation
+
+1. Download the add-on from [https://wordpress.org/plugins/simple-jwt-login-mailpoet/](https://wordpress.org/plugins/simple-jwt-login-mailpoet/)
+2. Activate the plugin
+3. Generate a short-code
+4. Insert the shortcode in your email templates
+
+
+## Screenshots
+
+### Configuration
+![](https://ps.w.org/simple-jwt-login-mailpoet/assets/screenshot-1.png)
+
+### Email Template 
+![](https://ps.w.org/simple-jwt-login-mailpoet/assets/screenshot-2.png)
+
+### Email preview
+![](https://ps.w.org/simple-jwt-login-mailpoet/assets/screenshot-3.png)

@@ -1,0 +1,313 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  height: calc(100vh - 50px);
+  background-color: #fff;
+  color: #777;
+  border-bottom: 1px solid #cccccc;
+  -webkit-box-shadow: 0px 8px 24px -10px rgba(12, 99, 12, 1);
+  -moz-box-shadow: 0px 8px 24px -10px rgba(12, 99, 12, 1);
+  box-shadow: 0px 8px 24px -10px rgba(12, 99, 12, 1);
+  background-image: url("/assets/img/hero-bg.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+}
+.heroBanner h1{
+  color: #42b983;
+}
+
+.sectionTitle{
+  font-size: 45px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  text-align: center;
+  justify-content:center;
+  width: 100%;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featuresCol {
+  padding-bottom: 25px;
+}
+
+.featureImage {
+  height: 200px;
+  width: 200px;
+}
+
+
+.featureBlock {
+  background: #fff none repeat scroll 0 0;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  transition: all 0.5s ease-in-out 0s;
+  text-align: center!important;
+  position: relative;
+}
+.featureBlock  h3{
+  color: #42b983;
+}
+.featureBlock p{
+  color: #535353;
+}
+
+.featureBlock img {
+  height: 60px;
+  margin-bottom: 30px;
+  width: 60px;
+}
+
+.featureBlock:hover {
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease-in-out 0s;
+}
+.actionButton {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 11px 36px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin-bottom: 30px;
+  border: 2px solid #42b983;
+  background: #fff;
+  color: #42b983;
+  text-decoration: none;
+}
+.actionButton:hover{
+  background: #42b983;
+  color: #fff;
+}
+
+.sectionPadding{
+  padding-bottom: 80px;
+  padding-top: 80px;
+  text-align: center;
+}
+.subSectionPadding{
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+.paddingRow{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.sectionGray{
+  background-color: #f0f0f0;
+  color: #505050;
+}
+.sectionGreen{
+  background-color:  #42b983;
+  color: #1a1e21;
+}
+.sectionYellow{
+  background: linear-gradient(#E9C037 4%, transparent);
+}
+
+.curvedTop{
+  clip-path: ellipse(168% 100% at 78.32% 100%);
+}
+.curvedBottom{
+  clip-path: ellipse(192% 100% at 85.5% 0%);
+}
+.btn{
+  border-radius: 50px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 15px 40px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out 0s;
+  background-color: #212529;
+  border-color: #212529;
+  text-decoration: none !important;
+}
+.btn svg{
+  top: 13px;
+  position: relative;
+  left: -12px;
+}
+
+.monthlyCard{
+  width: 100%;
+  height: 100%;
+  border:2px double #42b983;
+}
+.monthlyCardTitle{
+  padding:10px 0;
+  font-weight: bold;
+  color:#666666;
+  border-bottom: 1px solid #42b983;
+  background-color: rgba(0,0,0,.03);
+}
+.monthlyCardPrice{
+  font-weight: bold;
+  color:#000000;
+}
+.monthlyCardContent{
+  min-height: 200px;
+  padding-top:10px;
+  color:#666666;
+}
+.monthlyCardFooter{
+  min-height: 50px;
+  align-content: baseline;
+}
+
+.infoText{
+  color:#999999;
+  font-size: 13px;
+}
+
+.clientCard {
+  padding-bottom: 20px;
+  border:3px double #42b983;
+  background: #FFF;
+}
+.clientCard:hover{
+  box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease-in-out 0s;
+}
+.clientCardTitle{
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px dotted #42b983;
+}
+
+.clientCardContent{
+  min-height: 10rem;
+  color: #535353;
+}
+.clientCard img{
+  display: inline-block;
+  width: 40px;
+  margin-left:2px;
+  margin-right: 2px;
+}
+.clientCardFooter{
+  padding-top: 10px;
+}
+
+.statistics{
+}
+.statisticsTitle{
+  font-size: 1.5rem;
+}
+.statisticsNumber{
+  font-size: 1.7em;
+  color: #FFF;
+}
+
+.reviewsLeft{
+  /*background: url("/assets/svg/review.svg");*/
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.star{
+  width: 20px !important;
+  color: yellow;
+}
+.starsContainer{
+  float:right;
+}
+.reviewsRow{
+  background: #fff none repeat scroll 0 0;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease-in-out 0s;
+  border: 2px dotted #42b983;
+}
+.reviewsRow .reviewTitle {
+  font-weight: bold;
+}
+.reviewsRow p{
+  color: #626262;
+}
+.reviewsMore{
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.emptyImage{
+  width: 170px;
+  height: 118px;
+  background: #eee;
+  border: 2px dotted #999999;
+  margin: 10px auto;
+}
+.blogPostHomepage{
+  box-shadow: 0 0 35px rgb(0 0 0 / 10%);
+  transition: all 0.5s ease-in-out 0s;
+  padding: 20px 10px;
+  margin-top:10px;
+  position:relative;
+  border-radius: 0.3em;
+}
+.blogPostHomepage img{
+  width: 100px;
+  opacity: 0.3;
+  -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=30); /* // for IE8 */
+  filter: alpha(opacity= 30); /* //for IE5-7 */
+}
+.blogPostHomepage a{
+  min-height: 50px;
+  font-size:14px;
+}
+.blogPostHomepage p{
+  min-height: 50px;
+  font-size:0.9em;
+}
+.blogPostHomepageDate{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #bbb;
+  font-size:12px;
+}
+.beta{
+  color:#fff;
+  background: #940e0e;
+  padding: 2px 5px;
+  position: absolute;
+  top:10px;
+  left: 10px;
+  border-radius: 0.3em;
+  font-size: 10px;
+}

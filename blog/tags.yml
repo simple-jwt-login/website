@@ -1,0 +1,19 @@
+release:
+  label: Release
+  permalink: /tags/release
+  description: Plugin Releases
+
+news:
+  label: News
+  permalink: /tags/news
+  description: Plugin news 
+
+add-on:
+  label: Add-on
+  permalink: /tags/add-on
+  description: Plugin Addons
+
+tutorial:
+  label: Tutorial
+  permalink: /tags/tutorial
+  description: Tutorial

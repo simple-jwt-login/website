@@ -1,0 +1,31 @@
+---
+slug: /applications/google/shortcode/
+title: Shortcode
+sidebar_position: 5
+author: Nicu Micle
+author_url: https://github.com/nicumicle
+---
+
+import styles from '../../styles.module.css';
+
+
+##  Shortcode Configuration
+
+To configure the shortcode, utilize the options provided by this plugin for generating the "Continue with Google" button:
+```
+[simple-jwt-login-oauth provider="google"]
+```
+
+The shortcode includes the following customization options:
+- **provider**: `required` Specifies the provider name, e.g., for Google, use `google`
+- **background**:  Defines the background color style (e.g. `#c8c8c8`)
+- **color**: Specifies the text color style (e.g., `#f2f2f2`)
+- **width**: Sets the button width (e.g., `250px`)
+- **height**:  Determines the button height (e.g., `40px`).
+- **border**: Specifies the button border style (e.g., `1px solid #000`)
+
+
+Example of full shortcode:
+```
+[simple-jwt-login-oauth provider="google" background="#c8c8c8" color="#f2f2f2" width="250px" height="40px" border="1px dotted blue"]
+```

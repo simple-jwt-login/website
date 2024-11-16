@@ -1,0 +1,11 @@
+services:
+  simple-jwt-login-documentation:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    ports: 
+      - 3002:3000  
+    network_mode: bridge     
+       
