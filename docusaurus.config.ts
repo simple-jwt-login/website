@@ -8,7 +8,7 @@ const config: Config = {
   favicon: '/assets/favicons/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://simplejwtlogin.com',
+  url: 'https://simple-jwt-login.github.io/website/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',

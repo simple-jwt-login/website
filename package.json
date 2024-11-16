@@ -1,6 +1,6 @@
 {
-  "name": "my-site",
-  "version": "0.0.0",
+  "name": "simple-jwt-login-website",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
