@@ -6,9 +6,6 @@ import clsx from 'clsx';
 import styles from './styles.module.css';
 // import Card from "../components/card";
 
-
-const DOMAIN = process.env.REACT_APP_DOMAIN;
-
 const awesomeFeatures = [
   {
     title: <>Auto Login</>,
@@ -169,7 +166,7 @@ function Section({ title, description ,image,alt, link,beta}) {
 
 function Star(){
    return (
-       <img src={"/assets/img/star.svg"} className={styles.star}  alt="star" title="star" width="20" height="20"/>
+       <img src={"assets/img/star.svg"} className={styles.star}  alt="star" title="star" width="20" height="20"/>
    )
 }
 /**
@@ -257,7 +254,7 @@ function Docs() {
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <img src={"assets/favicons/apple-touch-icon.png"}  alt={"Simple JWT Login logo"} title={"Simple JWT Login logo"} width="180" height="180"/>
-          <h1 className="hero__title">Simple JWT Login - { process.env.REACT_APP_DOMAIN}</h1>
+          <h1 className="hero__title">Simple JWT Login</h1>
           <p>Simple JWT Login is a FREE WordPress plugin that allows you to use a JWT on WordPress REST endpoints.</p>
           <span>
               <Link
@@ -325,10 +322,10 @@ function Docs() {
                       <p>
                         This composer packages will help you integrate your PHP application with Simple JWT Login
                       </p>
-                      <img src={"/assets/img/frameworks/php.png"} alt={"PHP"} title={"PHP"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/laravel.png"}  alt={"Laravel"} title={"Laravel"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/yii.png"}  alt={"Yii"} title={"Yii"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/codeigniter.png"}  alt={"Codeigniter"} title={"Codeigniter"}  width="40" height="40"/>
+                      <img src={"assets/img/frameworks/php.png"} alt={"PHP"} title={"PHP"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/laravel.png"}  alt={"Laravel"} title={"Laravel"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/yii.png"}  alt={"Yii"} title={"Yii"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/codeigniter.png"}  alt={"Codeigniter"} title={"Codeigniter"}  width="40" height="40"/>
                       <br />
                       <code>composer require "nicumicle/simple-jwt-login-client-php"</code>
                     </div>
@@ -352,10 +349,10 @@ function Docs() {
                     <p>
                       Integrate your application with Simple JWT Login using the SDK with just a few lines of code.
                     </p>
-                      <img src={"/assets/img/frameworks/javascript.png"}  alt={"JavaScript"} title={"JavaScript"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/vue.png"}  alt={"Vue"}  title="Vue" width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/react.png"}  alt={"React"} title={"React"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/angular.png"}  alt={"Angular"} title={"Angular"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/javascript.png"}  alt={"JavaScript"} title={"JavaScript"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/vue.png"}  alt={"Vue"}  title="Vue" width="40" height="40"/>
+                      <img src={"assets/img/frameworks/react.png"}  alt={"React"} title={"React"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/angular.png"}  alt={"Angular"} title={"Angular"} width="40" height="40"/>
                       <br />
                     <code>npm install "simple-jwt-login"</code>
                   </div>

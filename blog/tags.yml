@@ -13,7 +13,7 @@ add-on:
   permalink: /tags/add-on
   description: Plugin Addons
 
-tutorial:
+tutorials:
   label: Tutorial
   permalink: /tags/tutorial
   description: Tutorial
