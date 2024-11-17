@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksimple_jwt_login_website=self.webpackChunksimple_jwt_login_website||[]).push([[5423],{8721:e=>{e.exports=JSON.parse('{"tags":[{"label":"bugfix","permalink":"/website/releases/tags/bugfix","count":7},{"label":"feature","permalink":"/website/releases/tags/feature","count":7}]}')}}]);

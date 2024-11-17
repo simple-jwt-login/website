@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://simple-jwt-login.github.io/website/releases</id>
+    <title>Simple-JWT-Login Blog</title>
+    <updated>2023-11-02T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://simple-jwt-login.github.io/website/releases"/>
+    <subtitle>Simple-JWT-Login Blog</subtitle>
+    <icon>https://simple-jwt-login.github.io/website/assets/favicons/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.5.2]]></title>
+        <id>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.2/</id>
+        <link href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.2/"/>
+        <updated>2023-11-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.5.2]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.5.2</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes, and new security improvements.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Fix change user password with revoked JWT</li>
+<li>Change routes priority from floats to int and fix deprecation message "Implicit conversion from float to int loses precision"</li>
+<li>Add <code>iss</code> to JWT payload and allow to configure it</li>
+<li>Fix user meta on register user <a href="https://github.com/nicumicle/simple-jwt-login/issues/86" target="_blank" rel="noopener noreferrer">#86</a></li>
+<li>Fix calling protected endpoints with revoked token <a href="https://github.com/nicumicle/simple-jwt-login/issues/75" target="_blank" rel="noopener noreferrer">#75</a></li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="bugfix" term="bugfix"/>
+        <category label="feature" term="feature"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.5.1]]></title>
+        <id>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.1/</id>
+        <link href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.1/"/>
+        <updated>2023-10-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.5.1]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.5.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Update WordPress 6.3 compatibility</li>
+<li>Fix warnings and failed tests on PHP 8.2</li>
+<li>Publish code coverage to codecov</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="bugfix" term="bugfix"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.5.0]]></title>
+        <id>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.0/</id>
+        <link href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.0/"/>
+        <updated>2023-01-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.5.0]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.5.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes, new features and code re-factorization.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Fix unable to create post issue when protect endpoints is enabled for all endpoints #62</li>
+<li>Search user by email on reset password #31</li>
+<li>Switch get_user_by_email to get_user_by() due to deprecation</li>
+<li>Remove method convertUserToArray from WordPressData.</li>
+<li>Drop support for PHP 5.3 and PHP 5.4</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="bugfix" term="bugfix"/>
+        <category label="feature" term="feature"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.4.9]]></title>
+        <id>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.9/</id>
+        <link href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.9/"/>
+        <updated>2022-12-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.4.9]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.4.9</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes, new features and code re-factorization.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Add Strength indicator for JWT decryption key</li>
+<li>Allow setting custom length for random password. The default is 10 characters.</li>
+<li>Allow sending base_64 encoded <code>password</code> and <code>passhash</code> on the /auth endpoint</li>
+<li>Fix issue with includeRequestParameters that has been building incorrect URLs</li>
+<li>Add query parameters filter on autologin redirect</li>
+<li>Add the <code>simple_jwt_login_before_endpoint</code> hook before all simple-jwt-login routes are initialized</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="bugfix" term="bugfix"/>
+        <category label="feature" term="feature"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.4.8]]></title>
+        <id>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.8/</id>
+        <link href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.8/"/>
+        <updated>2022-11-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.4.8]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.4.8</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes, security improvements and code re-factorization.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Add filter to allow the change for authentication payload <code>simple_jwt_login_generate_payload</code></li>
+<li>Change how we log in the user on while using the "protect endpoint" feature</li>
+<li>Refactor Route Service getUserFromJWT method</li>
+<li>Update License to GPL v3</li>
+<li>Sanitize data from request</li>
+<li>Fix password that contains special characters <a href="https://github.com/nicumicle/simple-jwt-login/issues/50" target="_blank" rel="noopener noreferrer">#50</a></li>
+<li>/auth/validate endpoint supports both <code>GET</code> and <code>POST</code> methods</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="bugfix" term="bugfix"/>
+        <category label="feature" term="feature"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.4.7]]></title>
+        <id>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.7/</id>
+        <link href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.7/"/>
+        <updated>2022-10-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.4.7]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.4.7</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some security improvements and code re-factorization.</p>
+<p>The plugin has been reviewed by the WordPress team, and after that, we did some changes to the plugin.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Remove code vulnerability from the JWT library.</li>
+<li>Fix local file inclusion risk</li>
+<li>Variables sanitization</li>
+<li>Apply phpcs check on the whole plugin folder and not only on the src/ folder</li>
+<li>The plugin has been tested with WordPress 6.0.2</li>
+<li>Keep the current active tab when settings are saved</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="bugfix" term="bugfix"/>
+        <category label="feature" term="feature"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.4.5]]></title>
+        <id>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.5/</id>
+        <link href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.5/"/>
+        <updated>2022-04-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.4.5]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.4.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>New cool features have been included.</p>
+<p>The following changes have been deployed:</p>
+<ul>
+<li>Add Redirect on Fail Autologin</li>
+<li>Shortcode for displaying Autologin errors</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-add-redirect-on-fail">1. Add Redirect on Fail<a href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.5/#1-add-redirect-on-fail" class="hash-link" aria-label="Direct link to 1. Add Redirect on Fail" title="Direct link to 1. Add Redirect on Fail">​</a></h2>
+<p>This feature will allow you to set a Redirect URL in case the Autologin fails.</p>
+<p>The autologin can fail, if the JWT is invalid, or if it is expired. This way, you can display a cool page to your users.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-shortcode-for-displaying-autologin-errors">2. Shortcode for displaying Autologin errors<a href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.5/#2-shortcode-for-displaying-autologin-errors" class="hash-link" aria-label="Direct link to 2. Shortcode for displaying Autologin errors" title="Direct link to 2. Shortcode for displaying Autologin errors">​</a></h2>
+<p>The new shortcode can be used to display the failed autologin error.</p>
+<p>The shortcode looks like this:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">  [simple-jwt-login:request key="error_code"]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>or</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">  [simple-jwt-login:request key="error_message"]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Also, in case you have extra query parameters in your URL, you can display them using this shortcode. You just need to set the key of the Query parameter.</p>
+<p>URL Example:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">https://simplejwtlogin.com?my_parameter=test&amp;error_code=21&amp;error_message=This is an error</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><code>[simple-jwt-login:request key="error_code"]</code> will display : <code>21</code></p>
+<p><code>[simple-jwt-login:request key="error_message"]</code> will display : <code>This is an error</code></p>
+<p><code>[simple-jwt-login:request key="my_parameter"]</code> will display : <code>test</code></p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>These Shortcodes will remove all the HTML tags</p></div></div>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="feature" term="feature"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.4.4]]></title>
+        <id>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.4/</id>
+        <link href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.4/"/>
+        <updated>2022-04-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.4.4]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.4.4</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>New cool features have been included.</p>
+<p>The following changes have been deployed:</p>
+<ul>
+<li>New hooks has been added, in order to allow the customization of all the success responses.</li>
+<li>The plugin has been tested with WordPress 5.9</li>
+<li>Do not add empty JWT to Authorization header</li>
+<li>New <a href="https://github.com/nicumicle/simple-jwt-login/blob/master/postman/openapi.yaml" target="_blank" rel="noopener noreferrer">Openapi</a> file has been added</li>
+</ul>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="bugfix" term="bugfix"/>
+        <category label="feature" term="feature"/>
+    </entry>
+</feed>
