@@ -96,7 +96,7 @@ In order to do this, we need to add some code in <code>handleClick</code> method
             <name>Nicu Micle</name>
             <uri>https://github.com/nicumicle</uri>
         </author>
-        <category label="tutorials" term="tutorials"/>
+        <category label="Tutorial" term="Tutorial"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[CORS Setup on Apache Server]]></title>
@@ -132,7 +132,7 @@ In order to do this, we need to add some code in <code>handleClick</code> method
             <name>Nicu Micle</name>
             <uri>https://github.com/nicumicle</uri>
         </author>
-        <category label="tutorials" term="tutorials"/>
+        <category label="Tutorial" term="Tutorial"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Release JavaScript SDK]]></title>
@@ -226,6 +226,5 @@ You can now use it in your projects:</p>
             <uri>https://github.com/nicumicle</uri>
         </author>
         <category label="News" term="News"/>
-        <category label="docusaurus-v2" term="docusaurus-v2"/>
     </entry>
 </feed>

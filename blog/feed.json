@@ -32,7 +32,7 @@
                 "url": "https://github.com/nicumicle"
             },
             "tags": [
-                "tutorials"
+                "Tutorial"
             ]
         },
         {
@@ -47,7 +47,7 @@
                 "url": "https://github.com/nicumicle"
             },
             "tags": [
-                "tutorials"
+                "Tutorial"
             ]
         },
         {
@@ -108,8 +108,7 @@
                 "url": "https://github.com/nicumicle"
             },
             "tags": [
-                "News",
-                "docusaurus-v2"
+                "News"
             ]
         }
     ]
