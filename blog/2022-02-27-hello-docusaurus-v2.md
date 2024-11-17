@@ -4,7 +4,7 @@ description: New website built with Docusaurus
 slug: simple-jwt-login-plus-docusaurus/
 hide_table_of_contents: false
 authors: nicumicle
-tags: [news, docusaurus-v2]
+tags: [news]
 ---
 
 I'm very excited about this new website for Simple JWT Login, using [**Docusaurus 2**](https://docusaurus.io/).

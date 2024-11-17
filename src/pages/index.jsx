@@ -166,7 +166,7 @@ function Section({ title, description ,image,alt, link,beta}) {
 
 function Star(){
    return (
-       <img src={"/assets/img/star.svg"} className={styles.star}  alt="star" title="star" width="20" height="20"/>
+       <img src={"assets/img/star.svg"} className={styles.star}  alt="star" title="star" width="20" height="20"/>
    )
 }
 /**
@@ -198,21 +198,6 @@ function Review({ title, description ,numberOfStars ,author, link}) {
           <p>"{description}"</p>
         </div>
   );
-}
-
-// @ts-ignore
-function Sponsor({name, link, description, image}) {
-  return (
-      <div className={styles.sponsorItem}>
-        <Link to={link} title={name}>
-          <img src={image} alt={name} title={name}/>
-        </Link>
-        <p>{description}</p>
-        <p>
-          <Link to={link} title={name}>{link}</Link>
-        </p>
-      </div>
-  )
 }
 
 function RecentPosts(){
@@ -337,10 +322,10 @@ function Docs() {
                       <p>
                         This composer packages will help you integrate your PHP application with Simple JWT Login
                       </p>
-                      <img src={"/assets/img/frameworks/php.png"} alt={"PHP"} title={"PHP"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/laravel.png"}  alt={"Laravel"} title={"Laravel"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/yii.png"}  alt={"Yii"} title={"Yii"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/codeigniter.png"}  alt={"Codeigniter"} title={"Codeigniter"}  width="40" height="40"/>
+                      <img src={"assets/img/frameworks/php.png"} alt={"PHP"} title={"PHP"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/laravel.png"}  alt={"Laravel"} title={"Laravel"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/yii.png"}  alt={"Yii"} title={"Yii"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/codeigniter.png"}  alt={"Codeigniter"} title={"Codeigniter"}  width="40" height="40"/>
                       <br />
                       <code>composer require "nicumicle/simple-jwt-login-client-php"</code>
                     </div>
@@ -364,10 +349,10 @@ function Docs() {
                     <p>
                       Integrate your application with Simple JWT Login using the SDK with just a few lines of code.
                     </p>
-                      <img src={"/assets/img/frameworks/javascript.png"}  alt={"JavaScript"} title={"JavaScript"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/vue.png"}  alt={"Vue"}  title="Vue" width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/react.png"}  alt={"React"} title={"React"} width="40" height="40"/>
-                      <img src={"/assets/img/frameworks/angular.png"}  alt={"Angular"} title={"Angular"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/javascript.png"}  alt={"JavaScript"} title={"JavaScript"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/vue.png"}  alt={"Vue"}  title="Vue" width="40" height="40"/>
+                      <img src={"assets/img/frameworks/react.png"}  alt={"React"} title={"React"} width="40" height="40"/>
+                      <img src={"assets/img/frameworks/angular.png"}  alt={"Angular"} title={"Angular"} width="40" height="40"/>
                       <br />
                     <code>npm install "simple-jwt-login"</code>
                   </div>

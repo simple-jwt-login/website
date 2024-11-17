@@ -2,16 +2,18 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+require('dotenv').config()
+
 const config: Config = {
   title: 'Simple-JWT-Login',
   tagline: 'Your WordPress plugin that allows you to work with JWT',
   favicon: '/assets/favicons/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://simple-jwt-login.github.io/website',
+  url: process.env.REACT_APP_DOMAIN,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl:  process.env.REACT_APP_BASE_URL,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -36,6 +38,16 @@ const config: Config = {
       },
     },
   },
+
+  plugins: [
+    [
+      'docusaurus-plugin-dotenv',
+      {
+          path: "./.env", 
+          systemvars: true, 
+      }
+    ]
+  ],
 
   presets: [
     [
