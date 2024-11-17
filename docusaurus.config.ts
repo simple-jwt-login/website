@@ -46,7 +46,25 @@ const config: Config = {
           path: "./.env", 
           systemvars: true, 
       }
-    ]
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: 'releases',
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: 'releases',
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: './releases',
+      },
+    ],
   ],
 
   presets: [
@@ -118,6 +136,12 @@ const config: Config = {
           position: 'left',
           to: '/blog/',
           title: 'Blog',
+        },
+        {
+          label: 'Releases',
+          position: 'left',
+          to: '/releases/',
+          title: 'Releases',
         },
         // {
         //   label: 'API Explorer',

@@ -8,7 +8,8 @@ COPY . /app
 WORKDIR /app
 
 RUN yarn clear
-RUN yarn add docusaurus-plugin-dotenv
 
+# RUN yarn add docusaurus-plugin-dotenv
+# RUN yarn add @docusaurus/plugin-content-blog
 
 CMD ["yarn", "start", "--host", "0.0.0.0"]
