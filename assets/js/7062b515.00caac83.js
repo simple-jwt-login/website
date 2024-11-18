@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksimple_jwt_login_website=self.webpackChunksimple_jwt_login_website||[]).push([[2527],{6899:e=>{e.exports=JSON.parse('{"authors":[{"name":"Nicu Micle","title":"Creator of Simple JWT Login","url":"https://github.com/nicumicle","imageURL":"https://avatars.githubusercontent.com/u/20170987?v=4","key":"nicumicle","page":null,"count":8}]}')}}]);
