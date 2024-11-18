@@ -60,7 +60,7 @@ info:
     url: https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE
   version: 1.0.0
   x-logo:
-    url: https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/master/wordpress.org/assets/icon-128x128.png
+    url: "https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/master/wordpress.org/assets/icon-128x128.png"
     altText: Simple-Jwt-Login Logo
 externalDocs:
   description: Find out more about Simple-JWT-Login
