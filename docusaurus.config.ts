@@ -2,6 +2,11 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+// note that parts of the complete config were left out for brevity
+import type * as Plugin from "@docusaurus/types/src/plugin";
+import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
+
+
 require('dotenv').config()
 
 const config: Config = {
@@ -47,6 +52,24 @@ const config: Config = {
           systemvars: true, 
       }
     ],
+
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "api", // plugin id
+        docsPluginId: "classic", // configured for preset-classic
+        config: {
+          petstore: {
+            specPath: "static/openapi.yaml",
+            outputDir: "docs/api",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+        }
+      },
+    ],
+
     [
       '@docusaurus/plugin-content-blog',
       {
@@ -65,17 +88,31 @@ const config: Config = {
         path: './releases',
       },
     ],
+
+    // [
+    //   '@docusaurus/plugin-content-docs',
+    //   {
+    //     id: 'api-explorer',
+    //     path: 'api-explorer',
+    //     routeBasePath: '/api-explorer',
+    //     // sidebarPath: './sidebarsCommunity.js',
+    //     sidebarPath: false,
+    //     // ... other options
+    //   },
+    // ],
   ],
+
+  themes: ["docusaurus-theme-openapi-docs"], // export theme components
 
   presets: [
     [
       'classic',
       {
         docs: {
-         routeBasePath: '/docs/',
+          routeBasePath: '/docs/',
           sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/simple-jwt-login/website/tree/main',
+          editUrl:  'https://github.com/simple-jwt-login/website/tree/main',
+          docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
         },
         blog: {
           showReadingTime: true,
