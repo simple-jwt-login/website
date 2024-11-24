@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksimple_jwt_login_website=self.webpackChunksimple_jwt_login_website||[]).push([[461],{32012:e=>{e.exports=JSON.parse('{"blogBasePath":"/releases","blogTitle":"Blog","authorsListPath":"/releases/authors"}')}}]);

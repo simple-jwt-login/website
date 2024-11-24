@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Simple-JWT-Login Blog</title>
-        <link>https://simple-jwt-login.github.io/website/releases</link>
+        <link>https://simplejwtlogin.com/releases</link>
         <description>Simple-JWT-Login Blog</description>
         <lastBuildDate>Thu, 02 Nov 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,8 +10,8 @@
         <language>en</language>
         <item>
             <title><![CDATA[New Plugin Release 3.5.2]]></title>
-            <link>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.2</link>
-            <guid>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.2</guid>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.2</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.2</guid>
             <pubDate>Thu, 02 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.2]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.2</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
@@ -30,8 +30,8 @@
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.5.1]]></title>
-            <link>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.1</link>
-            <guid>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.1</guid>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1</guid>
             <pubDate>Sun, 01 Oct 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.1]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
@@ -47,8 +47,8 @@
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.5.0]]></title>
-            <link>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.0</link>
-            <guid>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.5.0</guid>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0</guid>
             <pubDate>Thu, 05 Jan 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.0]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
@@ -67,8 +67,8 @@
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.4.9]]></title>
-            <link>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.9</link>
-            <guid>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.9</guid>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.9</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.9</guid>
             <pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.9]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.9</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
@@ -88,8 +88,8 @@
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.4.8]]></title>
-            <link>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.8</link>
-            <guid>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.8</guid>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8</guid>
             <pubDate>Sat, 05 Nov 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.8]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.8</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
@@ -110,8 +110,8 @@
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.4.7]]></title>
-            <link>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.7</link>
-            <guid>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.7</guid>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7</guid>
             <pubDate>Tue, 04 Oct 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.7]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.7</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
@@ -132,8 +132,8 @@
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.4.5]]></title>
-            <link>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.5</link>
-            <guid>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.5</guid>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5</guid>
             <pubDate>Mon, 11 Apr 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.5]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
@@ -143,10 +143,10 @@
 <li>Add Redirect on Fail Autologin</li>
 <li>Shortcode for displaying Autologin errors</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-add-redirect-on-fail">1. Add Redirect on Fail<a href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.5#1-add-redirect-on-fail" class="hash-link" aria-label="Direct link to 1. Add Redirect on Fail" title="Direct link to 1. Add Redirect on Fail">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-add-redirect-on-fail">1. Add Redirect on Fail<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#1-add-redirect-on-fail" class="hash-link" aria-label="Direct link to 1. Add Redirect on Fail" title="Direct link to 1. Add Redirect on Fail">​</a></h2>
 <p>This feature will allow you to set a Redirect URL in case the Autologin fails.</p>
 <p>The autologin can fail, if the JWT is invalid, or if it is expired. This way, you can display a cool page to your users.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-shortcode-for-displaying-autologin-errors">2. Shortcode for displaying Autologin errors<a href="https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.5#2-shortcode-for-displaying-autologin-errors" class="hash-link" aria-label="Direct link to 2. Shortcode for displaying Autologin errors" title="Direct link to 2. Shortcode for displaying Autologin errors">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-shortcode-for-displaying-autologin-errors">2. Shortcode for displaying Autologin errors<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#2-shortcode-for-displaying-autologin-errors" class="hash-link" aria-label="Direct link to 2. Shortcode for displaying Autologin errors" title="Direct link to 2. Shortcode for displaying Autologin errors">​</a></h2>
 <p>The new shortcode can be used to display the failed autologin error.</p>
 <p>The shortcode looks like this:</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">  [simple-jwt-login:request key="error_code"]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
@@ -163,8 +163,8 @@
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.4.4]]></title>
-            <link>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.4</link>
-            <guid>https://simple-jwt-login.github.io/website/releases/simple-jwt-login-release-3.4.4</guid>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.4</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.4</guid>
             <pubDate>Sun, 03 Apr 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.4]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.4</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
