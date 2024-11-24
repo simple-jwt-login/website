@@ -1,22 +1,4 @@
 openapi: 3.0.1
-x-servers:
-  - url: "{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}"
-    variables:
-      protocol:
-        enum:
-          - 'http'
-          - 'https'
-        default: 'http'
-      domain:
-        default: 'localhost'
-        description: Website Domain
-      APIPath:
-        enum:
-          - "wp-json"
-          - "?rest_route="
-        default: '/wp-json'
-      simplejwtloginprefix:
-        default: "simple-jwt-login/v1"
 servers:
   - url: "{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}"
     variables:
@@ -32,7 +14,7 @@ servers:
         enum:
           - "wp-json"
           - "?rest_route="
-        default: '/wp-json'
+        default: 'wp-json'
       simplejwtloginprefix:
         default: "simple-jwt-login/v1"
 info:
@@ -80,33 +62,7 @@ tags:
     description: Delete WordPress user
     externalDocs:
       description: Find out more
-      url: https://www.simplejwtlogin.com/docs/delete_user
-  - name: reset_password
-    description: Reset User Password
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/change-password
-  - name: authenticate_user
-    description: Authenticate user
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/authentication
-x-tags:
-  - name: login_user
-    description: Login user in WordPress
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/autologin
-  - name: register_user
-    description: Register WordPress user
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/register-user
-  - name: delete_user
-    description: Delete WordPress user
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/delete_user
+      url: https://www.simplejwtlogin.com/docs/delete-user
   - name: reset_password
     description: Reset User Password
     externalDocs:
