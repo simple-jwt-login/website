@@ -25,7 +25,7 @@ jobs:
           # REACT_APP_DOMAIN: "https://simple-jwt-login.github.io/"
           # REACT_APP_BASE_URL: "/website/"
           
-          REACT_APP_DOMAIN: "htps://simplejwtloginc.com"
+          REACT_APP_DOMAIN: "https://simplejwtlogin.com"
           REACT_APP_BASE_URL: "/"
         run: |
           npm install
