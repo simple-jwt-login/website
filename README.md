@@ -1,6 +1,8 @@
 # Simple JWT Login Documentation
 
-Welcome to the documentation repository for the **Simple JWT Login** WordPress plugin! This project uses [Docusaurus](https://docusaurus.io/) to provide a structured and easy-to-navigate documentation site.
+Welcome to the documentation repository for the [Simple JWT Login](https://github.com/nicumicle/simple-jwt-login) WordPress plugin! 
+
+This project uses [Docusaurus](https://docusaurus.io/) to provide a structured and easy-to-navigate documentation site.
 
 ## About Simple JWT Login
 
@@ -46,4 +48,4 @@ We welcome contributions to improve and expand the documentation! Here’s how y
 
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/simple-jwt-login/website/blob/main/LICENSE).
