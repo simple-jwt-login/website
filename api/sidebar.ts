@@ -4,7 +4,7 @@ const sidebar: SidebarsConfig = {
   apisidebar: [
     {
       type: "doc",
-      id: "api/simple-jwt-login",
+      id: "simple-jwt-login",
     },
     {
       type: "category",
@@ -12,7 +12,7 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/autologin",
+          id: "autologin",
           label: "Autologin user into WordPress",
           className: "api-method get",
         },
@@ -24,7 +24,7 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/register-word-press-user",
+          id: "register-word-press-user",
           label: "Register WordPress user",
           className: "api-method post",
         },
@@ -36,7 +36,7 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/delete-user",
+          id: "delete-user",
           label: "Delete WordPress user",
           className: "api-method delete",
         },
@@ -48,13 +48,13 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/send-reset-password-code",
+          id: "send-reset-password-code",
           label: "Send reset password code",
           className: "api-method post",
         },
         {
           type: "doc",
-          id: "api/change-user-password",
+          id: "change-user-password",
           label: "Change user password",
           className: "api-method put",
         },
@@ -66,27 +66,75 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/get-jwt",
+          id: "get-jwt",
           label: "Authenticate to your WordPress website",
           className: "api-method post",
         },
         {
           type: "doc",
-          id: "api/refresh-jwt",
+          id: "refresh-jwt",
           label: "Refresh expired JWT",
           className: "api-method post",
         },
         {
           type: "doc",
-          id: "api/validate-jwt",
+          id: "validate-jwt",
           label: "Validate JWT",
           className: "api-method get",
         },
         {
           type: "doc",
-          id: "api/revoke-jwt",
+          id: "revoke-jwt",
           label: "Revoke JWT",
           className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Schemas",
+      items: [
+        {
+          type: "doc",
+          id: "schemas/responseerror",
+          label: "ResponseError",
+          className: "schema",
+        },
+        {
+          type: "doc",
+          id: "schemas/registeruserbody",
+          label: "registerUserBody",
+          className: "schema",
+        },
+        {
+          type: "doc",
+          id: "schemas/authbody",
+          label: "authBody",
+          className: "schema",
+        },
+        {
+          type: "doc",
+          id: "schemas/authrefreshbody",
+          label: "authRefreshBody",
+          className: "schema",
+        },
+        {
+          type: "doc",
+          id: "schemas/authrevokebody",
+          label: "authRevokeBody",
+          className: "schema",
+        },
+        {
+          type: "doc",
+          id: "schemas/resetpasswordbody",
+          label: "resetPasswordBody",
+          className: "schema",
+        },
+        {
+          type: "doc",
+          id: "schemas/changepasswordbody",
+          label: "changePasswordBody",
+          className: "schema",
         },
       ],
     },

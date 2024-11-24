@@ -1,0 +1,33 @@
+---
+id: responseerror
+title: "ResponseError"
+description: ""
+sidebar_label: "ResponseError"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"succes":false,"data":{"message":"string","errorCode":0}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ResponseError"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"succes":{"type":"boolean","example":false,"description":"Status of the request"},"data":{"type":"object","properties":{"message":{"type":"string"},"errorCode":{"type":"number"}}}},"title":"ResponseError"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

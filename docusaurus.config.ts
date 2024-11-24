@@ -27,6 +27,7 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
+  trailingSlash: false,
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -53,23 +54,7 @@ const config: Config = {
       }
     ],
 
-    [
-      'docusaurus-plugin-openapi-docs',
-      {
-        id: "api", // plugin id
-        docsPluginId: "classic", // configured for preset-classic
-        config: {
-          petstore: {
-            specPath: "static/openapi.yaml",
-            outputDir: "docs/api",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          } satisfies OpenApiPlugin.Options,
-        }
-      },
-    ],
-
+  
     [
       '@docusaurus/plugin-content-blog',
       {
@@ -89,17 +74,38 @@ const config: Config = {
       },
     ],
 
-    // [
-    //   '@docusaurus/plugin-content-docs',
-    //   {
-    //     id: 'api-explorer',
-    //     path: 'api-explorer',
-    //     routeBasePath: '/api-explorer',
-    //     // sidebarPath: './sidebarsCommunity.js',
-    //     sidebarPath: false,
-    //     // ... other options
-    //   },
-    // ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api-docs',
+        path: 'api',
+        routeBasePath: 'api',
+        docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
+        // sidebarPath: './sidebarsCommunity.js',
+        // ... other options
+      },
+    ],
+
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "opeanapi-1", // plugin id
+        docsPluginId: "api-docs", // configured for preset-classic
+        config: {
+          apiv1: {
+            specPath: "static/openapi.yaml",
+            outputDir: "./api",
+            showSchemas: true,
+            baseUrl: "/api", // Leading slash is important
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              // categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+        }
+      },
+    ],
+
   ],
 
   themes: ["docusaurus-theme-openapi-docs"], // export theme components
@@ -112,7 +118,7 @@ const config: Config = {
           routeBasePath: '/docs/',
           sidebarPath: './sidebars.ts',
           editUrl:  'https://github.com/simple-jwt-login/website/tree/main',
-          docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
+          //docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
         },
         blog: {
           showReadingTime: true,
@@ -179,6 +185,12 @@ const config: Config = {
           position: 'left',
           to: '/releases/',
           title: 'Releases',
+        },
+        {
+          label: 'API',
+          position: 'left',
+          to: '/api/simple-jwt-login',
+          title: 'API',
         },
         // {
         //   label: 'API Explorer',

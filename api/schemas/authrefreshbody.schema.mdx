@@ -1,0 +1,33 @@
+---
+id: authrefreshbody
+title: "authRefreshBody"
+description: ""
+sidebar_label: "authRefreshBody"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"JWT":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","AUTH_CODE":"MY_SUPER_SECRET_AUTH_CODE"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"authRefreshBody"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"JWT":{"type":"string","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","description":"Expired JWT."},"AUTH_CODE":{"type":"string","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Authentication Requires Auth Code\" is enabled"}},"required":["JWT"],"title":"authRefreshBody"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            
