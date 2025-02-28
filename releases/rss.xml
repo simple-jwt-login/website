@@ -4,10 +4,107 @@
         <title>Simple-JWT-Login Blog</title>
         <link>https://simplejwtlogin.com/releases</link>
         <description>Simple-JWT-Login Blog</description>
-        <lastBuildDate>Thu, 02 Nov 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Feb 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[New Plugin Release 3.5.8]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.8</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.8</guid>
+            <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.5.8]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.5.8</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes, and new improvements.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Use wp_safe_redirect for redirects <a href="https://github.com/nicumicle/simple-jwt-login/issues/115" target="_blank" rel="noopener noreferrer">#115</a></li>
+<li>Ensure JWT middleware only run once <a href="https://github.com/nicumicle/simple-jwt-login/issues/125" target="_blank" rel="noopener noreferrer">#125:</a></li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>feature</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.5.7]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.7</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.7</guid>
+            <pubDate>Sun, 22 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.5.7]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.5.7</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Update WordPress 6.7 Compatibility</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>feature</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.5.6]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.6</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.6</guid>
+            <pubDate>Sat, 03 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.5.6]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.5.6</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Update WordPress 6.6 Compatibility</li>
+<li>Fix revoked token validation when middleware enabled <a href="https://github.com/nicumicle/simple-jwt-login/issues/110" target="_blank" rel="noopener noreferrer">#110</a></li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>feature</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.5.5]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.5</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.5</guid>
+            <pubDate>Sat, 04 May 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.5.5]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.5.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Update README</li>
+<li>Refactor Protect Endpoints</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>feature</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.5.4]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.4</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.4</guid>
+            <pubDate>Fri, 03 May 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.5.4]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.5.4</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes and new features.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Add OAuth support for Google <a href="https://github.com/nicumicle/simple-jwt-login/issues/97" target="_blank" rel="noopener noreferrer">#97</a></li>
+<li>Fix status code for expired tokens <a href="https://github.com/nicumicle/simple-jwt-login/issues/102" target="_blank" rel="noopener noreferrer">#102</a></li>
+<li>Update WordPress 6.5 Compatibility</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
+            <category>feature</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.5.3]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.3</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.3</guid>
+            <pubDate>Thu, 16 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.5.3]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.5.3</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>The changes include some bug fixes.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Fix licence in composer.json</li>
+<li>Update WordPress 6.4 compatibility</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
+        </item>
         <item>
             <title><![CDATA[New Plugin Release 3.5.2]]></title>
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.2</link>
