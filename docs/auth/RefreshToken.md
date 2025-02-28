@@ -55,14 +55,17 @@ You can use this endpoint in order to refresh an expired token.
 
 ### SHELL
 
-```shell
+```bash
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/refresh -d '{"JWT":"YOUR_EXPIRED_JWT"}'
 ```
 
 ### PHP
 
 ```php
-$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient('https://simplejwtlogin.com', '/simple-jwt-login/v1');
+$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+    'https://simplejwtlogin.com',
+    '/simple-jwt-login/v1'
+);
 $result = $simpleJwtLogin->refreshToken('your JWT here', 'AUTH CODE');
 ```
 

@@ -58,14 +58,17 @@ If you want to make sure a token can not be used anymore, just revoke it. This e
 
 ### SHELL
 
-```shell
+```bash
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/revoke -d '{"JWT":"YOUR_JWT"}'
 ```
 
 ### PHP
 
 ```php
-$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient('https://simplejwtlogin.com', '/simple-jwt-login/v1'); 
+$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+    'https://simplejwtlogin.com',
+    '/simple-jwt-login/v1'
+); 
 $result = $simpleJwtLogin->revokeToken('Your JWT here', 'AUTH CODE');
 ```
 

@@ -29,10 +29,13 @@ So, if you see something related to 'CORS' in the console, that means that you h
 The first step that you need to do, is to connect to your server via SSH.
 
 On your server, you have to make sure that the headers mod is enabled. 
+
 ```bash
 sudo a2enmod headers
 ```
+
 After this, you will see something like this: 
+
 ```
 Enabling module headers.
 To activate the new configuration, you need to run:
@@ -40,11 +43,13 @@ To activate the new configuration, you need to run:
 ```
 
 If the headers have been enabled before, you will get a message like this: 
+
 ```
 Module headers already enabled
 ```
 
 The next step is to edit the apache2 conf file.
+
 ```bash
 vi /etc/apache2/apache2.conf
 ```
@@ -54,8 +59,10 @@ If your website is running from `/var/www/html`, in this file, search for:
 ```
 <Directory /var/www/html">
 ```
+
 If you can not find that, just add it at the end of the file:
-```bash
+
+```
 <Directory "/var/www/html">
     AllowOverride None
     Require all granted

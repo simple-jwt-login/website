@@ -1,0 +1,35 @@
+---
+slug: /wpgraphql/
+title: WPGraphQL
+sidebar_position: 1
+author: Nicu Micle
+author_url: https://github.com/nicumicle
+---
+
+
+With Simple-JWT-Login, you can now securely authenticate API requests for [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) endpoints using JWT.
+This integration makes it easier to build headless WordPress applications that require secure, token-based authentication for GraphQL queries and mutations.
+
+## Key Features:
+- **JWT Authentication for WPGraphQL** – Securely access GraphQL endpoints with JWT tokens.
+- **Seamless Integration** – Works natively with WPGraphQL, enabling authentication for protected queries and mutations.
+- **Flexible Authentication** – Include a JWT in request headers to authenticate API requests effortlessly.
+
+This feature is ideal for **headless WordPress setups**, allowing front-end applications to authenticate users and perform **secure GraphQL operations**.
+
+## Setup Guide
+
+### Enable WPGraphQL Authentication
+
+Go to **Simple-JWT-Login Settings** and enable **WPGraphQL Authorization**.
+<img src="/assets/img/wpgraphql/wpgraphql-enabled.png" alt="Enable WPGraphQL Authentication" />
+
+### Test an Unauthenticated Request
+Try calling a **WPGraphQL endpoint** without authentication—you should receive an **Unauthorized error**:
+<img src="/assets/img/wpgraphql/wpgraphql-postman-unauthorized.png" alt="Unauthorized WPGraphQL Error Example" />
+
+### Authenticate and Use JWT
+Once you authenticate and obtain a valid JWT, include it in your request headers.
+
+Now, your API calls will be **authenticated**:
+<img src="/assets/img/wpgraphql/wpgraphql-postman-jwt.png" alt="Authenticated WPGraphQL Request with JWT"/>

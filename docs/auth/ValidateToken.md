@@ -88,14 +88,17 @@ If you have a valid JWT, details about the available WordPress user will be retu
 
 ### SHELL
 
-```shell
+```bash
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/validate -d '{"JWT":"YOUR_JWT"}'
 ```
 
 ### PHP
 
 ```php
-$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient('https://simplejwtlogin.com', '/simple-jwt-login/v1');
+$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+    'https://simplejwtlogin.com',
+    '/simple-jwt-login/v1'
+);
 $result = $simpleJwtLogin->validateToken('your JWT here', 'AUTH CODE');
 ```
 

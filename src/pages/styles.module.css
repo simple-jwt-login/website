@@ -25,6 +25,17 @@
 .heroBanner h1{
   color: #42b983;
 }
+/**
+Dark mode
+ */
+html[data-theme="dark"] .heroBanner {
+  background-color: #222;
+}
+html[data-theme="dark"] .heroBanner h1,
+html[data-theme="dark"] .heroBanner p
+{
+  color: #fff;
+}
 
 .sectionTitle{
   font-size: 45px;
@@ -37,6 +48,9 @@
   width: 100%;
   padding-top:10px;
   padding-bottom:10px;
+}
+html[data-theme="dark"] .sectionTitle {
+  color: #fff;
 }
 
 @media screen and (max-width: 966px) {
@@ -69,7 +83,7 @@
 
 
 .featureBlock {
-  background: #fff none repeat scroll 0 0;
+  /*background: #fff none repeat scroll 0 0;*/
   padding: 30px 20px;
   margin-bottom: 30px;
   transition: all 0.5s ease-in-out 0s;
@@ -79,14 +93,15 @@
 .featureBlock  h3{
   color: #42b983;
 }
-.featureBlock p{
-  color: #535353;
-}
 
 .featureBlock img {
   height: 60px;
   margin-bottom: 30px;
   width: 60px;
+}
+html[data-theme="dark"] .featureBlock img{
+  background: #fff;
+  padding: 3px;
 }
 
 .featureBlock:hover {
@@ -162,6 +177,10 @@
   position: relative;
   left: -12px;
 }
+html[data-theme="dark"] .btn {
+  background-color: #cccccc;
+  color: #000000;
+}
 
 .monthlyCard{
   width: 100%;
@@ -197,14 +216,14 @@
 .clientCard {
   padding-bottom: 20px;
   border:3px double #42b983;
-  background: #FFF;
 }
+
 .clientCard:hover{
   box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
   transition: all 0.5s ease-in-out 0s;
 }
+
 .clientCardTitle{
-  background: #fff;
   padding: 20px;
   text-align: center;
   border-bottom: 2px dotted #42b983;
@@ -212,7 +231,6 @@
 
 .clientCardContent{
   min-height: 10rem;
-  color: #535353;
 }
 .clientCard img{
   display: inline-block;
@@ -235,7 +253,6 @@
 }
 
 .reviewsLeft{
-  /*background: url("/assets/svg/review.svg");*/
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -248,7 +265,7 @@
   float:right;
 }
 .reviewsRow{
-  background: #fff none repeat scroll 0 0;
+  /*background: #fff none repeat scroll 0 0;*/
   padding: 5px 10px;
   margin-bottom: 10px;
   transition: all 0.5s ease-in-out 0s;
@@ -259,6 +276,9 @@
 }
 .reviewsRow p{
   color: #626262;
+}
+html[data-theme="dark"] .reviewsRow p{
+  color:#f7f7f7;
 }
 .reviewsMore{
   text-align: center;

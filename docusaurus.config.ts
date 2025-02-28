@@ -87,6 +87,22 @@ const config: Config = {
     ],
 
     [
+      '@docusaurus/plugin-sitemap',
+      {
+        id: "sitemap",
+        lastmod: 'datetime',
+        changefreq: 'weekly',
+        priority: 0.5,
+        ignorePatterns: ['/tags/**'],
+        filename: 'sitemap.xml',
+        createSitemapItems: async (params) => {
+          const {defaultCreateSitemapItems, ...rest} = params;
+          const items = await defaultCreateSitemapItems(rest);
+          return items.filter((item) => !item.url.includes('/page/'));
+        },
+      },
+    ],
+    [
       'docusaurus-plugin-openapi-docs',
       {
         id: "opeanapi-1", // plugin id
@@ -283,7 +299,11 @@ const config: Config = {
               href : 'https://github.com/nicumicle/simple-jwt-login/stargazers',
               title: 'GitHub',
             },
-
+            {
+              label: "Discord",
+              href: "https://discord.gg/c4AeefD8Dr",
+              title: "Discord",
+            }
           ],
         },
       ],
@@ -291,6 +311,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['bash', 'php'], // https://prismjs.com/#supported-languages
     },
   } satisfies Preset.ThemeConfig,
 };

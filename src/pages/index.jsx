@@ -135,6 +135,34 @@ const reviews = [
     numberOfStars: 5,
     link: "https://wordpress.org/support/users/mdruart/",
   },
+  {
+    title: <>No-Nonsense JWT (Excellence)</>,
+    desciption: <>This is probably the very absolute best no-nonsense JWT plugin on WordPress. Exceptionally well documented, high customization, easy to setup, and works out of the box with basic setup. No nonsense ads, either. Definitely deserving the 5-star rating across the board. Recommended.</>,
+    author: <>@thehinesgaphideaway</>,
+    numberOfStars: 5,
+    link: "https://wordpress.org/support/topic/no-nonsense-jwt-excellence/"
+  },
+  {
+    title: <>Service & Support</>,
+    description: <>JWT login plugin is awesome, their support is quite responsive and efficient.They are able to help me and guide me on my customize function to custom generate jwt using their classes.</>,
+    author: <>@wintear</>,
+    numberOfStars: 5,
+    link: "https://wordpress.org/support/topic/service-support/",
+  },
+  {
+    title: <>Awesome plugin</>,
+    description: <>This is what I needed, works as expected. Nice work!</>,
+    author: <>@graphems</>,
+    numberOfStars: 5,
+    link: "https://wordpress.org/support/topic/awesome-plugin-6632/",
+  },
+  {
+    title: <>best all times</>,
+    description: <>it’s the best of all JWT plugins, the responsiveness of the developer is simply incredible, he knows his project by heart and will help you efficiently.</>,
+    author: <>@bigbear67</>,
+    numberOfStars: 5,
+    link: "https://wordpress.org/support/topic/best-all-times/",
+  },
 ];
 
 /**
@@ -244,8 +272,8 @@ function RecentPosts(){
 
 function Docs() {
   let statistics = {
-    activeInstalls: '+5K',
-    downloads: '+55K',
+    activeInstalls: '5000',
+    downloads: '60000',
     rating: '5/5',
   }
 
@@ -320,7 +348,7 @@ function Docs() {
                     </div>
                     <div className={styles.clientCardContent}>
                       <p>
-                        This composer packages will help you integrate your PHP application with Simple JWT Login
+                        Composer package for integrating any PHP application with Simple JWT Login.
                       </p>
                       <img src={"assets/img/frameworks/php.png"} alt={"PHP"} title={"PHP"} width="40" height="40"/>
                       <img src={"assets/img/frameworks/laravel.png"}  alt={"Laravel"} title={"Laravel"} width="40" height="40"/>
@@ -371,8 +399,6 @@ function Docs() {
           </div>
         </section>
 
-
-        {true && (
         <section className={["contribute", styles.sectionPadding].join(" ")}>
           <div className="container text-center">
             <div className="row">
@@ -428,7 +454,6 @@ function Docs() {
             </div>
           </div>
         </section>
-        )}
 
         {reviews && reviews.length > 0 && (
             <section className={[styles.features, styles.sectionPadding].join(" ")}>
@@ -439,12 +464,8 @@ function Docs() {
                   </h2>
                 </div>
                 <div className="row">
-                  {/*<div className={["col", styles.reviewsLeft].join(" ")}>*/}
-                  {/*</div>*/}
-
                     {reviews.map((props, idx) => (
-
-                        <div className={"col"}>
+                        <div className={"col col--3"}>
                           <Review key={idx} {...props}></Review>
                         </div>
                     ))}

@@ -61,14 +61,17 @@ This endpoint changes the user password based on the reset code that has been se
 
 ### SHELL
 
-```shell
+```bash
 curl -X PUT https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users/reset_password -d '{"email":"test@simplejwtlogin.com", "code": "123", "new_password": "test"}'
 ```
 
 ### PHP
 
 ```php
-$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient('https://simplejwtlogin.com', '/simple-jwt-login/v1');
+$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+    'https://simplejwtlogin.com',
+    '/simple-jwt-login/v1'
+);
 $result = $simpleJwtLogin->changePassword('email@simplejwtlogin.com', 'new password', 'code', null, 'AUTH CODE');
 ```
 

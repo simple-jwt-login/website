@@ -1,6 +1,10 @@
 # Simple JWT Login Documentation
 
-Welcome to the documentation repository for the [Simple JWT Login](https://github.com/nicumicle/simple-jwt-login) WordPress plugin! 
+[![CI-validate](https://github.com/simple-jwt-login/website/actions/workflows/ci.yaml/badge.svg)](https://github.com/simple-jwt-login/website/actions/workflows/ci.yaml)
+[![CI-deploy](https://github.com/simple-jwt-login/website/actions/workflows/deploy.yaml/badge.svg)](https://github.com/simple-jwt-login/website/actions/workflows/deploy.yaml)
+[![pages-build-deployment](https://github.com/simple-jwt-login/website/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/simple-jwt-login/website/actions/workflows/pages/pages-build-deployment)
+
+This is the official documentation repository for the [Simple JWT Login](https://github.com/nicumicle/simple-jwt-login) WordPress plugin! 
 
 This project uses [Docusaurus](https://docusaurus.io/) to provide a structured and easy-to-navigate documentation site.
 
@@ -13,12 +17,12 @@ This project uses [Docusaurus](https://docusaurus.io/) to provide a structured a
 This repository includes everything needed to contribute to or run the documentation locally. Please follow the steps below to set up the project.
 
 ### Prerequisites
-- **docker**
-- **docker-compose** 
+- [docker](https://docs.docker.com/get-started/get-docker/)
+- [docker-compose](https://docs.docker.com/compose/)
 
 ### Running the Project Locally
 
-```shell
+```bash
 docker-compose up
 ```
 

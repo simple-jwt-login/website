@@ -8,7 +8,14 @@ author_url: https://github.com/nicumicle
 
 Simple-JWT-Login is a **FREE** WordPress plugin that allows you to use a JWT on WordPress REST endpoints.
 
+Simple-JWT-Login enhances the WordPress REST API with JSON Web Token (JWT) authentication, ensuring a secure connection for mobile apps, external websites, and third-party services to access your WordPress content via REST endpoints.
+
 The main purpose of this plugin is to allow Mobile apps, or other websites to access the content from a WordPress website via REST endpoints in a secure way.
+
+## Requirements
+
+- PHP version >= **5.5**
+- WordPress version >= **4.4.0** 
 
 
 ## Installation
@@ -73,14 +80,19 @@ When a JWT is found, first, you will be authenticated as the user in the JWT, an
 
 For example, you can create posts, as a specific user, if you provide a JWT in your request.
 
-```curl
-curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts?content=PostContent&title=PostTitle" -d '{"JWT":"YOUR_JWT_HERE"}'
+```bash
+curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts?content=PostContent&title=PostTitle" \
+    -d '{"JWT":"YOUR_JWT_HERE"}'
 ```
 
 or 
 
-```curl
-curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts" -H "Authorization: Bearer YOUR_JWT_HERE" --form title="Title" --form content="My content" --form type="page"
+```bash
+curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts" \
+    -H "Authorization: Bearer YOUR_JWT_HERE" \
+    --form title="Title" \
+    --form content="My content" \
+    --form type="page"
 ```
 
 For the second example, you need to make sure that you allow search for JWT in the header( you can set this in: General settings -> Get JWT token from )

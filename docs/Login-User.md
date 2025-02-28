@@ -52,7 +52,7 @@ You will be redirected to the specified URL in the plugin settings
 
 ### SHELL
 
-```shell
+```bash
 curl 'https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/autologin&JWT=mysecretjwt&AUTH_KEY=mysecretauthcode'
 ```
 
@@ -61,7 +61,10 @@ curl 'https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/autologin&JWT=
 Using the simple-jwt-login PHP Client: 
 
 ```php
-$simpleJWT = new \SimpleJwtLoginClient\SimpleJwtLoginClient('https://simplejwtlogin.com', '/simple-jwt-login-v1');
+$simpleJWT = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+    'https://simplejwtlogin.com',
+    '/simple-jwt-login-v1'
+);
 $url = $simpleJWT->login('Your JWT');
 header('Location: ' . $url);
 ```

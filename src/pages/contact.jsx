@@ -97,7 +97,7 @@ function Contact() {
                             To streamline our support and enhance your experience, we've made some changes to how we handle inquiries.
                             </p>
                             <p>
-                             As of <b>01.12.2024</b>, <b>email support will no longer be available</b>. But don’t worry – we’re still here to help!
+                             As of <b>01.12.2024</b>, <b>email support is no longer be available</b>. But don’t worry – we’re still here to help!
                             </p>
                         </div>
                     </div>

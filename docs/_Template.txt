@@ -61,7 +61,7 @@ Describe how parameters can be sent ( query, body, formData)
 
 ### SHELL
 
-```shell
+```bash
 curl -X POST https://simplejwtlogin.com -d '{"param1":"value"}'
 ```
 
