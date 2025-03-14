@@ -1,0 +1,69 @@
+.featureBlock {
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    transition: all 0.5s ease-in-out 0s;
+    text-align: center!important;
+    position: relative;
+    border-radius: 15px;
+}
+
+.featureBlock:hover {
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out 0s;
+}
+  
+.featureBlock  h3{
+    color: #42b983;
+}
+
+.beta {
+    color:#fff;
+    background: #940e0e;
+    padding: 2px 5px;
+    position: absolute;
+    top:10px;
+    left: 10px;
+    border-radius: 0.3em;
+    font-size: 10px;
+}
+
+.featureIcon {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fefcfb;
+    border-radius: 50%;
+    width: fit-content;
+    padding: 15px;
+    border: 5px solid rgba(66, 185, 131, 0.9);
+    margin: 0 auto;
+    box-shadow: 2px 1px 5px 0px rgba(31, 150, 7, 0.04), 9px 4px 10px 0px rgba(2, 122, 62, 0.03), 19px 10px 13px 0px rgba(12, 122, 2, 0.02), 35px 17px 15px 0px rgba(12, 122, 2, 0.01), 54px 27px 17px 0px rgba(2, 122, 8, 0);
+    transition: all 2s ease;
+  }
+  
+.featureIcon img {
+    height: 40px;
+    width: 40px;
+}
+
+.description {
+    min-height: 100px;
+}
+
+.title {
+    min-height: 60px;
+}
+
+.readmore {
+    min-height: 30px;
+}
+
+/**
+    Dark theme
+*/
+html[data-theme="dark"] .featureBlock img{
+    background: #fff;
+    padding: 3px;
+}

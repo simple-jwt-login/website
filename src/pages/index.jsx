@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
+import Feature from "@site/src/components/feature/feature";
+import Review from "@site/src/components/review/review";
+
 import styles from './styles.module.css';
-// import Card from "../components/card";
 
 const awesomeFeatures = [
   {
@@ -165,72 +166,9 @@ const reviews = [
   },
 ];
 
-/**
- *
- * @param {{
- *   title: string | React.ReactNode;
- *   description: string | React.ReactNode;
- *   image?: string;
- *   alt? : string;
- *   link?: string;
- *   beta?: boolean;
- * }} param0
- */
-function Section({ title, description ,image,alt, link,beta}) {
-  const sectionComponent = <h3>{title}</h3>;
-  const fullLink = useBaseUrl(link);
-  return (
-    <div className={clsx('col col--3', styles.feature, styles.featuresCol)}>
-      <div className={styles.featureBlock}>
-        {beta ? <span className={styles.beta}>beta</span> : <></>}
-        {image ? <img src={image} alt={alt} title={alt} width="60" height="60"/> : <></>}
-      {link ? <Link to={fullLink} title={alt}>{sectionComponent}</Link> : sectionComponent}
-      <p>{description}</p>
-        {link ? <Link to={link} title={alt}>read more</Link> : <></>}
-      </div>
-    </div>
-  );
-}
-
-function Star(){
-   return (
-       <img src={"assets/img/star.svg"} className={styles.star}  alt="star" title="star" width="20" height="20"/>
-   )
-}
-/**
- *
- * @param {{
- *   title: string | React.ReactNode;
- *   description: string | React.ReactNode;
- *   numberOfStars: number;
- *   author?: string;
- *   link?: string;
- * }} param0
- */
-function Review({ title, description ,numberOfStars ,author, link}) {
-  return (
-        <div className={styles.reviewsRow}>
-          <div>
-            <span> {author ? <> {link? <Link to={link} title={author}>{author}</Link> : author }</> : <></>}</span>
-            <span className={styles.starsContainer}>
-              <Star/>
-              <Star/>
-              <Star/>
-              <Star/>
-              <Star/>
-            </span>
-          </div>
-          <div className={styles.reviewTitle}>
-            {title}
-          </div>
-          <p>"{description}"</p>
-        </div>
-  );
-}
 
 function RecentPosts(){
-  // TODO: add recent posts back
-  const recentPosts = null // require("../../.docusaurus/docusaurus-plugin-content-blog/default/blog-archive-80c.json");
+  const recentPosts =  require("../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json");
 
   if(recentPosts === null || typeof recentPosts.blogPosts != 'object'){
     return (<></>)
@@ -283,7 +221,9 @@ function Docs() {
         <div className="container">
           <img src={"assets/favicons/apple-touch-icon.png"}  alt={"Simple JWT Login logo"} title={"Simple JWT Login logo"} width="180" height="180"/>
           <h1 className="hero__title">Simple JWT Login</h1>
-          <p>Simple JWT Login is a FREE WordPress plugin that allows you to use a JWT on WordPress REST endpoints.</p>
+          <h2> Secure & Code-Free WordPress Authentication</h2>
+          <p>Simple JWT Login is a FREE WordPress plugin that streamlines authentication for your website’s REST API endpoints.</p>
+          <p>With just a few clicks, you can enable secure JSON Web Token (JWT) login without writing a single line of code.</p>
           <span>
               <Link
                   to={"https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"}
@@ -296,7 +236,8 @@ function Docs() {
           </span>
         </div>
       </header>
-      <main>
+      <main>        
+
         <section className={[styles.sectionPadding, styles.sectionGreen, styles.statistics].join(" ")}>
             <div className="container">
               <div className="row">
@@ -326,19 +267,39 @@ function Docs() {
               </div>
               <div className="row">
                 {awesomeFeatures.map((props, idx) => (
-                  <Section key={idx} {...props} />
+                  <Feature key={idx} {...props} />
                 ))}
               </div>
             </div>
           </section>
         )}
 
+        <section className={[styles.sectionPadding, styles.sectionGray].join(" ")}>
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <h2 className={styles.sectionTitle}>
+                  Why Choose Simple JWT Login?
+                </h2>
+              </div>
+              <div className='col text-center'>
+                <div className="text-left">
+                  <p> ✅ <b>No Coding Required</b> - Set up JWT authentication in minutes, no developer needed.</p>
+                  <p> ✅ <b>Secure & Reliable</b> - Protect your WordPress REST API with industry-standard JWT security.</p>
+                  <p> ✅ <b>Flexible Integration</b> - Works seamlessly with mobile apps, external systems, and custom applications.</p>
+                  <p> ✅ <b>Open Source & Free</b> - Enjoy full access to a community-supported, <b>cost-free</b> authentication solution.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <RecentPosts></RecentPosts>
 
         <section className={[styles.sectionPadding].join(" ")}>
           <div className="container">
             <div className="row">
-              <h2 className={styles.sectionTitle}>Simple JWT Login SDK</h2>
+              <h2 className={styles.sectionTitle}>Easy to integrate</h2>
             </div>
             <div className="row">
               <div className="col">
@@ -394,6 +355,46 @@ function Docs() {
                     </a>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={[styles.sectionPadding, styles.statistics, styles.sectionGray].join(" ")}>
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <h2 className={styles.sectionTitle}>
+                  Start as easy as 1-2-3
+                </h2>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">  
+                  <span className={styles.stepNumber}>1</span> 
+                  <p>
+                    <b>Install & Activate</b> - Get started by installing Simple JWT Login from the WordPress plugin directory.
+                  </p>
+                </div>
+          
+              <div className="col">    
+                  <span className={styles.stepNumber}>2</span> 
+                  <p>
+                    <b>Configure Settings</b> - Customize authentication rules, token expiration, and access control.
+                  </p>
+              </div>
+                 
+              <div className='col'>   
+                  <span className={styles.stepNumber}>3</span> 
+                  <p>
+                    <b>Authenticate Effortlessly</b> - Use JWT tokens to authenticate users on REST API endpoints.
+                  </p>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col m-10">
+                <a href="/docs#installation" className={[styles.actionButton].join(" ")} style={{"marginTop":"40px"}}>Start Now</a>
               </div>
             </div>
           </div>
