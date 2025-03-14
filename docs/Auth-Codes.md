@@ -1,7 +1,7 @@
 ---
 slug: /auth-codes/
 title: Auth Codes
-sidebar_position: 1
+sidebar_position: 3
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---

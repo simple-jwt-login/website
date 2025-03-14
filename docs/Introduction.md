@@ -36,12 +36,13 @@ Setting up Simple-JWT-Login is quick and easy. Choose one of the following insta
 - Search for '*Simple JWT Login*' and select `Install Now`.
 
     ![Search for Simple-JWT-Login plugin](/assets/img/docs/search_simple-jwt-login-plugin.png "Search for simple-jwt-login")
-- Click "Install Now" and Activate the plugin when prompted.
+- Activate the plugin when prompted.
 
     ![Activate the plugin](/assets/img/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
 
 ### Method 2: Download and Install Manually
 - Access [https://wordpress.org/plugins/simple-jwt-login/](https://wordpress.org/plugins/simple-jwt-login/).
+
 - Click Download to get the latest Simple-JWT-login plugin version.
 
     ![Download the plugin](/assets/img/docs/download_from_wordpress.org.png "Download the plugin")
