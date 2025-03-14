@@ -59,6 +59,22 @@
 .readmore {
     min-height: 30px;
 }
+.readmore a{
+    text-decoration: none;
+}
+
+.readmore a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #42b983;
+    transition: width .3s;
+}
+
+.readmore a:hover::after {
+    width: 100%;
+}
 
 /**
     Dark theme
