@@ -222,8 +222,8 @@ function Docs() {
         <div className="container">
           <img src={"assets/favicons/apple-touch-icon.png"}  alt={"Simple JWT Login logo"} title={"Simple JWT Login logo"} width="180" height="180"/>
           <h1 className="hero__title">Simple JWT Login</h1>
-          <h2> Secure & Code-Free WordPress Authentication</h2>
-          <p>Simple JWT Login is a FREE WordPress plugin that streamlines authentication for your website’s REST API endpoints.</p>
+          <h2>Free & Secure WordPress JWT Authentication Plugin</h2>
+          <p>Simple JWT Login is a FREE WordPress plugin that streamlines authentication for your website's REST API endpoints.</p>
           <p>With just a few clicks, you can enable secure JSON Web Token (JWT) login without writing a single line of code.</p>
           <span>
               <Link
