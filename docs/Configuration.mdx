@@ -10,32 +10,28 @@ author_url: https://github.com/nicumicle
 ## Server
 
 You can access the Simple-JWT-Login API in two modes:
-  - **using permalink**:  `https://{domain}/wp-json/simple-jwt-login/v1/\{endpoint}`
-  - **using rest_route**: `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}`
+  - **using permalink**: 
+    ```
+    https://{domain}/wp-json/simple-jwt-login/v1/\{endpoint}
+    ```
+  - **using rest_route**: 
+    ```
+    https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
+    ```
 
 ## Request Parameters
 
 The request parameters can be sent as follows:
- - Form Data
- - Query parameters
- - Request body ( as JSON )
+ - **Form Data**
+ - **Query parameters**
+ - **Request body** ( as JSON )
  
-
-## Cross-Origin Resource Sharing
-This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
-And that allows cross-domain communication from the browser.
-
-All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
-
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-10.png?raw=true)
-
-
 
 ## Configuration
 
-1. Go to “General section”
-2. Set a “JWT Decryption key”. With this key, we will validate your JWT.
-3. Choose “JWT Decryption algorithm”.
+1. Go to “**General** section”
+2. Set a “**JWT Decryption key**”. With this key, we will validate your JWT.
+3. Choose “**JWT Decryption algorithm**”.
 4. Save Changes
 
 :::caution
@@ -56,7 +52,7 @@ Also, you set to search in:
 
 If JWT is provided in multiple places, the higher number of the option will overwrite the smaller one.
 
-For example, let's say you will send a JWT in REQUEST and in HEADER. The header JWT will be used. 
+For **example**, let's say you will send a JWT in **REQUEST** and in **HEADER**. The JWT from **HEADER** will be used. 
 
 :::note
 
@@ -66,7 +62,7 @@ I recommend you to enable the HEADER option, and always send the JWT in the head
 
 ## Allow JWT usage on all endpoints
  
-In order to use this feature, you will need to check "All WordPress endpoints checks for JWT authentication" in the "General" section.
+In order to use this feature, you will need to check "**All WordPress endpoints checks for JWT authentication**" in the "**General**" section.
 When a JWT is found, first, you will be authenticated as the user in the JWT, and then the call to the endpoint will be made.
 
 For example, you can create posts, as a specific user, if you provide a JWT in your request.
@@ -86,7 +82,7 @@ curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts" \
     --form type="page"
 ```
 
-For the second example, you need to make sure that you allow search for JWT in the header( you can set this in: General settings -> Get JWT token from )
+For the second example, you need to make sure that you allow search for JWT in the header( you can set this in: **General** settings -> **Get JWT token from** )
 
 :::note
 

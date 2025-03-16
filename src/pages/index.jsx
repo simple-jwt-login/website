@@ -4,6 +4,7 @@ import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import Feature from "@site/src/components/feature/feature";
 import Review from "@site/src/components/review/review";
+import Counter from '../components/counter/counter';
 
 import styles from './styles.module.css';
 
@@ -211,7 +212,7 @@ function RecentPosts(){
 function Docs() {
   let statistics = {
     activeInstalls: '5000',
-    downloads: '60000',
+    downloads: '62000',
     rating: '5/5',
   }
 
@@ -236,7 +237,7 @@ function Docs() {
           </span>
         </div>
       </header>
-      <main>        
+      <main>    
 
         <section className={[styles.sectionPadding, styles.sectionGreen, styles.statistics].join(" ")}>
             <div className="container">
@@ -246,15 +247,21 @@ function Docs() {
               <div className="row">
                 <div className="col col--4 text-center">
                     <h3 className={styles.statisticsTitle}>Active installs</h3>
-                    <h4 className={styles.statisticsNumber}>{statistics.activeInstalls}</h4>
+                    <h4 className={styles.statisticsNumber}>
+                      <Counter number={statistics.activeInstalls} duration="5" />
+                    </h4>
                 </div>
                 <div className="col col--4 text-center">
                   <h3 className={styles.statisticsTitle}>Downloads</h3>
-                  <h4  className={styles.statisticsNumber}>{statistics.downloads}</h4>
+                  <h4  className={styles.statisticsNumber}>
+                    <Counter number={statistics.downloads} duration="5" />
+                  </h4>
                 </div>
                 <div className="col col--4 text-center">
                   <h3 className={styles.statisticsTitle}>Rating</h3>
-                  <h4 className={styles.statisticsNumber}>{statistics.rating}</h4>
+                  <h4 className={styles.statisticsNumber}>
+                    <Counter number={statistics.rating} duration="3" />/5
+                  </h4>
                 </div>
               </div>
             </div>

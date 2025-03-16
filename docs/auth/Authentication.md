@@ -76,7 +76,8 @@ OR
 ### SHELL
 
 ```bash
-curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth -d '{"email":"test@simplejwtlogin.com","password":"mySecretPassword"}'
+curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth \
+-d '{"email":"test@simplejwtlogin.com","password":"mySecretPassword"}'
 ```
 
 ### PHP
