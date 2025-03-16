@@ -117,7 +117,8 @@ By default, no hooks are enabled. You need to check the one that you want to use
 
 ### Send an email after a new user has been created.
 
-```
+```php
+
 add_action( 'simple_jwt_login_register_hook', function($user, $password) {
     $to      = $user->user_email;
     $subject = 'Welcome';
@@ -131,7 +132,7 @@ add_action( 'simple_jwt_login_register_hook', function($user, $password) {
 
 ###  Add some custom data in the JWT payload on the `/auth` endpoint 
 
-```
+```php
 add_filter('simple_jwt_login_no_redirect_message',function($payload, $request){
     $payload['myvalue'] = 'somevalue';
 
@@ -142,7 +143,7 @@ add_filter('simple_jwt_login_no_redirect_message',function($payload, $request){
 ### Dynamic Redirection URLs After Login
 In order to achieve this, you need to check the option `Include request parameters used for login link in the REDIRECT URL` from the Login section. After that, in your login URL, add one new parameter `&page=your_page`
 
-```
+```php
 add_action('simple_jwt_login_redirect_hook', function($url, $request){
        $page = isset($_REQUEST['page'])
            ? $_REQUEST['page']
@@ -165,7 +166,7 @@ add_action('simple_jwt_login_redirect_hook', function($url, $request){
 
 ### Block requests on /auth for a specific email address
 
-```
+```php
 add_action('simple_jwt_login_before_endpoint', function($method, $endpoint, $request){
        if ($method !== 'POST' && $endpoint !== 'auth') {
           return;
@@ -179,7 +180,7 @@ add_action('simple_jwt_login_before_endpoint', function($method, $endpoint, $req
 
 ### Set minimum password length on register
 
-```
+```php
 add_action('simple_jwt_login_before_endpoint', function($method, $endpoint, $request){
        if ($method !== 'POST' && $endpoint !== 'users') {
           return;

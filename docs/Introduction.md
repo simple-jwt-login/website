@@ -14,97 +14,51 @@ The main purpose of this plugin is to allow Mobile apps, or other websites to ac
 
 ## Requirements
 
+Before installing Simple-JWT-Login, ensure your system meets the following requirements:
+
 - PHP version >= **5.5**
 - WordPress version >= **4.4.0** 
 
 
-## Installation
-Here’s how you install and activate the JWT-login plugin:
+## Licence
 
-- Download the Simple-JWT-login plugin from [https://wordpress.org/plugins/simple-jwt-login](https://wordpress.org/plugins/simple-jwt-login). 
-- Upload the .zip file in your WordPress plugin directory.
-- Activate the plugin from the “Plugins” menu in WordPress.
+Simple-JWT-Login is open-source and distributed under the [GPL 3.0](https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE) License.
 
 
-<b>Or you can install it directly from WordPress</b>
+## Installation Guide
 
-- Go to the *Plugins* menu in WordPress and click `Add New`
-- Search for '*Simple JWT Login*' and select `Install Now`
-- Activate the plugin when prompted
+Setting up Simple-JWT-Login is quick and easy. Choose one of the following installation methods:
 
+### Method 1: Install from WordPress.org (Recommended)
+- Go to the **Plugins** menu in WordPress and click "**Add New**".
 
-## Configuration
+    ![Add new plugin](/assets/img/docs/add_plugin.png "Add new plugin")
+- Search for "**Simple JWT Login**" and select "**Install Now**".
 
-1. Go to “General section”
-2. Set a “JWT Decryption key”. With this key, we will validate your JWT.
-3. Choose “JWT Decryption algorithm”.
-4. Save Changes
+    ![Search for Simple-JWT-Login plugin](/assets/img/docs/search_simple-jwt-login-plugin.png "Search for simple-jwt-login")
+- **Activate** the plugin when prompted.
 
-:::caution
+    ![Activate the plugin](/assets/img/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
 
-For security reasons, please make sure you use a complex decryption key and also include special characters in your decryption key.
+### Method 2: Download and Install Manually
+- Access [https://wordpress.org/plugins/simple-jwt-login/](https://wordpress.org/plugins/simple-jwt-login/).
 
-:::
+- Click "**Download**" to get the latest Simple-JWT-login plugin version.
 
-## Request Parameters
+    ![Download the plugin](/assets/img/docs/download_from_wordpress.org.png "Download the plugin")
 
-You can send the request parameters:
- - Form Data
- - Query parameters
- - Request body ( as JSON )
- 
+- Upload the `.zip` file in your WordPress plugin directory.
+    
+    ![Upload the plugin zip](/assets/img/docs/upload_plugin_file_in_wordpress.png "Upload plugin zip file")
+    
+- Click "**Install Now**" and **Activate** the plugin.
 
-## Get JWT from option
-By default, only the REQUEST is `on`.  This means that the plugin will search in the request for the JWT. 
-
-Also, you set to search in: 
-1. REQUEST ( plugin will search for the `JWT` key : `&JWT=your_jwt`)
-2. SESSION ( plugin will search for the `simple-jwt-login-token` key:  `$_SESSION['simple-jwt-login-token']`)
-3. COOKIE ( plugin will search for the `simple-jwt-login-token` key: `$_COOKIE['simple-jwt-login-token']`)
-4. HEADER ( plugin will search in the `Authorization` header: `Authorization: Bearer YOUR_JWT_HERE`)
-
-If JWT is provided in multiple places, the higher number of the option will overwrite the smaller one.
-
-For example, let's say you will send a JWT in REQUEST and in HEADER. The header JWT will be used. 
-
-:::note
-
-I recommend you to enable the HEADER option, and always send the JWT in the header.
-
-:::
-
-## Allow JWT usage on all endpoints
- 
-In order to use this feature, you will need to check "All WordPress endpoints checks for JWT authentication" in the "General" section.
-When a JWT is found, first, you will be authenticated as the user in the JWT, and then the call to the endpoint will be made.
-
-For example, you can create posts, as a specific user, if you provide a JWT in your request.
-
-```bash
-curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts?content=PostContent&title=PostTitle" \
-    -d '{"JWT":"YOUR_JWT_HERE"}'
-```
-
-or 
-
-```bash
-curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts" \
-    -H "Authorization: Bearer YOUR_JWT_HERE" \
-    --form title="Title" \
-    --form content="My content" \
-    --form type="page"
-```
-
-For the second example, you need to make sure that you allow search for JWT in the header( you can set this in: General settings -> Get JWT token from )
-
-:::note
-
-When you pass the `JWT` parameter, it is not case-sensitive. You can also pass it as `jwt`.
-
-:::
-
-## General settings screenshot
-
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-2.png?raw=true)
+   ![Activate the plugin](/assets/img/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
 
 
+
+
+
+Now that you've installed the **Simple-JWT-Login** plugin, you're ready to configure it and **start using JWT authentication** for your WordPress REST API. 
+
+Check out the Configuration Guide for the next steps!

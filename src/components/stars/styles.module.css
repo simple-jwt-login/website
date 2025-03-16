@@ -1,0 +1,8 @@
+.starsContainer{
+    float:right;
+}
+
+.star{
+    width: 20px !important;
+    color: yellow;
+}

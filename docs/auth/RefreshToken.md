@@ -56,7 +56,8 @@ You can use this endpoint in order to refresh an expired token.
 ### SHELL
 
 ```bash
-curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/refresh -d '{"JWT":"YOUR_EXPIRED_JWT"}'
+curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/refresh \
+-d '{"JWT":"YOUR_EXPIRED_JWT"}'
 ```
 
 ### PHP

@@ -111,7 +111,7 @@ const config: Config = {
           apiv1: {
             specPath: "static/openapi.yaml",
             outputDir: "./api",
-            showSchemas: true,
+            showSchemas: false,
             baseUrl: "/api", // Leading slash is important
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -208,12 +208,6 @@ const config: Config = {
           to: '/api/simple-jwt-login',
           title: 'API',
         },
-        // {
-        //   label: 'API Explorer',
-        //   position: 'left',
-        //   to: '/api-explorer/',
-        //   title: 'Api Explorer',
-        // },
         {
           label: 'Donate',
           position: 'right',

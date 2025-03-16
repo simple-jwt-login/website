@@ -6,8 +6,12 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-The CORS standard is needed because it allows servers to specify who can access its assets and how the assets can be accessed.
-Cross-origin requests are made using the standard HTTP request methods like GET, POST, PUT, DELETE, etc.
+This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
+And that allows cross-domain communication from the browser.
+
+All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+
+
 
 ## Screenshot
 ![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-10.png?raw=true)
