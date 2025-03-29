@@ -23,11 +23,12 @@ You will use this endpoint, in order to generate a new JWT.
 
 | Parameter       |   Type           |   Description|
 | :-------------: | :--------------: | ------------ |
-|   email  | `required` `string` | User email address. It is not required when username is provided.|
-| username | `optional` `string` | WordPress username.|
-| password | `required` `string` | User plain password. It is not required if password_hash is provided.|
-| password_hash | `optional` `string` | User password hash that it is stored in the Database. |
-| AUTH_CODE | `optional` `string` | Auth Code from the "Auth codes" section. Required only if "Authentication Requires Auth Code" is enabled.|
+|   email  | `required` `string` | User email address. It is **required** when the `username` or `login` is missing.|
+| username | `optional` `string` | WordPress username. It is **required** when the `email` or `login` is missing. |
+| login    | `optional` `string` | WordPress username or email. Simulates the flow from WordPress login page. It is **required** when the `email` or `username` is missing. |
+| password | `required` `string` | User plain password. It is required if the `password_hash` is missing.|
+| password_hash | `optional` `string` | User password hash that it is stored in the Database. It is required if the `password` is missing. |
+| AUTH_CODE | `optional` `string` | Auth Code from the "Auth codes" section. Required only if the "Authentication Requires Auth Code" option is enabled. |
 
 ## Request
 
@@ -45,6 +46,16 @@ OR
 {
   "username": "myuser",
   "password_hash" : "PasswordStoredInTheDB",
+  "AUTH_CODE": "MySecretAuthCode"
+}
+```
+
+OR
+
+```json
+{
+  "login": "username or email",
+  "password" : "SomeSuperSecretPassword",
   "AUTH_CODE": "MySecretAuthCode"
 }
 ```
@@ -103,19 +114,19 @@ $result = $simpleJwtLogin->authenticate('email@simplejwtlogin.com', 'your passwo
 You can choose what parameters you want to include in the JWT payload.
 
 You can choose from:
-- "iat" : Timestamp when the JWT has been generated
-- "exp": Timestamp when JWT will expire. If not added in the payload, JWT will never expire
-- "email": User Email address
-- "id" : User ID
-- "site" : The site where the JWT has been generated 
-- "username" : Username
+- **iat** : Timestamp when the JWT has been generated
+- **exp**: Timestamp when JWT will expire. If not added in the payload, JWT will never expire
+- **email**: The user email address
+- **id** : The user's ID
+- **site** : The site where the JWT has been generated 
+- **username** : The user's username
 
 
 ### JWT time to live
 
 You can specify the time (in minutes) that the token will be valid for. 
 
-By default, the token is valid for 60minutes.
+By default, the token is valid for 60 minutes.
 
 ### Allow Authentication only from the following IP addresses
 

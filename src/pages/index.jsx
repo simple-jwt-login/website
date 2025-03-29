@@ -212,7 +212,7 @@ function RecentPosts(){
 function Docs() {
   let statistics = {
     activeInstalls: '5000',
-    downloads: '62000',
+    downloads: '63000',
     rating: '5/5',
   }
 
@@ -249,12 +249,14 @@ function Docs() {
                     <h3 className={styles.statisticsTitle}>Active installs</h3>
                     <h4 className={styles.statisticsNumber}>
                       <Counter number={statistics.activeInstalls} duration="5" />
+                      <>+</>
                     </h4>
                 </div>
                 <div className="col col--4 text-center">
                   <h3 className={styles.statisticsTitle}>Downloads</h3>
                   <h4  className={styles.statisticsNumber}>
                     <Counter number={statistics.downloads} duration="5" />
+                    <>+</>
                   </h4>
                 </div>
                 <div className="col col--4 text-center">

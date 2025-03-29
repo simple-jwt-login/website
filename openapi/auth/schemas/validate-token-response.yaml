@@ -1,0 +1,78 @@
+type: object
+properties:
+  success:
+    type: boolean
+    example: true
+  data:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          ID:
+            type: string
+            example: "1"
+          user_login:
+            type: string
+            example: "myusser"
+          user_nicename:
+            type: string
+            example: "My  User"
+          user_email:
+            type: string
+            example: "myuser@simplejwtlogin.com"
+          user_url:
+            type: string
+            example: "https://simplejwtlogin.com/myuser"
+          user_registered:
+            type: string
+            example:  "2021-01-01 23:31:50"
+          user_activation_key:
+            type: string
+            example: "test"
+          user_status:
+            type: string
+            example: "0"
+          display_name:
+            type: string
+            example: "myuser"
+      roles:
+        type: array
+        items:
+          type: string
+          example: "administrator"
+      jwt:
+        type: array
+        items :
+          type: object
+          properties:
+            token:
+              type: string
+              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            header:
+              type: object
+              properties:
+                typ:
+                  type: string
+                  example: "JWT"
+                alg:
+                  type: string
+                  example: "HS256"
+            payload:
+              type: object
+              properties:
+                iat:
+                  type: number
+                  example: 123123
+                email:
+                  type: string
+                  example: "myuser@simplejwtlogin.com"
+                id:
+                  type: number
+                  example: 1
+                site:
+                  type: string
+                  example: "https://simplejwtlogin.com"
+                username:
+                  type: string
+                  example: "myuser"

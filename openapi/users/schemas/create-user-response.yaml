@@ -1,0 +1,57 @@
+type: object
+properties:
+  success:
+    type: boolean
+    example: true
+    description: Action status
+  id:
+    type: number
+    description: User numeric ID from the database
+    example: 123
+  message:
+    type: string
+    description: User register message
+    example: User was successfully created.
+  user:
+    type: object
+    properties:
+      ID:
+        type: number
+        example: 123
+        description: User ID
+      user_login:
+        type: string
+        example: "myusser"
+      user_nicename:
+        type: string
+        example: "My  User"
+      user_email:
+        type: string
+        example: "myuser@simplejwtlogin.com"
+      user_url:
+        type: string
+        example: "https://simplejwtlogin.com/myuser"
+      user_registered:
+        type: string
+        example: "2021-01-01 23:31:50"
+        description: "The register date for the user"
+      user_activation_key:
+        type: string
+        example: "test"
+      user_status:
+        type: string
+        example: "0"
+      display_name:
+        type: string
+        example: "myuser"
+      user_level:
+        type: number
+        example: 10
+  roles:
+    type: array
+    items:
+      type: string
+      example: "administrator"
+  jwt:
+    type: string
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"

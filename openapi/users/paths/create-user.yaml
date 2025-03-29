@@ -1,0 +1,28 @@
+tags:
+    - register_user
+summary: Register user
+description: Register WordPress user
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/create-user-body.yaml'
+  required: true
+responses:
+  400:
+    description: Error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/400.yaml'
+          examples: 
+            - succes: false
+              data: 
+                message: "Missing email or passowrd"
+                errorCode: 35
+  200:
+    description: User Registered
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/create-user-response.yaml'

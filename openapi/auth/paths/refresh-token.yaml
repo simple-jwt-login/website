@@ -1,0 +1,24 @@
+tags:
+  - authenticate_user
+summary: Refresh expired JWT
+operationId: refreshJWT
+requestBody:
+  description: Refresh expired JWT
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/refresh-token-body.yaml'
+  required: true
+responses:
+  400:
+    description: Error
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/400.yaml'
+  200:
+    description: Token has been refreshed succcessfully
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/refresh-token-response.yaml'

@@ -1,0 +1,10 @@
+type: object
+properties:
+  message:
+    type: string
+    description: User deleted
+    example: User was successfully deleted.
+  id:
+    type: number
+    description: User ID
+    example: 1

@@ -18,7 +18,7 @@ If you want to make sure a token can not be used anymore, just revoke it. This e
 | Parameter       |   Type           |   Description|
 | :-------------: | :--------------: | ------------ |
 |   JWT  | `required` `string` | Your JWT |
-| AUTH_CODE | `optional` `string` | Auth Code from the "Auth codes" section. Required only if "Authentication Requires Auth Code" is enabled.|
+| AUTH_CODE | `optional` `string` | Auth Code from the "Auth codes" section. Required only if the "Authentication Requires Auth Code" option is enabled.|
 
 ## Request
 

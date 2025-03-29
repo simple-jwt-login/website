@@ -1,0 +1,58 @@
+openapi: 3.1.0
+info:
+  title: Simple-JWT-Login
+  description: |
+    This is the Simple-JWT-Login WordPress plugin API Documentation.
+
+    ## Introduction
+
+    This API is documented in **OpenAPI format**. You can either open it in [swagger editor](https://editor.swagger.io/) or you can view it on this website.
+
+    Also, you open it in postman, and you will be able to do local tests.
+
+    ## Server
+
+    You can access the Simple-JWT-Login API in two modes:
+      - using permalink: https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}
+      - using rest_route: https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
+
+    ## Cross-Origin Resource Sharing
+    This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
+    And that allows cross-domain communication from the browser.
+    All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+  license:
+    name: GPL 3.0
+    url: https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE
+  version: 3.6.0
+  x-logo:
+    url: "https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/master/wordpress.org/assets/icon-128x128.png"
+    altText: Simple-Jwt-Login Logo
+externalDocs:
+  description: Find out more about Simple-JWT-Login
+  url: https://simplejwtlogin.com/docs
+paths:
+  /simple-jwt-login/v1/autologin:
+    get:
+      $ref: "./autologin/paths/get-autologin.yaml"
+  /simple-jwt-login/v1/users:
+    post:
+      $ref: "./users/paths/create-user.yaml"
+    delete:
+      $ref: "./users/paths/delete-user.yaml"
+  /simple-jwt-login/v1/users/reset_password:
+    post:
+      $ref: './users/paths/send-reset-password-code.yaml'  
+    put:
+      $ref: './users/paths/change-password.yaml'
+  /simple-jwt-login/v1/auth:
+    post:
+      $ref: './auth/paths/authenticate.yaml'
+  /simple-jwt-login/v1/auth/refresh:
+    post:
+      $ref: './auth/paths/refresh-token.yaml'
+  /simple-jwt-login/v1/auth/validate:
+    get:
+      $ref: './auth/paths/validate-token.yaml'
+  /simple-jwt-login/v1/auth/revoke:
+    post:
+      $ref: './auth/paths/revoke-token.yaml'

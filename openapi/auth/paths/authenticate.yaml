@@ -1,0 +1,24 @@
+tags:
+  - authenticate_user
+summary: Authenticate
+operationId: getJWT
+requestBody:
+  description: Authenticate user in order to obtain a valid JWT
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/authenticate-body.yaml'
+  required: true
+responses:
+  400:
+    description: Error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/400.yaml'
+  200:
+    description: Successfully authenticated
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/authenticate-response.yaml'

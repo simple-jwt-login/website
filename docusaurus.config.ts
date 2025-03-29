@@ -113,9 +113,10 @@ const config: Config = {
             outputDir: "./api",
             showSchemas: false,
             baseUrl: "/api", // Leading slash is important
+            showExtensions: true, 
             sidebarOptions: {
               groupPathsBy: "tag",
-              // categoryLinkSource: "tag",
+              categoryLinkSource: "tag",
             },
           } satisfies OpenApiPlugin.Options,
         }
@@ -125,7 +126,12 @@ const config: Config = {
   ],
 
   themes: ["docusaurus-theme-openapi-docs"], // export theme components
-
+  // stylesheets: [
+  //   {
+  //     href: "https://use.fontawesome.com/releases/v5.11.0/css/all.css",
+  //     type: "text/css",
+  //   },
+  // ],
   presets: [
     [
       'classic',

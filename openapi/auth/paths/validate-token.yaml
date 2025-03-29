@@ -1,0 +1,31 @@
+tags:
+  - authenticate_user
+summary: Validate JWT
+operationId: validateJWT
+parameters:
+  - name: JWT
+    in: query
+    description: JWT
+    required: true
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    schema:
+      type: string
+  - name: AUTH_CODE
+    in: query
+    example: "MY_SUPER_SECRET_AUTH_CODE"
+    description: Required when "Authentication Requires Auth Code" is enabled
+    schema:
+      type: string
+responses:
+  400:
+    description: Error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/400.yaml'
+  200:
+    description: Validate token
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/validate-token-response.yaml'

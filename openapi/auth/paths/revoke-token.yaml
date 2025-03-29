@@ -1,0 +1,24 @@
+tags:
+  - authenticate_user
+summary: Revoke JWT
+operationId: revokeJWT
+requestBody:
+  description: Revoke JWT. When a JWT is revoken, it will be marked as invalid in future request.
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/revoke-token-body.yaml'
+  required: true
+responses:
+  400:
+    description: Error
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/400.yaml'
+  200:
+    description: Token has been revoked
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/revoke-token-response.yaml'

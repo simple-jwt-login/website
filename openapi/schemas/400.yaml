@@ -1,0 +1,19 @@
+type: object
+properties:
+  succes:
+    type: boolean
+    example: false
+    description: "Indicates whether the request was successful."
+  data:
+    type: object
+    properties:
+      message:
+        type: string
+        description: "A user-friendly error message describing the issue."
+        example: "Bad Request"
+      errorCode:
+        type: number
+        description: |
+          A numeric code representing the specific error encountered.  
+          For a detailed list of error codes, visit:  [Error Codes Documentation](https://simplejwtlogin.com/docs/error-codes)
+        example: 48
