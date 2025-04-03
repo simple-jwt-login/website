@@ -25,6 +25,29 @@ The request parameters can be sent as follows:
  - **Form Data**
  - **Query parameters**
  - **Request body** ( as JSON )
+
+### Examples
+
+#### Sending JWT in header:
+```bash
+  curl -X POST "http://localhost/wp/v2/users" -H "Authorization: YOUR_JWT"
+```
+
+#### Sending JWT as query parameters:
+
+```bash
+  curl -X POST "http://localhost/wp/v2/users?jwt=YOUR_JWT"
+```
+or
+
+```bash
+  curl -X POST "http://localhost?rest_route=/wp/v2/users&jwt=YOUR_JWT"
+```
+
+#### Sending JWT as request body:
+```bash
+  curl -X POST "http://localhost/wp/v2/users" -H "Content-type: application/json" -d '{"JWT":"JYOUR JWT"}'
+```
  
 
 ## Configuration
