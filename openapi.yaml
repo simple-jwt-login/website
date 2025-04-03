@@ -1,22 +1,4 @@
-openapi: 3.0.1
-servers:
-  - url: "{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}"
-    variables:
-      protocol:
-        enum:
-          - 'http'
-          - 'https'
-        default: 'http'
-      domain:
-        default: 'localhost'
-        description: Website Domain
-      APIPath:
-        enum:
-          - "wp-json"
-          - "?rest_route="
-        default: 'wp-json'
-      simplejwtloginprefix:
-        default: "simple-jwt-login/v1"
+openapi: 3.1.0
 info:
   title: Simple-JWT-Login
   description: |
@@ -33,111 +15,157 @@ info:
     You can access the Simple-JWT-Login API in two modes:
       - using permalink: https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}
       - using rest_route: https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
+
     ## Cross-Origin Resource Sharing
     This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
     And that allows cross-domain communication from the browser.
     All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
   license:
     name: GPL 3.0
-    url: https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE
-  version: 1.0.0
+    url: 'https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE'
+  version: 3.6.0
   x-logo:
-    url: "https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/master/wordpress.org/assets/icon-128x128.png"
+    url: 'https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/master/wordpress.org/assets/icon-128x128.png'
     altText: Simple-Jwt-Login Logo
 externalDocs:
   description: Find out more about Simple-JWT-Login
-  url: https://simplejwtlogin.com/docs
-tags:
-  - name: login_user
-    description: Login user in WordPress
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/autologin
-  - name: register_user
-    description: Register WordPress user
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/register-user
-  - name: delete_user
-    description: Delete WordPress user
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/delete-user
-  - name: reset_password
-    description: Reset User Password
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/change-password
-  - name: authenticate_user
-    description: Authenticate user
-    externalDocs:
-      description: Find out more
-      url: https://www.simplejwtlogin.com/docs/authentication
+  url: 'https://simplejwtlogin.com/docs'
 paths:
-  /autologin:
+  /simple-jwt-login/v1/autologin:
     get:
       tags:
         - login_user
-      summary: Autologin user into WordPress
+      summary: Autologin
+      description: Authenticate and automatically log in a user to WordPress using a valid JSON Web Token (JWT).
       operationId: autologin
       parameters:
         - name: JWT
           in: query
-          description: JWT
+          description: A valid JSON Web Token (JWT) required for authentication.
           required: true
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
           schema:
             type: string
         - name: AUTH_CODE
           in: query
-          example: "MY_SUPER_SECRET_AUTH_CODE"
-          description: Required when "Auto-Login Requires Auth Code" is enabled
+          example: MY_SUPER_SECRET_AUTH_CODE
+          description: Required if "Auto-Login Requires Auth Code" is enabled in the plugin settings.
           schema:
             type: string
         - name: redirectUrl
           in: query
-          example: "https://simplejwtlogin.com"
-          description: If this parameter is provided, this will overwrite the redirect URL set in the plugin settings. Also, please make sure you check the option from plugin settings.
+          example: 'https://simplejwtlogin.com'
+          description: Custom URL to redirect the user after successful login. This will override the default redirect URL set in the plugin settings. Ensure the option is enabled in the plugin settings.
           schema:
             type: string
       responses:
-        400:
-          description: Error.
+        '200':
+          description: Successful login. The user will be redirected to the WordPress website.
+          content:
+            application/html:
+              example: ''
+        '400':
+          description: Invalid request or authentication failure.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
-        200:
-          description: Successfully login. You will be redirected to the WordPress website
-          content:
-            application/html:
-              example: ""
-  /users:
+                $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'
+  /simple-jwt-login/v1/users:
     post:
       tags:
         - register_user
-      summary: Register WordPress user
+      summary: Register user
+      description: Register WordPress user
       requestBody:
-        description: Register WordPress user
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/registerUserBody'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/registerUserBody'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/registerUserBody'
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: test@simplejwtlogin.com
+                  description: User email address
+                password:
+                  type: string
+                  description: User password
+                user_login:
+                  type: string
+                  description: The user's login username.
+                  example: myuser
+                user_nicename:
+                  type: string
+                  description: User URL-friendly username
+                  example: myuser
+                user_url:
+                  type: string
+                  description: User URL
+                  example: 'https://simplejwtlogin.com'
+                display_name:
+                  type: string
+                  description: The user's display name. Default is the user's username.
+                  example: myuser
+                nickname:
+                  type: string
+                  description: The user's nickname. Default is the user's username.
+                  example: myuser
+                first_name:
+                  type: string
+                  description: 'The user''s first name. For new users, will be used to build the first part of the user''s display name if "display_name" is not specified.'
+                  example: myuser
+                last_name:
+                  type: string
+                  description: 'The user''s last name. For new users, will be used to build the second part of the user''s display name if "display_name" is not specified.'
+                  example: myuser
+                description:
+                  type: string
+                  description: The user's biographical description.
+                  example: This is a sample description
+                rich_editing:
+                  type: string
+                  description: 'Whether to enable the rich-editor for the user. Accepts ''true'' or ''false'' as a string literal, not boolean. Default ''true''.'
+                  example: true
+                syntax_highlighting:
+                  type: string
+                  description: 'Whether to enable the rich code editor for the user. Accepts ''true'' or ''false'' as a string literal, not boolean. Default ''true''.'
+                  example: true
+                comment_shortcuts:
+                  type: string
+                  description: 'Whether to enable comment moderation keyboard shortcuts for the user. Accepts ''true'' or ''false'' as a string literal, not boolean. Default ''false''.'
+                  example: falsec
+                admin_color:
+                  type: string
+                  description: Admin color scheme for the user. Default 'fresh'.
+                  example: fresh
+                use_ssl:
+                  type: boolean
+                  description: Whether the user should always access the admin over https. Default false.
+                  example: true
+                user_registered:
+                  type: string
+                  description: 'Date the user registered. Format is ''Y-m-d H:m:s''.'
+                  example: '2022-01-31 23:15:30'
+                user_activation_key:
+                  type: string
+                  description: Password reset key. Default empty.
+                spam:
+                  type: boolean
+                  description: Multisite only. Whether the user is marked as spam. Default false.
+                  example: false
+                show_admin_bar_front:
+                  type: string
+                  description: 'Whether to display the Admin Bar for the user on the site''s front end.Accepts ''true'' or ''false'' as a string literal, not boolean. Default ''true''.'
+                  example: true
+                locale:
+                  type: string
+                  description: User's locale. Default empty.
+                  example: ''
+              required:
+                - email
+                - password
         required: true
       responses:
-        400:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        200:
+        '200':
           description: User Registered
           content:
             application/json:
@@ -150,8 +178,8 @@ paths:
                     description: Action status
                   id:
                     type: number
-                    description: User ID
-                    example: 1
+                    description: User numeric ID from the database
+                    example: 123
                   message:
                     type: string
                     description: User register message
@@ -161,32 +189,33 @@ paths:
                     properties:
                       ID:
                         type: number
-                        example: 1
+                        example: 123
                         description: User ID
                       user_login:
                         type: string
-                        example: "myusser"
+                        example: myusser
                       user_nicename:
                         type: string
-                        example: "My  User"
+                        example: My  User
                       user_email:
                         type: string
-                        example: "myuser@simplejwtlogin.com"
+                        example: myuser@simplejwtlogin.com
                       user_url:
                         type: string
-                        example: "https://simplejwtlogin.com/myuser"
+                        example: 'https://simplejwtlogin.com/myuser'
                       user_registered:
                         type: string
-                        example: "2021-01-01 23:31:50"
+                        example: '2021-01-01 23:31:50'
+                        description: The register date for the user
                       user_activation_key:
                         type: string
-                        example: "test"
+                        example: test
                       user_status:
                         type: string
-                        example: "0"
+                        example: '0'
                       display_name:
                         type: string
-                        example: "myuser"
+                        example: myuser
                       user_level:
                         type: number
                         example: 10
@@ -194,37 +223,42 @@ paths:
                     type: array
                     items:
                       type: string
-                      example: "administrator"
+                      example: administrator
                   jwt:
                     type: string
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        '400':
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'
+                examples:
+                  - succes: false
+                    data:
+                      message: Missing email or passowrd
+                      errorCode: 35
     delete:
       tags:
         - delete_user
-      summary: Delete WordPress user
+      summary: Delete user
       operationId: deleteUser
       parameters:
         - name: JWT
           in: query
           description: JWT
           required: true
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
           schema:
             type: string
         - name: AUTH_CODE
           in: query
-          example: "MY_SUPER_SECRET_AUTH_CODE"
+          example: MY_SUPER_SECRET_AUTH_CODE
           description: Required when "Delete User Requires Auth Code" is enabled
           schema:
             type: string
       responses:
-        400:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        200:
+        '200':
           description: Successfully deleted
           content:
             application/json:
@@ -239,7 +273,13 @@ paths:
                     type: number
                     description: User ID
                     example: 1
-  /users/reset_password:
+        '400':
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'
+  /simple-jwt-login/v1/users/reset_password:
     post:
       tags:
         - reset_password
@@ -250,16 +290,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/resetPasswordBody'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/resetPasswordBody'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/resetPasswordBody'
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: contact@simplejwtlogin.com
+                AUTH_CODE:
+                  type: string
+                  example: MY_SUPER_SECRET_AUTH_CODE
+                  description: Required when "AuthenticationReset Password Requires Auth Code" is enabled
         required: true
       responses:
-        200:
+        '200':
           description: Successfully send the reset password code
           content:
             application/json:
@@ -272,12 +314,12 @@ paths:
                   message:
                     type: string
                     example: Reset password email has been sent.
-        400:
+        '400':
           description: Error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'
     put:
       tags:
         - reset_password
@@ -288,16 +330,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/changePasswordBody'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/changePasswordBody'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/changePasswordBody'
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: contact@simplejwtlogin.com
+                code:
+                  type: string
+                  example: MY_SECRED_CODE_RECEIVED_BY_EMAIL
+                new_password:
+                  type: string
+                  example: New user password
+                JWT:
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                  description: 'In order to reset password with JWT, you need to check "Allow Reset password with JWT". If a JWT is provided, the `code` parameter is no loger required.'
+                AUTH_CODE:
+                  type: string
+                  example: MY_SUPER_SECRET_AUTH_CODE
+                  description: Required when "AuthenticationReset Password Requires Auth Code" is enabled
         required: true
       responses:
-        200:
+        '200':
           description: User password has been changed.
           content:
             application/json:
@@ -310,39 +363,52 @@ paths:
                   message:
                     type: string
                     example: User password has been changed.
-        400:
+        '400':
           description: Error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
-  /auth:
+                $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'
+  /simple-jwt-login/v1/auth:
     post:
       tags:
         - authenticate_user
-      summary: Authenticate to your WordPress website
+      x-tagGroups:
+        - authenticate_user
+      summary: Authenticate
       operationId: getJWT
       requestBody:
         description: Authenticate user in order to obtain a valid JWT
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/authBody'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/authBody'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/authBody'
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: john@doe.com
+                  description: Required when username and login are not provided.
+                username:
+                  type: string
+                  example: myuser
+                  description: Required when email and login are not provided.
+                login:
+                  type: string
+                  example: myuser
+                  description: User email of username. It behaves as WordPress login. Required without email and username.
+                password:
+                  type: string
+                  description: User plain password. Required when pass_hash is not provided.
+                password_hash:
+                  type: string
+                  description: User hashed password from Database. Required when password is not provided.
+                AUTH_CODE:
+                  type: string
+                  example: MY_SUPER_SECRET_AUTH_CODE
+                  description: Required when "Authentication Requires Auth Code" is enabled
         required: true
       responses:
-        400:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        200:
+        '200':
           description: Successfully authenticated
           content:
             application/json:
@@ -359,10 +425,36 @@ paths:
                       jwt:
                         type: string
                         description: JWT
-                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-  /auth/refresh:
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        '400':
+          description: Error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  succes:
+                    type: boolean
+                    example: false
+                    description: Indicates whether the request was successful.
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        description: A user-friendly error message describing the issue.
+                        example: Bad Request
+                      errorCode:
+                        type: number
+                        description: |
+                          A numeric code representing the specific error encountered.  
+                          For a detailed list of error codes, visit:  [Error Codes Documentation](https://simplejwtlogin.com/docs/error-codes)
+                        example: 48
+  /simple-jwt-login/v1/auth/refresh:
     post:
       tags:
+        - authenticate_user
+      x-tagGroups:
         - authenticate_user
       summary: Refresh expired JWT
       operationId: refreshJWT
@@ -371,22 +463,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/authRefreshBody'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/authRefreshBody'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/authRefreshBody'
+              type: object
+              properties:
+                JWT:
+                  type: string
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                  description: Expired JWT.
+                AUTH_CODE:
+                  type: string
+                  example: MY_SUPER_SECRET_AUTH_CODE
+                  description: Required when "Authentication Requires Auth Code" is enabled
+              required:
+                - JWT
         required: true
       responses:
-        400:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        200:
+        '200':
           description: Token has been refreshed succcessfully
           content:
             application/json:
@@ -403,10 +494,18 @@ paths:
                       jwt:
                         type: string
                         description: New refreshed JWT
-                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-  /auth/validate:
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'
+  /simple-jwt-login/v1/auth/validate:
     get:
       tags:
+        - authenticate_user
+      x-tagGroups:
         - authenticate_user
       summary: Validate JWT
       operationId: validateJWT
@@ -415,23 +514,17 @@ paths:
           in: query
           description: JWT
           required: true
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
           schema:
             type: string
         - name: AUTH_CODE
           in: query
-          example: "MY_SUPER_SECRET_AUTH_CODE"
+          example: MY_SUPER_SECRET_AUTH_CODE
           description: Required when "Authentication Requires Auth Code" is enabled
           schema:
             type: string
       responses:
-        400:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        200:
+        '200':
           description: Validate token
           content:
             application/json:
@@ -449,53 +542,53 @@ paths:
                         properties:
                           ID:
                             type: string
-                            example: "1"
+                            example: '1'
                           user_login:
                             type: string
-                            example: "myusser"
+                            example: myusser
                           user_nicename:
                             type: string
-                            example: "My  User"
+                            example: My  User
                           user_email:
                             type: string
-                            example: "myuser@simplejwtlogin.com"
+                            example: myuser@simplejwtlogin.com
                           user_url:
                             type: string
-                            example: "https://simplejwtlogin.com/myuser"
+                            example: 'https://simplejwtlogin.com/myuser'
                           user_registered:
                             type: string
-                            example:  "2021-01-01 23:31:50"
+                            example: '2021-01-01 23:31:50'
                           user_activation_key:
                             type: string
-                            example: "test"
+                            example: test
                           user_status:
                             type: string
-                            example: "0"
+                            example: '0'
                           display_name:
                             type: string
-                            example: "myuser"
+                            example: myuser
                       roles:
                         type: array
                         items:
                           type: string
-                          example: "administrator"
+                          example: administrator
                       jwt:
                         type: array
-                        items :
+                        items:
                           type: object
                           properties:
                             token:
                               type: string
-                              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
                             header:
                               type: object
                               properties:
                                 typ:
                                   type: string
-                                  example: "JWT"
+                                  example: JWT
                                 alg:
                                   type: string
-                                  example: "HS256"
+                                  example: HS256
                             payload:
                               type: object
                               properties:
@@ -504,43 +597,50 @@ paths:
                                   example: 123123
                                 email:
                                   type: string
-                                  example: "myuser@simplejwtlogin.com"
+                                  example: myuser@simplejwtlogin.com
                                 id:
                                   type: number
                                   example: 1
                                 site:
                                   type: string
-                                  example: "https://simplejwtlogin.com"
+                                  example: 'https://simplejwtlogin.com'
                                 username:
                                   type: string
-                                  example: "myuser"
-  /auth/revoke:
+                                  example: myuser
+        '400':
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'
+  /simple-jwt-login/v1/auth/revoke:
     post:
       tags:
+        - authenticate_user
+      x-tagGroups:
         - authenticate_user
       summary: Revoke JWT
       operationId: revokeJWT
       requestBody:
-        description: Revoke JWT. When a JWT is revoken, it will be marked as invalid in future request.
+        description: 'Revoke JWT. When a JWT is revoken, it will be marked as invalid in future request.'
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/authRevokeBody'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/authRevokeBody'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/authRevokeBody'
+              type: object
+              properties:
+                JWT:
+                  type: string
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                  description: Expired JWT.
+                AUTH_CODE:
+                  type: string
+                  example: MY_SUPER_SECRET_AUTH_CODE
+                  description: Required when "Authentication Requires Auth Code" is enabled
+              required:
+                - JWT
         required: true
       responses:
-        400:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        200:
+        '200':
           description: Token has been revoked
           content:
             application/json:
@@ -557,180 +657,10 @@ paths:
                       jwt:
                         type: string
                         description: Revoked token
-                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-components:
-  schemas:
-    ResponseError:
-      type: object
-      properties:
-        succes:
-          type: boolean
-          example: false
-          description: "Status of the request"
-        data:
-          type: object
-          properties:
-            message:
-              type: string
-            errorCode:
-              type: number
-    registerUserBody:
-      type: object
-      properties:
-        email:
-          type: string
-          example: test@simplejwtlogin.com
-          description: User email address
-        password:
-          type: string
-          description: User password
-        user_login:
-          type: string
-          description: The user's login username.
-          example: myuser
-        user_nicename:
-          type: string
-          description: User URL-friendly username
-          example: myuser
-        user_url:
-          type: string
-          description: User URL
-          example: https://simplejwtlogin.com
-        display_name:
-          type: string
-          description: The user's display name. Default is the user's username.
-          example: myuser
-        nickname:
-          type: string
-          description: The user's nickname. Default is the user's username.
-          example: myuser
-        first_name:
-          type: string
-          description: The user's first name. For new users, will be used to build the first part of the user's display name if "display_name" is not specified.
-          example: myuser
-        last_name:
-          type: string
-          description: The user's last name. For new users, will be used to build the second part of the user's display name if "display_name" is not specified.
-          example: myuser
-        description:
-          type: string
-          description: The user's biographical description.
-          example: This is a sample description
-        rich_editing:
-          type: string
-          description: Whether to enable the rich-editor for the user. Accepts 'true' or 'false' as a string literal, not boolean. Default 'true'.
-          example: true
-        syntax_highlighting:
-          type: string
-          description: Whether to enable the rich code editor for the user. Accepts 'true' or 'false' as a string literal, not boolean. Default 'true'.
-          example: true
-        comment_shortcuts:
-          type: string
-          description: Whether to enable comment moderation keyboard shortcuts for the user. Accepts 'true' or 'false' as a string literal, not boolean. Default 'false'.
-          example: falsec
-        admin_color:
-          type: string
-          description: Admin color scheme for the user. Default 'fresh'.
-          example: fresh
-        use_ssl:
-          type: boolean
-          description: Whether the user should always access the admin over https. Default false.
-          example: true
-        user_registered:
-          type: string
-          description: Date the user registered. Format is 'Y-m-d H:m:s'.
-          example: "2022-01-31 23:15:30"
-        user_activation_key:
-          type: string
-          description: Password reset key. Default empty.
-        spam:
-          type: boolean
-          description: Multisite only. Whether the user is marked as spam. Default false.
-          example: false
-        show_admin_bar_front:
-          type: string
-          description: Whether to display the Admin Bar for the user on the site's front end.Accepts 'true' or 'false' as a string literal, not boolean. Default 'true'.
-          example: true
-        locale:
-          type: string
-          description:  User's locale. Default empty.
-          example: ""
-      required:
-        - email
-        - password
-    authBody:
-      type: object
-      properties:
-        email:
-          type: string
-          example: john@doe.com
-          description: Required when username is not provided.
-        username:
-          type: string
-          example: myuser
-          description: Required when email is not provided.
-        password:
-          type: string
-          description: User plain password. Required when pass_hash is not provided.
-        password_hash:
-          type: string
-          description: User hashed password from Database. Required when password is not provided.
-        AUTH_CODE:
-          type: string
-          example: "MY_SUPER_SECRET_AUTH_CODE"
-          description: Required when "Authentication Requires Auth Code" is enabled
-    authRefreshBody:
-      type: object
-      properties:
-        JWT:
-          type: string
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-          description: Expired JWT.
-        AUTH_CODE:
-          type: string
-          example: "MY_SUPER_SECRET_AUTH_CODE"
-          description: Required when "Authentication Requires Auth Code" is enabled
-      required:
-        - JWT
-    authRevokeBody:
-      type: object
-      properties:
-        JWT:
-          type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-          description: Expired JWT.
-        AUTH_CODE:
-          type: string
-          example: "MY_SUPER_SECRET_AUTH_CODE"
-          description: Required when "Authentication Requires Auth Code" is enabled
-      required:
-        - JWT
-    resetPasswordBody:
-      type: object
-      properties:
-        email:
-          type: string
-          example: contact@simplejwtlogin.com
-        AUTH_CODE:
-          type: string
-          example: "MY_SUPER_SECRET_AUTH_CODE"
-          description: Required when "AuthenticationReset Password Requires Auth Code" is enabled
-    changePasswordBody:
-      type: object
-      properties:
-        email:
-          type: string
-          example: contact@simplejwtlogin.com
-        code:
-          type: string
-          example: MY_SECRED_CODE_RECEIVED_BY_EMAIL
-        new_password:
-          type: string
-          example: New user password
-        JWT:
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-          description: In order to reset password with JWT, you need to check "Allow Reset password with JWT". If a JWT is provided, the `code` parameter is no loger required.
-        AUTH_CODE:
-          type: string
-          example: "MY_SUPER_SECRET_AUTH_CODE"
-          description: Required when "AuthenticationReset Password Requires Auth Code" is enabled
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'

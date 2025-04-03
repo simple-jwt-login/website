@@ -2,11 +2,55 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://simplejwtlogin.com/releases</id>
     <title>Simple-JWT-Login Blog</title>
-    <updated>2025-02-14T00:00:00.000Z</updated>
+    <updated>2025-04-01T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://simplejwtlogin.com/releases"/>
     <subtitle>Simple-JWT-Login Blog</subtitle>
     <icon>https://simplejwtlogin.com/assets/favicons/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.6.1]]></title>
+        <id>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.1</id>
+        <link href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.1"/>
+        <updated>2025-04-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.6.1]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.6.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>This update brings better support for protect endpoints.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Validate JWT on protect endpoints<a href="https://github.com/nicumicle/simple-jwt-login/issues/141" target="_blank" rel="noopener noreferrer">#141</a></li>
+<li>Fix backward compatibility for protect endpoints. Add <code>match</code>/<code>start_with</code> option for endpoints.<a href="https://github.com/nicumicle/simple-jwt-login/issues/143" target="_blank" rel="noopener noreferrer">#143</a></li>
+</ul>
+<p>Read more about Protect endpoints <a href="https://simplejwtlogin.com/docs/protect-endpoints">here</a>.</p>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="feature" term="feature"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New Plugin Release 3.6.0]]></title>
+        <id>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.0</id>
+        <link href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.0"/>
+        <updated>2025-03-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Released version 3.6.0]]></summary>
+        <content type="html"><![CDATA[<p>The version <code>3.6.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>This update brings better flexibility, authentication improvements, and enhanced compatibility with the latest PHP versions.</p>
+<p>The following changes have been deployed with the new version:</p>
+<ul>
+<li>Support for configuring request methods on Protect endpoints <a href="https://github.com/nicumicle/simple-jwt-login/issues/129" target="_blank" rel="noopener noreferrer">#129</a></li>
+<li>Beta: WPGraphQL Authentication – Users can authenticate when performing queries with WPGraphQL <a href="https://github.com/nicumicle/simple-jwt-login/issues/32" target="_blank" rel="noopener noreferrer">#32</a></li>
+<li>Authenticate by Username or Email, similar to the default WordPress login system <a href="https://github.com/nicumicle/simple-jwt-login/issues/19" target="_blank" rel="noopener noreferrer">#19</a></li>
+<li>CI Updates – Now checking plugin code syntax with PHP 8.3 and 8.4</li>
+<li>Code Refactorization &amp; UI Improvements – Improved code structure and user interface refinements</li>
+</ul>
+<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content>
+        <author>
+            <name>Nicu Micle</name>
+            <uri>https://github.com/nicumicle</uri>
+        </author>
+        <category label="feature" term="feature"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[New Plugin Release 3.5.8]]></title>
         <id>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.8</id>

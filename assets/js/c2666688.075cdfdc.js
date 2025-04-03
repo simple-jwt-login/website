@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksimple_jwt_login_website=self.webpackChunksimple_jwt_login_website||[]).push([[5880],{12031:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/releases/page/2","page":2,"postsPerPage":10,"totalPages":2,"totalCount":14,"previousPage":"/releases","blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
