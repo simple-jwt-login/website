@@ -60,7 +60,8 @@ If you want to make sure a token can not be used anymore, just revoke it. This e
 
 ```bash
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/revoke \
--d '{"JWT":"YOUR_JWT"}'
+  -H "Content-type: application/json" \ 
+  -d '{"JWT":"YOUR_JWT"}'
 ```
 
 ### PHP

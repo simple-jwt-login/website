@@ -88,7 +88,8 @@ OR
 
 ```bash
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth \
--d '{"email":"test@simplejwtlogin.com","password":"mySecretPassword"}'
+  -H "Content-type: application/json" \
+  -d '{"email":"test@simplejwtlogin.com","password":"mySecretPassword"}'
 ```
 
 ### PHP

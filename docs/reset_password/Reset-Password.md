@@ -57,7 +57,8 @@ This endpoint will trigger the reset password, and the user will be informed abo
 ### SHELL
 ```bash
 curl -X POST https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users/reset_password \
--d '{"email":"test@simplejwtlogin.com", "AUTH_CODE": "123"}'
+  -H "Content-type: application/json" \
+  -d '{"email":"test@simplejwtlogin.com", "AUTH_CODE": "123"}'
 ```
 
 ### PHP

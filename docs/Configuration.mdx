@@ -92,7 +92,8 @@ For example, you can create posts, as a specific user, if you provide a JWT in y
 
 ```bash
 curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts?content=PostContent&title=PostTitle" \
-    -d '{"JWT":"YOUR_JWT_HERE"}'
+  -H "Content-type: application/json" \
+  -d '{"JWT":"YOUR_JWT_HERE"}'
 ```
 
 or 

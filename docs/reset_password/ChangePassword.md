@@ -63,7 +63,8 @@ This endpoint changes the user password based on the reset code that has been se
 
 ```bash
 curl -X PUT https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users/reset_password \
--d '{"email":"test@simplejwtlogin.com", "code": "123", "new_password": "test"}'
+  -H "Content-type: application/json" \
+  -d '{"email":"test@simplejwtlogin.com", "code": "123", "new_password": "test"}'
 ```
 
 ### PHP

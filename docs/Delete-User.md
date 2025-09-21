@@ -67,7 +67,8 @@ These properties should be set in the JWT payload.
 
 ```bash
 curl -X DELETE https://simplejwtlogin.com/simple-jwt-login/v1/users \
--d '{"JWT":"YOUR_JWT","AUTH_CODE":"SECRET_AUTH_CODE"}'
+  -H "Content-type: application/json" 
+  -d '{"JWT":"YOUR_JWT","AUTH_CODE":"SECRET_AUTH_CODE"}'
 ```
 
 ### PHP

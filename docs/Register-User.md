@@ -122,7 +122,8 @@ In order to create users, you just have to make a POST request to the route URL,
 
 ```bash
 curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
--d '{"email":"myemail@simplejwtlogin.com", "password":"test"}'
+  -H "Content-type: application/json" \
+  -d '{"email":"myemail@simplejwtlogin.com", "password":"test"}'
 ```
 
 ### PHP

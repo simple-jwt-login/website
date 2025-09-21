@@ -90,7 +90,8 @@ If you have a valid JWT, details about the available WordPress user will be retu
 
 ```bash
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/validate \
--d '{"JWT":"YOUR_JWT"}'
+  -H "Content-type: application/json" \
+  -d '{"JWT":"YOUR_JWT"}'
 ```
 
 ### PHP
