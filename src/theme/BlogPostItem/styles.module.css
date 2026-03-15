@@ -1,0 +1,183 @@
+/* ============================================================
+   BLOG POST CARD (list view)
+   ============================================================ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border-radius: 14px;
+  border: 1px solid var(--sjl-border, #e1e7ef);
+  background: var(--sjl-surface, #ffffff);
+  /* height: 100% fills grid cells; margin-bottom is fallback for non-grid contexts */
+  height: 100%;
+  margin-bottom: 0;
+  transition: box-shadow 250ms ease, transform 250ms ease, border-color 250ms ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Top accent line */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-lighter) 100%
+  );
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.09);
+  transform: translateY(-4px);
+  border-color: rgba(66, 185, 131, 0.4);
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+html[data-theme='dark'] .card {
+  background: #161b25;
+  border-color: #1e2736;
+}
+html[data-theme='dark'] .card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Tags ──────────────────────────────────────────────────── */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  background: rgba(66, 185, 131, 0.1);
+  color: var(--ifm-color-primary-dark);
+  border: 1px solid rgba(66, 185, 131, 0.25);
+  transition: background 150ms ease, color 150ms ease;
+}
+.tag:hover {
+  background: rgba(66, 185, 131, 0.2);
+  color: var(--ifm-color-primary-darkest);
+  text-decoration: none !important;
+}
+html[data-theme='dark'] .tag {
+  background: rgba(66, 185, 131, 0.12);
+  color: var(--ifm-color-primary-lightest);
+  border-color: rgba(66, 185, 131, 0.25);
+}
+html[data-theme='dark'] .tag:hover {
+  background: rgba(66, 185, 131, 0.22);
+}
+
+/* ── Title ─────────────────────────────────────────────────── */
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  margin: 0 0 0.5rem;
+}
+.title a {
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.title a:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* ── Meta (date + reading time) ────────────────────────────── */
+.meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--sjl-text-muted, #64748b);
+  margin-bottom: 0.9rem;
+}
+.meta time {
+  font-weight: 500;
+}
+.readingTime {
+  color: var(--sjl-text-muted, #64748b);
+}
+
+/* ── Description ───────────────────────────────────────────── */
+.description {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--sjl-text-muted, #64748b);
+  flex: 1;
+  margin: 0 0 1.25rem;
+
+  /* Clamp to 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+html[data-theme='dark'] .description { color: #8899b0; }
+
+/* ── Footer ────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sjl-border, #e1e7ef);
+}
+html[data-theme='dark'] .footer { border-color: #1e2736; }
+
+/* Author */
+.author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.authorAvatar {
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.authorName {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--sjl-text-muted, #64748b);
+}
+
+/* Read more link */
+.readMore {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  transition: gap 150ms ease, color 150ms ease;
+}
+.readMore:hover {
+  color: var(--ifm-color-primary-dark);
+  gap: 0.4rem;
+  text-decoration: none;
+}

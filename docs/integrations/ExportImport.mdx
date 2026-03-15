@@ -8,7 +8,7 @@ author_url: https://github.com/nicumicle
 
 import styles from '../styles.module.css';
 
-This add-on allows you to export your Simple-JWT-Login plugin settings and import them into another website.
+The Export-Import add-on lets you copy your Simple-JWT-Login configuration — including Auth Codes, protection rules, and all general settings — from one WordPress site to another in just a few steps. This is especially useful when setting up staging environments, migrating sites, or replicating a configuration across a network of sites.
 
 <p class={styles.textCenter}>
     <a href="https://github.com/simple-jwt-login/export-import/archive/refs/heads/master.zip" class={styles.btn}>Download</a>
@@ -28,12 +28,17 @@ This add-on allows you to export your Simple-JWT-Login plugin settings and impor
 ![](https://github.com/simple-jwt-login/export-import/raw/master/wordpress.org/screenshot-1.png?raw=true)
 
 
-## Export and Import Data
+## How to transfer settings
 
-1. Click on "Export"
-2. Copy the generated code
-3. Login to the new website where you want to import the data
-4. Paste the generated code
-5. Click on import
-6. A confirmation will be prompted. Click Ok.
-7. Done
+**On the source site:**
+1. Go to the Simple-JWT-Login settings page.
+2. Click **Export** to generate a configuration snapshot.
+3. Copy the generated code.
+
+**On the destination site:**
+1. Install and activate both Simple-JWT-Login and the Export-Import add-on.
+2. Go to the Simple-JWT-Login settings page.
+3. Paste the copied code into the import field.
+4. Click **Import** and confirm the prompt.
+
+The destination site will now have the same configuration as the source.

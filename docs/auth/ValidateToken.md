@@ -5,9 +5,12 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-You can validate if a token is valid or not, by sending a request to this endpoint.
+Use this endpoint to verify whether a JWT is valid. On success, the response includes the corresponding WordPress user's profile, their roles, and the decoded JWT header and payload.
 
-If you have a valid JWT, details about the available WordPress user will be returned, and some JWT details.
+This endpoint is useful for:
+- **Server-side token verification** before granting access to resources
+- **Debugging** — inspect what user and claims a token resolves to
+- **Client-side session checks** — confirm a stored token is still accepted before making other API calls
 
 
 **METHOD** : `POST`

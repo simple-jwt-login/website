@@ -1,7 +1,7 @@
 ---
 id: simple-jwt-login
 title: "Simple-JWT-Login"
-description: "This is the Simple-JWT-Login WordPress plugin API Documentation."
+description: "Complete REST API reference for Simple JWT Login — a free WordPress plugin for JWT authentication. Covers login, register, token refresh, auto-login, endpoint protection, and more."
 sidebar_label: Introduction
 sidebar_position: 0
 hide_title: true
@@ -34,24 +34,36 @@ import Export from "@theme/ApiExplorer/Export";
   
 </ApiLogo>
 
-This is the Simple-JWT-Login WordPress plugin API Documentation.
+REST API reference for the **Simple-JWT-Login** WordPress plugin — add token-based authentication to your WordPress site without writing a single line of code.
 
-## Introduction
+## Base URL
 
-This API is documented in **OpenAPI format**. You can either open it in [swagger editor](https://editor.swagger.io/) or you can view it on this website.
+All endpoints are available via two URL formats:
 
-Also, you open it in postman, and you will be able to do local tests.
+| Mode | Pattern |
+|------|---------|
+| Pretty permalinks | `https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}` |
+| Query string | `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}` |
 
-## Server
+## Authentication
 
-You can access the Simple-JWT-Login API in two modes:
-  - using permalink: https://\{domain\}/wp-json/simple-jwt-login/v1/\{endpoint\}
-  - using rest_route: https://\{domain\}/?rest_route=/simple-jwt-login/v1/\{endpoint\}
+Most write endpoints accept a `JWT` token delivered in one of four ways:
+
+- **Authorization header** — `Authorization: Bearer <token>`
+- **Query parameter** — `?JWT=<token>`
+- **Request body** — `{"JWT": "<token>"}`
+- **Cookie / Session** — configurable in plugin settings
 
 ## Cross-Origin Resource Sharing
-This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
-And that allows cross-domain communication from the browser.
-All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+
+This API is CORS-enabled in compliance with the [W3C spec](https://www.w3.org/TR/cors/).
+
+All responses include a wildcard `Access-Control-Allow-Origin: *` header, making the API accessible from any browser, SPA, or mobile app.
+
+## Try it out
+
+- **Swagger Editor** — paste the spec at [editor.swagger.io](https://editor.swagger.io/)
+- **Postman** — import `openapi.yaml` directly for a ready-made collection with local test support
 
 
 <div

@@ -2,16 +2,16 @@
 slug: /hooks/
 title: Hooks
 sidebar_position: 97
+description: Simple JWT Login provides 16 WordPress action and filter hooks to customize JWT payload, authentication responses, registration, and more — without modifying plugin code.
+keywords: [WordPress JWT hooks, Simple JWT Login filters, custom JWT payload, WordPress authentication hooks, JWT plugin customization]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-This plugin allows advanced users to link some hooks with the plugin and perform some custom scripts.
-
-You are able to enable/disable any of these hooks. 
+Simple-JWT-Login exposes a set of WordPress action and filter hooks that let you extend or customise the plugin's behaviour without modifying its source code. Use them to send notifications, enrich JWT payloads, apply business logic, or build fully custom flows on top of the plugin.
 
 :::note
-By default, no hooks are enabled. You need to check the one that you want to use.
+Hooks must be enabled individually in the plugin settings before they fire. By default, all hooks are disabled.
 :::
 
 ## List Of Hooks
@@ -130,10 +130,10 @@ add_action( 'simple_jwt_login_register_hook', function($user, $password) {
    }, 10, 2);
 ```
 
-###  Add some custom data in the JWT payload on the `/auth` endpoint 
+### Add custom data to the JWT payload on the `/auth` endpoint
 
 ```php
-add_filter('simple_jwt_login_no_redirect_message',function($payload, $request){
+add_filter('simple_jwt_login_jwt_payload_auth', function($payload, $request) {
     $payload['myvalue'] = 'somevalue';
 
     return $payload;

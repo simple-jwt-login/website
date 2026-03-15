@@ -2,13 +2,18 @@
 slug: /authentication/
 title: Authentication
 sidebar_position: 2
+description: Generate, refresh, validate, and revoke JWT tokens via the WordPress REST API using Simple JWT Login. Supports HS256/384/512 and RS256/384/512 algorithms.
+keywords: [WordPress JWT authentication, generate JWT token WordPress, JWT REST API WordPress, HS256 WordPress, RS256 WordPress, token-based login WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
-keywords: [jwt, auth, wordpress jwt]
 ---
 
-This plugin allows users to generate JWT tokens based from WordPress user email and password.
-You will use this endpoint, in order to generate a new JWT.
+Use this endpoint to exchange WordPress credentials for a signed JWT. The returned token can then be included in subsequent requests to protected endpoints or used to auto-login users.
+
+You can authenticate using any of the following combinations:
+- **email** + **password** — standard credential pair
+- **username** + **password** — use the WordPress username instead of email
+- **login** + **password** — mirrors the WordPress login page behaviour; accepts either email or username
 
 ## Endpoint
 
@@ -129,22 +134,21 @@ You can specify the time (in minutes) that the token will be valid for.
 
 By default, the token is valid for 60 minutes.
 
-### Allow Authentication only from the following IP addresses
+### Allow Authentication only from specific IP addresses
 
-This feature will add an extra security layer for the authentication. You can specify a list of IP addresses where you want to allow authentication.
+Restrict authentication requests to a whitelist of trusted IP addresses for an extra layer of security. Separate multiple entries with commas.
 
-Example:
 ```
-    192.0.1.1, 192.2.2.2
-```
-You can also use the wildcard for IP `*`. This is helpful when you want for example to allow authentication only from a specific country.
-```
-    85.*.*.*, 86.*.*.*
+192.0.1.1, 192.2.2.2
 ```
 
-### Authentication password/passhash is base64 encoded
+The wildcard `*` is supported in any octet, which is useful for allowing an entire subnet or IP range (e.g., all addresses from a specific country or hosting provider):
 
-You can send base64 encoded passwords while this option is checked. If not checked, the plugin will check to match the password provided by you and the one that it is stored in the database.
+```
+85.*.*.*, 86.*.*.*
+```
 
-This feature is helpful, when you have passwords that contains special characters and you want to send the password in the query parameters.
+### Base64-encoded passwords
+
+Enable this option when your passwords contain special characters that would otherwise be mangled in query string parameters. When active, the plugin expects the `password` (or `password_hash`) value to be Base64-encoded before sending.
 

@@ -5,7 +5,11 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-If you want to make sure a token can not be used anymore, just revoke it. This endpoint should be used on "log out".
+Revoking a token immediately invalidates it — any subsequent request using that token will be rejected. Call this endpoint when a user logs out or when you need to terminate a specific session (e.g., after a password change or suspicious activity).
+
+:::note
+Once a token is revoked, it cannot be un-revoked. The user must authenticate again to obtain a new token.
+:::
 
 **METHOD** : `POST`
 
@@ -32,16 +36,11 @@ If you want to make sure a token can not be used anymore, just revoke it. This e
 ## Responses
 
 ### 200
-```
- {
-     "success": true,
-     "message": "Token was revoked"
-     "data": {
-         "jwt": {
-            "NEW_GENERATED_JWT_HERE"
-          }
-     }
- }
+```json
+{
+  "success": true,
+  "message": "Token was revoked"
+}
 ```
 
 ### 400

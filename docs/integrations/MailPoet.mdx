@@ -8,23 +8,25 @@ author_url: https://github.com/nicumicle
 
 import styles from '../styles.module.css';
 
-The MailPoet add-on allows you to automatically login users from the newsletter sent by MailPoet into a WordPress website using a JWT.
+The Simple-JWT-Login MailPoet add-on lets you embed personalised, one-click login links inside your MailPoet email campaigns. When a subscriber clicks the link, they are automatically logged into your WordPress site — no password entry required.
 
-This add-on will generate short codes that can be used in your MailPoet templates.
+The add-on generates a shortcode that you drop into your MailPoet email template. Each time an email is sent, the shortcode is rendered into a unique, time-limited autologin URL for that recipient.
 
 <p class={styles.textCenter}>
     <a href="https://wordpress.org/plugins/simple-jwt-login-mailpoet" class={styles.btn}>Download</a>
 </p>
 
 
-## Short Code parameters
+## Shortcode parameters
 
-- **text** : The text for the link
-- **class**: Class added for the link
-- **style**: Custom CSS added to the link
-- **validity**: The Valability of the JWT. Default value is one week
-- **authCode**: Auth Code that is required by Autologin. You will find this in Simple-JWT-Login plugin -> Auth Codes
-- **redirectUrl**: This URL will overwrite the SimpleJWTLogin settings, and it will specify where users will be redirected after autologin.
+| Parameter | Description |
+| :-------- | :---------- |
+| `text` | The visible link text (e.g., `"Log in to your account"`) |
+| `class` | CSS class(es) to apply to the link element |
+| `style` | Inline CSS styles for the link |
+| `validity` | How long the generated JWT is valid, in seconds. Default: `604800` (one week) |
+| `authCode` | The Auth Code required by the Autologin endpoint. Find your codes under **Simple-JWT-Login → Auth Codes**. |
+| `redirectUrl` | Overrides the redirect URL set in Simple-JWT-Login settings. The user will be sent here after a successful autologin. |
 
 
 ```

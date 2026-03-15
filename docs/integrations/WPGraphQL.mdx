@@ -7,15 +7,12 @@ author_url: https://github.com/nicumicle
 ---
 
 
-With Simple-JWT-Login, you can now securely authenticate API requests for [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) endpoints using JWT.
-This integration makes it easier to build headless WordPress applications that require secure, token-based authentication for GraphQL queries and mutations.
+Simple-JWT-Login integrates with [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) to bring JWT authentication to your GraphQL layer. Once configured, any GraphQL query or mutation can require a valid JWT, making it straightforward to build secure, headless WordPress applications.
 
-## Key Features:
-- **JWT Authentication for WPGraphQL** – Securely access GraphQL endpoints with JWT tokens.
-- **Seamless Integration** – Works natively with WPGraphQL, enabling authentication for protected queries and mutations.
-- **Flexible Authentication** – Include a JWT in request headers to authenticate API requests effortlessly.
-
-This feature is ideal for **headless WordPress setups**, allowing front-end applications to authenticate users and perform **secure GraphQL operations**.
+**Why use this integration?**
+- Authenticate GraphQL requests with the same JWT tokens used for REST API calls
+- Protect sensitive queries and mutations so only logged-in users can execute them
+- Works with any front-end framework (React, Vue, Next.js, etc.) or mobile client that supports HTTP headers
 
 ## Setup Guide
 

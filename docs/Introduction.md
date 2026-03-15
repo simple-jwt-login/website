@@ -2,23 +2,30 @@
 slug: /
 title: Introduction
 sidebar_position: 0
+description: Simple JWT Login is a free WordPress plugin that adds JWT authentication to the REST API — login, register, auto-login, protect endpoints, and more. No coding required.
+keywords: [Simple JWT Login, WordPress JWT plugin, JWT authentication, WordPress REST API, JSON Web Token WordPress, headless WordPress authentication]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Simple-JWT-Login is a **FREE** WordPress plugin that allows you to use a JWT on WordPress REST endpoints.
+**Simple-JWT-Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT) authentication to the WordPress REST API. It lets mobile apps, single-page applications, and external services securely interact with your WordPress site — without exposing admin credentials.
 
-Simple-JWT-Login enhances the WordPress REST API with JSON Web Token (JWT) authentication, ensuring a secure connection for mobile apps, external websites, and third-party services to access your WordPress content via REST endpoints.
+With Simple-JWT-Login you can:
+- **Authenticate** users and receive a signed JWT
+- **Auto-login** users via a tokenized link
+- **Register** and **delete** users programmatically
+- **Reset and change passwords** through the REST API
+- **Protect any REST endpoint** so it requires a valid JWT
+- **Refresh, validate, and revoke** tokens to manage session lifecycle
 
-The main purpose of this plugin is to allow Mobile apps, or other websites to access the content from a WordPress website via REST endpoints in a secure way.
+Whether you're building a headless WordPress site, a React/Vue front-end, a mobile app, or a third-party integration, Simple-JWT-Login provides a clean, standards-based authentication layer.
 
 ## Requirements
 
-Before installing Simple-JWT-Login, ensure your system meets the following requirements:
+Before installing Simple-JWT-Login, ensure your environment meets the following minimum requirements:
 
-- PHP version >= **5.5**
-- WordPress version >= **4.4.0** 
-
+- PHP **5.5** or higher
+- WordPress **4.4.0** or higher
 
 ## Licence
 
@@ -43,22 +50,18 @@ Setting up Simple-JWT-Login is quick and easy. Choose one of the following insta
 ### Method 2: Download and Install Manually
 - Access [https://wordpress.org/plugins/simple-jwt-login/](https://wordpress.org/plugins/simple-jwt-login/).
 
-- Click "**Download**" to get the latest Simple-JWT-login plugin version.
+- Click "**Download**" to get the latest Simple-JWT-Login plugin version.
 
     ![Download the plugin](/assets/img/docs/download_from_wordpress.org.png "Download the plugin")
 
-- Upload the `.zip` file in your WordPress plugin directory.
-    
+- Upload the `.zip` file via the WordPress plugin uploader (**Plugins → Add New → Upload Plugin**).
+
     ![Upload the plugin zip](/assets/img/docs/upload_plugin_file_in_wordpress.png "Upload plugin zip file")
-    
+
 - Click "**Install Now**" and **Activate** the plugin.
 
    ![Activate the plugin](/assets/img/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
 
 
 
-
-
-Now that you've installed the **Simple-JWT-Login** plugin, you're ready to configure it and **start using JWT authentication** for your WordPress REST API. 
-
-Check out the Configuration Guide for the next steps!
+Now that you've installed **Simple-JWT-Login**, check out the **Configuration Guide** to set up your JWT secret key and enable the features you need.

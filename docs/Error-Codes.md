@@ -6,7 +6,19 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-The Simple-JWT-Login plugin assigns a unique error code to each issue. This table will help you quickly identify your problem.
+Every error response from Simple-JWT-Login includes a numeric `errorCode` field. Use the table below to look up the meaning of a specific code and how to resolve it.
+
+Error responses follow this format:
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Human-readable error message",
+    "errorCode": 48
+  }
+}
+```
 
 | Error Code |                         Message                         | Description                                                                                                                                      |
 |:----------:|:-------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------|

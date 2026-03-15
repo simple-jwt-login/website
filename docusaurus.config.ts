@@ -10,8 +10,8 @@ import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 require('dotenv').config()
 
 const config: Config = {
-  title: 'Simple-JWT-Login',
-  tagline: 'Your WordPress plugin that allows you to work with JWT',
+  title: 'Simple JWT Login',
+  tagline: 'Free WordPress JWT authentication plugin — REST API, headless WP, WPGraphQL & more',
   favicon: '/assets/favicons/favicon.ico',
 
   // Set the production url of your site here
@@ -98,10 +98,44 @@ const config: Config = {
         createSitemapItems: async (params) => {
           const {defaultCreateSitemapItems, ...rest} = params;
           const items = await defaultCreateSitemapItems(rest);
-          return items.filter((item) => !item.url.includes('/page/'));
+          return items
+            .filter((item) => !item.url.includes('/page/'))
+            .map((item) => {
+              const url = item.url;
+              // Homepage gets highest priority
+              if (url === rest.siteConfig.url || url === rest.siteConfig.url + '/') {
+                return { ...item, priority: 1.0, changefreq: 'weekly' };
+              }
+              // Core doc pages
+              if (url.includes('/docs/')) {
+                return { ...item, priority: 0.8, changefreq: 'monthly' };
+              }
+              // Blog posts are regularly updated
+              if (url.includes('/blog/')) {
+                return { ...item, priority: 0.7, changefreq: 'monthly' };
+              }
+              // API reference
+              if (url.includes('/api/')) {
+                return { ...item, priority: 0.6, changefreq: 'monthly' };
+              }
+              return { ...item, priority: 0.5 };
+            });
         },
       },
     ],
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        siteDescription: 'Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the WordPress REST API. Supports login, register, auto-login, endpoint protection, token refresh, and more.',
+        depth: 3,
+        content: {
+          enableLlmsFullTxt: true,
+          includeBlog: true,
+          includePages: false,
+        },
+      },
+    ],
+
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -125,7 +159,19 @@ const config: Config = {
 
   ],
 
-  themes: ["docusaurus-theme-openapi-docs"], // export theme components
+  themes: [
+    "docusaurus-theme-openapi-docs",
+    [
+      "@easyops-cn/docusaurus-search-local",
+      {
+        hashed: true,
+        indexBlog: true,
+        indexPages: false,
+        language: "en",
+        searchBarShortcutHint: false,
+      },
+    ],
+  ],
   // stylesheets: [
   //   {
   //     href: "https://use.fontawesome.com/releases/v5.11.0/css/all.css",
@@ -169,12 +215,24 @@ const config: Config = {
   ],
 
   themeConfig: {
+    // Delimiter between page title and site name in <title> tags
+    titleDelimiter: '—',
+    // Global <head> metadata (Open Graph, Twitter Card, keywords)
+    metadata: [
+      { name: 'keywords', content: 'JWT, WordPress plugin, JWT authentication, WordPress REST API, headless WordPress, JSON Web Token, WPGraphQL, JWT login, auto login, token-based authentication' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@simplejwtlogin' },
+      { name: 'twitter:creator', content: '@simplejwtlogin' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Simple JWT Login' },
+      { property: 'og:image', content: '/assets/favicons/android-chrome-192x192.png' },
+    ],
     announcementBar: {
       id: 'support_us',
       content:
           '⭐️ If you like Simple-JWT-Login, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/nicumicle/simple-jwt-login">GitHub</a>.',
-      backgroundColor: '#42b983',
-      textColor: '#091E42',
+      backgroundColor: '#1d5e41',
+      textColor: '#d4f5e5',
       isCloseable: true,
     },
     image: 'assets/favicons/android-chrome-192x192.png',
@@ -213,6 +271,10 @@ const config: Config = {
           position: 'left',
           to: '/api/simple-jwt-login',
           title: 'API',
+        },
+        {
+          type: 'search',
+          position: 'right',
         },
         {
           label: 'Donate',

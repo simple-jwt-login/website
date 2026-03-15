@@ -1,2 +1,11 @@
 User-Agent: *
 Allow: /
+
+# Block low-value pages from indexing
+Disallow: /blog/tags/
+Disallow: /releases/tags/
+Disallow: /search
+
+# LLM-friendly files
+Allow: /llms.txt
+Allow: /llms-full.txt

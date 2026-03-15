@@ -2,17 +2,19 @@
 slug: /register-user/
 title: Register User
 sidebar_position: 4
+description: Register new WordPress users programmatically via a REST API endpoint using Simple JWT Login. Supports role assignment, auth codes, and IP restrictions.
+keywords: [WordPress register user API, REST API create user WordPress, WordPress user registration endpoint, JWT register user, headless WordPress registration]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
 ## Description
 
-This plugin also allows you to create WordPress users.
+The Register User endpoint lets you create new WordPress users programmatically via the REST API. This is useful for headless registration forms, mobile app sign-ups, or any external system that needs to provision WordPress accounts without going through the standard WordPress UI.
 
-This option is disabled by default, but you can enable it at any time.
+Registration is **disabled by default**. Enable it in the plugin settings before use.
 
-In order to create users, you just have to make a POST request to the route URL, and send an email and a password as parameter and the new user will be created.
+At minimum, a POST request with `email` and `password` is all that's needed. Additional profile fields are optional.
 
 ## Endpoint
 
@@ -65,7 +67,7 @@ In order to create users, you just have to make a POST request to the route URL,
   "description": "This is a sample description",
   "rich_editing": true,
   "syntax_highlighting": true,
-  "comment_shortcuts": "falsec",
+  "comment_shortcuts": "false",
   "admin_color": "fresh",
   "use_ssl": true,
   "user_registered": "2022-01-31 23:15:30",
@@ -167,53 +169,52 @@ xhr.send(data);
 
 ## Features
 
-### New types of users
+### User roles
 
-You can select the type for the new users:
-- editor
-- author
-- contributor
-- subscriber
-- any custom role that you have set up in your WordPress
+You can set the default role assigned to newly registered users (e.g., `subscriber`, `contributor`, `author`, `editor`, or any custom role). You can also assign a different role per **Auth Code** — when a user registers using a specific `AUTH_CODE`, they receive the role tied to that code. This makes it easy to support multiple user types from a single registration endpoint.
 
-Also, you can set a specific user role on Auth Codes, and when that `AUTH_CODE` is used, the user will be created with that specific user role.
+### Restrict registration
 
-### Limit user registration
+Limit registrations to:
+- **Specific IP addresses** — block registrations from untrusted origins
+- **Specific email domains** — e.g., only allow `@yourcompany.com` addresses
 
-Also, you can limit the user creating only for specific IP addresses or specific email domains.
+### Random password generation
 
-### Random password generator
+Enable “Generate a random password” to allow registration without a `password` field. The plugin generates a secure random password automatically. Password length is configurable between **6** and **255** characters.
 
-Another cool option is “Generate a random password when a new user is created”.
-If this option is selected, the password is no more required when a new user is created, instead, a random password will be generated.
+### Auto-login after registration
 
-Also, you can specify the length of the random password. The minimum length is `6` characters, and the maximum is `255`.
+Enable “Initialize force login after register” to automatically log the new user in immediately after their account is created, following the same redirect flow configured in the Autologin settings.
 
-### Force login flow after register
-
-Another option that you have for registered users is “Initialize force login after register”.
-When the user registration is completed, the user will continue on the flow configured on the login configuration.
-
-If auto-login is disabled, this feature will not work and the registered user will go on a normal flow and return a JSON response.
-
+:::note
+This option has no effect if the Autologin feature is disabled. In that case, the endpoint simply returns the new user's data as a JSON response.
+:::
 
 ### Custom user meta
 
-If you want to add custom user_meta on user creation, just add the parameter user_meta with a JSON.
-This will create user_meta for the new user.
+Pass any number of custom metadata fields during registration by including a `user_meta` JSON parameter. Each key-value pair will be saved as WordPress user meta.
 
 Example:
 
-```
-user_meta={“meta_key”:”meta_value”,”meta_key2″:”meta_value”}
+```json
+{
+  “email”: “user@example.com”,
+  “password”: “secret”,
+  “user_meta”: “{\”plan\”:\”premium\”,\”referral_source\”:\”landing_page\”}”
+}
 ```
 
 ---
 
 ## FAQ
 
-### How we can set up?
-In order to set up, please follow the guidelines.
+### How do I configure the Register User endpoint?
+
+1. Go to **Settings → Simple JWT Login** in your WordPress admin.
+2. Open the **Register Settings** tab.
+3. Enable registration and configure the desired role, restrictions, and options.
+4. Save your settings, then send a `POST` request to the endpoint.
 
 
 

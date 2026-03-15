@@ -5,13 +5,13 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-This endpoint will trigger the reset password, and the user will be informed about this change.
+This endpoint initiates the password reset flow for an existing WordPress user. Depending on the plugin configuration, it can silently save a reset code to the database, send the standard WordPress reset email, or deliver a fully customised email template.
 
 **METHOD** : `POST`
 
 **ENDPOINT** : `/simple-jwt-login/v1/users/reset_password`
 
-**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users/reset_password&email={{email}}&code={{code}}&&new_password={{new_password}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
+**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users/reset_password&email={{email}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
 
 **PARAMETERS**:
 
@@ -103,35 +103,30 @@ xhr.send(data);
 
 ## Features
 
-Send reset password offers 3 possible modes:
+### Reset password modes
 
-- Do not send any email, just save reset code in the database
-- Send the default WordPress reset password email
-- Send custom email
+The plugin supports three delivery modes for the reset password flow:
 
+| Mode | Behaviour |
+| :--- | :-------- |
+| **Silent (code only)** | Generates and saves a reset code to the database without sending any email. Use this when your front-end handles its own email delivery. |
+| **Default WordPress email** | Sends the standard WordPress password reset email. |
+| **Custom email** | Sends a fully customisable email (plain text or HTML) with your own subject and body. |
 
-### Custom email
+### Custom email template
 
-When you choose custom email template, you can set how the email can be sent:
-- plain text
-- HTML
+When using the custom email mode you can write your own subject and body. The body supports the following variables, which are replaced with real values at send time:
 
-Also, you can set a custom email subject and custom email body.
-
-### Send custom email variables:
-These variables can be used inside the email body template. They will be replaced when the email will be sent.
-
-
-| Variable       |Description|
-| :-------------: | ------------ |
-| `{{CODE}}` | `madatory`  The reset password Code|
-| `{{NAME}}` | User first and last name |
-| `{{EMAIL}}` | User email address |
-| `{{NICKNAME}}` | User nickname |
-| `{{FIST_NAME}}` | User first name |
-| `{{LAST_NAME}}` | User last name |
+| Variable | Description |
+| :------- | :---------- |
+| `{{CODE}}` | **Required.** The reset password code the user must submit to change their password. |
+| `{{NAME}}` | User's full name (first + last) |
+| `{{EMAIL}}` | User's email address |
+| `{{NICKNAME}}` | User's nickname |
+| `{{FIRST_NAME}}` | User's first name |
+| `{{LAST_NAME}}` | User's last name |
 | `{{SITE}}` | Website URL |
-| `{{IP}}` | Client IP |
+| `{{IP}}` | IP address of the client that triggered the reset |
 
 Email body example: 
 ```

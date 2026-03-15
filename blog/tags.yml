@@ -6,7 +6,7 @@ release:
 news:
   label: News
   permalink: /tags/news
-  description: Plugin news 
+  description: Plugin news
 
 add-on:
   label: Add-on
@@ -16,4 +16,29 @@ add-on:
 tutorials:
   label: Tutorial
   permalink: /tags/tutorial
-  description: Tutorial
+  description: Tutorials and guides for Simple JWT Login
+
+headless-wordpress:
+  label: Headless WordPress
+  permalink: /tags/headless-wordpress
+  description: Articles about headless WordPress architecture and JWT authentication
+
+jwt-authentication:
+  label: JWT Authentication
+  permalink: /tags/jwt-authentication
+  description: Articles about JSON Web Token (JWT) authentication
+
+wordpress-plugin:
+  label: WordPress Plugin
+  permalink: /tags/wordpress-plugin
+  description: WordPress plugin tips, features, and usage guides
+
+wpgraphql:
+  label: WPGraphQL
+  permalink: /tags/wpgraphql
+  description: Integrating Simple JWT Login with WPGraphQL
+
+security:
+  label: Security
+  permalink: /tags/security
+  description: WordPress REST API security and authentication best practices

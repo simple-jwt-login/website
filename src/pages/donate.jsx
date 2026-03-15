@@ -1,137 +1,208 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import styles from "./styles.module.css";
-import clsx from "clsx";
-import Link from "@docusaurus/core/lib/client/exports/Link";
+import Link from '@docusaurus/Link';
+import styles from './donate.module.css';
 
-function Donate(){
-    return (
-        <Layout title="Donate">
+const PAYPAL_URL =
+  'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PK9BCD6AYF58Y&source=url';
 
-            <h1 className={styles.sectionTitle}>Support Simple JWT Login</h1>
-            <section>
-                <div className="container text-left">
-                    <div className={["row", styles.paddingRow].join(" ")}>
-                        <div className="col">
-                            <h2>🚀 Our Vision</h2>
-                            <p>Welcome to the forefront of WordPress JWT! At Simple JWT Login, we're on a mission to redefine the login experience and enhance the WordPress websites.
-                                <br />
-                                Our vision is clear: to be the <b>#1 JWT plugin for WordPress</b>. But we need your support to make this vision a reality.</p>
-                        </div>
-                    </div>
+const stats = [
+  { number: '5,000+', label: 'Active installs' },
+  { number: '80,000+', label: 'Total downloads' },
+  { number: '5 / 5', label: 'WordPress rating' },
+  { number: '6+ yrs', label: 'In active development' },
+];
 
-                    <div className={["row", styles.paddingRow].join(" ")}>
-                        <div className={"col"}>
-                            <h2>💡 Why Donate?</h2>
-                            <p>
-                                For the past four years, we've invested time, passion, and resources into developing the Simple JWT Login plugin. Now, we're inviting you to be a part of this transformative journey.
-                                <br />
-                                Your contribution will enable us to:
-                                <ul>
-                                    <li><b>Sustain our Online Presence</b>: Cover the monthly hosting costs for <a href={"https://simplejwtlogin.com"}>https://simplejwtlogin.com</a>.</li>
-                                    <li><b>Enhance User Experience</b>: Invest in refining the Simple JWT Login plugin, SDKs, and website to provide users with a cutting-edge and intuitive experience.</li>
-                                    <li><b>Fuel Innovation</b>: Acquire licenses and premium plugins, allowing us to develop and implement exciting new features that will redefine Simple JWT Login.</li>
-                                    <li><b>Security Audits and Improvements: Conduct regular security audits and use funds to address any vulnerabilities.</b></li>
-                                    <li><b>Enhanced User Interface (UI) and User Experience (UX):</b> Use funds to improve the UI/UX for the plugin and conduct usability studies to identify areas for improvement and implement changes.</li>
-                                </ul>
-                            </p>
-                        </div>
-                    </div>
-                    <div className={["row", styles.paddingRow].join(" ")}>
-                        <div className={"col"}>
-                            <h2>🌟 Your Impact</h2>
-                            <p>Your support matters. By contributing to Simple JWT Login, you're not just supporting a plugin – you're supporting the entire community.</p>
-                        </div>
-                    </div>
-                    <div className={["row", styles.paddingRow].join(" ")}>
-                        <div className={"col"}>
-                            <h2>🤝 Be a Changemaker – Donate Today!</h2>
-                            <p>
-                                Your contribution, no matter the size, makes a significant impact. Join us in shaping the future of Simple JWT Login. Be a changemaker by donating to Simple JWT Login today!
-                            </p>
-                            <p className={["text-center", styles.paddingRow].join(" ")}>
-                                <Link
-                                    to={"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PK9BCD6AYF58Y&source=url"}
-                                    className={styles.btn}
-                                    title="Donate now"
-                                >
-                                    Donate now
-                                </Link>
-                            </p>
-                        </div>
-                    </div>
-                    <div className={["row", styles.paddingRow].join(" ")}>
-                        <div className={"col"}>
-                            <h2>🌈 Thank You for Being a Pillar of Support</h2>
-                            <p>
-                                Whether you're a developer, WordPress enthusiast, or simply someone who values open-source, your contribution matters.<br /> Thank you for being a part of the Simple JWT Login family.
-                                <br />
-                                <br />
-                                Together, we are better.
-                            </p>
-                        </div>
-                    </div>
+const impacts = [
+  {
+    icon: '🖥️',
+    title: 'Keep the lights on',
+    description:
+      'Cover monthly hosting and infrastructure costs for simplejwtlogin.com and all associated services.',
+  },
+  {
+    icon: '🔒',
+    title: 'Security audits',
+    description:
+      'Fund regular third-party security reviews to ensure the plugin meets the highest standards for JWT handling.',
+  },
+  {
+    icon: '⚡',
+    title: 'New features',
+    description:
+      'Acquire premium tools and dedicate development time to build the features most requested by the community.',
+  },
+  {
+    icon: '📚',
+    title: 'Better docs & SDKs',
+    description:
+      'Improve documentation, code examples, and expand the official PHP and JavaScript SDKs.',
+  },
+];
 
+const tiers = [
+  {
+    amount: '€5',
+    label: 'Coffee',
+    icon: '☕',
+    description: 'A small thank-you that keeps the caffeine flowing during late-night debugging sessions.',
+    highlight: true,
+  },
+  {
+    amount: '€10',
+    label: 'Supporter',
+    icon: '🌱',
+    description: 'Covers a month of hosting costs and shows real commitment to the project.',
+    highlight: false,
+  },
+  {
+    amount: '€15',
+    label: 'Champion',
+    icon: '🏆',
+    description: 'Funds a security audit task or a significant new feature development sprint.',
+    highlight: false,
+  },
+];
 
+function DonatePage() {
+  return (
+    <Layout
+      title="Donate — Support Simple JWT Login"
+      description="Support the development of Simple JWT Login, the free and open-source JWT authentication plugin for WordPress."
+    >
+      {/* ── Hero ─────────────────────────────────────────── */}
+      <header className={styles.hero}>
+        <div className={styles.heroGlow} aria-hidden="true" />
+        <div className="container">
+          <div className={styles.heroBadge}>Open-source · Free forever</div>
+          <h1 className={styles.heroTitle}>
+            Built with love.<br />Kept alive by <span className={styles.heroAccent}>people like you.</span>
+          </h1>
+          <p className={styles.heroSubtitle}>
+            Simple JWT Login has been free and open-source for over four years.
+            No premium tier, no paywalled features — just a maintainer who keeps
+            showing up. If this plugin saves you time or makes your project possible,
+            consider giving back.
+          </p>
+          <Link to={PAYPAL_URL} className={styles.heroCta} title="Donate via PayPal">
+            Donate via PayPal ↗
+          </Link>
+        </div>
+      </header>
+
+      <main>
+        {/* ── Stats ────────────────────────────────────── */}
+        <section className={styles.statsStrip}>
+          <div className="container">
+            <div className={styles.statsGrid}>
+              {stats.map((s) => (
+                <div key={s.label} className={styles.statItem}>
+                  <span className={styles.statNumber}>{s.number}</span>
+                  <span className={styles.statLabel}>{s.label}</span>
                 </div>
-            </section>
-        </Layout>
-    );
-}
-function Donate_Old() {
-    return (
-        <Layout title="Donate">
-            <section className={[ styles.sectionPadding].join(" ")}>
-                <div className="container text-left">
-                    <div className="row">
-                        <h1 className={styles.sectionTitle}>Why Your Sponsorship Matters 🚀</h1>
-                    </div>
-                    <div className="row">
-                        <div className="col ">
-                            <p>
-                                <b>Simple JWT Login</b> isn't just another plugin, it's a commitment to transforming the WordPress ecosystem. Over the past four years, I've poured my heart, money, and time into developing the Simple-JWT-Login plugin. Now, I'm turning to the community for support to take this project to the next level.
-                            </p>
-                            <p>
-                                Your sponsorship will play a pivotal role in shaping the future of WordPress. Here's how your contribution will make a difference:
-                                <ul>
-                                    <li>
-                                        <b>Sustain Online Presence</b>: Ensure the continuous availability of <a href={"https://simplejwtlogin.com"}>https://simplejwtlogin.com</a> by covering monthly hosting costs.
-                                    </li>
-                                    <li>
-                                        <b>Enhance User Experience</b>: Invest in refining the Simple JWT Login plugin, SDKs, and website to provide users with a cutting-edge and intuitive experience.
-                                    </li>
-                                    <li>
-                                        <b>Fuel Innovation</b>: Your support will help acquire licenses and premium plugins, enabling us to develop and implement exciting new features that will redefine WordPress APIs.
-                                    </li>
-                                </ul>
-                            </p>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col text-left">
-                            <p>
-                                Join us in this journey to elevate WordPress APIs, redefine authentication, and contribute to a thriving WordPress community. Together, we can make a lasting impact.
-                            </p>
-                        </div>
-                    </div>
-                    <div className={"row"}>
-                        <div className={"col text-center"}>
-                            <p>
-                                Be a Part of the Change – Sponsor Simple JWT Login Today!
-                            </p>
-                            <Link
-                                to={"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PK9BCD6AYF58Y&source=url"}
-                                className={styles.btn}
-                                title="One time donation"
-                            >
-                                One time Donation
-                            </Link>
-                        </div>
-                    </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Where the money goes ─────────────────────── */}
+        <section className={styles.section}>
+          <div className="container">
+            <h2 className={styles.sectionTitle}>Where your donation goes</h2>
+            <p className={styles.sectionSubtitle}>
+              100% of contributions go directly into the project. No salaries,
+              no company.
+            </p>
+            <div className={styles.impactGrid}>
+              {impacts.map((item) => (
+                <div key={item.title} className={styles.impactCard}>
+                  <div className={styles.impactIcon}>{item.icon}</div>
+                  <h3 className={styles.impactTitle}>{item.title}</h3>
+                  <p className={styles.impactDescription}>{item.description}</p>
                 </div>
-            </section>
-        </Layout>
-    );
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Donation tiers ───────────────────────────── */}
+        <section className={styles.sectionAlt}>
+          <div className="container">
+            <h2 className={styles.sectionTitle}>Every amount matters</h2>
+            <p className={styles.sectionSubtitle}>
+              Choose a suggested amount or enter your own on PayPal.
+              Any contribution is deeply appreciated.
+            </p>
+            <div className={styles.tiersGrid}>
+              {tiers.map((tier) => (
+                <Link
+                  key={tier.label}
+                  to={PAYPAL_URL}
+                  className={[styles.tierCard, tier.highlight ? styles.tierCardHighlight : ''].join(' ')}
+                  title={`Donate ${tier.amount}`}
+                >
+                  {tier.highlight && (
+                    <div className={styles.tierBadge}>Most popular</div>
+                  )}
+                  <div className={styles.tierIcon}>{tier.icon}</div>
+                  <div className={styles.tierAmount}>{tier.amount}</div>
+                  <div className={styles.tierLabel}>{tier.label}</div>
+                  <p className={styles.tierDescription}>{tier.description}</p>
+                  <div className={styles.tierCta}>
+                    Donate {tier.amount} →
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <p className={styles.tierNote}>
+              You can enter any custom amount on the PayPal page.
+            </p>
+          </div>
+        </section>
+
+        {/* ── Personal note ────────────────────────────── */}
+        <section className={styles.section}>
+          <div className="container">
+            <div className={styles.quoteCard}>
+              <div className={styles.quoteIcon}>"</div>
+              <blockquote className={styles.quoteText}>
+                I started Simple JWT Login because I needed it myself, and I
+                open-sourced it because I believe good tools should be available
+                to everyone. Thousands of developers now rely on it daily. Your
+                donation — however small — tells me that this work matters, and
+                it directly funds the time I can dedicate to making it better.
+                Thank you.
+              </blockquote>
+              <div className={styles.quoteAuthor}>
+                <div className={styles.quoteAvatar}>N</div>
+                <div>
+                  <div className={styles.quoteAuthorName}><a href="https://github.com/nicumicle" target="_blank" rel="noopener noreferrer">Nicu Micle</a></div>
+                  <div className={styles.quoteAuthorRole}>Creator &amp; maintainer of Simple JWT Login</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Final CTA ────────────────────────────────── */}
+        <section className={styles.finalCta}>
+          <div className="container">
+            <h2 className={styles.finalCtaTitle}>Ready to make a difference?</h2>
+            <p className={styles.finalCtaSubtitle}>
+              Join the developers and teams who already support this project.
+            </p>
+            <Link to={PAYPAL_URL} className={styles.heroCta} title="Donate now">
+              Donate now via PayPal ↗
+            </Link>
+            <p className={styles.finalCtaNote}>
+              Prefer another method?{' '}
+              <Link to="/contact/" title="Contact us">Get in touch</Link> and we'll figure something out.
+            </p>
+          </div>
+        </section>
+      </main>
+    </Layout>
+  );
 }
 
-export default Donate;
+export default DonatePage;
