@@ -71,6 +71,8 @@ const config: Config = {
          * Path to data on filesystem relative to site dir.
          */
         path: './releases',
+        blogSidebarCount: "ALL",
+        postsPerPage: 6,
       },
     ],
 
@@ -199,7 +201,7 @@ const config: Config = {
           blogDescription: 'News and tutorials about Simple-JWT-Login',
           blogSidebarTitle: 'All posts',
           blogSidebarCount: 0, //'ALL'
-          postsPerPage: 6, // or "ALL"
+          postsPerPage: 8, // or "ALL"
           editUrl:
             'https://github.com/simple-jwt-login/website/tree/main',
           onInlineTags: 'warn',
