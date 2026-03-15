@@ -28,7 +28,7 @@ const channels = [
     description: 'Found a bug or have a feature request? Open an issue on GitHub. Browse existing issues before submitting a new one.',
     cta: 'Open an issue',
     href: 'https://github.com/nicumicle/simple-jwt-login/issues',
-    accent: '#333',
+    accent: '#42b983',
     recommended: true,
   },
   {

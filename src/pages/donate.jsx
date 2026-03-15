@@ -10,7 +10,7 @@ const stats = [
   { number: '5,000+', label: 'Active installs' },
   { number: '80,000+', label: 'Total downloads' },
   { number: '5 / 5', label: 'WordPress rating' },
-  { number: '6+ yrs', label: 'In active development' },
+  { number: '6+ years', label: 'In active development' },
 ];
 
 const impacts = [
@@ -79,7 +79,7 @@ function DonatePage() {
             Built with love.<br />Kept alive by <span className={styles.heroAccent}>people like you.</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Simple JWT Login has been free and open-source for over four years.
+            Simple JWT Login has been free and open-source for over six years.
             No premium tier, no paywalled features — just a maintainer who keeps
             showing up. If this plugin saves you time or makes your project possible,
             consider giving back.
