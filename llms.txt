@@ -141,6 +141,8 @@ Archive
 
 - [Nicu Micle](/releases/authors/nicumicle.md)
 - [Nicu Micle](/releases/authors/nicumicle/authors/2.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/3.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/4.md)
 
 ### page
 
@@ -150,6 +152,18 @@ Archive
 Blog
 
 - [Release Notes](/releases/page/2.md): Blog
+
+#### 3
+
+Blog
+
+- [Release Notes](/releases/page/3.md): Blog
+
+#### 4
+
+Blog
+
+- [Release Notes](/releases/page/4.md): Blog
 
 ### simple-jwt-login-release-3.4.4
 
@@ -279,10 +293,12 @@ Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatib
 
 - [18 posts tagged with "bugfix"](/releases/tags/bugfix.md)
 - [18 posts tagged with "bugfix"](/releases/tags/bugfix/page/2.md)
+- [18 posts tagged with "bugfix"](/releases/tags/bugfix/page/3.md)
 
 #### feature
 
 - [9 posts tagged with "feature"](/releases/tags/feature.md)
+- [9 posts tagged with "feature"](/releases/tags/feature/page/2.md)
 
 #### security
 

@@ -141,6 +141,8 @@ Archive
 
 - [Nicu Micle](/releases/authors/nicumicle.md)
 - [Nicu Micle](/releases/authors/nicumicle/authors/2.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/3.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/4.md)
 
 ### page
 
@@ -150,6 +152,18 @@ Archive
 Blog
 
 - [Release Notes](/releases/page/2.md): Blog
+
+#### 3
+
+Blog
+
+- [Release Notes](/releases/page/3.md): Blog
+
+#### 4
+
+Blog
+
+- [Release Notes](/releases/page/4.md): Blog
 
 ### simple-jwt-login-release-3.4.4
 
@@ -279,10 +293,12 @@ Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatib
 
 - [18 posts tagged with "bugfix"](/releases/tags/bugfix.md)
 - [18 posts tagged with "bugfix"](/releases/tags/bugfix/page/2.md)
+- [18 posts tagged with "bugfix"](/releases/tags/bugfix/page/3.md)
 
 #### feature
 
 - [9 posts tagged with "feature"](/releases/tags/feature.md)
+- [9 posts tagged with "feature"](/releases/tags/feature/page/2.md)
 
 #### security
 
@@ -590,25 +606,25 @@ We've completely redesigned the Simple JWT Login website with a cleaner UI, buil
 
 ---
 
-[Tutorial](/blog/tags/tags/tutorial.md)
+[Release](/blog/tags/tags/release.md)
 
-## [How to use the JavaScript SDK in a React App](/blog/javascript-sdk-usage-react.md)
+## [Release JavaScript SDK](/blog/simple-jwt-login-js-sdk-0.1.1.md)
 
  · 
 
 <!-- -->
 
-5
+1
 
 <!-- -->
 
 min read
 
-In this tutorial you will see and real world example on how to use the simple-jwt-login JS SDK in a React App.
+The Javascript SDK 0.1.0 has been released
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 
-[Read more →](/blog/javascript-sdk-usage-react.md)
+[Read more →](/blog/simple-jwt-login-js-sdk-0.1.1.md)
 
 
 ---
@@ -1395,25 +1411,25 @@ The plugin itself hasn't changed — but if you haven't visited the docs in a wh
 
 ---
 
-[Tutorial](/blog/tags/tags/tutorial.md)
+[Release](/blog/tags/tags/release.md)
 
-## [How to use the JavaScript SDK in a React App](/blog/javascript-sdk-usage-react.md)
+## [Release JavaScript SDK](/blog/simple-jwt-login-js-sdk-0.1.1.md)
 
  · 
 
 <!-- -->
 
-5
+1
 
 <!-- -->
 
 min read
 
-In this tutorial you will see and real world example on how to use the simple-jwt-login JS SDK in a React App.
+The Javascript SDK 0.1.0 has been released
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 
-[Read more →](/blog/javascript-sdk-usage-react.md)
+[Read more →](/blog/simple-jwt-login-js-sdk-0.1.1.md)
 
 
 ---
@@ -2698,9 +2714,9 @@ Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatib
 
 ---
 
-[bugfix](/releases/tags/bugfix.md)[feature](/releases/tags/feature.md)
+[bugfix](/releases/tags/bugfix.md)
 
-## [New Plugin Release 3.5.4](/releases/simple-jwt-login-release-3.5.4.md)
+## [New Plugin Release 3.5.8](/releases/simple-jwt-login-release-3.5.8.md)
 
  · 
 
@@ -2712,18 +2728,18 @@ Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatib
 
 min read
 
-Released version 3.5.4
+Released version 3.5.8
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 
-[Read more →](/releases/simple-jwt-login-release-3.5.4.md)
+[Read more →](/releases/simple-jwt-login-release-3.5.8.md)
 
 
 ---
 
 [bugfix](/releases/tags/bugfix.md)[feature](/releases/tags/feature.md)
 
-## [New Plugin Release 3.5.4](/releases/simple-jwt-login-release-3.5.4.md)
+## [New Plugin Release 3.5.2](/releases/simple-jwt-login-release-3.5.2.md)
 
  · 
 
@@ -2735,11 +2751,103 @@ Released version 3.5.4
 
 min read
 
-Released version 3.5.4
+Released version 3.5.2
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 
-[Read more →](/releases/simple-jwt-login-release-3.5.4.md)
+[Read more →](/releases/simple-jwt-login-release-3.5.2.md)
+
+
+---
+
+[feature](/releases/tags/feature.md)
+
+## [New Plugin Release 3.4.5](/releases/simple-jwt-login-release-3.4.5.md)
+
+ · 
+
+<!-- -->
+
+1
+
+<!-- -->
+
+min read
+
+Released version 3.4.5
+
+![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
+
+[Read more →](/releases/simple-jwt-login-release-3.4.5.md)
+
+
+---
+
+[bugfix](/releases/tags/bugfix.md)
+
+## [New Plugin Release 3.5.8](/releases/simple-jwt-login-release-3.5.8.md)
+
+ · 
+
+<!-- -->
+
+1
+
+<!-- -->
+
+min read
+
+Released version 3.5.8
+
+![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
+
+[Read more →](/releases/simple-jwt-login-release-3.5.8.md)
+
+
+---
+
+[bugfix](/releases/tags/bugfix.md)[feature](/releases/tags/feature.md)
+
+## [New Plugin Release 3.5.2](/releases/simple-jwt-login-release-3.5.2.md)
+
+ · 
+
+<!-- -->
+
+1
+
+<!-- -->
+
+min read
+
+Released version 3.5.2
+
+![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
+
+[Read more →](/releases/simple-jwt-login-release-3.5.2.md)
+
+
+---
+
+[feature](/releases/tags/feature.md)
+
+## [New Plugin Release 3.4.5](/releases/simple-jwt-login-release-3.4.5.md)
+
+ · 
+
+<!-- -->
+
+1
+
+<!-- -->
+
+min read
+
+Released version 3.4.5
+
+![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
+
+[Read more →](/releases/simple-jwt-login-release-3.4.5.md)
 
 
 ---
@@ -3634,7 +3742,7 @@ Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatib
 
 [bugfix](/releases/tags/bugfix.md)
 
-## [New Plugin Release 3.5.3](/releases/simple-jwt-login-release-3.5.3.md)
+## [New Plugin Release 3.5.7](/releases/simple-jwt-login-release-3.5.7.md)
 
  · 
 
@@ -3646,11 +3754,34 @@ Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatib
 
 min read
 
-Released version 3.5.3
+Released version 3.5.7
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 
-[Read more →](/releases/simple-jwt-login-release-3.5.3.md)
+[Read more →](/releases/simple-jwt-login-release-3.5.7.md)
+
+
+---
+
+[bugfix](/releases/tags/bugfix.md)
+
+## [New Plugin Release 3.5.1](/releases/simple-jwt-login-release-3.5.1.md)
+
+ · 
+
+<!-- -->
+
+1
+
+<!-- -->
+
+min read
+
+Released version 3.5.1
+
+![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
+
+[Read more →](/releases/simple-jwt-login-release-3.5.1.md)
 
 
 ---
@@ -3674,6 +3805,29 @@ Released version 3.6.1
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 
 [Read more →](/releases/simple-jwt-login-release-3.6.1.md)
+
+
+---
+
+[bugfix](/releases/tags/bugfix.md)[feature](/releases/tags/feature.md)
+
+## [New Plugin Release 3.4.8](/releases/simple-jwt-login-release-3.4.8.md)
+
+ · 
+
+<!-- -->
+
+1
+
+<!-- -->
+
+min read
+
+Released version 3.4.8
+
+![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
+
+[Read more →](/releases/simple-jwt-login-release-3.4.8.md)
 
 
 ---
