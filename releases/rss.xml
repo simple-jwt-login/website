@@ -1,13 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Simple-JWT-Login Blog</title>
+        <title>Simple JWT Login Blog</title>
         <link>https://simplejwtlogin.com/releases</link>
-        <description>Simple-JWT-Login Blog</description>
-        <lastBuildDate>Tue, 01 Apr 2025 00:00:00 GMT</lastBuildDate>
+        <description>Simple JWT Login Blog</description>
+        <lastBuildDate>Sat, 14 Mar 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[New Plugin Release 3.6.5]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.5</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.5</guid>
+            <pubDate>Sat, 14 Mar 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatibility]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.6.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>This is a <strong>security and maintenance release</strong>. We strongly recommend updating immediately.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="security-fix">Security Fix<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.5#security-fix" class="hash-link" aria-label="Direct link to Security Fix" title="Direct link to Security Fix">​</a></h2>
+<p>This release addresses a <strong>Stored Cross-Site Scripting (XSS)</strong> vulnerability identified as <strong>CVE-2025-58648</strong>. Stored XSS vulnerabilities allow an attacker to inject malicious scripts that are persisted on the server and executed in the browsers of other users. This fix prevents unsanitized input from being stored and rendered as HTML.</p>
+<p>If you are running an older version, please update as soon as possible to protect your site and users.</p>
+<ul>
+<li>Fix CVE-2025-58648 — Stored Cross-Site Scripting vulnerability (<a href="https://github.com/nicumicle/simple-jwt-login/pull/162" target="_blank" rel="noopener noreferrer">PR #162</a>)</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.5#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix Reset Password: the function was not applying base64 encoding logic, preventing users from using special characters in their passwords (<a href="https://github.com/nicumicle/simple-jwt-login/issues/161" target="_blank" rel="noopener noreferrer">#161</a>, <a href="https://github.com/nicumicle/simple-jwt-login/pull/163" target="_blank" rel="noopener noreferrer">PR #163</a>)</li>
+<li>Fix PHP session initialization warning (<a href="https://github.com/nicumicle/simple-jwt-login/issues/159" target="_blank" rel="noopener noreferrer">#159</a>)</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.5#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
+<ul>
+<li>Update WordPress 6.9 Compatibility</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
+            <category>security</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.6.4]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.4</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.4</guid>
+            <pubDate>Thu, 17 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.6.4]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.6.4</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>This is a compatibility release for WordPress 6.8.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.4#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
+<ul>
+<li>Update WordPress 6.8 compatibility</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.6.3]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.3</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.3</guid>
+            <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.6.3]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.6.3</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>This update includes a fix for the Protect Endpoints feature.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.3#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix protect endpoints <a href="https://github.com/nicumicle/simple-jwt-login/issues/149" target="_blank" rel="noopener noreferrer">#149</a></li>
+</ul>
+<p>Read more about Protect Endpoints <a href="https://simplejwtlogin.com/docs/protect-endpoints">here</a>.</p>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.6.2]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.2</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.2</guid>
+            <pubDate>Wed, 09 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.6.2]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.6.2</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
+<p>This update fixes issues with the Protect Endpoints feature blocking WordPress admin requests and missing JWT session lookup.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.2#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix: Protect Endpoints was incorrectly blocking WordPress backend (admin) endpoints <a href="https://github.com/nicumicle/simple-jwt-login/issues/146" target="_blank" rel="noopener noreferrer">#146</a></li>
+<li>Ensure Protect Endpoints searches for the JWT in the PHP session</li>
+</ul>
+<p>Read more about Protect Endpoints <a href="https://simplejwtlogin.com/docs/protect-endpoints">here</a>.</p>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
+        </item>
         <item>
             <title><![CDATA[New Plugin Release 3.6.1]]></title>
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.1</link>
@@ -15,14 +94,19 @@
             <pubDate>Tue, 01 Apr 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.6.1]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>This update brings better support for protect endpoints.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update strengthens the Protect Endpoints feature with JWT validation and restores backward compatibility for existing configurations.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.1#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
-<li>Validate JWT on protect endpoints<a href="https://github.com/nicumicle/simple-jwt-login/issues/141" target="_blank" rel="noopener noreferrer">#141</a></li>
-<li>Fix backward compatibility for protect endpoints. Add <code>match</code>/<code>start_with</code> option for endpoints.<a href="https://github.com/nicumicle/simple-jwt-login/issues/143" target="_blank" rel="noopener noreferrer">#143</a></li>
+<li>Validate JWT on protected endpoints <a href="https://github.com/nicumicle/simple-jwt-login/issues/141" target="_blank" rel="noopener noreferrer">#141</a></li>
 </ul>
-<p>Read more about Protect endpoints <a href="https://simplejwtlogin.com/docs/protect-endpoints">here</a>.</p>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.1#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix backward compatibility for Protect Endpoints — adds <code>match</code> / <code>start_with</code> matching options for endpoint rules <a href="https://github.com/nicumicle/simple-jwt-login/issues/143" target="_blank" rel="noopener noreferrer">#143</a></li>
+</ul>
+<p>Read more about Protect Endpoints <a href="https://simplejwtlogin.com/docs/protect-endpoints">here</a>.</p>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
             <category>feature</category>
         </item>
         <item>
@@ -32,16 +116,20 @@
             <pubDate>Mon, 24 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.6.0]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>This update brings better flexibility, authentication improvements, and enhanced compatibility with the latest PHP versions.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update brings better flexibility for Protect Endpoints, WPGraphQL authentication support, username/email login parity with WordPress, and PHP 8.3/8.4 CI coverage.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.0#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
-<li>Support for configuring request methods on Protect endpoints <a href="https://github.com/nicumicle/simple-jwt-login/issues/129" target="_blank" rel="noopener noreferrer">#129</a></li>
-<li>Beta: WPGraphQL Authentication – Users can authenticate when performing queries with WPGraphQL <a href="https://github.com/nicumicle/simple-jwt-login/issues/32" target="_blank" rel="noopener noreferrer">#32</a></li>
-<li>Authenticate by Username or Email, similar to the default WordPress login system <a href="https://github.com/nicumicle/simple-jwt-login/issues/19" target="_blank" rel="noopener noreferrer">#19</a></li>
-<li>CI Updates – Now checking plugin code syntax with PHP 8.3 and 8.4</li>
-<li>Code Refactorization &amp; UI Improvements – Improved code structure and user interface refinements</li>
+<li>Support for configuring allowed request methods per protected endpoint <a href="https://github.com/nicumicle/simple-jwt-login/issues/129" target="_blank" rel="noopener noreferrer">#129</a></li>
+<li><strong>Beta:</strong> WPGraphQL Authentication — users can now authenticate when performing queries with WPGraphQL <a href="https://github.com/nicumicle/simple-jwt-login/issues/32" target="_blank" rel="noopener noreferrer">#32</a></li>
+<li>Authenticate by username or email, matching the default WordPress login behavior <a href="https://github.com/nicumicle/simple-jwt-login/issues/19" target="_blank" rel="noopener noreferrer">#19</a></li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.0#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements">​</a></h2>
+<ul>
+<li>CI updates — plugin code is now syntax-checked against PHP 8.3 and 8.4</li>
+<li>Code refactoring and UI improvements</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>feature</category>
         </item>
         <item>
@@ -51,14 +139,15 @@
             <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.8]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.8</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes, and new improvements.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update improves redirect security and ensures the JWT middleware only runs once per request.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.8#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
 <ul>
-<li>Use wp_safe_redirect for redirects <a href="https://github.com/nicumicle/simple-jwt-login/issues/115" target="_blank" rel="noopener noreferrer">#115</a></li>
-<li>Ensure JWT middleware only run once <a href="https://github.com/nicumicle/simple-jwt-login/issues/125" target="_blank" rel="noopener noreferrer">#125:</a></li>
+<li>Use <code>wp_safe_redirect</code> for all plugin redirects to prevent open redirect vulnerabilities <a href="https://github.com/nicumicle/simple-jwt-login/issues/115" target="_blank" rel="noopener noreferrer">#115</a></li>
+<li>Ensure the JWT middleware only runs once per request <a href="https://github.com/nicumicle/simple-jwt-login/issues/125" target="_blank" rel="noopener noreferrer">#125</a></li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>feature</category>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.5.7]]></title>
@@ -67,13 +156,14 @@
             <pubDate>Sun, 22 Dec 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.7]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.7</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This is a compatibility release for WordPress 6.7.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.7#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
 <ul>
-<li>Update WordPress 6.7 Compatibility</li>
+<li>Update WordPress 6.7 compatibility</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>feature</category>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.5.6]]></title>
@@ -82,14 +172,18 @@
             <pubDate>Sat, 03 Aug 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.6]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.6</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update adds WordPress 6.6 compatibility and fixes revoked token validation when the JWT middleware is enabled.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.6#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
 <ul>
-<li>Update WordPress 6.6 Compatibility</li>
-<li>Fix revoked token validation when middleware enabled <a href="https://github.com/nicumicle/simple-jwt-login/issues/110" target="_blank" rel="noopener noreferrer">#110</a></li>
+<li>Fix revoked token validation when the JWT middleware is enabled <a href="https://github.com/nicumicle/simple-jwt-login/issues/110" target="_blank" rel="noopener noreferrer">#110</a></li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>feature</category>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.6#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
+<ul>
+<li>Update WordPress 6.6 compatibility</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.5.5]]></title>
@@ -98,14 +192,16 @@
             <pubDate>Sat, 04 May 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.5]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This is a maintenance release with documentation updates and a Protect Endpoints refactor.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.5#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements">​</a></h2>
 <ul>
 <li>Update README</li>
-<li>Refactor Protect Endpoints</li>
+<li>Refactor Protect Endpoints for better code structure</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>feature</category>
+<p>Read more about Protect Endpoints <a href="https://simplejwtlogin.com/docs/protect-endpoints">here</a>.</p>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.5.4]]></title>
@@ -114,14 +210,21 @@
             <pubDate>Fri, 03 May 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.4]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.4</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes and new features.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update adds OAuth support for Google login and fixes the HTTP status code returned for expired tokens.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.4#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
 <li>Add OAuth support for Google <a href="https://github.com/nicumicle/simple-jwt-login/issues/97" target="_blank" rel="noopener noreferrer">#97</a></li>
-<li>Fix status code for expired tokens <a href="https://github.com/nicumicle/simple-jwt-login/issues/102" target="_blank" rel="noopener noreferrer">#102</a></li>
-<li>Update WordPress 6.5 Compatibility</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.4#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix incorrect status code returned for expired tokens <a href="https://github.com/nicumicle/simple-jwt-login/issues/102" target="_blank" rel="noopener noreferrer">#102</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.4#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
+<ul>
+<li>Update WordPress 6.5 compatibility</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
             <category>feature</category>
         </item>
@@ -132,13 +235,17 @@
             <pubDate>Thu, 16 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.3]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.3</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This is a maintenance release with a minor fix and WordPress 6.4 compatibility.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.3#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
 <ul>
-<li>Fix licence in composer.json</li>
+<li>Fix licence declaration in <code>composer.json</code></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.3#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
+<ul>
 <li>Update WordPress 6.4 compatibility</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
         </item>
         <item>
@@ -148,16 +255,20 @@
             <pubDate>Thu, 02 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.2]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.2</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes, and new security improvements.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update adds <code>iss</code> support to the JWT payload, tightens revoked token enforcement, and fixes several bugs.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.2#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
-<li>Fix change user password with revoked JWT</li>
-<li>Change routes priority from floats to int and fix deprecation message "Implicit conversion from float to int loses precision"</li>
-<li>Add <code>iss</code> to JWT payload and allow to configure it</li>
-<li>Fix user meta on register user <a href="https://github.com/nicumicle/simple-jwt-login/issues/86" target="_blank" rel="noopener noreferrer">#86</a></li>
-<li>Fix calling protected endpoints with revoked token <a href="https://github.com/nicumicle/simple-jwt-login/issues/75" target="_blank" rel="noopener noreferrer">#75</a></li>
+<li>Add <code>iss</code> (issuer) claim to the JWT payload with a configurable value</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.2#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix: user could change their password using a revoked JWT</li>
+<li>Fix: protected endpoints could be accessed with a revoked token <a href="https://github.com/nicumicle/simple-jwt-login/issues/75" target="_blank" rel="noopener noreferrer">#75</a></li>
+<li>Fix user meta not being saved correctly on user registration <a href="https://github.com/nicumicle/simple-jwt-login/issues/86" target="_blank" rel="noopener noreferrer">#86</a></li>
+<li>Change route priorities from floats to integers to fix the PHP deprecation warning "Implicit conversion from float to int loses precision"</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
             <category>feature</category>
         </item>
@@ -168,14 +279,21 @@
             <pubDate>Sun, 01 Oct 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.1]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update resolves PHP 8.2 warnings and adds WordPress 6.3 compatibility.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix warnings and failed tests on PHP 8.2</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements">​</a></h2>
+<ul>
+<li>Publish code coverage to Codecov</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
 <ul>
 <li>Update WordPress 6.3 compatibility</li>
-<li>Fix warnings and failed tests on PHP 8.2</li>
-<li>Publish code coverage to codecov</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
         </item>
         <item>
@@ -185,16 +303,23 @@
             <pubDate>Thu, 05 Jan 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.5.0]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes, new features and code re-factorization.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update fixes compatibility issues with Protect Endpoints, improves Reset Password, and drops legacy PHP support.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
-<li>Fix unable to create post issue when protect endpoints is enabled for all endpoints #62</li>
-<li>Search user by email on reset password #31</li>
-<li>Switch get_user_by_email to get_user_by() due to deprecation</li>
-<li>Remove method convertUserToArray from WordPressData.</li>
+<li>Search user by email on Reset Password <a href="https://github.com/nicumicle/simple-jwt-login/issues/31" target="_blank" rel="noopener noreferrer">#31</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix: unable to create a post when Protect Endpoints is enabled for all endpoints <a href="https://github.com/nicumicle/simple-jwt-login/issues/62" target="_blank" rel="noopener noreferrer">#62</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements">​</a></h2>
+<ul>
+<li>Switch <code>get_user_by_email</code> to <code>get_user_by()</code> due to WordPress deprecation</li>
+<li>Remove <code>convertUserToArray</code> method from <code>WordPressData</code></li>
 <li>Drop support for PHP 5.3 and PHP 5.4</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
             <category>feature</category>
         </item>
@@ -205,17 +330,21 @@
             <pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.9]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.9</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes, new features and code re-factorization.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update introduces several new features around password handling, autologin flexibility, and a new plugin lifecycle hook.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.9#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
-<li>Add Strength indicator for JWT decryption key</li>
-<li>Allow setting custom length for random password. The default is 10 characters.</li>
-<li>Allow sending base_64 encoded <code>password</code> and <code>passhash</code> on the /auth endpoint</li>
-<li>Fix issue with includeRequestParameters that has been building incorrect URLs</li>
+<li>Add a strength indicator for the JWT decryption key</li>
+<li>Allow setting a custom length for randomly generated passwords (default: 10 characters)</li>
+<li>Allow sending base64-encoded <code>password</code> and <code>passhash</code> on the <code>/auth</code> endpoint</li>
 <li>Add query parameters filter on autologin redirect</li>
-<li>Add the <code>simple_jwt_login_before_endpoint</code> hook before all simple-jwt-login routes are initialized</li>
+<li>Add the <code>simple_jwt_login_before_endpoint</code> hook, fired before all plugin routes are initialized</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.9#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix <code>includeRequestParameters</code> building incorrect redirect URLs</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
             <category>feature</category>
         </item>
@@ -226,18 +355,25 @@
             <pubDate>Sat, 05 Nov 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.8]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.8</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some bug fixes, security improvements and code re-factorization.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This update brings new filter hooks, improved security through request sanitization, and a bug fix for passwords with special characters.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
-<li>Add filter to allow the change for authentication payload <code>simple_jwt_login_generate_payload</code></li>
-<li>Change how we log in the user on while using the "protect endpoint" feature</li>
-<li>Refactor Route Service getUserFromJWT method</li>
-<li>Update License to GPL v3</li>
-<li>Sanitize data from request</li>
-<li>Fix password that contains special characters <a href="https://github.com/nicumicle/simple-jwt-login/issues/50" target="_blank" rel="noopener noreferrer">#50</a></li>
-<li>/auth/validate endpoint supports both <code>GET</code> and <code>POST</code> methods</li>
+<li>Add <code>simple_jwt_login_generate_payload</code> filter to allow customization of the authentication payload</li>
+<li><code>/auth/validate</code> endpoint now supports both <code>GET</code> and <code>POST</code> methods</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Fix password that contains special characters <a href="https://github.com/nicumicle/simple-jwt-login/issues/50" target="_blank" rel="noopener noreferrer">#50</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements">​</a></h2>
+<ul>
+<li>Change how the user is logged in when using the Protect Endpoints feature</li>
+<li>Refactor <code>RouteService::getUserFromJWT</code> method</li>
+<li>Sanitize all data from incoming requests</li>
+<li>Update License to GPL v3</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
             <category>feature</category>
         </item>
@@ -248,20 +384,26 @@
             <pubDate>Tue, 04 Oct 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.7]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.7</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>The changes include some security improvements and code re-factorization.</p>
-<p>The plugin has been reviewed by the WordPress team, and after that, we did some changes to the plugin.</p>
-<p>The following changes have been deployed with the new version:</p>
+<p>This is a <strong>security release</strong> following a WordPress team review. We recommend updating immediately.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="security-fixes">Security Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7#security-fixes" class="hash-link" aria-label="Direct link to Security Fixes" title="Direct link to Security Fixes">​</a></h2>
 <ul>
-<li>Remove code vulnerability from the JWT library.</li>
+<li>Remove code vulnerability from the JWT library</li>
 <li>Fix local file inclusion risk</li>
-<li>Variables sanitization</li>
-<li>Apply phpcs check on the whole plugin folder and not only on the src/ folder</li>
-<li>The plugin has been tested with WordPress 6.0.2</li>
-<li>Keep the current active tab when settings are saved</li>
+<li>Variables sanitization across the plugin</li>
 </ul>
-<p>If you see any problems, please don't forget to open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements">​</a></h2>
+<ul>
+<li>Apply PHPCS checks to the entire plugin folder, not only the <code>src/</code> directory</li>
+<li>Keep the current active tab when plugin settings are saved</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
+<ul>
+<li>The plugin has been tested with WordPress 6.0.2</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
-            <category>feature</category>
+            <category>security</category>
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.4.5]]></title>
@@ -270,28 +412,28 @@
             <pubDate>Mon, 11 Apr 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.5]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>New cool features have been included.</p>
-<p>The following changes have been deployed:</p>
+<p>This update introduces two new Autologin features: a redirect on failure and a shortcode for displaying error details.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
 <li>Add Redirect on Fail Autologin</li>
 <li>Shortcode for displaying Autologin errors</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-add-redirect-on-fail">1. Add Redirect on Fail<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#1-add-redirect-on-fail" class="hash-link" aria-label="Direct link to 1. Add Redirect on Fail" title="Direct link to 1. Add Redirect on Fail">​</a></h2>
-<p>This feature will allow you to set a Redirect URL in case the Autologin fails.</p>
-<p>The autologin can fail, if the JWT is invalid, or if it is expired. This way, you can display a cool page to your users.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-shortcode-for-displaying-autologin-errors">2. Shortcode for displaying Autologin errors<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#2-shortcode-for-displaying-autologin-errors" class="hash-link" aria-label="Direct link to 2. Shortcode for displaying Autologin errors" title="Direct link to 2. Shortcode for displaying Autologin errors">​</a></h2>
-<p>The new shortcode can be used to display the failed autologin error.</p>
-<p>The shortcode looks like this:</p>
-<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">  [simple-jwt-login:request key="error_code"]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<p>or</p>
-<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">  [simple-jwt-login:request key="error_message"]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<p>Also, in case you have extra query parameters in your URL, you can display them using this shortcode. You just need to set the key of the Query parameter.</p>
-<p>URL Example:</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="redirect-on-fail">Redirect on Fail<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#redirect-on-fail" class="hash-link" aria-label="Direct link to Redirect on Fail" title="Direct link to Redirect on Fail">​</a></h2>
+<p>This feature allows you to set a redirect URL for when Autologin fails — for example, when the JWT is invalid or expired — so you can show users a helpful error page instead of a blank screen.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="shortcode-for-autologin-errors">Shortcode for Autologin Errors<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#shortcode-for-autologin-errors" class="hash-link" aria-label="Direct link to Shortcode for Autologin Errors" title="Direct link to Shortcode for Autologin Errors">​</a></h2>
+<p>The new shortcode lets you display the autologin error code or message directly on any page:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">[simple-jwt-login:request key="error_code"]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">[simple-jwt-login:request key="error_message"]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>You can also use it to read any query parameter from the URL. For example, given:</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">https://simplejwtlogin.com?my_parameter=test&amp;error_code=21&amp;error_message=This is an error</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<p><code>[simple-jwt-login:request key="error_code"]</code> will display : <code>21</code></p>
-<p><code>[simple-jwt-login:request key="error_message"]</code> will display : <code>This is an error</code></p>
-<p><code>[simple-jwt-login:request key="my_parameter"]</code> will display : <code>test</code></p>
-<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>These Shortcodes will remove all the HTML tags</p></div></div>]]></content:encoded>
+<ul>
+<li><code>[simple-jwt-login:request key="error_code"]</code> → <code>21</code></li>
+<li><code>[simple-jwt-login:request key="error_message"]</code> → <code>This is an error</code></li>
+<li><code>[simple-jwt-login:request key="my_parameter"]</code> → <code>test</code></li>
+</ul>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>These shortcodes strip all HTML tags from the output.</p></div></div>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>feature</category>
         </item>
         <item>
@@ -301,14 +443,22 @@
             <pubDate>Sun, 03 Apr 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 3.4.4]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.4.4</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer">WordPress</a>.</p>
-<p>New cool features have been included.</p>
-<p>The following changes have been deployed:</p>
+<p>This update brings new hooks for customizing responses, a fix for empty JWT headers, and a new OpenAPI spec.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.4#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features">​</a></h2>
 <ul>
-<li>New hooks has been added, in order to allow the customization of all the success responses.</li>
+<li>New hooks have been added to allow customization of all success responses</li>
+<li>New <a href="https://github.com/nicumicle/simple-jwt-login/blob/master/postman/openapi.yaml" target="_blank" rel="noopener noreferrer">OpenAPI</a> spec file has been added</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.4#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes">​</a></h2>
+<ul>
+<li>Do not add empty JWT to the Authorization header</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.4#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility">​</a></h2>
+<ul>
 <li>The plugin has been tested with WordPress 5.9</li>
-<li>Do not add empty JWT to Authorization header</li>
-<li>New <a href="https://github.com/nicumicle/simple-jwt-login/blob/master/postman/openapi.yaml" target="_blank" rel="noopener noreferrer">Openapi</a> file has been added</li>
-</ul>]]></content:encoded>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
             <category>feature</category>
         </item>

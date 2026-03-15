@@ -1,0 +1,494 @@
+# Simple JWT Login
+
+> Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the WordPress REST API. Supports login, register, auto-login, endpoint protection, token refresh, and more.
+
+
+## blog
+
+News and tutorials about Simple-JWT-Login
+
+- [Blog](/blog.md): News and tutorials about Simple-JWT-Login
+
+### archive
+
+Archive
+
+- [Archive](/blog/archive.md): Archive
+
+### authors
+
+- [Authors](/blog/authors.md)
+
+#### nicumicle
+
+- [Nicu Micle](/blog/authors/nicumicle.md)
+- [Nicu Micle](/blog/authors/nicumicle/authors/2.md)
+
+### cors-setup-apache
+
+In this article, we are going to explain how to set up CORS on your server
+
+- [CORS Setup on Apache Server](/blog/cors-setup-apache.md): In this article, we are going to explain how to set up CORS on your server
+
+### headless-wordpress-jwt-authentication
+
+Learn how to add production-ready JWT authentication to your headless WordPress setup using Simple JWT Login — from token generation to protected endpoints and password resets.
+
+- [Headless WordPress in 2026: JWT Authentication Done Right with Simple JWT Login](/blog/headless-wordpress-jwt-authentication.md): Learn how to add production-ready JWT authentication to your headless WordPress setup using Simple JWT Login — from token generation to protected endpoints and password resets.
+
+### javascript-sdk-usage-react
+
+In this tutorial you will see and real world example on how to use the simple-jwt-login JS SDK in a React App.
+
+- [How to use the JavaScript SDK in a React App](/blog/javascript-sdk-usage-react.md): In this tutorial you will see and real world example on how to use the simple-jwt-login JS SDK in a React App.
+
+### new-website-design-2026
+
+We've completely redesigned the Simple JWT Login website with a cleaner UI, built-in search, AI-friendly content, improved SEO, and new blog content — here's what's new.
+
+- [New Website Design: Faster, Smarter, and Easier to Navigate](/blog/new-website-design-2026.md): We've completely redesigned the Simple JWT Login website with a cleaner UI, built-in search, AI-friendly content, improved SEO, and new blog content — here's what's new.
+
+### page
+
+
+#### 2
+
+News and tutorials about Simple-JWT-Login
+
+- [Blog](/blog/page/2.md): News and tutorials about Simple-JWT-Login
+
+### simple-jwt-login-export-import-add-on
+
+New add-on has been released for Simple-JWT-Login
+
+- [New Add-on for Simple-JWT-Login - Export-Import](/blog/simple-jwt-login-export-import-add-on.md): New add-on has been released for Simple-JWT-Login
+
+### simple-jwt-login-js-sdk-0.1.1
+
+The Javascript SDK 0.1.0 has been released
+
+- [Release JavaScript SDK](/blog/simple-jwt-login-js-sdk-0.1.1.md): The Javascript SDK 0.1.0 has been released
+
+### simple-jwt-login-mailpoet
+
+MailPoet add-on released
+
+- [MailPoet add-on released](/blog/simple-jwt-login-mailpoet.md): MailPoet add-on released
+
+### simple-jwt-login-plus-docusaurus
+
+New website built with Docusaurus
+
+- [Welcome to the new Simple JWT Login Website](/blog/simple-jwt-login-plus-docusaurus.md): New website built with Docusaurus
+
+### simple-jwt-login-security-hardening
+
+A practical checklist for hardening Simple JWT Login in production — covering algorithm selection, Auth Codes, IP restrictions, endpoint protection, token revocation, and more.
+
+- [Simple JWT Login Security Hardening Guide: Lock Down Your WordPress API](/blog/simple-jwt-login-security-hardening.md): A practical checklist for hardening Simple JWT Login in production — covering algorithm selection, Auth Codes, IP restrictions, endpoint protection, token revocation, and more.
+
+### simple-jwt-login-wp-glob
+
+WPGlob posted article about simple-jwt-login
+
+- [Simple JWT Login in the news](/blog/simple-jwt-login-wp-glob.md): WPGlob posted article about simple-jwt-login
+
+### tags
+
+- [Tags](/blog/tags.md)
+
+#### tags
+
+- [2 posts tagged with "Add-on"](/blog/tags/tags/add-on.md): Plugin Addons
+- [2 posts tagged with "Headless WordPress"](/blog/tags/tags/headless-wordpress.md): Articles about headless WordPress architecture and JWT authentication
+- [3 posts tagged with "JWT Authentication"](/blog/tags/tags/jwt-authentication.md): Articles about JSON Web Token (JWT) authentication
+- [4 posts tagged with "News"](/blog/tags/tags/news.md): Plugin news
+- [2 posts tagged with "Release"](/blog/tags/tags/release.md): Plugin Releases
+- [2 posts tagged with "Security"](/blog/tags/tags/security.md): WordPress REST API security and authentication best practices
+- [6 posts tagged with "Tutorial"](/blog/tags/tags/tutorial.md): Tutorials and guides for Simple JWT Login
+- [2 posts tagged with "WordPress Plugin"](/blog/tags/tags/wordpress-plugin.md): WordPress plugin tips, features, and usage guides
+- [One post tagged with "WPGraphQL"](/blog/tags/tags/wpgraphql.md): Integrating Simple JWT Login with WPGraphQL
+
+### top-features-simple-jwt-login
+
+A deep dive into the five standout features of Simple JWT Login that help you build secure, modern WordPress-powered applications without the boilerplate.
+
+- [5 Features of Simple JWT Login That Make WordPress API Authentication a Breeze](/blog/top-features-simple-jwt-login.md): A deep dive into the five standout features of Simple JWT Login that help you build secure, modern WordPress-powered applications without the boilerplate.
+
+### wpgraphql-jwt-authentication
+
+A step-by-step guide to securing your WPGraphQL API using JWT tokens generated by Simple JWT Login — covering setup, authenticated queries, mutations, and token handling.
+
+- [How to Authenticate WordPress GraphQL Queries with Simple JWT Login and WPGraphQL](/blog/wpgraphql-jwt-authentication.md): A step-by-step guide to securing your WPGraphQL API using JWT tokens generated by Simple JWT Login — covering setup, authenticated queries, mutations, and token handling.
+
+## releases
+
+Blog
+
+- [Release Notes](/releases.md): Blog
+
+### archive
+
+Archive
+
+- [Archive](/releases/archive.md): Archive
+
+### authors
+
+- [Authors](/releases/authors.md)
+
+#### nicumicle
+
+- [Nicu Micle](/releases/authors/nicumicle.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/2.md)
+
+### page
+
+
+#### 2
+
+Blog
+
+- [Release Notes](/releases/page/2.md): Blog
+
+### simple-jwt-login-release-3.4.4
+
+Released version 3.4.4
+
+- [New Plugin Release 3.4.4](/releases/simple-jwt-login-release-3.4.4.md): Released version 3.4.4
+
+### simple-jwt-login-release-3.4.5
+
+Released version 3.4.5
+
+- [New Plugin Release 3.4.5](/releases/simple-jwt-login-release-3.4.5.md): Released version 3.4.5
+
+### simple-jwt-login-release-3.4.7
+
+Released version 3.4.7
+
+- [New Plugin Release 3.4.7](/releases/simple-jwt-login-release-3.4.7.md): Released version 3.4.7
+
+### simple-jwt-login-release-3.4.8
+
+Released version 3.4.8
+
+- [New Plugin Release 3.4.8](/releases/simple-jwt-login-release-3.4.8.md): Released version 3.4.8
+
+### simple-jwt-login-release-3.4.9
+
+Released version 3.4.9
+
+- [New Plugin Release 3.4.9](/releases/simple-jwt-login-release-3.4.9.md): Released version 3.4.9
+
+### simple-jwt-login-release-3.5.0
+
+Released version 3.5.0
+
+- [New Plugin Release 3.5.0](/releases/simple-jwt-login-release-3.5.0.md): Released version 3.5.0
+
+### simple-jwt-login-release-3.5.1
+
+Released version 3.5.1
+
+- [New Plugin Release 3.5.1](/releases/simple-jwt-login-release-3.5.1.md): Released version 3.5.1
+
+### simple-jwt-login-release-3.5.2
+
+Released version 3.5.2
+
+- [New Plugin Release 3.5.2](/releases/simple-jwt-login-release-3.5.2.md): Released version 3.5.2
+
+### simple-jwt-login-release-3.5.3
+
+Released version 3.5.3
+
+- [New Plugin Release 3.5.3](/releases/simple-jwt-login-release-3.5.3.md): Released version 3.5.3
+
+### simple-jwt-login-release-3.5.4
+
+Released version 3.5.4
+
+- [New Plugin Release 3.5.4](/releases/simple-jwt-login-release-3.5.4.md): Released version 3.5.4
+
+### simple-jwt-login-release-3.5.5
+
+Released version 3.5.5
+
+- [New Plugin Release 3.5.5](/releases/simple-jwt-login-release-3.5.5.md): Released version 3.5.5
+
+### simple-jwt-login-release-3.5.6
+
+Released version 3.5.6
+
+- [New Plugin Release 3.5.6](/releases/simple-jwt-login-release-3.5.6.md): Released version 3.5.6
+
+### simple-jwt-login-release-3.5.7
+
+Released version 3.5.7
+
+- [New Plugin Release 3.5.7](/releases/simple-jwt-login-release-3.5.7.md): Released version 3.5.7
+
+### simple-jwt-login-release-3.5.8
+
+Released version 3.5.8
+
+- [New Plugin Release 3.5.8](/releases/simple-jwt-login-release-3.5.8.md): Released version 3.5.8
+
+### simple-jwt-login-release-3.6.0
+
+Released version 3.6.0
+
+- [New Plugin Release 3.6.0](/releases/simple-jwt-login-release-3.6.0.md): Released version 3.6.0
+
+### simple-jwt-login-release-3.6.1
+
+Released version 3.6.1
+
+- [New Plugin Release 3.6.1](/releases/simple-jwt-login-release-3.6.1.md): Released version 3.6.1
+
+### simple-jwt-login-release-3.6.2
+
+Released version 3.6.2
+
+- [New Plugin Release 3.6.2](/releases/simple-jwt-login-release-3.6.2.md): Released version 3.6.2
+
+### simple-jwt-login-release-3.6.3
+
+Released version 3.6.3
+
+- [New Plugin Release 3.6.3](/releases/simple-jwt-login-release-3.6.3.md): Released version 3.6.3
+
+### simple-jwt-login-release-3.6.4
+
+Released version 3.6.4
+
+- [New Plugin Release 3.6.4](/releases/simple-jwt-login-release-3.6.4.md): Released version 3.6.4
+
+### simple-jwt-login-release-3.6.5
+
+Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatibility
+
+- [New Plugin Release 3.6.5](/releases/simple-jwt-login-release-3.6.5.md): Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatibility
+
+### tags
+
+- [Tags](/releases/tags.md)
+
+#### bugfix
+
+- [18 posts tagged with "bugfix"](/releases/tags/bugfix.md)
+- [18 posts tagged with "bugfix"](/releases/tags/bugfix/page/2.md)
+
+#### feature
+
+- [9 posts tagged with "feature"](/releases/tags/feature.md)
+
+#### security
+
+- [2 posts tagged with "security"](/releases/tags/security.md)
+
+## search
+
+- [Search the documentation](/search.md)
+
+## api
+
+
+### autologin
+
+Authenticate and automatically log in a user to WordPress using a valid JSON Web Token (JWT).
+
+- [Autologin](/api/autologin.md): Authenticate and automatically log in a user to WordPress using a valid JSON Web Token (JWT).
+
+### change-user-password
+
+Change user password
+
+- [Change user password](/api/change-user-password.md): Change user password
+
+### delete-user
+
+Delete user
+
+- [Delete user](/api/delete-user.md): Delete user
+
+### get-jwt
+
+Authenticate
+
+- [Authenticate](/api/get-jwt.md): Authenticate
+
+### refresh-jwt
+
+Refresh expired JWT
+
+- [Refresh expired JWT](/api/refresh-jwt.md): Refresh expired JWT
+
+### register-user
+
+Register WordPress user
+
+- [Register user](/api/register-user.md): Register WordPress user
+
+### revoke-jwt
+
+Revoke JWT
+
+- [Revoke JWT](/api/revoke-jwt.md): Revoke JWT
+
+### send-reset-password-code
+
+Send reset password code
+
+- [Send reset password code](/api/send-reset-password-code.md): Send reset password code
+
+### simple-jwt-login
+
+Complete REST API reference for Simple JWT Login — a free WordPress plugin for JWT authentication. Covers login, register, token refresh, auto-login, endpoint protection, and more.
+
+- [Simple-JWT-Login](/api/simple-jwt-login.md): Complete REST API reference for Simple JWT Login — a free WordPress plugin for JWT authentication. Covers login, register, token refresh, auto-login, endpoint protection, and more.
+
+### validate-jwt
+
+Validate JWT
+
+- [Validate JWT](/api/validate-jwt.md): Validate JWT
+
+## docs
+
+Simple JWT Login is a free WordPress plugin that adds JWT authentication to the REST API — login, register, auto-login, protect endpoints, and more. No coding required.
+
+- [Introduction](/docs.md): Simple JWT Login is a free WordPress plugin that adds JWT authentication to the REST API — login, register, auto-login, protect endpoints, and more. No coding required.
+
+### applications
+
+
+#### google
+
+- [Exchange id_token with a WordPress JWT](/docs/applications/google/id_token_to_wp_jwt.md): Overview
+- [OAuth Login](/docs/applications/google/login.md): Enable OAuth on WordPress login
+- [Exchange OAuth Code with Google ID Token](/docs/applications/google/oauth_code.md): Overview
+- [Setup](/docs/applications/google/setup.md): Create an application
+- [Shortcode](/docs/applications/google/shortcode.md): Shortcode Configuration
+
+### auth-codes
+
+Auth Codes are an optional security layer that adds a shared secret to your API requests. Think of them as API keys: a caller must include the correct AUTH_CODE value alongside their request, otherwise the plugin rejects it.
+
+- [Auth Codes](/docs/auth-codes.md): Auth Codes are an optional security layer that adds a shared secret to your API requests. Think of them as API keys: a caller must include the correct AUTH_CODE value alongside their request, otherwise the plugin rejects it.
+
+### authentication
+
+Generate, refresh, validate, and revoke JWT tokens via the WordPress REST API using Simple JWT Login. Supports HS256/384/512 and RS256/384/512 algorithms.
+
+- [Authentication](/docs/authentication.md): Generate, refresh, validate, and revoke JWT tokens via the WordPress REST API using Simple JWT Login. Supports HS256/384/512 and RS256/384/512 algorithms.
+
+### autologin
+
+Use Simple JWT Login to auto-login WordPress users via a tokenized URL — perfect for magic links, email campaigns, and single sign-on (SSO) flows.
+
+- [Autologin](/docs/autologin.md): Use Simple JWT Login to auto-login WordPress users via a tokenized URL — perfect for magic links, email campaigns, and single sign-on (SSO) flows.
+
+### change-password
+
+This endpoint completes the password reset flow by applying a new password. The user must supply the reset code they received by email (from the Reset Password step), along with their email address and the desired new password.
+
+- [Change password](/docs/change-password.md): This endpoint completes the password reset flow by applying a new password. The user must supply the reset code they received by email (from the Reset Password step), along with their email address and the desired new password.
+
+### code_examples
+
+
+#### php
+
+- [Register a WordPress user with PHP and get the jwt](/docs/code_examples/php/register_and_get_jwt.md): Introduction
+
+### code-examples
+
+Welcome to our Code Examples page, dedicated to unraveling the simplicity and power of Simple-JWT-Login.
+
+- [Code Examples](/docs/code-examples.md): Welcome to our Code Examples page, dedicated to unraveling the simplicity and power of Simple-JWT-Login.
+
+### configuration
+
+Server
+
+- [Configuration](/docs/configuration.md): Server
+
+### cors
+
+Simple-JWT-Login includes built-in Cross-Origin Resource Sharing (CORS) support, implemented in compliance with the W3C CORS specification.
+
+- [CORS](/docs/cors.md): Simple-JWT-Login includes built-in Cross-Origin Resource Sharing (CORS) support, implemented in compliance with the W3C CORS specification.
+
+### delete-user
+
+The Delete User endpoint allows you to remove a WordPress user account via a REST API call authenticated with a JWT. This is useful for self-service account deletion flows in mobile apps or headless front-ends.
+
+- [Delete WordPress User](/docs/delete-user.md): The Delete User endpoint allows you to remove a WordPress user account via a REST API call authenticated with a JWT. This is useful for self-service account deletion flows in mobile apps or headless front-ends.
+
+### error-codes
+
+Every error response from Simple-JWT-Login includes a numeric errorCode field. Use the table below to look up the meaning of a specific code and how to resolve it.
+
+- [Error codes](/docs/error-codes.md): Every error response from Simple-JWT-Login includes a numeric errorCode field. Use the table below to look up the meaning of a specific code and how to resolve it.
+
+### export-import
+
+The Export-Import add-on lets you copy your Simple-JWT-Login configuration — including Auth Codes, protection rules, and all general settings — from one WordPress site to another in just a few steps. This is especially useful when setting up staging environments, migrating sites, or replicating a configuration across a network of sites.
+
+- [Simple-JWT-Login Export-Import Add-on](/docs/export-import.md): The Export-Import add-on lets you copy your Simple-JWT-Login configuration — including Auth Codes, protection rules, and all general settings — from one WordPress site to another in just a few steps. This is especially useful when setting up staging environments, migrating sites, or replicating a configuration across a network of sites.
+
+### hooks
+
+Simple JWT Login provides 16 WordPress action and filter hooks to customize JWT payload, authentication responses, registration, and more — without modifying plugin code.
+
+- [Hooks](/docs/hooks.md): Simple JWT Login provides 16 WordPress action and filter hooks to customize JWT payload, authentication responses, registration, and more — without modifying plugin code.
+
+### mailpoet
+
+The Simple-JWT-Login MailPoet add-on lets you embed personalised, one-click login links inside your MailPoet email campaigns. When a subscriber clicks the link, they are automatically logged into your WordPress site — no password entry required.
+
+- [MailPoet](/docs/mailpoet.md): The Simple-JWT-Login MailPoet add-on lets you embed personalised, one-click login links inside your MailPoet email campaigns. When a subscriber clicks the link, they are automatically logged into your WordPress site — no password entry required.
+
+### protect-endpoints
+
+Require a valid JWT for any WordPress REST API route using Simple JWT Login. Lock down sensitive endpoints by HTTP method with exact or prefix matching.
+
+- [Protect Endpoints](/docs/protect-endpoints.md): Require a valid JWT for any WordPress REST API route using Simple JWT Login. Lock down sensitive endpoints by HTTP method with exact or prefix matching.
+
+### refresh-token
+
+Use this endpoint to exchange an expired (or about-to-expire) JWT for a fresh one, without requiring the user to re-enter their credentials. This is the standard mechanism for keeping long-running sessions alive.
+
+- [Refresh token](/docs/refresh-token.md): Use this endpoint to exchange an expired (or about-to-expire) JWT for a fresh one, without requiring the user to re-enter their credentials. This is the standard mechanism for keeping long-running sessions alive.
+
+### register-user
+
+Register new WordPress users programmatically via a REST API endpoint using Simple JWT Login. Supports role assignment, auth codes, and IP restrictions.
+
+- [Register User](/docs/register-user.md): Register new WordPress users programmatically via a REST API endpoint using Simple JWT Login. Supports role assignment, auth codes, and IP restrictions.
+
+### reset-password
+
+This endpoint initiates the password reset flow for an existing WordPress user. Depending on the plugin configuration, it can silently save a reset code to the database, send the standard WordPress reset email, or deliver a fully customised email template.
+
+- [Reset password](/docs/reset-password.md): This endpoint initiates the password reset flow for an existing WordPress user. Depending on the plugin configuration, it can silently save a reset code to the database, send the standard WordPress reset email, or deliver a fully customised email template.
+
+### revoke-token
+
+Revoking a token immediately invalidates it — any subsequent request using that token will be rejected. Call this endpoint when a user logs out or when you need to terminate a specific session (e.g., after a password change or suspicious activity).
+
+- [Revoke token](/docs/revoke-token.md): Revoking a token immediately invalidates it — any subsequent request using that token will be rejected. Call this endpoint when a user logs out or when you need to terminate a specific session (e.g., after a password change or suspicious activity).
+
+### validate-token
+
+Use this endpoint to verify whether a JWT is valid. On success, the response includes the corresponding WordPress user's profile, their roles, and the decoded JWT header and payload.
+
+- [Validate token](/docs/validate-token.md): Use this endpoint to verify whether a JWT is valid. On success, the response includes the corresponding WordPress user's profile, their roles, and the decoded JWT header and payload.
+
+### wpgraphql
+
+Simple-JWT-Login integrates with WPGraphQL to bring JWT authentication to your GraphQL layer. Once configured, any GraphQL query or mutation can require a valid JWT, making it straightforward to build secure, headless WordPress applications.
+
+- [WPGraphQL](/docs/wpgraphql.md): Simple-JWT-Login integrates with WPGraphQL to bring JWT authentication to your GraphQL layer. Once configured, any GraphQL query or mutation can require a valid JWT, making it straightforward to build secure, headless WordPress applications.
