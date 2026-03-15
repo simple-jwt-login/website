@@ -1,8 +1,16 @@
-.starsContainer{
-    float:right;
+/* ============================================================
+   STARS COMPONENT
+   ============================================================ */
+
+.starsContainer {
+  display: inline-flex;
+  gap: 2px;
 }
 
-.star{
-    width: 20px !important;
-    color: yellow;
+.star {
+  width: 14px !important;
+  height: 14px !important;
+  color: #f59e0b;
+  fill: #f59e0b;
+  flex-shrink: 0;
 }

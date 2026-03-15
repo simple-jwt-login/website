@@ -5,7 +5,11 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-You can use this endpoint in order to refresh an expired token.
+Use this endpoint to exchange an expired (or about-to-expire) JWT for a fresh one, without requiring the user to re-enter their credentials. This is the standard mechanism for keeping long-running sessions alive.
+
+:::note
+A token can only be refreshed within a configurable time window after it was originally issued. Once that window expires, the user must authenticate again with their credentials.
+:::
 
 **METHOD** : `POST`
 
@@ -80,8 +84,6 @@ $result = $simpleJwtLogin->refreshToken('your JWT here', 'AUTH CODE');
 
 ### Refresh time to live
 
-You can specify the length of time (in minutes) that the token can be refreshed within.
+The **Refresh TTL** controls how long (in minutes) after the original token was issued a refresh is permitted. After that window closes, the user must authenticate again using their credentials.
 
-For example, the user can refresh their token within a 2-week window of the original token being created until they must re-authenticate.
-
-Defaults value is set to 2 weeks. 
+The default value is **2 weeks** (20,160 minutes). Adjust it in the plugin settings to match your application's security requirements.

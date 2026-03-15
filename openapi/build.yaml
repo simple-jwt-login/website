@@ -18,12 +18,14 @@ info:
 
     ## Cross-Origin Resource Sharing
     This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
+
     And that allows cross-domain communication from the browser.
+    
     All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
   license:
     name: GPL 3.0
     url: https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE
-  version: 3.6.0
+  version: 3.6.5
   x-logo:
     url: "https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/master/wordpress.org/assets/icon-128x128.png"
     altText: Simple-Jwt-Login Logo

@@ -2,12 +2,15 @@
 slug: /protect-endpoints/
 title: Protect Endpoints
 sidebar_position: 11
+description: Require a valid JWT for any WordPress REST API route using Simple JWT Login. Lock down sensitive endpoints by HTTP method with exact or prefix matching.
+keywords: [protect WordPress REST API, require JWT WordPress, WordPress endpoint protection, secure REST API WordPress, JWT middleware WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-The Simple JWT Login plugin allows you to secure specific API endpoints or all endpoints within your WordPress site. 
-When an endpoint is protected, a valid JSON Web Token (JWT) must be included in the request to gain access. 
+The Protect Endpoints feature lets you require a valid JWT for any WordPress REST API route. Use it to lock down sensitive data — such as user profiles, private posts, or custom post types — so they can only be accessed by authenticated callers.
+
+When a protected endpoint is called without a valid JWT, the plugin returns a `403` error immediately, before WordPress processes the request.
 
 The following error will be displayed, when an endpoint is protected and no JWT is provided:
 

@@ -6,15 +6,15 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Delete user it is disabled by default.
+The Delete User endpoint allows you to remove a WordPress user account via a REST API call authenticated with a JWT. This is useful for self-service account deletion flows in mobile apps or headless front-ends.
 
-In order to delete a user, you have to configure where to search the details in the JWT.
+Deletion is **disabled by default**. Enable it in the plugin settings before use.
 
-You can delete users by:
-- WordPress User ID
-- Email address.
+The plugin identifies which user to delete from the JWT payload. You can configure it to look for either:
+- **WordPress User ID** — the numeric user ID stored in the JWT
+- **Email address** — the user's email address stored in the JWT
 
-These properties should be set in the JWT payload.
+Configure the JWT payload key to use in the plugin settings under the **Delete User** tab.
 
 ## Endpoint
 

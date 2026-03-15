@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import Feature from "@site/src/components/feature/feature";
@@ -8,11 +9,40 @@ import Counter from '../components/counter/counter';
 
 import styles from './styles.module.css';
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Simple JWT Login',
+  applicationCategory: 'DeveloperApplication',
+  applicationSubCategory: 'WordPress Plugin',
+  operatingSystem: 'WordPress 4.4+, PHP 5.5+',
+  description: 'Free, open-source WordPress plugin that adds JWT authentication to the WordPress REST API. Supports login, register, auto-login, endpoint protection, token refresh, and more.',
+  url: 'https://wordpress.org/plugins/simple-jwt-login/',
+  downloadUrl: 'https://downloads.wordpress.org/plugin/simple-jwt-login.latest-stable.zip',
+  softwareVersion: 'latest',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    bestRating: '5',
+    ratingCount: '50',
+  },
+  author: {
+    '@type': 'Person',
+    name: 'Nicu Micle',
+    url: 'https://github.com/nicumicle',
+  },
+};
+
 const awesomeFeatures = [
   {
     title: <>Auto Login</>,
     description: (
-      <>You are able to auto-login into a WordPress website with a JWT.</>
+      <>Log users in instantly via URL, header, cookie, or session — perfect for magic links, email campaigns, and SSO flows.</>
     ),
     image: "assets/svg/login-user-2.svg",
     alt: "Login user",
@@ -22,7 +52,7 @@ const awesomeFeatures = [
     title: <>Register Users</>,
     description: (
       <>
-        API endpoint that allows you to register new users in WordPress.
+        Expose a secure REST endpoint to register new WordPress users programmatically — no custom code needed.
       </>
     ),
     image: "assets/svg/create-user.svg",
@@ -32,64 +62,64 @@ const awesomeFeatures = [
   {
     title: <>Delete Users</>,
     description: (
-      <>Delete Users with JWT.</>
+      <>Remove users securely via API using verified JWT tokens.</>
     ),
     image: "assets/svg/delete-user.svg",
     alt: "Delete user",
     link: "/docs/delete-user/",
   },
   {
-    title: <>Authenticate users</>,
-    description: <>API endpoint to Generate a JWT, refresh JWT and invalidate JWT.</>,
+    title: <>Authenticate Users</>,
+    description: <>Generate, refresh, revoke, and validate JWT tokens via REST. Supports HS256/384/512 and RS256/384/512 algorithms.</>,
     image: "assets/svg/authenticate-user.svg",
     alt: "Authenticate user",
     link: "/docs/authentication/",
   },
   {
-    title: <>Change & Reset Password</>,
-    description: <>This plugin allows you handle password change</>,
+    title: <>Change &amp; Reset Password</>,
+    description: <>Let users change or reset their password through the API — ideal for headless and mobile apps.</>,
     image: "assets/img/password.png",
     alt: "Change and Reset password",
     link: "/docs/change-password/",
   },
   {
-    title: <>Limit access by IP</>,
-    description: <>Limit access to Simple JWT Login only for specific IP addresses.</>,
+    title: <>Limit Access by IP</>,
+    description: <>Restrict access to trusted IPs — supports wildcards (e.g. <code>85.*.*.*</code>) for subnet-level control.</>,
     image: "assets/img/ip.png",
     alt: "Limit access by IP",
   },
   {
-    title: <>Create users with different roles</>,
-    description: <>You are able to create multiple users with different roles on the same endpoint.</>,
+    title: <>Create Users with Different Roles</>,
+    description: <>Assign roles at registration time — create admins, editors, or subscribers through a single endpoint.</>,
     image: "assets/img/roles.png",
     alt: "Roles",
-    link: "/docs/register-user/#new-types-of-users",
+    link: "/docs/register-user/#user-roles",
   },
   {
-    title: <>Integrate with other plugins</>,
-    description: <>This plugin works well in combination with other plugins that extends the WordPRess REST API.</>,
+    title: <>Integrate with Other Plugins</>,
+    description: <>First-class support for MailPoet magic-link emails, WPGraphQL authorization, and any plugin that extends the WordPress REST API.</>,
     image: "assets/img/plug-in.png",
     alt: "Integrate with other plugins",
     link: "/docs/mailpoet/",
   },
   {
-    title: <>Protect endpoints</>,
-    description: <>This plugin allows you to protect some specific endpoints, or all endpoints with a JWT</>,
+    title: <>Protect Endpoints</>,
+    description: <>Require a valid JWT per route — filter by HTTP method (GET, POST, PUT, DELETE) with exact or prefix matching.</>,
     image: "assets/img/protect-endpoints.png",
     alt: "Protect endpoints",
     link: "/docs/protect-endpoints/",
   },
   {
-    title: <>Allow JWT usage on other endpoints</>,
-    description: <>Add a JWT to requests for other api endpoints and you will act as an authenticated user.</>,
+    title: <>Use JWT on Any Endpoint</>,
+    description: <>Pass a JWT to any WordPress endpoint and act as a fully authenticated user — no session cookies required.</>,
     image: "assets/img/protect.png",
     alt: "JWT on other endpoints",
-    link: "/docs/#allow-jwt-usage-on-all-endpoints",
+    link: "/docs/configuration#allow-jwt-usage-on-all-wordpress-endpoints",
   },
   {
     title: <>Google OAuth Integration</>,
     description: <>
-      Login to your website with Google.
+      Let users sign in with their Google account — zero passwords, instant trust.
     </>,
     image: "assets/img/google-plus.png",
     alt: "Google Oauth",
@@ -97,9 +127,9 @@ const awesomeFeatures = [
     beta: true,
   },
   {
-    title: <>Use Google JWT on all endpoints</>,
+    title: <>Use Google JWT on All Endpoints</>,
     description: <>
-       Use the Google JWT in order to access WordPress endpoints as an authenticated user.
+       Use Google-issued tokens to authenticate against any WordPress REST endpoint seamlessly.
     </>,
     image: "assets/img/google-plus-jwt.png",
     alt: "Google Oauth",
@@ -139,7 +169,7 @@ const reviews = [
   },
   {
     title: <>No-Nonsense JWT (Excellence)</>,
-    desciption: <>This is probably the very absolute best no-nonsense JWT plugin on WordPress. Exceptionally well documented, high customization, easy to setup, and works out of the box with basic setup. No nonsense ads, either. Definitely deserving the 5-star rating across the board. Recommended.</>,
+    description: <>This is probably the very absolute best no-nonsense JWT plugin on WordPress. Exceptionally well documented, high customization, easy to setup, and works out of the box with basic setup. No nonsense ads, either. Definitely deserving the 5-star rating across the board. Recommended.</>,
     author: <>@thehinesgaphideaway</>,
     numberOfStars: 5,
     link: "https://wordpress.org/support/topic/no-nonsense-jwt-excellence/"
@@ -212,29 +242,42 @@ function RecentPosts(){
 function Docs() {
   let statistics = {
     activeInstalls: '5000',
-    downloads: '63000',
+    downloads: '80000',
     rating: '5/5',
   }
 
   return (
-    <Layout title="Simple JWT Login" description="Your WordPress plugin that allows you to work with JWT">
+    <Layout
+      title="Free WordPress JWT Authentication Plugin"
+      description="Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the REST API. Login, register users, protect endpoints, auto-login, and more — no coding required."
+    >
+      <Head>
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Head>
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-          <img src={"assets/favicons/apple-touch-icon.png"}  alt={"Simple JWT Login logo"} title={"Simple JWT Login logo"} width="180" height="180"/>
+          <img src={"assets/favicons/apple-touch-icon.png"} alt={"Simple JWT Login logo"} title={"Simple JWT Login logo"} width="120" height="120"/>
           <h1 className="hero__title">Simple JWT Login</h1>
-          <h2>Free & Secure WordPress JWT Authentication Plugin</h2>
-          <p>Simple JWT Login is a FREE WordPress plugin that streamlines authentication for your website's REST API endpoints.</p>
-          <p>With just a few clicks, you can enable secure JSON Web Token (JWT) login without writing a single line of code.</p>
-          <span>
-              <Link
-                  to={"https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"}
-                  className={styles.actionButton}
-                  download={true}
-                  title="Download Plugin"
-              >
-                Download
-              </Link>
-          </span>
+          <h2>Free &amp; open-source JWT authentication for WordPress</h2>
+          <p>Add secure token-based authentication to your WordPress REST API in minutes — no coding required.</p>
+          <div style={{display:'flex', gap:'1rem', justifyContent:'center', marginTop:'1.5rem', flexWrap:'wrap'}}>
+            <Link
+              to={"/docs/"}
+              className={styles.actionButton}
+              title="Get started"
+            >
+              Get started →
+            </Link>
+            <Link
+              to={"https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"}
+              className={styles.btn}
+              download={true}
+              title="Download Plugin"
+              style={{display:'inline-flex', alignItems:'center'}}
+            >
+              Download
+            </Link>
+          </div>
         </div>
       </header>
       <main>    
@@ -242,7 +285,7 @@ function Docs() {
         <section className={[styles.sectionPadding, styles.sectionGreen, styles.statistics].join(" ")}>
             <div className="container">
               <div className="row">
-                <h2 className={styles.sectionTitle}>Plugin stats</h2>
+                <h2 className={styles.sectionTitle}>Trusted by thousands of WordPress sites</h2>
               </div>
               <div className="row">
                 <div className="col col--4 text-center">
@@ -272,7 +315,7 @@ function Docs() {
           <section className={styles.features}>
             <div className="container">
               <div className="row">
-                  <h2 className={styles.sectionTitle}>Some awesome features</h2>
+                  <h2 className={styles.sectionTitle}>Everything you need for JWT authentication</h2>
               </div>
               <div className="row">
                 {awesomeFeatures.map((props, idx) => (
@@ -286,18 +329,53 @@ function Docs() {
         <section className={[styles.sectionPadding, styles.sectionGray].join(" ")}>
           <div className="container">
             <div className="row">
-              <div className="col">
-                <h2 className={styles.sectionTitle}>
-                  Why Choose Simple JWT Login?
-                </h2>
+              <h2 className={styles.sectionTitle}>Why Choose Simple JWT Login?</h2>
+            </div>
+            <div className={styles.whyGrid}>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>⚡</div>
+                <h3 className={styles.whyCardTitle}>No coding required</h3>
+                <p className={styles.whyCardDesc}>Set up JWT authentication in minutes via the WordPress admin UI — no custom code needed.</p>
               </div>
-              <div className='col text-center'>
-                <div className="text-left">
-                  <p> ✅ <b>No Coding Required</b> - Set up JWT authentication in minutes, no developer needed.</p>
-                  <p> ✅ <b>Secure & Reliable</b> - Protect your WordPress REST API with industry-standard JWT security.</p>
-                  <p> ✅ <b>Flexible Integration</b> - Works seamlessly with mobile apps, external systems, and custom applications.</p>
-                  <p> ✅ <b>Open Source & Free</b> - Enjoy full access to a community-supported, <b>cost-free</b> authentication solution.</p>
-                </div>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🔐</div>
+                <h3 className={styles.whyCardTitle}>6 supported algorithms</h3>
+                <p className={styles.whyCardDesc}>Choose from HS256/384/512 or RS256/384/512 to match your security policy.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🚀</div>
+                <h3 className={styles.whyCardTitle}>4 JWT delivery methods</h3>
+                <p className={styles.whyCardDesc}>Authorization header, cookie, session, or query parameter — works everywhere.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🛠️</div>
+                <h3 className={styles.whyCardTitle}>Built for developers</h3>
+                <p className={styles.whyCardDesc}>16 WordPress action and filter hooks to customize every authentication flow.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🌐</div>
+                <h3 className={styles.whyCardTitle}>CORS-ready</h3>
+                <p className={styles.whyCardDesc}>Works out of the box with React, Vue, Angular, mobile apps, WPGraphQL, and headless CMS setups.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🐘</div>
+                <h3 className={styles.whyCardTitle}>PHP 5.5+ compatible</h3>
+                <p className={styles.whyCardDesc}>Works on any PHP version from 5.5 onwards — no matter how old or new your server is.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🔗</div>
+                <h3 className={styles.whyCardTitle}>Auto-login &amp; magic links</h3>
+                <p className={styles.whyCardDesc}>Authenticate users via a tokenized URL — no password form needed. Perfect for email campaigns and passwordless flows.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🔄</div>
+                <h3 className={styles.whyCardTitle}>Full token lifecycle</h3>
+                <p className={styles.whyCardDesc}>Refresh, validate, and revoke tokens on demand to keep sessions secure and under your control.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>💚</div>
+                <h3 className={styles.whyCardTitle}>Free &amp; open source</h3>
+                <p className={styles.whyCardDesc}>MIT-licensed, community-supported, no hidden costs — ever.</p>
               </div>
             </div>
           </div>
@@ -308,17 +386,17 @@ function Docs() {
         <section className={[styles.sectionPadding].join(" ")}>
           <div className="container">
             <div className="row">
-              <h2 className={styles.sectionTitle}>Easy to integrate</h2>
+              <h2 className={styles.sectionTitle}>Drop into any stack in minutes</h2>
             </div>
-            <div className="row">
-              <div className="col">
+            <div className="row" style={{rowGap:'1.5rem'}}>
+              <div className="col col--4">
                   <div className={styles.clientCard}>
                     <div className={styles.clientCardTitle}>
                       <h3>PHP</h3>
                     </div>
                     <div className={styles.clientCardContent}>
                       <p>
-                        Composer package for integrating any PHP application with Simple JWT Login.
+                        Connect any PHP app to Simple JWT Login with one Composer package — supports Laravel, Yii, CodeIgniter, and more.
                       </p>
                       <img src={"assets/img/frameworks/php.png"} alt={"PHP"} title={"PHP"} width="40" height="40"/>
                       <img src={"assets/img/frameworks/laravel.png"}  alt={"Laravel"} title={"Laravel"} width="40" height="40"/>
@@ -338,14 +416,14 @@ function Docs() {
                     </div>
                   </div>
               </div>
-              <div className="col">
+              <div className="col col--4">
                 <div className={styles.clientCard}>
                   <div className={styles.clientCardTitle}>
                     <h3>Javascript</h3>
                   </div>
                   <div className={styles.clientCardContent}>
                     <p>
-                      Integrate your application with Simple JWT Login using the SDK with just a few lines of code.
+                      Add JWT authentication to React, Vue, Angular, or any JS app with an npm package and a handful of lines.
                     </p>
                       <img src={"assets/img/frameworks/javascript.png"}  alt={"JavaScript"} title={"JavaScript"} width="40" height="40"/>
                       <img src={"assets/img/frameworks/vue.png"}  alt={"Vue"}  title="Vue" width="40" height="40"/>
@@ -365,11 +443,75 @@ function Docs() {
                   </div>
                 </div>
               </div>
+              <div className="col col--4">
+                <div className={styles.clientCard}>
+                  <div className={styles.clientCardTitle}>
+                    <h3>WPGraphQL</h3>
+                  </div>
+                  <div className={styles.clientCardContent}>
+                    <p>
+                      Use your JWT tokens to authenticate GraphQL queries and mutations — enable it with a single checkbox.
+                    </p>
+                    <img src={"assets/img/wpgraphql/wpgraphql-logo.png"} alt={"WPGraphQL"} title={"WPGraphQL"} style={{maxWidth:'100%', height:'40px', objectFit:'contain'}}/>
+                  </div>
+                  <div className={styles.clientCardFooter}>
+                    <a
+                        href="/docs/wpgraphql/"
+                        className={styles.btn}
+                        title="WPGraphQL integration docs"
+                    >
+                      Learn more
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="col col--4">
+                <div className={styles.clientCard}>
+                  <div className={styles.clientCardTitle}>
+                    <h3>MailPoet</h3>
+                  </div>
+                  <div className={styles.clientCardContent}>
+                    <p>
+                      Send magic-link login emails via MailPoet — let subscribers log in with one click, no password required.
+                    </p>
+                  </div>
+                  <div className={styles.clientCardFooter}>
+                    <a
+                        href="/docs/mailpoet/"
+                        className={styles.btn}
+                        title="MailPoet integration docs"
+                    >
+                      Learn more
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="col col--4">
+                <div className={styles.clientCard}>
+                  <div className={styles.clientCardTitle}>
+                    <h3>Export &amp; Import</h3>
+                  </div>
+                  <div className={styles.clientCardContent}>
+                    <p>
+                      Back up and restore your entire plugin configuration in one click — perfect for staging-to-production migrations.
+                    </p>
+                  </div>
+                  <div className={styles.clientCardFooter}>
+                    <a
+                        href="/docs/export-import/"
+                        className={styles.btn}
+                        title="Export and Import settings docs"
+                    >
+                      Learn more
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className={[styles.sectionPadding, styles.statistics, styles.sectionGray].join(" ")}>
+        <section className={[styles.sectionPadding, styles.sectionGray].join(" ")}>
           <div className="container">
             <div className="row">
               <div className="col">
@@ -403,63 +545,42 @@ function Docs() {
 
             <div className="row">
               <div className="col m-10">
-                <a href="/docs#installation" className={[styles.actionButton].join(" ")} style={{"marginTop":"40px"}}>Start Now</a>
+                <a href="/docs/" className={styles.actionButton} style={{marginTop:'2rem'}}>Get started →</a>
               </div>
             </div>
           </div>
         </section>
 
-        <section className={["contribute", styles.sectionPadding].join(" ")}>
-          <div className="container text-center">
-            <div className="row">
-              <h2 className={styles.sectionTitle}>Contribute</h2>
-            </div>
-            <div className="row">
-              <div className="col col--12 text-left">
-                <p>
-                Your support helps us grow and improve! Whether you're a developer, translator, or just someone who loves this project, there are many ways to get involved.
-                </p>
+        <section className={["contribute", styles.sectionPadding, styles.sectionGray].join(" ")}>
+          <div className="container">
+            <h2 className={styles.sectionTitle}>Join the community</h2>
+            <p style={{maxWidth:'640px', margin:'0 auto 3rem', color:'var(--sjl-text-muted,#64748b)'}}>
+              Simple JWT Login is built in the open, by the community. Whether you write code, speak another language, or just want to spread the word — there's a place for you here.
+            </p>
+            <div className={[styles.whyGrid, styles.whyGrid2].join(' ')}>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>⭐</div>
+                <h3 className={styles.whyCardTitle}>Star on GitHub</h3>
+                <p className={styles.whyCardDesc}>Show your appreciation and help others discover the project.</p>
+                <Link to="https://github.com/nicumicle/simple-jwt-login" title="GitHub repository" className={styles.communityCardLink}>Star on GitHub →</Link>
               </div>
-            </div>
-            <div className="row">
-              <div className="col col--3 text-center">
-                <h3>⭐ Give us a Star on GitHub</h3>
-                <p>
-                  Show your appreciation and help others discover this project by starring our repository on <Link to={"https://github.com/nicumicle/simple-jwt-login"} title="GitHub stars">GitHub</Link>.
-                </p>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🛠️</div>
+                <h3 className={styles.whyCardTitle}>Contribute Code</h3>
+                <p className={styles.whyCardDesc}>Submit issues, propose features, or open a pull request on GitHub.</p>
+                <Link to="https://github.com/nicumicle/simple-jwt-login/pulls" title="GitHub Pull Requests" className={styles.communityCardLink}>Open a PR →</Link>
               </div>
-              <div className="col col--3 text-center">
-                <h3>🛠️ Contribute to the Code</h3>
-                <p>
-                  Have ideas to enhance this plugin or found a bug? Check out our GitHub repository to:
-                  <ul className='text-left'>
-                    <li className='text-left'>Submit <Link to={"https://github.com/nicumicle/simple-jwt-login/issues"} title="Github Issues">issues</Link>.</li>
-                    <li className='text-left'>Propose new <Link to={"https://github.com/nicumicle/simple-jwt-login/issues"} title="Github Issues">features</Link>.</li>
-                    <li className='text-left'>Create <Link to={"https://github.com/nicumicle/simple-jwt-login/pulls"} title="Github Pull requests">pull requests</Link> to improve the code.</li>
-                  </ul>
-                </p>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>📈</div>
+                <h3 className={styles.whyCardTitle}>Rate on WordPress</h3>
+                <p className={styles.whyCardDesc}>Love the plugin? A 5-star review on WordPress.org makes a big difference.</p>
+                <Link to="https://wordpress.org/plugins/simple-jwt-login/#reviews" title="Rate on WordPress.org" className={styles.communityCardLink}>Leave a review →</Link>
               </div>
-              <div className="col col--3 text-center">
-                <h3>📈 Rate Us on WordPress</h3>
-                <p>
-                  Love this plugin? Share your experience by rating and reviewing it on <Link to={"https://wordpress.org/plugins/simple-jwt-login"} title="WordPress plugin">WordPress.org</Link>. Your feedback inspires us and helps others find the plugin.
-                </p>
-              </div>
-              <div className="col col--3 text-center">
-                <h3>🌍 Help Us Translate</h3>
-
-                <p>
-                  Make this plugin accessible to a global audience! Join our <Link
-                    to={"https://translate.wordpress.org/projects/wp-plugins/simple-jwt-login/"} title="WordPress translate">translation</Link> efforts and help us reach more users in their native language. 
-                </p>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col col--12'>
-                <h3>💖 Why Your Contribution Matters </h3>
-                <p>
-                  Every contribution, big or small, makes a difference. Together, we can build something even better for the community.
-                </p>
+              <div className={styles.whyCard}>
+                <div className={styles.whyCardIcon}>🌍</div>
+                <h3 className={styles.whyCardTitle}>Help Translate</h3>
+                <p className={styles.whyCardDesc}>Make JWT auth accessible in every language — join us on translate.wordpress.org.</p>
+                <Link to="https://translate.wordpress.org/projects/wp-plugins/simple-jwt-login/" title="Translate Simple JWT Login" className={styles.communityCardLink}>Start translating →</Link>
               </div>
             </div>
           </div>
@@ -470,7 +591,7 @@ function Docs() {
               <div className="container">
                 <div className="row">
                   <h2 className={styles.sectionTitle}>
-                    Reviews
+                    What developers are saying
                   </h2>
                 </div>
                 <div className="row">

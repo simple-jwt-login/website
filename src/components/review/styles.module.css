@@ -1,20 +1,91 @@
-.reviewsRow{
-    /*background: #fff none repeat scroll 0 0;*/
-    padding: 5px 10px;
-    margin-bottom: 10px;
-    transition: all 0.5s ease-in-out 0s;
-    border: 2px dotted #42b983;
-  }
-  .reviewsRow .reviewTitle {
-    font-weight: bold;
-  }
-  .reviewsRow p{
-    color: #626262;
-  }
-  html[data-theme="dark"] .reviewsRow p{
-    color:#f7f7f7;
-  }
-  .reviewsMore{
-    text-align: center;
-    margin-top: 4rem;
-  }
+/* ============================================================
+   REVIEW / TESTIMONIAL CARD COMPONENT
+   ============================================================ */
+
+.reviewsRow {
+  position: relative;
+  padding: 1.5rem 1.25rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--sjl-border, #e1e7ef);
+  background: var(--sjl-surface, #ffffff);
+  transition: box-shadow 250ms ease, transform 250ms ease;
+  overflow: hidden;
+}
+
+/* Accent stripe */
+.reviewsRow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-lighter) 100%);
+  border-radius: 14px 14px 0 0;
+}
+
+.reviewsRow:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+html[data-theme='dark'] .reviewsRow {
+  background: #161b25;
+  border-color: #1e2736;
+}
+html[data-theme='dark'] .reviewsRow:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Author + stars row */
+.reviewsRow > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.reviewsRow > div:first-child > span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--sjl-text-muted, #64748b);
+}
+.reviewsRow > div:first-child > span a {
+  color: var(--ifm-color-primary);
+}
+.reviewsRow > div:first-child > span a:hover {
+  text-decoration: underline;
+}
+
+/* Title */
+.reviewTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--sjl-text, #1a202c);
+}
+html[data-theme='dark'] .reviewTitle { color: #e2e8f0; }
+
+/* Quote text */
+.reviewsRow p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--sjl-text-muted, #64748b);
+  margin: 0;
+  font-style: italic;
+}
+html[data-theme='dark'] .reviewsRow p { color: #8899b0; }
+
+/* More reviews link */
+.reviewsMore {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.reviewsMore a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+.reviewsMore a:hover { text-decoration: underline; }

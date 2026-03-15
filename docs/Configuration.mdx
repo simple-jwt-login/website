@@ -9,22 +9,24 @@ author_url: https://github.com/nicumicle
 
 ## Server
 
-You can access the Simple-JWT-Login API in two modes:
-  - **using permalink**: 
-    ```
-    https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}
-    ```
-  - **using rest_route**: 
-    ```
-    https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
-    ```
+The Simple-JWT-Login REST API is accessible via two URL formats. Both are equivalent — choose the one that fits your WordPress permalink configuration:
+
+- **Pretty permalinks** (recommended):
+  ```
+  https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}
+  ```
+- **Query-string format** (works even without pretty permalinks):
+  ```
+  https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
+  ```
 
 ## Request Parameters
 
-The request parameters can be sent as follows:
- - **Form Data**
- - **Query parameters**
- - **Request body** ( as JSON )
+Parameters can be sent in any of the following ways:
+
+- **JSON request body** (recommended for POST/PUT/DELETE requests)
+- **Query string** (convenient for GET requests and quick testing)
+- **Form data** (`application/x-www-form-urlencoded`)
 
 ### Examples
 
@@ -50,45 +52,39 @@ or
 ```
  
 
-## Configuration
+## Initial Configuration
 
-1. Go to “**General** section”
-2. Set a “**JWT Decryption key**”. With this key, we will validate your JWT.
-3. Choose “**JWT Decryption algorithm**”.
-4. Save Changes
+1. Go to **Settings → Simple JWT Login → General**.
+2. Set a **JWT Decryption key** — this secret is used to sign and verify all tokens.
+3. Choose a **JWT Decryption algorithm** (e.g., `HS256`).
+4. Click **Save Changes**.
 
 :::caution
-
-For security reasons, please make sure you use a complex decryption key and also include special characters in your decryption key.
-
+Use a long, random string for the JWT Decryption key and include special characters. This key is equivalent to a master password — anyone who knows it can forge valid tokens.
 :::
 
+## Where to send the JWT
 
-## Get JWT from option
-By default, only the REQUEST is `on`.  This means that the plugin will search in the request for the JWT. 
+By default, the plugin looks for the JWT in the **request parameters** (query string or body). You can also enable additional sources:
 
-Also, you set to search in: 
-1. REQUEST ( plugin will search for the `JWT` key : `&JWT=your_jwt`)
-2. SESSION ( plugin will search for the `simple-jwt-login-token` key:  `$_SESSION['simple-jwt-login-token']`)
-3. COOKIE ( plugin will search for the `simple-jwt-login-token` key: `$_COOKIE['simple-jwt-login-token']`)
-4. HEADER ( plugin will search in the `Authorization` header: `Authorization: Bearer YOUR_JWT_HERE`)
+| Source | How to send the JWT |
+| :----- | :------------------ |
+| **REQUEST** *(default)* | Query param: `?JWT=your_jwt` or body field `JWT` |
+| **SESSION** | `$_SESSION['simple-jwt-login-token']` |
+| **COOKIE** | `$_COOKIE['simple-jwt-login-token']` |
+| **HEADER** | `Authorization: Bearer YOUR_JWT_HERE` |
 
-If JWT is provided in multiple places, the higher number of the option will overwrite the smaller one.
-
-For **example**, let's say you will send a JWT in **REQUEST** and in **HEADER**. The JWT from **HEADER** will be used. 
+When a JWT is present in multiple locations, the source with the highest priority wins (HEADER > COOKIE > SESSION > REQUEST).
 
 :::note
-
-I recommend you to enable the HEADER option, and always send the JWT in the header.
-
+The recommended approach is to enable **HEADER** and always send the JWT as a `Bearer` token in the `Authorization` header. This is the most widely supported pattern and avoids tokens appearing in server logs.
 :::
 
-## Allow JWT usage on all endpoints
- 
-In order to use this feature, you will need to check "**All WordPress endpoints checks for JWT authentication**" in the "**General**" section.
-When a JWT is found, first, you will be authenticated as the user in the JWT, and then the call to the endpoint will be made.
+## Allow JWT usage on all WordPress endpoints
 
-For example, you can create posts, as a specific user, if you provide a JWT in your request.
+Enable **”All WordPress endpoints check for JWT authentication”** in the General settings to use JWT authentication on any WordPress REST route — not just the Simple-JWT-Login ones.
+
+When a JWT is found, the plugin first authenticates the request as the user identified by the token, then passes the request to WordPress. This lets you, for example, create posts or access protected data as a specific user.
 
 ```bash
 curl -X POST "https://simplejwtlogin.com/wp-json/wp/v2/posts?content=PostContent&title=PostTitle" \

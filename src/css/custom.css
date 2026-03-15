@@ -1,65 +1,479 @@
+/* ============================================================
+   SIMPLE JWT LOGIN — GLOBAL CUSTOM STYLES
+   ============================================================ */
+
+/* Inter from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────── */
 :root {
-  /*--ifm-link-decoration: red;*/
-  --ifm-color-primary: #42b983;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* Brand */
+  --ifm-color-primary:          #42b983;
+  --ifm-color-primary-dark:     #34a472;
+  --ifm-color-primary-darker:   #2e9464;
+  --ifm-color-primary-darkest:  #24754f;
+  --ifm-color-primary-light:    #55c493;
+  --ifm-color-primary-lighter:  #63cba0;
+  --ifm-color-primary-lightest: #85d8b5;
+
+  /* Neutrals */
+  --sjl-surface:       #ffffff;
+  --sjl-surface-alt:   #f6f8fa;
+  --sjl-border:        #e1e7ef;
+  --sjl-text:          #1a202c;
+  --sjl-text-muted:    #64748b;
+  --sjl-shadow-sm:     0 1px 3px 0 rgba(0,0,0,.08), 0 1px 2px -1px rgba(0,0,0,.06);
+  --sjl-shadow-md:     0 4px 12px 0 rgba(0,0,0,.08), 0 2px 4px -2px rgba(0,0,0,.06);
+  --sjl-shadow-lg:     0 10px 30px -5px rgba(0,0,0,.12);
+
+  /* Radius */
+  --sjl-radius-sm: 6px;
+  --sjl-radius-md: 10px;
+  --sjl-radius-lg: 16px;
+  --sjl-radius-xl: 24px;
+
+  /* Typography */
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.7;
+  --ifm-heading-font-weight: 700;
+  --ifm-font-weight-semibold: 600;
+
+  /* Navbar */
+  --ifm-navbar-height: 64px;
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.92);
+
+  /* Sidebar */
+  --ifm-sidebar-width: 280px;
+
+  /* Code */
+  --ifm-code-font-size: 0.875em;
+  --ifm-code-border-radius: var(--sjl-radius-sm);
+  --docusaurus-highlighted-code-line-bg: rgba(66, 185, 131, 0.08);
+
+  /* Transitions */
+  --ifm-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ifm-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.header-github-logo:before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background-image: url("/assets/svg/brand-github.svg");
-  background-repeat: no-repeat;
+/* ── Dark Mode Tokens ──────────────────────────────────────── */
+html[data-theme='dark'] {
+  --sjl-surface:     #0f1117;
+  --sjl-surface-alt: #161b25;
+  --sjl-border:      #1e2736;
+  --sjl-text:        #e2e8f0;
+  --sjl-text-muted:  #8899b0;
+  --sjl-shadow-sm:   0 1px 3px 0 rgba(0,0,0,.3);
+  --sjl-shadow-md:   0 4px 12px 0 rgba(0,0,0,.35);
+  --sjl-shadow-lg:   0 10px 30px -5px rgba(0,0,0,.45);
+
+  --ifm-navbar-background-color: rgba(15, 17, 23, 0.95);
+  --ifm-background-color: #0f1117;
+  --ifm-background-surface-color: #161b25;
 }
 
-.header-discord-logo:before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background-size: contain;
-  background-image: url('/assets/svg/brand-discord.svg');
-  background-repeat: no-repeat;
+/* ── Base / Reset ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--ifm-font-family-base);
+  color: var(--sjl-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Scrollbar (Webkit) */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--sjl-border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ifm-color-primary-light); }
+
+/* ── Navbar ────────────────────────────────────────────────── */
+.navbar {
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--sjl-border);
+  padding: 0 1.5rem;
+}
+
+.navbar__brand { font-weight: 700; letter-spacing: -0.01em; }
+
+.navbar__link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: var(--sjl-radius-sm);
+  padding: 0.35rem 0.65rem;
+  transition: background var(--ifm-transition-fast), color var(--ifm-transition-fast);
+}
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--ifm-color-primary);
+  background: rgba(66, 185, 131, 0.08);
+}
+.navbar__link--active {
+  border-bottom: none;
+  font-weight: 600;
+}
+
+/* Social icon links in navbar */
+.header-github-logo:before,
+.header-discord-logo:before,
 .header-twitter-logo:before {
   content: '';
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   display: flex;
-  background-size: contain;
-  background-image: url('/assets/svg/brand-x.svg');
   background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.7;
+  transition: opacity var(--ifm-transition-fast);
+}
+.header-github-logo:hover:before,
+.header-discord-logo:hover:before,
+.header-twitter-logo:hover:before { opacity: 1; }
+
+.header-github-logo:before  { background-image: url("/assets/svg/brand-github.svg"); }
+.header-discord-logo:before { background-image: url('/assets/svg/brand-discord.svg'); }
+.header-twitter-logo:before { background-image: url('/assets/svg/brand-x.svg'); }
+
+html[data-theme='dark'] .header-github-logo:before  { background-image: url("/assets/svg/brand-github-dark.svg"); }
+html[data-theme='dark'] .header-discord-logo:before { background-image: url('/assets/svg/brand-discord-dark.svg'); }
+html[data-theme='dark'] .header-twitter-logo:before { background-image: url('/assets/svg/brand-x-dark.svg'); }
+
+/* ── Sidebar ───────────────────────────────────────────────── */
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--sjl-border) !important;
 }
 
-/* Icons dark mode */
-html[data-theme='dark'] .header-github-logo:before {
-  background-image: url("/assets/svg/brand-github-dark.svg");
+.menu__link {
+  font-size: 0.875rem;
+  border-radius: var(--sjl-radius-sm);
+  transition: background var(--ifm-transition-fast), color var(--ifm-transition-fast);
 }
-html[data-theme='dark'] .header-discord-logo:before {
-  background-image: url('/assets/svg/brand-discord-dark.svg');
-}
-html[data-theme='dark'] .header-twitter-logo:before {
-  background-image: url('/assets/svg/brand-x-dark.svg');
+.menu__link:hover { background: rgba(66, 185, 131, 0.07); }
+.menu__link--active {
+  font-weight: 600;
+  background: rgba(66, 185, 131, 0.1) !important;
+  color: var(--ifm-color-primary) !important;
 }
 
+.menu__caret::before { transition: transform var(--ifm-transition-fast); }
+
+/* ── Breadcrumbs ───────────────────────────────────────────── */
+.breadcrumbs__link {
+  font-size: 0.8rem;
+  color: var(--sjl-text-muted);
+}
+
+/* ── Typography ────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ifm-font-family-base);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.markdown h1 {
+  font-size: clamp(1.75rem, 4vw, 2.4rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.markdown h2 {
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-weight: 700;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--sjl-border);
+  margin-top: 2.5rem;
+}
+.markdown h3 { font-size: 1.15rem; font-weight: 600; }
+
+header h1 { color: var(--ifm-color-primary); }
+
+/* ── Links ─────────────────────────────────────────────────── */
+a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: color var(--ifm-transition-fast);
+}
+a:hover { color: var(--ifm-color-primary-dark); text-decoration: underline; }
+
+/* ── Code Blocks ───────────────────────────────────────────── */
+code {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.875em;
+  background: rgba(66, 185, 131, 0.08);
+  border: 1px solid rgba(66, 185, 131, 0.2);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  color: var(--ifm-color-primary-darker);
+}
+html[data-theme='dark'] code {
+  background: rgba(66, 185, 131, 0.1);
+  border-color: rgba(66, 185, 131, 0.25);
+  color: var(--ifm-color-primary-lightest);
+}
+
+.theme-code-block {
+  border-radius: var(--sjl-radius-md) !important;
+  border: 1px solid var(--sjl-border) !important;
+  box-shadow: var(--sjl-shadow-sm);
+  overflow: hidden;
+}
+
+/* Code block copy button */
+.clean-btn.theme-code-block-clipboard-btn {
+  border-radius: var(--sjl-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity var(--ifm-transition-fast), background var(--ifm-transition-fast);
+}
+.theme-code-block:hover .clean-btn.theme-code-block-clipboard-btn { opacity: 1; }
+
+/* ── Tables ────────────────────────────────────────────────── */
+.markdown table {
+  font-size: 0.9rem;
+  border-collapse: collapse;
+  border-radius: var(--sjl-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--sjl-border);
+  box-shadow: var(--sjl-shadow-sm);
+  width: 100%;
+}
+.markdown table thead tr {
+  background: var(--sjl-surface-alt);
+  border-bottom: 2px solid var(--sjl-border);
+}
+.markdown table thead th {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sjl-text-muted);
+  padding: 0.75rem 1rem;
+}
+.markdown table tbody tr {
+  border-bottom: 1px solid var(--sjl-border);
+  transition: background var(--ifm-transition-fast);
+}
+.markdown table tbody tr:last-child { border-bottom: none; }
+.markdown table tbody tr:hover { background: rgba(66, 185, 131, 0.04); }
+.markdown table td {
+  padding: 0.7rem 1rem;
+  vertical-align: top;
+}
+
+/* ── Admonitions ───────────────────────────────────────────── */
+.admonition {
+  border-radius: var(--sjl-radius-md);
+  border-left-width: 4px;
+  box-shadow: var(--sjl-shadow-sm);
+  font-size: 0.9rem;
+}
+.admonition-heading h5 { font-size: 0.8rem; letter-spacing: 0.08em; }
+
+.alert--note    { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.06); }
+.alert--tip     { border-left-color: var(--ifm-color-primary); background: rgba(66, 185, 131, 0.06); }
+.alert--info    { border-left-color: #06b6d4; background: rgba(6, 182, 212, 0.06); }
+.alert--caution { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.06); }
+.alert--danger  { border-left-color: #ef4444; background: rgba(239, 68, 68, 0.06); }
+
+/* ── Announcement Bar ──────────────────────────────────────── */
+div[class*='announcementBar'] {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+article header { margin-bottom: 2rem; }
+
+/* ── Pagination ────────────────────────────────────────────── */
+.pagination-nav__link {
+  border: 1px solid var(--sjl-border);
+  border-radius: var(--sjl-radius-md);
+  transition: box-shadow var(--ifm-transition-fast), border-color var(--ifm-transition-fast);
+}
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary-light);
+  box-shadow: var(--sjl-shadow-sm);
+}
+.pagination-nav__label { font-weight: 600; }
+
+/* ── Table of Contents ─────────────────────────────────────── */
+.table-of-contents__link {
+  font-size: 0.8rem;
+  transition: color var(--ifm-transition-fast);
+}
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+footer.footer {
+  background: #0a0d13;
+  border-top: 1px solid #1e2736;
+}
 footer.footer.footer--dark {
-  background-color: #000;
+  background: #0a0d13;
+}
+.footer__title { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8899b0; }
+.footer__link-item { font-size: 0.875rem; color: #a0aec0; transition: color var(--ifm-transition-fast); }
+.footer__link-item:hover { color: var(--ifm-color-primary); text-decoration: none; }
+.footer__copyright { color: #4a5568; font-size: 0.8rem; }
+
+/* ── Tag pills ─────────────────────────────────────────────── */
+.badge { border-radius: 999px; font-size: 0.75rem; font-weight: 500; }
+
+/* ── Utility ───────────────────────────────────────────────── */
+.text-left { text-align: left !important; }
+
+/* ============================================================
+   BLOG & RELEASES — GLOBAL OVERRIDES
+   ============================================================ */
+
+/* ── Blog sidebar ──────────────────────────────────────────── */
+.blog-sidebar {
+  border-right: none !important;
 }
 
-.text-left{
-  text-align: left !important;
+/* Sidebar title */
+[class*='blogSidebarContainer'] h3,
+[class*='blogSidebar'] h3 {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--sjl-text-muted, #64748b) !important;
+  margin-bottom: 0.75rem !important;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 1px solid var(--sjl-border, #e1e7ef) !important;
 }
 
-.navbar__link--active{
-  border-bottom: 2px solid #42b983;
+/* Sidebar links */
+[class*='blogSidebarItem'] a,
+[class*='blogSidebar'] li a {
+  font-size: 0.85rem;
+  color: var(--sjl-text-muted, #64748b);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--sjl-radius-sm, 6px);
+  display: block;
+  transition: background 150ms ease, color 150ms ease;
 }
-header h1 {
-  color: #42b983;
+[class*='blogSidebarItem'] a:hover,
+[class*='blogSidebar'] li a:hover {
+  background: rgba(66, 185, 131, 0.07);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
 }
+[class*='blogSidebarItem--active'] a,
+[class*='blogSidebar'] li.active a {
+  font-weight: 600;
+  color: var(--ifm-color-primary) !important;
+  background: rgba(66, 185, 131, 0.1) !important;
+}
+
+/* ── Blog list pagination ──────────────────────────────────── */
+[class*='blogListPaginator'] {
+  margin-top: 1rem;
+}
+
+/* ── Blog post page — full article ────────────────────────── */
+
+/* Post header */
+[class*='blogPostPage'] header h1,
+.plugin-blog-pages header h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+/* Post meta bar (date · reading time) */
+[class*='blogPostData'],
+[class*='blogPostInfo'] {
+  font-size: 0.85rem;
+  color: var(--sjl-text-muted, #64748b);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+/* Author block */
+[class*='blogPostAuthors'] {
+  margin: 1.25rem 0 !important;
+}
+[class*='blogPostAuthors'] [class*='authorName'] {
+  font-weight: 600;
+}
+
+/* Tags inline (inside post) */
+[class*='blogPostPage'] [class*='tags'] a,
+.plugin-blog-pages [class*='tags'] a {
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(66, 185, 131, 0.1);
+  color: var(--ifm-color-primary-dark);
+  border: 1px solid rgba(66, 185, 131, 0.25);
+  text-decoration: none;
+}
+html[data-theme='dark'] [class*='blogPostPage'] [class*='tags'] a {
+  color: var(--ifm-color-primary-lightest);
+  background: rgba(66, 185, 131, 0.12);
+}
+
+/* ── Blog archive / tags pages ─────────────────────────────── */
+[class*='blogArchivePage'] h2,
+[class*='blogTagsListPage'] h2,
+[class*='blogTagsPostsPage'] h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-lighter) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── "Read more" link in truncated posts (default fallback) ── */
+[class*='readMoreLink'] a {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+}
+[class*='readMoreLink'] a:hover { text-decoration: underline; }
+
+/* ============================================================
+   OPENAPI / API REFERENCE
+   ============================================================ */
+
+/* ── OpenAPI CSS variable overrides ────────────────────────── */
+
+img.openapi__logo{
+  height: 50px;
+  width: auto;
+}
+
+/* ── Method endpoint block ──────────────────────────────────── */
+h2.openapi__method-endpoint-path {
+  margin: 0;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sjl-text);
+  letter-spacing: 0;
+  padding:0;
+  border-top:0;
+
+}
+

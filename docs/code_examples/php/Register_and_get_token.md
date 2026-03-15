@@ -8,11 +8,12 @@ author_url: https://github.com/nicumicle
 
 ## Introduction
 
-In the dynamic realm of WordPress development, user authentication plays a pivotal role. 
+This example walks through a complete PHP integration with Simple-JWT-Login: registering a new WordPress user, obtaining a JWT for that user, and using the token to create a WordPress post via the REST API.
 
-One powerful tool in this arena is the Simple JWT Login plugin, offering seamless integration of JSON Web Tokens (JWT) for secure user registration and authentication.
-
-In this article, we'll walk through the process of crafting a simple script to register a WordPress user, obtain a JWT, and validate its authenticity through a test call.
+It covers the three most common steps in a headless WordPress workflow:
+1. **Register** — create a new user account
+2. **Authenticate** — exchange credentials for a JWT
+3. **Use the JWT** — call a protected endpoint
 
 For this example, we can create a helper function, that will do the actual call:
 ```php
@@ -54,10 +55,7 @@ function call($method, $endpoint, $data = array(), $headers = array())
 }
 ```
 
-## Getting Started: Registering a WordPress User
-
-To kick things off, let's delve into the creation of a straightforward script that registers a user on a WordPress site.
-We'll leverage the capabilities of the Simple JWT Login endpoint, which provides a user-friendly and efficient solution for user registration.
+## Step 1: Register a WordPress user
 
 :::note
 Please note that, in order to be able to register a new user, you need have "Allow Register: yes" in the plugin settings.
@@ -90,19 +88,14 @@ try{
     }
 
     $userID = $responseJSON['id'];
-   $userID = $responseJSON['id'];
-   echo "Your new user ID is: ". $userID . PHP_EOL;
+    echo "Your new user ID is: " . $userID . PHP_EOL;
 } catch (\Exception $exception) {
    // Unable to do the call
    echo "Error while registering the user: ". $exception->getMessage() . PHP_EOL;
 }
 ```
 
-## Acquiring the JWT
-
-Once the user registration is complete, the next step is to obtain a JSON Web Token.
-The JWT serves as a secure and efficient way to authenticate users without compromising sensitive information.
-Ensure that your WordPress site is configured to issue JWTs through Simple JWT Login.
+## Step 2: Obtain a JWT
 
 :::note
 Please note that, in order to use the Authentication endpoint, you need have "Allow Authentication: yes" in the plugin settings.
@@ -125,13 +118,12 @@ try{
     if ($responseJSON === false) {
         throw new \Exception("Auth response is not a JSON:", $result);
     }
-    // In case of error, suscess will be false
+    // In case of error, success will be false
     if (!isset($responseJSON['success']) || !$responseJSON['success']) {
-        $error = "Error while getting the JWT";
-        if (isset($responseJSON['data']['message'])) {
-            $error .= $responseJSON['data']['message'];
-        }
-        throw new \Exception($responseJSON['data']['message']);
+        $error = isset($responseJSON['data']['message'])
+            ? $responseJSON['data']['message']
+            : "Error while getting the JWT";
+        throw new \Exception($error);
     }
 
     if (!isset($responseJSON['data']['jwt'])) {
@@ -145,10 +137,7 @@ try{
 }
 ```
 
-## Validation Through Test Call: Create a new WordPress Post
-
-With the JWT in hand, the final step involves performing a test call to validate its authenticity. 
-This is a crucial security measure to ensure that the token was issued correctly and is ready for use in subsequent authentication processes.
+## Step 3: Use the JWT to create a WordPress post
 
 :::note
 In order to use the JWT on all endpoint, you need to enable "All WordPress endpoints checks for JWT authentication" from the plugin General Settings.
@@ -179,12 +168,9 @@ try {
 }
 ```
 
-## Full Example
+## Full example
 
-Within this segment, you'll find a comprehensive illustration covering the following:
-1. Registering a user on WordPress
-2. Obtaining a JSON Web Token (JWT) 
-3. Creating a new post on your WordPress website
+The script below combines all three steps: register, authenticate, and create a post.
 
 ```php
 <?php
@@ -243,8 +229,7 @@ try {
         throw new \Exception("Response is not a JSON:", $result);
     }
 
-    var_dump($responseJSON);
-    // In case of error, suscess will be false
+    // In case of error, success will be false
     if (!$responseJSON['success']) {
         throw new \Exception($responseJSON['data']['message']);
     }
@@ -257,13 +242,12 @@ try {
     if ($responseJSON === false) {
         throw new \Exception("Auth response is not a JSON:", $result);
     }
-    // In case of error, suscess will be false
+    // In case of error, success will be false
     if (!isset($responseJSON['success']) || !$responseJSON['success']) {
-        $error = "Error while getting the JWT";
-        if (isset($responseJSON['data']['message'])) {
-            $error .= $responseJSON['data']['message'];
-        }
-        throw new \Exception($responseJSON['data']['message']);
+        $error = isset($responseJSON['data']['message'])
+            ? $responseJSON['data']['message']
+            : "Error while getting the JWT";
+        throw new \Exception($error);
     }
 
     if (!isset($responseJSON['data']['jwt'])) {

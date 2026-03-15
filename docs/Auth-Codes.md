@@ -6,31 +6,32 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Auth codes are optional, but you can enable them for:
- - Auto-login
- - Register User
- - Delete user
- - Reset and Change Password
- - Authenticate
- 
-The Auth Codes can have any format and this feature allows you to add a layer of protection to your API routes.
+Auth Codes are an optional security layer that adds a shared secret to your API requests. Think of them as API keys: a caller must include the correct `AUTH_CODE` value alongside their request, otherwise the plugin rejects it.
+
+You can require an Auth Code for any combination of the following operations:
+- Auto-login
+- Register User
+- Delete User
+- Reset Password and Change Password
+- Authenticate (JWT generation)
 
 :::caution
-For security reasons, please make sure you set complex string for the AUTH CODES values.
+Use long, random strings for Auth Code values. Short or predictable codes offer little protection. Treat them like passwords — store them securely and rotate them if they are compromised.
 :::
 
-The Auth codes contain 3 parts:
-1. Authentication Key: This is the actual code that you have to add to the request.
-2. WordPress new User Role: can be used when you want to create multiple user types with the create user endpoint. If you leave it blank, the value configured in the ‘Register Settings’ will be used.
-3. Expiration Date: This allows you to set an expiration date for your auth codes. The format is `Y-M-D H:m:s`.
- Example : `2020-12-24 23:00:00`
- 
+## Auth Code structure
+
+Each Auth Code has three fields:
+
+| Field | Description |
+| :---- | :---------- |
+| **Authentication Key** | The actual code value that must be included in requests as the `AUTH_CODE` parameter. |
+| **WordPress User Role** | *(Optional)* When set, users registered using this code are assigned this role instead of the default role configured in Register Settings. Useful for creating multiple user tiers (e.g., "premium" vs "free") from a single endpoint. |
+| **Expiration Date** | *(Optional)* The date and time after which this code is no longer accepted. Format: `Y-M-D H:m:s` — e.g., `2025-12-31 23:59:59`. |
 
 :::note
-Please note that, if you leave the expiration date blank, it will never expire.
+Leaving the expiration date blank means the code never expires.
 :::
-
-
 
 ## Screenshot
 ![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-8.png?raw=true)
