@@ -14,8 +14,10 @@ export default function BlogLayout(props: Props): JSX.Element {
           <BlogSidebar sidebar={sidebar} />
           <main
             className={clsx('col', {
-              'col--9': hasSidebar,
-              'col--12': !hasSidebar,
+              'col--7': hasSidebar && toc,
+              'col--9': hasSidebar && !toc,
+              'col--10': !hasSidebar && toc,
+              'col--12': !hasSidebar && !toc,
             })}>
             {children}
           </main>
