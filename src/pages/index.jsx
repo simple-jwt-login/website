@@ -271,6 +271,11 @@ export default function HomePage() {
               <span className={styles.heroStatNum}>100%</span>
               <span className={styles.heroStatLabel}>Free</span>
             </div>
+            <br />
+            <div className={styles.heroStat}>
+              <span className={styles.heroStatNum}>6+ years</span>
+              <span className={styles.heroStatLabel}>Active development</span>
+            </div>
           </div>
         </div>
       </header>
