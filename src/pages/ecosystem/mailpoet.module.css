@@ -1,0 +1,430 @@
+/* ============================================================
+   MAILPOET ADD-ON LANDING PAGE — orange accent
+   ============================================================ */
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 7rem 2rem 5rem;
+  text-align: center;
+  background: linear-gradient(160deg, #0c1118 0%, #1a0b00 55%, #0c1118 100%);
+  color: #e2e8f0;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249,115,22,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(249,115,22,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroBadge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(249,115,22,0.4);
+  background: rgba(249,115,22,0.1);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f97316;
+  margin-bottom: 1.5rem;
+}
+
+.heroTitle {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.heroAccent {
+  background: linear-gradient(135deg, #f97316 0%, #fdba74 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: rgba(255,255,255,0.6);
+  max-width: 560px;
+  margin: 0 auto 2rem;
+  line-height: 1.65;
+}
+
+.heroCta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.heroCodeWrap {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) { .hero { padding: 4rem 1.5rem 3rem; } }
+
+/* ── Code block ────────────────────────────────────────────── */
+.codeBlock {
+  border-radius: 14px;
+  background: #0d1117;
+  border: 1px solid #21262d;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(249,115,22,0.06);
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+.codeBar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1rem;
+  background: #161b22;
+  border-bottom: 1px solid #21262d;
+}
+
+.dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.dotRed    { background: #ff5f57; }
+.dotYellow { background: #febc2e; }
+.dotGreen  { background: #28c840; }
+
+.codeTitle {
+  font-size: 0.78rem;
+  color: #6e7681;
+  margin-left: auto;
+  letter-spacing: 0.04em;
+}
+
+.codeBody {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #c9d1d9;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: transparent;
+  border: none;
+}
+
+.codeLine    { color: #e6edf3; }
+.codeComment { color: #6e7681; }
+.codeAccent  { color: #f97316; }
+
+/* ── Highlights ────────────────────────────────────────────── */
+.highlights {
+  padding: 2rem 1.5rem !important;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+}
+
+.highlightGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.highlightIcon { font-size: 1.25rem; line-height: 1; }
+.highlightText { color: var(--sjl-text-muted, #64748b); font-weight: 500; }
+
+/* ── Section lead ──────────────────────────────────────────── */
+.sectionLead {
+  font-size: 1.05rem;
+  color: var(--sjl-text-muted, #64748b);
+  max-width: 560px;
+  margin: -1.5rem auto 2.5rem;
+  line-height: 1.65;
+}
+
+/* ── Steps grid ────────────────────────────────────────────── */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+@media (max-width: 996px) { .stepsGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .stepsGrid { grid-template-columns: 1fr; } }
+
+.stepCard {
+  background: var(--sjl-surface, #fff);
+  border: 1px solid var(--sjl-border, #e1e7ef);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  text-align: left;
+  position: relative;
+  transition: box-shadow 250ms ease, transform 250ms ease, border-color 250ms ease;
+}
+.stepCard:hover {
+  box-shadow: 0 12px 36px rgba(249,115,22,0.12);
+  transform: translateY(-3px);
+  border-color: rgba(249,115,22,0.35);
+}
+html[data-theme='dark'] .stepCard {
+  background: #0d1117;
+  border-color: #21262d;
+}
+html[data-theme='dark'] .stepCard:hover {
+  box-shadow: 0 12px 36px rgba(249,115,22,0.14);
+  border-color: rgba(249,115,22,0.3);
+}
+
+.stepNum {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: rgba(249,115,22,0.5);
+  letter-spacing: 0.05em;
+}
+
+.stepIcon {
+  font-size: 1.75rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.stepTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.stepDesc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--sjl-text-muted, #64748b);
+  margin: 0;
+}
+
+/* ── Use cases ─────────────────────────────────────────────── */
+.useCaseGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) { .useCaseGrid { grid-template-columns: 1fr; } }
+
+.useCaseCard {
+  background: var(--sjl-surface, #fff);
+  border: 1px solid var(--sjl-border, #e1e7ef);
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  text-align: left;
+  transition: box-shadow 250ms ease, transform 250ms ease, border-color 250ms ease;
+}
+.useCaseCard:hover {
+  box-shadow: 0 12px 40px rgba(249,115,22,0.1);
+  transform: translateY(-3px);
+  border-color: rgba(249,115,22,0.3);
+}
+html[data-theme='dark'] .useCaseCard {
+  background: #0d1117;
+  border-color: #21262d;
+}
+html[data-theme='dark'] .useCaseCard:hover {
+  box-shadow: 0 12px 40px rgba(249,115,22,0.12);
+  border-color: rgba(249,115,22,0.28);
+}
+
+.useCaseIcon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.useCaseTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.useCaseDesc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--sjl-text-muted, #64748b);
+  margin: 0;
+}
+
+/* ── Shortcode reference ───────────────────────────────────── */
+.refTable {
+  max-width: 760px;
+  margin: 0 auto;
+  border: 1px solid var(--sjl-border, #e1e7ef);
+  border-radius: 16px;
+  overflow: hidden;
+}
+html[data-theme='dark'] .refTable { border-color: #21262d; }
+
+.refRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--sjl-border, #e1e7ef);
+  transition: background 150ms ease;
+  text-align: left;
+}
+.refRow:last-child { border-bottom: none; }
+.refRow:hover { background: rgba(249,115,22,0.04); }
+html[data-theme='dark'] .refRow { border-color: #21262d; }
+html[data-theme='dark'] .refRow:hover { background: rgba(249,115,22,0.05); }
+
+.refLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  width: 180px;
+}
+@media (max-width: 600px) {
+  .refRow { flex-direction: column; gap: 0.4rem; }
+  .refLeft { width: auto; }
+}
+
+.refParam {
+  font-size: 0.82rem;
+  color: #f97316;
+  background: rgba(249,115,22,0.1);
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+.refRequired {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ef4444;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  white-space: nowrap;
+}
+
+.refDesc {
+  font-size: 0.875rem;
+  color: var(--sjl-text-muted, #64748b);
+  line-height: 1.55;
+}
+
+/* ── Install steps ─────────────────────────────────────────── */
+.installSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.installStep {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.installStep > span { flex-shrink: 0; width: 52px; height: 52px; font-size: 1.3rem; }
+.installStep strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: var(--ifm-heading-color);
+}
+.installStep p {
+  font-size: 0.875rem;
+  color: var(--sjl-text-muted, #64748b);
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* ── CTA ───────────────────────────────────────────────────── */
+.ctaSection {
+  padding: 5rem 1.5rem;
+  background: linear-gradient(160deg, #0c1118 0%, #1a0b00 55%, #0c1118 100%);
+}
+
+.ctaCard {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(249,115,22,0.2);
+  background: rgba(255,255,255,0.02);
+  overflow: hidden;
+}
+
+.ctaGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.14) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.ctaTitle {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.ctaSubtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  line-height: 1.65;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
