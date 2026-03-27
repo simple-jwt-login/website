@@ -288,20 +288,6 @@ const config: Config = {
           className: 'header-github-logo',
           'aria-label': 'GitHub',
           title: 'GitHub',
-        },
-        {
-          href: 'https://discord.gg/c4AeefD8Dr',
-          position: 'right',
-          className: 'header-discord-logo',
-          'aria-label': 'Discord',
-          title: 'Discord',
-        },
-        {
-          href: 'https://twitter.com/simplejwtlogin',
-          position: 'right',
-          className: 'header-twitter-logo',
-          'aria-label': 'Follow us on X (Twitter)',
-          title: 'Follow us',
         }
       ],
     },
