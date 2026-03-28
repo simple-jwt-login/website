@@ -4,6 +4,9 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './php-sdk.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faScrewdriverWrench, faLock, faFlask, faBoxArchive, faPlug, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faPhp } from '@fortawesome/free-brands-svg-icons';
 import sharedStyles from '../styles.module.css';
 
 const jsonLd = {
@@ -185,7 +188,7 @@ function ExampleTabs() {
 /* ── Use-case cards ─────────────────────────────────────────── */
 const useCases = [
   {
-    icon: '🏗️',
+    icon: faScrewdriverWrench,
     title: 'Headless WordPress',
     description:
       'Build a decoupled frontend in Laravel, Symfony, or plain PHP while WordPress handles content. Authenticate users from your PHP app and pass JWTs to the WP REST API.',
@@ -205,7 +208,7 @@ $posts = Http::withToken($jwt)
     ->json();`,
   },
   {
-    icon: '🔐',
+    icon: faLock,
     title: 'User registration flow',
     description:
       'Register users from your own sign-up form and immediately issue a JWT — all in one round trip, without touching the WordPress admin.',
@@ -226,7 +229,7 @@ $auth = $client
 $jwt = $auth['data']['jwt'];`,
   },
   {
-    icon: '🧪',
+    icon: faFlask,
     title: 'Automated testing',
     description:
       'Generate tokens in PHPUnit or Pest fixtures to test authenticated flows against a real WordPress instance — no browser, no cookies, no mocking.',
@@ -328,13 +331,13 @@ export default function PhpSdkPage() {
           <div className="container">
             <div className={styles.highlightGrid}>
               {[
-                { icon: '📦', text: 'One Composer package' },
-                { icon: '🐘', text: 'PHP 5.5+ compatible' },
-                { icon: '🔌', text: 'Works with any framework' },
-                { icon: '🆓', text: 'Free & open source' },
+                { icon: faBoxArchive, text: 'One Composer package' },
+                { icon: faPhp, text: 'PHP 5.5+ compatible' },
+                { icon: faPlug, text: 'Works with any framework' },
+                { icon: faHeart, text: 'Free & open source' },
               ].map(({ icon, text }) => (
                 <div key={text} className={styles.highlightItem}>
-                  <span className={styles.highlightIcon}>{icon}</span>
+                  <span className={styles.highlightIcon}><FontAwesomeIcon icon={icon} /></span>
                   <span className={styles.highlightText}>{text}</span>
                 </div>
               ))}
@@ -386,7 +389,7 @@ export default function PhpSdkPage() {
               {useCases.map(({ icon, title, description, code }) => (
                 <div key={title} className={styles.useCaseCard}>
                   <div className={styles.useCaseHeader}>
-                    <span className={styles.useCaseIcon}>{icon}</span>
+                    <span className={styles.useCaseIcon}><FontAwesomeIcon icon={icon} /></span>
                     <h3 className={styles.useCaseTitle}>{title}</h3>
                   </div>
                   <p className={styles.useCaseDesc}>{description}</p>

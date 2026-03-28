@@ -4,6 +4,8 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './cli.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGear, faArrowsRotate, faHeart, faDesktop, faKey, faPlug } from '@fortawesome/free-solid-svg-icons';
 import sharedStyles from '../styles.module.css';
 
 const jsonLd = {
@@ -180,7 +182,7 @@ function CommandTabs() {
 /* ── Use-case cards ─────────────────────────────────────────── */
 const useCases = [
   {
-    icon: '⚙️',
+    icon: faGear,
     title: 'CI / CD pipelines',
     description:
       'Generate a short-lived JWT inside your pipeline to seed test data, run authenticated smoke tests, or hit protected API endpoints — no browser, no cookies.',
@@ -190,7 +192,7 @@ curl -s -X POST https://my-site.com/wp-json/wp/v2/posts \\
   -d '{"title":"Smoke test post","status":"publish"}'`,
   },
   {
-    icon: '🔄',
+    icon: faArrowsRotate,
     title: 'Staging → production migrations',
     description:
       'Export the full plugin config from staging with one command, preview the diff on production in dry-run mode, then apply — fully non-interactive.',
@@ -204,7 +206,7 @@ wp jwt config import jwt-staging.json --dry-run --url=https://example.com
 wp jwt config import jwt-staging.json --yes --url=https://example.com`,
   },
   {
-    icon: '❤️',
+    icon: faHeart,
     title: 'Automated health checks',
     description:
       'Add a cron job or monitoring script that logs in, validates the token, and alerts your team when JWT authentication breaks.',
@@ -280,13 +282,13 @@ export default function CliPage() {
           <div className="container">
             <div className={styles.highlightGrid}>
               {[
-                { icon: '🖥️', text: 'Works anywhere WP-CLI runs' },
-                { icon: '🔑', text: '8 commands, everything covered' },
-                { icon: '🔌', text: 'Requires Simple JWT Login plugin' },
-                { icon: '🆓', text: 'Free & open source' },
+                { icon: faDesktop, text: 'Works anywhere WP-CLI runs' },
+                { icon: faKey, text: '8 commands, everything covered' },
+                { icon: faPlug, text: 'Requires Simple JWT Login plugin' },
+                { icon: faHeart, text: 'Free & open source' },
               ].map(({ icon, text }) => (
                 <div key={text} className={styles.highlightItem}>
-                  <span className={styles.highlightIcon}>{icon}</span>
+                  <span className={styles.highlightIcon}><FontAwesomeIcon icon={icon} /></span>
                   <span className={styles.highlightText}>{text}</span>
                 </div>
               ))}
@@ -316,7 +318,7 @@ export default function CliPage() {
               {useCases.map(({ icon, title, description, code }) => (
                 <div key={title} className={styles.useCaseCard}>
                   <div className={styles.useCaseHeader}>
-                    <span className={styles.useCaseIcon}>{icon}</span>
+                    <span className={styles.useCaseIcon}><FontAwesomeIcon icon={icon} /></span>
                     <h3 className={styles.useCaseTitle}>{title}</h3>
                   </div>
                   <p className={styles.useCaseDesc}>{description}</p>

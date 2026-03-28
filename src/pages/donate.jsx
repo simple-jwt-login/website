@@ -1,6 +1,8 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDesktop, faLock, faBolt, faBook, faMugHot, faSeedling, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import styles from './donate.module.css';
 
 const PAYPAL_URL =
@@ -15,25 +17,25 @@ const stats = [
 
 const impacts = [
   {
-    icon: '🖥️',
+    icon: faDesktop,
     title: 'Keep the lights on',
     description:
       'Cover monthly hosting and infrastructure costs for simplejwtlogin.com and all associated services.',
   },
   {
-    icon: '🔒',
+    icon: faLock,
     title: 'Security audits',
     description:
       'Fund regular third-party security reviews to ensure the plugin meets the highest standards for JWT handling.',
   },
   {
-    icon: '⚡',
+    icon: faBolt,
     title: 'New features',
     description:
       'Acquire premium tools and dedicate development time to build the features most requested by the community.',
   },
   {
-    icon: '📚',
+    icon: faBook,
     title: 'Better docs & SDKs',
     description:
       'Improve documentation, code examples, and expand the official PHP and JavaScript SDKs.',
@@ -44,21 +46,21 @@ const tiers = [
   {
     amount: '€5',
     label: 'Coffee',
-    icon: '☕',
+    icon: faMugHot,
     description: 'A small thank-you that keeps the caffeine flowing during late-night debugging sessions.',
     highlight: true,
   },
   {
     amount: '€10',
     label: 'Supporter',
-    icon: '🌱',
+    icon: faSeedling,
     description: 'Covers a month of hosting costs and shows real commitment to the project.',
     highlight: false,
   },
   {
     amount: '€15',
     label: 'Champion',
-    icon: '🏆',
+    icon: faTrophy,
     description: 'Funds a security audit task or a significant new feature development sprint.',
     highlight: false,
   },
@@ -116,7 +118,7 @@ function DonatePage() {
             <div className={styles.impactGrid}>
               {impacts.map((item) => (
                 <div key={item.title} className={styles.impactCard}>
-                  <div className={styles.impactIcon}>{item.icon}</div>
+                  <div className={styles.impactIcon}><FontAwesomeIcon icon={item.icon} /></div>
                   <h3 className={styles.impactTitle}>{item.title}</h3>
                   <p className={styles.impactDescription}>{item.description}</p>
                 </div>
@@ -144,7 +146,7 @@ function DonatePage() {
                   {tier.highlight && (
                     <div className={styles.tierBadge}>Most popular</div>
                   )}
-                  <div className={styles.tierIcon}>{tier.icon}</div>
+                  <div className={styles.tierIcon}><FontAwesomeIcon icon={tier.icon} /></div>
                   <div className={styles.tierAmount}>{tier.amount}</div>
                   <div className={styles.tierLabel}>{tier.label}</div>
                   <p className={styles.tierDescription}>{tier.description}</p>

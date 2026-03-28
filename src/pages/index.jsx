@@ -6,6 +6,12 @@ import clsx from 'clsx';
 import Feature from "@site/src/components/feature/feature";
 import Review from "@site/src/components/review/review";
 import Counter from '../components/counter/counter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faBolt, faLock, faRocket, faWrench, faGlobe, faLink,
+  faArrowsRotate, faHeart, faStar, faChartLine, faEarthEurope,
+} from '@fortawesome/free-solid-svg-icons'
+import { faPhp } from '@fortawesome/free-brands-svg-icons'
 
 import styles from './styles.module.css';
 
@@ -219,7 +225,6 @@ export default function HomePage() {
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
-
       {/* ── Hero ──────────────────────────────────────────── */}
       <header className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
@@ -304,18 +309,18 @@ export default function HomePage() {
             <h2 className={styles.sectionTitle}>Why developers choose Simple JWT Login</h2>
             <div className={styles.whyGrid}>
               {[
-                { icon: '⚡', title: 'No coding required', desc: 'Set up JWT authentication in minutes via the WordPress admin UI — no custom code needed.' },
-                { icon: '🔐', title: '6 supported algorithms', desc: 'Choose from HS256/384/512 or RS256/384/512 to match your security policy.' },
-                { icon: '🚀', title: '4 JWT delivery methods', desc: 'Authorization header, cookie, session, or query parameter — works everywhere.' },
-                { icon: '🛠️', title: 'Built for developers', desc: '16 WordPress action and filter hooks to customize every authentication flow.' },
-                { icon: '🌐', title: 'CORS-ready', desc: 'Works out of the box with React, Vue, Angular, mobile apps, WPGraphQL, and headless CMS setups.' },
-                { icon: '🐘', title: 'PHP 5.5+ compatible', desc: 'Works on any PHP version from 5.5 onwards — no matter how old or new your server is.' },
-                { icon: '🔗', title: 'Auto-login & magic links', desc: 'Authenticate users via a tokenized URL — no password form needed. Perfect for email campaigns and passwordless flows.' },
-                { icon: '🔄', title: 'Full token lifecycle', desc: 'Refresh, validate, and revoke tokens on demand to keep sessions secure and under your control.' },
-                { icon: '💚', title: 'Free & open source', desc: 'GPL3.0-licensed, community-supported, no hidden costs — ever.' },
+                { icon: faBolt,          title: 'No coding required',     desc: 'Set up JWT authentication in minutes via the WordPress admin UI — no custom code needed.' },
+                { icon: faLock,          title: '6 supported algorithms', desc: 'Choose from HS256/384/512 or RS256/384/512 to match your security policy.' },
+                { icon: faRocket,        title: '4 JWT delivery methods', desc: 'Authorization header, cookie, session, or query parameter — works everywhere.' },
+                { icon: faWrench,        title: 'Built for developers',   desc: '16 WordPress action and filter hooks to customize every authentication flow.' },
+                { icon: faGlobe,         title: 'CORS-ready',             desc: 'Works out of the box with React, Vue, Angular, mobile apps, WPGraphQL, and headless CMS setups.' },
+                { icon: faPhp,           title: 'PHP 5.5+ compatible',    desc: 'Works on any PHP version from 5.5 onwards — no matter how old or new your server is.' },
+                { icon: faLink,          title: 'Auto-login & magic links', desc: 'Authenticate users via a tokenized URL — no password form needed. Perfect for email campaigns and passwordless flows.' },
+                { icon: faArrowsRotate,  title: 'Full token lifecycle',   desc: 'Refresh, validate, and revoke tokens on demand to keep sessions secure and under your control.' },
+                { icon: faHeart,         title: 'Free & open source',     desc: 'GPL3.0-licensed, community-supported, no hidden costs — ever.' },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className={styles.whyCard}>
-                  <div className={styles.whyCardIcon}>{icon}</div>
+                  <div className={styles.whyCardIcon}><FontAwesomeIcon icon={icon} /></div>
                   <h3 className={styles.whyCardTitle}>{title}</h3>
                   <p className={styles.whyCardDesc}>{desc}</p>
                 </div>
@@ -476,25 +481,25 @@ export default function HomePage() {
             </p>
             <div className={clsx(styles.whyGrid, styles.whyGrid2)}>
               <div className={styles.whyCard}>
-                <div className={styles.whyCardIcon}>⭐</div>
+                <div className={styles.whyCardIcon}><FontAwesomeIcon icon={faStar} /></div>
                 <h3 className={styles.whyCardTitle}>Star on GitHub</h3>
                 <p className={styles.whyCardDesc}>Show your appreciation and help others discover the project.</p>
                 <Link to="https://github.com/nicumicle/simple-jwt-login" title="GitHub repository" className={styles.communityCardLink}>Star on GitHub →</Link>
               </div>
               <div className={styles.whyCard}>
-                <div className={styles.whyCardIcon}>🛠️</div>
+                <div className={styles.whyCardIcon}><FontAwesomeIcon icon={faWrench} /></div>
                 <h3 className={styles.whyCardTitle}>Contribute Code</h3>
                 <p className={styles.whyCardDesc}>Submit issues, propose features, or open a pull request on GitHub.</p>
                 <Link to="https://github.com/nicumicle/simple-jwt-login/pulls" title="GitHub Pull Requests" className={styles.communityCardLink}>Open a PR →</Link>
               </div>
               <div className={styles.whyCard}>
-                <div className={styles.whyCardIcon}>📈</div>
+                <div className={styles.whyCardIcon}><FontAwesomeIcon icon={faChartLine} /></div>
                 <h3 className={styles.whyCardTitle}>Rate on WordPress</h3>
                 <p className={styles.whyCardDesc}>Love the plugin? A 5-star review on WordPress.org makes a big difference.</p>
                 <Link to="https://wordpress.org/plugins/simple-jwt-login/#reviews" title="Rate on WordPress.org" className={styles.communityCardLink}>Leave a review →</Link>
               </div>
               <div className={styles.whyCard}>
-                <div className={styles.whyCardIcon}>🌍</div>
+                <div className={styles.whyCardIcon}><FontAwesomeIcon icon={faEarthEurope} /></div>
                 <h3 className={styles.whyCardTitle}>Help Translate</h3>
                 <p className={styles.whyCardDesc}>Make JWT auth accessible in every language — join us on translate.wordpress.org.</p>
                 <Link to="https://translate.wordpress.org/projects/wp-plugins/simple-jwt-login/" title="Translate Simple JWT Login" className={styles.communityCardLink}>Start translating →</Link>

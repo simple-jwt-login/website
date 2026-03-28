@@ -1,6 +1,8 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBolt, faBug, faLightbulb, faHandshake, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import styles from './contact.module.css';
 
 const channels = [
@@ -100,7 +102,7 @@ function ContactPage() {
         <section className={styles.noticeSection}>
           <div className="container">
             <div className={styles.notice}>
-              <div className={styles.noticeIcon} aria-hidden="true">ℹ️</div>
+              <div className={styles.noticeIcon} aria-hidden="true"><FontAwesomeIcon icon={faCircleInfo} /></div>
               <div>
                 <strong>Email support was discontinued on 1 December 2024.</strong>
                 {' '}Please use Discord, GitHub, or the WordPress forum for all
@@ -117,22 +119,22 @@ function ContactPage() {
             <h2 className={styles.sectionTitle}>What to expect</h2>
             <div className={styles.expectGrid}>
               <div className={styles.expectItem}>
-                <span className={styles.expectEmoji}>⚡</span>
+                <span className={styles.expectEmoji}><FontAwesomeIcon icon={faBolt} /></span>
                 <h3>Quick questions</h3>
                 <p>Discord is your best bet — conversations happen fast and the community is active.</p>
               </div>
               <div className={styles.expectItem}>
-                <span className={styles.expectEmoji}>🐛</span>
+                <span className={styles.expectEmoji}><FontAwesomeIcon icon={faBug} /></span>
                 <h3>Bugs & reproducible issues</h3>
                 <p>Open a GitHub issue with steps to reproduce. Include your PHP version, WordPress version, and plugin version.</p>
               </div>
               <div className={styles.expectItem}>
-                <span className={styles.expectEmoji}>💡</span>
+                <span className={styles.expectEmoji}><FontAwesomeIcon icon={faLightbulb} /></span>
                 <h3>Feature requests</h3>
                 <p>Submit a GitHub issue tagged "enhancement". Upvotes and comments help prioritise what gets built next.</p>
               </div>
               <div className={styles.expectItem}>
-                <span className={styles.expectEmoji}>🙌</span>
+                <span className={styles.expectEmoji}><FontAwesomeIcon icon={faHandshake} /></span>
                 <h3>General help</h3>
                 <p>The WordPress forum is great for configuration questions that future users might search for too.</p>
               </div>

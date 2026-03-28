@@ -4,6 +4,8 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './mailpoet.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faNewspaper, faCartShopping, faGift, faEnvelope, faKey, faClock, faHeart, faWrench, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import sharedStyles from '../styles.module.css';
 
 const jsonLd = {
@@ -47,8 +49,8 @@ function CodeBlock({ title, lines }) {
 
 /* ── Shortcode params ───────────────────────────────────────── */
 const params = [
-  { name: 'text', required: false, desc: 'Visible link text shown to the subscriber.' },
-  { name: 'authCode', required: true, desc: 'The Auth Code from Simple JWT Login → Auth Codes.' },
+  { name: 'text', required: true, desc: 'Visible link text shown to the subscriber.' },
+  { name: 'authCode', required: false, desc: 'The Auth Code from Simple JWT Login → Auth Codes.' },
   { name: 'validity', required: false, desc: 'Token lifetime in seconds. Default: 604800 (1 week).' },
   { name: 'redirectUrl', required: false, desc: 'Override the default redirect URL after login.' },
   { name: 'class', required: false, desc: 'CSS class(es) to apply to the link element.' },
@@ -58,19 +60,19 @@ const params = [
 /* ── Use cases ──────────────────────────────────────────────── */
 const useCases = [
   {
-    icon: '📰',
+    icon: faNewspaper,
     title: 'Newsletter re-engagement',
     description:
       'Include a one-click "Read your exclusive content" link in your newsletter. Subscribers land on a members-only page already logged in — no friction, higher engagement.',
   },
   {
-    icon: '🛒',
+    icon: faCartShopping,
     title: 'Abandoned cart recovery',
     description:
       'Send a cart-recovery email with a magic link that logs the customer in and redirects them straight to checkout — remove every barrier between the email and the purchase.',
   },
   {
-    icon: '🎉',
+    icon: faGift,
     title: 'Welcome & onboarding emails',
     description:
       'Welcome new members with a single click that logs them in and drops them on your onboarding page. First impressions matter — make the journey seamless from day one.',
@@ -136,13 +138,13 @@ export default function MailPoetPage() {
           <div className="container">
             <div className={styles.highlightGrid}>
               {[
-                { icon: '✉️', text: 'One shortcode, any template' },
-                { icon: '🔑', text: 'Passwordless login' },
-                { icon: '⏱️', text: 'Configurable token lifetime' },
-                { icon: '🆓', text: 'Free & open source' },
+                { icon: faEnvelope, text: 'One shortcode, any template' },
+                { icon: faKey, text: 'Passwordless login' },
+                { icon: faClock, text: 'Configurable token lifetime' },
+                { icon: faHeart, text: 'Free & open source' },
               ].map(({ icon, text }) => (
                 <div key={text} className={styles.highlightItem}>
-                  <span className={styles.highlightIcon}>{icon}</span>
+                  <span className={styles.highlightIcon}><FontAwesomeIcon icon={icon} /></span>
                   <span className={styles.highlightText}>{text}</span>
                 </div>
               ))}
@@ -159,32 +161,32 @@ export default function MailPoetPage() {
               {[
                 {
                   n: '1',
-                  icon: '🔧',
+                  icon: faWrench,
                   title: 'Install & configure',
                   desc: 'Install the add-on, activate it, and copy your Auth Code from Simple JWT Login settings.',
                 },
                 {
                   n: '2',
-                  icon: '✉️',
+                  icon: faEnvelope,
                   title: 'Add the shortcode',
                   desc: 'Drop the shortcode into any MailPoet email template. Set the link text, validity period, and redirect URL.',
                 },
                 {
                   n: '3',
-                  icon: '📤',
+                  icon: faPaperPlane,
                   title: 'Send your campaign',
                   desc: 'MailPoet renders a unique, personalised autologin URL for each subscriber when the email is sent.',
                 },
                 {
                   n: '4',
-                  icon: '🎉',
+                  icon: faGift,
                   title: 'Subscriber clicks — done',
                   desc: 'One click logs them in and redirects them to any page on your site. No passwords, no forms.',
                 },
               ].map(({ n, icon, title, desc }) => (
                 <div key={n} className={styles.stepCard}>
                   <div className={styles.stepNum}>{n}</div>
-                  <div className={styles.stepIcon}>{icon}</div>
+                  <div className={styles.stepIcon}><FontAwesomeIcon icon={icon} /></div>
                   <h3 className={styles.stepTitle}>{title}</h3>
                   <p className={styles.stepDesc}>{desc}</p>
                 </div>
@@ -201,7 +203,7 @@ export default function MailPoetPage() {
             <div className={styles.useCaseGrid}>
               {useCases.map(({ icon, title, description }) => (
                 <div key={title} className={styles.useCaseCard}>
-                  <div className={styles.useCaseIcon}>{icon}</div>
+                  <div className={styles.useCaseIcon}><FontAwesomeIcon icon={icon} /></div>
                   <h3 className={styles.useCaseTitle}>{title}</h3>
                   <p className={styles.useCaseDesc}>{description}</p>
                 </div>

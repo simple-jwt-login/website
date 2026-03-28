@@ -3,7 +3,9 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
-import styles from './products.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTerminal, faEnvelope, faBoxArchive, faCheck } from '@fortawesome/free-solid-svg-icons';
+import styles from './index.module.css';
 import sharedStyles from '../styles.module.css';
 
 /* ── Data ───────────────────────────────────────────────────── */
@@ -15,7 +17,7 @@ const addons = [
     tagline: 'JWT from the command line',
     description:
       'Manage Simple JWT Login without ever opening the WordPress admin. Generate tokens, validate JWTs, revoke sessions, and push config between environments — all scriptable, all automatable.',
-    icon: '🖥️',
+    icon: faTerminal,
     tags: ['DevOps', 'CI/CD', 'Automation'],
     status: 'stable',
     docsHref: '/docs/cli/',
@@ -36,7 +38,7 @@ const addons = [
     tagline: 'Magic-link emails, zero friction',
     description:
       'Drop a shortcode into any MailPoet campaign and every subscriber gets a personalised, one-click login link. No passwords, no friction — just a seamless email-to-site experience.',
-    icon: '✉️',
+    icon: faEnvelope,
     tags: ['Email', 'Magic Links', 'MailPoet'],
     status: 'stable',
     docsHref: '/docs/mailpoet/',
@@ -57,7 +59,7 @@ const addons = [
     tagline: 'Move your config in one command',
     description:
       'Back up your complete Simple JWT Login configuration — Auth Codes, protection rules, and all settings — and restore it on any site. Ideal for staging migrations and multi-site setups.',
-    icon: '📦',
+    icon: faBoxArchive,
     tags: ['Migration', 'DevOps', 'Backup'],
     status: 'stable',
     docsHref: '/docs/export-import/',
@@ -174,7 +176,7 @@ function CheckList({ items }) {
     <ul className={styles.checkList}>
       {items.map((item) => (
         <li key={item} className={styles.checkItem}>
-          <span className={styles.checkIcon} aria-hidden="true">✓</span>
+          <FontAwesomeIcon icon={faCheck} className={styles.checkIcon} aria-hidden="true" />
           {item}
         </li>
       ))}
@@ -187,7 +189,7 @@ function AddonCard({ name, tagline, description, icon, tags, status, docsHref, p
     <div className={styles.addonCard}>
       <div className={styles.addonCardInner}>
         <div className={styles.addonLeft}>
-          <div className={styles.addonIcon}>{icon}</div>
+          <div className={styles.addonIcon}><FontAwesomeIcon icon={icon} /></div>
           <div className={styles.addonMeta}>
             <div className={styles.addonNameRow}>
               <h3 className={styles.addonName}>{name}</h3>

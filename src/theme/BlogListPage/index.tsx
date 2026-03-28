@@ -4,6 +4,8 @@
  */
 import React from 'react';
 import clsx from 'clsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBox, faPenNib } from '@fortawesome/free-solid-svg-icons';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {
   PageMetadata,
@@ -41,7 +43,8 @@ function BlogHero({metadata}: {metadata: Props['metadata']}) {
   return (
     <div className={styles.hero}>
       <div className={styles.heroBadge}>
-        {isReleases ? '📦 Changelog' : '✍️ Blog'}
+        <FontAwesomeIcon icon={isReleases ? faBox : faPenNib} />
+        {isReleases ? ' Changelog' : ' Blog'}
       </div>
       <h1 className={styles.heroTitle}>
         {isReleases ? 'Release Notes' : 'Blog'}

@@ -4,6 +4,8 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './export-import.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faKey, faShield, faGear, faLock, faClipboardList, faLink, faRocket, faGlobe, faFloppyDisk, faFileExport, faFileImport, faBoxArchive, faHandPointer, faHeart, faPlug, faPaperPlane, faEye, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import sharedStyles from '../styles.module.css';
 
 const jsonLd = {
@@ -22,30 +24,30 @@ const jsonLd = {
 
 /* ── What gets exported ─────────────────────────────────────── */
 const exportedItems = [
-  { icon: '🔑', label: 'Auth Codes', desc: 'All your authentication codes and their permissions.' },
-  { icon: '🛡️', label: 'Protection Rules', desc: 'Every endpoint protection rule and HTTP method filter.' },
-  { icon: '⚙️', label: 'General Settings', desc: 'Algorithms, TTL, CORS rules, token delivery, and more.' },
-  { icon: '🔐', label: 'JWT Configuration', desc: 'Payload fields, signing keys, and algorithm selection.' },
-  { icon: '📋', label: 'Allow / Deny Lists', desc: 'IP allow/deny rules and user-role restrictions.' },
-  { icon: '🔗', label: 'Redirect URLs', desc: 'Autologin and post-action redirect targets.' },
+  { icon: faKey, label: 'Auth Codes', desc: 'All your authentication codes and their permissions.' },
+  { icon: faShield, label: 'Protection Rules', desc: 'Every endpoint protection rule and HTTP method filter.' },
+  { icon: faGear, label: 'General Settings', desc: 'Algorithms, TTL, CORS rules, token delivery, and more.' },
+  { icon: faLock, label: 'JWT Configuration', desc: 'Payload fields, signing keys, and algorithm selection.' },
+  { icon: faClipboardList, label: 'Allow / Deny Lists', desc: 'IP allow/deny rules and user-role restrictions.' },
+  { icon: faLink, label: 'Redirect URLs', desc: 'Autologin and post-action redirect targets.' },
 ];
 
 /* ── Use cases ──────────────────────────────────────────────── */
 const useCases = [
   {
-    icon: '🚀',
+    icon: faRocket,
     title: 'Staging → production',
     description:
       'Perfect your configuration on staging, export it in one click, and apply it to production. No risk of config drift, no manual re-entry of settings.',
   },
   {
-    icon: '🌐',
+    icon: faGlobe,
     title: 'Multi-site replication',
     description:
       'Running a WordPress network? Export once and import to every node. Keep all your sites in sync with a single source of truth.',
   },
   {
-    icon: '💾',
+    icon: faFloppyDisk,
     title: 'Backup & restore',
     description:
       'Before a major update or plugin change, export your configuration as a safety net. Restore it in seconds if anything goes wrong.',
@@ -94,7 +96,7 @@ export default function ExportImportPage() {
             <div className={styles.workflowSite}>
               <div className={styles.workflowSiteLabel}>Source site</div>
               <div className={styles.workflowSiteBox}>
-                <span className={styles.workflowIcon}>📤</span>
+                <span className={styles.workflowIcon}><FontAwesomeIcon icon={faFileExport} /></span>
                 <strong>Export</strong>
                 <p>Simple JWT Login → Export</p>
               </div>
@@ -110,7 +112,7 @@ export default function ExportImportPage() {
             <div className={styles.workflowSite}>
               <div className={styles.workflowSiteLabel}>Destination site</div>
               <div className={styles.workflowSiteBox}>
-                <span className={styles.workflowIcon}>📥</span>
+                <span className={styles.workflowIcon}><FontAwesomeIcon icon={faFileImport} /></span>
                 <strong>Import</strong>
                 <p>Simple JWT Login → Import</p>
               </div>
@@ -126,13 +128,13 @@ export default function ExportImportPage() {
           <div className="container">
             <div className={styles.highlightGrid}>
               {[
-                { icon: '📦', text: 'Full config in one file' },
-                { icon: '🔑', text: 'Auth Codes included' },
-                { icon: '🖱️', text: 'No manual re-entry' },
-                { icon: '🆓', text: 'Free & open source' },
+                { icon: faBoxArchive, text: 'Full config in one file' },
+                { icon: faKey, text: 'Auth Codes included' },
+                { icon: faHandPointer, text: 'No manual re-entry' },
+                { icon: faHeart, text: 'Free & open source' },
               ].map(({ icon, text }) => (
                 <div key={text} className={styles.highlightItem}>
-                  <span className={styles.highlightIcon}>{icon}</span>
+                  <span className={styles.highlightIcon}><FontAwesomeIcon icon={icon} /></span>
                   <span className={styles.highlightText}>{text}</span>
                 </div>
               ))}
@@ -147,14 +149,14 @@ export default function ExportImportPage() {
             <h2 className={sharedStyles.sectionTitle}>Four steps to a perfect copy</h2>
             <div className={styles.stepsGrid}>
               {[
-                { n: '1', icon: '🔌', title: 'Install on both sites', desc: 'Install Simple JWT Login and the Export-Import add-on on both the source and destination WordPress sites.' },
-                { n: '2', icon: '📤', title: 'Export from source', desc: 'Go to Simple JWT Login settings on the source site and click Export to download your configuration.' },
-                { n: '3', icon: '👁️', title: 'Review the diff', desc: 'On the destination site paste the config. The add-on shows a diff of every change before you confirm.' },
-                { n: '4', icon: '✅', title: 'Confirm & done', desc: 'Click Import. All settings, Auth Codes, and rules are applied instantly — no page reloads needed.' },
+                { n: '1', icon: faPlug, title: 'Install on both sites', desc: 'Install Simple JWT Login and the Export-Import add-on on both the source and destination WordPress sites.' },
+                { n: '2', icon: faPaperPlane, title: 'Export from source', desc: 'Go to Simple JWT Login settings on the source site and click Export to download your configuration.' },
+                { n: '3', icon: faEye, title: 'Review the diff', desc: 'On the destination site paste the config. The add-on shows a diff of every change before you confirm.' },
+                { n: '4', icon: faCircleCheck, title: 'Confirm & done', desc: 'Click Import. All settings, Auth Codes, and rules are applied instantly — no page reloads needed.' },
               ].map(({ n, icon, title, desc }) => (
                 <div key={n} className={styles.stepCard}>
                   <div className={styles.stepNum}>{n}</div>
-                  <div className={styles.stepIcon}>{icon}</div>
+                  <div className={styles.stepIcon}><FontAwesomeIcon icon={icon} /></div>
                   <h3 className={styles.stepTitle}>{title}</h3>
                   <p className={styles.stepDesc}>{desc}</p>
                 </div>
@@ -174,7 +176,7 @@ export default function ExportImportPage() {
             <div className={styles.exportGrid}>
               {exportedItems.map(({ icon, label, desc }) => (
                 <div key={label} className={styles.exportCard}>
-                  <span className={styles.exportIcon}>{icon}</span>
+                  <span className={styles.exportIcon}><FontAwesomeIcon icon={icon} /></span>
                   <div>
                     <h3 className={styles.exportLabel}>{label}</h3>
                     <p className={styles.exportDesc}>{desc}</p>
@@ -193,7 +195,7 @@ export default function ExportImportPage() {
             <div className={styles.useCaseGrid}>
               {useCases.map(({ icon, title, description }) => (
                 <div key={title} className={styles.useCaseCard}>
-                  <div className={styles.useCaseIcon}>{icon}</div>
+                  <div className={styles.useCaseIcon}><FontAwesomeIcon icon={icon} /></div>
                   <h3 className={styles.useCaseTitle}>{title}</h3>
                   <p className={styles.useCaseDesc}>{description}</p>
                 </div>

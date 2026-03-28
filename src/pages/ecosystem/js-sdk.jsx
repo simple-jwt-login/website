@@ -4,6 +4,9 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './js-sdk.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBoxArchive, faGlobe, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faReact, faVuejs, faNodeJs } from '@fortawesome/free-brands-svg-icons';
 import sharedStyles from '../styles.module.css';
 
 const jsonLd = {
@@ -176,7 +179,7 @@ function ExampleTabs() {
 /* ── Use-case cards ─────────────────────────────────────────── */
 const useCases = [
   {
-    icon: '⚛️',
+    icon: faReact,
     title: 'React / Next.js',
     description:
       'Authenticate users from a React SPA or a Next.js app. Store the JWT in a context provider and attach it to every fetch or Axios call to your WordPress REST API.',
@@ -197,7 +200,7 @@ const res = await fetch(\`\${wpUrl}/wp-json/wp/v2/posts\`, {
 });`,
   },
   {
-    icon: '💚',
+    icon: faVuejs,
     title: 'Vue / Nuxt',
     description:
       'Integrate JWT authentication into a Vue 3 or Nuxt application. Use a Pinia store to hold the token and a composable to expose login/logout actions.',
@@ -221,7 +224,7 @@ export const useAuthStore = defineStore('auth', {
 });`,
   },
   {
-    icon: '🟨',
+    icon: faNodeJs,
     title: 'Node.js / Express',
     description:
       'Use the client on the server side to validate tokens in Express middleware, script WordPress user creation in CI, or build a BFF that proxies authenticated WP API calls.',
@@ -324,13 +327,13 @@ export default function JsSdkPage() {
           <div className="container">
             <div className={styles.highlightGrid}>
               {[
-                { icon: '📦', text: 'One npm package' },
-                { icon: '🌐', text: 'Browser & Node.js' },
-                { icon: '⚛️', text: 'Works with any JS framework' },
-                { icon: '🆓', text: 'Free & open source' },
+                { icon: faBoxArchive, text: 'One npm package' },
+                { icon: faGlobe, text: 'Browser & Node.js' },
+                { icon: faReact, text: 'Works with any JS framework' },
+                { icon: faHeart, text: 'Free & open source' },
               ].map(({ icon, text }) => (
                 <div key={text} className={styles.highlightItem}>
-                  <span className={styles.highlightIcon}>{icon}</span>
+                  <span className={styles.highlightIcon}><FontAwesomeIcon icon={icon} /></span>
                   <span className={styles.highlightText}>{text}</span>
                 </div>
               ))}
@@ -383,7 +386,7 @@ export default function JsSdkPage() {
               {useCases.map(({ icon, title, description, code }) => (
                 <div key={title} className={styles.useCaseCard}>
                   <div className={styles.useCaseHeader}>
-                    <span className={styles.useCaseIcon}>{icon}</span>
+                    <span className={styles.useCaseIcon}><FontAwesomeIcon icon={icon} /></span>
                     <h3 className={styles.useCaseTitle}>{title}</h3>
                   </div>
                   <p className={styles.useCaseDesc}>{description}</p>
