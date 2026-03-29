@@ -4,32 +4,42 @@
 
 [![Simple-JWT-Login Logo](/assets/favicons/favicon.ico)![Simple-JWT-Login Logo](/assets/favicons/favicon.ico)](/)
 
-[**Simple JWT Login**](/)[Docs](/docs.md "Docs")[Blog](/blog.md "Blog")[Releases](/releases.md "Releases")[API](/api/simple-jwt-login.md "API")
+[**Simple JWT Login**](/)[Docs](/docs.md "Docs")[API Reference](/api/simple-jwt-login.md "API Reference")[Blog](/blog.md "Blog")[Ecosystem](/ecosystem "Ecosystem")
 
 Search
 
-[Donate](/donate "Donate")[Contact Us](/contact "Contact Us")[](https://github.com/nicumicle/simple-jwt-login "GitHub")[](https://discord.gg/c4AeefD8Dr "Discord")[](https://twitter.com/simplejwtlogin "Follow us")
+[](https://github.com/nicumicle/simple-jwt-login "GitHub")
 
 # Search the documentation
 
-Quick Links
+This project is supported by:
 
-* [WordPress plugin](https://wordpress.org/plugins/simple-jwt-login "WordPress plugin")
-* [GitHub repository](https://github.com/nicumicle/simple-jwt-login "GitHub repository")
+[![DigitalOcean](https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg)](https://www.digitalocean.com/ "DigitalOcean — cloud infrastructure sponsor")
 
-Support
+![](/assets/favicons/favicon.ico)Simple JWT Login
 
-* [GitHub](https://github.com/nicumicle/simple-jwt-login/issues "GitHub")
-* [Support forum](https://wordpress.org/support/plugin/simple-jwt-login "Support forum")
+JWT authentication for WordPress — REST API, headless WP, WPGraphQL, and WP-CLI. Free and open-source, forever.
 
-Community
+[](https://github.com/nicumicle/simple-jwt-login "GitHub")[](https://discord.gg/c4AeefD8Dr "Discord")[](https://twitter.com/simplejwtlogin "X (Twitter)")
 
-* [X.com](https://x.com/simplejwtlogin "X.com")
-* [GitHub](https://github.com/nicumicle/simple-jwt-login/stargazers "GitHub")
-* [Discord](https://discord.gg/c4AeefD8Dr "Discord")
+### Links
 
-Sponsors
+* [Documentation](/docs.md)
+* [API Reference](/api/simple-jwt-login.md)
+* [Ecosystem](/ecosystem)
+* [Releases](/releases.md)
+* [Donate](/donate)
 
-* This project is supported by:
+### Get Help
 
-  [![DigitalOcean](https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg)](https://www.digitalocean.com/)
+* [WordPress Plugin Page](https://wordpress.org/plugins/simple-jwt-login)
+* [Support Forum](https://wordpress.org/support/plugin/simple-jwt-login)
+* [Report an Issue](https://github.com/nicumicle/simple-jwt-login/issues)
+* [Contact](/contact)
+
+### Connect
+
+* [GitHub Repository](https://github.com/nicumicle/simple-jwt-login)
+* [Discord Community](https://discord.gg/c4AeefD8Dr)
+* [X (Twitter)](https://twitter.com/simplejwtlogin)
+* [Blog](/blog.md)

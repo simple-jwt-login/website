@@ -5,17 +5,12 @@
 The Simple-JWT-Login REST API is accessible via two URL formats. Both are equivalent — choose the one that fits your WordPress permalink configuration:
 
 * **Pretty permalinks** (recommended):
-
   <!-- -->
-
   ```
   https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}
   ```
-
 * **Query-string format** (works even without pretty permalinks):
-
   <!-- -->
-
   ```
   https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
   ```

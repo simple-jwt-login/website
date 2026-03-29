@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunksimple_jwt_login_website=globalThis.webpackChunksimple_jwt_login_website||[]).push([[2658],{66051(e){e.exports=JSON.parse('{"name":"docusaurus-plugin-content-blog","id":"releases"}')}}]);

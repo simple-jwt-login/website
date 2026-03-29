@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksimple_jwt_login_website=self.webpackChunksimple_jwt_login_website||[]).push([[9385],{40600:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/blog/page/2","page":2,"postsPerPage":8,"totalPages":2,"totalCount":12,"previousPage":"/blog","blogDescription":"News and tutorials about Simple-JWT-Login","blogTitle":"Simple-JWT-Login blog!"}}')}}]);

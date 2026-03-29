@@ -412,6 +412,12 @@ This endpoint completes the password reset flow by applying a new password. The 
 
 - [Change password](/docs/change-password.md): This endpoint completes the password reset flow by applying a new password. The user must supply the reset code they received by email (from the Reset Password step), along with their email address and the desired new password.
 
+### cli
+
+Manage Simple JWT Login from the command line — generate tokens, validate JWTs, and configure the plugin without touching the WordPress admin UI.
+
+- [WP-CLI Add-on](/docs/cli.md): Manage Simple JWT Login from the command line — generate tokens, validate JWTs, and configure the plugin without touching the WordPress admin UI.
+
 ### code_examples
 
 
@@ -457,9 +463,9 @@ The Export-Import add-on lets you copy your Simple-JWT-Login configuration — i
 
 ### hooks
 
-Simple JWT Login provides 16 WordPress action and filter hooks to customize JWT payload, authentication responses, registration, and more — without modifying plugin code.
+Simple JWT Login exposes 16 WordPress action and filter hooks — customize JWT payloads, authentication responses, user registration, redirects, and more without touching plugin code.
 
-- [Hooks](/docs/hooks.md): Simple JWT Login provides 16 WordPress action and filter hooks to customize JWT payload, authentication responses, registration, and more — without modifying plugin code.
+- [Hooks](/docs/hooks.md): Simple JWT Login exposes 16 WordPress action and filter hooks — customize JWT payloads, authentication responses, user registration, redirects, and more without touching plugin code.
 
 ### mailpoet
 

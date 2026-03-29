@@ -1,201 +1,356 @@
 # Hooks
 
-Simple-JWT-Login exposes a set of WordPress action and filter hooks that let you extend or customise the plugin's behaviour without modifying its source code. Use them to send notifications, enrich JWT payloads, apply business logic, or build fully custom flows on top of the plugin.
+Simple JWT Login exposes **16 WordPress action and filter hooks** that let you extend or customize the plugin's behaviour without modifying its source code. Use them to enrich JWT payloads, send notifications, apply business logic, gate requests, or build fully custom flows on top of the plugin.
 
-note
+Enable hooks first
 
-Hooks must be enabled individually in the plugin settings before they fire. By default, all hooks are disabled.
+Hooks must be enabled individually in the plugin settings before they fire. **All hooks are disabled by default.**
 
-## List Of Hooks[​](#list-of-hooks "Direct link to List Of Hooks")
+## Quick Reference[​](#quick-reference "Direct link to Quick Reference")
 
-### 1. simple\_jwt\_login\_login\_hook[​](#1-simple_jwt_login_login_hook "Direct link to 1. simple_jwt_login_login_hook")
+| Hook                                                                                                              | Type   | Triggered                                           |
+| ----------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------- |
+| [`simple_jwt_login_before_endpoint`](#simple_jwt_login_before_endpoint)                                           | action | Before any endpoint is processed                    |
+| [`simple_jwt_login_login_hook`](#simple_jwt_login_login_hook)                                                     | action | After a user logs in                                |
+| [`simple_jwt_login_redirect_hook`](#simple_jwt_login_redirect_hook)                                               | action | Before the post-login redirect                      |
+| [`simple_jwt_login_register_hook`](#simple_jwt_login_register_hook)                                               | action | After a new user is created                         |
+| [`simple_jwt_login_delete_user_hook`](#simple_jwt_login_delete_user_hook)                                         | action | After a user is deleted                             |
+| [`simple_jwt_login_jwt_payload_auth`](#simple_jwt_login_jwt_payload_auth)                                         | filter | Before the JWT is signed on `/auth`                 |
+| [`simple_jwt_login_no_redirect_message`](#simple_jwt_login_no_redirect_message)                                   | filter | Before the no-redirect response on `/autologin`     |
+| [`simple_jwt_login_reset_password_custom_email_template`](#simple_jwt_login_reset_password_custom_email_template) | filter | Before the reset-password email is sent             |
+| [`simple_jwt_login_response_auth_user`](#simple_jwt_login_response_auth_user)                                     | filter | Before the `/auth` response is returned             |
+| [`simple_jwt_login_response_register_user`](#simple_jwt_login_response_register_user)                             | filter | Before the register response is returned            |
+| [`simple_jwt_login_response_delete_user`](#simple_jwt_login_response_delete_user)                                 | filter | Before the delete-user response is returned         |
+| [`simple_jwt_login_response_refresh_token`](#simple_jwt_login_response_refresh_token)                             | filter | Before the refresh-token response is returned       |
+| [`simple_jwt_login_response_send_reset_password`](#simple_jwt_login_response_send_reset_password)                 | filter | Before the send-reset-password response is returned |
+| [`simple_jwt_login_response_change_user_password`](#simple_jwt_login_response_change_user_password)               | filter | Before the change-password response is returned     |
+| [`simple_jwt_login_response_revoke_token`](#simple_jwt_login_response_revoke_token)                               | filter | Before the revoke-token response is returned        |
+| [`simple_jwt_login_response_validate_token`](#simple_jwt_login_response_validate_token)                           | filter | Before the validate-token response is returned      |
 
-* **type**: action
-* **parameters**: Wp\_User $user
-* **description**: This hook it is called after the user has been logged in.
+***
 
-### 2. simple\_jwt\_login\_redirect\_hook[​](#2-simple_jwt_login_redirect_hook "Direct link to 2. simple_jwt_login_redirect_hook")
+## Action Hooks[​](#action-hooks "Direct link to Action Hooks")
 
-* **type**: action
-* **parameters**: string $url, array $request
-* **description**: This hook it is called before the user it will be redirected to the page he specified in the login section.
+Action hooks let you run side-effect code at a specific point in the request lifecycle. They do not return a value.
 
-### 3. simple\_jwt\_login\_register\_hook[​](#3-simple_jwt_login_register_hook "Direct link to 3. simple_jwt_login_register_hook")
+### `simple_jwt_login_before_endpoint`[​](#simple_jwt_login_before_endpoint "Direct link to simple_jwt_login_before_endpoint")
 
-* **type**: action
-* **parameters**: Wp\_User $user, string $plain\_text\_password
-* **description**: This hook it is called after a new user has been created.
+Fires before a Simple JWT Login REST route is processed. Use it to validate requests, block specific callers, enforce policies (e.g. minimum password length), or log activity — for any endpoint.
 
-### 4. simple\_jwt\_login\_delete\_user\_hook[​](#4-simple_jwt_login_delete_user_hook "Direct link to 4. simple_jwt_login_delete_user_hook")
+| Parameter   | Type     | Description                        |
+| ----------- | -------- | ---------------------------------- |
+| `$method`   | `string` | HTTP method (`GET`, `POST`, …)     |
+| `$endpoint` | `string` | Endpoint name (`auth`, `users`, …) |
+| `$request`  | `array`  | Full request parameters            |
 
-* **type**: action
-* **parameters**: Wp\_User $user
-* **description**: This hook it is called right after the user has been deleted.
+Throw an `Exception` to abort the request with an error response.
 
-### 5. simple\_jwt\_login\_jwt\_payload\_auth[​](#5-simple_jwt_login_jwt_payload_auth "Direct link to 5. simple_jwt_login_jwt_payload_auth")
+***
 
-* **type**: filter
-* **parameters**: array $payload, array $request
-* **return**: array $payload
-* **description**: This hook is called on /auth endpoint. Here you can modify payload parameters.
+### `simple_jwt_login_login_hook`[​](#simple_jwt_login_login_hook "Direct link to simple_jwt_login_login_hook")
 
-### 6. simple\_jwt\_login\_no\_redirect\_message[​](#6-simple_jwt_login_no_redirect_message "Direct link to 6. simple_jwt_login_no_redirect_message")
+Fires after a user has been successfully authenticated and logged in.
 
-* **type**: filter
-* **parameters**: array $payload, array $request
-* **return**: array $payload
-* **description**: This hook is called on /autologin endpoint when the option No Redirect is selected. You can customize the message and add parameters.
+| Parameter | Type      | Description            |
+| --------- | --------- | ---------------------- |
+| `$user`   | `WP_User` | The authenticated user |
 
-### 7. simple\_jwt\_login\_reset\_password\_custom\_email\_template[​](#7-simple_jwt_login_reset_password_custom_email_template "Direct link to 7. simple_jwt_login_reset_password_custom_email_template")
+***
 
-* **type**: filter
-* **parameters**: string $template, array $request
-* **return**: string $template
-* **description**: This is executed when POST /user/reset\_password is called. It will replace the email template that has been added in Reset Password settings.
+### `simple_jwt_login_redirect_hook`[​](#simple_jwt_login_redirect_hook "Direct link to simple_jwt_login_redirect_hook")
 
-### 8. simple\_jwt\_login\_response\_auth\_user[​](#8-simple_jwt_login_response_auth_user "Direct link to 8. simple_jwt_login_response_auth_user")
+Fires before the user is redirected to the URL configured in the Login settings. Use it to implement dynamic redirect logic based on request parameters.
 
-* **type**: filter
-* **parameters**: array $response, WP\_User $user
-* **return**: array $response
-* **description**: This is executed before displaying the response of auth endpoint.
+| Parameter  | Type     | Description                 |
+| ---------- | -------- | --------------------------- |
+| `$url`     | `string` | The configured redirect URL |
+| `$request` | `array`  | Full request parameters     |
 
-### 9. simple\_jwt\_login\_response\_delete\_user[​](#9-simple_jwt_login_response_delete_user "Direct link to 9. simple_jwt_login_response_delete_user")
+tip
 
-* **type**: filter
-* **parameters**: array $response, WP\_User $user
-* **return**: array $response
-* **description**: This is executed before displaying the response of delete user endpoint.
+Enable **"Include request parameters in the redirect URL"** in Login settings to forward custom query parameters (e.g. `&page=dashboard`) that your hook can read.
 
-### 10. simple\_jwt\_login\_response\_refresh\_token[​](#10-simple_jwt_login_response_refresh_token "Direct link to 10. simple_jwt_login_response_refresh_token")
+***
 
-* **type**: filter
-* **parameters**: array $response, WP\_User $user
-* **return**: array $response
-* **description**: This is executed before displaying the response of refresh token endpoint.
+### `simple_jwt_login_register_hook`[​](#simple_jwt_login_register_hook "Direct link to simple_jwt_login_register_hook")
 
-### 11. simple\_jwt\_login\_response\_register\_user[​](#11-simple_jwt_login_response_register_user "Direct link to 11. simple_jwt_login_response_register_user")
+Fires after a new user has been created via the register endpoint.
 
-* **type**: filter
-* **parameters**: array $response, WP\_User $user
-* **return**: array $response
-* **description**: This is executed before displaying the response of register user endpoint.
+| Parameter              | Type      | Description                                                      |
+| ---------------------- | --------- | ---------------------------------------------------------------- |
+| `$user`                | `WP_User` | The newly created user                                           |
+| `$plain_text_password` | `string`  | The user's plain-text password (available only at creation time) |
 
-### 12. simple\_jwt\_login\_response\_send\_reset\_password[​](#12-simple_jwt_login_response_send_reset_password "Direct link to 12. simple_jwt_login_response_send_reset_password")
+***
 
-* **type**: filter
-* **parameters**: array $response, WP\_User $user
-* **return**: array $response
-* **description**: This is executed before displaying the response of send reset password endpoint.
+### `simple_jwt_login_delete_user_hook`[​](#simple_jwt_login_delete_user_hook "Direct link to simple_jwt_login_delete_user_hook")
 
-### 13. simple\_jwt\_login\_response\_change\_user\_password[​](#13-simple_jwt_login_response_change_user_password "Direct link to 13. simple_jwt_login_response_change_user_password")
+Fires immediately after a user has been deleted.
 
-* **type**: filter
-* **parameters**: array $response, WP\_User $user
-* **return**: array $response
-* **description**: This is executed before displaying the response of change user password endpoint.
+| Parameter | Type      | Description      |
+| --------- | --------- | ---------------- |
+| `$user`   | `WP_User` | The deleted user |
 
-### 14. simple\_jwt\_login\_response\_revoke\_token[​](#14-simple_jwt_login_response_revoke_token "Direct link to 14. simple_jwt_login_response_revoke_token")
+***
 
-* **type**: filter
-* **parameters**: array $response, WP\_User $user
-* **return**: array $response
-* **description**: This is executed before displaying the response of revoke token endpoint.
+## Filter Hooks[​](#filter-hooks "Direct link to Filter Hooks")
 
-### 15. simple\_jwt\_login\_response\_validate\_token[​](#15-simple_jwt_login_response_validate_token "Direct link to 15. simple_jwt_login_response_validate_token")
+Filter hooks let you inspect and modify data before it is used or returned. Always return the (modified) value.
 
-* **type**: filter
-* **parameters**: array $response, WP\_User $user
-* **return**: array $response
-* **description**: This is executed before displaying the response of validate token endpoint.
+### `simple_jwt_login_jwt_payload_auth`[​](#simple_jwt_login_jwt_payload_auth "Direct link to simple_jwt_login_jwt_payload_auth")
 
-### 16. simple\_jwt\_login\_before\_endpoint[​](#16-simple_jwt_login_before_endpoint "Direct link to 16. simple_jwt_login_before_endpoint")
+Fires on the `/auth` endpoint before the JWT is signed. Use it to add custom claims to the token.
 
-* **type**: action
-* **parameters**: string $method, string $endpoint, array $request
-* **description**: This is executed before the simple-jwt-login rest route is initialized. You can use this for all the endpoints. Endpoints can be filtered by request method and endpoint.
+| Parameter  | Type    | Description                         |
+| ---------- | ------- | ----------------------------------- |
+| `$payload` | `array` | The JWT payload (modify and return) |
+| `$request` | `array` | Full request parameters             |
 
-## Screenshot[​](#screenshot "Direct link to Screenshot")
+**Returns:** `array` — the modified payload.
 
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-9.png?raw=true)
+***
+
+### `simple_jwt_login_no_redirect_message`[​](#simple_jwt_login_no_redirect_message "Direct link to simple_jwt_login_no_redirect_message")
+
+Fires on the `/autologin` endpoint when **No Redirect** is selected. Use it to customise the JSON response returned to the client.
+
+| Parameter  | Type    | Description                              |
+| ---------- | ------- | ---------------------------------------- |
+| `$payload` | `array` | The response payload (modify and return) |
+| `$request` | `array` | Full request parameters                  |
+
+**Returns:** `array` — the modified response payload.
+
+***
+
+### `simple_jwt_login_reset_password_custom_email_template`[​](#simple_jwt_login_reset_password_custom_email_template "Direct link to simple_jwt_login_reset_password_custom_email_template")
+
+Fires when `POST /user/reset_password` is called. Use it to replace the default email template set in Reset Password settings with a fully custom HTML email.
+
+| Parameter   | Type     | Description                |
+| ----------- | -------- | -------------------------- |
+| `$template` | `string` | The current email template |
+| `$request`  | `array`  | Full request parameters    |
+
+**Returns:** `string` — the custom email template.
+
+***
+
+### Response Filters[​](#response-filters "Direct link to Response Filters")
+
+The following 8 filters fire immediately before their respective endpoint returns a JSON response. Use them to add, remove, or transform fields in the API response.
+
+#### `simple_jwt_login_response_auth_user`[​](#simple_jwt_login_response_auth_user "Direct link to simple_jwt_login_response_auth_user")
+
+Fires before the `POST /auth` response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` — the modified response.
+
+***
+
+#### `simple_jwt_login_response_register_user`[​](#simple_jwt_login_response_register_user "Direct link to simple_jwt_login_response_register_user")
+
+Fires before the `POST /users` (register) response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` — the modified response.
+
+***
+
+#### `simple_jwt_login_response_delete_user`[​](#simple_jwt_login_response_delete_user "Direct link to simple_jwt_login_response_delete_user")
+
+Fires before the `DELETE /users` response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` — the modified response.
+
+***
+
+#### `simple_jwt_login_response_refresh_token`[​](#simple_jwt_login_response_refresh_token "Direct link to simple_jwt_login_response_refresh_token")
+
+Fires before the `POST /auth/refresh` response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` — the modified response.
+
+***
+
+#### `simple_jwt_login_response_send_reset_password`[​](#simple_jwt_login_response_send_reset_password "Direct link to simple_jwt_login_response_send_reset_password")
+
+Fires before the `POST /user/reset_password` response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` — the modified response.
+
+***
+
+#### `simple_jwt_login_response_change_user_password`[​](#simple_jwt_login_response_change_user_password "Direct link to simple_jwt_login_response_change_user_password")
+
+Fires before the `PUT /user/reset_password` response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` — the modified response.
+
+***
+
+#### `simple_jwt_login_response_revoke_token`[​](#simple_jwt_login_response_revoke_token "Direct link to simple_jwt_login_response_revoke_token")
+
+Fires before the `DELETE /auth` response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` — the modified response.
+
+***
+
+#### `simple_jwt_login_response_validate_token`[​](#simple_jwt_login_response_validate_token "Direct link to simple_jwt_login_response_validate_token")
+
+Fires before the `GET /auth/validate` response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` — the modified response.
+
+***
+
+## Settings Screenshot[​](#settings-screenshot "Direct link to Settings Screenshot")
+
+![Hooks settings panel](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-9.png?raw=true)
+
+***
 
 ## Code Examples[​](#code-examples "Direct link to Code Examples")
 
-### Send an email after a new user has been created.[​](#send-an-email-after-a-new-user-has-been-created "Direct link to Send an email after a new user has been created.")
+### Add custom claims to the JWT payload[​](#add-custom-claims-to-the-jwt-payload "Direct link to Add custom claims to the JWT payload")
+
+Enrich the token with user metadata — roles, plan, tenant ID — so downstream services don't need a separate lookup.
 
 ```
-
-add_action( 'simple_jwt_login_register_hook', function($user, $password) {
-    $to      = $user->user_email;
-    $subject = 'Welcome';
-    $message = '
-               Welcome to My Site. Your new user credentials are: 
-               email: ' . $to .'
-               password: '. $password;
-    wp_mail($to, $subject, $message);
-   }, 10, 2);
-```
-
-### Add custom data to the JWT payload on the `/auth` endpoint[​](#add-custom-data-to-the-jwt-payload-on-the-auth-endpoint "Direct link to add-custom-data-to-the-jwt-payload-on-the-auth-endpoint")
-
-```
-add_filter('simple_jwt_login_jwt_payload_auth', function($payload, $request) {
-    $payload['myvalue'] = 'somevalue';
-
+add_filter('simple_jwt_login_jwt_payload_auth', function (array $payload, array $request): array {
+    $user = get_user_by('email', $request['email'] ?? '');
+    if ($user) {
+        $payload['roles'] = $user->roles;
+        $payload['display_name'] = $user->display_name;
+    }
     return $payload;
 }, 10, 2);
 ```
 
-### Dynamic Redirection URLs After Login[​](#dynamic-redirection-urls-after-login "Direct link to Dynamic Redirection URLs After Login")
+***
 
-In order to achieve this, you need to check the option `Include request parameters used for login link in the REDIRECT URL` from the Login section. After that, in your login URL, add one new parameter `&page=your_page`
+### Send a welcome email after registration[​](#send-a-welcome-email-after-registration "Direct link to Send a welcome email after registration")
 
 ```
-add_action('simple_jwt_login_redirect_hook', function($url, $request){
-       $page = isset($_REQUEST['page'])
-           ? $_REQUEST['page']
-           : null;
-       if($page === null){
-            wp_redirect($url);
-             return;
-       } 
-       switch($page){
-          case "page1":
-              wp_redirect('https://site1.com');
-              break;
-           case "page2": 
-              wp_redirect('https://site2.com');
-              break;   
-       }
+add_action('simple_jwt_login_register_hook', function (WP_User $user, string $password): void {
+    wp_mail(
+        $user->user_email,
+        'Welcome to My Site',
+        sprintf(
+            "Hi %s,\n\nYour account is ready.\n\nEmail: %s\nPassword: %s",
+            $user->display_name,
+            $user->user_email,
+            $password
+        )
+    );
 }, 10, 2);
 ```
 
-### Block requests on /auth for a specific email address[​](#block-requests-on-auth-for-a-specific-email-address "Direct link to Block requests on /auth for a specific email address")
+***
+
+### Dynamic redirect URLs after login[​](#dynamic-redirect-urls-after-login "Direct link to Dynamic redirect URLs after login")
+
+Enable **"Include request parameters in the redirect URL"** in Login settings, then add `&page=dashboard` (or any value) to the login URL. The hook reads it and redirects accordingly.
 
 ```
-add_action('simple_jwt_login_before_endpoint', function($method, $endpoint, $request){
-       if ($method !== 'POST' && $endpoint !== 'auth') {
-          return;
-       }
-       
-       if( isset($request['email']) && $request['email'] === 'test@domain.com') {
-           throw new Exception('Wrong email.');
-       }
-}, 10, 4);
+add_action('simple_jwt_login_redirect_hook', function (string $url, array $request): void {
+    $page = $request['page'] ?? null;
+
+    $destinations = [
+        'dashboard' => 'https://mysite.com/dashboard',
+        'profile'   => 'https://mysite.com/profile',
+    ];
+
+    wp_redirect($destinations[$page] ?? $url);
+}, 10, 2);
 ```
 
-### Set minimum password length on register[​](#set-minimum-password-length-on-register "Direct link to Set minimum password length on register")
+***
+
+### Block a specific email address on `/auth`[​](#block-a-specific-email-address-on-auth "Direct link to block-a-specific-email-address-on-auth")
 
 ```
-add_action('simple_jwt_login_before_endpoint', function($method, $endpoint, $request){
-       if ($method !== 'POST' && $endpoint !== 'users') {
-          return;
-       }
-       
-       $minLength = 8;
-       
-       if( isset($request['password']) && strlen($request['password']) < $minLength) {
-           throw new Exception('Password is too short. Password length is minimum ' . $minLength . ' characters.');
-       }
-}, 10, 4);
+add_action('simple_jwt_login_before_endpoint', function (string $method, string $endpoint, array $request): void {
+    if ($method !== 'POST' || $endpoint !== 'auth') {
+        return;
+    }
+
+    $blocked = ['banned@example.com'];
+
+    if (in_array($request['email'] ?? '', $blocked, true)) {
+        throw new Exception('This account has been suspended.');
+    }
+}, 10, 3);
+```
+
+***
+
+### Enforce a minimum password length on registration[​](#enforce-a-minimum-password-length-on-registration "Direct link to Enforce a minimum password length on registration")
+
+```
+add_action('simple_jwt_login_before_endpoint', function (string $method, string $endpoint, array $request): void {
+    if ($method !== 'POST' || $endpoint !== 'users') {
+        return;
+    }
+
+    $minLength = 8;
+    $password  = $request['password'] ?? '';
+
+    if (strlen($password) < $minLength) {
+        throw new Exception("Password must be at least {$minLength} characters.");
+    }
+}, 10, 3);
+```
+
+***
+
+### Add extra fields to the auth response[​](#add-extra-fields-to-the-auth-response "Direct link to Add extra fields to the auth response")
+
+```
+add_filter('simple_jwt_login_response_auth_user', function (array $response, WP_User $user): array {
+    $response['user_id']      = $user->ID;
+    $response['display_name'] = $user->display_name;
+    $response['avatar_url']   = get_avatar_url($user->ID);
+    return $response;
+}, 10, 2);
 ```

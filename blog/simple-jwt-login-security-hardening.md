@@ -4,7 +4,7 @@ March 10, 2026 ·
 
 <!-- -->
 
-9 min read
+8 min read
 
 [![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle.md)
 

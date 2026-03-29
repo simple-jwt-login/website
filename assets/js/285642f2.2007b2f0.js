@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunksimple_jwt_login_website=globalThis.webpackChunksimple_jwt_login_website||[]).push([[2470],{2596(e){e.exports=JSON.parse('{"tags":[{"label":"bugfix","permalink":"/releases/tags/bugfix","count":18},{"label":"security","permalink":"/releases/tags/security","count":2},{"label":"feature","permalink":"/releases/tags/feature","count":9}]}')}}]);
