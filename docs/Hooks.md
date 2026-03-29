@@ -146,20 +146,102 @@ Fires when `POST /user/reset_password` is called. Use it to replace the default 
 
 ### Response Filters
 
-The following 7 filters share the same signature and fire immediately before their respective endpoint returns a JSON response. Use them to add, remove, or transform fields in the API response.
+The following 8 filters fire immediately before their respective endpoint returns a JSON response. Use them to add, remove, or transform fields in the API response.
 
-| Hook | Endpoint |
-|------|----------|
-| `simple_jwt_login_response_auth_user` | `POST /auth` |
-| `simple_jwt_login_response_register_user` | `POST /users` |
-| `simple_jwt_login_response_delete_user` | `DELETE /users` |
-| `simple_jwt_login_response_refresh_token` | `POST /auth/refresh` |
-| `simple_jwt_login_response_send_reset_password` | `POST /user/reset_password` |
-| `simple_jwt_login_response_change_user_password` | `PUT /user/reset_password` |
-| `simple_jwt_login_response_revoke_token` | `DELETE /auth` |
-| `simple_jwt_login_response_validate_token` | `GET /auth/validate` |
+#### `simple_jwt_login_response_auth_user`
 
-**Shared signature:**
+Fires before the `POST /auth` response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` — the modified response.
+
+---
+
+#### `simple_jwt_login_response_register_user`
+
+Fires before the `POST /users` (register) response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` — the modified response.
+
+---
+
+#### `simple_jwt_login_response_delete_user`
+
+Fires before the `DELETE /users` response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` — the modified response.
+
+---
+
+#### `simple_jwt_login_response_refresh_token`
+
+Fires before the `POST /auth/refresh` response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` — the modified response.
+
+---
+
+#### `simple_jwt_login_response_send_reset_password`
+
+Fires before the `POST /user/reset_password` response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` — the modified response.
+
+---
+
+#### `simple_jwt_login_response_change_user_password`
+
+Fires before the `PUT /user/reset_password` response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` — the modified response.
+
+---
+
+#### `simple_jwt_login_response_revoke_token`
+
+Fires before the `DELETE /auth` response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` — the modified response.
+
+---
+
+#### `simple_jwt_login_response_validate_token`
+
+Fires before the `GET /auth/validate` response is returned.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
