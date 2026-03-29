@@ -26,8 +26,12 @@ const config: Config = {
   projectName: 'documentation', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
   trailingSlash: false,
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -158,6 +162,26 @@ const config: Config = {
         }
       },
     ],
+
+
+    //
+    function webpackPolyfillPlugin() {
+      return {
+        name: 'webpack-polyfill-plugin',
+        configureWebpack(config, isServer) {
+          if (!isServer) {
+            return {
+              resolve: {
+                fallback: {
+                  path: require.resolve('path-browserify'),
+                },
+              },
+            };
+          }
+          return {};
+        },
+      };
+    },
 
   ],
 
@@ -383,6 +407,7 @@ const config: Config = {
       additionalLanguages: ['bash', 'php'], // https://prismjs.com/#supported-languages
     },
   } satisfies Preset.ThemeConfig,
+
 };
 
 export default config;
