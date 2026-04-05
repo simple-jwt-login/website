@@ -16,7 +16,7 @@ const jsonLd = {
   applicationSubCategory: 'WordPress Plugin',
   operatingSystem: 'WordPress 4.4+',
   description:
-    'Copy your entire Simple JWT Login configuration — Auth Codes, protection rules, and settings — from one WordPress site to another in a few clicks.',
+    'Copy your entire Simple JWT Login configuration - Auth Codes, protection rules, and settings - from one WordPress site to another in a few clicks.',
   url: 'https://github.com/simple-jwt-login/export-import',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   author: { '@type': 'Person', name: 'Nicu Micle', url: 'https://github.com/nicumicle' },
@@ -58,8 +58,8 @@ const useCases = [
 export default function ExportImportPage() {
   return (
     <Layout
-      title="Export & Import Add-on — Simple JWT Login"
-      description="Copy your entire Simple JWT Login configuration — Auth Codes, protection rules, and all settings — from one WordPress site to another in a few clicks."
+      title="Export & Import Add-on - Simple JWT Login"
+      description="Copy your entire Simple JWT Login configuration - Auth Codes, protection rules, and all settings - from one WordPress site to another in a few clicks."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -75,7 +75,7 @@ export default function ExportImportPage() {
             <span className={styles.heroAccent}>in one click</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Export your complete Simple JWT Login setup — Auth Codes, rules, and settings —
+            Export your complete Simple JWT Login setup - Auth Codes, rules, and settings -
             and reproduce it on any WordPress site instantly.
           </p>
           <div className={styles.heroCta}>
@@ -152,7 +152,7 @@ export default function ExportImportPage() {
                 { n: '1', icon: faPlug, title: 'Install on both sites', desc: 'Install Simple JWT Login and the Export-Import add-on on both the source and destination WordPress sites.' },
                 { n: '2', icon: faPaperPlane, title: 'Export from source', desc: 'Go to Simple JWT Login settings on the source site and click Export to download your configuration.' },
                 { n: '3', icon: faEye, title: 'Review the diff', desc: 'On the destination site paste the config. The add-on shows a diff of every change before you confirm.' },
-                { n: '4', icon: faCircleCheck, title: 'Confirm & done', desc: 'Click Import. All settings, Auth Codes, and rules are applied instantly — no page reloads needed.' },
+                { n: '4', icon: faCircleCheck, title: 'Confirm & done', desc: 'Click Import. All settings, Auth Codes, and rules are applied instantly - no page reloads needed.' },
               ].map(({ n, icon, title, desc }) => (
                 <div key={n} className={styles.stepCard}>
                   <div className={styles.stepNum}>{n}</div>
@@ -171,7 +171,7 @@ export default function ExportImportPage() {
             <span className={sharedStyles.sectionEyebrow}>Coverage</span>
             <h2 className={sharedStyles.sectionTitle}>Everything, nothing left behind</h2>
             <p className={styles.sectionLead}>
-              The export captures your complete configuration — every setting that matters.
+              The export captures your complete configuration - every setting that matters.
             </p>
             <div className={styles.exportGrid}>
               {exportedItems.map(({ icon, label, desc }) => (

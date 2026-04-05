@@ -1,5 +1,5 @@
 /**
- * Swizzled BlogTagsPostsPage — adds the same grid wrapper used in BlogListPage
+ * Swizzled BlogTagsPostsPage - adds the same grid wrapper used in BlogListPage
  * so that the swizzled BlogPostItem cards lay out correctly on tag filter pages.
  */
 import React from 'react';

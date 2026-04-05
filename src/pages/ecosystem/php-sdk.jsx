@@ -17,7 +17,7 @@ const jsonLd = {
   applicationSubCategory: 'PHP SDK',
   operatingSystem: 'PHP 5.5+',
   description:
-    'Official PHP client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens, and more — one Composer package for any PHP framework.',
+    'Official PHP client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens, and more - one Composer package for any PHP framework.',
   url: 'https://packagist.org/packages/nicumicle/simple-jwt-login-client-php',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   author: { '@type': 'Person', name: 'Nicu Micle', url: 'https://github.com/nicumicle' },
@@ -77,7 +77,7 @@ const examples = [
     label: 'Register User',
     headline: 'Create WordPress accounts via API',
     description:
-      'Register new WordPress users programmatically. Optionally assign a role at creation time and receive a JWT immediately after registration — no admin UI required.',
+      'Register new WordPress users programmatically. Optionally assign a role at creation time and receive a JWT immediately after registration - no admin UI required.',
     lines: [
       { comment: true, text: '// Register a new user' },
       { text: '$client = new SimpleJwtLoginClient($siteUrl, $authCode);' },
@@ -137,7 +137,7 @@ const examples = [
     label: 'Revoke Token',
     headline: 'Force-expire a token immediately',
     description:
-      'Revoke a token so it can never be used again — useful for implementing sign-out, account suspension, or post-deployment security sweeps.',
+      'Revoke a token so it can never be used again - useful for implementing sign-out, account suspension, or post-deployment security sweeps.',
     lines: [
       { comment: true, text: '// Revoke a JWT' },
       { text: '$client = new SimpleJwtLoginClient($siteUrl, $authCode);' },
@@ -211,7 +211,7 @@ $posts = Http::withToken($jwt)
     icon: faLock,
     title: 'User registration flow',
     description:
-      'Register users from your own sign-up form and immediately issue a JWT — all in one round trip, without touching the WordPress admin.',
+      'Register users from your own sign-up form and immediately issue a JWT - all in one round trip, without touching the WordPress admin.',
     code: `$client = new SimpleJwtLoginClient($wpUrl, $authCode);
 
 $response = $client
@@ -232,7 +232,7 @@ $jwt = $auth['data']['jwt'];`,
     icon: faFlask,
     title: 'Automated testing',
     description:
-      'Generate tokens in PHPUnit or Pest fixtures to test authenticated flows against a real WordPress instance — no browser, no cookies, no mocking.',
+      'Generate tokens in PHPUnit or Pest fixtures to test authenticated flows against a real WordPress instance - no browser, no cookies, no mocking.',
     code: `// In your PHPUnit setUp()
 protected function setUp(): void
 {
@@ -263,8 +263,8 @@ const frameworks = [
 export default function PhpSdkPage() {
   return (
     <Layout
-      title="PHP Client SDK — Simple JWT Login"
-      description="Official PHP client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from any PHP application — one Composer package, any framework."
+      title="PHP Client SDK - Simple JWT Login"
+      description="Official PHP client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from any PHP application - one Composer package, any framework."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -281,7 +281,7 @@ export default function PhpSdkPage() {
           </h1>
           <p className={styles.heroSubtitle}>
             One Composer package to authenticate users, manage tokens, and call
-            the WordPress REST API from any PHP application — no boilerplate required.
+            the WordPress REST API from any PHP application - no boilerplate required.
           </p>
           <div className={styles.heroCta}>
             <Link to="https://packagist.org/packages/nicumicle/simple-jwt-login-client-php" className={sharedStyles.actionButton} title="View on Packagist">
@@ -351,7 +351,7 @@ export default function PhpSdkPage() {
             <span className={sharedStyles.sectionEyebrow}>Compatibility</span>
             <h2 className={sharedStyles.sectionTitle}>Works with any PHP framework</h2>
             <p className={styles.sectionLead}>
-              The client is a plain PHP library with zero framework dependencies — drop it
+              The client is a plain PHP library with zero framework dependencies - drop it
               into Laravel, Yii, CodeIgniter, Symfony, or a standalone script.
             </p>
             <div className={styles.frameworkGrid}>
@@ -383,7 +383,7 @@ export default function PhpSdkPage() {
             <span className={sharedStyles.sectionEyebrow}>Use Cases</span>
             <h2 className={sharedStyles.sectionTitle}>Built for real PHP workflows</h2>
             <p className={styles.sectionLead}>
-              From headless WordPress to automated testing — the client handles the auth layer so you can focus on your app.
+              From headless WordPress to automated testing - the client handles the auth layer so you can focus on your app.
             </p>
             <div className={styles.useCaseGrid}>
               {useCases.map(({ icon, title, description, code }) => (
@@ -509,7 +509,7 @@ export default function PhpSdkPage() {
               <div className={styles.ctaGlow} aria-hidden="true" />
               <h2 className={styles.ctaTitle}>Add JWT to your PHP app today</h2>
               <p className={styles.ctaSubtitle}>
-                One Composer install and a few lines of code — that's all it takes
+                One Composer install and a few lines of code - that's all it takes
                 to add WordPress JWT authentication to any PHP project.
               </p>
               <div className={styles.ctaButtons}>

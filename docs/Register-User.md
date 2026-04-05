@@ -171,13 +171,13 @@ xhr.send(data);
 
 ### User roles
 
-You can set the default role assigned to newly registered users (e.g., `subscriber`, `contributor`, `author`, `editor`, or any custom role). You can also assign a different role per **Auth Code** — when a user registers using a specific `AUTH_CODE`, they receive the role tied to that code. This makes it easy to support multiple user types from a single registration endpoint.
+You can set the default role assigned to newly registered users (e.g., `subscriber`, `contributor`, `author`, `editor`, or any custom role). You can also assign a different role per **Auth Code** - when a user registers using a specific `AUTH_CODE`, they receive the role tied to that code. This makes it easy to support multiple user types from a single registration endpoint.
 
 ### Restrict registration
 
 Limit registrations to:
-- **Specific IP addresses** — block registrations from untrusted origins
-- **Specific email domains** — e.g., only allow `@yourcompany.com` addresses
+- **Specific IP addresses** - block registrations from untrusted origins
+- **Specific email domains** - e.g., only allow `@yourcompany.com` addresses
 
 ### Random password generation
 

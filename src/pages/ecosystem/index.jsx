@@ -16,7 +16,7 @@ const addons = [
     name: 'WP-CLI Add-on',
     tagline: 'JWT from the command line',
     description:
-      'Manage Simple JWT Login without ever opening the WordPress admin. Generate tokens, validate JWTs, revoke sessions, and push config between environments — all scriptable, all automatable.',
+      'Manage Simple JWT Login without ever opening the WordPress admin. Generate tokens, validate JWTs, revoke sessions, and push config between environments - all scriptable, all automatable.',
     icon: faTerminal,
     tags: ['DevOps', 'CI/CD', 'Automation'],
     status: 'stable',
@@ -37,7 +37,7 @@ const addons = [
     name: 'MailPoet Add-on',
     tagline: 'Magic-link emails, zero friction',
     description:
-      'Drop a shortcode into any MailPoet campaign and every subscriber gets a personalised, one-click login link. No passwords, no friction — just a seamless email-to-site experience.',
+      'Drop a shortcode into any MailPoet campaign and every subscriber gets a personalized, one-click login link. No passwords, no friction - just a seamless email-to-site experience.',
     icon: faEnvelope,
     tags: ['Email', 'Magic Links', 'MailPoet'],
     status: 'stable',
@@ -47,7 +47,7 @@ const addons = [
     secondaryHref: 'https://wordpress.org/plugins/simple-jwt-login-mailpoet',
     secondaryLabel: 'Download',
     highlights: [
-      'Personalised login links per recipient',
+      'personalized login links per recipient',
       'Works with any MailPoet template',
       'Time-limited, single-use tokens',
       'No custom code needed',
@@ -58,7 +58,7 @@ const addons = [
     name: 'Export & Import Add-on',
     tagline: 'Move your config in one command',
     description:
-      'Back up your complete Simple JWT Login configuration — Auth Codes, protection rules, and all settings — and restore it on any site. Ideal for staging migrations and multi-site setups.',
+      'Back up your complete Simple JWT Login configuration - Auth Codes, protection rules, and all settings - and restore it on any site. Ideal for staging migrations and multi-site setups.',
     icon: faBoxArchive,
     tags: ['Migration', 'DevOps', 'Backup'],
     status: 'stable',
@@ -82,7 +82,7 @@ const integrations = [
     name: 'WPGraphQL',
     tagline: 'JWT authentication for GraphQL',
     description:
-      'Use the same JWT tokens you issue through Simple JWT Login to authenticate any WPGraphQL query or mutation. Enable it with a single checkbox — no code, no custom middleware.',
+      'Use the same JWT tokens you issue through Simple JWT Login to authenticate any WPGraphQL query or mutation. Enable it with a single checkbox - no code, no custom middleware.',
     logo: 'assets/img/wpgraphql/wpgraphql-logo.png',
     logoAlt: 'WPGraphQL logo',
     tags: ['GraphQL', 'Headless', 'REST-free'],
@@ -285,14 +285,14 @@ function SdkCard({ name, tagline, description, tags, logos, install, primaryHref
 }
 
 /* ── Page ───────────────────────────────────────────────────── */
-export default function ProductsPage() {
+export default function EcosystemPage() {
   return (
     <Layout
-      title="Products — Add-ons, Integrations & SDKs"
-      description="Explore every add-on, integration, and client SDK built around Simple JWT Login — from WP-CLI to Google OAuth, MailPoet magic links, WPGraphQL, PHP and JavaScript clients."
+      title="Ecosystem - Add-ons, Integrations & SDKs"
+      description="Explore every add-on, integration, and client SDK built around Simple JWT Login - from WP-CLI to Google OAuth, MailPoet magic links, WPGraphQL, PHP and JavaScript clients."
     >
       <Head>
-        <meta property="og:title" content="Products — Simple JWT Login" />
+        <meta property="og:title" content="Ecosystem - Simple JWT Login" />
         <meta property="og:description" content="Add-ons, integrations, and SDKs that extend Simple JWT Login." />
       </Head>
 
@@ -306,7 +306,7 @@ export default function ProductsPage() {
           </h1>
           <p className={styles.heroSubtitle}>
             Add-ons, integrations, and client SDKs that bring JWT authentication
-            to every corner of your stack — CLI pipelines, headless frontends,
+            to every corner of your stack - CLI pipelines, headless frontends,
             email campaigns, and more.
           </p>
           <div className={styles.heroStats}>
@@ -354,7 +354,7 @@ export default function ProductsPage() {
               <h2 className={sharedStyles.sectionTitle}>Integrations</h2>
               <p className={styles.sectionLead}>
                 Connect Simple JWT Login to the tools you already use. Each integration
-                is built into the core plugin — no extra downloads needed.
+                is built into the core plugin - no extra downloads needed.
               </p>
             </div>
             <div className={styles.integrationGrid}>
@@ -393,7 +393,7 @@ export default function ProductsPage() {
                 <h2 className={styles.ctaTitle}>Don't see what you need?</h2>
                 <p className={styles.ctaSubtitle}>
                   Simple JWT Login exposes 16 action and filter hooks. Build your own
-                  integration — or open an issue on GitHub and let's discuss it.
+                  integration - or open an issue on GitHub and let's discuss it.
                 </p>
               </div>
               <div className={styles.ctaButtons}>

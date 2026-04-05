@@ -1,0 +1,31 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "dictionaries": ["custom-words"],
+  "caseSensitive": false,
+  "allowCompoundWords": true,
+  "dictionaryDefinitions": [
+    {
+      "name": "custom-words",
+      "path": ".cspell-words.txt",
+      "addWords": true,
+      "caseSensitive": false
+    }
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "build/**",
+    "static/**",
+    ".docusaurus/**",
+    "yarn.lock",
+    "package.json",
+    "openapi/**"
+  ],
+  "ignoreRegExpList": [
+    "https?://[^\\s]+",
+    "`[^`]+`",
+    "<!--[\\s\\S]*?-->",
+    "^\\s*import\\s+.*$",
+    "eyJ[A-Za-z0-9_-]+"
+  ]
+}

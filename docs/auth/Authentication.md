@@ -11,9 +11,9 @@ author_url: https://github.com/nicumicle
 Use this endpoint to exchange WordPress credentials for a signed JWT. The returned token can then be included in subsequent requests to protected endpoints or used to auto-login users.
 
 You can authenticate using any of the following combinations:
-- **email** + **password** — standard credential pair
-- **username** + **password** — use the WordPress username instead of email
-- **login** + **password** — mirrors the WordPress login page behaviour; accepts either email or username
+- **email** + **password** - standard credential pair
+- **username** + **password** - use the WordPress username instead of email
+- **login** + **password** - mirrors the WordPress login page behaviour; accepts either email or username
 
 ## Endpoint
 

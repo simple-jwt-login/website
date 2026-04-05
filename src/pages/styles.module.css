@@ -1,5 +1,5 @@
 /* ============================================================
-   SHARED STYLES — homepage + product pages both import from here
+   SHARED STYLES - homepage + product pages both import from here
    ============================================================ */
 
 /* ── Hero ──────────────────────────────────────────────────── */
@@ -287,7 +287,7 @@ html[data-theme='dark'] .sectionGray {
 
 .featuresCol { padding-bottom: 20px; }
 
-/* ── Why Choose — Card Grid ────────────────────────────────── */
+/* ── Why Choose - Card Grid ────────────────────────────────── */
 .whyGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -629,7 +629,7 @@ html[data-theme='dark'] .stepNumber {
 .infoText { color: var(--sjl-text-muted, #64748b); font-size: 0.8rem; }
 
 /* ── Legacy aliases (keep for backwards compat) ────────────── */
-.heroBanner { /* old class — no longer used in JSX */ }
+.heroBanner { /* old class - no longer used in JSX */ }
 .sectionGreen { background: linear-gradient(135deg, #2a6e50 0%, #1d5e41 100%); color: #fff; }
 .statistics .sectionTitle { background: none; -webkit-text-fill-color: #fff; color: #fff; }
 .statisticsTitle { font-size: 0.95rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.65); margin-bottom: 0.4rem; }

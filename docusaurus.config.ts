@@ -11,7 +11,7 @@ require('dotenv').config()
 
 const config: Config = {
   title: 'Simple JWT Login',
-  tagline: 'Free WordPress JWT authentication plugin — REST API, headless WP, WPGraphQL & more',
+  tagline: 'Free WordPress JWT authentication plugin - REST API, headless WP, WPGraphQL & more',
   favicon: '/assets/favicons/favicon.ico',
 
   // Set the production url of your site here
@@ -77,6 +77,7 @@ const config: Config = {
         path: './releases',
         blogSidebarCount: "ALL",
         postsPerPage: 6,
+        blogTitle: 'Releases',
       },
     ],
 
@@ -154,9 +155,10 @@ const config: Config = {
             showSchemas: false,
             baseUrl: "/api", // Leading slash is important
             showExtensions: true, 
+            showInfoPage: true,
             sidebarOptions: {
               groupPathsBy: "tag",
-              categoryLinkSource: "tag",
+             // categoryLinkSource: "tag",
             },
           } satisfies OpenApiPlugin.Options,
         }
@@ -242,7 +244,7 @@ const config: Config = {
 
   themeConfig: {
     // Delimiter between page title and site name in <title> tags
-    titleDelimiter: '—',
+    titleDelimiter: '-',
     // Global <head> metadata (Open Graph, Twitter Card, keywords)
     metadata: [
       { name: 'keywords', content: 'JWT, WordPress plugin, JWT authentication, WordPress REST API, headless WordPress, JSON Web Token, WPGraphQL, JWT login, auto login, token-based authentication' },

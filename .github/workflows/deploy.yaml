@@ -10,10 +10,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: 🛎️ Checkout
         uses: actions/checkout@v4
 
-      - name: Install and Build 🔧
+      - name: 🔧 Install and Build
         env:
           # REACT_APP_DOMAIN: "https://simple-jwt-login.github.io/"
           # REACT_APP_BASE_URL: "/website/"
@@ -24,7 +24,7 @@ jobs:
           yarn install
           yarn build
 
-      - name: Deploy 🚀
+      - name: 🚀 Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build # The folder the action should deploy.

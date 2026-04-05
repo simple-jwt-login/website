@@ -5,7 +5,7 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Revoking a token immediately invalidates it — any subsequent request using that token will be rejected. Call this endpoint when a user logs out or when you need to terminate a specific session (e.g., after a password change or suspicious activity).
+Revoking a token immediately invalidates it - any subsequent request using that token will be rejected. Call this endpoint when a user logs out or when you need to terminate a specific session (e.g., after a password change or suspicious activity).
 
 :::note
 Once a token is revoked, it cannot be un-revoked. The user must authenticate again to obtain a new token.

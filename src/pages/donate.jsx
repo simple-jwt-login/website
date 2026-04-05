@@ -69,7 +69,7 @@ const tiers = [
 function DonatePage() {
   return (
     <Layout
-      title="Donate — Support Simple JWT Login"
+      title="Donate - Support Simple JWT Login"
       description="Support the development of Simple JWT Login, the free and open-source JWT authentication plugin for WordPress."
     >
       {/* ── Hero ─────────────────────────────────────────── */}
@@ -82,7 +82,7 @@ function DonatePage() {
           </h1>
           <p className={styles.heroSubtitle}>
             Simple JWT Login has been free and open-source for over six years.
-            No premium tier, no paywalled features — just a maintainer who keeps
+            No premium tier, no paywalled features - just a maintainer who keeps
             showing up. If this plugin saves you time or makes your project possible,
             consider giving back.
           </p>
@@ -171,7 +171,7 @@ function DonatePage() {
                 I started Simple JWT Login because I needed it myself, and I
                 open-sourced it because I believe good tools should be available
                 to everyone. Thousands of developers now rely on it daily. Your
-                donation — however small — tells me that this work matters, and
+                donation - however small - tells me that this work matters, and
                 it directly funds the time I can dedicate to making it better.
                 Thank you.
               </blockquote>

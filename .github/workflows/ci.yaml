@@ -8,10 +8,13 @@ jobs:
   check-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: 🛎️ Checkout
         uses: actions/checkout@v4
 
-      - name: Check Install and Build 🔧
+      - name: 📚 Spellcheck 
+        run: yarn spellcheck
+
+      - name: 🔧 Check Install and Build 
         run: |
           yarn install
           yarn gen-api

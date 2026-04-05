@@ -15,8 +15,9 @@
     "typecheck": "tsc",
     "validate-openapi": "swagger-cli validate openapi/build.yaml",
     "gen-openapi": "swagger-cli bundle openapi/build.yaml --outfile static/openapi.yaml --type yaml",
-    "gen-api": "docusaurus gen-api-docs all",
-    "build-api": "yarn run gen-openapi && yarn gen-api"
+    "gen-api": "docusaurus clean-api-docs all && docusaurus gen-api-docs all",
+    "build-api": "yarn run gen-openapi && yarn gen-api",
+    "spellcheck": "cspell --config .cspell.json 'docs/**/*.{md,mdx}' 'blog/**/*.md' 'releases/**/*.md' 'src/**/*.{jsx,tsx,ts}'"
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
@@ -44,6 +45,7 @@
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/tsconfig": "^3.9.2",
     "@docusaurus/types": "^3.9.2",
+    "cspell": "^8.0.0",
     "swagger-cli": "^4.0.4",
     "typescript": "~6.0.2"
   },

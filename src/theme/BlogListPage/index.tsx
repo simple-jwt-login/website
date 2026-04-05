@@ -1,5 +1,5 @@
 /**
- * Swizzled BlogListPage — modern hero header + grid layout.
+ * Swizzled BlogListPage - modern hero header + grid layout.
  * Applies to both /blog/ and /releases/.
  */
 import React from 'react';

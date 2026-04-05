@@ -1,0 +1,54 @@
+# General words
+autologin
+backend
+behaviour
+cspell
+frontend
+hardcoded
+headless
+hmac
+jwt
+mdx
+plugin
+plugins
+signin
+signup
+simplejwtlogin
+unsanitized
+upvotes
+uuid
+webhook
+webhooks
+wpglob
+wpnonce
+
+# Authors
+micle
+nicu
+nicle
+nicumicle
+
+# Plugins
+mailpoet
+poetmail
+woocommerce
+wpgraphql
+
+# Frameworks
+docusaurus
+laravel
+symfony
+wordpress
+
+# Tools
+openapi
+phpcs
+phpmailer
+wp
+wp-cli
+wpcli
+
+# Testimonials
+lejager
+mdruart
+PDXMUSIC

@@ -16,7 +16,7 @@ const jsonLd = {
   applicationSubCategory: 'WordPress WP-CLI Add-on',
   operatingSystem: 'WordPress 4.4+, PHP 5.5+',
   description:
-    'WP-CLI add-on for Simple JWT Login. Generate tokens, validate JWTs, revoke sessions, and manage every plugin setting from the command line — perfect for CI/CD pipelines and staging migrations.',
+    'WP-CLI add-on for Simple JWT Login. Generate tokens, validate JWTs, revoke sessions, and manage every plugin setting from the command line - perfect for CI/CD pipelines and staging migrations.',
   url: 'https://github.com/simple-jwt-login/simple-jwt-login-cli',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   author: { '@type': 'Person', name: 'Nicu Micle', url: 'https://github.com/nicumicle' },
@@ -62,7 +62,7 @@ const commands = [
       { text: 'wp jwt login --username=admin --password=secret' },
       { output: true, text: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' },
       { text: '' },
-      { comment: true, text: '# JSON output — parse with jq' },
+      { comment: true, text: '# JSON output - parse with jq' },
       { text: 'wp jwt login --username=admin --password=secret --format=json' },
       { output: true, text: '{"jwt":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}' },
       { text: '' },
@@ -76,7 +76,7 @@ const commands = [
     label: 'jwt decode',
     headline: 'Inspect a JWT payload',
     description:
-      'Decode any JWT and display its claims as a readable key/value table or JSON. Signature is not verified — use validate for that. Perfect for debugging token contents without a browser.',
+      'Decode any JWT and display its claims as a readable key/value table or JSON. Signature is not verified - use validate for that. Perfect for debugging token contents without a browser.',
     lines: [
       { comment: true, text: '# Decode a token' },
       { text: 'wp jwt decode eyJhbGciOiJIUzI1NiJ9...' },
@@ -95,7 +95,7 @@ const commands = [
     label: 'jwt validate',
     headline: 'Verify signature & expiry',
     description:
-      'Verify the token signature against the plugin decryption key and confirm it has not expired. Exits 0 in all cases — check the valid field in the output to drive conditional logic in scripts.',
+      'Verify the token signature against the plugin decryption key and confirm it has not expired. Exits 0 in all cases - check the valid field in the output to drive conditional logic in scripts.',
     lines: [
       { comment: true, text: '# Validate a token' },
       { text: 'wp jwt validate "$TOKEN" --format=json' },
@@ -185,7 +185,7 @@ const useCases = [
     icon: faGear,
     title: 'CI / CD pipelines',
     description:
-      'Generate a short-lived JWT inside your pipeline to seed test data, run authenticated smoke tests, or hit protected API endpoints — no browser, no cookies.',
+      'Generate a short-lived JWT inside your pipeline to seed test data, run authenticated smoke tests, or hit protected API endpoints - no browser, no cookies.',
     code: `TOKEN=$(wp jwt login --username=admin --password="$WP_ADMIN_PASSWORD")
 curl -s -X POST https://my-site.com/wp-json/wp/v2/posts \\
   -H "Authorization: Bearer $TOKEN" \\
@@ -195,7 +195,7 @@ curl -s -X POST https://my-site.com/wp-json/wp/v2/posts \\
     icon: faArrowsRotate,
     title: 'Staging → production migrations',
     description:
-      'Export the full plugin config from staging with one command, preview the diff on production in dry-run mode, then apply — fully non-interactive.',
+      'Export the full plugin config from staging with one command, preview the diff on production in dry-run mode, then apply - fully non-interactive.',
     code: `# Export from staging
 wp jwt config export --file=jwt-staging.json
 
@@ -220,7 +220,7 @@ STATUS=$(wp jwt validate "$TOKEN" --format=json | jq -r '.valid')
 export default function CliPage() {
   return (
     <Layout
-      title="WP-CLI Add-on — Simple JWT Login"
+      title="WP-CLI Add-on - Simple JWT Login"
       description="Manage Simple JWT Login from the command line. Generate tokens, validate JWTs, revoke sessions, and configure the plugin without touching the WordPress admin UI."
     >
       <Head>
@@ -238,7 +238,7 @@ export default function CliPage() {
           </h1>
           <p className={styles.heroSubtitle}>
             Generate tokens, validate JWTs, revoke sessions, and manage every plugin
-            setting directly from your terminal — no WordPress admin UI required.
+            setting directly from your terminal - no WordPress admin UI required.
           </p>
           <div className={styles.heroCta}>
             <Link to="/docs/cli/" className={sharedStyles.actionButton} title="Read the CLI documentation">
@@ -301,7 +301,7 @@ export default function CliPage() {
           <div className="container">
             <h2 className={sharedStyles.sectionTitle}>Every command you need</h2>
             <p className={styles.sectionLead}>
-              From token generation to full config management — the CLI covers the complete JWT lifecycle.
+              From token generation to full config management - the CLI covers the complete JWT lifecycle.
             </p>
             <CommandTabs />
           </div>

@@ -52,7 +52,7 @@ function ContactPage() {
   return (
     <Layout
       title="Contact Us"
-      description="Get help with Simple JWT Login — join our Discord, open a GitHub issue, or visit the WordPress support forum."
+      description="Get help with Simple JWT Login - join our Discord, open a GitHub issue, or visit the WordPress support forum."
     >
       {/* ── Hero ─────────────────────────────────────────── */}
       <header className={styles.hero}>
@@ -63,7 +63,7 @@ function ContactPage() {
           <p className={styles.heroSubtitle}>
             Choose the channel that fits your question best. We're an
             open-source project, so community support is at the heart of
-            everything — you're not alone.
+            everything - you're not alone.
           </p>
         </div>
       </header>
@@ -106,7 +106,7 @@ function ContactPage() {
               <div>
                 <strong>Email support was discontinued on 1 December 2024.</strong>
                 {' '}Please use Discord, GitHub, or the WordPress forum for all
-                support requests — responses there are faster and help the
+                support requests - responses there are faster and help the
                 whole community.
               </div>
             </div>
@@ -121,7 +121,7 @@ function ContactPage() {
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faBolt} /></span>
                 <h3>Quick questions</h3>
-                <p>Discord is your best bet — conversations happen fast and the community is active.</p>
+                <p>Discord is your best bet - conversations happen fast and the community is active.</p>
               </div>
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faBug} /></span>
@@ -131,7 +131,7 @@ function ContactPage() {
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faLightbulb} /></span>
                 <h3>Feature requests</h3>
-                <p>Submit a GitHub issue tagged "enhancement". Upvotes and comments help prioritise what gets built next.</p>
+                <p>Submit a GitHub issue tagged "enhancement". Upvotes and comments help prioritize what gets built next.</p>
               </div>
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faHandshake} /></span>

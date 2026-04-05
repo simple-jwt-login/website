@@ -5,7 +5,7 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-This endpoint initiates the password reset flow for an existing WordPress user. Depending on the plugin configuration, it can silently save a reset code to the database, send the standard WordPress reset email, or deliver a fully customised email template.
+This endpoint initiates the password reset flow for an existing WordPress user. Depending on the plugin configuration, it can silently save a reset code to the database, send the standard WordPress reset email, or deliver a fully customized email template.
 
 **METHOD** : `POST`
 

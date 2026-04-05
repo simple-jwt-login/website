@@ -16,7 +16,7 @@ const jsonLd = {
   applicationSubCategory: 'WordPress Plugin',
   operatingSystem: 'WordPress 4.4+',
   description:
-    'Add magic-link login to your MailPoet email campaigns. Subscribers click once and land on your site already logged in — no password required.',
+    'Add magic-link login to your MailPoet email campaigns. Subscribers click once and land on your site already logged in - no password required.',
   url: 'https://wordpress.org/plugins/simple-jwt-login-mailpoet',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   author: { '@type': 'Person', name: 'Nicu Micle', url: 'https://github.com/nicumicle' },
@@ -63,19 +63,19 @@ const useCases = [
     icon: faNewspaper,
     title: 'Newsletter re-engagement',
     description:
-      'Include a one-click "Read your exclusive content" link in your newsletter. Subscribers land on a members-only page already logged in — no friction, higher engagement.',
+      'Include a one-click "Read your exclusive content" link in your newsletter. Subscribers land on a members-only page already logged in - no friction, higher engagement.',
   },
   {
     icon: faCartShopping,
     title: 'Abandoned cart recovery',
     description:
-      'Send a cart-recovery email with a magic link that logs the customer in and redirects them straight to checkout — remove every barrier between the email and the purchase.',
+      'Send a cart-recovery email with a magic link that logs the customer in and redirects them straight to checkout - remove every barrier between the email and the purchase.',
   },
   {
     icon: faGift,
     title: 'Welcome & onboarding emails',
     description:
-      'Welcome new members with a single click that logs them in and drops them on your onboarding page. First impressions matter — make the journey seamless from day one.',
+      'Welcome new members with a single click that logs them in and drops them on your onboarding page. First impressions matter - make the journey seamless from day one.',
   },
 ];
 
@@ -83,8 +83,8 @@ const useCases = [
 export default function MailPoetPage() {
   return (
     <Layout
-      title="MailPoet Add-on — Simple JWT Login"
-      description="Add personalised magic-link login to your MailPoet email campaigns. One shortcode, zero passwords — subscribers click and land on your site already logged in."
+      title="MailPoet Add-on - Simple JWT Login"
+      description="Add personalized magic-link login to your MailPoet email campaigns. One shortcode, zero passwords - subscribers click and land on your site already logged in."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -101,7 +101,7 @@ export default function MailPoetPage() {
           </h1>
           <p className={styles.heroSubtitle}>
             Drop one shortcode into any MailPoet template. Every subscriber gets
-            a personalised, one-click login link — no password, no friction.
+            a personalized, one-click login link - no password, no friction.
           </p>
           <div className={styles.heroCta}>
             <Link to="https://wordpress.org/plugins/simple-jwt-login-mailpoet" className={sharedStyles.actionButton} title="Download from WordPress.org">
@@ -175,12 +175,12 @@ export default function MailPoetPage() {
                   n: '3',
                   icon: faPaperPlane,
                   title: 'Send your campaign',
-                  desc: 'MailPoet renders a unique, personalised autologin URL for each subscriber when the email is sent.',
+                  desc: 'MailPoet renders a unique, personalized autologin URL for each subscriber when the email is sent.',
                 },
                 {
                   n: '4',
                   icon: faGift,
-                  title: 'Subscriber clicks — done',
+                  title: 'Subscriber clicks - done',
                   desc: 'One click logs them in and redirects them to any page on your site. No passwords, no forms.',
                 },
               ].map(({ n, icon, title, desc }) => (

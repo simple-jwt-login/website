@@ -93,7 +93,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.sponsorLogo}
-                title="DigitalOcean — cloud infrastructure sponsor"
+                title="DigitalOcean - cloud infrastructure sponsor"
               >
                 <img
                   src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg"
@@ -129,7 +129,7 @@ export default function Footer() {
                 <span className={styles.brandName}>Simple JWT Login</span>
               </div>
               <p className={styles.brandDesc}>
-                JWT authentication for WordPress — REST API, headless WP, WPGraphQL,
+                JWT authentication for WordPress - REST API, headless WP, WPGraphQL,
                 and WP-CLI. Free and open-source, forever.
               </p>
               <div className={styles.socialIcons}>

@@ -9,15 +9,15 @@ keywords: [Simple JWT Login features, WordPress JWT plugin, auth codes, auto log
 image: /assets/favicons/android-chrome-192x192.png
 ---
 
-JWT authentication for WordPress doesn't have to be complicated. Simple JWT Login has been quietly powering headless WordPress sites, mobile backends, and SPA integrations for years — and it does so with a level of configurability that most teams never fully explore.
+JWT authentication for WordPress doesn't have to be complicated. Simple JWT Login has been quietly powering headless WordPress sites, mobile backends, and SPA integrations for years - and it does so with a level of configurability that most teams never fully explore.
 
 Here are the five features I consider the most powerful, and why they matter for real-world projects.
 
 <!--truncate-->
 
-## 1. Auth Codes — Fine-Grained API Key Control
+## 1. Auth Codes - Fine-Grained API Key Control
 
-Most JWT plugins treat authentication as binary: you either have a valid token or you don't. Simple JWT Login goes further with **Auth Codes** — optional API keys that gate specific operations like registration, auto-login, or user deletion.
+Most JWT plugins treat authentication as binary: you either have a valid token or you don't. Simple JWT Login goes further with **Auth Codes** - optional API keys that gate specific operations like registration, auto-login, or user deletion.
 
 Each Auth Code can be scoped to a specific action, assigned a WordPress user role, and even given an expiration date. This means you can issue a time-limited code to an external system for a batch user import, let it expire automatically, and never worry about revoking it manually.
 
@@ -32,13 +32,13 @@ curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/users" \
   }'
 ```
 
-The practical use case: you're integrating a third-party signup funnel. You issue it a restricted Auth Code that only allows registration, with the `subscriber` role. The funnel can create users — nothing else. That's a meaningful security boundary with zero custom code.
+The practical use case: you're integrating a third-party signup funnel. You issue it a restricted Auth Code that only allows registration, with the `subscriber` role. The funnel can create users - nothing else. That's a meaningful security boundary with zero custom code.
 
 ---
 
 ## 2. Auto-Login with Dynamic Redirects
 
-Auto-login is the feature that consistently surprises people. Send a user a URL with a valid JWT, and Simple JWT Login will authenticate them silently and redirect them wherever you need — no password prompt, no login page friction.
+Auto-login is the feature that consistently surprises people. Send a user a URL with a valid JWT, and Simple JWT Login will authenticate them silently and redirect them wherever you need - no password prompt, no login page friction.
 
 What makes it genuinely powerful is the **redirect URL variables**. Your redirect target can be dynamically built using the authenticated user's data:
 
@@ -54,15 +54,15 @@ What makes it genuinely powerful is the **redirect URL variables**. Your redirec
 https://example.com/?JWT=<token>&redirectUrl={{site_url}}/dashboard/?uid={{user_id}}
 ```
 
-Real-world application: email marketing campaigns. Generate a signed JWT per subscriber, embed it in your campaign link, and drop users directly into their account dashboard — already logged in. The MailPoet add-on takes this even further by providing a shortcode that generates these links automatically inside your email templates.
+Real-world application: email marketing campaigns. Generate a signed JWT per subscriber, embed it in your campaign link, and drop users directly into their account dashboard - already logged in. The MailPoet add-on takes this even further by providing a shortcode that generates these links automatically inside your email templates.
 
 You also get a **fail-safe redirect** for invalid or expired tokens, so users with stale links don't hit a blank error page.
 
 ---
 
-## 3. Endpoint Protection — Protect Your Entire REST API
+## 3. Endpoint Protection - Protect Your Entire REST API
 
-WordPress's REST API is powerful, but by default it exposes a lot of data publicly. Simple JWT Login's **Endpoint Protection** feature lets you put a JWT requirement in front of any REST route — or all of them at once.
+WordPress's REST API is powerful, but by default it exposes a lot of data publicly. Simple JWT Login's **Endpoint Protection** feature lets you put a JWT requirement in front of any REST route - or all of them at once.
 
 Two modes are available:
 
@@ -77,11 +77,11 @@ Protected:  DELETE /wp-json/wp/v2/posts/{id}
 Public:     GET    /wp-json/wp/v2/posts
 ```
 
-Route matching supports both exact paths and prefix patterns (`starts-with`), which makes it easy to protect entire feature namespaces — for example, locking down everything under `/wp-json/woocommerce/` with a single rule.
+Route matching supports both exact paths and prefix patterns (`starts-with`), which makes it easy to protect entire feature namespaces - for example, locking down everything under `/wp-json/woocommerce/` with a single rule.
 
 ---
 
-## 4. WordPress Hooks & Filters — Deep Customization Without Forking
+## 4. WordPress Hooks & Filters - Deep Customization Without Forking
 
 Simple JWT Login ships with **16 hooks** that let you tap into every significant operation. This is the feature that separates it from simpler JWT plugins and makes it production-grade for complex applications.
 
@@ -119,7 +119,7 @@ add_filter('simple_jwt_login_response_auth', function($response, $user, $jwt) {
 }, 10, 3);
 ```
 
-No monkey-patching, no plugin forks — just clean WordPress action and filter hooks that survive updates.
+No monkey-patching, no plugin forks - just clean WordPress action and filter hooks that survive updates.
 
 ---
 
@@ -137,12 +137,12 @@ APIs get consumed in many different environments: browser SPAs, mobile apps, ser
 
 The plugin processes them in a defined priority order (Header > Cookie > Session > Request body), so if multiple sources are present, behavior is predictable.
 
-For browser-based apps that need to avoid storing tokens in `localStorage`, the cookie delivery method is especially useful — pair it with an `HttpOnly` cookie set server-side and you have a solid defense against XSS token theft.
+For browser-based apps that need to avoid storing tokens in `localStorage`, the cookie delivery method is especially useful - pair it with an `HttpOnly` cookie set server-side and you have a solid defense against XSS token theft.
 
 ---
 
 ## Conclusion
 
-Simple JWT Login earns its place in a production WordPress stack because it's thoughtfully layered. You can use it at face value — just generate and validate tokens — or you can reach into Auth Codes, hooks, endpoint protection, and dynamic redirects to build something genuinely sophisticated.
+Simple JWT Login earns its place in a production WordPress stack because it's thoughtfully layered. You can use it at face value - just generate and validate tokens - or you can reach into Auth Codes, hooks, endpoint protection, and dynamic redirects to build something genuinely sophisticated.
 
 The plugin is free, actively maintained, and the [full documentation](/docs/) covers every configuration option in detail. If you're building anything beyond a basic WordPress blog, it's worth an afternoon to set up properly.

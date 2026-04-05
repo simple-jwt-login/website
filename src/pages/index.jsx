@@ -43,14 +43,14 @@ const jsonLd = {
 const awesomeFeatures = [
   {
     title: <>Auto Login</>,
-    description: <>Log users in instantly via URL, header, cookie, or session — perfect for magic links, email campaigns, and SSO flows.</>,
+    description: <>Log users in instantly via URL, header, cookie, or session - perfect for magic links, email campaigns, and SSO flows.</>,
     image: "assets/svg/login-user-2.svg",
     alt: "Login user",
     link: "/docs/autologin/",
   },
   {
     title: <>Register Users</>,
-    description: <>Expose a secure REST endpoint to register new WordPress users programmatically — no custom code needed.</>,
+    description: <>Expose a secure REST endpoint to register new WordPress users programmatically - no custom code needed.</>,
     image: "assets/svg/create-user.svg",
     alt: "Register user",
     link: "/docs/register-user/",
@@ -71,20 +71,20 @@ const awesomeFeatures = [
   },
   {
     title: <>Change &amp; Reset Password</>,
-    description: <>Let users change or reset their password through the API — ideal for headless and mobile apps.</>,
+    description: <>Let users change or reset their password through the API - ideal for headless and mobile apps.</>,
     image: "assets/img/password.png",
     alt: "Change and Reset password",
     link: "/docs/change-password/",
   },
   {
     title: <>Limit Access by IP</>,
-    description: <>Restrict access to trusted IPs — supports wildcards (e.g. <code>85.*.*.*</code>) for subnet-level control.</>,
+    description: <>Restrict access to trusted IPs - supports wildcards (e.g. <code>85.*.*.*</code>) for subnet-level control.</>,
     image: "assets/img/ip.png",
     alt: "Limit access by IP",
   },
   {
     title: <>Create Users with Different Roles</>,
-    description: <>Assign roles at registration time — create admins, editors, or subscribers through a single endpoint.</>,
+    description: <>Assign roles at registration time - create admins, editors, or subscribers through a single endpoint.</>,
     image: "assets/img/roles.png",
     alt: "Roles",
     link: "/docs/register-user/#user-roles",
@@ -98,21 +98,21 @@ const awesomeFeatures = [
   },
   {
     title: <>Protect Endpoints</>,
-    description: <>Require a valid JWT per route — filter by HTTP method (GET, POST, PUT, DELETE) with exact or prefix matching.</>,
+    description: <>Require a valid JWT per route - filter by HTTP method (GET, POST, PUT, DELETE) with exact or prefix matching.</>,
     image: "assets/img/protect-endpoints.png",
     alt: "Protect endpoints",
     link: "/docs/protect-endpoints/",
   },
   {
     title: <>Use JWT on Any Endpoint</>,
-    description: <>Pass a JWT to any WordPress endpoint and act as a fully authenticated user — no session cookies required.</>,
+    description: <>Pass a JWT to any WordPress endpoint and act as a fully authenticated user - no session cookies required.</>,
     image: "assets/img/protect.png",
     alt: "JWT on other endpoints",
     link: "/docs/configuration#allow-jwt-usage-on-all-wordpress-endpoints",
   },
   {
     title: <>Google OAuth Integration</>,
-    description: <>Let users sign in with their Google account — zero passwords, instant trust.</>,
+    description: <>Let users sign in with their Google account - zero passwords, instant trust.</>,
     image: "assets/img/google-plus.png",
     alt: "Google OAuth",
     link: "/docs/applications/google/login/",
@@ -220,7 +220,7 @@ export default function HomePage() {
   return (
     <Layout
       title="Free WordPress JWT Authentication Plugin"
-      description="Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the REST API. Login, register users, protect endpoints, auto-login, and more — no coding required."
+      description="Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the REST API. Login, register users, protect endpoints, auto-login, and more - no coding required."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -240,7 +240,7 @@ export default function HomePage() {
           />
           <h1 className={styles.heroTitle}>Simple JWT Login</h1>
           <p className={styles.heroSubtitle}>
-            JWT authentication for your WordPress REST API —<br className={styles.heroBreak} />
+            JWT authentication for your WordPress REST API -<br className={styles.heroBreak} />
             set up in minutes, no coding required.
           </p>
           <div className={styles.heroCta}>
@@ -309,15 +309,15 @@ export default function HomePage() {
             <h2 className={styles.sectionTitle}>Why developers choose Simple JWT Login</h2>
             <div className={styles.whyGrid}>
               {[
-                { icon: faBolt,          title: 'No coding required',     desc: 'Set up JWT authentication in minutes via the WordPress admin UI — no custom code needed.' },
+                { icon: faBolt,          title: 'No coding required',     desc: 'Set up JWT authentication in minutes via the WordPress admin UI - no custom code needed.' },
                 { icon: faLock,          title: '6 supported algorithms', desc: 'Choose from HS256/384/512 or RS256/384/512 to match your security policy.' },
-                { icon: faRocket,        title: '4 JWT delivery methods', desc: 'Authorization header, cookie, session, or query parameter — works everywhere.' },
+                { icon: faRocket,        title: '4 JWT delivery methods', desc: 'Authorization header, cookie, session, or query parameter - works everywhere.' },
                 { icon: faWrench,        title: 'Built for developers',   desc: '16 WordPress action and filter hooks to customize every authentication flow.' },
                 { icon: faGlobe,         title: 'CORS-ready',             desc: 'Works out of the box with React, Vue, Angular, mobile apps, WPGraphQL, and headless CMS setups.' },
-                { icon: faPhp,           title: 'PHP 5.5+ compatible',    desc: 'Works on any PHP version from 5.5 onwards — no matter how old or new your server is.' },
-                { icon: faLink,          title: 'Auto-login & magic links', desc: 'Authenticate users via a tokenized URL — no password form needed. Perfect for email campaigns and passwordless flows.' },
+                { icon: faPhp,           title: 'PHP 5.5+ compatible',    desc: 'Works on any PHP version from 5.5 onwards - no matter how old or new your server is.' },
+                { icon: faLink,          title: 'Auto-login & magic links', desc: 'Authenticate users via a tokenized URL - no password form needed. Perfect for email campaigns and passwordless flows.' },
                 { icon: faArrowsRotate,  title: 'Full token lifecycle',   desc: 'Refresh, validate, and revoke tokens on demand to keep sessions secure and under your control.' },
-                { icon: faHeart,         title: 'Free & open source',     desc: 'GPL3.0-licensed, community-supported, no hidden costs — ever.' },
+                { icon: faHeart,         title: 'Free & open source',     desc: 'GPL3.0-licensed, community-supported, no hidden costs - ever.' },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className={styles.whyCard}>
                   <div className={styles.whyCardIcon}><FontAwesomeIcon icon={icon} /></div>
@@ -341,7 +341,7 @@ export default function HomePage() {
               {[
                 {
                   title: 'PHP',
-                  desc: 'Connect any PHP app to Simple JWT Login with one Composer package — supports Laravel, Yii, CodeIgniter, and more.',
+                  desc: 'Connect any PHP app to Simple JWT Login with one Composer package - supports Laravel, Yii, CodeIgniter, and more.',
                   logos: [
                     { src: 'assets/img/frameworks/php.png', alt: 'PHP' },
                     { src: 'assets/img/frameworks/laravel.png', alt: 'Laravel' },
@@ -369,14 +369,14 @@ export default function HomePage() {
                 },
                 {
                   title: 'WPGraphQL',
-                  desc: 'Use your JWT tokens to authenticate GraphQL queries and mutations — enable it with a single checkbox.',
+                  desc: 'Use your JWT tokens to authenticate GraphQL queries and mutations - enable it with a single checkbox.',
                   logos: [{ src: 'assets/img/wpgraphql/wpgraphql-logo.png', alt: 'WPGraphQL' }],
                   href: '/docs/wpgraphql/',
                   cta: 'Learn more',
                 },
                 {
                   title: 'MailPoet',
-                  desc: 'Send magic-link login emails via MailPoet — let subscribers log in with one click, no password required.',
+                  desc: 'Send magic-link login emails via MailPoet - let subscribers log in with one click, no password required.',
                   logos: [],
                   href: '/ecosystem/mailpoet',
                   cta: 'Learn more',
@@ -384,7 +384,7 @@ export default function HomePage() {
                 },
                 {
                   title: 'Export & Import',
-                  desc: 'Back up and restore your entire plugin configuration in one click — perfect for staging-to-production migrations.',
+                  desc: 'Back up and restore your entire plugin configuration in one click - perfect for staging-to-production migrations.',
                   logos: [],
                   href: '/ecosystem/export-import',
                   cta: 'Learn more',
@@ -392,7 +392,7 @@ export default function HomePage() {
                 },
                 {
                   title: 'WP-CLI',
-                  desc: 'Generate tokens, validate JWTs, revoke sessions, and manage every setting from your terminal — ideal for CI/CD.',
+                  desc: 'Generate tokens, validate JWTs, revoke sessions, and manage every setting from your terminal - ideal for CI/CD.',
                   logos: [],
                   code: 'wp jwt login --username=admin --password=secret',
                   href: '/ecosystem/cli',
@@ -452,7 +452,7 @@ export default function HomePage() {
                 {
                   n: '3',
                   title: 'Authenticate Effortlessly',
-                  desc: 'Use JWT tokens to authenticate users on any WordPress REST API endpoint — no additional code required.',
+                  desc: 'Use JWT tokens to authenticate users on any WordPress REST API endpoint - no additional code required.',
                 },
               ].map(({ n, title, desc }) => (
                 <div key={n} className={styles.installStep}>
@@ -477,7 +477,7 @@ export default function HomePage() {
             <h2 className={styles.sectionTitle}>Join the community</h2>
             <p className={styles.sectionLead}>
               Simple JWT Login is built in the open, by the community. Whether you write code,
-              speak another language, or just want to spread the word — there's a place for you.
+              speak another language, or just want to spread the word - there's a place for you.
             </p>
             <div className={clsx(styles.whyGrid, styles.whyGrid2)}>
               <div className={styles.whyCard}>
@@ -501,7 +501,7 @@ export default function HomePage() {
               <div className={styles.whyCard}>
                 <div className={styles.whyCardIcon}><FontAwesomeIcon icon={faEarthEurope} /></div>
                 <h3 className={styles.whyCardTitle}>Help Translate</h3>
-                <p className={styles.whyCardDesc}>Make JWT auth accessible in every language — join us on translate.wordpress.org.</p>
+                <p className={styles.whyCardDesc}>Make JWT auth accessible in every language - join us on translate.wordpress.org.</p>
                 <Link to="https://translate.wordpress.org/projects/wp-plugins/simple-jwt-login/" title="Translate Simple JWT Login" className={styles.communityCardLink}>Start translating →</Link>
               </div>
             </div>
@@ -540,7 +540,7 @@ export default function HomePage() {
               <h2 className={styles.ctaTitle}>Ready to add JWT to your WordPress site?</h2>
               <p className={styles.ctaSubtitle}>
                 Install Simple JWT Login in minutes, configure it through the admin UI,
-                and start issuing tokens — completely free, no account required.
+                and start issuing tokens - completely free, no account required.
               </p>
               <div className={styles.ctaButtons}>
                 <Link to="/docs/" className={styles.actionButton} title="Read the documentation">

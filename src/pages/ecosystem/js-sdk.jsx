@@ -17,7 +17,7 @@ const jsonLd = {
   applicationSubCategory: 'JavaScript SDK',
   operatingSystem: 'Node.js / Browser',
   description:
-    'Official JavaScript client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from any JavaScript application — one npm package for any framework.',
+    'Official JavaScript client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from any JavaScript application - one npm package for any framework.',
   url: 'https://www.npmjs.com/package/simple-jwt-login',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   author: { '@type': 'Person', name: 'Nicu Micle', url: 'https://github.com/nicumicle' },
@@ -78,7 +78,7 @@ const examples = [
     label: 'Register User',
     headline: 'Create WordPress accounts via API',
     description:
-      'Register new WordPress users from your frontend. Optionally assign a role and receive a JWT immediately — no admin UI, no custom backend code required.',
+      'Register new WordPress users from your frontend. Optionally assign a role and receive a JWT immediately - no admin UI, no custom backend code required.',
     lines: [
       { comment: true, text: '// Register a new user' },
       { text: 'const response = await client.users.register({' },
@@ -132,7 +132,7 @@ const examples = [
     label: 'Revoke Token',
     headline: 'Sign out & invalidate a token',
     description:
-      'Permanently revoke a JWT on sign-out so it can never be reused — even if someone has a copy. Pair with clearing local storage for a complete logout flow.',
+      'Permanently revoke a JWT on sign-out so it can never be reused - even if someone has a copy. Pair with clearing local storage for a complete logout flow.',
     lines: [
       { comment: true, text: '// Revoke on sign-out' },
       { text: 'await client.auth.revokeToken({ jwt });' },
@@ -260,8 +260,8 @@ const frameworks = [
 export default function JsSdkPage() {
   return (
     <Layout
-      title="JavaScript Client SDK — Simple JWT Login"
-      description="Official JavaScript client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from React, Vue, Angular, or Node.js — one npm package."
+      title="JavaScript Client SDK - Simple JWT Login"
+      description="Official JavaScript client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from React, Vue, Angular, or Node.js - one npm package."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -278,7 +278,7 @@ export default function JsSdkPage() {
           </h1>
           <p className={styles.heroSubtitle}>
             One npm package to authenticate users, manage tokens, and call
-            the WordPress REST API from any JavaScript application — browser or Node.js.
+            the WordPress REST API from any JavaScript application - browser or Node.js.
           </p>
           <div className={styles.heroCta}>
             <Link to="https://www.npmjs.com/package/simple-jwt-login" className={sharedStyles.actionButton} title="View on npm">
@@ -313,7 +313,7 @@ export default function JsSdkPage() {
                 { text: '});' },
                 { text: '' },
                 { text: 'const { data } = await client.auth.login({ email, password });' },
-                { comment: true, text: '// data.jwt — ready to use in any fetch / Axios call' },
+                { comment: true, text: '// data.jwt - ready to use in any fetch / Axios call' },
               ]}
             />
           </div>
@@ -347,7 +347,7 @@ export default function JsSdkPage() {
             <span className={sharedStyles.sectionEyebrow}>Compatibility</span>
             <h2 className={sharedStyles.sectionTitle}>Works with any JavaScript framework</h2>
             <p className={styles.sectionLead}>
-              A zero-dependency library with full ESM and CommonJS support — works
+              A zero-dependency library with full ESM and CommonJS support - works
               in React, Vue, Angular, Svelte, or a plain script tag.
             </p>
             <div className={styles.frameworkGrid}>
@@ -379,7 +379,7 @@ export default function JsSdkPage() {
             <span className={sharedStyles.sectionEyebrow}>Use Cases</span>
             <h2 className={sharedStyles.sectionTitle}>Built for real JavaScript workflows</h2>
             <p className={styles.sectionLead}>
-              From React SPAs to server-side Node.js middleware — the client handles
+              From React SPAs to server-side Node.js middleware - the client handles
               the auth layer so you can focus on your application.
             </p>
             <div className={styles.useCaseGrid}>
@@ -508,7 +508,7 @@ export default function JsSdkPage() {
               <div className={styles.ctaGlow} aria-hidden="true" />
               <h2 className={styles.ctaTitle}>Add JWT to your JavaScript app today</h2>
               <p className={styles.ctaSubtitle}>
-                One npm install and a few lines of code — that's all it takes to add
+                One npm install and a few lines of code - that's all it takes to add
                 WordPress JWT authentication to any JavaScript project.
               </p>
               <div className={styles.ctaButtons}>

@@ -9,7 +9,7 @@ author_url: https://github.com/nicumicle
 
 ## Server
 
-The Simple-JWT-Login REST API is accessible via two URL formats. Both are equivalent — choose the one that fits your WordPress permalink configuration:
+The Simple-JWT-Login REST API is accessible via two URL formats. Both are equivalent - choose the one that fits your WordPress permalink configuration:
 
 - **Pretty permalinks** (recommended):
   ```
@@ -55,12 +55,12 @@ or
 ## Initial Configuration
 
 1. Go to **Settings → Simple JWT Login → General**.
-2. Set a **JWT Decryption key** — this secret is used to sign and verify all tokens.
+2. Set a **JWT Decryption key** - this secret is used to sign and verify all tokens.
 3. Choose a **JWT Decryption algorithm** (e.g., `HS256`).
 4. Click **Save Changes**.
 
 :::caution
-Use a long, random string for the JWT Decryption key and include special characters. This key is equivalent to a master password — anyone who knows it can forge valid tokens.
+Use a long, random string for the JWT Decryption key and include special characters. This key is equivalent to a master password - anyone who knows it can forge valid tokens.
 :::
 
 ## Where to send the JWT
@@ -82,7 +82,7 @@ The recommended approach is to enable **HEADER** and always send the JWT as a `B
 
 ## Allow JWT usage on all WordPress endpoints
 
-Enable **”All WordPress endpoints check for JWT authentication”** in the General settings to use JWT authentication on any WordPress REST route — not just the Simple-JWT-Login ones.
+Enable **”All WordPress endpoints check for JWT authentication”** in the General settings to use JWT authentication on any WordPress REST route - not just the Simple-JWT-Login ones.
 
 When a JWT is found, the plugin first authenticates the request as the user identified by the token, then passes the request to WordPress. This lets you, for example, create posts or access protected data as a specific user.
 

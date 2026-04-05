@@ -11,9 +11,9 @@ author_url: https://github.com/nicumicle
 This example walks through a complete PHP integration with Simple-JWT-Login: registering a new WordPress user, obtaining a JWT for that user, and using the token to create a WordPress post via the REST API.
 
 It covers the three most common steps in a headless WordPress workflow:
-1. **Register** — create a new user account
-2. **Authenticate** — exchange credentials for a JWT
-3. **Use the JWT** — call a protected endpoint
+1. **Register** - create a new user account
+2. **Authenticate** - exchange credentials for a JWT
+3. **Use the JWT** - call a protected endpoint
 
 For this example, we can create a helper function, that will do the actual call:
 ```php

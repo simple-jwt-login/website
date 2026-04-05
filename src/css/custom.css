@@ -1,5 +1,5 @@
 /* ============================================================
-   SIMPLE JWT LOGIN — GLOBAL CUSTOM STYLES
+   SIMPLE JWT LOGIN - GLOBAL CUSTOM STYLES
    ============================================================ */
 
 /* Inter from Google Fonts */
@@ -342,7 +342,7 @@ footer.footer.footer--dark {
 .text-left { text-align: left !important; }
 
 /* ============================================================
-   BLOG & RELEASES — GLOBAL OVERRIDES
+   BLOG & RELEASES - GLOBAL OVERRIDES
    ============================================================ */
 
 /* ── Blog sidebar ──────────────────────────────────────────── */
@@ -392,7 +392,7 @@ footer.footer.footer--dark {
   margin-top: 1rem;
 }
 
-/* ── Blog post page — full article ────────────────────────── */
+/* ── Blog post page - full article ────────────────────────── */
 
 /* Post header */
 [class*='blogPostPage'] header h1,
