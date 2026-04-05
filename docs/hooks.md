@@ -35,7 +35,7 @@ Action hooks let you run side-effect code at a specific point in the request lif
 
 ### `simple_jwt_login_before_endpoint`[​](#simple_jwt_login_before_endpoint "Direct link to simple_jwt_login_before_endpoint")
 
-Fires before a Simple JWT Login REST route is processed. Use it to validate requests, block specific callers, enforce policies (e.g. minimum password length), or log activity — for any endpoint.
+Fires before a Simple JWT Login REST route is processed. Use it to validate requests, block specific callers, enforce policies (e.g. minimum password length), or log activity - for any endpoint.
 
 | Parameter   | Type     | Description                        |
 | ----------- | -------- | ---------------------------------- |
@@ -106,20 +106,20 @@ Fires on the `/auth` endpoint before the JWT is signed. Use it to add custom cla
 | `$payload` | `array` | The JWT payload (modify and return) |
 | `$request` | `array` | Full request parameters             |
 
-**Returns:** `array` — the modified payload.
+**Returns:** `array` - the modified payload.
 
 ***
 
 ### `simple_jwt_login_no_redirect_message`[​](#simple_jwt_login_no_redirect_message "Direct link to simple_jwt_login_no_redirect_message")
 
-Fires on the `/autologin` endpoint when **No Redirect** is selected. Use it to customise the JSON response returned to the client.
+Fires on the `/autologin` endpoint when **No Redirect** is selected. Use it to customize the JSON response returned to the client.
 
 | Parameter  | Type    | Description                              |
 | ---------- | ------- | ---------------------------------------- |
 | `$payload` | `array` | The response payload (modify and return) |
 | `$request` | `array` | Full request parameters                  |
 
-**Returns:** `array` — the modified response payload.
+**Returns:** `array` - the modified response payload.
 
 ***
 
@@ -132,7 +132,7 @@ Fires when `POST /user/reset_password` is called. Use it to replace the default 
 | `$template` | `string` | The current email template |
 | `$request`  | `array`  | Full request parameters    |
 
-**Returns:** `string` — the custom email template.
+**Returns:** `string` - the custom email template.
 
 ***
 
@@ -149,7 +149,7 @@ Fires before the `POST /auth` response is returned.
 | `$response` | `array`   | The response data (modify and return) |
 | `$user`     | `WP_User` | The user associated with the request  |
 
-**Returns:** `array` — the modified response.
+**Returns:** `array` - the modified response.
 
 ***
 
@@ -162,7 +162,7 @@ Fires before the `POST /users` (register) response is returned.
 | `$response` | `array`   | The response data (modify and return) |
 | `$user`     | `WP_User` | The user associated with the request  |
 
-**Returns:** `array` — the modified response.
+**Returns:** `array` - the modified response.
 
 ***
 
@@ -175,7 +175,7 @@ Fires before the `DELETE /users` response is returned.
 | `$response` | `array`   | The response data (modify and return) |
 | `$user`     | `WP_User` | The user associated with the request  |
 
-**Returns:** `array` — the modified response.
+**Returns:** `array` - the modified response.
 
 ***
 
@@ -188,7 +188,7 @@ Fires before the `POST /auth/refresh` response is returned.
 | `$response` | `array`   | The response data (modify and return) |
 | `$user`     | `WP_User` | The user associated with the request  |
 
-**Returns:** `array` — the modified response.
+**Returns:** `array` - the modified response.
 
 ***
 
@@ -201,7 +201,7 @@ Fires before the `POST /user/reset_password` response is returned.
 | `$response` | `array`   | The response data (modify and return) |
 | `$user`     | `WP_User` | The user associated with the request  |
 
-**Returns:** `array` — the modified response.
+**Returns:** `array` - the modified response.
 
 ***
 
@@ -214,7 +214,7 @@ Fires before the `PUT /user/reset_password` response is returned.
 | `$response` | `array`   | The response data (modify and return) |
 | `$user`     | `WP_User` | The user associated with the request  |
 
-**Returns:** `array` — the modified response.
+**Returns:** `array` - the modified response.
 
 ***
 
@@ -227,7 +227,7 @@ Fires before the `DELETE /auth` response is returned.
 | `$response` | `array`   | The response data (modify and return) |
 | `$user`     | `WP_User` | The user associated with the request  |
 
-**Returns:** `array` — the modified response.
+**Returns:** `array` - the modified response.
 
 ***
 
@@ -240,7 +240,7 @@ Fires before the `GET /auth/validate` response is returned.
 | `$response` | `array`   | The response data (modify and return) |
 | `$user`     | `WP_User` | The user associated with the request  |
 
-**Returns:** `array` — the modified response.
+**Returns:** `array` - the modified response.
 
 ***
 
@@ -254,7 +254,7 @@ Fires before the `GET /auth/validate` response is returned.
 
 ### Add custom claims to the JWT payload[​](#add-custom-claims-to-the-jwt-payload "Direct link to Add custom claims to the JWT payload")
 
-Enrich the token with user metadata — roles, plan, tenant ID — so downstream services don't need a separate lookup.
+Enrich the token with user metadata - roles, plan, tenant ID - so downstream services don't need a separate lookup.
 
 ```
 add_filter('simple_jwt_login_jwt_payload_auth', function (array $payload, array $request): array {

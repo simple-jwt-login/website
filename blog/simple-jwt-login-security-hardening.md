@@ -14,7 +14,7 @@ Creator of Simple JWT Login
 
 [](https://x.com/nicumicle "X")[](https://github.com/nicumicle "GitHub")
 
-Installing Simple JWT Login takes minutes. Configuring it securely for production takes a bit more thought. The plugin ships with most sensitive features **disabled by default**, which is the right approach — but it also means the defaults aren't always sufficient for a hardened deployment.
+Installing Simple JWT Login takes minutes. Configuring it securely for production takes a bit more thought. The plugin ships with most sensitive features **disabled by default**, which is the right approach - but it also means the defaults aren't always sufficient for a hardened deployment.
 
 This guide works through every security-relevant setting in Simple JWT Login, explains the trade-offs, and gives you a concrete checklist to work from before you go live.
 
@@ -24,12 +24,12 @@ The algorithm you pick determines how tokens are signed and verified.
 
 **HMAC algorithms (HS256, HS384, HS512)** use a shared secret. Anyone who knows the secret can both sign and verify tokens. This is fine when only your WordPress server generates and validates tokens.
 
-**RSA algorithms (RS256, RS384, RS512)** use a public/private key pair. WordPress signs tokens with the private key; anyone can verify them with the public key — without ever seeing the private key. Choose RS256 when:
+**RSA algorithms (RS256, RS384, RS512)** use a public/private key pair. WordPress signs tokens with the private key; anyone can verify them with the public key - without ever seeing the private key. Choose RS256 when:
 
 * A third-party service (external API, CDN, serverless function) needs to verify tokens independently
 * Your team wants to publish the verification key without exposing signing capability
 
-For most applications, **HS256 is the right default**. If you go this route, the decryption key is everything — treat it accordingly.
+For most applications, **HS256 is the right default**. If you go this route, the decryption key is everything - treat it accordingly.
 
 **Configuration:**
 
@@ -48,7 +48,7 @@ Rules for production keys:
 * **Minimum 32 characters**, ideally 64+
 * Use a cryptographically random generator, not a human-chosen phrase
 * Never commit it to version control
-* Rotate it if you suspect compromise (this will invalidate all existing tokens — have a plan for active sessions)
+* Rotate it if you suspect compromise (this will invalidate all existing tokens - have a plan for active sessions)
 
 Generate a suitable key from your terminal:
 
@@ -83,13 +83,13 @@ Settings > Simple JWT Login > General > JWT Expiration (seconds)
 
 ## 4. Restrict Operations with Auth Codes[​](#4-restrict-operations-with-auth-codes "Direct link to 4. Restrict Operations with Auth Codes")
 
-Auth Codes are optional API keys that gate specific plugin operations: auto-login, user registration, user deletion, and password resets. If an operation requires an Auth Code and the caller doesn't provide a valid one, the request is rejected — regardless of whether a valid JWT is present.
+Auth Codes are optional API keys that gate specific plugin operations: auto-login, user registration, user deletion, and password resets. If an operation requires an Auth Code and the caller doesn't provide a valid one, the request is rejected - regardless of whether a valid JWT is present.
 
 **Always use Auth Codes for:**
 
-* **User registration** — without one, anyone who discovers your endpoint can create WordPress accounts
-* **User deletion** — even with JWT auth, an extra key adds a meaningful barrier
-* **Auto-login** — prevents token-crafting attacks against your autologin endpoint
+* **User registration** - without one, anyone who discovers your endpoint can create WordPress accounts
+* **User deletion** - even with JWT auth, an extra key adds a meaningful barrier
+* **Auto-login** - prevents token-crafting attacks against your autologin endpoint
 
 Auth Code configuration lets you:
 
@@ -139,7 +139,7 @@ Settings > Simple JWT Login > Auto Login > Allow auto-login only from these IPs
 
 This renders stolen auto-login links useless from any other network, even if the token itself hasn't expired.
 
-For email campaign auto-login where users click from arbitrary IPs, leave IP restriction disabled — but compensate with a short token TTL (10–15 minutes is reasonable for a one-time login link).
+For email campaign auto-login where users click from arbitrary IPs, leave IP restriction disabled - but compensate with a short token TTL (10–15 minutes is reasonable for a one-time login link).
 
 ***
 
@@ -147,7 +147,7 @@ For email campaign auto-login where users click from arbitrary IPs, leave IP res
 
 Two independent controls protect the registration endpoint:
 
-**IP allowlist:** Only allow registration requests from known origins — your front-end server, your CI pipeline, etc.
+**IP allowlist:** Only allow registration requests from known origins - your front-end server, your CI pipeline, etc.
 
 ```
 Settings > Simple JWT Login > Register User > Allow register only from these IPs
@@ -187,7 +187,7 @@ This won't help if you don't call it, so it's worth building into your logout fl
 
 ## 9. Configure CORS Carefully[​](#9-configure-cors-carefully "Direct link to 9. Configure CORS Carefully")
 
-Simple JWT Login can add `Access-Control-Allow-Origin: *` headers to remove cross-origin friction during development. In production, this setting is a security liability — it allows any website to make authenticated requests to your API on behalf of your users.
+Simple JWT Login can add `Access-Control-Allow-Origin: *` headers to remove cross-origin friction during development. In production, this setting is a security liability - it allows any website to make authenticated requests to your API on behalf of your users.
 
 **For production:**
 
@@ -221,11 +221,11 @@ Every enabled feature is an attack surface. Simple JWT Login follows a deny-by-d
 
 Before going to production, audit your settings and disable:
 
-* **Auto-login** — if you're not using magic links
-* **Register users** — if registration happens through WordPress's built-in flow
-* **Delete users** — unless your application explicitly needs it
-* **Reset password** — if you're using a separate password management system
-* **Change password** — same as above
+* **Auto-login** - if you're not using magic links
+* **Register users** - if registration happens through WordPress's built-in flow
+* **Delete users** - unless your application explicitly needs it
+* **Reset password** - if you're using a separate password management system
+* **Change password** - same as above
 
 The fewer endpoints active, the smaller the attack surface.
 
@@ -246,7 +246,7 @@ Use this before every production deployment:
 * <!-- -->
   Each Auth Code is scoped to the minimum required role
 * <!-- -->
-  Endpoint protection is configured — protect all with whitelist, or named routes
+  Endpoint protection is configured - protect all with whitelist, or named routes
 * <!-- -->
   Auto-login IP restriction is set if used for server-side integrations only
 * <!-- -->
@@ -264,7 +264,7 @@ Use this before every production deployment:
 
 ## Conclusion[​](#conclusion "Direct link to Conclusion")
 
-Simple JWT Login's security posture is only as strong as its configuration. The defaults are safe — nothing is enabled you didn't ask for — but a truly hardened production setup requires deliberate choices about algorithms, key strength, Auth Codes, endpoint protection, and CORS.
+Simple JWT Login's security posture is only as strong as its configuration. The defaults are safe - nothing is enabled you didn't ask for - but a truly hardened production setup requires deliberate choices about algorithms, key strength, Auth Codes, endpoint protection, and CORS.
 
 Work through the checklist above before launch and revisit it whenever you enable a new feature. The goal isn't paranoia; it's ensuring that each exposed capability is intentional, scoped, and monitored.
 

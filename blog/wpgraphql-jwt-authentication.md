@@ -14,7 +14,7 @@ Creator of Simple JWT Login
 
 [](https://x.com/nicumicle "X")[](https://github.com/nicumicle "GitHub")
 
-GraphQL and headless WordPress are a natural match. WPGraphQL gives you a flexible, typed query layer over all your WordPress data. But like the REST API, it's unauthenticated by default — anyone can query it. Simple JWT Login solves that.
+GraphQL and headless WordPress are a natural match. WPGraphQL gives you a flexible, typed query layer over all your WordPress data. But like the REST API, it's unauthenticated by default - anyone can query it. Simple JWT Login solves that.
 
 In this guide I'll walk through connecting Simple JWT Login to WPGraphQL so your GraphQL operations can carry a JWT, granting access to protected data and enabling authenticated mutations like creating posts or updating user profiles.
 
@@ -22,8 +22,8 @@ In this guide I'll walk through connecting Simple JWT Login to WPGraphQL so your
 
 You'll need two plugins installed and active:
 
-* **WPGraphQL** — available at [wpgraphql.com](https://www.wpgraphql.com)
-* **Simple JWT Login** — available in the [WordPress plugin repository](https://wordpress.org/plugins/simple-jwt-login/)
+* **WPGraphQL** - available at [wpgraphql.com](https://www.wpgraphql.com)
+* **Simple JWT Login** - available in the [WordPress plugin repository](https://wordpress.org/plugins/simple-jwt-login/)
 
 No additional bridge plugin is required. Simple JWT Login's WPGraphQL integration is built in.
 
@@ -31,13 +31,13 @@ No additional bridge plugin is required. Simple JWT Login's WPGraphQL integratio
 
 ## How It Works[​](#how-it-works "Direct link to How It Works")
 
-The integration is straightforward: Simple JWT Login generates and validates JWTs using its standard `/auth` endpoint. When a request hits the WPGraphQL endpoint (`/wp-json/graphql` or `/graphql`), Simple JWT Login intercepts it, validates the bearer token, and — if valid — sets the current WordPress user context before WPGraphQL resolves the query.
+The integration is straightforward: Simple JWT Login generates and validates JWTs using its standard `/auth` endpoint. When a request hits the WPGraphQL endpoint (`/wp-json/graphql` or `/graphql`), Simple JWT Login intercepts it, validates the bearer token, and - if valid - sets the current WordPress user context before WPGraphQL resolves the query.
 
 From WPGraphQL's perspective, the request simply arrives as an authenticated WordPress user. Every resolver that checks `current_user_can()` or relies on `wp_get_current_user()` works exactly as it would in a browser session.
 
 ***
 
-## Step 1 — Configure Simple JWT Login[​](#step-1--configure-simple-jwt-login "Direct link to Step 1 — Configure Simple JWT Login")
+## Step 1 - Configure Simple JWT Login[​](#step-1---configure-simple-jwt-login "Direct link to Step 1 - Configure Simple JWT Login")
 
 Navigate to **Simple JWT Login** in your WordPress admin. The core settings you need:
 
@@ -59,7 +59,7 @@ That's the only required toggle. The plugin will now validate JWT tokens on ever
 
 ***
 
-## Step 2 — Obtain a JWT[​](#step-2--obtain-a-jwt "Direct link to Step 2 — Obtain a JWT")
+## Step 2 - Obtain a JWT[​](#step-2---obtain-a-jwt "Direct link to Step 2 - Obtain a JWT")
 
 Use the standard auth endpoint to get a token:
 
@@ -85,7 +85,7 @@ Response:
 
 ***
 
-## Step 3 — Make Authenticated GraphQL Queries[​](#step-3--make-authenticated-graphql-queries "Direct link to Step 3 — Make Authenticated GraphQL Queries")
+## Step 3 - Make Authenticated GraphQL Queries[​](#step-3---make-authenticated-graphql-queries "Direct link to Step 3 - Make Authenticated GraphQL Queries")
 
 Pass the token as a bearer token in the `Authorization` header on every GraphQL request:
 
@@ -117,7 +117,7 @@ Without the token, `viewer` returns `null`. With it, you get the full authentica
 
 ***
 
-## Step 4 — Authenticated Mutations[​](#step-4--authenticated-mutations "Direct link to Step 4 — Authenticated Mutations")
+## Step 4 - Authenticated Mutations[​](#step-4---authenticated-mutations "Direct link to Step 4 - Authenticated Mutations")
 
 This is where the integration becomes genuinely useful. Many WPGraphQL mutations require an authenticated user. Creating a post, for example:
 
@@ -258,7 +258,7 @@ Add route: /graphql
 Methods: GET, POST
 ```
 
-This ensures every GraphQL request — including introspection — must carry a valid JWT. Ideal for private internal APIs.
+This ensures every GraphQL request - including introspection - must carry a valid JWT. Ideal for private internal APIs.
 
 ***
 

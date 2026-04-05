@@ -1,6 +1,6 @@
 # WP-CLI Add-on
 
-**Simple-JWT-Login CLI** is a [WP-CLI](https://wp-cli.org/) add-on that brings the full power of Simple JWT Login to your terminal. Generate tokens, inspect payloads, revoke sessions, and manage every plugin setting — all without opening the WordPress admin UI.
+**Simple-JWT-Login CLI** is a [WP-CLI](https://wp-cli.org/) add-on that brings the full power of Simple JWT Login to your terminal. Generate tokens, inspect payloads, revoke sessions, and manage every plugin setting - all without opening the WordPress admin UI.
 
 It is the go-to companion for DevOps pipelines, staging-to-production migrations, automated testing, and any workflow where speed and scriptability matter.
 
@@ -79,7 +79,7 @@ curl -H "Authorization: Bearer $TOKEN" https://example.com/wp-json/wp/v2/posts
 
 ### `wp jwt decode`[​](#wp-jwt-decode "Direct link to wp-jwt-decode")
 
-Decode a JWT payload and display its claims. The signature is **not** verified — use `wp jwt validate` for that.
+Decode a JWT payload and display its claims. The signature is **not** verified - use `wp jwt validate` for that.
 
 ```
 wp jwt decode <token> [--format=<format>]
@@ -115,7 +115,7 @@ wp jwt validate <token> [--format=<format>]
 | `<token>`         | Yes      | The JWT token to validate  |
 | `--format`        | No       | `text` (default) or `json` |
 
-The command always exits `0` — check the `valid` field to determine the result.
+The command always exits `0` - check the `valid` field to determine the result.
 
 ```
 wp jwt validate "$TOKEN" --format=json
@@ -222,7 +222,7 @@ wp jwt config list [--format=<format>]
 
 | Option     | Required | Description                                                                                                                                          |
 | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--format` | No       | `text` (default) — one `key value` line per setting, nested objects expanded with dot notation; `json` — full settings object as pretty-printed JSON |
+| `--format` | No       | `text` (default) - one `key value` line per setting, nested objects expanded with dot notation; `json` - full settings object as pretty-printed JSON |
 
 ```
 wp jwt config list
@@ -276,7 +276,7 @@ wp jwt config import <file> [--merge] [--dry-run] [--yes] [--force]
 | `<file>`          | Yes      | Path to the JSON file to import                                     |
 | `--merge`         | No       | Merge into existing settings instead of replacing the entire config |
 | `--dry-run`       | No       | Show what would change without saving anything                      |
-| `--yes`           | No       | Skip the confirmation prompt — useful in CI/CD pipelines            |
+| `--yes`           | No       | Skip the confirmation prompt - useful in CI/CD pipelines            |
 | `--force`         | No       | Skip plugin validation and save regardless of validation errors     |
 
 ```
@@ -346,7 +346,7 @@ STATUS=$(wp jwt validate "$TOKEN" --format=json | jq -r '.valid')
 | `Wrong user credentials.`         | Incorrect username/email or password     | Verify your credentials                                                  |
 | `Could not decode token…`         | Token is not a valid JWT                 | Check you are passing the full three-part token                          |
 | `Token is valid. / valid: false`  | `wp jwt validate` reports invalid        | The `message` field explains why (expired, bad signature, etc.)          |
-| `Token has already been revoked.` | Revoking an already-revoked token        | No action needed — it was already blocked                                |
+| `Token has already been revoked.` | Revoking an already-revoked token        | No action needed - it was already blocked                                |
 | `Setting "<key>" not found.`      | No stored value for that key             | Setting uses plugin default; use `config set` to store an explicit value |
 | `Invalid JSON value: …`           | Malformed JSON passed with `--type=json` | Validate with `jq . <<< "$VALUE"` before passing                         |
 | `Cannot read file: <path>`        | File does not exist or is unreadable     | Check the path and file permissions                                      |
@@ -373,4 +373,4 @@ composer tests
 composer run check-plugin
 ```
 
-See the [README](https://github.com/simple-jwt-login/simple-jwt-login-cli) for more informations.
+See the [README](https://github.com/simple-jwt-login/simple-jwt-login-cli) for more information.

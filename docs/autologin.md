@@ -1,11 +1,11 @@
 # Autologin
 
-The Autologin endpoint lets you log a user into WordPress by passing a valid JWT — no username or password form needed. This is ideal for:
+The Autologin endpoint lets you log a user into WordPress by passing a valid JWT - no username or password form needed. This is ideal for:
 
-* **Magic-link emails** — generate a signed link and email it to the user
-* **SSO flows** — redirect users from an external system directly into WordPress
-* **Mobile apps** — open a webview session without re-prompting for credentials
-* **Cross-domain redirects** — seamlessly land users on a specific page after authentication
+* **Magic-link emails** - generate a signed link and email it to the user
+* **SSO flows** - redirect users from an external system directly into WordPress
+* **Mobile apps** - open a webview session without re-prompting for credentials
+* **Cross-domain redirects** - seamlessly land users on a specific page after authentication
 
 The plugin validates the JWT, identifies the WordPress user from the token payload, creates the authenticated session, and redirects the user to the configured destination.
 
@@ -86,10 +86,10 @@ window.location.href="https://simplejwt-login.com?rest_route=/simple-jwt-login/v
 
 The JWT can be delivered in any of the following ways:
 
-* **URL parameter** — append `&JWT=<token>` to the autologin URL
-* **Authorization Header** — `Authorization: Bearer <token>`
-* **Cookie** — set a cookie containing the token
-* **Session** — pass the token via the PHP session
+* **URL parameter** - append `&JWT=<token>` to the autologin URL
+* **Authorization Header** - `Authorization: Bearer <token>`
+* **Cookie** - set a cookie containing the token
+* **Session** - pass the token via the PHP session
 
 If the JWT is present in more than one location, the last value encountered takes precedence.
 
@@ -99,9 +99,9 @@ If the JWT is present in more than one location, the last value encountered take
 
 Once the user is authenticated, the plugin can redirect them to:
 
-* **Dashboard** — the WordPress admin panel
-* **Homepage** — the site's front page
-* **Custom URL** — any URL you define in the plugin settings (ideal for landing pages or app entry points)
+* **Dashboard** - the WordPress admin panel
+* **Homepage** - the site's front page
+* **Custom URL** - any URL you define in the plugin settings (ideal for landing pages or app entry points)
 
 You can also append a `redirectUrl` query parameter to the autologin link to override the configured destination. Enable the **"Allow redirect to a specific URL"** option in the plugin settings to activate this.
 

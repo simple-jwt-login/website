@@ -1,6 +1,6 @@
 # Revoke token
 
-Revoking a token immediately invalidates it — any subsequent request using that token will be rejected. Call this endpoint when a user logs out or when you need to terminate a specific session (e.g., after a password change or suspicious activity).
+Revoking a token immediately invalidates it - any subsequent request using that token will be rejected. Call this endpoint when a user logs out or when you need to terminate a specific session (e.g., after a password change or suspicious activity).
 
 note
 

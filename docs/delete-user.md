@@ -6,8 +6,8 @@ Deletion is **disabled by default**. Enable it in the plugin settings before use
 
 The plugin identifies which user to delete from the JWT payload. You can configure it to look for either:
 
-* **WordPress User ID** — the numeric user ID stored in the JWT
-* **Email address** — the user's email address stored in the JWT
+* **WordPress User ID** - the numeric user ID stored in the JWT
+* **Email address** - the user's email address stored in the JWT
 
 Configure the JWT payload key to use in the plugin settings under the **Delete User** tab.
 

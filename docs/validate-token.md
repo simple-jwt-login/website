@@ -5,8 +5,8 @@ Use this endpoint to verify whether a JWT is valid. On success, the response inc
 This endpoint is useful for:
 
 * **Server-side token verification** before granting access to resources
-* **Debugging** — inspect what user and claims a token resolves to
-* **Client-side session checks** — confirm a stored token is still accepted before making other API calls
+* **Debugging** - inspect what user and claims a token resolves to
+* **Client-side session checks** - confirm a stored token is still accepted before making other API calls
 
 **METHOD** : `POST`
 

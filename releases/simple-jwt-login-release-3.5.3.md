@@ -20,7 +20,7 @@ This is a maintenance release with a minor fix and WordPress 6.4 compatibility.
 
 ## Bug Fixes[​](#bug-fixes "Direct link to Bug Fixes")
 
-* Fix licence declaration in `composer.json`
+* Fix License declaration in `composer.json`
 
 ## Compatibility[​](#compatibility "Direct link to Compatibility")
 

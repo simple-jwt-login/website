@@ -1,6 +1,6 @@
 # Introduction
 
-**Simple-JWT-Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT) authentication to the WordPress REST API. It lets mobile apps, single-page applications, and external services securely interact with your WordPress site — without exposing admin credentials.
+**Simple-JWT-Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT) authentication to the WordPress REST API. It lets mobile apps, single-page applications, and external services securely interact with your WordPress site - without exposing admin credentials.
 
 With Simple-JWT-Login you can:
 
@@ -20,7 +20,7 @@ Before installing Simple-JWT-Login, ensure your environment meets the following 
 * PHP **5.5** or higher
 * WordPress **4.4.0** or higher
 
-## Licence[​](#licence "Direct link to Licence")
+## License[​](#license "Direct link to License")
 
 Simple-JWT-Login is open-source and distributed under the [GPL 3.0](https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE) License.
 

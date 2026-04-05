@@ -18,7 +18,7 @@ Go to **Simple-JWT-Login Settings** and enable **WPGraphQL Authorization**.
 
 ### Test an Unauthenticated Request[​](#test-an-unauthenticated-request "Direct link to Test an Unauthenticated Request")
 
-Try calling a **WPGraphQL endpoint** without authentication—you should receive an **Unauthorized error**:
+Try calling a **WPGraphQL endpoint** without authentication-you should receive an **Unauthorized error**:
 
 ![Unauthorized WPGraphQL Error Example](/assets/img/wpgraphql/wpgraphql-postman-unauthorized.png)
 

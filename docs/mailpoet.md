@@ -1,6 +1,6 @@
 # MailPoet
 
-The Simple-JWT-Login MailPoet add-on lets you embed personalised, one-click login links inside your MailPoet email campaigns. When a subscriber clicks the link, they are automatically logged into your WordPress site — no password entry required.
+The Simple-JWT-Login MailPoet add-on lets you embed personalized, one-click login links inside your MailPoet email campaigns. When a subscriber clicks the link, they are automatically logged into your WordPress site - no password entry required.
 
 The add-on generates a shortcode that you drop into your MailPoet email template. Each time an email is sent, the shortcode is rendered into a unique, time-limited autologin URL for that recipient.
 

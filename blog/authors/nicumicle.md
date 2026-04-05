@@ -12,7 +12,7 @@
 
 min read
 
-We've completely redesigned the Simple JWT Login website with a cleaner UI, built-in search, AI-friendly content, improved SEO, and new blog content — here's what's new.
+We've completely redesigned the Simple JWT Login website with a cleaner UI, built-in search, AI-friendly content, improved SEO, and new blog content - here's what's new.
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 

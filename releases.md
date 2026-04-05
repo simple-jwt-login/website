@@ -12,7 +12,7 @@
 
 min read
 
-Released version 3.6.5 — security patch, bug fixes, and WordPress 6.9 compatibility
+Released version 3.6.5 - security patch, bug fixes, and WordPress 6.9 compatibility
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 

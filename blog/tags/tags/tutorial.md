@@ -12,7 +12,7 @@
 
 min read
 
-Learn how to add production-ready JWT authentication to your headless WordPress setup using Simple JWT Login — from token generation to protected endpoints and password resets.
+Learn how to add production-ready JWT authentication to your headless WordPress setup using Simple JWT Login - from token generation to protected endpoints and password resets.
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 

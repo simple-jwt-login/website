@@ -4,9 +4,9 @@ Use this endpoint to exchange WordPress credentials for a signed JWT. The return
 
 You can authenticate using any of the following combinations:
 
-* **email** + **password** — standard credential pair
-* **username** + **password** — use the WordPress username instead of email
-* **login** + **password** — mirrors the WordPress login page behaviour; accepts either email or username
+* **email** + **password** - standard credential pair
+* **username** + **password** - use the WordPress username instead of email
+* **login** + **password** - mirrors the WordPress login page behaviour; accepts either email or username
 
 ## Endpoint[​](#endpoint "Direct link to Endpoint")
 

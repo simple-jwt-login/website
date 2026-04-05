@@ -1,6 +1,6 @@
 # Protect Endpoints
 
-The Protect Endpoints feature lets you require a valid JWT for any WordPress REST API route. Use it to lock down sensitive data — such as user profiles, private posts, or custom post types — so they can only be accessed by authenticated callers.
+The Protect Endpoints feature lets you require a valid JWT for any WordPress REST API route. Use it to lock down sensitive data - such as user profiles, private posts, or custom post types - so they can only be accessed by authenticated callers.
 
 When a protected endpoint is called without a valid JWT, the plugin returns a `403` error immediately, before WordPress processes the request.
 

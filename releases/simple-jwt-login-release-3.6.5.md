@@ -24,7 +24,7 @@ This release addresses a **Stored Cross-Site Scripting (XSS)** vulnerability ide
 
 If you are running an older version, please update as soon as possible to protect your site and users.
 
-* Fix CVE-2025-58648 — Stored Cross-Site Scripting vulnerability ([PR #162](https://github.com/nicumicle/simple-jwt-login/pull/162))
+* Fix CVE-2025-58648 - Stored Cross-Site Scripting vulnerability ([PR #162](https://github.com/nicumicle/simple-jwt-login/pull/162))
 
 ## Bug Fixes[​](#bug-fixes "Direct link to Bug Fixes")
 

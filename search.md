@@ -14,11 +14,11 @@ Search
 
 This project is supported by:
 
-[![DigitalOcean](https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg)](https://www.digitalocean.com/ "DigitalOcean — cloud infrastructure sponsor")
+[![DigitalOcean](https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg)](https://www.digitalocean.com/ "DigitalOcean - cloud infrastructure sponsor")
 
 ![](/assets/favicons/favicon.ico)Simple JWT Login
 
-JWT authentication for WordPress — REST API, headless WP, WPGraphQL, and WP-CLI. Free and open-source, forever.
+JWT authentication for WordPress - REST API, headless WP, WPGraphQL, and WP-CLI. Free and open-source, forever.
 
 [](https://github.com/nicumicle/simple-jwt-login "GitHub")[](https://discord.gg/c4AeefD8Dr "Discord")[](https://twitter.com/simplejwtlogin "X (Twitter)")
 
