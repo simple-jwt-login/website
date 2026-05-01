@@ -87,11 +87,20 @@ const config: Config = {
         id: 'api-docs',
         path: 'api',
         routeBasePath: 'api',
-        docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
-        // sidebarPath: './sidebarsCommunity.js',
-        // ... other options
+        docItemComponent: "@theme/ApiItem",
       },
     ],
+
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api-docs-v3',
+        path: 'api-v3',
+        routeBasePath: 'api/v3',
+        docItemComponent: "@theme/ApiItem",
+      },
+    ],
+
 
     [
       '@docusaurus/plugin-sitemap',
@@ -146,19 +155,39 @@ const config: Config = {
     [
       'docusaurus-plugin-openapi-docs',
       {
-        id: "opeanapi-1", // plugin id
-        docsPluginId: "api-docs", // configured for preset-classic
+        id: "openapi-v4",
+        docsPluginId: "api-docs",
         config: {
-          apiv1: {
-            specPath: "static/openapi.yaml",
+          apiv4: {
+            specPath: "static/openapi-v4.yaml",
             outputDir: "./api",
             showSchemas: false,
-            baseUrl: "/api", // Leading slash is important
-            showExtensions: true, 
+            baseUrl: "/api",
+            showExtensions: true,
             showInfoPage: true,
             sidebarOptions: {
               groupPathsBy: "tag",
-             // categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+        }
+      },
+    ],
+
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "openapi-v3",
+        docsPluginId: "api-docs-v3",
+        config: {
+          apiv3: {
+            specPath: "static/openapi-v3.yaml",
+            outputDir: "./api-v3",
+            showSchemas: false,
+            baseUrl: "/api/v3",
+            showExtensions: true,
+            showInfoPage: true,
+            sidebarOptions: {
+              groupPathsBy: "tag",
             },
           } satisfies OpenApiPlugin.Options,
         }
@@ -166,24 +195,26 @@ const config: Config = {
     ],
 
 
-    //
-    function webpackPolyfillPlugin() {
-      return {
-        name: 'webpack-polyfill-plugin',
-        configureWebpack(config, isServer) {
-          if (!isServer) {
-            return {
-              resolve: {
-                fallback: {
-                  path: require.resolve('path-browserify'),
+    [
+      function webpackPolyfillPlugin() {
+        return {
+          name: 'webpack-polyfill-plugin',
+          configureWebpack(config, isServer) {
+            if (!isServer) {
+              return {
+                resolve: {
+                  fallback: {
+                    path: require.resolve('path-browserify'),
+                  },
                 },
-              },
-            };
-          }
-          return {};
-        },
-      };
-    },
+              };
+            }
+            return {};
+          },
+        };
+      },
+      {},
+    ],
 
   ],
 
@@ -295,10 +326,8 @@ const config: Config = {
           title: 'Docs',
         },
         {
-          label: 'API Reference',
+          type: 'custom-ApiVersionLink',
           position: 'left',
-          to: '/api/simple-jwt-login',
-          title: 'API Reference',
         },
         {
           label: 'Blog',
