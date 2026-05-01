@@ -215,6 +215,18 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl:  'https://github.com/simple-jwt-login/website/tree/main',
           //docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '4.x',
+              badge: true,
+            },
+            '3.0.0': {
+              label: '3.x',
+              badge: true,
+              banner: 'unmaintained',
+            },
+          },
         },
         blog: {
           showReadingTime: true,
@@ -299,6 +311,10 @@ const config: Config = {
           position: 'left',
           to: '/ecosystem/',
           title: 'Ecosystem',
+        },
+        {
+          type: 'docsVersionDropdown',
+          position: 'left',
         },
         {
           type: 'search',
