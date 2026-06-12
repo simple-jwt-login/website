@@ -1,0 +1,163 @@
+tags:
+  - authenticate_user
+summary: Validate a JWT and retrieve user details
+operationId: validateJWT
+security:
+  - BearerAuth: []
+  - JwtQueryParam: []
+description: |
+  Verifies the JWT signature, checks expiry and revocation status, and returns the
+  decoded token information together with the matching WordPress user profile and roles.
+
+  The JWT can be passed as the `JWT` query parameter, in the request body, or as a
+  Bearer token in the `Authorization` header.
+
+  **Requirements**
+  - Token validation must be enabled in the plugin settings.
+  - If "Authentication Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+parameters:
+  - name: JWT
+    in: query
+    description: The JWT to validate.
+    required: true
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    schema:
+      type: string
+  - name: AUTH_CODE
+    in: query
+    example: "MY_SUPER_SECRET_AUTH_CODE"
+    description: Required when "Authentication Requires Auth Code" is enabled.
+    schema:
+      type: string
+responses:
+  '200':
+    description: JWT is valid. Returns the decoded token and the associated WordPress user.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              example: true
+            data:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    ID:
+                      type: string
+                      example: "1"
+                    user_login:
+                      type: string
+                      example: "myuser"
+                    user_nicename:
+                      type: string
+                      example: "myuser"
+                    user_email:
+                      type: string
+                      example: "myuser@simplejwtlogin.com"
+                    user_url:
+                      type: string
+                      example: "https://simplejwtlogin.com/myuser"
+                    user_registered:
+                      type: string
+                      example: "2021-01-01 23:31:50"
+                    user_activation_key:
+                      type: string
+                      example: ""
+                    user_status:
+                      type: string
+                      example: "0"
+                    display_name:
+                      type: string
+                      example: "myuser"
+                roles:
+                  type: array
+                  items:
+                    type: string
+                    example: "administrator"
+                jwt:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                      header:
+                        type: object
+                        properties:
+                          typ:
+                            type: string
+                            example: "JWT"
+                          alg:
+                            type: string
+                            example: "HS256"
+                      payload:
+                        type: object
+                        properties:
+                          iat:
+                            type: number
+                            example: 1516239022
+                          email:
+                            type: string
+                            example: "myuser@simplejwtlogin.com"
+                          id:
+                            type: number
+                            example: 1
+                          site:
+                            type: string
+                            example: "https://simplejwtlogin.com"
+                          username:
+                            type: string
+                            example: "myuser"
+  '400':
+    description: |
+      Bad request. The `JWT` parameter is missing.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT is missing."
+            errorCode: 53
+  '401':
+    description: |
+      Unauthorized. The JWT is structurally invalid, has a bad signature, is expired,
+      or has been revoked.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT has expired."
+            errorCode: 14
+  '403':
+    description: |
+      Forbidden. JWT validation is disabled in the plugin settings.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Validate token is not enabled."
+            errorCode: 82
+  '500':
+    description: Internal server error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "An unexpected error occurred."
+            errorCode: 22

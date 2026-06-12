@@ -29,19 +29,56 @@ The following error will be displayed, when an endpoint is protected and no JWT 
 
 ![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-11.png?raw=true)
 
+---
+
+## Settings
+
+Configure under **Settings → Simple JWT Login → Protect Endpoints**.
+
+### Protect Endpoints
+
+Enable or disable the endpoint protection feature. When disabled, no JWT check is applied to any REST route.
+
+### Protection Scope
+
+Controls which endpoints are subject to JWT protection. Two options:
+
+| Option | Behavior |
+| :----- | :------- |
+| **Apply on All REST Endpoints** | All REST API routes require a JWT. Endpoints in the **Whitelisted Endpoints** list are excluded from this requirement. |
+| **Apply only on Specific REST endpoints** | Only the routes listed in the **Protected Endpoints** list require a JWT. All other routes remain public. |
+
+### Whitelisted Endpoints
+
+Visible when "Apply on All REST Endpoints" is selected. Add endpoint rules here to allow public access to those routes even though global protection is enabled.
+
+### Protected Endpoints
+
+Visible when "Apply only on Specific REST endpoints" is selected. Add endpoint rules here to require a JWT for those specific routes.
+
+**Each endpoint rule has three fields:**
+
+| Field | Options | Description |
+| :---- | :------ | :---------- |
+| HTTP Method | ALL, GET, POST, PUT, PATCH, DELETE | Which request methods the rule applies to. |
+| Match type | Starts with, Exact match | Whether the path must start with the value or match it exactly. |
+| URL path | text input | The REST API path to match (e.g. `/wp/v2/users`). |
+
+---
+
 ## Protection Modes
 
 You can choose between two protection modes:
-- **Protect all endpoints**
-- **Protect only specific endpoints**
+- **Apply on All REST Endpoints**
+- **Apply only on Specific REST endpoints**
 
-### 1. Protect All Endpoints
-When enabled, this option secures all endpoints except those explicitly listed in the "Whitelist."
-To exclude an endpoint from protection, add it to the whitelist using the "Add Endpoints +" button.
+### 1. Apply on All REST Endpoints
+When enabled, this option secures all endpoints except those explicitly listed in the **Whitelisted Endpoints** section.
+To exclude an endpoint from protection, add it to the whitelist using the "+ Add Endpoint" button.
 
-### 2. Protect Only Specific Endpoints
-This option protects only the endpoints listed in the "Protect Endpoints" section.
-To secure an endpoint, add it using the "Add Endpoint" button.
+### 2. Apply only on Specific REST endpoints
+This option protects only the endpoints listed in the **Protected Endpoints** section.
+To secure an endpoint, add it using the "+ Add Endpoint" button.
 
 ## Configuration Options
 

@@ -85,8 +85,8 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'api-docs',
-        path: 'api',
-        routeBasePath: 'api',
+        path: 'api/v4',
+        routeBasePath: 'api/v4',
         docItemComponent: "@theme/ApiItem",
       },
     ],
@@ -95,7 +95,7 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'api-docs-v3',
-        path: 'api-v3',
+        path: 'api/v3',
         routeBasePath: 'api/v3',
         docItemComponent: "@theme/ApiItem",
       },
@@ -159,10 +159,10 @@ const config: Config = {
         docsPluginId: "api-docs",
         config: {
           apiv4: {
-            specPath: "static/openapi-v4.yaml",
-            outputDir: "./api",
+            specPath: "static/openapi/v4.yaml",
+            outputDir: "./api/v4",
             showSchemas: false,
-            baseUrl: "/api",
+            baseUrl: "/api/v4",
             showExtensions: true,
             showInfoPage: true,
             sidebarOptions: {
@@ -180,8 +180,8 @@ const config: Config = {
         docsPluginId: "api-docs-v3",
         config: {
           apiv3: {
-            specPath: "static/openapi-v3.yaml",
-            outputDir: "./api-v3",
+            specPath: "static/openapi/v3.yaml",
+            outputDir: "./api/v3",
             showSchemas: false,
             baseUrl: "/api/v3",
             showExtensions: true,

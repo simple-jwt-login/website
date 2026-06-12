@@ -7,7 +7,7 @@ const PAYPAL_URL =
 
 const generalLinks = [
   { label: 'Documentation', to: '/docs/' },
-  { label: 'API Reference', to: '/api/simple-jwt-login' },
+  { label: 'API Reference', to: '/api/v4/simple-jwt-login' },
   { label: 'Ecosystem', to: '/ecosystem/' },
   { label: 'Releases', to: '/releases/' },
   { label: 'Donate', to: '/donate/' },

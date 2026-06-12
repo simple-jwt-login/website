@@ -1,0 +1,92 @@
+---
+id: simple-jwt-login
+title: "Simple-JWT-Login"
+description: "This is the Simple-JWT-Login WordPress plugin API Documentation."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 4.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Simple-JWT-Login"}
+>
+</Heading>
+
+This is the Simple-JWT-Login WordPress plugin API Documentation.
+
+## Introduction
+
+This API is documented in **OpenAPI format**. You can either open it in [swagger editor](https://editor.swagger.io/) or you can view it on this website.
+
+Also, you open it in postman, and you will be able to do local tests.
+
+## Server
+
+You can access the Simple-JWT-Login API in two modes:
+  - using permalink: https://\{domain\}/wp-json/simple-jwt-login/v1/\{endpoint\}
+  - using rest_route: https://\{domain\}/?rest_route=/simple-jwt-login/v1/\{endpoint\}
+
+## Authentication
+
+Most endpoints accept a JWT via the `JWT` query parameter, request body field, or `Authorization: Bearer <token>` header.
+API key management endpoints require an active WordPress session (cookie-based auth or equivalent).
+
+## Cross-Origin Resource Sharing
+This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
+And that allows cross-domain communication from the browser.
+All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+
+## Error Response Format
+
+All error responses share a common envelope:
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Human-readable error description",
+    "errorCode": 42
+  }
+}
+```
+The `errorCode` field maps to a specific internal error constant that can be used for programmatic error handling.
+
+
+<div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    [contact@simplejwtlogin.com](mailto:contact@simplejwtlogin.com)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    License
+  </h3><a
+    href={"https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE"}
+  >
+    GPL 3.0
+  </a>
+</div>
+      

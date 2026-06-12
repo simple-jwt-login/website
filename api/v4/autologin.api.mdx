@@ -1,0 +1,85 @@
+---
+id: autologin
+title: "Auto-login user into WordPress"
+description: "Validates the supplied JWT, resolves the matching WordPress user, and redirects the"
+sidebar_label: "Auto-login user into WordPress"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: api/v4//simple-jwt-login
+custom_edit_url: null
+show_extensions: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Auto-login user into WordPress"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/autologin"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Validates the supplied JWT, resolves the matching WordPress user, and redirects the
+browser to the site (or to `redirectUrl` if provided and allowed by settings).
+
+**Requirements**
+- Auto-login must be enabled in the plugin settings.
+- The JWT must be valid, not expired, and not revoked.
+- If "Auto-Login Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+- The calling IP must pass any IP allow-list configured in the plugin settings.
+
+**Success behaviour**
+The response is an HTTP redirect (302) to the WordPress home URL or the custom
+`redirectUrl`. The browser session is authenticated as the resolved user.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"JWT","in":"query","description":"A valid signed JWT identifying the WordPress user to log in.","required":true,"example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","schema":{"type":"string"}},{"name":"AUTH_CODE","in":"query","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Auto-Login Requires Auth Code\" is enabled in the plugin settings.","schema":{"type":"string"}},{"name":"redirectUrl","in":"query","example":"https://simplejwtlogin.com","description":"Overrides the redirect URL configured in the plugin settings. The \"Allow redirect\nURL override\" option must be enabled for this parameter to take effect.\n","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Login successful. The browser is redirected to the WordPress website. The response\nbody is empty HTML; the redirect is handled via HTTP headers.\n","content":{"application/html":{"example":""}}},"400":{"description":"Bad request. Returned for unclassified errors not covered by more specific\nstatus codes (e.g. malformed JWT encoding, JSON encode/decode failures).\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"Invalid JWT.","errorCode":25}}}}},"401":{"description":"Unauthorized. The JWT is structurally invalid, has an unsupported algorithm, has\na bad signature, is expired, has not-before/issued-at violations, is revoked, or\nthe provided auth code is wrong.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"JWT has expired.","errorCode":14}}}}},"403":{"description":"Forbidden. Auto-login is disabled in the plugin settings, or the client IP\naddress is not on the allow-list.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"Auto-login is not enabled.","errorCode":26}}}}},"404":{"description":"The WordPress user identified by the JWT payload could not be found.","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"User not found.","errorCode":24}}}}},"500":{"description":"Internal server error. Typically caused by an OpenSSL signing/verification\nfailure or an unexpected internal error.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"An unexpected error occurred.","errorCode":22}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

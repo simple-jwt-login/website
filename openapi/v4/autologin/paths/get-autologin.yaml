@@ -1,0 +1,114 @@
+tags:
+  - login_user
+summary: Auto-login user into WordPress
+operationId: autologin
+security:
+  - BearerAuth: []
+  - JwtQueryParam: []
+description: |
+  Validates the supplied JWT, resolves the matching WordPress user, and redirects the
+  browser to the site (or to `redirectUrl` if provided and allowed by settings).
+
+  **Requirements**
+  - Auto-login must be enabled in the plugin settings.
+  - The JWT must be valid, not expired, and not revoked.
+  - If "Auto-Login Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+  - The calling IP must pass any IP allow-list configured in the plugin settings.
+
+  **Success behaviour**
+  The response is an HTTP redirect (302) to the WordPress home URL or the custom
+  `redirectUrl`. The browser session is authenticated as the resolved user.
+parameters:
+  - name: JWT
+    in: query
+    description: A valid signed JWT identifying the WordPress user to log in.
+    required: true
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    schema:
+      type: string
+  - name: AUTH_CODE
+    in: query
+    example: "MY_SUPER_SECRET_AUTH_CODE"
+    description: Required when "Auto-Login Requires Auth Code" is enabled in the plugin settings.
+    schema:
+      type: string
+  - name: redirectUrl
+    in: query
+    example: "https://simplejwtlogin.com"
+    description: |
+      Overrides the redirect URL configured in the plugin settings. The "Allow redirect
+      URL override" option must be enabled for this parameter to take effect.
+    schema:
+      type: string
+responses:
+  '200':
+    description: |
+      Login successful. The browser is redirected to the WordPress website. The response
+      body is empty HTML; the redirect is handled via HTTP headers.
+    content:
+      application/html:
+        example: ""
+  '400':
+    description: |
+      Bad request. Returned for unclassified errors not covered by more specific
+      status codes (e.g. malformed JWT encoding, JSON encode/decode failures).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Invalid JWT."
+            errorCode: 25
+  '401':
+    description: |
+      Unauthorized. The JWT is structurally invalid, has an unsupported algorithm, has
+      a bad signature, is expired, has not-before/issued-at violations, is revoked, or
+      the provided auth code is wrong.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT has expired."
+            errorCode: 14
+  '403':
+    description: |
+      Forbidden. Auto-login is disabled in the plugin settings, or the client IP
+      address is not on the allow-list.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Auto-login is not enabled."
+            errorCode: 26
+  '404':
+    description: The WordPress user identified by the JWT payload could not be found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "User not found."
+            errorCode: 24
+  '500':
+    description: |
+      Internal server error. Typically caused by an OpenSSL signing/verification
+      failure or an unexpected internal error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "An unexpected error occurred."
+            errorCode: 22

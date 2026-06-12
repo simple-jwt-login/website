@@ -1,0 +1,78 @@
+tags:
+  - api_keys
+summary: List API keys
+operationId: listApiKeys
+security:
+  - BearerAuth: []
+  - JwtQueryParam: []
+description: |
+  Returns a paginated list of API keys owned by the authenticated WordPress user.
+  Administrators (`manage_options` capability) see all keys across all users.
+  Regular users see only their own keys.
+
+  The full key value is never returned; only the first 8-character prefix is shown
+  (followed by `****`) to help identify keys without exposing secrets.
+
+  **Requirements**
+
+  Authentication is required in one of two ways:
+  - An active WordPress session (cookie-based auth), **or**
+  - A valid JWT passed via `Authorization: Bearer <token>` header, the configured JWT header/cookie, or the `JWT` query parameter.
+parameters:
+  - name: page
+    in: query
+    description: Page number (1-based). Defaults to 1.
+    schema:
+      type: integer
+      minimum: 1
+      default: 1
+    example: 1
+  - name: per_page
+    in: query
+    description: Number of results per page (1–100). Defaults to 20.
+    schema:
+      type: integer
+      minimum: 1
+      maximum: 100
+      default: 20
+    example: 20
+responses:
+  '200':
+    description: Paginated list of API keys.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              example: true
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '../schemas/api-key-item.yaml'
+                total:
+                  type: integer
+                  description: Total number of matching keys.
+                  example: 5
+                page:
+                  type: integer
+                  example: 1
+                per_page:
+                  type: integer
+                  example: 20
+  '401':
+    description: |
+      Unauthorized. No active WordPress session and no valid JWT provided.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "You must be logged in to manage API keys."
+            errorCode: 84

@@ -1,0 +1,82 @@
+---
+id: validate-jwt
+title: "Validate a JWT and retrieve user details"
+description: "Verifies the JWT signature, checks expiry and revocation status, and returns the"
+sidebar_label: "Validate a JWT and retrieve user details"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: api/v4//simple-jwt-login
+custom_edit_url: null
+show_extensions: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Validate a JWT and retrieve user details"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/auth/validate"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Verifies the JWT signature, checks expiry and revocation status, and returns the
+decoded token information together with the matching WordPress user profile and roles.
+
+The JWT can be passed as the `JWT` query parameter, in the request body, or as a
+Bearer token in the `Authorization` header.
+
+**Requirements**
+- Token validation must be enabled in the plugin settings.
+- If "Authentication Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"JWT","in":"query","description":"The JWT to validate.","required":true,"example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","schema":{"type":"string"}},{"name":"AUTH_CODE","in":"query","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Authentication Requires Auth Code\" is enabled.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"JWT is valid. Returns the decoded token and the associated WordPress user.","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":true},"data":{"type":"object","properties":{"user":{"type":"object","properties":{"ID":{"type":"string","example":"1"},"user_login":{"type":"string","example":"myuser"},"user_nicename":{"type":"string","example":"myuser"},"user_email":{"type":"string","example":"myuser@simplejwtlogin.com"},"user_url":{"type":"string","example":"https://simplejwtlogin.com/myuser"},"user_registered":{"type":"string","example":"2021-01-01 23:31:50"},"user_activation_key":{"type":"string","example":""},"user_status":{"type":"string","example":"0"},"display_name":{"type":"string","example":"myuser"}}},"roles":{"type":"array","items":{"type":"string","example":"administrator"}},"jwt":{"type":"array","items":{"type":"object","properties":{"token":{"type":"string","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"},"header":{"type":"object","properties":{"typ":{"type":"string","example":"JWT"},"alg":{"type":"string","example":"HS256"}}},"payload":{"type":"object","properties":{"iat":{"type":"number","example":1516239022},"email":{"type":"string","example":"myuser@simplejwtlogin.com"},"id":{"type":"number","example":1},"site":{"type":"string","example":"https://simplejwtlogin.com"},"username":{"type":"string","example":"myuser"}}}}}}}}}}}}},"400":{"description":"Bad request. The `JWT` parameter is missing.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"JWT is missing.","errorCode":53}}}}},"401":{"description":"Unauthorized. The JWT is structurally invalid, has a bad signature, is expired,\nor has been revoked.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"JWT has expired.","errorCode":14}}}}},"403":{"description":"Forbidden. JWT validation is disabled in the plugin settings.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"Validate token is not enabled.","errorCode":82}}}}},"500":{"description":"Internal server error.","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"An unexpected error occurred.","errorCode":22}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

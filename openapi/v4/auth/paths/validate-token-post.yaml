@@ -1,0 +1,65 @@
+tags:
+  - authenticate_user
+summary: Validate a JWT and retrieve user details (POST variant)
+operationId: validateJWTPost
+security:
+  - BearerAuth: []
+description: |
+  Identical to `GET /auth/validate` but accepts the JWT in the request body instead of
+  as a query parameter. Use this variant when the JWT is too long for a URL, or when
+  sending it in the body is preferred for security reasons.
+requestBody:
+  description: JWT to validate.
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/validate-body.yaml'
+    multipart/form-data:
+      schema:
+        $ref: '../schemas/validate-body.yaml'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: '../schemas/validate-body.yaml'
+  required: true
+responses:
+  '200':
+    description: JWT is valid. Returns the decoded token and the associated WordPress user.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              example: true
+            data:
+              type: object
+              description: Same structure as the GET /auth/validate 200 response.
+  '400':
+    description: |
+      Bad request. The `JWT` field is missing from the request body.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+  '401':
+    description: |
+      Unauthorized. The JWT is structurally invalid, has a bad signature, is expired,
+      or has been revoked.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+  '403':
+    description: |
+      Forbidden. JWT validation is disabled in the plugin settings.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+  '500':
+    description: Internal server error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'

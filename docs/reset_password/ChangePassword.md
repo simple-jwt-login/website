@@ -36,7 +36,7 @@ Alternatively, if **"Allow Reset password with JWT"** is enabled in the plugin s
 }
 ```
 
-## Response
+## Responses
 
 ### 200
 
@@ -49,12 +49,84 @@ Alternatively, if **"Allow Reset password with JWT"** is enabled in the plugin s
 
 ### 400
 
+Bad request - `email`, `code`, or `new_password` is missing.
+
 ```json
 {
   "success": false,
   "data": {
-    "message": "string",
-    "errorCode": 0
+    "message": "New password is required.",
+    "errorCode": 61
+  }
+}
+```
+
+### 401
+
+Unauthorized - the JWT is invalid or expired, the JWT was issued by a reset-password flow and cannot be reused, or the auth code is wrong.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "This JWT cannot be used to change the password.",
+    "errorCode": 93
+  }
+}
+```
+
+### 403
+
+Forbidden - password reset is disabled in plugin settings.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Reset password is not allowed.",
+    "errorCode": 56
+  }
+}
+```
+
+### 404
+
+No WordPress user with the provided email address was found.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "User not found.",
+    "errorCode": 64
+  }
+}
+```
+
+### 422
+
+Unprocessable entity - the one-time reset code is invalid or expired.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Invalid reset password code.",
+    "errorCode": 62
+  }
+}
+```
+
+### 500
+
+Internal server error.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "An unexpected error occurred.",
+    "errorCode": 22
   }
 }
 ```
@@ -102,6 +174,36 @@ xhr.setRequestHeader("Content-Type", "application/json");
 
 xhr.send(data);
 ```
+
+## Error responses
+
+All error responses follow the standard envelope:
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Human-readable error description",
+    "errorCode": 56
+  }
+}
+```
+
+Common error codes:
+
+| Code | Meaning |
+| :--: | ------- |
+| `56` | Password reset is not enabled in plugin settings. |
+| `60` | The reset code is missing from the request. |
+| `61` | The new password is missing from the request. |
+| `62` | The reset code is invalid or does not match the email address. |
+| `63` | Email address is missing from the request. |
+| `64` | No WordPress user found with the provided email address. |
+| `93` | The provided JWT cannot be used to change the password. |
+
+JWT decoding errors (`1`-`22`) may also appear when a JWT is supplied and cannot be parsed or its signature is invalid.
+
+---
 
 ## Screenshot
 

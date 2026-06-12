@@ -87,7 +87,7 @@ const awesomeFeatures = [
     description: <>Assign roles at registration time - create admins, editors, or subscribers through a single endpoint.</>,
     image: "assets/img/roles.png",
     alt: "Roles",
-    link: "/docs/register-user/#user-roles",
+    link: "/docs/register-user/#new-user-settings",
   },
   {
     title: <>Integrate with Other Plugins</>,
@@ -108,7 +108,7 @@ const awesomeFeatures = [
     description: <>Pass a JWT to any WordPress endpoint and act as a fully authenticated user - no session cookies required.</>,
     image: "assets/img/protect.png",
     alt: "JWT on other endpoints",
-    link: "/docs/configuration#allow-jwt-usage-on-all-wordpress-endpoints",
+    link: "/docs/configuration#jwt-middleware-for-all-wordpress-endpoints",
   },
   {
     title: <>Google OAuth Integration</>,

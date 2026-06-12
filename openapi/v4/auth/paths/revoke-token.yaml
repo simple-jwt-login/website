@@ -1,0 +1,96 @@
+tags:
+  - authenticate_user
+summary: Revoke a JWT
+operationId: revokeJWT
+security:
+  - BearerAuth: []
+  - JwtQueryParam: []
+description: |
+  Marks the provided JWT as revoked in the database. Once revoked, the token is
+  rejected by all plugin endpoints that check for revocation (autologin, validate,
+  refresh, etc.).
+
+  **Requirements**
+  - Token revocation must be enabled in the plugin settings.
+  - The JWT must be structurally valid (it does not need to be un-expired).
+  - If "Authentication Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+requestBody:
+  description: The JWT to revoke, plus optional auth code.
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/auth-revoke-body.yaml'
+    multipart/form-data:
+      schema:
+        $ref: '../schemas/auth-revoke-body.yaml'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: '../schemas/auth-revoke-body.yaml'
+  required: true
+responses:
+  '200':
+    description: Token revoked successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              description: Action status.
+              example: true
+            data:
+              type: object
+              properties:
+                jwt:
+                  type: string
+                  description: The JWT that was revoked.
+                  example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  '400':
+    description: |
+      Bad request. The `JWT` field is missing from the request body.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT is missing."
+            errorCode: 42
+  '401':
+    description: |
+      Unauthorized. The JWT is structurally invalid, has a bad signature, or the
+      provided auth code is wrong.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT signature verification failed."
+            errorCode: 11
+  '403':
+    description: |
+      Forbidden. Token revocation is disabled in the plugin settings.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Revoke token is not enabled."
+            errorCode: 83
+  '500':
+    description: Internal server error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "An unexpected error occurred."
+            errorCode: 22

@@ -1,0 +1,21 @@
+type: object
+required:
+  - provider
+properties:
+  provider:
+    type: string
+    enum: [google, auth0]
+    description: OAuth provider slug.
+    example: google
+  code:
+    type: string
+    description: Authorization code returned by the OAuth provider.
+    example: "4/0AfJohXmX..."
+  id_token:
+    type: string
+    description: Google ID token from Sign In With Google (Google provider only).
+    example: "eyJhbGci..."
+  AUTH_CODE:
+    type: string
+    example: "MY_SUPER_SECRET_AUTH_CODE"
+    description: Required when "Authentication Requires Auth Code" is enabled.

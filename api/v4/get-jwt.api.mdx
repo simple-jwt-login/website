@@ -1,0 +1,86 @@
+---
+id: get-jwt
+title: "Authenticate and obtain a JWT"
+description: "Validates the user's WordPress credentials and returns a signed JWT. An optional"
+sidebar_label: "Authenticate and obtain a JWT"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWtty2zgS/ZUu5GFtF0U5vmQnqr2Mx3Ey8sSxYynjnY1SFkS2RNggwACgaI1LVfsR+4X7JVsNkhIle+KkKjVP8otFEGgA3eegL+A9c3xiWecj47lLUDkRcYfXuUXDPgUsRhsZkTmhFeuwX7kUMXdowSUI1OcvFq60iS8MWguRwZgkcGmBqxgMutwoCxysmCiM4fSqH8KRAu0FcjlQBscGbQJO36ICYYFLq6uBGEORoPJzVf1aZb8xcpcbpP6o+EhiDML3G6hM5hOhwKJzQk1sOFADtbNzvFzZzs5A9fIskzNA4RI0MMSUCzkEbWBIe1I8xSFsKe1gpF2yHUAmcwtaIehxZ6BaMMy4tYU28RD+95//Qia5UA7vHNTtsDVFI8aCtiBcAsMiu44SjG6vFyO3VwRdJ9wmpTTaLj1hvBTHLVinzWKfDaXH3PERtzhQAFtpbh2McE0rsKaU7VIpl/g5FwZTVM5rpQVHSwgIreDrpIU0sjuGAVsbXsm3Xiwc6xgHrGGyAIZHH/o/Xx+fvzoZLubKjJ6KGONwoFjAdIbGC+vGrMMm6E6v+ixgBj/naN1POp6xzv0aSD9YNE0ohixgkVYOlaPOPMtktcL2jaUR98xGCaacfrlZhqzD9OgGI8cClhlaghNo6a0HSqObdUaoCQsY3vE0k9R0oxP1Y6wxjHTK1vnjl+aFAI9jMl9Ya6nCegOAwgJBcKEQNg9Y/fbLa0hnnr7rsy8xIzUZsBb2YA0VHx5bQI3IxxbwyF4fMuPBZGsM+NKkvsvTM//87eQJl2AdsCMpdVHpiNg7UAtRtIABA6e/ghZ/tNHhQK1vcqBomws2fNm6Z79d9z5cnFxe906OL0/618th64pYXcC38jNk83nAnHB+VvIOnm/UmObSiYwb1x5rk7ZIixsabWi0odG30ajpiu5aRVG0PJ1yI1FFOsZ4Q6oNqTak+hZSzcvgkCSzjjM5+gabaWVLmuzt7j4MGdcmt3kUobXjXJKi6hzm9Krvs5o6eYGV3OU7RpnV9I2OI60lcvVAiUdRuV7HXe7j3IUlqq3XnvnLE94U7mnk9hYpHIy1IYISuGw+shSMKwdVUL66Doaz02T0JhLn4rT74ffu83eia7vq8jA67r7o3mb/+vX49GWIs9Pf46uuOBfdu7Obs913/d/2z1/dFl1RiFH62v275ztP+ZuDyeWbl5La+dXr3e6NvnvXP9k7uzk7PHvVnY3fh72x/OWuuDztneEvv7zee98/GBfZGZ6O919cnN++mJ3+es3j99YWhxHz2PA2vPY2fFoJ5xn/nOOq5b069MhxoYSagMKClGQ9PXVOemk1UmuhJuFAnSs5g8ygJcV9dZJb5kRL3fLno71oPz7Aw/GLv/7wcvf53v7B4Tf+Is74v4AdPEaNn3hcWzZcnL5bK6nyts+clynxVvOxPDq3QdiBSoW15f7/HLIsNDXm0uID8siCzywM/cuhtyIaow0szgt/wH8dhVK0lk8e9X1rDiBPuWoZ5DGZtJqx0WWVPUeq6qGjKDem8jm+ic7ExnQqT0eP+NWucmQlWYmhqCKEDxbBJcL6PWdGTwxPU+5EVPVKuIplaage4ooD0bmJELaGJ/USbJgl2XDbi6KO41xKkMI60GM/nV1D7d5eibb68L6stO0l+t3VPRvGrQ1Y2WKhbXbiA5byPPJoJLrUHsDrcqmrgxcLoD9/pGygiKXaiN8xDqGfLEsRq3UtYqSKtDEYuQCqXdNQv1uPc6GmVCjb4HyD8++F8yuj1cSDfL201QT4DwuA7z8E+GttRiKOUYXrdT5hIRb2iRrfBsobKH8XKD8EH+Ubi8B+FdGHFaIPH4tNFpqyaKZYYSGE/iwTEZdyBlzBeYaq13vrbyAoPBtzISmq8kHXBJWvL6vJQJEm6H5ig/QN0r8X0hXkCu8yjBzGD3S1oqrnL+ooPEWXaLrtyLT1puQuYR3WphCDBayEOl3Y3bPcSNZh95nRTkdazjvt9n2sUy7UvH1/dNG94C6Zt++toCXfFM6XDTKDY3E3ZwGbciPIzh4jtRBfSlJ5SjeCiXMZC/w/W14GjnkuHeuUbwh/fraSmfU7qSMuk3Lxa0UeHFnhEF6Vo6isUC6yOWmRtTzNAvZPg9ZdG507/Pvq9O260zxgj+1udUFlj9ZN4Vq+T3v6nLKeTwEjGZfLu6STpXGratp6yWxZ41oWspZlpyWt1qpCyxeNOsoXiiXzgAk11p5BFRJ75SZOr/qtt7SJB8rtE2dEeTO73rlRVaq4cnTRhVc6yunyz59t/qL02TPoKmd0nPvCAjV5sdSbgoRqQBkm7OzQ2UqvqGrJ3c5OCL/pHCKu6ptVndGlrqPeH23BJxM6pGPhtPm05VHVabfL57B6HQrd9vnkrJI0FViQCK3KU6EoMeSXeyStDnzPxkREm5SrwNdq6F0hpKSSmD/SnIZYg4coOF+tqPbd87yih3oP3NP7cX16hShwhYaUjpEO3b62IKf0FjI0KZdC3Xag3uSClhVw249gsn2PKs60UG7elLYkwSPimhR5Uqbf56r3pcYzbcn9lt2s33bmqnrXVHCvgOHpVX8In3M0M8i44Sk6NEFdGICRjmcwFihjnxENj6pMys/RgZ+QGzTwN1/X+McQEuQxmnDgwXOLM0i54hN/Ed1YSJXFgTeFE9NmbdSitRQ8bEVa3wpsUZ00LrMw8pSfczHlEpXbrs17bLS1rXMjyHqXWLmKXsKNd/4LlFdFF/vlAbB1fH7Z2wav8CUjIp1mUnAVYXnrDx+v9o/BZhgt4V4URVjsh9pM2v3LdqSNbdMij1QMLuEOOBV46VMKmr40M8lNc1UHTGOjU2+UkdGFLfUo5TIwgIRPETjhPo64icHyFFu63EmRiCiBlN+W33Ck5ZrRIdWj8pEUkedNiX1RMQanaGZaYUCZr8xj0gBXszLh1cr/XpDy2TPw3hJq3wmv/fFQElauhzFgE0qpud+kVoBqilJn2Bmo4XBIXBmoe+LDoHa4A9aB0uWWzeR3qc33oobKAVPb4MmQZsCCetzCHdPIgz1qng/U3C+EIIIwXHQZlnCHlGeWVMS9mcVYRCDWoxplHVeuNC8dLCP/6Uz8FQFOFYnyyDV9UtX046rn8x5qHjApIlTWO7HKU725eAv74S65Lx8w1FCcCJfkIxrXViLKUxFJfHiIjKQetVNuHZr22+7xybue908UhJSO5yDc9cLvaID3WavTGIx1JGdhNZ3QZUs7Q+evPvywMPPukUvXxzvX8HeFq47ctyScAqTqgG9ssHGmYVmi99XY8gxbd5T3y+B+8z3T5numP/d7piofIt22vZb9xanxUXcZ6Jff4VG460Pozkd2f0/q+GDkfE7N3gmzzsdPywCenuYBK92qzwxuccY67LgEeqtPs1J3mftrgyevnedBLeLIRwN/MLgMwT81cpaL8x4RblR9mJX63IY1JAfNB1r2fP5/pRhZdA==
+sidebar_class_name: "post api-method"
+info_path: api/v4//simple-jwt-login
+custom_edit_url: null
+show_extensions: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Authenticate and obtain a JWT"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Validates the user's WordPress credentials and returns a signed JWT. An optional
+refresh token is also returned when the refresh-token feature is enabled in the
+plugin settings.
+
+**Credentials**
+Supply either `email` or `username` (not both), plus one of:
+- `password` — plaintext password (verified with `wp_check_password`)
+- `password_hash` — the hashed password as stored in the WordPress database
+  (must be enabled in the plugin settings)
+
+**Requirements**
+- Authentication must be enabled in the plugin settings.
+- If "Authentication Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"User credentials.","content":{"application/json":{"schema":{"type":"object","properties":{"email":{"type":"string","example":"john@doe.com","description":"User email address. Required when `username` is not provided."},"username":{"type":"string","example":"myuser","description":"WordPress login username. Required when `email` is not provided."},"password":{"type":"string","description":"User plaintext password. Required when `password_hash` is not provided."},"password_hash":{"type":"string","description":"Hashed password as stored in the WordPress database. Requires \"Allow login with\npassword hash\" to be enabled in the plugin settings. Required when `password`\nis not provided.\n"},"AUTH_CODE":{"type":"string","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Authentication Requires Auth Code\" is enabled."}},"title":"authBody"}},"multipart/form-data":{"schema":{"type":"object","properties":{"email":{"type":"string","example":"john@doe.com","description":"User email address. Required when `username` is not provided."},"username":{"type":"string","example":"myuser","description":"WordPress login username. Required when `email` is not provided."},"password":{"type":"string","description":"User plaintext password. Required when `password_hash` is not provided."},"password_hash":{"type":"string","description":"Hashed password as stored in the WordPress database. Requires \"Allow login with\npassword hash\" to be enabled in the plugin settings. Required when `password`\nis not provided.\n"},"AUTH_CODE":{"type":"string","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Authentication Requires Auth Code\" is enabled."}},"title":"authBody"}},"application/x-www-form-urlencoded":{"schema":{"type":"object","properties":{"email":{"type":"string","example":"john@doe.com","description":"User email address. Required when `username` is not provided."},"username":{"type":"string","example":"myuser","description":"WordPress login username. Required when `email` is not provided."},"password":{"type":"string","description":"User plaintext password. Required when `password_hash` is not provided."},"password_hash":{"type":"string","description":"Hashed password as stored in the WordPress database. Requires \"Allow login with\npassword hash\" to be enabled in the plugin settings. Required when `password`\nis not provided.\n"},"AUTH_CODE":{"type":"string","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Authentication Requires Auth Code\" is enabled."}},"title":"authBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Authentication successful. Returns a JWT and optional refresh token.","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","description":"Action status.","example":true},"data":{"type":"object","properties":{"jwt":{"type":"string","description":"Signed JWT for use in subsequent requests.","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"},"refresh_token":{"type":"string","description":"Opaque refresh token for obtaining new JWTs without re-authenticating.\nOnly present when the refresh-token feature is enabled.\n","example":"a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"}}}}}}}},"400":{"description":"Bad request. `email` (or `username`) or `password` (or `password_hash`) is\nmissing.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"Email or username is required.","errorCode":46}}}}},"401":{"description":"Unauthorized. The provided credentials are incorrect, or the auth code is\ninvalid.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"Wrong user credentials.","errorCode":48}}}}},"403":{"description":"Forbidden. Authentication is disabled in the plugin settings.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"Authentication is not enabled.","errorCode":45}}}}},"500":{"description":"Internal server error. Typically an OpenSSL signing failure when generating\nthe JWT.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"},"example":{"success":false,"data":{"message":"An unexpected error occurred.","errorCode":16}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

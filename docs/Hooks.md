@@ -8,7 +8,7 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Simple JWT Login exposes **16 WordPress action and filter hooks** that let you extend or customize the plugin's behaviour without modifying its source code. Use them to enrich JWT payloads, send notifications, apply business logic, gate requests, or build fully custom flows on top of the plugin.
+Simple JWT Login exposes **22 WordPress action and filter hooks** that let you extend or customize the plugin's behaviour without modifying its source code. Use them to enrich JWT payloads, send notifications, apply business logic, gate requests, or build fully custom flows on top of the plugin.
 
 :::warning Enable hooks first
 Hooks must be enabled individually in the plugin settings before they fire. **All hooks are disabled by default.**
@@ -34,6 +34,12 @@ Hooks must be enabled individually in the plugin settings before they fire. **Al
 | [`simple_jwt_login_response_change_user_password`](#simple_jwt_login_response_change_user_password) | filter | Before the change-password response is returned |
 | [`simple_jwt_login_response_revoke_token`](#simple_jwt_login_response_revoke_token) | filter | Before the revoke-token response is returned |
 | [`simple_jwt_login_response_validate_token`](#simple_jwt_login_response_validate_token) | filter | Before the validate-token response is returned |
+| [`simple_jwt_login_generate_payload`](#simple_jwt_login_generate_payload) | filter | Before a JWT payload is generated (any endpoint) |
+| [`simple_jwt_login_audit_2fa_challenge_issued`](#simple_jwt_login_audit_2fa_challenge_issued) | action | When a 2FA challenge code has been issued |
+| [`simple_jwt_login_audit_2fa_verify_success`](#simple_jwt_login_audit_2fa_verify_success) | action | After a successful 2FA verification |
+| [`simple_jwt_login_audit_2fa_verify_failed`](#simple_jwt_login_audit_2fa_verify_failed) | action | When a 2FA verification attempt fails |
+| [`simple_jwt_login_response_2fa_challenge`](#simple_jwt_login_response_2fa_challenge) | filter | Before the 2FA challenge response is returned |
+| [`simple_jwt_login_response_2fa_verify`](#simple_jwt_login_response_2fa_verify) | filter | Before the 2FA verify response is returned |
 
 ---
 
@@ -242,6 +248,83 @@ Fires before the `DELETE /auth` response is returned.
 #### `simple_jwt_login_response_validate_token`
 
 Fires before the `GET /auth/validate` response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` - the modified response.
+
+---
+
+### `simple_jwt_login_generate_payload`
+
+Fires before the JWT payload is generated on any endpoint (not just `/auth`). Use it to append extra claims to every JWT issued by the plugin, regardless of which endpoint generates the token.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$payload` | `array` | The JWT payload (modify and return) |
+| `$user` | `WP_User` | The user for whom the token is being generated |
+
+**Returns:** `array` - the modified payload.
+
+---
+
+## 2FA Hooks
+
+These hooks relate to the Two-Factor Authentication integration. Enable Two-Factor in **Settings → Integrations → Third Party → Two-Factor**.
+
+### `simple_jwt_login_audit_2fa_challenge_issued`
+
+Fires when a two-factor authentication challenge has been issued (i.e. after the user submits valid credentials and an interim JWT is returned, triggering a 2FA code delivery).
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$userId` | `int` | WordPress user ID |
+| `$userEmail` | `string` | User's email address |
+
+---
+
+### `simple_jwt_login_audit_2fa_verify_success`
+
+Fires after a successful two-factor authentication verification.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$userId` | `int` | WordPress user ID |
+| `$userEmail` | `string` | User's email address |
+
+---
+
+### `simple_jwt_login_audit_2fa_verify_failed`
+
+Fires when a two-factor authentication verification attempt fails.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$userId` | `int` | WordPress user ID |
+| `$userEmail` | `string` | User's email address |
+| `$message` | `string` | Human-readable failure reason |
+
+---
+
+### `simple_jwt_login_response_2fa_challenge`
+
+Fires before the `POST /auth/2fa` challenge response is returned. Use it to add extra fields or transform the response.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` - the modified response.
+
+---
+
+### `simple_jwt_login_response_2fa_verify`
+
+Fires before the 2FA verify endpoint response is returned.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|

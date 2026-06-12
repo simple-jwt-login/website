@@ -1,0 +1,65 @@
+tags:
+  - oauth
+summary: Exchange OAuth authorization code for a WordPress JWT (POST)
+operationId: oauthTokenPost
+description: |
+  Identical to `GET /oauth/token` but accepts parameters in the request body.
+  Prefer this variant when sending a code or token that should not appear in server
+  logs or browser history.
+requestBody:
+  description: OAuth provider and authorization code or ID token.
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/oauth-body.yaml'
+    multipart/form-data:
+      schema:
+        $ref: '../schemas/oauth-body.yaml'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: '../schemas/oauth-body.yaml'
+  required: true
+responses:
+  '200':
+    description: OAuth login successful. Returns the WordPress user and a JWT.
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/oauth-response.yaml'
+  '400':
+    description: |
+      Bad request. Required OAuth parameters (`provider`, `code`) are missing.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+  '401':
+    description: |
+      Unauthorized. The authorization code or ID token was rejected by the OAuth
+      provider, or the provider token is invalid.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+  '403':
+    description: |
+      Forbidden. The requested OAuth provider is not enabled or the provider slug
+      is not recognised.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+  '404':
+    description: |
+      The OAuth identity email does not match any WordPress user and automatic
+      registration is disabled.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+  '500':
+    description: Internal server error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'

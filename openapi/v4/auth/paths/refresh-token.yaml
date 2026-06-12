@@ -1,0 +1,98 @@
+tags:
+  - authenticate_user
+summary: Refresh an expired JWT
+operationId: refreshJWT
+description: |
+  Exchanges a valid refresh token for a new JWT (and a new refresh token). The
+  original refresh token is invalidated after use.
+
+  **Requirements**
+  - The refresh-token feature must be enabled in the plugin settings.
+  - The refresh token must exist in the database and not have exceeded the maximum
+    token age configured in the plugin settings.
+  - If "Authentication Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+requestBody:
+  description: Refresh token obtained from a prior `/auth` response.
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/auth-refresh-body.yaml'
+    multipart/form-data:
+      schema:
+        $ref: '../schemas/auth-refresh-body.yaml'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: '../schemas/auth-refresh-body.yaml'
+  required: true
+responses:
+  '200':
+    description: JWT refreshed successfully. Returns a new JWT and a new refresh token.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              description: Action status.
+              example: true
+            data:
+              type: object
+              properties:
+                jwt:
+                  type: string
+                  description: Newly issued JWT.
+                  example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                refresh_token:
+                  type: string
+                  description: New refresh token replacing the one that was consumed.
+                  example: "f6e7g8h9i0j123456789012345678901234567890123456789012345678901234567"
+  '400':
+    description: |
+      Bad request. The `refresh_token` field is missing.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Refresh token is missing."
+            errorCode: 51
+  '401':
+    description: |
+      Unauthorized. The refresh token is not found in the database, the associated
+      JWT is malformed or structurally invalid, or the token has exceeded the maximum
+      allowed age.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Refresh token is too old."
+            errorCode: 50
+  '403':
+    description: |
+      Forbidden. The refresh-token feature is disabled in the plugin settings.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Refresh token is not enabled."
+            errorCode: 81
+  '500':
+    description: Internal server error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "An unexpected error occurred."
+            errorCode: 22

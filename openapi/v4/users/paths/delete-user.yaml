@@ -1,0 +1,110 @@
+tags:
+  - delete_user
+summary: Delete a WordPress user
+operationId: deleteUser
+security:
+  - BearerAuth: []
+  - JwtQueryParam: []
+description: |
+  Permanently deletes the WordPress user identified by the JWT payload. The JWT is
+  decoded to extract the user identifier (email, ID, or login, depending on plugin
+  settings), the user is looked up, and `wp_delete_user()` is called.
+
+  **Requirements**
+  - User deletion must be enabled in the plugin settings.
+  - The JWT must be valid, not expired, and not revoked.
+  - If "Delete Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+  - The calling IP must pass any IP allow-list configured in the plugin settings.
+parameters:
+  - name: JWT
+    in: query
+    description: A valid signed JWT identifying the WordPress user to delete.
+    required: true
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    schema:
+      type: string
+  - name: AUTH_CODE
+    in: query
+    example: "MY_SUPER_SECRET_AUTH_CODE"
+    description: Required when "Delete User Requires Auth Code" is enabled in the plugin settings.
+    schema:
+      type: string
+responses:
+  '200':
+    description: User deleted successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              example: true
+            message:
+              type: string
+              description: Confirmation message.
+              example: User was successfully deleted.
+            id:
+              type: number
+              description: ID of the deleted user.
+              example: 1
+  '400':
+    description: |
+      Bad request. The JWT parameter is missing or cannot be decoded.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT is missing."
+            errorCode: 42
+  '401':
+    description: |
+      Unauthorized. The JWT is structurally invalid, has a bad signature, is expired,
+      is revoked, or the provided auth code is wrong.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT has expired."
+            errorCode: 14
+  '403':
+    description: |
+      Forbidden. User deletion is disabled in the plugin settings, or the client IP
+      address is not on the allow-list.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Delete is not enabled."
+            errorCode: 39
+  '404':
+    description: The WordPress user identified by the JWT payload could not be found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "User not found."
+            errorCode: 24
+  '500':
+    description: Internal server error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "An unexpected error occurred."
+            errorCode: 22

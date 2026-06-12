@@ -17,20 +17,28 @@ This endpoint initiates the password reset flow for an existing WordPress user. 
 
 | Parameter       |   Type           |   Description|
 | :-------------: | :--------------: | ------------ |
-| email | `required` `string` |  The email that requests the password change |
-| AUTH_CODE | `optional` `string`|  Required only when option "Reset password requires AUTH CODE". |
+| `email` | `required` `string` | The email address for which the password reset is requested. |
+| `AUTH_KEY` | `optional` `string` | Auth Code value. Required only if "Require Authentication Code" is enabled. The parameter name matches the **Auth Code URL Key** in Auth Codes settings (default: `AUTH_KEY`). |
 
 
 ## Request
 
 ```json
 {
-  "email" : "my_email",
-  "AUTH_CODE" : "MY_SECRET_AUTH_KEY"
+  "email": "test@simplejwtlogin.com"
 }
 ```
 
-## Response
+With optional Auth Code:
+
+```json
+{
+  "email": "test@simplejwtlogin.com",
+  "AUTH_KEY": "MY_SECRET_AUTH_KEY"
+}
+```
+
+## Responses
 
 ### 200
 
@@ -40,14 +48,73 @@ This endpoint initiates the password reset flow for an existing WordPress user. 
   "message": "Reset password email has been sent."
 }
 ```
+
 ### 400
+
+Bad request - the `email` field is missing.
 
 ```json
 {
   "success": false,
   "data": {
-    "message": "string",
-    "errorCode": 0
+    "message": "Email is required.",
+    "errorCode": 59
+  }
+}
+```
+
+### 401
+
+Unauthorized - the provided auth code is invalid or missing when required.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Invalid auth code.",
+    "errorCode": 58
+  }
+}
+```
+
+### 403
+
+Forbidden - password reset is disabled in plugin settings.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Reset password is not allowed.",
+    "errorCode": 56
+  }
+}
+```
+
+### 404
+
+No WordPress user with the provided email address was found.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "User not found.",
+    "errorCode": 64
+  }
+}
+```
+
+### 500
+
+Internal server error (e.g. email sending failure).
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "An unexpected error occurred.",
+    "errorCode": 22
   }
 }
 ```
@@ -58,7 +125,7 @@ This endpoint initiates the password reset flow for an existing WordPress user. 
 ```bash
 curl -X POST https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users/reset_password \
   -H "Content-type: application/json" \
-  -d '{"email":"test@simplejwtlogin.com", "AUTH_CODE": "123"}'
+  -d '{"email":"test@simplejwtlogin.com"}'
 ```
 
 ### PHP
@@ -74,32 +141,91 @@ $result = $simpleJwtLogin->resetPassword('email@simplejwtlogin.com', 'AUTH CODE'
 ### JavaScript
 
 ```js
-var data = JSON.stringify({
-    "email":"test@simplejwtlogin.com",
-    "code": "123",
-    "new_password": "test"
-});
-
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener("readystatechange", function() {
-    if(this.readyState === 4) {
-        console.log(this.responseText);
-    }
-});
-
-xhr.open("POST", "https://simplejwtlogin.com" + "/simple-jwt-login/v1/users/reset_password");
-xhr.setRequestHeader("Content-Type", "application/json");
-
-xhr.send(data);
+fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users/reset_password', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email: 'test@simplejwtlogin.com' })
+}).then(r => r.json()).then(console.log);
 ```
+
+## Error responses
+
+All error responses follow the standard envelope:
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Human-readable error description",
+    "errorCode": 56
+  }
+}
+```
+
+Common error codes:
+
+| Code | Meaning |
+| :--: | ------- |
+| `56` | Password reset is not enabled in plugin settings. |
+| `58` | Invalid Auth Code provided. |
+| `59` | Email address is missing from the request. |
+| `64` | No WordPress user found with the provided email address. |
+| `65` | Invalid flow type configured in plugin settings. |
+| `66` | The `{{CODE}}` variable is missing from the custom email template. |
+
+---
 
 ## Screenshot
 
 ![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-6.png?raw=true)
 
+---
 
+## Settings
+
+Configure under **Settings → Simple JWT Login → Reset Password**.
+
+### Password Reset
+
+Enable or disable the password reset feature. When disabled, both the Step 1 (send reset code) and Step 2 (change password) endpoints return a 403 error.
+
+### Require Authentication Code
+
+When enabled, an additional Auth Code must be included in password reset requests. The parameter name is the **Auth Code URL Key** from Auth Codes settings (default: `AUTH_KEY`). Configure the codes themselves in the **Auth Codes** tab.
+
+### Reset Flow
+
+Choose how the reset code is delivered to the user after a successful Step 1 request:
+
+| Option | Behavior |
+| :----- | :------- |
+| **Save code in database only** | No email is sent. The reset code is saved to the database. Retrieve it programmatically or build your own delivery mechanism. |
+| **Send default WordPress reset email** | Uses the standard WordPress password reset email template. |
+| **Send custom email** | Sends a customizable email with your own subject and body. Subject and body are required when this option is selected. |
+
+When **Send custom email** is selected, you can compose the subject and body and choose between **Plain text** or **HTML** format.
+
+### Step 2 - Set New Password
+
+The PUT endpoint (`/users/reset_password`) accepts:
+
+| Parameter | Type | Description |
+| :-------- | :--- | :---------- |
+| `email` | required | The email address of the account being reset. |
+| `code` | required* | The reset code received by email. Not required when "Allow JWT-based password reset" is enabled and a valid JWT is provided. |
+| `new_password` | required | The new password to set for the account. |
+| `AUTH_KEY` | optional | Auth Code value (if Require Authentication Code is enabled). |
+| `JWT` | optional | Valid JWT to identify the user. Required only when using the JWT-based reset flow. |
+
+#### Allow JWT-based password reset (skip reset code)
+
+When enabled, the `code` parameter is not required. The plugin identifies the user directly from the JWT payload. The JWT must be valid and not expired.
+
+#### Send WordPress default password changed notification
+
+When enabled, WordPress sends its default password changed notification email to the site admin after the password is successfully updated.
+
+---
 
 ## Features
 
@@ -121,6 +247,7 @@ When using the custom email mode you can write your own subject and body. The bo
 | :------- | :---------- |
 | `{{CODE}}` | **Required.** The reset password code the user must submit to change their password. |
 | `{{NAME}}` | User's full name (first + last) |
+| `{{USERNAME}}` | WordPress username (user_login) |
 | `{{EMAIL}}` | User's email address |
 | `{{NICKNAME}}` | User's nickname |
 | `{{FIRST_NAME}}` | User's first name |

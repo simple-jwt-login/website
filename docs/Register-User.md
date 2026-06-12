@@ -8,73 +8,66 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-## Description
+The Register User endpoint lets you create new WordPress users programmatically via the REST API. Useful for headless registration forms, mobile app sign-ups, or any external system that needs to provision WordPress accounts without going through the standard WordPress UI.
 
-The Register User endpoint lets you create new WordPress users programmatically via the REST API. This is useful for headless registration forms, mobile app sign-ups, or any external system that needs to provision WordPress accounts without going through the standard WordPress UI.
-
-Registration is **disabled by default**. Enable it in the plugin settings before use.
-
-At minimum, a POST request with `email` and `password` is all that's needed. Additional profile fields are optional.
+Registration is **disabled by default**. Enable it in **Settings → Simple JWT Login → Register User**.
 
 ## Endpoint
 
-**METHOD**:  `POST`
+**METHOD**: `POST`
 
 **ENDPOINT**: `/simple-jwt-login/v1/users`
 
-**URL Example**: `https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/users&email=NEW_USER_EMAIL&password=NEW_USER_PASSWORD`
+**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users&email=NEW_USER_EMAIL&password=NEW_USER_PASSWORD`
 
 **PARAMETERS**:
 
-| Parameter       |   Type           |   Description |
-| :-------------: | :--------------: | :------------: |
-| email | `required` `string` | The user email address.| 
-| password | `required` `string` | The plain-text user password.|
-| user_login | `optional` `string`| The user’s login username.| 
-| user_nicename | `optional` `string` | The URL-friendly username.|
-| user_url | `optional` `string` | The user URL.|
-| display_name | `optional` `string` | The user’s display name. Default is the user’s username.|
-| nickname | `optional` `string` | The user’s nickname. Default is the user’s username.|
-| first_name | `optional` `string` | The user’s first name. For new users, will be used to build the first part of the user’s display name if $display_name is not specified.|
-| last_name | `optional` `string` | The user’s last name. For new users, will be used to build the second part of the user’s display name if $display_name is not specified.|
-| description | `optional` `string` | The user’s biographical description.|
-| rich_editing | `optional` `string` | Whether to enable the rich-editor for the user. Accepts ‘true’ or ‘false’ as a string literal, not boolean. Default ‘true’.|
-| syntax_highlighting | `optional` `string` | Whether to enable the rich code editor for the user. Accepts ‘true’ or ‘false’ as a string literal, not boolean. Default ‘true’.|
-| comment_shortcuts | `optional` `string` | Whether to enable comment moderation keyboard shortcuts for the user. Accepts ‘true’ or ‘false’ as a string literal, not boolean. Default ‘false’.|
-| admin_color | `optional` `string` | Admin color scheme for the user. Default ‘fresh’.|
-| use_ssl | `optional` `boolean` | Whether the user should always access the admin over https. Default false.|
-| user_registered | `optional` `string` | Date the user registered. Format is `Year-Month-Date Hours:Minutes:Seconds`.|
-| user_activation_key | `optional` `string` | Password reset key. Default empty.|
-| spam | `optional` `boolean` | Multisite only. Whether the user is marked as spam. Default false.|
-| show_admin_bar_front | `optional` `string` | Whether to display the Admin Bar for the user on the site’s front end. Accepts ‘true’ or ‘false’ as a string literal, not boolean. Default ‘true’.|
-| locale | `optional` `string` | User’s locale. Default empty.|
-| user_meta | `optional` `string` | Add user meta on user registration. It should be a JSON string. Example: `{"meta_key":"meta_value","meta_key2":"meta_value"}`|
-
+| Parameter | Type | Description |
+| :-------: | :--: | ----------- |
+| `email` | `required` `string` | The user email address. |
+| `password` | `required*` `string` | The plain-text user password. Not required when **Generate a random password** is enabled in settings. |
+| `AUTH_KEY` | `optional` `string` | Auth Code value. Required only if "Require Authentication Code" is enabled. The parameter name matches the **Auth Code URL Key** in Auth Codes settings (default: `AUTH_KEY`). |
+| `user_login` | `optional` `string` | The user's login username. |
+| `user_nicename` | `optional` `string` | The URL-friendly username. |
+| `user_url` | `optional` `string` | The user URL. |
+| `display_name` | `optional` `string` | The user's display name. Default is the username. |
+| `nickname` | `optional` `string` | The user's nickname. Default is the username. |
+| `first_name` | `optional` `string` | The user's first name. |
+| `last_name` | `optional` `string` | The user's last name. |
+| `description` | `optional` `string` | The user's biographical description. |
+| `rich_editing` | `optional` `string` | Whether to enable the rich editor. Accepts `'true'` or `'false'` as a string. Default `'true'`. |
+| `syntax_highlighting` | `optional` `string` | Whether to enable the rich code editor. Accepts `'true'` or `'false'` as a string. Default `'true'`. |
+| `comment_shortcuts` | `optional` `string` | Whether to enable comment moderation keyboard shortcuts. Default `'false'`. |
+| `admin_color` | `optional` `string` | Admin color scheme. Default `'fresh'`. |
+| `use_ssl` | `optional` `boolean` | Whether the user always accesses the admin over HTTPS. Default `false`. |
+| `user_registered` | `optional` `string` | Date the user registered. Format: `Y-m-d H:i:s`. |
+| `user_activation_key` | `optional` `string` | Password reset key. Default empty. |
+| `spam` | `optional` `boolean` | Multisite only. Whether the user is marked as spam. Default `false`. |
+| `show_admin_bar_front` | `optional` `string` | Whether to show the Admin Bar on the front end. Accepts `'true'` or `'false'` as a string. Default `'true'`. |
+| `locale` | `optional` `string` | User locale. Default empty. |
+| `user_meta` | `optional` `string` | Custom user meta as a JSON string. Only keys listed in **Allowed User Meta Keys** (in plugin settings) are saved. Example: `{"plan":"premium","source":"app"}` |
 
 ## Request
+
+Minimal registration:
 
 ```json
 {
   "email": "test@simplejwtlogin.com",
-  "password": "string",
+  "password": "SomeSuperSecretPassword"
+}
+```
+
+Full registration with optional fields:
+
+```json
+{
+  "email": "test@simplejwtlogin.com",
+  "password": "SomeSuperSecretPassword",
   "user_login": "myuser",
-  "user_nicename": "myuser",
-  "user_url": "https://simplejwtlogin.com",
-  "display_name": "myuser",
-  "nickname": "myuser",
-  "first_name": "myuser",
-  "last_name": "myuser",
-  "description": "This is a sample description",
-  "rich_editing": true,
-  "syntax_highlighting": true,
-  "comment_shortcuts": "false",
-  "admin_color": "fresh",
-  "use_ssl": true,
-  "user_registered": "2022-01-31 23:15:30",
-  "user_activation_key": "string",
-  "spam": false,
-  "show_admin_bar_front": true,
-  "locale": ""
+  "first_name": "John",
+  "last_name": "Doe",
+  "user_meta": "{\"plan\":\"premium\",\"referral_source\":\"landing_page\"}"
 }
 ```
 
@@ -89,31 +82,105 @@ At minimum, a POST request with `email` and `password` is all that's needed. Add
   "message": "User was successfully created.",
   "user": {
     "ID": 1,
-    "user_login": "myusser",
-    "user_nicename": "My  User",
+    "user_login": "myuser",
+    "user_nicename": "myuser",
     "user_email": "myuser@simplejwtlogin.com",
-    "user_url": "https://simplejwtlogin.com",
+    "user_url": "https://simplejwtlogin.com/myuser",
     "user_registered": "2021-01-01 23:31:50",
-    "user_activation_key": "test",
+    "user_activation_key": "",
     "user_status": "0",
     "display_name": "myuser",
-    "user_level": 10
+    "user_level": 0
   },
   "roles": [
-    "administrator"
+    "subscriber"
   ],
-  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
 
+`jwt` is only included when **Return a JWT in the registration response** is enabled in plugin settings.
+
 ### 400
+
+Required parameters are missing.
 
 ```json
 {
   "success": false,
   "data": {
-    "message": "Error message string",
-    "errorCode": 0
+    "message": "The email address or password is missing.",
+    "errorCode": 35
+  }
+}
+```
+
+### 401
+
+Auth code is invalid or missing when required.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Invalid auth code.",
+    "errorCode": 32
+  }
+}
+```
+
+### 403
+
+Registration is disabled, or the client IP is not on the allow-list.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Register is not allowed.",
+    "errorCode": 31
+  }
+}
+```
+
+### 409
+
+A user with this email already exists.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "User already exists.",
+    "errorCode": 38
+  }
+}
+```
+
+### 422
+
+Email format is invalid or the email domain is not on the allow-list.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "The email address is invalid.",
+    "errorCode": 36
+  }
+}
+```
+
+### 500
+
+`wp_insert_user()` failed or an unexpected error occurred.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "User could not be created.",
+    "errorCode": 52
   }
 }
 ```
@@ -125,7 +192,7 @@ At minimum, a POST request with `email` and `password` is all that's needed. Add
 ```bash
 curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
   -H "Content-type: application/json" \
-  -d '{"email":"myemail@simplejwtlogin.com", "password":"test"}'
+  -d '{"email":"myemail@simplejwtlogin.com","password":"test"}'
 ```
 
 ### PHP
@@ -141,82 +208,94 @@ $result = $simpleJwtLogin->registerUser('email@simplejwtlogin.com', 'password', 
 ### JavaScript
 
 ```js
-var data = JSON.stringify({
-    "email": "email@simplejwtlogin.com",
-    "password":"my-secret-passwor",
-    "AUTH_CODE":"my-auth-code"
-});
-
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener("readystatechange", function() {
-    if(this.readyState === 4) {
-        console.log(this.responseText);
-    }
-});
-
-xhr.open("POST", "https://simplejwtlogin.com" + "/simple-jwt-login/v1/users");
-xhr.setRequestHeader("Content-Type", "application/json");
-
-xhr.send(data);
+fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    email: 'email@simplejwtlogin.com',
+    password: 'my-secret-password',
+    AUTH_KEY: 'my-auth-code'
+  })
+}).then(r => r.json()).then(console.log);
 ```
+
+## Error responses
+
+| Code | Meaning |
+| :--: | ------- |
+| `31` | Registration is not enabled in plugin settings. |
+| `32` | Invalid Auth Code. |
+| `33` | Client IP is not on the allowed IP list. |
+| `35` | Email or password is missing from the request. |
+| `36` | Email address format is invalid. |
+| `37` | Email domain is not on the allow-list. |
+| `38` | A user with this email already exists. |
+| `52` | User could not be created (`wp_insert_user` returned an error). |
+
+---
 
 ## Screenshot
 
 ![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-4.png?raw=true)
 
-
-## Features
-
-### User roles
-
-You can set the default role assigned to newly registered users (e.g., `subscriber`, `contributor`, `author`, `editor`, or any custom role). You can also assign a different role per **Auth Code** - when a user registers using a specific `AUTH_CODE`, they receive the role tied to that code. This makes it easy to support multiple user types from a single registration endpoint.
-
-### Restrict registration
-
-Limit registrations to:
-- **Specific IP addresses** - block registrations from untrusted origins
-- **Specific email domains** - e.g., only allow `@yourcompany.com` addresses
-
-### Random password generation
-
-Enable “Generate a random password” to allow registration without a `password` field. The plugin generates a secure random password automatically. Password length is configurable between **6** and **255** characters.
-
-### Auto-login after registration
-
-Enable “Initialize force login after register” to automatically log the new user in immediately after their account is created, following the same redirect flow configured in the Autologin settings.
-
-:::note
-This option has no effect if the Autologin feature is disabled. In that case, the endpoint simply returns the new user's data as a JSON response.
-:::
-
-### Custom user meta
-
-Pass any number of custom metadata fields during registration by including a `user_meta` JSON parameter. Each key-value pair will be saved as WordPress user meta.
-
-Example:
-
-```json
-{
-  “email”: “user@example.com”,
-  “password”: “secret”,
-  “user_meta”: “{\”plan\”:\”premium\”,\”referral_source\”:\”landing_page\”}”
-}
-```
-
 ---
 
-## FAQ
+## Settings
 
-### How do I configure the Register User endpoint?
+Configure under **Settings → Simple JWT Login → Register User**.
 
-1. Go to **Settings → Simple JWT Login** in your WordPress admin.
-2. Open the **Register Settings** tab.
-3. Enable registration and configure the desired role, restrictions, and options.
-4. Save your settings, then send a `POST` request to the endpoint.
+### User Registration
 
+Enable or disable the registration endpoint. When disabled, all POST requests to `/users` return a 403 error.
 
+### Require Authentication Code
 
+When enabled, every registration request must include a valid Auth Code. Without it, anyone can create an account on your site.
 
+:::warning
+Leaving registration open without an Auth Code is a security risk on public-facing sites.
+:::
 
+### New User Settings
+
+#### Default User Role
+
+The WordPress role assigned to newly registered users (e.g. `subscriber`, `contributor`, `author`, `editor`, `administrator`, or any custom role).
+
+You can also assign a **different role per Auth Code** - when a user registers using a specific code, they receive the role tied to that code. Configure this in the Auth Codes settings.
+
+#### Generate a random password
+
+When enabled, a cryptographically secure random password is generated automatically and the `password` field is no longer required in the request. The password length is configurable (minimum 6, maximum 255 characters, default 12).
+
+### Post-Registration Options
+
+#### Auto-login after registration
+
+When enabled, the new user is automatically logged in immediately after their account is created, following the redirect flow configured in the **Login** settings. Requires the Auto-Login feature to also be enabled.
+
+#### Return a JWT in the registration response
+
+When enabled, the API response includes a signed JWT for the new user. The JWT payload follows the configuration from the **Authentication** settings. If Authentication is not configured, the payload includes `email`, `id`, and `username` by default.
+
+#### Send WordPress welcome email
+
+When enabled, WordPress sends its default new-user notification emails (to the new user and to the site admin) after a successful registration via this endpoint.
+
+### Access Control
+
+#### Allowed IP Addresses
+
+Comma-separated list of IP addresses allowed to call the registration endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (e.g. `85.*.*.*`).
+
+#### Allowed Email Domains
+
+Comma-separated list of email domains accepted during registration (e.g. `gmail.com, company.org`). Leave blank to accept all domains.
+
+### User Data
+
+#### Allowed User Meta Keys
+
+Comma-separated list of `user_meta` keys that may be set via the `user_meta` request parameter. Keys not listed here are silently ignored, even if sent in the request. Leave blank to disallow all custom meta.
+
+Example: `plan, referral_source, subscription_tier`

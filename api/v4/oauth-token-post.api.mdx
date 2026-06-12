@@ -1,0 +1,76 @@
+---
+id: oauth-token-post
+title: "Exchange OAuth authorization code for a WordPress JWT (POST)"
+description: "Identical to `GET /oauth/token` but accepts parameters in the request body."
+sidebar_label: "Exchange OAuth authorization code for a WordPress JWT (POST)"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: api/v4//simple-jwt-login
+custom_edit_url: null
+show_extensions: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Exchange OAuth authorization code for a WordPress JWT (POST)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/oauth/token"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Identical to `GET /oauth/token` but accepts parameters in the request body.
+Prefer this variant when sending a code or token that should not appear in server
+logs or browser history.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"OAuth provider and authorization code or ID token.","content":{"application/json":{"schema":{"type":"object","required":["provider"],"properties":{"provider":{"type":"string","enum":["google","auth0"],"description":"OAuth provider slug.","example":"google"},"code":{"type":"string","description":"Authorization code returned by the OAuth provider.","example":"4/0AfJohXmX..."},"id_token":{"type":"string","description":"Google ID token from Sign In With Google (Google provider only).","example":"eyJhbGci..."},"AUTH_CODE":{"type":"string","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Authentication Requires Auth Code\" is enabled."}},"title":"oauthBody"}},"multipart/form-data":{"schema":{"type":"object","required":["provider"],"properties":{"provider":{"type":"string","enum":["google","auth0"],"description":"OAuth provider slug.","example":"google"},"code":{"type":"string","description":"Authorization code returned by the OAuth provider.","example":"4/0AfJohXmX..."},"id_token":{"type":"string","description":"Google ID token from Sign In With Google (Google provider only).","example":"eyJhbGci..."},"AUTH_CODE":{"type":"string","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Authentication Requires Auth Code\" is enabled."}},"title":"oauthBody"}},"application/x-www-form-urlencoded":{"schema":{"type":"object","required":["provider"],"properties":{"provider":{"type":"string","enum":["google","auth0"],"description":"OAuth provider slug.","example":"google"},"code":{"type":"string","description":"Authorization code returned by the OAuth provider.","example":"4/0AfJohXmX..."},"id_token":{"type":"string","description":"Google ID token from Sign In With Google (Google provider only).","example":"eyJhbGci..."},"AUTH_CODE":{"type":"string","example":"MY_SUPER_SECRET_AUTH_CODE","description":"Required when \"Authentication Requires Auth Code\" is enabled."}},"title":"oauthBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OAuth login successful. Returns the WordPress user and a JWT.","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":true},"data":{"type":"object","properties":{"jwt":{"type":"string","description":"Signed WordPress JWT for the authenticated user.","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"},"user":{"type":"object","properties":{"ID":{"type":"integer","example":1},"user_login":{"type":"string","example":"myuser"},"user_email":{"type":"string","example":"myuser@simplejwtlogin.com"},"display_name":{"type":"string","example":"My User"}}}}}},"title":"OAuthResponse"}}}},"400":{"description":"Bad request. Required OAuth parameters (`provider`, `code`) are missing.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"}}}},"401":{"description":"Unauthorized. The authorization code or ID token was rejected by the OAuth\nprovider, or the provider token is invalid.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"}}}},"403":{"description":"Forbidden. The requested OAuth provider is not enabled or the provider slug\nis not recognised.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"}}}},"404":{"description":"The OAuth identity email does not match any WordPress user and automatic\nregistration is disabled.\n","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"}}}},"500":{"description":"Internal server error.","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"errorCode":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}},"title":"ResponseError"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

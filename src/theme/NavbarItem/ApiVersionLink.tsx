@@ -5,7 +5,7 @@ import {useDocsPreferredVersion} from '@docusaurus/theme-common';
 import clsx from 'clsx';
 
 const API_VERSION_MAP: Record<string, string> = {
-  current: '/api/simple-jwt-login',
+  current: '/api/v4/simple-jwt-login',
   '3.0.0': '/api/v3/simple-jwt-login',
 };
 
