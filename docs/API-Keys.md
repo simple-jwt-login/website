@@ -19,6 +19,8 @@ Use API keys for:
 
 Go to **Settings → Simple JWT Login → API Keys** to configure.
 
+![API Keys settings](/assets/screenshots/api-keys/api-keys.png)
+
 ### API Keys (enable/disable)
 
 Enable or disable the API Keys feature. When disabled, the header is ignored on all requests.
@@ -28,6 +30,8 @@ Enable or disable the API Keys feature. When disabled, the header is ignored on 
 The HTTP header clients must send the API key in. Default: `X-API-Key`. Change this only if you need to avoid a header name collision with another system.
 
 ### Create API Key
+
+![Create API Key form](/assets/screenshots/api-keys/create-api-key.png)
 
 Use the form in the settings page to issue a new key. Fields:
 
@@ -40,6 +44,8 @@ Use the form in the settings page to issue a new key. Fields:
 After clicking **Create API Key**, a modal appears showing the raw key value. Copy it immediately - it is shown only once and cannot be recovered.
 
 ### Existing API Keys
+
+![Existing API Keys table](/assets/screenshots/api-keys/existing-api-keys.png)
 
 A paginated table of all keys (admins see all keys; other users see only their own). Columns: Name, Prefix, Permissions, Expires, Last Used, Action (Revoke / Delete). The `User ID` column is visible to admins only.
 
@@ -78,6 +84,10 @@ All API key management endpoints require the caller to be authenticated as a Wor
 Regular users can manage only their own keys. Administrators (`manage_options` capability) can manage all keys.
 
 ## Endpoints
+
+:::tip[API Reference]
+Explore and test all API key endpoints using the [interactive API reference →](/api/v4/list-api-keys)
+:::
 
 ---
 

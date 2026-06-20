@@ -19,7 +19,7 @@
     "gen-openapi-v3": "swagger-cli bundle openapi/v3/build.yaml --outfile static/openapi/v3.yaml --type yaml",
     "gen-openapi-v4": "swagger-cli bundle openapi/v4/build.yaml --outfile static/openapi/v4.yaml --type yaml",
     "gen-openapi": "yarn gen-openapi-v3 && yarn gen-openapi-v4",
-    "gen-api-v4": "docusaurus clean-api-docs all --plugin-id openapi-v4 && docusaurus gen-api-docs all --plugin-id openapi-v4",
+    "gen-api-v4": "docusaurus clean-api-docs all --plugin-id openapi-v4 && docusaurus gen-api-docs all --plugin-id openapi-v4 && node scripts/patch-openapi-sidebar.mjs",
     "gen-api-v3": "docusaurus clean-api-docs all --plugin-id openapi-v3 && docusaurus gen-api-docs all --plugin-id openapi-v3",
     "gen-api": "yarn gen-api-v4 && yarn gen-api-v3",
     "build-api": "yarn run gen-openapi && yarn gen-api",

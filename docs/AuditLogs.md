@@ -16,6 +16,8 @@ Audit logging is **disabled by default**. Enable it in **Settings → Simple JWT
 
 ## Configuration
 
+![Audit Logging configuration](/assets/screenshots/config/audit-logging.png)
+
 ### Enable Audit Logging
 
 Toggle the **Enable Audit Logging** switch at the top of the Audit Logs configuration page.
@@ -91,6 +93,8 @@ For compliance use cases (GDPR, SOC 2, etc.), set the retention period to match 
 ---
 
 ## Viewing Log Entries
+
+![Audit Log entries](/assets/screenshots/logs/activity-log.png)
 
 Go to **Settings → Simple JWT Login → Audit Logs → Logs** to view the stored entries.
 

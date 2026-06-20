@@ -87,8 +87,8 @@ const integrations = [
     logoAlt: 'WPGraphQL logo',
     tags: ['GraphQL', 'Headless', 'REST-free'],
     status: 'stable',
-    docsHref: '/docs/wpgraphql/',
-    primaryHref: '/docs/wpgraphql/',
+    docsHref: '/docs/integrations/third-party/wpgraphql/',
+    primaryHref: '/docs/integrations/third-party/wpgraphql/',
     primaryLabel: 'Read the docs',
     highlights: [
       'Authenticate queries & mutations',

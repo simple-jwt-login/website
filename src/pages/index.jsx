@@ -74,7 +74,7 @@ const awesomeFeatures = [
     description: <>Let users change or reset their password through the API - ideal for headless and mobile apps.</>,
     image: "assets/img/password.png",
     alt: "Change and Reset password",
-    link: "/docs/change-password/",
+    link: "/docs/reset-password/",
   },
   {
     title: <>Limit Access by IP</>,
@@ -371,7 +371,7 @@ export default function HomePage() {
                   title: 'WPGraphQL',
                   desc: 'Use your JWT tokens to authenticate GraphQL queries and mutations - enable it with a single checkbox.',
                   logos: [{ src: 'assets/img/wpgraphql/wpgraphql-logo.png', alt: 'WPGraphQL' }],
-                  href: '/docs/wpgraphql/',
+                  href: '/docs/integrations/third-party/wpgraphql/',
                   cta: 'Learn more',
                 },
                 {

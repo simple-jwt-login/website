@@ -1,15 +1,24 @@
 ---
 slug: /refresh-token/
 title: Refresh token
+sidebar_position: 2
+description: Exchange a refresh token for a new JWT without requiring user credentials again. Enables long-running sessions in headless WordPress applications.
+keywords: [WordPress refresh token, JWT refresh token WordPress, renew JWT WordPress, headless WordPress session, Simple JWT Login refresh]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
 Use this endpoint to exchange a refresh token for a new JWT, without requiring the user to re-enter their credentials. This is the standard mechanism for keeping long-running sessions alive.
 
-A `refresh_token` is returned alongside the JWT whenever you call the Authentication endpoint (POST `/auth`), provided the Refresh Token feature is enabled.
+A `refresh_token` is returned alongside the JWT whenever you call the Authentication endpoint (`POST /auth`), provided the Refresh Token feature is enabled.
 
-**METHOD** : `POST`
+:::tip[API Reference]
+Explore and test this endpoint using the [interactive API reference →](/api/v4/refresh-jwt)
+:::
+
+## Endpoint
+
+**METHOD**: `POST`
 
 **ENDPOINT**: `/simple-jwt-login/v1/auth/refresh`
 
@@ -19,7 +28,7 @@ A `refresh_token` is returned alongside the JWT whenever you call the Authentica
 
 | Parameter | Type | Description |
 | :-------: | :--: | ----------- |
-| `refresh_token` | `required` `string` | The refresh token returned by the Authentication endpoint |
+| `refresh_token` | `required` `string` | The refresh token returned by the Authentication endpoint. |
 | `AUTH_KEY` | `optional` `string` | Auth Code value. Required only if "Require Authentication Code" is enabled in Refresh Token settings. The parameter name matches the **Auth Code URL Key** configured under Auth Codes settings (default: `AUTH_KEY`). |
 | `payload` | `optional` `json` | Custom JSON object to merge into the new JWT payload. Keys provided here are merged with the standard payload generated from the user record. |
 
@@ -133,21 +142,17 @@ $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
 $result = $simpleJwtLogin->refreshToken('your refresh token here', 'AUTH CODE');
 ```
 
-## Error responses
+### JavaScript
 
-All error responses follow the standard envelope:
-
-```json
-{
-  "success": false,
-  "data": {
-    "message": "Human-readable error description",
-    "errorCode": 51
-  }
-}
+```js
+fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/auth/refresh', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ refresh_token: 'YOUR_REFRESH_TOKEN_HERE' })
+}).then(r => r.json()).then(console.log);
 ```
 
-Common error codes:
+## Error responses
 
 | Code | Meaning |
 | :--: | ------- |
@@ -156,23 +161,25 @@ Common error codes:
 
 ---
 
-## Screenshot
-
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-7.png?raw=true)
-
 ## Settings
 
 Configure the refresh token feature under **Settings → Simple JWT Login → Refresh Token**.
 
 ### Allow Refresh Token Endpoint
 
+![Allow Refresh Token Endpoint](/assets/screenshots/refresh-token/allow-refresh-token-endpoint.png)
+
 Enable or disable the refresh token endpoint. When disabled, the `/auth/refresh` route returns a 403 error. When enabled, a `refresh_token` is also returned alongside the JWT from the Authentication endpoint.
 
 ### Require Authentication Code
 
+![Require Authentication Code](/assets/screenshots/refresh-token/require-authentication-code.png)
+
 When enabled, the client must include a valid Auth Code in the refresh request. The parameter name used to pass the code is the **Auth Code URL Key** configured under **Auth Codes** settings (default: `AUTH_KEY`).
 
 ### JWT Refresh Window
+
+![Refresh Token Settings](/assets/screenshots/refresh-token/refresh-token-settings.png)
 
 How long (in minutes) a refresh token remains valid from the time it was issued. The window is **rolling** - each successful refresh issues a new token with a fresh TTL, so an active client never expires as long as it refreshes within the window.
 

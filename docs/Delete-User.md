@@ -12,6 +12,10 @@ The Delete User endpoint removes a WordPress user account via a REST API call au
 
 Deletion is **disabled by default**. Enable it in **Settings → Simple JWT Login → Delete User**.
 
+:::tip[API Reference]
+Explore and test this endpoint using the [interactive API reference →](/api/v4/delete-user)
+:::
+
 :::caution
 Enable "Require Authentication Code" unless you have a specific reason not to. Without it, any holder of a valid JWT can delete their account.
 :::
@@ -186,24 +190,24 @@ JWT decoding errors (`1`-`22`) may also appear when the token cannot be parsed o
 
 ---
 
-## Screenshot
-
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-5.png?raw=true)
-
----
-
 ## Settings
 
 Configure under **Settings → Simple JWT Login → Delete User**.
 
 ### Delete User
 
+![Delete User settings](/assets/screenshots/delete/delete-user.png)
+
 Enable or disable the delete endpoint. When disabled, all DELETE requests to `/users` return a 403 error.
 
 ### Require Authentication Code
 
+![Require Authentication Code](/assets/screenshots/delete/require-authentication-code.png)
+
 When enabled, every deletion request must include a valid Auth Code alongside the JWT. The parameter name is the **Auth Code URL Key** from the Auth Codes settings (default: `AUTH_KEY`).
 
 ### Access Control
+
+![Access Control settings](/assets/screenshots/delete/access-control.png)
 
 Comma-separated list of IP addresses allowed to call the delete endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (e.g. `192.168.*.*`).

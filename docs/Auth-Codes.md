@@ -25,6 +25,8 @@ Use long, random strings for Auth Code values. Short or predictable codes offer 
 
 Go to **Settings → Simple JWT Login → Auth Codes** to configure.
 
+![Auth Codes overview](/assets/screenshots/auth-codes/auth-codes.png)
+
 ### Auth Code URL Key
 
 The query parameter name (or body field name) clients must use to pass the code in requests. Default: `AUTH_KEY`.
@@ -38,6 +40,8 @@ Change this if you want to avoid exposing that your site uses Simple JWT Login, 
 ### Auth Codes list
 
 Each code is a row with three fields - add as many codes as you need. You can have different codes for different purposes (e.g. one for mobile apps, one for server-to-server integrations).
+
+![Authorization codes list](/assets/screenshots/auth-codes/authorization-codes.png)
 
 ## Auth Code structure
 
@@ -53,5 +57,4 @@ Each Auth Code has three fields:
 Leaving the expiration date blank means the code never expires.
 :::
 
-## Screenshot
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-8.png?raw=true)
+![Auth code configuration](/assets/screenshots/auth-codes/configuration.png)

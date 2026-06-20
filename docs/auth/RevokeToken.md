@@ -1,6 +1,9 @@
 ---
 slug: /revoke-token/
 title: Revoke token
+sidebar_position: 4
+description: Immediately invalidate a JWT so it is rejected by all future requests. Use when logging out users or responding to suspicious activity in your headless WordPress app.
+keywords: [WordPress revoke JWT, invalidate JWT WordPress, logout WordPress JWT, revoke token WordPress REST API, Simple JWT Login revoke]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -11,16 +14,22 @@ Revoking a token immediately invalidates it - any subsequent request using that 
 Once a token is revoked, it cannot be un-revoked. The user must authenticate again to obtain a new token.
 :::
 
-**METHOD** : `POST`
+:::tip[API Reference]
+Explore and test this endpoint using the [interactive API reference →](/api/v4/revoke-jwt)
+:::
+
+## Endpoint
+
+**METHOD**: `POST`
 
 **ENDPOINT**: `/simple-jwt-login/v1/auth/revoke`
 
-**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/auth/revoke&JWT={{YOUR_JWT}}`
+**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/auth/revoke&JWT={{YOUR_JWT}}`
 
 **PARAMETERS**:
 
-| Parameter       |   Type           |   Description|
-| :-------------: | :--------------: | ------------ |
+| Parameter | Type | Description |
+| :-------: | :--: | ----------- |
 | `JWT` | `required` `string` | Your JWT. Can alternatively be passed as `Authorization: Bearer <token>`. |
 | `AUTH_KEY` | `optional` `string` | Auth Code value. Required only if "Require Authentication Code" is enabled. The parameter name matches the **Auth Code URL Key** in Auth Codes settings (default: `AUTH_KEY`). |
 
@@ -110,22 +119,37 @@ Internal server error.
 }
 ```
 
+## Examples
 
-## Error responses
+### SHELL
 
-All error responses follow the standard envelope:
-
-```json
-{
-  "success": false,
-  "data": {
-    "message": "Human-readable error description",
-    "errorCode": 42
-  }
-}
+```bash
+curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/revoke \
+  -H "Content-type: application/json" \
+  -d '{"JWT":"YOUR_JWT"}'
 ```
 
-Common error codes:
+### PHP
+
+```php
+$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+    'https://simplejwtlogin.com',
+    '/simple-jwt-login/v1'
+);
+$result = $simpleJwtLogin->revokeToken('Your JWT here', 'AUTH CODE');
+```
+
+### JavaScript
+
+```js
+fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/auth/revoke', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ JWT: 'YOUR_JWT_HERE' })
+}).then(r => r.json()).then(console.log);
+```
+
+## Error responses
 
 | Code | Meaning |
 | :--: | ------- |
@@ -136,41 +160,18 @@ JWT decoding errors (`1`-`22`) may also appear when the supplied token cannot be
 
 ---
 
-## Examples
-
-### SHELL
-
-```bash
-curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/revoke \
-  -H "Content-type: application/json" \ 
-  -d '{"JWT":"YOUR_JWT"}'
-```
-
-### PHP
-
-```php
-$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
-    'https://simplejwtlogin.com',
-    '/simple-jwt-login/v1'
-); 
-$result = $simpleJwtLogin->revokeToken('Your JWT here', 'AUTH CODE');
-```
-
-
-## Screenshot
-
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-7.png?raw=true)
-
----
-
 ## Settings
 
 Configure under **Settings → Simple JWT Login → Revoke Token**.
 
 ### Allow Revoke Token Endpoint
 
+![Allow Revoke Token Endpoint](/assets/screenshots/revoke-token/allow-revoke-token-endpoint.png)
+
 Enable or disable the revoke token endpoint. When disabled, all POST requests to `/auth/revoke` return a 403 error. When enabled, clients can invalidate a JWT for all future requests.
 
 ### Require Authentication Code
+
+![Require Authentication Code](/assets/screenshots/revoke-token/require-authentication-code.png)
 
 When enabled, an additional Auth Code must be provided alongside the JWT to use the revoke endpoint. The parameter name is the **Auth Code URL Key** from Auth Codes settings (default: `AUTH_KEY`). Configure the codes themselves in the **Auth Codes** tab.

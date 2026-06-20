@@ -26,11 +26,15 @@ Enable CORS if your front-end application lives on a different domain than your 
 
 ### Allow CORS Support
 
+![Allow CORS Support](/assets/screenshots/cors/allow-cors-support.png)
+
 Enable or disable CORS header injection on all plugin responses. When disabled, no CORS headers are added.
 
 ---
 
 ### CORS Headers Configuration
+
+![CORS Headers Configuration](/assets/screenshots/cors/cors-headers-configuration.png)
 
 Enable each header individually and configure its value:
 
@@ -82,5 +86,3 @@ Access-Control-Allow-Headers: Content-Type, Authorization
 
 A wildcard `Access-Control-Allow-Origin: *` is simpler to configure and generally safe for JWT-protected APIs (tokens cannot be forged), but restricting to your specific front-end origin is a good defence-in-depth measure.
 
-## Screenshot
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-10.png?raw=true)

@@ -15,6 +15,10 @@ You can authenticate using any of the following combinations:
 - **username** + **password** - use the WordPress username instead of email
 - **login** + **password** - mirrors the WordPress login page behaviour; accepts either email or username
 
+:::tip[API Reference]
+Explore and test this endpoint using the [interactive API reference →](/api/v4/get-jwt)
+:::
+
 ## Endpoint
 
 **METHOD**: `POST`
@@ -179,25 +183,25 @@ Common error codes:
 
 ---
 
-## Screenshot
-
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-7.png?raw=true)
-
----
-
 ## Settings
 
 Configure the authentication feature under **Settings → Simple JWT Login → Authentication**.
 
 ### Allow JWT Authentication
 
+![Allow JWT Authentication](/assets/screenshots/authenticate/allow-jwt-authentication.png)
+
 Enable or disable the authentication endpoint. When disabled, `POST /auth` returns a 403 error.
 
 ### Require Authentication Code
 
+![Require Authentication Code for JWT generation](/assets/screenshots/authenticate/require-authentication-code-for-jwt-generation.png)
+
 When enabled, every authentication request must include a valid Auth Code. The parameter name is the **Auth Code URL Key** from the Auth Codes settings (default: `AUTH_KEY`).
 
 ### Authentication Options
+
+![Authentication Options](/assets/screenshots/authenticate/authentication-options.png)
 
 #### Base64-encoded password
 
@@ -206,6 +210,8 @@ Enable when the `password` or `password_hash` value is Base64-encoded before sen
 ---
 
 ### JWT Header Configuration
+
+![JWT Header Configuration](/assets/screenshots/authenticate/jwt-header-configuration.png)
 
 The JWT header always includes the standard `alg` and `typ` fields. You can add extra static key-value pairs to the header using **Custom Header Claims**.
 
@@ -224,6 +230,8 @@ The following header fields are reserved and cannot be overwritten by custom cla
 ---
 
 ### JWT Payload Configuration
+
+![JWT Payload Configuration](/assets/screenshots/authenticate/jwt-payload-configuration-.png)
 
 Choose which user data fields are included in the JWT payload. At minimum, `iat` (issued-at timestamp) is always present.
 
@@ -264,6 +272,8 @@ The following payload keys are reserved and cannot be overwritten: `iat`, `exp`,
 
 ### JWT Expiration
 
+![JWT Expiration setting](/assets/screenshots/authenticate/jwt-expiration.png)
+
 How long (in minutes) the generated JWT is valid. After this period the token is rejected by the plugin's validation and auto-login endpoints.
 
 Default: **60 minutes**.
@@ -273,6 +283,8 @@ Set to `0` to disable expiry (not recommended for production).
 ---
 
 ### Access Control
+
+![Access Control settings](/assets/screenshots/authenticate/access-control.png)
 
 Restrict authentication requests to a comma-separated list of trusted IP addresses. Leave blank to allow requests from any IP.
 

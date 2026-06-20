@@ -14,6 +14,8 @@ Simple JWT Login exposes **22 WordPress action and filter hooks** that let you e
 Hooks must be enabled individually in the plugin settings before they fire. **All hooks are disabled by default.**
 :::
 
+![WordPress Hooks Integration](/assets/screenshots/hooks/wordpress-hooks-integration.png)
+
 ## Quick Reference
 
 | Hook | Type | Triggered |
@@ -337,7 +339,7 @@ Fires before the 2FA verify endpoint response is returned.
 
 ## Settings Screenshot
 
-![Hooks settings panel](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-9.png?raw=true)
+![Hooks settings panel](/assets/screenshots/hooks/wordpress-hooks-integration.png)
 
 ---
 

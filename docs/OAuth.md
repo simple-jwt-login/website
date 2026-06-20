@@ -16,9 +16,15 @@ Supported providers:
 
 ## Prerequisites
 
+![OAuth Applications overview](/assets/screenshots/oauth/oauth-applications.png)
+
 1. Enable OAuth for the desired provider under **Settings → Simple JWT Login → Applications**.
 2. Configure the provider's **Client ID**, **Client Secret**, and (for the code exchange flow) **Redirect URI** to match what you registered in the provider's developer console.
 3. Optionally enable **"Register user if not found"** to automatically create a WordPress account when the OAuth email does not match any existing user.
+
+:::tip[API Reference]
+Explore and test this endpoint using the [interactive API reference →](/api/v4/oauth-token-get)
+:::
 
 ## Endpoint
 
@@ -172,6 +178,8 @@ curl -X POST 'https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/oauth/
 
 ### Google - two authentication paths
 
+![Google OAuth configuration](/assets/screenshots/oauth/google.png)
+
 **Code exchange (server-side flow)**
 
 The standard OAuth 2.0 authorization-code flow. Your front-end redirects the user to Google's consent screen with your Client ID and Redirect URI. Google returns a short-lived `code` to your redirect URI, which you pass to this endpoint. The plugin exchanges it for a Google ID token, extracts the email, and issues a WordPress JWT.
@@ -184,6 +192,8 @@ The Google Identity Services library running in the browser can produce an `id_t
 
 Requires: only the **Client ID** (no secret needed).
 
+![Exchange Google ID token for WordPress JWT](/assets/screenshots/oauth/exchange-google-idtoken-for-a-wordpress-jwt.png)
+
 ### Auth0 - authorization code flow
 
 Your front-end redirects the user to Auth0's Universal Login. Auth0 returns an authorization `code` to your callback URL. Pass that code to this endpoint. The plugin exchanges it for an Auth0 token, extracts the user's email, and issues a WordPress JWT.
@@ -191,6 +201,8 @@ Your front-end redirects the user to Auth0's Universal Login. Auth0 returns an a
 Requires: **Client ID**, **Client Secret**, and **Redirect URI** configured in plugin settings.
 
 ### Auto-register on first login
+
+![OAuth on Login / Register](/assets/screenshots/oauth/oauth-on-login--register.png)
 
 Enable **"Register user if not found"** in the provider settings. When the OAuth email address does not match any existing WordPress user, the plugin automatically creates a new account with the default role configured in Register Settings and returns a JWT for that new user.
 

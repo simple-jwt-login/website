@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faKey, faShieldHalved, faLayerGroup,
   faArrowRight, faCheckCircle, faRocket, faPalette,
-  faBell, faClipboardList, faToggleOn, faWrench,
+  faBell, faClipboardList, faToggleOn, faWrench, faGauge,
+  faVial, faCode, faRotate, faUserShield, faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
 import v4Styles from './v4.module.css';
@@ -30,13 +31,14 @@ const newFeatures = [
   {
     icon: faShieldHalved,
     badge: 'New',
-    title: 'Auth0 OAuth Support',
-    desc: 'Users can now sign in with Auth0 (in addition to Google) and receive a WordPress JWT - no password form required.',
+    title: 'OAuth: 4 Providers',
+    desc: 'Users can sign in with Google, Auth0, Facebook, or GitHub and receive a WordPress JWT - no password form required.',
     bullets: [
-      'Auth0 authorization code flow',
       'Google: authorization code or ID token (Sign In With Google)',
+      'Auth0: authorization code flow',
+      'Facebook: authorization code flow',
+      'GitHub: authorization code flow',
       'Auto-register users if no matching account exists',
-      'GET and POST on /oauth/token',
     ],
     link: '/docs/oauth/',
     cta: 'OAuth docs',
@@ -60,12 +62,12 @@ const newFeatures = [
     title: 'Audit Logs',
     desc: 'Every authentication event - logins, token issues, revocations, and errors - is now logged for auditing and debugging.',
     bullets: [
-      'Logs login, register, delete, and token events',
+      'Logs login, register, delete, OAuth, 2FA, and token events',
       'Searchable from the WordPress admin',
       'Configurable retention period',
     ],
-    link: '/docs/',
-    cta: 'Learn more',
+    link: '/docs/audit-logs/',
+    cta: 'Audit Logs docs',
   },
   {
     icon: faBell,
@@ -74,11 +76,24 @@ const newFeatures = [
     desc: 'Fire HTTP callbacks on authentication events - integrate with Slack, logging services, or any external system in real time.',
     bullets: [
       'Configurable per event type',
-      'POST payload with event details',
+      'Custom URL, method, headers, and JSON payload',
       'Works with any HTTP endpoint',
     ],
-    link: '/docs/',
-    cta: 'Learn more',
+    link: '/docs/webhooks/',
+    cta: 'Webhooks docs',
+  },
+  {
+    icon: faGauge,
+    badge: 'New',
+    title: 'Dashboard',
+    desc: 'A new at-a-glance status page shows every feature\'s state in one place - routes, security, integrations, and monitoring.',
+    bullets: [
+      'All routes and their enabled/disabled state',
+      'Security: CORS, Protect Endpoints, Auth Codes, API Keys',
+      'Monitoring: Webhooks, Webhook Logs, Audit Logs',
+    ],
+    link: '/docs/dashboard/',
+    cta: 'Dashboard docs',
   },
   {
     icon: faPalette,
@@ -90,8 +105,62 @@ const newFeatures = [
       'User identification consolidated in General settings',
       'Cleaner forms with improved field descriptions',
     ],
-    link: '/docs/',
+    link: '/docs/dashboard/',
+    cta: 'Dashboard docs',
+  },
+  {
+    icon: faUserShield,
+    badge: 'New',
+    title: '2FA Support',
+    desc: 'Require a second authentication step before issuing a full JWT - compatible with the WordPress Two Factor plugin.',
+    bullets: [
+      'Interim JWT issued after password check; 2FA code completes the flow',
+      'Dedicated POST /auth/2fa endpoint',
+      'Configurable interim JWT TTL (1-60 minutes)',
+      'Users without 2FA configured are unaffected',
+    ],
+    link: '/docs/integrations/third-party/two-factor/',
+    cta: '2FA docs',
+  },
+  {
+    icon: faRotate,
+    badge: 'Improved',
+    title: 'Refresh Token',
+    desc: 'Refresh tokens are now more secure and configurable - rolling rotation, a separate encryption key, and custom payload support.',
+    bullets: [
+      'Rolling rotation: each refresh issues a new token and invalidates the old one',
+      'Separate refresh token secret key, independent of the JWT signing key',
+      'Custom payload merged into the newly issued JWT on refresh',
+      'Auth Code protection option for the refresh endpoint',
+    ],
+    link: '/docs/refresh-token/',
+    cta: 'Refresh Token docs',
+  },
+  {
+    icon: faVial,
+    badge: 'New',
+    title: 'JWT Decoder',
+    desc: 'Paste any JWT directly in the WordPress admin panel to inspect its header and payload - no external tools needed.',
+    bullets: [
+      'Decodes header and payload instantly in the browser',
+      'Token is never sent to the server',
+      'Useful for debugging token claims and expiry',
+    ],
+    link: '/docs/dashboard/',
     cta: 'Learn more',
+  },
+  {
+    icon: faCode,
+    badge: 'New',
+    title: 'Code Examples',
+    desc: 'Every endpoint page in the plugin admin panel now shows ready-to-copy code snippets tailored to your current settings.',
+    bullets: [
+      'cURL, PHP, and JavaScript examples per endpoint',
+      'Examples use your configured namespace and site URL',
+      'Auth Code and parameter values pre-filled from your settings',
+    ],
+    link: '/docs/code-examples/',
+    cta: 'Code Examples',
   },
   {
     icon: faToggleOn,
@@ -121,6 +190,51 @@ const newFeatures = [
   },
 ];
 
+const breakingChanges = [
+  {
+    title: 'Register user response shape changed',
+    detail: 'POST /users used to return {"success":true,"ID":1,...}. It now returns {"success":true,"data":{"id":1,...}} - the user object is nested under "data" and "ID" is lowercase "id".',
+    action: 'Update any code that reads user fields (ID, email, roles…) from the register response.',
+    link: '/docs/register-user/',
+    linkLabel: 'Register User docs',
+  },
+  {
+    title: 'Legacy /register endpoint removed',
+    detail: 'The old POST /simple-jwt-login/v1/register route no longer exists. The canonical route is POST /simple-jwt-login/v1/users.',
+    action: 'Update all callers to use POST /simple-jwt-login/v1/users.',
+    link: '/docs/register-user/',
+    linkLabel: 'Register User docs',
+  },
+  {
+    title: 'User Identification moved to General settings',
+    detail: 'The "User Identification" option (email, login, ID) has moved from the Delete User settings tab to the General settings tab. It now applies globally to all endpoints.',
+    action: 'After upgrading, verify the User Identification value in Settings → Simple JWT Login → General.',
+    link: '/docs/configuration/',
+    linkLabel: 'General settings docs',
+  },
+  {
+    title: 'Settings storage structure reorganized',
+    detail: 'The internal layout of plugin options in wp_options has changed. Existing settings are migrated automatically on first load, but the old keys are removed.',
+    action: 'Review every settings tab after upgrading to confirm values carried over correctly.',
+    link: null,
+    linkLabel: null,
+  },
+  {
+    title: 'Authentication response now includes refresh_token',
+    detail: 'POST /auth returns a new "refresh_token" field when the refresh token feature is enabled. The JWT field itself is unchanged.',
+    action: 'No action needed unless your client strictly rejects unexpected response fields or you need to store the token.',
+    link: '/docs/refresh-token/',
+    linkLabel: 'Refresh Token docs',
+  },
+  {
+    title: '2FA changes the /auth flow for affected users',
+    detail: 'Users with the Two Factor plugin configured now receive a short-lived interim JWT from /auth instead of a full JWT. A second request to POST /auth/2fa (with the interim JWT + 2FA code) is required to get the real token.',
+    action: 'Update your authentication flow to handle the interim JWT case, or leave 2FA disabled for API users.',
+    link: '/docs/integrations/third-party/two-factor/',
+    linkLabel: '2FA docs',
+  },
+];
+
 const migrationSteps = [
   {
     n: '1',
@@ -129,40 +243,40 @@ const migrationSteps = [
   },
   {
     n: '2',
-    title: 'Review the redesigned settings',
-    desc: 'The admin panel has been reorganised. User Identification has moved from Delete User to General settings - check your configuration.',
+    title: 'Work through the breaking changes',
+    desc: 'Six breaking changes are listed above. Address them before going to production - register response shape, removed /register route, and User Identification location are the most likely to affect existing integrations.',
   },
   {
     n: '3',
-    title: 'Review breaking changes',
-    desc: 'User Identification has moved from Delete User to General settings. Update your configuration if you use the delete-user endpoint.',
+    title: 'Re-save your settings',
+    desc: 'The settings storage structure was reorganized. Open Settings → Simple JWT Login and click Save Changes on each tab to confirm your values carried over correctly.',
   },
   {
     n: '4',
     title: 'Explore new features',
-    desc: 'Enable API Keys, Webhooks, Audit Logs, and Auth0 from Settings → Simple JWT Login to start using the new capabilities.',
+    desc: 'Enable API Keys, Webhooks, Audit Logs, 2FA, and the 4 OAuth providers from Settings → Simple JWT Login to start using the new capabilities.',
   },
 ];
 
 export default function V4Page() {
   return (
     <Layout
-      title="Simple JWT Login v4 - API Keys, Audit Logs, Webhooks & More"
-      description="Simple JWT Login v4 introduces API Keys, Auth0 OAuth, Audit Logs, Webhooks, multiple JWT decryption keys, a redesigned UI, and granular token controls."
+      title="Simple JWT Login v4 - API Keys, 2FA, Audit Logs, Webhooks & More"
+      description="Simple JWT Login v4 introduces API Keys, 2FA support, 4 OAuth providers, Audit Logs, Webhooks, JWT Decoder, code examples, and improved refresh tokens."
     >
       <Head>
-        <meta property="og:title" content="Simple JWT Login v4 - API Keys, Audit Logs, Webhooks & More" />
-        <meta property="og:description" content="v4 brings API Keys, Auth0 OAuth, Audit Logs, Webhooks, multiple decryption keys, and a redesigned setup wizard." />
+        <meta property="og:title" content="Simple JWT Login v4 - API Keys, 2FA, Audit Logs, Webhooks & More" />
+        <meta property="og:description" content="v4 brings API Keys, 2FA, 4 OAuth providers, Audit Logs, Webhooks, JWT Decoder, code examples, and improved refresh tokens." />
       </Head>
 
       {/* ── Hero ───────────────────────────────────────────── */}
       <header className={v4Styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
         <div className="container">
-          <div className={v4Styles.versionBadge}>Coming soon - v4.0</div>
+          <div className={v4Styles.versionBadge}>Coming soon - v4.0.0</div>
           <h1 className={v4Styles.heroTitle}>Simple JWT Login v4</h1>
           <p className={v4Styles.heroSubtitle}>
-            API Keys, Audit Logs, Webhooks, Auth0 - the biggest release yet.
+            API Keys, 2FA, Audit Logs, Webhooks, 4 OAuth providers - the biggest release yet.
           </p>
           <div className={styles.heroCta}>
             <Link to="/docs/" className={styles.actionButton} title="Read the docs">
@@ -178,12 +292,12 @@ export default function V4Page() {
           </div>
           <div className={v4Styles.heroHighlights}>
             {[
-              { icon: faKey,              label: 'API Keys' },
-              { icon: faShieldHalved,     label: 'Auth0 OAuth' },
-              { icon: faClipboardList,    label: 'Audit Logs' },
-              { icon: faBell,             label: 'Webhooks' },
-              { icon: faLayerGroup,       label: 'Multi-Key JWT' },
-              { icon: faPalette,           label: 'New UI' },
+              { icon: faKey,          label: 'API Keys' },
+              { icon: faShieldHalved, label: '4 OAuth Providers' },
+              { icon: faUserShield,   label: '2FA Support' },
+              { icon: faClipboardList,label: 'Audit Logs' },
+              { icon: faBell,         label: 'Webhooks' },
+              { icon: faCode,         label: 'Code Examples' },
             ].map(({ icon, label }) => (
               <div key={label} className={v4Styles.heroHighlight}>
                 <FontAwesomeIcon icon={icon} className={v4Styles.heroHighlightIcon} />
@@ -231,14 +345,42 @@ export default function V4Page() {
           </div>
         </section>
 
-        {/* ── Migration guide ────────────────────────────────── */}
+        {/* ── Breaking changes ───────────────────────────────── */}
         <section className={clsx(styles.sectionPadding, styles.sectionGray)}>
+          <div className="container">
+            <span className={styles.sectionEyebrow}>v3 → v4</span>
+            <h2 className={styles.sectionTitle}>Breaking Changes</h2>
+            <p className={styles.sectionLead}>
+              Most JWT flows continue to work without changes. Review these items before upgrading.
+            </p>
+            <div className={v4Styles.breakingList}>
+              {breakingChanges.map(({ title, detail, action, link, linkLabel }) => (
+                <div key={title} className={v4Styles.breakingItem}>
+                  <FontAwesomeIcon icon={faTriangleExclamation} className={v4Styles.breakingIcon} />
+                  <div className={v4Styles.breakingContent}>
+                    <p className={v4Styles.breakingTitle}>{title}</p>
+                    <p className={v4Styles.breakingDetail}>{detail}</p>
+                    <p className={v4Styles.breakingAction}><strong>Action:</strong> {action}</p>
+                    {link && (
+                      <Link to={link} className={v4Styles.breakingLink} title={linkLabel}>
+                        {linkLabel} <FontAwesomeIcon icon={faArrowRight} />
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Migration guide ────────────────────────────────── */}
+        <section className={clsx(styles.sectionPadding)}>
           <div className="container">
             <span className={styles.sectionEyebrow}>Upgrade guide</span>
             <h2 className={styles.sectionTitle}>Upgrading to v4</h2>
             <p className={styles.sectionLead}>
               Most existing JWT flows continue to work without changes.
-              One breaking change affects the delete-user endpoint - see step 3.
+              Review the breaking changes section above before upgrading.
             </p>
             <div className={styles.installSteps}>
               {migrationSteps.map(({ n, title, desc }) => (
@@ -259,7 +401,7 @@ export default function V4Page() {
           <div className="container">
             <div className={styles.ctaCard}>
               <div className={styles.ctaGlow} aria-hidden="true" />
-              <div className={v4Styles.ctaVersion}>v4.0 — Coming soon</div>
+              <div className={v4Styles.ctaVersion}>v4.0.0 — Coming soon</div>
               <h2 className={styles.ctaTitle}>Stay up to date</h2>
               <p className={styles.ctaSubtitle}>
                 Simple JWT Login v4 is free, open-source, and in active development.

@@ -12,6 +12,10 @@ The Register User endpoint lets you create new WordPress users programmatically 
 
 Registration is **disabled by default**. Enable it in **Settings → Simple JWT Login → Register User**.
 
+:::tip[API Reference]
+Explore and test this endpoint using the [interactive API reference →](/api/v4/register-a-new-word-press-user)
+:::
+
 ## Endpoint
 
 **METHOD**: `POST`
@@ -234,21 +238,19 @@ fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users', {
 
 ---
 
-## Screenshot
-
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-4.png?raw=true)
-
----
-
 ## Settings
 
 Configure under **Settings → Simple JWT Login → Register User**.
 
 ### User Registration
 
+![User Registration settings](/assets/screenshots/register/user-registration.png)
+
 Enable or disable the registration endpoint. When disabled, all POST requests to `/users` return a 403 error.
 
 ### Require Authentication Code
+
+![Require Authentication Code](/assets/screenshots/register/require-authentication-code.png)
 
 When enabled, every registration request must include a valid Auth Code. Without it, anyone can create an account on your site.
 
@@ -257,6 +259,8 @@ Leaving registration open without an Auth Code is a security risk on public-faci
 :::
 
 ### New User Settings
+
+![New User Settings](/assets/screenshots/register/new-user-settings.png)
 
 #### Default User Role
 
@@ -269,6 +273,8 @@ You can also assign a **different role per Auth Code** - when a user registers u
 When enabled, a cryptographically secure random password is generated automatically and the `password` field is no longer required in the request. The password length is configurable (minimum 6, maximum 255 characters, default 12).
 
 ### Post-Registration Options
+
+![Post-Registration Options](/assets/screenshots/register/post-registration-options.png)
 
 #### Auto-login after registration
 
@@ -284,6 +290,8 @@ When enabled, WordPress sends its default new-user notification emails (to the n
 
 ### Access Control
 
+![Access Control settings](/assets/screenshots/register/access-control.png)
+
 #### Allowed IP Addresses
 
 Comma-separated list of IP addresses allowed to call the registration endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (e.g. `85.*.*.*`).
@@ -293,6 +301,8 @@ Comma-separated list of IP addresses allowed to call the registration endpoint. 
 Comma-separated list of email domains accepted during registration (e.g. `gmail.com, company.org`). Leave blank to accept all domains.
 
 ### User Data
+
+![User Data settings](/assets/screenshots/register/user-data.png)
 
 #### Allowed User Meta Keys
 

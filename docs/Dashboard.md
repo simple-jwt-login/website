@@ -10,6 +10,8 @@ author_url: https://github.com/nicumicle
 
 The Dashboard is the first page you see when you open Simple JWT Login (**Settings → Simple JWT Login → Dashboard**). It gives you an at-a-glance status view of every feature in the plugin, organized into four groups. Each card links directly to the corresponding settings page.
 
+![Simple JWT Login Dashboard](/assets/screenshots/dashboard.png)
+
 ---
 
 ## Routes

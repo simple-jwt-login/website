@@ -16,7 +16,7 @@ The following error will be displayed, when an endpoint is protected and no JWT 
 
 ```json
 {
-"success": false,
+  "success": false,
   "data": {
     "message": "You are not authorized to access this endpoint.",
     "errorCode": 403,
@@ -25,21 +25,19 @@ The following error will be displayed, when an endpoint is protected and no JWT 
 }
 ```
 
-## Screenshot
-
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-11.png?raw=true)
-
----
-
 ## Settings
 
 Configure under **Settings → Simple JWT Login → Protect Endpoints**.
 
 ### Protect Endpoints
 
+![Protect Endpoints settings](/assets/screenshots/protect-endpoints/protect-endpoints.png)
+
 Enable or disable the endpoint protection feature. When disabled, no JWT check is applied to any REST route.
 
 ### Protection Scope
+
+![Protection Scope](/assets/screenshots/protect-endpoints/protection-scope.png)
 
 Controls which endpoints are subject to JWT protection. Two options:
 
@@ -49,6 +47,8 @@ Controls which endpoints are subject to JWT protection. Two options:
 | **Apply only on Specific REST endpoints** | Only the routes listed in the **Protected Endpoints** list require a JWT. All other routes remain public. |
 
 ### Whitelisted Endpoints
+
+![Whitelisted Endpoints](/assets/screenshots/protect-endpoints/whitelisted-endpoints.png)
 
 Visible when "Apply on All REST Endpoints" is selected. Add endpoint rules here to allow public access to those routes even though global protection is enabled.
 
@@ -66,33 +66,7 @@ Visible when "Apply only on Specific REST endpoints" is selected. Add endpoint r
 
 ---
 
-## Protection Modes
-
-You can choose between two protection modes:
-- **Apply on All REST Endpoints**
-- **Apply only on Specific REST endpoints**
-
-### 1. Apply on All REST Endpoints
-When enabled, this option secures all endpoints except those explicitly listed in the **Whitelisted Endpoints** section.
-To exclude an endpoint from protection, add it to the whitelist using the "+ Add Endpoint" button.
-
-### 2. Apply only on Specific REST endpoints
-This option protects only the endpoints listed in the **Protected Endpoints** section.
-To secure an endpoint, add it using the "+ Add Endpoint" button.
-
-## Configuration Options
-
-### Request Methods
-
-For each endpoint, you can define which HTTP request methods (GET, POST, PUT, DELETE, etc.) require authentication.
-Alternatively, selecting ALL will enforce the rule for every request method.
-
-### Route Matching
-There are two ways to define how an endpoint is matched:
-- **Starts with**: The rule applies to any endpoint that begins with the specified path.
-- **Exact match**: The rule applies only if the accessed endpoint exactly matches the specified path.
-  
-### Example Configurations
+## Example Configurations
 
 ####  Example 1
 Assume you specify `/wp/v2/users` with `ALL` and `Exact Match` in either the Protect or Whitelist settings.
@@ -132,27 +106,30 @@ The JWT token can be provided in multiple ways, depending on the options set in 
 
 ### Examples
 
-#### Sending JWT in header:
-```bash
-  curl -X POST "http://localhost/wp/v2/users" -H "Authorization: YOUR_JWT"
-```
-
-#### Sending JWT as query parameters:
+#### Sending JWT in header
 
 ```bash
-  curl -X POST "http://localhost/wp/v2/users?jwt=YOUR_JWT"
+curl -X POST "http://localhost/wp-json/wp/v2/users" \
+  -H "Authorization: Bearer YOUR_JWT"
 ```
-or
+
+#### Sending JWT as query parameter
 
 ```bash
-  curl -X POST "http://localhost?rest_route=/wp/v2/users&jwt=YOUR_JWT"
+curl -X POST "http://localhost/wp-json/wp/v2/users?jwt=YOUR_JWT"
 ```
 
-#### Sending JWT as request body:
+#### Sending JWT using `rest_route`
+
 ```bash
-  curl -X POST "http://localhost/wp/v2/users" -H "Content-type: application/json" -d '{"JWT":"JYOUR JWT"}'
+curl -X POST "http://localhost/?rest_route=/wp/v2/users&jwt=YOUR_JWT"
 ```
 
+#### Sending JWT in request body
 
-By following these instructions, you can efficiently protect and manage API access using Simple JWT Login.
+```bash
+curl -X POST "http://localhost/wp-json/wp/v2/users" \
+  -H "Content-type: application/json" \
+  -d '{"JWT":"YOUR_JWT"}'
+```
 

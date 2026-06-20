@@ -5,7 +5,13 @@ const sidebar: SidebarsConfig = {
     {
       type: "doc",
       id: "simple-jwt-login",
+      label: "Introduction",
     },
+    {
+      type: "category",
+      label: "Routes",
+      collapsed: false,
+      items: [
     {
       type: "category",
       label: "login_user",
@@ -94,6 +100,12 @@ const sidebar: SidebarsConfig = {
           label: "Revoke a JWT",
           className: "api-method post",
         },
+        {
+          type: "doc",
+          id: "verify-two-factor",
+          label: "Verify Two-Factor Authentication code",
+          className: "api-method post",
+        },
       ],
     },
     {
@@ -109,7 +121,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "oauth-token-post",
-          label: "Exchange OAuth authorization code for a WordPress JWT (POST)",
+          label: "Exchange OAuth token for a WordPress JWT (POST)",
           className: "api-method post",
         },
       ],
@@ -138,16 +150,18 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "revoke-api-key",
-          label: "Revoke an API key",
-          className: "api-method delete",
-        },
-        {
-          type: "doc",
           id: "delete-api-key",
           label: "Permanently delete an API key",
           className: "api-method delete",
         },
+        {
+          type: "doc",
+          id: "revoke-api-key",
+          label: "Revoke an API key",
+          className: "api-method post",
+        },
+      ],
+    },
       ],
     },
   ],
