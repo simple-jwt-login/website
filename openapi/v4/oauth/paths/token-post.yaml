@@ -1,13 +1,31 @@
 tags:
   - oauth
-summary: Exchange OAuth authorization code for a WordPress JWT (POST)
+summary: Exchange OAuth token for a WordPress JWT (POST)
 operationId: oauthTokenPost
 description: |
-  Identical to `GET /oauth/token` but accepts parameters in the request body.
-  Prefer this variant when sending a code or token that should not appear in server
-  logs or browser history.
+  API flow: exchanges a provider-issued token for a WordPress JWT and returns the
+  WordPress user profile. Use this variant for programmatic API clients. The provider
+  must be enabled in the plugin settings.
+
+  Supported providers: `google`, `auth0`, `facebook`, `github`.
+
+  **Google** - supply `code` (authorization code) or `id_token` (Google Sign-In ID
+  token). The `id_token` path returns a WordPress JWT directly; the `code` path
+  returns the raw Google token response for the client to handle.
+
+  **Auth0** - supply `code` (authorization code).
+
+  **Facebook** - supply `access_token` (Facebook user access token). Returns a
+  WordPress JWT.
+
+  **GitHub** - supply `access_token` (GitHub user access token). Returns a
+  WordPress JWT.
+
+  If the OAuth identity matches an existing WordPress user (by email), a WordPress
+  JWT is returned. If no match is found and "Register on OAuth login" is enabled, a
+  new user is created automatically.
 requestBody:
-  description: OAuth provider and authorization code or ID token.
+  description: OAuth provider and authorization code, ID token, or access token.
   content:
     application/json:
       schema:
@@ -28,38 +46,72 @@ responses:
           $ref: '../schemas/oauth-response.yaml'
   '400':
     description: |
-      Bad request. Required OAuth parameters (`provider`, `code`) are missing.
+      Bad request. One of:
+      - The `provider` slug is unrecognised (`error_code` 69).
+      - Required parameters are missing - `code` for Google/Auth0/Facebook/GitHub,
+        or `id_token` for Google, or `access_token` for Facebook/GitHub
+        (`error_code` 71 Google, 75 Auth0, 97 Facebook, 101 GitHub).
+      - The authorization code or access token was rejected by the provider
+        (`error_code` 72 Google code, 79 Auth0 code, 98 Facebook code, 102 GitHub
+        code; or 73 Google id_token, 80 Auth0 token, 99 Facebook token, 103 GitHub
+        token).
+      - The OAuth identity email did not match any WordPress user and auto-register
+        is disabled - Facebook (`error_code` 100) or GitHub (`error_code` 104).
     content:
       application/json:
         schema:
           $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "The code or access_token parameter is missing from request."
+            error_code: 97
   '401':
     description: |
-      Unauthorized. The authorization code or ID token was rejected by the OAuth
-      provider, or the provider token is invalid.
+      Unauthorized. The Google `id_token` or Auth0 token is invalid or rejected by
+      the provider (`error_code` 73, 80).
     content:
       application/json:
         schema:
           $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "The provided id_token is invalid."
+            error_code: 73
   '403':
     description: |
-      Forbidden. The requested OAuth provider is not enabled or the provider slug
-      is not recognised.
+      Forbidden. The requested OAuth provider is not enabled in the plugin settings.
     content:
       application/json:
         schema:
           $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "This Oauth provider is not available."
+            error_code: 70
   '404':
     description: |
-      The OAuth identity email does not match any WordPress user and automatic
-      registration is disabled.
+      The Google or Auth0 identity email does not match any WordPress user and
+      automatic registration is disabled (`error_code` 74 Google, 78 Auth0).
     content:
       application/json:
         schema:
           $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "User not found."
+            error_code: 74
   '500':
     description: Internal server error.
     content:
       application/json:
         schema:
           $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "An unexpected error occurred."
+            error_code: 22

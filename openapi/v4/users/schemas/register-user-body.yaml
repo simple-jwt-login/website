@@ -81,7 +81,7 @@ properties:
     type: string
     description: User's locale. Defaults to empty (inherits site locale).
     example: "en_US"
-  AUTH_CODE:
+  AUTH_KEY:
     type: string
-    example: "MY_SUPER_SECRET_AUTH_CODE"
+    example: "MY_SUPER_SECRET_AUTH_KEY"
     description: Required when "Register Requires Auth Code" is enabled in the plugin settings.

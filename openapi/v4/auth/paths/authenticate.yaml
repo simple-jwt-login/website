@@ -1,7 +1,6 @@
 tags:
   - authenticate_user
 summary: Authenticate and obtain a JWT
-operationId: getJWT
 description: |
   Validates the user's WordPress credentials and returns a signed JWT. An optional
   refresh token is also returned when the refresh-token feature is enabled in the
@@ -15,7 +14,15 @@ description: |
 
   **Requirements**
   - Authentication must be enabled in the plugin settings.
-  - If "Authentication Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+  - If "Authentication Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
+
+  **Two-Factor Authentication**
+  When the authenticated user has Two-Factor Authentication enabled and the 2FA
+  integration is active, the endpoint returns HTTP 200 with a challenge response
+  instead of a regular JWT. The `two_factor_required` field is `true` and `jwt`
+  contains a short-lived interim token. Submit that interim token together with the
+  2FA code to `POST /auth/2fa` to obtain the final JWT.
+operationId: getJWT
 requestBody:
   description: User credentials.
   content:
@@ -31,7 +38,13 @@ requestBody:
   required: true
 responses:
   '200':
-    description: Authentication successful. Returns a JWT and optional refresh token.
+    description: |
+      Authentication successful. Returns a signed JWT and an optional refresh token.
+
+      **Two-Factor challenge**: when the user has 2FA enabled, this response is
+      returned instead of a regular JWT. `two_factor_required` will be `true` and
+      `jwt` will contain a short-lived interim token. Submit it with the 2FA code
+      to `POST /auth/2fa` to obtain the final JWT.
     content:
       application/json:
         schema:
@@ -46,31 +59,39 @@ responses:
               properties:
                 jwt:
                   type: string
-                  description: Signed JWT for use in subsequent requests.
+                  description: |
+                    Signed JWT for use in subsequent requests, or a short-lived
+                    interim JWT when `two_factor_required` is `true`.
                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
                 refresh_token:
                   type: string
+                  nullable: true
                   description: |
                     Opaque refresh token for obtaining new JWTs without re-authenticating.
-                    Only present when the refresh-token feature is enabled.
+                    Only present when the refresh-token feature is enabled and 2FA is
+                    not required.
                   example: "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"
-  '400':
-    description: |
-      Bad request. `email` (or `username`) or `password` (or `password_hash`) is
-      missing.
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "Email or username is required."
-            errorCode: 46
+                two_factor_required:
+                  type: boolean
+                  nullable: true
+                  description: |
+                    Present and `true` only when Two-Factor Authentication is required.
+                    When set, `jwt` is an interim token; complete authentication via
+                    `POST /auth/2fa`.
+                  example: true
+                provider:
+                  type: string
+                  nullable: true
+                  description: |
+                    Fully-qualified class name of the user's primary 2FA provider.
+                    Only present when `two_factor_required` is `true`.
+                  example: "Two_Factor_Totp"
   '401':
     description: |
-      Unauthorized. The provided credentials are incorrect, or the auth code is
-      invalid.
+      Unauthorized. One of:
+      - The provided credentials (password or password hash) are incorrect
+        (`error_code` 48).
+      - The provided auth code is wrong (`error_code` 27).
     content:
       application/json:
         schema:
@@ -79,10 +100,13 @@ responses:
           success: false
           data:
             message: "Wrong user credentials."
-            errorCode: 48
+            error_code: 48
   '403':
     description: |
-      Forbidden. Authentication is disabled in the plugin settings.
+      Forbidden. One of:
+      - Authentication is disabled in the plugin settings (`error_code` 45).
+      - The client IP address is not on the allow-list configured in the plugin
+        settings (`error_code` 41).
     content:
       application/json:
         schema:
@@ -91,7 +115,24 @@ responses:
           success: false
           data:
             message: "Authentication is not enabled."
-            errorCode: 45
+            error_code: 45
+  '422':
+    description: |
+      Unprocessable entity. One of:
+      - The `email`, `username`, or `login` field is missing (`error_code` 46).
+      - The `password` or `password_hash` field is missing (`error_code` 47).
+      - The `password_hash` field was provided but "Allow login with password hash"
+        is not enabled in the plugin settings (`error_code` 113).
+      - The auth code is required but was not provided (`error_code` 94).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "The email, username, or login parameter is missing from the request."
+            error_code: 46
   '500':
     description: |
       Internal server error. Typically an OpenSSL signing failure when generating
@@ -104,4 +145,4 @@ responses:
           success: false
           data:
             message: "An unexpected error occurred."
-            errorCode: 16
+            error_code: 16

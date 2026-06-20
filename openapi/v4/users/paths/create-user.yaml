@@ -8,7 +8,7 @@ description: |
 
   **Requirements**
   - User registration must be enabled in the plugin settings.
-  - If "Register Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+  - If "Register Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
   - The calling IP must pass any IP allow-list configured in the plugin settings.
   - The email address must be unique and well-formed.
   - If email domain restrictions are configured, the domain must match.
@@ -41,57 +41,49 @@ responses:
               type: boolean
               example: true
               description: Action status.
-            id:
-              type: number
-              description: New user ID.
-              example: 1
-            message:
-              type: string
-              description: Confirmation message.
-              example: User was successfully created.
-            user:
+            data:
               type: object
               properties:
-                ID:
-                  type: number
+                id:
+                  type: integer
+                  description: New user ID.
                   example: 1
-                  description: User ID.
-                user_login:
+                login:
                   type: string
                   example: "myuser"
-                user_nicename:
+                nicename:
                   type: string
                   example: "myuser"
-                user_email:
+                email:
                   type: string
                   example: "myuser@simplejwtlogin.com"
-                user_url:
+                url:
                   type: string
-                  example: "https://simplejwtlogin.com/myuser"
-                user_registered:
+                  description: User URL. Empty string when not set.
+                  example: ""
+                registered:
                   type: string
                   example: "2021-01-01 23:31:50"
-                user_activation_key:
+                activation_key:
                   type: string
+                  description: Password reset key. Empty string when not set.
                   example: ""
-                user_status:
+                status:
                   type: string
                   example: "0"
                 display_name:
                   type: string
                   example: "myuser"
-                user_level:
-                  type: number
-                  example: 0
-            roles:
-              type: array
-              items:
-                type: string
-                example: "subscriber"
-            jwt:
-              type: string
-              description: JWT for the new user. Only present when "Generate JWT on register" is enabled.
-              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                roles:
+                  type: array
+                  items:
+                    type: string
+                    example: "subscriber"
+                jwt:
+                  type: string
+                  nullable: true
+                  description: Only present when "Generate JWT on register" is enabled.
+                  example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
   '400':
     description: |
       Bad request. Missing required fields (`email` or `password`), or an unclassified
@@ -104,7 +96,7 @@ responses:
           success: false
           data:
             message: "The email address or password is missing."
-            errorCode: 35
+            error_code: 35
   '401':
     description: |
       Unauthorized. The provided auth code is invalid or missing when required.
@@ -116,7 +108,7 @@ responses:
           success: false
           data:
             message: "Invalid auth code."
-            errorCode: 32
+            error_code: 32
   '403':
     description: |
       Forbidden. User registration is disabled in the plugin settings, or the client
@@ -129,7 +121,7 @@ responses:
           success: false
           data:
             message: "Register is not allowed."
-            errorCode: 31
+            error_code: 31
   '409':
     description: A WordPress user with the provided email address already exists.
     content:
@@ -140,11 +132,15 @@ responses:
           success: false
           data:
             message: "User already exists."
-            errorCode: 38
+            error_code: 38
   '422':
     description: |
-      Unprocessable entity. The email address format is invalid, or the email domain
-      is not permitted by the plugin's domain allow-list.
+      Unprocessable entity. One of:
+      - The email address format is invalid (`error_code` 36).
+      - The `user_login` exceeds 60 characters, or the email address (used as
+        login when `user_login` is omitted) exceeds 60 characters (`error_code` 36).
+      - The email domain is not permitted by the plugin's domain allow-list
+        (`error_code` 37).
     content:
       application/json:
         schema:
@@ -153,7 +149,7 @@ responses:
           success: false
           data:
             message: "The email address is invalid."
-            errorCode: 36
+            error_code: 36
   '500':
     description: |
       Internal server error. WordPress `wp_insert_user()` returned an error, or an
@@ -166,4 +162,4 @@ responses:
           success: false
           data:
             message: "User could not be created."
-            errorCode: 52
+            error_code: 52

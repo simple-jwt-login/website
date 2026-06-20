@@ -3,18 +3,13 @@ tags:
 summary: Revoke an API key
 operationId: revokeApiKey
 security:
-  - BearerAuth: []
-  - JwtQueryParam: []
+  - WordPressSession: []
 description: |
   Soft-deletes (revokes) an API key by recording a `revoked_at` timestamp. The key
   record is retained in the database but is rejected by the authentication middleware.
-  To permanently remove the record, use `DELETE /api-keys/{id}/delete`.
+  To permanently remove the record, use `DELETE /api-keys/{id}`.
 
   Regular users may only revoke their own keys. Administrators may revoke any key.
-
-  Authentication is required in one of two ways:
-  - An active WordPress session (cookie-based auth), **or**
-  - A valid JWT passed via `Authorization: Bearer <token>` header, the configured JWT header/cookie, or the `JWT` query parameter.
 parameters:
   - name: id
     in: path
@@ -38,7 +33,7 @@ responses:
               type: string
               example: "API key revoked successfully."
   '401':
-    description: Unauthorized. No active WordPress session and no valid JWT provided.
+    description: Unauthorized. No active WordPress session.
     content:
       application/json:
         schema:
@@ -47,7 +42,7 @@ responses:
           success: false
           data:
             message: "You must be logged in to manage API keys."
-            errorCode: 84
+            error_code: 84
   '403':
     description: |
       Forbidden. The authenticated user does not own this API key and does not have
@@ -60,7 +55,7 @@ responses:
           success: false
           data:
             message: "You are not allowed to manage this API key."
-            errorCode: 84
+            error_code: 84
   '404':
     description: No API key with the provided ID was found.
     content:
@@ -71,7 +66,7 @@ responses:
           success: false
           data:
             message: "Invalid API key ID."
-            errorCode: 89
+            error_code: 89
   '500':
     description: |
       Internal server error. The database revoke operation failed.
@@ -83,4 +78,4 @@ responses:
           success: false
           data:
             message: "Failed to revoke API key."
-            errorCode: 91
+            error_code: 91

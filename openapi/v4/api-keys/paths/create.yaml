@@ -3,11 +3,10 @@ tags:
 summary: Create an API key
 operationId: createApiKey
 security:
-  - BearerAuth: []
-  - JwtQueryParam: []
+  - WordPressSession: []
 description: |
   Generates a new API key for the authenticated WordPress user. The full key value
-  (`sjl_` prefix + 32 hex characters) is returned **only in this response** — it
+  (`sjl_` prefix + 32 hex characters) is returned **only in this response** - it
   cannot be retrieved again. Store it securely immediately.
 
   **Permissions**
@@ -15,12 +14,7 @@ description: |
   the key may be used to authenticate: GET, POST, PUT/PATCH, and DELETE respectively.
 
   **Requirements**
-
-  Authentication is required in one of two ways:
-  - An active WordPress session (cookie-based auth), **or**
-  - A valid JWT passed via `Authorization: Bearer <token>` header, the configured JWT header/cookie, or the `JWT` query parameter.
-
-  Additionally:
+  - An active WordPress session is required.
   - `name` is required and must be non-empty.
   - At least one permission must be specified.
 requestBody:
@@ -39,7 +33,7 @@ requestBody:
 responses:
   '200':
     description: |
-      API key created. The `key` field contains the full plaintext key — save it now
+      API key created. The `key` field contains the full plaintext key - save it now
       as it will not be returned again.
     content:
       application/json:
@@ -58,7 +52,7 @@ responses:
                   example: 7
                 key:
                   type: string
-                  description: Full plaintext API key. Store securely — shown only once.
+                  description: Full plaintext API key. Store securely - shown only once.
                   example: "sjl_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"
                 name:
                   type: string
@@ -90,10 +84,10 @@ responses:
           success: false
           data:
             message: "API key name is required."
-            errorCode: 85
+            error_code: 85
   '401':
     description: |
-      Unauthorized. No active WordPress session and no valid JWT provided.
+      Unauthorized. No active WordPress session.
     content:
       application/json:
         schema:
@@ -102,7 +96,7 @@ responses:
           success: false
           data:
             message: "You must be logged in to manage API keys."
-            errorCode: 84
+            error_code: 84
   '500':
     description: |
       Internal server error. The database insert for the new API key failed.
@@ -114,4 +108,4 @@ responses:
           success: false
           data:
             message: "Failed to create API key."
-            errorCode: 88
+            error_code: 88

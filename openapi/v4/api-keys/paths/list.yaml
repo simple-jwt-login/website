@@ -3,8 +3,7 @@ tags:
 summary: List API keys
 operationId: listApiKeys
 security:
-  - BearerAuth: []
-  - JwtQueryParam: []
+  - WordPressSession: []
 description: |
   Returns a paginated list of API keys owned by the authenticated WordPress user.
   Administrators (`manage_options` capability) see all keys across all users.
@@ -14,10 +13,7 @@ description: |
   (followed by `****`) to help identify keys without exposing secrets.
 
   **Requirements**
-
-  Authentication is required in one of two ways:
-  - An active WordPress session (cookie-based auth), **or**
-  - A valid JWT passed via `Authorization: Bearer <token>` header, the configured JWT header/cookie, or the `JWT` query parameter.
+  - An active WordPress session is required (cookie-based auth or equivalent).
 parameters:
   - name: page
     in: query
@@ -29,7 +25,7 @@ parameters:
     example: 1
   - name: per_page
     in: query
-    description: Number of results per page (1–100). Defaults to 20.
+    description: Number of results per page (1-100). Defaults to 20.
     schema:
       type: integer
       minimum: 1
@@ -66,7 +62,8 @@ responses:
                   example: 20
   '401':
     description: |
-      Unauthorized. No active WordPress session and no valid JWT provided.
+      Unauthorized. No active WordPress session. Log in to WordPress before calling
+      this endpoint.
     content:
       application/json:
         schema:
@@ -75,4 +72,4 @@ responses:
           success: false
           data:
             message: "You must be logged in to manage API keys."
-            errorCode: 84
+            error_code: 84

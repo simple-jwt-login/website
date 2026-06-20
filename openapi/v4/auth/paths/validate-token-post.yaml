@@ -8,6 +8,11 @@ description: |
   Identical to `GET /auth/validate` but accepts the JWT in the request body instead of
   as a query parameter. Use this variant when the JWT is too long for a URL, or when
   sending it in the body is preferred for security reasons.
+
+  **JWT delivery**
+  The JWT can be passed via:
+  - `JWT` field in the request body
+  - `Authorization: Bearer <token>` header (when enabled in plugin General Settings)
 requestBody:
   description: JWT to validate.
   content:
@@ -37,22 +42,31 @@ responses:
               description: Same structure as the GET /auth/validate 200 response.
   '400':
     description: |
-      Bad request. The `JWT` field is missing from the request body.
+      Bad request. The JWT has a structural encoding error (wrong number of
+      segments, invalid base64 encoding of header, claims, or signature).
     content:
       application/json:
         schema:
           $ref: '../../schemas/error.yaml'
   '401':
     description: |
-      Unauthorized. The JWT is structurally invalid, has a bad signature, is expired,
-      or has been revoked.
+      Unauthorized. The JWT signature verification failed, is expired, or has
+      been revoked. The provided auth code is wrong.
     content:
       application/json:
         schema:
           $ref: '../../schemas/error.yaml'
   '403':
     description: |
-      Forbidden. JWT validation is disabled in the plugin settings.
+      Forbidden. JWT validation is disabled in the plugin settings (`error_code` 82).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+  '422':
+    description: |
+      Unprocessable entity. The `JWT` field is absent from the request body
+      (`error_code` 53), or the auth code is required but not provided (`error_code` 94).
     content:
       application/json:
         schema:

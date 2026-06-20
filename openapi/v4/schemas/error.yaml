@@ -11,7 +11,7 @@ properties:
         type: string
         description: Human-readable error description.
         example: "An error occurred."
-      errorCode:
+      error_code:
         type: number
         description: |
           Internal error code. Use this for programmatic error handling.

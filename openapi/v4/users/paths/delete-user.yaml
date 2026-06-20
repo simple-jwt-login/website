@@ -2,9 +2,6 @@ tags:
   - delete_user
 summary: Delete a WordPress user
 operationId: deleteUser
-security:
-  - BearerAuth: []
-  - JwtQueryParam: []
 description: |
   Permanently deletes the WordPress user identified by the JWT payload. The JWT is
   decoded to extract the user identifier (email, ID, or login, depending on plugin
@@ -13,7 +10,7 @@ description: |
   **Requirements**
   - User deletion must be enabled in the plugin settings.
   - The JWT must be valid, not expired, and not revoked.
-  - If "Delete Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+  - If "Delete Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
   - The calling IP must pass any IP allow-list configured in the plugin settings.
 parameters:
   - name: JWT
@@ -23,10 +20,13 @@ parameters:
     example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
     schema:
       type: string
-  - name: AUTH_CODE
+  - name: AUTH_KEY
     in: query
-    example: "MY_SUPER_SECRET_AUTH_CODE"
-    description: Required when "Delete User Requires Auth Code" is enabled in the plugin settings.
+    example: "MY_SUPER_SECRET_AUTH_KEY"
+    description: |
+      Required when "Delete User Requires Auth Code" is enabled in the plugin settings.
+      The parameter name defaults to `AUTH_KEY` but is configurable in the plugin's
+      Auth Codes settings.
     schema:
       type: string
 responses:
@@ -40,17 +40,17 @@ responses:
             success:
               type: boolean
               example: true
-            message:
-              type: string
-              description: Confirmation message.
-              example: User was successfully deleted.
-            id:
-              type: number
-              description: ID of the deleted user.
-              example: 1
+            data:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Confirmation message.
+                  example: User was successfully deleted.
   '400':
     description: |
-      Bad request. The JWT parameter is missing or cannot be decoded.
+      Bad request. The JWT has a structural encoding error (wrong number of
+      segments, invalid base64 encoding of header, claims, or signature).
     content:
       application/json:
         schema:
@@ -58,12 +58,16 @@ responses:
         example:
           success: false
           data:
-            message: "JWT is missing."
-            errorCode: 42
+            message: "Wrong number of segments."
+            error_code: 2
   '401':
     description: |
-      Unauthorized. The JWT is structurally invalid, has a bad signature, is expired,
-      is revoked, or the provided auth code is wrong.
+      Unauthorized. One of:
+      - The JWT signature verification failed or algorithm is unsupported
+        (`error_code` 6-11).
+      - The JWT has `nbf`/`iat` violations or is expired (`error_code` 12-14).
+      - The JWT has been revoked (`error_code` 55).
+      - The provided auth code is wrong (`error_code` 27).
     content:
       application/json:
         schema:
@@ -72,11 +76,12 @@ responses:
           success: false
           data:
             message: "JWT has expired."
-            errorCode: 14
+            error_code: 14
   '403':
     description: |
-      Forbidden. User deletion is disabled in the plugin settings, or the client IP
-      address is not on the allow-list.
+      Forbidden. One of:
+      - User deletion is disabled in the plugin settings (`error_code` 39).
+      - The client IP address is not on the allow-list (`error_code` 41).
     content:
       application/json:
         schema:
@@ -85,7 +90,7 @@ responses:
           success: false
           data:
             message: "Delete is not enabled."
-            errorCode: 39
+            error_code: 39
   '404':
     description: The WordPress user identified by the JWT payload could not be found.
     content:
@@ -96,7 +101,21 @@ responses:
           success: false
           data:
             message: "User not found."
-            errorCode: 24
+            error_code: 24
+  '422':
+    description: |
+      Unprocessable entity. One of:
+      - The JWT is completely absent from the request (`error_code` 42).
+      - The auth code is required but was not provided (`error_code` 94).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "The `jwt` parameter is missing."
+            error_code: 42
   '500':
     description: Internal server error.
     content:
@@ -107,4 +126,4 @@ responses:
           success: false
           data:
             message: "An unexpected error occurred."
-            errorCode: 22
+            error_code: 22

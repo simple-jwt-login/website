@@ -3,58 +3,62 @@ tags:
 summary: Exchange OAuth authorization code for a WordPress JWT (GET)
 operationId: oauthTokenGet
 description: |
-  Exchanges a provider-issued authorization code or ID token for a WordPress JWT.
-  The provider must be enabled in the plugin settings. On success the response
-  contains the WordPress user profile and a signed JWT.
+  Browser-redirect flow: exchanges a provider authorization code for a WordPress
+  session and redirects the browser to the WordPress admin (or login page on failure).
+  The provider must be enabled in the plugin settings.
 
-  Supported providers: `google`, `auth0`.
+  Supported providers: `google`, `auth0`, `facebook`, `github`.
 
-  **Google flow**
-  Pass `provider=google` together with either:
-  - `code` — the authorization code returned by Google's OAuth consent screen, or
-  - `id_token` — a Google ID token obtained via Sign In With Google.
+  **Google flow** - pass `provider=google` with `code`.
 
-  **Auth0 flow**
-  Pass `provider=auth0` together with `code` — the authorization code returned by
-  Auth0.
+  **Auth0 flow** - pass `provider=auth0` with `code`.
 
-  If the OAuth identity matches an existing WordPress user (by email), that user is
-  returned. If no match is found and "Register on OAuth login" is enabled, a new user
-  is created automatically.
+  **Facebook flow** - pass `provider=facebook` with `code`.
+
+  **GitHub flow** - pass `provider=github` with `code`.
+
+  If the OAuth identity matches an existing WordPress user (by email), the user is
+  logged in. If no match is found and "Register on OAuth login" is enabled, a new
+  user is created automatically. On failure the browser is redirected to the
+  WordPress login page.
+
+  > **Note**: this endpoint is designed for browser redirect callbacks (OAuth consent
+  > screen redirect_uri). To obtain a JWT programmatically, use `POST /oauth/token`
+  > instead.
 parameters:
   - name: provider
     in: query
     required: true
-    description: OAuth provider slug. Supported values — `google`, `auth0`.
+    description: OAuth provider slug.
     schema:
       type: string
-      enum: [google, auth0]
+      enum: [google, auth0, facebook, github]
     example: google
   - name: code
     in: query
-    description: Authorization code returned by the OAuth provider.
+    description: Authorization code returned by the OAuth provider's consent screen.
     schema:
       type: string
-  - name: id_token
+  - name: AUTH_KEY
     in: query
-    description: ID token from Google Sign-In (Google provider only).
-    schema:
-      type: string
-  - name: AUTH_CODE
-    in: query
-    description: Required when "Authentication Requires Auth Code" is enabled.
+    description: |
+      Required when "Authentication Requires Auth Code" is enabled. The parameter
+      name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+      settings.
     schema:
       type: string
 responses:
   '200':
-    description: OAuth login successful. Returns the WordPress user and a JWT.
+    description: |
+      Browser redirected to the WordPress admin URL after a successful login,
+      or to the WordPress login page on failure. The response body is empty HTML.
     content:
-      application/json:
-        schema:
-          $ref: '../schemas/oauth-response.yaml'
+      application/html:
+        example: ""
   '400':
     description: |
-      Bad request. Required OAuth parameters (`provider`, `code`) are missing.
+      Bad request. The `code` parameter is missing, or the provider slug is
+      unrecognised. (`error_code` 69 for invalid provider slug.)
     content:
       application/json:
         schema:
@@ -62,25 +66,11 @@ responses:
         example:
           success: false
           data:
-            message: "Missing Google parameters."
-            errorCode: 71
-  '401':
-    description: |
-      Unauthorized. The authorization code or ID token was rejected by the OAuth
-      provider, or the provider token is invalid.
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "Invalid Google code."
-            errorCode: 72
+            message: "The Oauth provider is invalid."
+            error_code: 69
   '403':
     description: |
-      Forbidden. The requested OAuth provider is not enabled in the plugin settings,
-      or the provider slug is not recognised.
+      Forbidden. The requested OAuth provider is not enabled in the plugin settings.
     content:
       application/json:
         schema:
@@ -88,21 +78,8 @@ responses:
         example:
           success: false
           data:
-            message: "This OAuth provider is not available."
-            errorCode: 70
-  '404':
-    description: |
-      The OAuth identity email address does not match any WordPress user and
-      automatic registration is disabled.
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "User not found."
-            errorCode: 74
+            message: "This Oauth provider is not available."
+            error_code: 70
   '500':
     description: Internal server error.
     content:
@@ -113,4 +90,4 @@ responses:
           success: false
           data:
             message: "An unexpected error occurred."
-            errorCode: 22
+            error_code: 22

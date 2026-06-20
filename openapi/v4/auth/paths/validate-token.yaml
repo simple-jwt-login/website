@@ -4,29 +4,35 @@ summary: Validate a JWT and retrieve user details
 operationId: validateJWT
 security:
   - BearerAuth: []
-  - JwtQueryParam: []
+  - QueryJWT: []
 description: |
   Verifies the JWT signature, checks expiry and revocation status, and returns the
   decoded token information together with the matching WordPress user profile and roles.
 
-  The JWT can be passed as the `JWT` query parameter, in the request body, or as a
-  Bearer token in the `Authorization` header.
+  **JWT delivery**
+  The JWT can be passed via:
+  - `JWT` query parameter
+  - `Authorization: Bearer <token>` header (when enabled in plugin General Settings)
+  - Cookie or session (when enabled in plugin General Settings)
 
   **Requirements**
   - Token validation must be enabled in the plugin settings.
-  - If "Authentication Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+  - If "Authentication Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
 parameters:
   - name: JWT
     in: query
-    description: The JWT to validate.
-    required: true
+    description: "The JWT to validate. Alternative to the `Authorization: Bearer` header."
+    required: false
     example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
     schema:
       type: string
-  - name: AUTH_CODE
+  - name: AUTH_KEY
     in: query
-    example: "MY_SUPER_SECRET_AUTH_CODE"
-    description: Required when "Authentication Requires Auth Code" is enabled.
+    example: "MY_SUPER_SECRET_AUTH_KEY"
+    description: |
+      Required when "Authentication Requires Auth Code" is enabled. The parameter
+      name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+      settings.
     schema:
       type: string
 responses:
@@ -79,43 +85,68 @@ responses:
                     type: string
                     example: "administrator"
                 jwt:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      token:
-                        type: string
-                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-                      header:
-                        type: object
-                        properties:
-                          typ:
-                            type: string
-                            example: "JWT"
-                          alg:
-                            type: string
-                            example: "HS256"
-                      payload:
-                        type: object
-                        properties:
-                          iat:
-                            type: number
-                            example: 1516239022
-                          email:
-                            type: string
-                            example: "myuser@simplejwtlogin.com"
-                          id:
-                            type: number
-                            example: 1
-                          site:
-                            type: string
-                            example: "https://simplejwtlogin.com"
-                          username:
-                            type: string
-                            example: "myuser"
+                  type: object
+                  properties:
+                    token:
+                      type: string
+                      example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    header:
+                      type: object
+                      properties:
+                        typ:
+                          type: string
+                          example: "JWT"
+                        alg:
+                          type: string
+                          example: "HS256"
+                    payload:
+                      type: object
+                      properties:
+                        iat:
+                          type: number
+                          description: Issued-at timestamp. Always present.
+                          example: 1516239022
+                        exp:
+                          type: number
+                          nullable: true
+                          description: Expiry timestamp. Present only when the `exp` payload parameter is enabled in plugin settings.
+                          example: 1516242622
+                        email:
+                          type: string
+                          nullable: true
+                          description: User email. Present only when enabled in plugin settings.
+                          example: "myuser@simplejwtlogin.com"
+                        id:
+                          type: number
+                          nullable: true
+                          description: WordPress user ID. Present only when enabled in plugin settings.
+                          example: 1
+                        site:
+                          type: string
+                          nullable: true
+                          description: Site URL. Present only when enabled in plugin settings.
+                          example: "https://simplejwtlogin.com"
+                        username:
+                          type: string
+                          nullable: true
+                          description: WordPress login username. Present only when enabled in plugin settings.
+                          example: "myuser"
+                        iss:
+                          type: string
+                          nullable: true
+                          description: Issuer claim. Present only when enabled in plugin settings.
+                          example: "https://simplejwtlogin.com"
+                    expire_in:
+                      type: integer
+                      nullable: true
+                      description: |
+                        Seconds until the JWT expires (`exp - now`). Only present
+                        when the JWT payload contains an `exp` claim.
+                      example: 3600
   '400':
     description: |
-      Bad request. The `JWT` parameter is missing.
+      Bad request. The JWT has a structural encoding error (wrong number of
+      segments, invalid base64 encoding of header, claims, or signature).
     content:
       application/json:
         schema:
@@ -123,12 +154,16 @@ responses:
         example:
           success: false
           data:
-            message: "JWT is missing."
-            errorCode: 53
+            message: "Wrong number of segments."
+            error_code: 2
   '401':
     description: |
-      Unauthorized. The JWT is structurally invalid, has a bad signature, is expired,
-      or has been revoked.
+      Unauthorized. One of:
+      - The JWT signature verification failed or algorithm is unsupported
+        (`error_code` 6-11).
+      - The JWT has `nbf`/`iat` violations or is expired (`error_code` 12-14).
+      - The JWT has been revoked (`error_code` 55).
+      - The provided auth code is wrong (`error_code` 27).
     content:
       application/json:
         schema:
@@ -137,10 +172,10 @@ responses:
           success: false
           data:
             message: "JWT has expired."
-            errorCode: 14
+            error_code: 14
   '403':
     description: |
-      Forbidden. JWT validation is disabled in the plugin settings.
+      Forbidden. JWT validation is disabled in the plugin settings (`error_code` 82).
     content:
       application/json:
         schema:
@@ -149,7 +184,21 @@ responses:
           success: false
           data:
             message: "Validate token is not enabled."
-            errorCode: 82
+            error_code: 82
+  '422':
+    description: |
+      Unprocessable entity. One of:
+      - The JWT is completely absent from the request (`error_code` 53).
+      - The auth code is required but was not provided (`error_code` 94).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT is missing."
+            error_code: 53
   '500':
     description: Internal server error.
     content:
@@ -160,4 +209,4 @@ responses:
           success: false
           data:
             message: "An unexpected error occurred."
-            errorCode: 22
+            error_code: 22

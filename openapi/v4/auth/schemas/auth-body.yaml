@@ -17,7 +17,7 @@ properties:
       Hashed password as stored in the WordPress database. Requires "Allow login with
       password hash" to be enabled in the plugin settings. Required when `password`
       is not provided.
-  AUTH_CODE:
+  AUTH_KEY:
     type: string
-    example: "MY_SUPER_SECRET_AUTH_CODE"
+    example: "MY_SUPER_SECRET_AUTH_KEY"
     description: Required when "Authentication Requires Auth Code" is enabled.

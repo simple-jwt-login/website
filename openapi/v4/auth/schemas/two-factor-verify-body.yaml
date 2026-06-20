@@ -1,0 +1,18 @@
+type: object
+required:
+  - code
+properties:
+  JWT:
+    type: string
+    description: |
+      Interim JWT returned by `POST /auth` when `two_factor_required` is `true`.
+      Alternative to passing the token via the `Authorization: Bearer` header.
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  code:
+    type: string
+    description: |
+      The 2FA verification code. Format depends on the user's configured provider:
+      - **TOTP** (Google Authenticator, Authy): 6-digit numeric code
+      - **Email**: alphanumeric token sent to the user's registered email
+      - **Backup**: one of the user's single-use backup codes
+    example: "123456"

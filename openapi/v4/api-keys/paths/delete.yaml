@@ -3,18 +3,13 @@ tags:
 summary: Permanently delete an API key
 operationId: deleteApiKey
 security:
-  - BearerAuth: []
-  - JwtQueryParam: []
+  - WordPressSession: []
 description: |
   Permanently removes the API key record from the database. This action is
   irreversible. To merely disable a key while keeping its record, use
-  `DELETE /api-keys/{id}` (revoke) instead.
+  `POST /api-keys/{id}/revoke` instead.
 
   Regular users may only delete their own keys. Administrators may delete any key.
-
-  Authentication is required in one of two ways:
-  - An active WordPress session (cookie-based auth), **or**
-  - A valid JWT passed via `Authorization: Bearer <token>` header, the configured JWT header/cookie, or the `JWT` query parameter.
 parameters:
   - name: id
     in: path
@@ -38,7 +33,7 @@ responses:
               type: string
               example: "API key deleted successfully."
   '401':
-    description: Unauthorized. No active WordPress session and no valid JWT provided.
+    description: Unauthorized. No active WordPress session.
     content:
       application/json:
         schema:
@@ -47,7 +42,7 @@ responses:
           success: false
           data:
             message: "You must be logged in to manage API keys."
-            errorCode: 84
+            error_code: 84
   '403':
     description: |
       Forbidden. The authenticated user does not own this API key and does not have
@@ -60,7 +55,7 @@ responses:
           success: false
           data:
             message: "You are not allowed to manage this API key."
-            errorCode: 84
+            error_code: 84
   '404':
     description: No API key with the provided ID was found.
     content:
@@ -71,7 +66,7 @@ responses:
           success: false
           data:
             message: "Invalid API key ID."
-            errorCode: 89
+            error_code: 89
   '500':
     description: |
       Internal server error. The database delete operation failed.
@@ -83,4 +78,4 @@ responses:
           success: false
           data:
             message: "Failed to delete API key."
-            errorCode: 92
+            error_code: 92

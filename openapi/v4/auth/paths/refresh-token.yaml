@@ -10,7 +10,7 @@ description: |
   - The refresh-token feature must be enabled in the plugin settings.
   - The refresh token must exist in the database and not have exceeded the maximum
     token age configured in the plugin settings.
-  - If "Authentication Requires Auth Code" is enabled, `AUTH_CODE` must be provided.
+  - If "Authentication Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
 requestBody:
   description: Refresh token obtained from a prior `/auth` response.
   content:
@@ -47,9 +47,45 @@ responses:
                   type: string
                   description: New refresh token replacing the one that was consumed.
                   example: "f6e7g8h9i0j123456789012345678901234567890123456789012345678901234567"
-  '400':
+  '401':
     description: |
-      Bad request. The `refresh_token` field is missing.
+      Unauthorized. One of:
+      - The refresh token was not found in the database (expired, already rotated,
+        or never issued) (`error_code` 51).
+      - A JWT was supplied alongside the refresh token but has been revoked -
+        revoked JWTs cannot be used to obtain new tokens (`error_code` 55).
+      - The WordPress user linked to the refresh token no longer exists
+        (`error_code` 55).
+      - The provided auth code is wrong (`error_code` 27).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Invalid refresh token."
+            error_code: 51
+  '403':
+    description: |
+      Forbidden. One of:
+      - The refresh-token feature is disabled in the plugin settings (`error_code` 81).
+      - Authentication is disabled in the plugin settings (`error_code` 45).
+      - The client IP address is not on the allow-list (`error_code` 41).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Refresh Token endpoint is not enabled."
+            error_code: 81
+  '422':
+    description: |
+      Unprocessable entity. One of:
+      - The `refresh_token` field is absent from the request (`error_code` 51).
+      - The auth code is required but was not provided (`error_code` 94).
     content:
       application/json:
         schema:
@@ -58,33 +94,7 @@ responses:
           success: false
           data:
             message: "Refresh token is missing."
-            errorCode: 51
-  '401':
-    description: |
-      Unauthorized. The refresh token is not found in the database, the associated
-      JWT is malformed or structurally invalid, or the token has exceeded the maximum
-      allowed age.
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "Refresh token is too old."
-            errorCode: 50
-  '403':
-    description: |
-      Forbidden. The refresh-token feature is disabled in the plugin settings.
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "Refresh token is not enabled."
-            errorCode: 81
+            error_code: 51
   '500':
     description: Internal server error.
     content:
@@ -95,4 +105,4 @@ responses:
           success: false
           data:
             message: "An unexpected error occurred."
-            errorCode: 22
+            error_code: 22
