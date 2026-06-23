@@ -178,12 +178,13 @@ const newFeatures = [
   {
     icon: faWrench,
     badge: 'Improved',
-    title: 'Error Codes & Code Quality',
-    desc: 'More precise error codes, a 401 (instead of 403) on protect-endpoint auth failures, and a cleaner internal codebase.',
+    title: 'Improvements & Code Quality',
+    desc: 'Standardized HTTP status codes across all endpoints and a cleaner, more maintainable internal codebase.',
     bullets: [
-      'New ERR_JWT_CANNOT_CHANGE_PASSWORD error code',
-      'Protect-endpoint failures now return 401',
-      'Fixed typos in method and constant names',
+      'All endpoints now respond with 400, 401, 403, 422, or 500 status codes',
+      'Refactored internal service layer for better separation of concerns',
+      'Improved unit test coverage across all core services',
+      'Reduced code duplication across service classes',
     ],
     link: '/docs/error-codes/',
     cta: 'Error codes',
@@ -193,8 +194,8 @@ const newFeatures = [
 const breakingChanges = [
   {
     title: 'Register user response shape changed',
-    detail: 'POST /users used to return {"success":true,"ID":1,...}. It now returns {"success":true,"data":{"id":1,...}} - the user object is nested under "data" and "ID" is lowercase "id".',
-    action: 'Update any code that reads user fields (ID, email, roles…) from the register response.',
+    detail: 'POST /users used to return {"success":true,"ID":1,...}. It now returns {"success":true,"data":{"id":1,...}}. The user object is nested under "data", "ID" is lowercase "id", and several fields were renamed: user_login → login, user_nicename → nicename, user_email → email, user_url → url, user_registered → registered, user_activation_key → activation_key, user_status → status.',
+    action: 'Update any code that reads user fields from the register response - check both the new nesting under "data" and the renamed field keys.',
     link: '/docs/register-user/',
     linkLabel: 'Register User docs',
   },
@@ -233,6 +234,66 @@ const breakingChanges = [
     link: '/docs/integrations/third-party/two-factor/',
     linkLabel: '2FA docs',
   },
+  {
+    title: 'Error response envelope: message and error_code moved under data',
+    detail: 'In v3, error responses had the form {"success":false,"message":"...","error_code":N}. In v4, both fields moved under a nested data object: {"success":false,"data":{"message":"...","error_code":N}}. Every endpoint follows this new shape.',
+    action: 'Update all error-handling code to read response.data.message and response.data.error_code instead of response.message and response.error_code.',
+    link: '/docs/error-codes/',
+    linkLabel: 'Error codes docs',
+  },
+  {
+    title: 'Protected endpoint auth failures return 401 instead of 403',
+    detail: 'When the Protect Endpoint feature blocks an unauthenticated request, the plugin previously returned HTTP 403 Forbidden. It now returns HTTP 401 Unauthorized to align with the HTTP spec.',
+    action: 'Update any code that checks specifically for status 403 on protected routes to handle 401 instead.',
+    link: '/docs/protect-endpoint/',
+    linkLabel: 'Protect Endpoint docs',
+  },
+  {
+    title: 'Error field renamed: errorCode → error_code',
+    detail: 'In v3, the error field in responses was named "errorCode" (camelCase). In v4, it is renamed to "error_code" (snake_case) to match the rest of the API\'s naming convention.',
+    action: 'Update all error-handling code that reads response.errorCode (or response.data.errorCode) to use error_code instead.',
+    link: '/docs/error-codes/',
+    linkLabel: 'Error codes docs',
+  },
+];
+
+const perfRows = [
+  {
+    endpoint: 'Register User',
+    v3: { min: '0.370s', avg: '0.471s', median: '0.418s', p95: '0.906s', max: '1.406s' },
+    v4: { min: '0.233s', avg: '0.255s', median: '0.255s', p95: '0.273s', max: '0.286s' },
+    deltaP95: '-70%', trend: 'better', noteRef: null,
+  },
+  {
+    endpoint: 'Autologin with JWT',
+    v3: { min: '0.114s', avg: '0.133s', median: '0.127s', p95: '0.174s', max: '0.224s' },
+    v4: { min: '0.113s', avg: '0.125s', median: '0.122s', p95: '0.134s', max: '0.310s' },
+    deltaP95: '-23%', trend: 'better', noteRef: null,
+  },
+  {
+    endpoint: 'Create Post (JWT)',
+    v3: { min: '0.152s', avg: '0.175s', median: '0.168s', p95: '0.208s', max: '0.376s' },
+    v4: { min: '0.130s', avg: '0.144s', median: '0.139s', p95: '0.170s', max: '0.227s' },
+    deltaP95: '-18%', trend: 'better', noteRef: null,
+  },
+  {
+    endpoint: 'Create Post (API Key)',
+    v3: null,
+    v4: { min: '0.133s', avg: '0.160s', median: '0.144s', p95: '0.279s', max: '0.357s' },
+    deltaP95: 'new', trend: 'new', noteRef: 1,
+  },
+  {
+    endpoint: 'Validate Token',
+    v3: { min: '0.080s', avg: '0.088s', median: '0.087s', p95: '0.101s', max: '0.111s' },
+    v4: { min: '0.084s', avg: '0.090s', median: '0.088s', p95: '0.098s', max: '0.120s' },
+    deltaP95: '-3%', trend: 'better', noteRef: null,
+  },
+  {
+    endpoint: 'Auth User',
+    v3: { min: '0.128s', avg: '0.138s', median: '0.136s', p95: '0.151s', max: '0.217s' },
+    v4: { min: '0.140s', avg: '0.148s', median: '0.148s', p95: '0.155s', max: '0.185s' },
+    deltaP95: '+3%', trend: 'neutral', noteRef: null,
+  },
 ];
 
 const migrationSteps = [
@@ -244,7 +305,7 @@ const migrationSteps = [
   {
     n: '2',
     title: 'Work through the breaking changes',
-    desc: 'Six breaking changes are listed above. Address them before going to production - register response shape, removed /register route, and User Identification location are the most likely to affect existing integrations.',
+    desc: 'The breaking changes are listed above. Address them before going to production - the error envelope change, errorCode → error_code rename, register response shape, removed /register route, and User Identification location are the most likely to affect existing integrations.',
   },
   {
     n: '3',
@@ -393,6 +454,72 @@ export default function V4Page() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── Performance ─────────────────────────────────────── */}
+        <section className={clsx(styles.sectionPadding, styles.sectionGray)}>
+          <div className="container">
+            <span className={styles.sectionEyebrow}>Benchmarks</span>
+            <h2 className={styles.sectionTitle}>v3 vs v4 Performance</h2>
+            <p className={styles.sectionLead}>
+              Load-test results on identical infrastructure.
+              All endpoints returned 100% success rate except where noted.
+            </p>
+            <div className={v4Styles.perfTableWrap}>
+                <table className={v4Styles.perfTable}>
+                  <thead>
+                    <tr className={v4Styles.perfGroupRow}>
+                      <th rowSpan={2} className={v4Styles.perfThEndpoint}>Endpoint</th>
+                      <th colSpan={5} className={v4Styles.perfGroupV3}>v3</th>
+                      <th colSpan={5} className={v4Styles.perfGroupV4}>v4</th>
+                      <th rowSpan={2} className={v4Styles.perfThDelta}>Delta (p95)</th>
+                    </tr>
+                    <tr>
+                      <th>Min</th><th>Avg</th><th>Median</th><th>P95</th><th>Max</th>
+                      <th className={v4Styles.perfGroupSep}>Min</th><th>Avg</th><th>Median</th><th>P95</th><th>Max</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {perfRows.map(({ endpoint, v3, v4, deltaP95, trend, noteRef }) => (
+                      <tr key={endpoint}>
+                        <td className={v4Styles.perfEndpoint}>
+                          {endpoint}
+                          {noteRef !== null && <sup className={v4Styles.perfSup}>{noteRef}</sup>}
+                        </td>
+                        {v3 ? (
+                          <>
+                            <td className={v4Styles.perfVal}>{v3.min}</td>
+                            <td className={v4Styles.perfVal}>{v3.avg}</td>
+                            <td className={v4Styles.perfVal}>{v3.median}</td>
+                            <td className={v4Styles.perfVal}>{v3.p95}</td>
+                            <td className={v4Styles.perfVal}>{v3.max}</td>
+                          </>
+                        ) : (
+                          <td colSpan={5} className={v4Styles.perfNa}>N/A</td>
+                        )}
+                        <td className={clsx(v4Styles.perfVal, v4Styles.perfGroupSep)}>{v4.min}</td>
+                        <td className={v4Styles.perfVal}>{v4.avg}</td>
+                        <td className={v4Styles.perfVal}>{v4.median}</td>
+                        <td className={v4Styles.perfVal}>{v4.p95}</td>
+                        <td className={v4Styles.perfVal}>{v4.max}</td>
+                        <td className={clsx(v4Styles.perfDelta, {
+                          [v4Styles.perfBetter]: trend === 'better',
+                          [v4Styles.perfWorse]: trend === 'worse',
+                          [v4Styles.perfNew]: trend === 'new',
+                          [v4Styles.perfNeutral]: trend === 'neutral',
+                        })}>{deltaP95}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+            </div>
+            <ol className={v4Styles.perfNotesList}>
+              <li>API Keys did not exist in v3; the v3 run returned 0% success rate. v4 introduces this endpoint and handles it correctly.</li>
+            </ol>
+            <p className={v4Styles.perfFormulaNotes}>
+              <strong>Delta (p95)</strong> = <code>(v4&nbsp;p95 - v3&nbsp;p95) / v3&nbsp;p95 × 100</code>. Negative values mean v4 is faster.
+            </p>
           </div>
         </section>
 

@@ -345,6 +345,179 @@ html[data-theme='dark'] .breakingLink {
   text-decoration: none;
 }
 
+/* ── Performance Table ─────────────────────────────────────── */
+.perfTableWrap {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+html[data-theme='dark'] .perfTableWrap {
+  border-color: #1e2736;
+}
+
+.perfTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 0 auto;
+  max-width: 950px;
+}
+
+.perfTable thead {
+  background: #f1f5f9;
+}
+
+html[data-theme='dark'] .perfTable thead {
+  background: #161b25;
+}
+
+.perfTable th {
+  padding: 0.65rem 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--sjl-text-muted, #64748b);
+  white-space: nowrap;
+  border-bottom: 1px solid #e1e7ef;
+}
+
+html[data-theme='dark'] .perfTable th {
+  border-bottom-color: #1e2736;
+}
+
+.perfTable .perfThEndpoint {
+  text-align: left !important;
+  min-width: 160px;
+}
+
+.perfGroupRow th {
+  text-align: center;
+  padding-bottom: 0.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.perfGroupV3 {
+  border-bottom: 2px solid #94a3b8;
+  color: var(--sjl-text-muted, #64748b) !important;
+}
+
+html[data-theme='dark'] .perfGroupV3 {
+  border-bottom-color: #475569;
+}
+
+.perfGroupV4 {
+  border-bottom: 2px solid #42b983;
+  color: #2e9e6e !important;
+}
+
+html[data-theme='dark'] .perfGroupV4 {
+  color: #42b983 !important;
+}
+
+.perfGroupSep {
+  border-left: 2px solid #e1e7ef !important;
+}
+
+html[data-theme='dark'] .perfGroupSep {
+  border-left-color: #1e2736 !important;
+}
+
+.perfThDelta {
+  text-align: center !important;
+  min-width: 90px;
+}
+
+.perfNa {
+  text-align: center;
+  color: var(--sjl-text-muted, #64748b);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.perfTable td {
+  padding: 0.65rem 0.5rem;
+  text-align: center !important;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+html[data-theme='dark'] .perfTable td {
+  border-bottom-color: #1a2030;
+}
+
+.perfTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.perfTable tbody tr:hover td {
+  background: rgba(66,185,131,0.04);
+}
+
+.perfTable .perfEndpoint {
+  text-align: left !important;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+}
+
+.perfSup {
+  font-size: 0.65rem;
+  color: var(--sjl-text-muted, #64748b);
+  margin-left: 0.15rem;
+  vertical-align: super;
+}
+
+.perfVal {
+  font-variant-numeric: tabular-nums;
+  color: var(--ifm-font-color-base);
+}
+
+.perfDelta {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: center !important;
+}
+
+.perfBetter { color: #16a34a; }
+.perfWorse  { color: #dc2626; }
+.perfNeutral { color: var(--sjl-text-muted, #64748b); }
+.perfNew {
+  color: #4f46e5;
+  font-style: italic;
+}
+
+html[data-theme='dark'] .perfBetter { color: #4ade80; }
+html[data-theme='dark'] .perfWorse  { color: #f87171; }
+html[data-theme='dark'] .perfNew    { color: #a5b4fc; }
+
+.perfNotesList {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.perfNotesList li {
+  font-size: 0.8rem;
+  color: var(--sjl-text-muted, #64748b);
+  line-height: 1.55;
+}
+
+.perfFormulaNotes {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--sjl-text-muted, #64748b);
+  line-height: 1.55;
+}
+
+.perfFormulaNotes code {
+  font-size: 0.78rem;
+}
+
 /* ── CTA version label ─────────────────────────────────────── */
 .ctaVersion {
   display: inline-block;
