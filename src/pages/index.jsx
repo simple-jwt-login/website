@@ -481,6 +481,33 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ── Deploy WordPress ──────────────────────────────── */}
+        <section className={styles.deploySection}>
+          <div className="container">
+            <div className={styles.deployBanner}>
+              <div className={styles.deployBannerGlow} aria-hidden="true" />
+              <div className={styles.deployBannerContent}>
+                <span className={styles.deployBannerEyebrow}>
+                  <FontAwesomeIcon icon={faRocket} /> One-click deploy
+                </span>
+                <h2 className={styles.deployBannerTitle}>
+                  Don&apos;t have a site yet? Launch one in one click
+                </h2>
+                <p className={styles.deployBannerText}>
+                  Spin up a fully installed WordPress server on DigitalOcean - with Simple JWT
+                  Login ready for headless and REST API authentication. No Marketplace setup,
+                  no terminal, no install wizard. We hand you the login.
+                </p>
+              </div>
+              <div className={styles.deployBannerActions}>
+                <Link to="/deploy-wordpress" className={styles.actionButton} title="Deploy WordPress on DigitalOcean">
+                  Deploy WordPress →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ── Community ─────────────────────────────────────── */}
         <section className={styles.sectionPadding}>
           <div className="container">

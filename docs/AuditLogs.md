@@ -94,7 +94,7 @@ For compliance use cases (GDPR, SOC 2, etc.), set the retention period to match 
 
 ## Viewing Log Entries
 
-![Audit Log entries](/assets/screenshots/logs/activity-log.png)
+![Audit Log entries](/assets/screenshots/logs/audit-logs.png)
 
 Go to **Settings → Simple JWT Login → Audit Logs → Logs** to view the stored entries.
 

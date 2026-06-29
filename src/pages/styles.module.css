@@ -672,6 +672,72 @@ html[data-theme='dark'] .stepNumber {
   z-index: 1;
 }
 
+/* ── Deploy banner ─────────────────────────────────────────── */
+.deploySection {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #0a1c2e 0%, #0b2540 45%, #0a1f18 100%);
+}
+
+.deployBanner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+
+.deployBannerGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 0% 0%, rgba(0,105,255,0.30) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.deployBannerContent {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+.deployBannerEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ifm-color-primary-light);
+  margin-bottom: 0.75rem;
+}
+
+.deployBannerTitle {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.deployBannerText {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+.deployBannerActions {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
 /* ── Misc ──────────────────────────────────────────────────── */
 .subSectionPadding { padding: 2.5rem 0; }
 .paddingRow { padding: 1.25rem 0; }
