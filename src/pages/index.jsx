@@ -248,7 +248,7 @@ export default function HomePage() {
               Get started →
             </Link>
             <Link
-              to="https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"
+              to="https://github.com/nicumicle/simple-jwt-login/blob/v3/download/simple-jwt-login.zip?raw=true"
               className={styles.btn}
               download={true}
               title="Download Plugin"
@@ -284,6 +284,17 @@ export default function HomePage() {
           </div>
         </div>
       </header>
+
+      {/* ── v4 Announcement Banner ────────────────────────── */}
+      <div className={styles.v4Banner}>
+        <div className={styles.v4BannerInner}>
+          <span className={styles.v4BannerBadge}>New</span>
+          <span className={styles.v4BannerText}>Simple JWT Login v4 is available as a release candidate - API Keys, 2FA, Audit Logs, Webhooks, and more.</span>
+          <Link to="/v4" className={styles.v4BannerLink} title="See what's new in v4">
+            See what's new →
+          </Link>
+        </div>
+      </div>
 
       <main>
 
@@ -547,7 +558,7 @@ export default function HomePage() {
                   Get started →
                 </Link>
                 <Link
-                  to="https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"
+                  to="https://github.com/nicumicle/simple-jwt-login/blob/v3/download/simple-jwt-login.zip?raw=true"
                   className={styles.btn}
                   download={true}
                   title="Download the plugin"

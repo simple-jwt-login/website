@@ -1,0 +1,752 @@
+---
+slug: /code-examples/woocommerce-headless-store
+title: Headless WooCommerce store with Vanilla JS
+sidebar_label: WooCommerce Store (Vanilla JS)
+sidebar_position: 3
+author: Nicu Micle
+author_url: https://github.com/nicumicle
+description: A complete browser example that manages WooCommerce products, cart, and checkout using only a JWT - no consumer key/secret and no nonce.
+keywords: [headless WooCommerce, WooCommerce JWT example, WooCommerce Store API JavaScript, headless checkout, Simple JWT Login WooCommerce example]
+---
+
+import Link from '@docusaurus/Link';
+
+## Introduction
+
+This example drives a **WooCommerce** store from the browser using **only a JWT** in the
+`Authorization` header - no consumer key/secret, no cart cookie, no nonce. The whole app is
+gated behind a **login screen**: nothing is shown until a token is obtained and validated.
+
+<p>
+  <Link className="button button--primary button--lg" to="/demos/woocommerce">
+    ▶ Try it now
+  </Link>
+</p>
+
+It covers the full storefront lifecycle:
+
+1. **Login** - exchange credentials for a JWT (or paste an existing token)
+2. **Manage products** - list / create / delete via the CRUD API
+3. **Cart** - add / remove / view via the Store API
+4. **Checkout & pay** - place an order via the Store API
+
+| Step | Endpoint |
+|---|---|
+| Login | `POST /simple-jwt-login/v1/auth`, `GET /simple-jwt-login/v1/auth/validate` |
+| Manage products | `/wc/v3/products` |
+| Cart | `/wc/store/v1/cart`, `.../cart/add-item`, `.../cart/remove-item` |
+| Checkout | `/wc/store/v1/checkout` |
+
+## Prerequisites
+
+Before running this example, make sure the following are configured:
+
+| Setting | Value |
+|---|---|
+| WooCommerce | Installed & active, with a payment method (e.g. **Cash on Delivery**) enabled |
+| Simple JWT Login → Allow Authentication | Yes (so `/auth` issues tokens) |
+| Integrations → WooCommerce → **Enable** | Yes |
+| Integrations → WooCommerce → **Store API cart & checkout** | Yes (lets header-JWT requests skip the Store API nonce) |
+| CORS | Enabled for your app's origin, allowing the `Authorization` header and GET/POST/DELETE |
+
+To **manage products** the token must belong to an **Administrator** or **Shop Manager**. A
+customer token can still do cart & checkout - it just cannot edit the catalog.
+
+See the [WooCommerce integration](../integrations/ThirdParty/04_WooCommerce.md) page for details on
+the toggles and the security implications of skipping the Store API nonce.
+
+:::warning
+Always serve the API over **HTTPS** in production - a bearer token must never travel over plain HTTP.
+:::
+
+## How authentication works
+
+Every request goes through one small wrapper that attaches the bearer token. That is the only
+"integration" code you need - WooCommerce treats the JWT user as the current user:
+
+```js
+async function api(path, { method = 'GET', body } = {}) {
+    const base = state.baseUrl.replace(/\/+$/, '');
+    const url = `${base}/wp-json${path}`;
+    const headers = { 'Content-Type': 'application/json' };
+    if (state.jwt) headers['Authorization'] = `Bearer ${state.jwt}`;
+
+    const res = await fetch(url, { method, headers, body: body ? JSON.stringify(body) : undefined });
+    const data = await res.json();
+    if (!res.ok) throw Object.assign(new Error(`HTTP ${res.status}`), { data });
+    return data;
+}
+```
+
+- **Products** - `POST /wc/v3/products`, `GET /wc/v3/products`, `DELETE /wc/v3/products/{id}?force=true`
+- **Cart** - `POST /wc/store/v1/cart/add-item` with `{ id, quantity }`
+- **Checkout** - `POST /wc/store/v1/checkout` with `billing_address` + `payment_method`
+
+The Store API cart/checkout writes succeed **without a nonce** because the request carries the
+token in the `Authorization` header and the **Store API cart & checkout** toggle is on.
+
+## The files
+
+Create a folder with the three files below and serve it over HTTP (don't open it via
+`file://`, or `fetch`/CORS won't behave):
+
+```bash
+# from the folder containing the files
+python3 -m http.server 8080
+# then open http://localhost:8080
+```
+
+### index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WooCommerce + Simple-JWT-Login - Vanilla JS demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- LOGIN GATE - shown until a JWT is obtained / validated -->
+<div id="loginScreen" class="login-screen">
+    <form id="loginForm" class="login-card">
+        <h1>WooCommerce demo</h1>
+        <p class="muted">Sign in to manage products, cart &amp; checkout - JWT only.</p>
+
+        <label>Site URL
+            <input id="baseUrl" type="url" placeholder="https://your-store.test" required autocomplete="off">
+        </label>
+
+        <div id="credsFields">
+            <label>Email
+                <input id="loginEmail" type="email" autocomplete="username">
+            </label>
+            <label>Password
+                <input id="loginPassword" type="password" autocomplete="current-password">
+            </label>
+        </div>
+
+        <div id="tokenField" class="hidden">
+            <label>JWT (Bearer token)
+                <input id="jwt" type="text" placeholder="eyJ0eXAiOiJKV1Qi..." autocomplete="off">
+            </label>
+        </div>
+
+        <button type="submit" id="loginBtn">Log in</button>
+        <p class="login-error" id="loginError"></p>
+        <button type="button" id="toggleMode" class="link">Use an existing token instead</button>
+    </form>
+</div>
+
+<!-- MAIN APP - hidden until authenticated -->
+<div id="app" class="hidden">
+    <header class="topbar">
+        <div>
+            <strong>WooCommerce headless demo</strong>
+            <span class="muted">products &middot; cart &middot; checkout</span>
+        </div>
+        <div class="topbar-right">
+            <span id="whoami" class="muted"></span>
+            <button id="logoutBtn" class="secondary">Log out</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="card" id="products">
+            <h2>Manage products <span class="muted">(/wc/v3/products - needs an admin / shop-manager JWT)</span></h2>
+            <div class="row">
+                <button id="loadProducts">Load products</button>
+            </div>
+            <form id="createProductForm" class="inline-form">
+                <input id="newName" type="text" placeholder="New product name" required>
+                <input id="newPrice" type="number" step="0.01" min="0" placeholder="Price" required>
+                <button type="submit" class="secondary">Create product</button>
+            </form>
+            <table class="data">
+                <thead><tr><th>ID</th><th>Name</th><th>Price</th><th>Actions</th></tr></thead>
+                <tbody id="productRows"><tr><td colspan="4" class="muted">No products loaded.</td></tr></tbody>
+            </table>
+        </section>
+
+        <section class="card" id="cart">
+            <h2>Cart <span class="muted">(/wc/store/v1/cart)</span></h2>
+            <div class="row">
+                <button id="loadCart">Refresh cart</button>
+                <span id="cartTotal" class="muted"></span>
+            </div>
+            <table class="data">
+                <thead><tr><th>Item</th><th>Qty</th><th>Line total</th><th></th></tr></thead>
+                <tbody id="cartRows"><tr><td colspan="4" class="muted">Cart is empty.</td></tr></tbody>
+            </table>
+        </section>
+
+        <section class="card" id="checkout">
+            <h2>Checkout &amp; pay <span class="muted">(/wc/store/v1/checkout)</span></h2>
+            <form id="checkoutForm" class="grid">
+                <label>First name <input id="b_first" value="Jane" required></label>
+                <label>Last name <input id="b_last" value="Doe" required></label>
+                <label>Email <input id="b_email" type="email" value="jane@example.com" required></label>
+                <label>Phone <input id="b_phone" value="5551234567"></label>
+                <label>Address <input id="b_addr" value="123 Main St" required></label>
+                <label>City <input id="b_city" value="Springfield" required></label>
+                <label>Postcode <input id="b_post" value="12345" required></label>
+                <label>State <input id="b_state" value="CA"></label>
+                <label>Country (ISO-2) <input id="b_country" value="US" maxlength="2" required></label>
+                <label>Payment method
+                    <select id="payment">
+                        <option value="cod">Cash on delivery (cod)</option>
+                        <option value="bacs">Direct bank transfer (bacs)</option>
+                        <option value="cheque">Check (cheque)</option>
+                    </select>
+                </label>
+            </form>
+            <div class="row">
+                <button id="placeOrder">Place order &amp; pay</button>
+                <span id="orderState" class="muted"></span>
+            </div>
+        </section>
+
+        <section class="card" id="logCard">
+            <h2>Request log <button id="clearLog" class="link">clear</button></h2>
+            <pre id="log" class="log"></pre>
+        </section>
+    </main>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+<script src="app.js"></script>
+</body>
+</html>
+```
+
+### app.js
+
+```js
+/* WooCommerce + Simple-JWT-Login - vanilla JS demo.
+ * Everything is authenticated with a JWT in the Authorization header:
+ *   - Products  : /wc/v3/products        (CRUD, needs an admin/shop-manager token)
+ *   - Cart      : /wc/store/v1/cart       (Store API)
+ *   - Checkout  : /wc/store/v1/checkout   (Store API - needs the "Store API cart &
+ *                 checkout" toggle enabled in the plugin so the nonce is skipped)
+ */
+
+'use strict';
+
+const STORE_KEY = 'sjl_wc_demo';
+const NS = '/simple-jwt-login/v1';
+
+const state = { baseUrl: '', jwt: '', user: null };
+
+/* ----------------------------- persistence ----------------------------- */
+function loadState() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+        state.baseUrl = saved.baseUrl || '';
+        state.jwt = saved.jwt || '';
+    } catch (_) { /* ignore */ }
+}
+function saveState() {
+    localStorage.setItem(STORE_KEY, JSON.stringify({ baseUrl: state.baseUrl, jwt: state.jwt }));
+}
+
+/* ----------------------------- tiny helpers ---------------------------- */
+const $ = (id) => document.getElementById(id);
+
+let toastTimer = null;
+function toast(message, kind = 'ok') {
+    const el = $('toast');
+    el.textContent = message;
+    el.className = `toast ${kind}`;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.add('hidden'), 4500);
+}
+
+/* Pull the most human-readable message out of a WP/WooCommerce error body. */
+function apiErrorMessage(err) {
+    const d = err && err.data;
+    if (!d) return err && err.message ? err.message : 'Request failed';
+    return (d.data && d.data.message) || d.message || err.message || 'Request failed';
+}
+
+function log(label, payload, kind = '') {
+    const el = $('log');
+    const time = new Date().toLocaleTimeString();
+    const body = typeof payload === 'string' ? payload : JSON.stringify(payload, null, 2);
+    el.innerHTML += `<span class="dim">[${time}]</span> <span class="${kind}">${label}</span>\n${body}\n\n`;
+    el.scrollTop = el.scrollHeight;
+}
+
+/* Core fetch wrapper - attaches the bearer token to every request. */
+async function api(path, { method = 'GET', body } = {}) {
+    const base = state.baseUrl.replace(/\/+$/, '');
+    const url = `${base}/wp-json${path}`;
+    const headers = { 'Content-Type': 'application/json' };
+    if (state.jwt) headers['Authorization'] = `Bearer ${state.jwt}`;
+
+    log(`${method} ${path}`, body || '(no body)', 'dim');
+    const res = await fetch(url, { method, headers, body: body ? JSON.stringify(body) : undefined });
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch (_) { data = text; }
+
+    if (!res.ok) {
+        log(`<- ${res.status} ${method} ${path}`, data, 'err');
+        const err = new Error(`HTTP ${res.status}`);
+        err.data = data;
+        throw err;
+    }
+    log(`<- ${res.status} ${method} ${path}`, data, 'ok');
+    return data;
+}
+
+/* Store API prices come back as integer minor units (e.g. "1299"). */
+function money(minor, totals) {
+    const unit = totals && typeof totals.currency_minor_unit === 'number' ? totals.currency_minor_unit : 2;
+    const code = (totals && totals.currency_code) || '';
+    const value = (parseInt(minor, 10) / Math.pow(10, unit)).toFixed(unit);
+    return `${value} ${code}`.trim();
+}
+
+/* ------------------------------ auth flow ------------------------------ */
+async function authenticateWithPassword(email, password) {
+    const data = await api(`${NS}/auth`, { method: 'POST', body: { email, password } });
+    const jwt = (data && data.data && data.data.jwt) || data.jwt;
+    if (!jwt) throw new Error('No JWT in response');
+    return jwt;
+}
+
+async function validateToken() {
+    // Confirms the token works and returns the WP user behind it.
+    return api(`${NS}/auth/validate`, { method: 'GET' });
+}
+
+function describeUser(validateResponse) {
+    const u = validateResponse && validateResponse.data && validateResponse.data.user;
+    if (!u) return 'authenticated';
+    return u.user_email || u.display_name || u.user_login || `user #${u.ID || ''}`;
+}
+
+/* --------------------------- screen switching -------------------------- */
+function showApp() {
+    $('loginScreen').classList.add('hidden');
+    $('app').classList.remove('hidden');
+    $('whoami').textContent = state.user ? `Signed in as ${state.user}` : '';
+}
+function showLogin(message) {
+    $('app').classList.add('hidden');
+    $('loginScreen').classList.remove('hidden');
+    $('loginError').textContent = message || '';
+}
+
+async function tryResumeSession() {
+    $('baseUrl').value = state.baseUrl;
+    if (!state.baseUrl || !state.jwt) { showLogin(''); return; }
+    try {
+        const me = await validateToken();
+        state.user = describeUser(me);
+        showApp();
+    } catch (_) {
+        state.jwt = '';
+        saveState();
+        showLogin('Saved session expired - please log in again.');
+    }
+}
+
+/* ------------------------------ login UI ------------------------------- */
+let tokenMode = false;
+
+function wireLogin() {
+    $('toggleMode').addEventListener('click', () => {
+        tokenMode = !tokenMode;
+        $('credsFields').classList.toggle('hidden', tokenMode);
+        $('tokenField').classList.toggle('hidden', !tokenMode);
+        $('toggleMode').textContent = tokenMode
+            ? 'Use email & password instead'
+            : 'Use an existing token instead';
+    });
+
+    $('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        $('loginError').textContent = '';
+        const btn = $('loginBtn');
+        btn.disabled = true;
+        try {
+            state.baseUrl = $('baseUrl').value.trim();
+            if (!state.baseUrl) throw new Error('Enter the site URL');
+
+            if (tokenMode) {
+                state.jwt = $('jwt').value.trim();
+                if (!state.jwt) throw new Error('Paste a JWT');
+            } else {
+                state.jwt = await authenticateWithPassword(
+                    $('loginEmail').value.trim(),
+                    $('loginPassword').value
+                );
+            }
+
+            const me = await validateToken();
+            state.user = describeUser(me);
+            saveState();
+            showApp();
+        } catch (err) {
+            const detail = err.data && err.data.data && err.data.data.message
+                ? err.data.data.message
+                : (err.data && err.data.message) || err.message;
+            showLogin('');
+            $('loginError').textContent = `Login failed: ${detail}`;
+        } finally {
+            btn.disabled = false;
+        }
+    });
+}
+
+function logout() {
+    state.jwt = '';
+    state.user = null;
+    saveState();
+    showLogin('You have been logged out.');
+}
+
+/* ------------------------------ products ------------------------------- */
+async function loadProducts() {
+    const products = await api('/wc/v3/products?per_page=20&status=publish');
+    const rows = $('productRows');
+    if (!Array.isArray(products) || products.length === 0) {
+        rows.innerHTML = '<tr><td colspan="4" class="muted">No products.</td></tr>';
+        return;
+    }
+    rows.innerHTML = products.map((p) => `
+        <tr>
+            <td>${p.id}</td>
+            <td>${escapeHtml(p.name)}</td>
+            <td>${escapeHtml(p.price || p.regular_price || '')}</td>
+            <td>
+                <button class="small" data-add="${p.id}">Add to cart</button>
+                <button class="danger" data-del="${p.id}">Delete</button>
+            </td>
+        </tr>`).join('');
+}
+
+async function createProduct(name, price) {
+    await api('/wc/v3/products', {
+        method: 'POST',
+        body: { name, type: 'simple', regular_price: String(price) }
+    });
+    await loadProducts();
+}
+
+async function deleteProduct(id) {
+    await api(`/wc/v3/products/${id}?force=true`, { method: 'DELETE' });
+    await loadProducts();
+}
+
+/* -------------------------------- cart --------------------------------- */
+async function loadCart() {
+    renderCart(await api('/wc/store/v1/cart'));
+}
+async function addToCart(productId) {
+    const cart = await api('/wc/store/v1/cart/add-item', {
+        method: 'POST', body: { id: Number(productId), quantity: 1 }
+    });
+    renderCart(cart);
+    const count = (cart.items || []).reduce((n, it) => n + it.quantity, 0);
+    toast(`Added to cart (${count} item${count === 1 ? '' : 's'} total)`, 'ok');
+}
+async function removeFromCart(key) {
+    renderCart(await api('/wc/store/v1/cart/remove-item', {
+        method: 'POST', body: { key }
+    }));
+}
+
+function renderCart(cart) {
+    const rows = $('cartRows');
+    const items = (cart && cart.items) || [];
+    if (items.length === 0) {
+        rows.innerHTML = '<tr><td colspan="4" class="muted">Cart is empty.</td></tr>';
+    } else {
+        rows.innerHTML = items.map((it) => `
+            <tr>
+                <td>${escapeHtml(it.name)}</td>
+                <td>${it.quantity}</td>
+                <td>${money(it.totals.line_total, cart.totals)}</td>
+                <td><button class="danger" data-rm="${it.key}">remove</button></td>
+            </tr>`).join('');
+    }
+    $('cartTotal').textContent = cart && cart.totals
+        ? `Total: ${money(cart.totals.total_price, cart.totals)}`
+        : '';
+}
+
+/* ------------------------------ checkout ------------------------------- */
+async function placeOrder() {
+    const address = {
+        first_name: $('b_first').value,
+        last_name: $('b_last').value,
+        address_1: $('b_addr').value,
+        city: $('b_city').value,
+        state: $('b_state').value,
+        postcode: $('b_post').value,
+        country: $('b_country').value.toUpperCase(),
+        email: $('b_email').value,
+        phone: $('b_phone').value
+    };
+    const order = await api('/wc/store/v1/checkout', {
+        method: 'POST',
+        body: {
+            billing_address: address,
+            shipping_address: address,
+            payment_method: $('payment').value,
+            customer_note: 'Placed from the vanilla JS JWT demo'
+        }
+    });
+    const num = order.order_number || order.order_id || '?';
+    $('orderState').textContent = `Order #${num} created - status: ${order.status || 'ok'}`;
+    await loadCart();
+}
+
+/* ------------------------------ app wiring ----------------------------- */
+function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+}
+
+function guard(fn) {
+    return async (...args) => {
+        try { await fn(...args); }
+        catch (err) { toast(apiErrorMessage(err), 'err'); }
+    };
+}
+
+function wireApp() {
+    $('logoutBtn').addEventListener('click', logout);
+    $('clearLog').addEventListener('click', () => { $('log').innerHTML = ''; });
+
+    $('loadProducts').addEventListener('click', guard(loadProducts));
+    $('createProductForm').addEventListener('submit', guard(async (e) => {
+        e.preventDefault();
+        await createProduct($('newName').value.trim(), $('newPrice').value);
+        e.target.reset();
+    }));
+    $('productRows').addEventListener('click', guard(async (e) => {
+        const add = e.target.getAttribute('data-add');
+        const del = e.target.getAttribute('data-del');
+        if (add) await addToCart(add);
+        if (del && confirm(`Delete product #${del}?`)) await deleteProduct(del);
+    }));
+
+    $('loadCart').addEventListener('click', guard(loadCart));
+    $('cartRows').addEventListener('click', guard(async (e) => {
+        const key = e.target.getAttribute('data-rm');
+        if (key) await removeFromCart(key);
+    }));
+
+    $('placeOrder').addEventListener('click', guard(placeOrder));
+}
+
+/* -------------------------------- boot --------------------------------- */
+loadState();
+wireLogin();
+wireApp();
+tryResumeSession();
+```
+
+<details>
+<summary>styles.css (presentation only)</summary>
+
+```css
+:root {
+    --bg: #f3f4f6;
+    --card: #ffffff;
+    --line: #e5e7eb;
+    --ink: #111827;
+    --muted: #6b7280;
+    --brand: #7f54b3;       /* WooCommerce purple */
+    --brand-ink: #ffffff;
+    --danger: #b91c1c;
+    --ok: #15803d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.hidden { display: none !important; }
+.muted { color: var(--muted); font-weight: 400; font-size: 13px; }
+
+/* Login gate */
+.login-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #7f54b3 0%, #4c2f73 100%);
+    padding: 20px;
+}
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--card);
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+.login-card h1 { margin: 0 0 4px; font-size: 22px; }
+.login-card label { display: block; margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+.login-card input {
+    width: 100%;
+    margin-top: 4px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 14px;
+}
+.login-card button[type="submit"] { width: 100%; margin-top: 18px; }
+.login-error { color: var(--danger); font-size: 13px; min-height: 18px; margin: 10px 0 0; }
+.link {
+    background: none;
+    border: none;
+    color: var(--brand);
+    cursor: pointer;
+    padding: 0;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+/* Top bar */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--brand);
+    color: var(--brand-ink);
+}
+.topbar strong { margin-right: 10px; }
+.topbar .muted, .topbar-right .muted { color: #e9ddf7; }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+
+/* Layout */
+main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+.card h2 { margin: 0 0 12px; font-size: 16px; }
+.row { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.grid label, .inline-form { font-size: 13px; color: var(--muted); }
+.grid input, .grid select {
+    width: 100%;
+    margin-top: 4px;
+    padding: 9px 11px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--ink);
+}
+.inline-form { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+.inline-form input {
+    padding: 9px 11px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Buttons */
+button {
+    background: var(--brand);
+    color: var(--brand-ink);
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+button:hover { filter: brightness(1.05); }
+button:disabled { opacity: .55; cursor: not-allowed; }
+button.secondary { background: #eef2ff; color: #3730a3; }
+button.danger { background: #fee2e2; color: var(--danger); padding: 5px 10px; font-size: 13px; }
+button.small { padding: 5px 10px; font-size: 13px; }
+
+/* Tables */
+table.data { width: 100%; border-collapse: collapse; margin-top: 10px; }
+table.data th, table.data td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+}
+table.data th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; }
+
+/* Log */
+.log {
+    background: #0f172a;
+    color: #d1d5db;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    max-height: 320px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.log .ok { color: #4ade80; }
+.log .err { color: #f87171; }
+.log .dim { color: #64748b; }
+
+/* Toast */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    max-width: 90vw;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    z-index: 50;
+}
+.toast.ok { background: var(--ok); }
+.toast.err { background: var(--danger); }
+.toast.hidden { display: none; }
+```
+
+</details>
+
+## Run it
+
+1. Save the three files in one folder and serve them (`python3 -m http.server 8080`).
+2. Open `http://localhost:8080`, enter your **Site URL**, and log in.
+3. **Load products**, create one, then **Add to cart**.
+4. **Refresh cart** to see totals, fill the checkout form, and **Place order & pay**.
+
+The **Request log** panel shows every JWT-authenticated request and response, and a toast
+surfaces success/errors - handy when verifying the cart & checkout flow.
+
+:::tip Still getting a nonce error on add-to-cart?
+That means the request reached the Store API without being recognised as a header-token
+request. Double-check the **Store API cart & checkout** toggle is on, the token is sent in the
+`Authorization` header, and CORS allows that header. See the
+[WooCommerce integration](../integrations/ThirdParty/04_WooCommerce.md) page.
+:::

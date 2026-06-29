@@ -1,4 +1,7 @@
 type: object
+required:
+  - success
+  - data
 properties:
   success:
     type: boolean
@@ -6,6 +9,9 @@ properties:
     description: Always `false` for error responses.
   data:
     type: object
+    required:
+      - message
+      - error_code
     properties:
       message:
         type: string

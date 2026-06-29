@@ -39,12 +39,20 @@ responses:
       application/json:
         schema:
           type: object
+          required:
+            - success
+            - data
           properties:
             success:
               type: boolean
               example: true
             data:
               type: object
+              required:
+                - items
+                - total
+                - page
+                - per_page
               properties:
                 items:
                   type: array

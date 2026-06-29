@@ -39,12 +39,21 @@ responses:
       application/json:
         schema:
           type: object
+          required:
+            - success
+            - data
           properties:
             success:
               type: boolean
               example: true
             data:
               type: object
+              required:
+                - id
+                - key
+                - name
+                - key_prefix
+                - permissions
               properties:
                 id:
                   type: integer

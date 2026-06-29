@@ -217,6 +217,55 @@ html[data-theme='dark'] .btn:hover { background: #3a4a5c; }
   text-align: center;
 }
 
+/* ── v4 Announcement Banner ────────────────────────────────── */
+.v4Banner {
+  background: linear-gradient(90deg, rgba(66,185,131,0.12) 0%, rgba(66,185,131,0.06) 100%);
+  border-bottom: 1px solid rgba(66,185,131,0.25);
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+
+.v4BannerInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.v4BannerBadge {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(66,185,131,0.6);
+  background: rgba(66,185,131,0.18);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  white-space: nowrap;
+}
+
+.v4BannerText {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-base);
+  margin: 0;
+}
+
+.v4BannerLink {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.v4BannerLink:hover {
+  text-decoration: underline;
+  color: var(--ifm-color-primary-dark);
+}
+
 /* ── Section Eyebrow ───────────────────────────────────────── */
 .sectionEyebrow {
   display: inline-block;

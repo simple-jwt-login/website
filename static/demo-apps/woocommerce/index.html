@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WooCommerce + Simple-JWT-Login - Vanilla JS demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     LOGIN GATE - shown until a JWT is obtained / validated
+     ============================================================ -->
+<div id="loginScreen" class="login-screen">
+    <form id="loginForm" class="login-card">
+        <h1>WooCommerce demo</h1>
+        <p class="muted">Sign in to manage products, cart &amp; checkout - JWT only.</p>
+
+        <label>Site URL
+            <input id="baseUrl" type="url" placeholder="https://your-store.test" required autocomplete="off">
+        </label>
+
+        <div id="credsFields">
+            <label>Email
+                <input id="loginEmail" type="email" autocomplete="username">
+            </label>
+            <label>Password
+                <input id="loginPassword" type="password" autocomplete="current-password">
+            </label>
+        </div>
+
+        <div id="tokenField" class="hidden">
+            <label>JWT (Bearer token)
+                <input id="jwt" type="text" placeholder="eyJ0eXAiOiJKV1Qi..." autocomplete="off">
+            </label>
+        </div>
+
+        <button type="submit" id="loginBtn">Log in</button>
+
+        <p class="login-error" id="loginError"></p>
+
+        <button type="button" id="toggleMode" class="link">Use an existing token instead</button>
+    </form>
+</div>
+
+<!-- ============================================================
+     MAIN APP - hidden until authenticated
+     ============================================================ -->
+<div id="app" class="hidden">
+    <header class="topbar">
+        <div>
+            <strong>WooCommerce headless demo</strong>
+            <span class="muted">products &middot; cart &middot; checkout</span>
+        </div>
+        <div class="topbar-right">
+            <span id="whoami" class="muted"></span>
+            <button id="logoutBtn" class="secondary">Log out</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ============ Products ============ -->
+        <section class="card" id="products">
+            <h2>Manage products <span class="muted">(/wc/v3/products - needs an admin / shop-manager JWT)</span></h2>
+            <div class="row">
+                <button id="loadProducts">Load products</button>
+            </div>
+
+            <form id="createProductForm" class="inline-form">
+                <input id="newName" type="text" placeholder="New product name" required>
+                <input id="newPrice" type="number" step="0.01" min="0" placeholder="Price" required>
+                <button type="submit" class="secondary">Create product</button>
+            </form>
+
+            <table class="data">
+                <thead><tr><th>ID</th><th>Name</th><th>Price</th><th>Actions</th></tr></thead>
+                <tbody id="productRows"><tr><td colspan="4" class="muted">No products loaded.</td></tr></tbody>
+            </table>
+        </section>
+
+        <!-- ============ Cart ============ -->
+        <section class="card" id="cart">
+            <h2>Cart <span class="muted">(/wc/store/v1/cart)</span></h2>
+            <div class="row">
+                <button id="loadCart">Refresh cart</button>
+                <span id="cartTotal" class="muted"></span>
+            </div>
+            <table class="data">
+                <thead><tr><th>Item</th><th>Qty</th><th>Line total</th><th></th></tr></thead>
+                <tbody id="cartRows"><tr><td colspan="4" class="muted">Cart is empty.</td></tr></tbody>
+            </table>
+        </section>
+
+        <!-- ============ Checkout ============ -->
+        <section class="card" id="checkout">
+            <h2>Checkout &amp; pay <span class="muted">(/wc/store/v1/checkout)</span></h2>
+            <form id="checkoutForm" class="grid">
+                <label>First name <input id="b_first" value="Jane" required></label>
+                <label>Last name <input id="b_last" value="Doe" required></label>
+                <label>Email <input id="b_email" type="email" value="jane@example.com" required></label>
+                <label>Phone <input id="b_phone" value="5551234567"></label>
+                <label>Address <input id="b_addr" value="123 Main St" required></label>
+                <label>City <input id="b_city" value="Springfield" required></label>
+                <label>Postcode <input id="b_post" value="12345" required></label>
+                <label>State <input id="b_state" value="CA"></label>
+                <label>Country (ISO-2) <input id="b_country" value="US" maxlength="2" required></label>
+                <label>Payment method
+                    <select id="payment">
+                        <option value="cod">Cash on delivery (cod)</option>
+                        <option value="bacs">Direct bank transfer (bacs)</option>
+                        <option value="cheque">Check (cheque)</option>
+                    </select>
+                </label>
+            </form>
+            <div class="row">
+                <button id="placeOrder">Place order &amp; pay</button>
+                <span id="orderState" class="muted"></span>
+            </div>
+        </section>
+
+        <!-- ============ Log ============ -->
+        <section class="card" id="logCard">
+            <h2>Request log <button id="clearLog" class="link">clear</button></h2>
+            <pre id="log" class="log"></pre>
+        </section>
+    </main>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

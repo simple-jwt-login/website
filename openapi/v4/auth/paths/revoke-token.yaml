@@ -38,6 +38,10 @@ responses:
       application/json:
         schema:
           type: object
+          required:
+            - success
+            - message
+            - data
           properties:
             success:
               type: boolean
@@ -49,6 +53,8 @@ responses:
               example: "Token was revoked."
             data:
               type: object
+              required:
+                - jwt
               properties:
                 jwt:
                   type: array

@@ -1,10 +1,16 @@
 type: object
+required:
+  - success
+  - data
 properties:
   success:
     type: boolean
     example: true
   data:
     type: object
+    required:
+      - jwt
+      - user
     properties:
       jwt:
         type: string
@@ -12,6 +18,11 @@ properties:
         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
       user:
         type: object
+        required:
+          - ID
+          - user_login
+          - user_email
+          - display_name
         properties:
           ID:
             type: integer

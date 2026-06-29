@@ -9,6 +9,7 @@ import {
   faArrowRight, faCheckCircle, faRocket, faPalette,
   faBell, faClipboardList, faToggleOn, faWrench, faGauge,
   faVial, faCode, faRotate, faUserShield, faTriangleExclamation,
+  faDownload, faLock, faUserPlus, faCartShopping,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
 import v4Styles from './v4.module.css';
@@ -24,6 +25,7 @@ const newFeatures = [
       'SHA-256 hashed - the key is never stored in plain text',
       'Revoke or expire keys at any time',
       'JWT authentication also accepted on the /api-keys endpoint',
+      'Non-admin users can manage their own keys without admin access',
     ],
     link: '/docs/api-keys/',
     cta: 'API Keys docs',
@@ -104,6 +106,7 @@ const newFeatures = [
       'Reorganized sections for a more logical flow',
       'User identification consolidated in General settings',
       'Cleaner forms with improved field descriptions',
+      'Light/Dark mode support',
     ],
     link: '/docs/dashboard/',
     cta: 'Dashboard docs',
@@ -121,6 +124,20 @@ const newFeatures = [
     ],
     link: '/docs/integrations/third-party/two-factor/',
     cta: '2FA docs',
+  },
+  {
+    icon: faCartShopping,
+    badge: 'New',
+    title: 'WooCommerce',
+    desc: 'Drive a WooCommerce store with a JWT instead of a consumer key/secret - manage products and run a fully headless cart & checkout with the token alone.',
+    bullets: [
+      'JWT auth on every /wc/ route: CRUD (wc/v3) and the Store API (wc/store)',
+      'Scoped to WooCommerce routes - works even with the global middleware off',
+      'Optional Store API cart & checkout: header-JWT requests skip the CSRF nonce',
+      'Admin / Shop Manager tokens manage the catalog; customers manage their own cart',
+    ],
+    link: '/docs/integrations/third-party/woocommerce/',
+    cta: 'WooCommerce docs',
   },
   {
     icon: faRotate,
@@ -163,6 +180,35 @@ const newFeatures = [
     cta: 'Code Examples',
   },
   {
+    icon: faLock,
+    badge: 'Improved',
+    title: 'Protect Endpoints Redesign',
+    desc: 'Protect Endpoints has been rethought as a single ordered rules table - each rule sets access to Public, JWT required, or JWT + Roles, and the first matching rule wins.',
+    bullets: [
+      'Unified rules table replaces separate whitelist and protected lists',
+      'Per-rule access level: Public, JWT required, or JWT + specific Roles',
+      'Top-to-bottom evaluation with first-match-wins logic',
+      'Existing settings auto-migrate on first load',
+      'Role names are validated against WordPress on save',
+    ],
+    link: '/docs/protect-endpoints/',
+    cta: 'Protect Endpoints docs',
+  },
+  {
+    icon: faUserPlus,
+    badge: 'Improved',
+    title: 'Registration Enhancements',
+    desc: 'User registration is now more flexible - assign multiple default roles, trigger built-in WordPress notification emails, and use variables in reset password email subjects.',
+    bullets: [
+      'Support multiple default user roles on registration',
+      'Option to send the default WordPress welcome email on registration',
+      'Option to send the default WordPress password-changed email from the change-password endpoint',
+      'Variables now supported in the reset password email subject line',
+    ],
+    link: '/docs/register-user/',
+    cta: 'Register User docs',
+  },
+  {
     icon: faToggleOn,
     badge: 'Improved',
     title: 'Granular Token Controls',
@@ -171,6 +217,7 @@ const newFeatures = [
       'Toggle refresh token endpoint on/off',
       'Toggle revoke token endpoint on/off',
       'Toggle validate token endpoint on/off',
+      'Optionally require the "Bearer" prefix in the Authorization header',
     ],
     link: '/docs/authentication/',
     cta: 'Auth docs',
@@ -245,7 +292,7 @@ const breakingChanges = [
     title: 'Protected endpoint auth failures return 401 instead of 403',
     detail: 'When the Protect Endpoint feature blocks an unauthenticated request, the plugin previously returned HTTP 403 Forbidden. It now returns HTTP 401 Unauthorized to align with the HTTP spec.',
     action: 'Update any code that checks specifically for status 403 on protected routes to handle 401 instead.',
-    link: '/docs/protect-endpoint/',
+    link: '/docs/protect-endpoints/',
     linkLabel: 'Protect Endpoint docs',
   },
   {
@@ -291,8 +338,8 @@ const perfRows = [
   {
     endpoint: 'Auth User',
     v3: { min: '0.128s', avg: '0.138s', median: '0.136s', p95: '0.151s', max: '0.217s' },
-    v4: { min: '0.140s', avg: '0.148s', median: '0.148s', p95: '0.155s', max: '0.185s' },
-    deltaP95: '+3%', trend: 'neutral', noteRef: null,
+    v4: { min: '0.146s', avg: '0.174s', median: '0.153s', p95: '0.152s', max: '0.162s' },
+    deltaP95: '+1%', trend: 'neutral', noteRef: null,
   },
 ];
 
@@ -300,7 +347,7 @@ const migrationSteps = [
   {
     n: '1',
     title: 'Update the plugin',
-    desc: 'Install Simple JWT Login v4.x from the WordPress plugin directory or upload the zip directly.',
+    desc: 'Download the release candidate from GitHub and upload the zip via Plugins → Add New → Upload Plugin, or wait for the stable release on the WordPress plugin directory.',
   },
   {
     n: '2',
@@ -310,7 +357,7 @@ const migrationSteps = [
   {
     n: '3',
     title: 'Re-save your settings',
-    desc: 'The settings storage structure was reorganized. Open Settings → Simple JWT Login and click Save Changes on each tab to confirm your values carried over correctly.',
+    desc: 'Your settings are automatically migrated. Open Settings → Simple JWT Login and verify your values carried over correctly.',
   },
   {
     n: '4',
@@ -322,25 +369,32 @@ const migrationSteps = [
 export default function V4Page() {
   return (
     <Layout
-      title="Simple JWT Login v4 - API Keys, 2FA, Audit Logs, Webhooks & More"
-      description="Simple JWT Login v4 introduces API Keys, 2FA support, 4 OAuth providers, Audit Logs, Webhooks, JWT Decoder, code examples, and improved refresh tokens."
+      title="Simple JWT Login v4 - API Keys, 2FA, WooCommerce, Audit Logs, Webhooks & More"
+      description="Simple JWT Login v4 introduces API Keys, 2FA support, 4 OAuth providers, WooCommerce JWT, Audit Logs, Webhooks, JWT Decoder, code examples, and improved refresh tokens."
     >
       <Head>
-        <meta property="og:title" content="Simple JWT Login v4 - API Keys, 2FA, Audit Logs, Webhooks & More" />
-        <meta property="og:description" content="v4 brings API Keys, 2FA, 4 OAuth providers, Audit Logs, Webhooks, JWT Decoder, code examples, and improved refresh tokens." />
+        <meta property="og:title" content="Simple JWT Login v4 - API Keys, 2FA, WooCommerce, Audit Logs, Webhooks & More" />
+        <meta property="og:description" content="v4 brings API Keys, 2FA, 4 OAuth providers, WooCommerce JWT, Audit Logs, Webhooks, JWT Decoder, code examples, and improved refresh tokens." />
       </Head>
 
       {/* ── Hero ───────────────────────────────────────────── */}
       <header className={v4Styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
         <div className="container">
-          <div className={v4Styles.versionBadge}>Coming soon - v4.0.0</div>
+          <div className={v4Styles.versionBadge}>Release Candidate - v4.0.0</div>
           <h1 className={v4Styles.heroTitle}>Simple JWT Login v4</h1>
           <p className={v4Styles.heroSubtitle}>
             API Keys, 2FA, Audit Logs, Webhooks, 4 OAuth providers - the biggest release yet.
           </p>
           <div className={styles.heroCta}>
-            <Link to="/docs/" className={styles.actionButton} title="Read the docs">
+            <Link
+              to="https://github.com/nicumicle/simple-jwt-login/blob/v4/download/simple-jwt-login.zip?raw=true"
+              className={styles.actionButton}
+              title="Download v4 Release Candidate"
+            >
+              <FontAwesomeIcon icon={faDownload} /> Download RC
+            </Link>
+            <Link to="/docs/" className={styles.btn} title="Read the docs">
               Read the docs →
             </Link>
             <Link
@@ -358,6 +412,7 @@ export default function V4Page() {
               { icon: faUserShield,   label: '2FA Support' },
               { icon: faClipboardList,label: 'Audit Logs' },
               { icon: faBell,         label: 'Webhooks' },
+              { icon: faCartShopping, label: 'WooCommerce' },
               { icon: faCode,         label: 'Code Examples' },
             ].map(({ icon, label }) => (
               <div key={label} className={v4Styles.heroHighlight}>
@@ -528,19 +583,26 @@ export default function V4Page() {
           <div className="container">
             <div className={styles.ctaCard}>
               <div className={styles.ctaGlow} aria-hidden="true" />
-              <div className={v4Styles.ctaVersion}>v4.0.0 — Coming soon</div>
-              <h2 className={styles.ctaTitle}>Stay up to date</h2>
+              <div className={v4Styles.ctaVersion}>v4.0.0 — Release Candidate</div>
+              <h2 className={styles.ctaTitle}>Try v4 today</h2>
               <p className={styles.ctaSubtitle}>
-                Simple JWT Login v4 is free, open-source, and in active development.
-                Follow the GitHub repository to be notified when it ships.
+                Simple JWT Login v4 is free, open-source, and available as a release candidate.
+                The stable release is coming soon to the WordPress plugin directory.
               </p>
               <div className={styles.ctaButtons}>
                 <Link
-                  to="https://github.com/nicumicle/simple-jwt-login"
+                  to="https://github.com/nicumicle/simple-jwt-login/blob/v4/download/simple-jwt-login.zip?raw=true"
                   className={styles.actionButton}
-                  title="Watch on GitHub"
+                  title="Download v4 Release Candidate"
                 >
-                  <FontAwesomeIcon icon={faRocket} /> Watch on GitHub
+                  <FontAwesomeIcon icon={faDownload} /> Download RC
+                </Link>
+                <Link
+                  to="https://github.com/nicumicle/simple-jwt-login"
+                  className={styles.btn}
+                  title="View on GitHub"
+                >
+                  <FontAwesomeIcon icon={faRocket} /> View on GitHub
                 </Link>
                 <Link to="/docs/" className={styles.btn} title="Read the docs">
                   Read the docs

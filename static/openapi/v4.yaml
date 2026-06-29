@@ -14,7 +14,7 @@ x-servers:
         enum:
           - wp-json
           - '?rest_route='
-        default: /wp-json
+        default: wp-json
       simplejwtloginprefix:
         default: simple-jwt-login/v1
 servers:
@@ -32,25 +32,37 @@ servers:
         enum:
           - wp-json
           - '?rest_route='
-        default: /wp-json
+        default: wp-json
       simplejwtloginprefix:
         default: simple-jwt-login/v1
 info:
   title: Simple-JWT-Login
   description: |
-    This is the Simple-JWT-Login WordPress plugin API Documentation.
+    **Simple-JWT-Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT)
+    authentication to the WordPress REST API. It lets mobile apps, single-page applications, and
+    external services securely interact with your WordPress site - without exposing admin credentials.
 
-    ## Introduction
+    With Simple-JWT-Login you can:
+    - **Authenticate** users and receive a signed JWT
+    - **Auto-login** users via a tokenized link
+    - **Register** and **delete** users programmatically
+    - **Reset and change passwords** through the REST API
+    - **Protect any REST endpoint** so it requires a valid JWT
+    - **Refresh, validate, and revoke** tokens to manage session lifecycle
 
-    This API is documented in **OpenAPI format**. You can either open it in [swagger editor](https://editor.swagger.io/) or you can view it on this website.
+    Whether you're building a headless WordPress site, a React/Vue front-end, a mobile app, or a
+    third-party integration, Simple-JWT-Login provides a clean, standards-based authentication layer.
 
-    Also, you open it in postman, and you will be able to do local tests.
+    ## API Format
+
+    This API is documented in **OpenAPI format**. You can open it in [Swagger Editor](https://editor.swagger.io/),
+    view it on this website, or import it into Postman for local testing.
 
     ## Server
 
     You can access the Simple-JWT-Login API in two modes:
-      - using permalink: https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}
-      - using rest_route: https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
+      - using permalink: `https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}`
+      - using rest_route: `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}`
 
     ## Authentication
 
@@ -58,8 +70,8 @@ info:
     API key management endpoints require an active WordPress session (cookie-based auth or equivalent).
 
     ## Cross-Origin Resource Sharing
-    This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
-    And that allows cross-domain communication from the browser.
+
+    This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with [W3C spec](https://www.w3.org/TR/cors/).
     All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
 
     ## Error Response Format
@@ -82,8 +94,8 @@ info:
     url: 'https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE'
   version: 4.0.0
   x-logo:
-    url: 'https://redocly.github.io/redoc/petstore-logo.png'
-    altText: Simple-Jwt-Login Logo
+    url: 'https://simplejwtlogin.com/assets/favicons/android-chrome-192x192.png'
+    altText: Simple JWT Login Logo
 externalDocs:
   description: Find out more about Simple-JWT-Login
   url: 'https://simplejwtlogin.com/docs'
@@ -277,6 +289,18 @@ paths:
             application/html:
               example: ''
             application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                  - message
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: User was logged in.
               example:
                 success: true
                 message: User was logged in.
@@ -493,6 +517,9 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
@@ -500,6 +527,17 @@ paths:
                     description: Action status.
                   data:
                     type: object
+                    required:
+                      - id
+                      - login
+                      - nicename
+                      - email
+                      - url
+                      - registered
+                      - activation_key
+                      - status
+                      - display_name
+                      - roles
                     properties:
                       id:
                         type: integer
@@ -659,12 +697,17 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
                     example: true
                   data:
                     type: object
+                    required:
+                      - message
                     properties:
                       message:
                         type: string
@@ -800,12 +843,17 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
                     example: true
                   data:
                     type: object
+                    required:
+                      - message
                     properties:
                       message:
                         type: string
@@ -942,12 +990,17 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
                     example: true
                   data:
                     type: object
+                    required:
+                      - message
                     properties:
                       message:
                         type: string
@@ -1097,6 +1150,9 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
@@ -1104,6 +1160,8 @@ paths:
                     example: true
                   data:
                     type: object
+                    required:
+                      - jwt
                     properties:
                       jwt:
                         type: string
@@ -1144,6 +1202,9 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
@@ -1151,6 +1212,9 @@ paths:
                     description: Always `false` for error responses.
                   data:
                     type: object
+                    required:
+                      - message
+                      - error_code
                     properties:
                       message:
                         type: string
@@ -1258,6 +1322,9 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
@@ -1265,6 +1332,9 @@ paths:
                     example: true
                   data:
                     type: object
+                    required:
+                      - jwt
+                      - refresh_token
                     properties:
                       jwt:
                         type: string
@@ -1379,15 +1449,33 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
                     example: true
                   data:
                     type: object
+                    required:
+                      - user
+                      - roles
+                      - jwt
                     properties:
                       user:
                         type: object
+                        description: The matching WordPress user profile (excludes `user_pass`).
+                        required:
+                          - ID
+                          - user_login
+                          - user_nicename
+                          - user_email
+                          - user_url
+                          - user_registered
+                          - user_activation_key
+                          - user_status
+                          - display_name
                         properties:
                           ID:
                             type: string
@@ -1423,12 +1511,19 @@ paths:
                           example: administrator
                       jwt:
                         type: object
+                        required:
+                          - token
+                          - header
+                          - payload
                         properties:
                           token:
                             type: string
                             example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
                           header:
                             type: object
+                            required:
+                              - typ
+                              - alg
                             properties:
                               typ:
                                 type: string
@@ -1438,6 +1533,8 @@ paths:
                                 example: HS256
                           payload:
                             type: object
+                            required:
+                              - iat
                             properties:
                               iat:
                                 type: number
@@ -1593,14 +1690,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  data:
-                    type: object
-                    description: Same structure as the GET /auth/validate 200 response.
+                $ref: '#/paths/~1auth~1validate/get/responses/200/content/application~1json/schema'
         '400':
           description: |
             Bad request. The JWT has a structural encoding error (wrong number of
@@ -1691,6 +1781,10 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - message
+                  - data
                 properties:
                   success:
                     type: boolean
@@ -1702,6 +1796,8 @@ paths:
                     example: Token was revoked.
                   data:
                     type: object
+                    required:
+                      - jwt
                     properties:
                       jwt:
                         type: array
@@ -1853,12 +1949,17 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
                     example: true
                   data:
                     type: object
+                    required:
+                      - jwt
                     properties:
                       jwt:
                         type: string
@@ -2116,12 +2217,18 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
                     example: true
                   data:
                     type: object
+                    required:
+                      - jwt
+                      - user
                     properties:
                       jwt:
                         type: string
@@ -2129,6 +2236,11 @@ paths:
                         example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
                       user:
                         type: object
+                        required:
+                          - ID
+                          - user_login
+                          - user_email
+                          - display_name
                         properties:
                           ID:
                             type: integer
@@ -2256,17 +2368,31 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
                     example: true
                   data:
                     type: object
+                    required:
+                      - items
+                      - total
+                      - page
+                      - per_page
                     properties:
                       items:
                         type: array
                         items:
                           type: object
+                          required:
+                            - id
+                            - name
+                            - key_prefix
+                            - permissions
+                            - created_at
                           properties:
                             id:
                               type: integer
@@ -2412,12 +2538,21 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - data
                 properties:
                   success:
                     type: boolean
                     example: true
                   data:
                     type: object
+                    required:
+                      - id
+                      - key
+                      - name
+                      - key_prefix
+                      - permissions
                     properties:
                       id:
                         type: integer
@@ -2561,6 +2696,9 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - message
                 properties:
                   success:
                     type: boolean
@@ -2657,6 +2795,9 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - message
                 properties:
                   success:
                     type: boolean
@@ -2740,6 +2881,9 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - message
                 properties:
                   success:
                     type: boolean

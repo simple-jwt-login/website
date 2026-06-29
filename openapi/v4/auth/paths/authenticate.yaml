@@ -49,6 +49,9 @@ responses:
       application/json:
         schema:
           type: object
+          required:
+            - success
+            - data
           properties:
             success:
               type: boolean
@@ -56,6 +59,8 @@ responses:
               example: true
             data:
               type: object
+              required:
+                - jwt
               properties:
                 jwt:
                   type: string

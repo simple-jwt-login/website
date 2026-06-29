@@ -30,10 +30,13 @@ export default function ApiVersionLink({mobile, className}: Props) {
     versionFromPath(pathname) ?? preferredVersion?.name ?? 'current';
   const to = API_VERSION_MAP[versionName] ?? API_VERSION_MAP.current;
 
+  const isActive = pathname.startsWith('/api/');
+
   return (
     <Link
       className={clsx(
         mobile ? 'menu__link' : 'navbar__item navbar__link',
+        isActive && (mobile ? 'menu__link--active' : 'navbar__link--active'),
         className,
       )}
       to={to}

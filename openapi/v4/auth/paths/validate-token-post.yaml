@@ -32,14 +32,7 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          properties:
-            success:
-              type: boolean
-              example: true
-            data:
-              type: object
-              description: Same structure as the GET /auth/validate 200 response.
+          $ref: '../schemas/validate-response.yaml'
   '400':
     description: |
       Bad request. The JWT has a structural encoding error (wrong number of

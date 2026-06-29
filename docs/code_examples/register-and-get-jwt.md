@@ -1,6 +1,7 @@
 ---
-slug: /code_examples/php/register_and_get_jwt
+slug: /code-examples/register-and-get-jwt
 title: Register a WordPress user with PHP and get the jwt
+sidebar_label: Register & Get JWT (PHP)
 sidebar_position: 1
 author: Nicu Micle
 author_url: https://github.com/nicumicle

@@ -36,6 +36,9 @@ responses:
       application/json:
         schema:
           type: object
+          required:
+            - success
+            - data
           properties:
             success:
               type: boolean
@@ -43,6 +46,17 @@ responses:
               description: Action status.
             data:
               type: object
+              required:
+                - id
+                - login
+                - nicename
+                - email
+                - url
+                - registered
+                - activation_key
+                - status
+                - display_name
+                - roles
               properties:
                 id:
                   type: integer

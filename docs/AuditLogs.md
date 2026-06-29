@@ -109,6 +109,21 @@ Each entry records:
 
 ---
 
+## Logging Performance
+
+Audit log writes are dispatched **after the API response is sent to the client** - they never block or delay the response your app receives.
+
+The plugin uses PHP's `fastcgi_finish_request()` to flush the response first, then write the log entry in the same PHP process. If that function is unavailable (see table below), the log write happens synchronously before the response is returned. Database writes are fast, so this rarely causes noticeable latency.
+
+| Server environment | Async logging |
+| :--- | :--- |
+| **nginx + PHP-FPM** (standard nginx setup) | Yes - response flushed before log is written |
+| **Apache + PHP-FPM** (`mod_proxy_fcgi`) | Yes - response flushed before log is written |
+| **Apache + mod_php** | No - log write blocks the response |
+| **LiteSpeed / OpenLiteSpeed** | Depends on version - generally no |
+
+---
+
 ## Use Cases
 
 - **Security monitoring** - track failed login attempts and unusual activity patterns

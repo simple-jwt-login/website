@@ -1,7 +1,7 @@
 ---
 id: simple-jwt-login
 title: "Simple-JWT-Login"
-description: "This is the Simple-JWT-Login WordPress plugin API Documentation."
+description: "**Simple-JWT-Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT)"
 sidebar_label: Introduction
 sidebar_position: 0
 hide_title: true
@@ -28,25 +28,37 @@ import Export from "@theme/ApiExplorer/Export";
 </Heading>
 
 <ApiLogo
-  logo={{"url":"https://redocly.github.io/redoc/petstore-logo.png","altText":"Simple-Jwt-Login Logo"}}
+  logo={{"url":"https://simplejwtlogin.com/assets/favicons/android-chrome-192x192.png","altText":"Simple JWT Login Logo"}}
   darkLogo={undefined}
 >
   
 </ApiLogo>
 
-This is the Simple-JWT-Login WordPress plugin API Documentation.
+**Simple-JWT-Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT)
+authentication to the WordPress REST API. It lets mobile apps, single-page applications, and
+external services securely interact with your WordPress site - without exposing admin credentials.
 
-## Introduction
+With Simple-JWT-Login you can:
+- **Authenticate** users and receive a signed JWT
+- **Auto-login** users via a tokenized link
+- **Register** and **delete** users programmatically
+- **Reset and change passwords** through the REST API
+- **Protect any REST endpoint** so it requires a valid JWT
+- **Refresh, validate, and revoke** tokens to manage session lifecycle
 
-This API is documented in **OpenAPI format**. You can either open it in [swagger editor](https://editor.swagger.io/) or you can view it on this website.
+Whether you're building a headless WordPress site, a React/Vue front-end, a mobile app, or a
+third-party integration, Simple-JWT-Login provides a clean, standards-based authentication layer.
 
-Also, you open it in postman, and you will be able to do local tests.
+## API Format
+
+This API is documented in **OpenAPI format**. You can open it in [Swagger Editor](https://editor.swagger.io/),
+view it on this website, or import it into Postman for local testing.
 
 ## Server
 
 You can access the Simple-JWT-Login API in two modes:
-  - using permalink: https://\{domain\}/wp-json/simple-jwt-login/v1/\{endpoint\}
-  - using rest_route: https://\{domain\}/?rest_route=/simple-jwt-login/v1/\{endpoint\}
+  - using permalink: `https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}`
+  - using rest_route: `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}`
 
 ## Authentication
 
@@ -54,8 +66,8 @@ Most endpoints accept a JWT via the `JWT` query parameter, request body field, o
 API key management endpoints require an active WordPress session (cookie-based auth or equivalent).
 
 ## Cross-Origin Resource Sharing
-This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
-And that allows cross-domain communication from the browser.
+
+This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with [W3C spec](https://www.w3.org/TR/cors/).
 All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
 
 ## Error Response Format

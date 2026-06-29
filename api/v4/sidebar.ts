@@ -12,46 +12,24 @@ const sidebar: SidebarsConfig = {
       label: "Routes",
       collapsed: false,
       items: [
-    {
-      type: "category",
-      label: "login_user",
-      items: [
         {
           type: "doc",
           id: "autologin",
           label: "Auto-login user into WordPress",
           className: "api-method get",
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "register_user",
-      items: [
         {
           type: "doc",
           id: "register-a-new-word-press-user",
           label: "Register a new WordPress user",
           className: "api-method post",
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "delete_user",
-      items: [
         {
           type: "doc",
           id: "delete-user",
           label: "Delete a WordPress user",
           className: "api-method delete",
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "reset_password",
-      items: [
         {
           type: "doc",
           id: "send-reset-password-code",
@@ -64,12 +42,6 @@ const sidebar: SidebarsConfig = {
           label: "Change user password",
           className: "api-method put",
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "authenticate_user",
-      items: [
         {
           type: "doc",
           id: "get-jwt",
@@ -110,7 +82,8 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "oauth",
+      label: "OAuth",
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -128,7 +101,8 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "api_keys",
+      label: "API Keys",
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -162,9 +136,7 @@ const sidebar: SidebarsConfig = {
         },
       ],
     },
-      ],
-    },
   ],
 };
 
-export default sidebar.apisidebar;
+export default sidebar;

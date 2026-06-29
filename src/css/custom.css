@@ -159,6 +159,11 @@ html[data-theme='dark'] .header-twitter-logo:before { background-image: url('/as
   border-right: 1px solid var(--sjl-border) !important;
 }
 
+/* Extra space at the bottom so the last menu item is easy to reach */
+.theme-doc-sidebar-menu > .menu__list-item:last-child {
+  margin-bottom: 2rem;
+}
+
 .menu__link {
   font-size: 0.875rem;
   border-radius: var(--sjl-radius-sm);

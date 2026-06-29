@@ -115,6 +115,25 @@ Webhook logs help you debug delivery failures. If a webhook is not reaching your
 
 ---
 
+## Delivery Behavior
+
+Webhook HTTP calls are dispatched **after the API response is sent to the client** - they never block or delay the response your app receives.
+
+The plugin uses PHP's `fastcgi_finish_request()` to flush the response to the client first, then process all queued webhooks in the same PHP process. If that function is unavailable (see table below), webhooks are processed synchronously before the response is returned, which adds latency equal to the total time of all outgoing HTTP calls.
+
+| Server environment | Async delivery |
+| :--- | :--- |
+| **nginx + PHP-FPM** (standard nginx setup) | Yes - response flushed before HTTP calls are made |
+| **Apache + PHP-FPM** (`mod_proxy_fcgi`) | Yes - response flushed before HTTP calls are made |
+| **Apache + mod_php** | No - webhooks block the response |
+| **LiteSpeed / OpenLiteSpeed** | Depends on version - generally no |
+
+:::tip
+If your site runs on Apache with `mod_php` and you have slow webhook endpoints, consider keeping webhook payloads small and endpoints fast to avoid adding visible latency to your login/register API calls.
+:::
+
+---
+
 ## Security Recommendations
 
 - Use **HTTPS** endpoints only - avoid sending event data over plain HTTP.

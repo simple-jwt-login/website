@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+const redirects = require('./redirects.js');
 
 // note that parts of the complete config were left out for brevity
 import type * as Plugin from "@docusaurus/types/src/plugin";
@@ -88,6 +89,7 @@ const config: Config = {
         path: 'api/v4',
         routeBasePath: 'api/v4',
         docItemComponent: "@theme/ApiItem",
+        sidebarPath: './api/v4/sidebar.ts',
       },
     ],
 
@@ -194,6 +196,11 @@ const config: Config = {
       },
     ],
 
+
+    [
+      '@docusaurus/plugin-client-redirects',
+      { redirects },
+    ],
 
     [
       function webpackPolyfillPlugin() {
@@ -364,89 +371,6 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Quick Links',
-          items: [
-            {
-              label: 'WordPress plugin',
-              href: 'https://wordpress.org/plugins/simple-jwt-login',
-              title: "WordPress plugin"
-            },
-            {
-              label: 'GitHub repository',
-              href: 'https://github.com/nicumicle/simple-jwt-login',
-              title: 'GitHub repository',
-            },
-            {
-              label: 'Releases',
-              to: '/releases/',
-              title: 'Releases',
-            },
-            {
-              label: 'Donate',
-              to: '/donate/',
-              title: 'Donate',
-            },
-            {
-              label: 'Contact Us',
-              to: '/contact/',
-              title: 'Contact Us',
-            },
-          ],
-        },
-        {
-          title: 'Support',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/nicumicle/simple-jwt-login/issues',
-              title: "GitHub",
-            },
-            {
-              label: 'Support forum',
-              href: 'https://wordpress.org/support/plugin/simple-jwt-login',
-              title: 'Support forum',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'X.com',
-              href : 'https://x.com/simplejwtlogin',
-              title: 'X.com',
-            },
-            {
-              label: 'GitHub',
-              href : 'https://github.com/nicumicle/simple-jwt-login/stargazers',
-              title: 'GitHub',
-            },
-            {
-              label: "Discord",
-              href: "https://discord.gg/c4AeefD8Dr",
-              title: "Discord",
-            }
-          ],
-        },
-        {
-          title: "Sponsors",
-          items: [
-            {
-              html: `
-              <p>This project is supported by:</p>
-                <p>
-                  <a href="https://www.digitalocean.com/">
-                    <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" alt="DigitalOcean" width="201px">
-                  </a>
-                </p>
-              </p>
-              `
-            }
-          ]
-        }
-      ],
     },
     prism: {
       theme: prismThemes.github,

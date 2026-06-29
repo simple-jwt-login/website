@@ -66,6 +66,18 @@ responses:
       application/html:
         example: ""
       application/json:
+        schema:
+          type: object
+          required:
+            - success
+            - message
+          properties:
+            success:
+              type: boolean
+              example: true
+            message:
+              type: string
+              example: "User was logged in."
         example:
           success: true
           message: "User was logged in."
