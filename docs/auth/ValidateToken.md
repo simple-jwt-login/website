@@ -198,12 +198,12 @@ Configure under **Settings → Simple JWT Login → Validate Token**.
 
 ### Allow Validate Token Endpoint
 
-![Allow Validate Token Endpoint](/assets/screenshots/validate-token/allow-validate-token-endpoint.png)
+![Allow Validate Token Endpoint](/assets/images/screenshots/validate-token/allow-validate-token-endpoint.png)
 
 Enable or disable the validate token endpoint. When disabled, all requests to `/auth/validate` return a 403 error. When enabled, clients can verify a JWT and retrieve the associated WordPress user details.
 
 ### Require Authentication Code
 
-![Require Authentication Code](/assets/screenshots/validate-token/require-authentication-code.png)
+![Require Authentication Code](/assets/images/screenshots/validate-token/require-authentication-code.png)
 
 When enabled, an additional Auth Code must be provided alongside the JWT to use the validate endpoint. The parameter name is the **Auth Code URL Key** from Auth Codes settings (default: `AUTH_KEY`). Configure the codes themselves in the **Auth Codes** tab.

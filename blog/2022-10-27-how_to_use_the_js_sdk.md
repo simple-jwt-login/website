@@ -47,7 +47,7 @@ npm start
 
 Once the React starts, a new tab will be opened in your Browser:
 
-![React App](/assets/images/react-homescreen.png "React Home-screen")
+![React App](/assets/images/blog/react-homescreen.png "React Home-screen")
 
 
 ## Install the Simple-JWT-Login SDK
@@ -173,7 +173,7 @@ export default App;
 
 At this moment, we have a register form:
 
-![React register form](/assets/images/react_register_form.png "React Register Form")
+![React register form](/assets/images/blog/react_register_form.png "React Register Form")
 
 
 ## Add the Simple-JWT-Login SDK library
@@ -313,7 +313,7 @@ export default App;
 
 After filling the form and click on "Register User" you will get something similar in your console:
 
-![Register user result](/assets/images/react_register_user_console.png "The final result")
+![Register user result](/assets/images/blog/react_register_user_console.png "The final result")
 
 
 ## Conclusion

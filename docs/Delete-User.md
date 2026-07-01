@@ -196,18 +196,18 @@ Configure under **Settings → Simple JWT Login → Delete User**.
 
 ### Delete User
 
-![Delete User settings](/assets/screenshots/delete/delete-user.png)
+![Delete User settings](/assets/images/screenshots/delete/delete-user.png)
 
 Enable or disable the delete endpoint. When disabled, all DELETE requests to `/users` return a 403 error.
 
 ### Require Authentication Code
 
-![Require Authentication Code](/assets/screenshots/delete/require-authentication-code.png)
+![Require Authentication Code](/assets/images/screenshots/delete/require-authentication-code.png)
 
 When enabled, every deletion request must include a valid Auth Code alongside the JWT. The parameter name is the **Auth Code URL Key** from the Auth Codes settings (default: `AUTH_KEY`).
 
 ### Access Control
 
-![Access Control settings](/assets/screenshots/delete/access-control.png)
+![Access Control settings](/assets/images/screenshots/delete/access-control.png)
 
 Comma-separated list of IP addresses allowed to call the delete endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (e.g. `192.168.*.*`).

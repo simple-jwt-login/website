@@ -250,10 +250,10 @@ app.use(async (req, res, next) => {
 
 /* ── Frameworks ─────────────────────────────────────────────── */
 const frameworks = [
-  { src: '/assets/img/frameworks/javascript.png', alt: 'JavaScript', label: 'Vanilla JS' },
-  { src: '/assets/img/frameworks/react.png', alt: 'React', label: 'React / Next.js' },
-  { src: '/assets/img/frameworks/vue.png', alt: 'Vue', label: 'Vue / Nuxt' },
-  { src: '/assets/img/frameworks/angular.png', alt: 'Angular', label: 'Angular' },
+  { src: '/assets/images/frameworks/javascript.png', alt: 'JavaScript', label: 'Vanilla JS' },
+  { src: '/assets/images/frameworks/react.png', alt: 'React', label: 'React / Next.js' },
+  { src: '/assets/images/frameworks/vue.png', alt: 'Vue', label: 'Vue / Nuxt' },
+  { src: '/assets/images/frameworks/angular.png', alt: 'Angular', label: 'Angular' },
 ];
 
 /* ── Page ───────────────────────────────────────────────────── */

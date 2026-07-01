@@ -51,7 +51,7 @@ Use a long, random string for the JWT secret key. This key is equivalent to a ma
 
 ## Route Namespace
 
-![Route Namespace setting](/assets/screenshots/general/route-namespace-.png)
+![Route Namespace setting](/assets/images/screenshots/general/route-namespace-.png)
 
 The **Route Namespace** is the URL prefix for all Simple JWT Login REST endpoints. The default is `simple-jwt-login/v1/`.
 
@@ -71,7 +71,7 @@ If you change the route namespace after you have already issued JWTs, any existi
 
 ## JWT Verification Rules
 
-![JWT Verification Rules](/assets/screenshots/general/jwt-verification-rules.png)
+![JWT Verification Rules](/assets/images/screenshots/general/jwt-verification-rules.png)
 
 JWT Verification Rules let you use **different signing algorithms and keys** for different tokens - chosen dynamically based on a claim inside the token itself. This is useful when:
 
@@ -156,7 +156,7 @@ Use dot notation for nested values, e.g. `user.id` to read `{ "user": { "id": 42
 
 ## JWT Input Sources
 
-![JWT Input Sources](/assets/screenshots/general/jwt-input-sources.png)
+![JWT Input Sources](/assets/images/screenshots/general/jwt-input-sources.png)
 
 The plugin must know where to look for the JWT in each incoming request. Enable at least one source. When the JWT is present in multiple locations, the higher-priority source wins.
 
@@ -177,7 +177,7 @@ The recommended approach is to keep **HEADER** enabled and send tokens as `Autho
 
 ## Integration Options
 
-![Integration Options](/assets/screenshots/general/integration-options.png)
+![Integration Options](/assets/images/screenshots/general/integration-options.png)
 
 ### JWT Middleware for all WordPress endpoints
 
@@ -197,7 +197,7 @@ curl -X POST "https://example.com/wp-json/wp/v2/posts" \
 
 ## Security Options
 
-![Security Options](/assets/screenshots/general/security.png)
+![Security Options](/assets/images/screenshots/general/security.png)
 
 ### Enable safe redirects
 

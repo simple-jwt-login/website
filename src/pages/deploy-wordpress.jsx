@@ -100,8 +100,8 @@ function generatePassword(length = 24) {
   return out;
 }
 
-// cloud-init script: full LAMP (Apache + mod_php + MariaDB) WordPress install,
-// plugin optional. Mirrors the project CI's known-good Apache/mod_php setup.
+// cloud-init script builder. Supports Apache or Nginx, mod_php or PHP-FPM,
+// specific PHP versions via the ondrej/php PPA, and pinned WP versions.
 function buildUserData({
   adminPassword,
   dbPassword,
@@ -111,9 +111,15 @@ function buildUserData({
   pluginVersion,
   rootPassword,
   enableHttps,
+  webServer,
+  phpMode,
+  phpVersion,
+  wpVersion,
 }) {
-  // Stable installs by slug from WordPress.org; v4 RC installs from the zip on
-  // the v4 branch (--force so it overrides any directory copy WP-CLI resolves).
+  const isNginx = webServer === 'nginx';
+  const useFastCgi = isNginx || phpMode === 'fastcgi';
+  const versionedPhp = phpVersion !== 'latest';
+
   let pluginInstallCmd = '# Simple JWT Login install skipped';
   if (installPlugin) {
     pluginInstallCmd =
@@ -121,6 +127,37 @@ function buildUserData({
         ? `wp plugin install ${V4_RC_PLUGIN_ZIP} --force --activate --allow-root`
         : 'wp plugin install simple-jwt-login --activate --allow-root';
   }
+
+  const wpDownloadCmd =
+    wpVersion === 'latest'
+      ? 'wp core download --allow-root'
+      : `wp core download --version=${wpVersion} --allow-root`;
+
+  // Build the PHP package list. All extension packages are prefixed with the
+  // version (e.g. php8.1-curl) when a specific version is requested.
+  const pfx = versionedPhp ? `php${phpVersion}-` : 'php-';
+  const phpBasePkg = versionedPhp ? `php${phpVersion}` : 'php';
+  const phpModApachePkg = versionedPhp
+    ? `libapache2-mod-php${phpVersion}`
+    : 'libapache2-mod-php';
+  const phpFpmPkg = `${pfx}fpm`;
+  const phpExtPkgs = ['cli', 'mysql', 'curl', 'gd', 'xml', 'mbstring', 'zip', 'intl'].map(
+    (m) => `${pfx}${m}`,
+  );
+  const phpPkgs = useFastCgi
+    ? [phpFpmPkg, ...phpExtPkgs]
+    : [phpBasePkg, phpModApachePkg, ...phpExtPkgs];
+  const pkgsLine = `PKGS="mariadb-server ${phpPkgs.join(' ')} curl unzip"`;
+
+  // Holding page (identical for Apache and nginx).
+  const holdingPage = [
+    "cat > /var/www/html/index.html <<'HOLD'",
+    '<!doctype html><html><head><meta charset="utf-8"><title>Installing WordPress...</title>',
+    '<meta http-equiv="refresh" content="15">',
+    '<style>body{font-family:system-ui,sans-serif;background:#0d1e16;color:#e2e8f0;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;text-align:center}div{max-width:34rem;padding:2rem}h1{color:#85d8b5;font-size:1.6rem}p{color:#94a3b8;line-height:1.6}</style>',
+    '</head><body><div><h1>Installing WordPress...</h1><p>Your server is setting everything up. This page refreshes automatically - your site will appear here in a few minutes.</p></div></body></html>',
+    'HOLD',
+  ];
 
   const lines = [
     '#!/bin/bash',
@@ -133,99 +170,163 @@ function buildUserData({
     `ADMIN_EMAIL='${adminEmail}'`,
     `SITE_TITLE='${siteTitle}'`,
     `ROOT_PASS='${rootPassword}'`,
-    '# Set a root password and enable SSH password login up front, so the server',
+    '# Set a root password and enable SSH password login up front so the server',
     '# stays reachable for support/debugging even if a later install step fails.',
     'echo "root:${ROOT_PASS}" | chpasswd',
     "sed -i 's/^#\\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config",
     'mkdir -p /etc/ssh/sshd_config.d',
     "echo 'PasswordAuthentication yes' > /etc/ssh/sshd_config.d/99-wp-deploy.conf",
     'systemctl restart ssh 2>/dev/null || systemctl restart sshd 2>/dev/null || true',
-    '# Add swap (best-effort) so small droplets do not OOM during install.',
+    '# Add swap so small droplets do not OOM during the install.',
     'if [ ! -f /swapfile ]; then',
     '  fallocate -l 2G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=2048',
     '  chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile',
     "  echo '/swapfile none swap sw 0 0' >> /etc/fstab",
     'fi',
-    '# A fresh droplet runs apt-daily / unattended-upgrades at boot. Installing at',
-    '# the same time corrupts package configure steps - this is what made the',
-    '# mariadb-server install fail. Stop those jobs and wait for any apt/dpkg lock',
-    '# to clear before we touch the package system.',
+    '# A fresh droplet runs apt-daily / unattended-upgrades at boot; wait for any',
+    '# dpkg lock to clear before touching the package system.',
     'systemctl stop unattended-upgrades apt-daily.service apt-daily-upgrade.service apt-daily.timer apt-daily-upgrade.timer 2>/dev/null || true',
     'while fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 2; done',
-    '# Belt and braces: also let apt itself wait up to 10 min for any lock, and',
-    '# repair any half-finished package state left over from boot.',
     'APT="apt-get -o DPkg::Lock::Timeout=600"',
     'dpkg --configure -a',
     '$APT update -y',
-    '# Apache + mod_php - the same stack the project CI uses. PHP runs inside',
-    '# Apache, so there is no fastcgi socket to wire (the cause of the earlier',
-    '# 502/403 errors). Bring it up first with a holding page so visitors see',
-    '# progress, not a connection error, while the rest installs.',
-    '$APT install -y apache2',
-    'systemctl enable apache2',
-    'rm -f /var/www/html/index.html',
-    "cat > /var/www/html/index.html <<'HOLD'",
-    '<!doctype html><html><head><meta charset="utf-8"><title>Installing WordPress...</title>',
-    '<meta http-equiv="refresh" content="15">',
-    '<style>body{font-family:system-ui,sans-serif;background:#0d1e16;color:#e2e8f0;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;text-align:center}div{max-width:34rem;padding:2rem}h1{color:#85d8b5;font-size:1.6rem}p{color:#94a3b8;line-height:1.6}</style>',
-    '</head><body><div><h1>Installing WordPress...</h1><p>Your server is setting everything up. This page refreshes automatically - your site will appear here in a few minutes.</p></div></body></html>',
-    'HOLD',
-    'systemctl restart apache2',
-    '# If any step below fails, show a readable page instead of a bare 403/404.',
+
+    // For a pinned PHP version, pull packages from the ondrej/php PPA which
+    // carries all supported (and some EOL) PHP releases for Ubuntu.
+    ...(versionedPhp
+      ? [
+          '$APT install -y software-properties-common',
+          'add-apt-repository -y ppa:ondrej/php',
+          '$APT update -y',
+        ]
+      : []),
+
+    // Install web server and show a holding page while everything else installs.
+    ...(isNginx
+      ? [
+          '$APT install -y nginx',
+          'systemctl enable nginx',
+          'rm -f /var/www/html/index.nginx-debian.html /var/www/html/index.html',
+          ...holdingPage,
+          'systemctl restart nginx',
+        ]
+      : [
+          '$APT install -y apache2',
+          'systemctl enable apache2',
+          'rm -f /var/www/html/index.html',
+          ...holdingPage,
+          'systemctl restart apache2',
+        ]),
+
     'fail() { echo "<h1>WordPress install failed</h1><p>SSH in and read /var/log/wp-deploy.log to find the failing step.</p>" > /var/www/html/index.html; chown -R www-data:www-data /var/www/html; exit 1; }',
-    '# Database + PHP. libapache2-mod-php embeds PHP in Apache; php-cli lets',
-    '# WP-CLI (the `wp` command) run. These install while the holding page is live.',
-    'PKGS="mariadb-server php libapache2-mod-php php-cli php-mysql php-curl php-gd php-xml php-mbstring php-zip php-intl curl unzip"',
-    '# Retry once with a repair pass if the first configure fails (e.g. a service',
-    '# start timed out on a busy boot) - this is what we saw with mariadb-server.',
+
+    // Install PHP + MariaDB. Retry once with a repair pass if configure fails
+    // (e.g. a service start timed out on a busy boot).
+    pkgsLine,
     '$APT install -y $PKGS || { dpkg --configure -a; $APT -f install -y; $APT install -y $PKGS; }',
-    '# If the database server still is not installed, stop with a clear message',
-    '# instead of failing later on a missing socket.',
     'systemctl list-unit-files | grep -q "^mariadb.service" || fail',
     'systemctl enable --now mariadb',
-    '# Give MariaDB time to finish starting, then wait until it actually answers',
-    '# a real query - mysqladmin ping can report "alive" before it accepts',
-    '# connections, which made the CREATE DATABASE / wp install steps fail.',
+    // Wait until MariaDB actually accepts queries - mysqladmin ping can report
+    // "alive" before connections are accepted, which caused CREATE DATABASE to fail.
     'sleep 10',
     'for i in $(seq 1 30); do mysql -e "SELECT 1" >/dev/null 2>&1 && break; sleep 2; done',
     "mysql -e \"CREATE DATABASE IF NOT EXISTS wordpress; CREATE USER IF NOT EXISTS 'wordpress'@'localhost' IDENTIFIED BY '${DB_PASS}'; GRANT ALL ON wordpress.* TO 'wordpress'@'localhost'; FLUSH PRIVILEGES;\" || fail",
-    '# Allow .htaccess + mod_rewrite so WordPress pretty permalinks work.',
-    "cat > /etc/apache2/conf-available/wordpress.conf <<'ACONF'",
-    '<Directory /var/www/html>',
-    '  AllowOverride All',
-    '</Directory>',
-    'ACONF',
-    'a2enmod rewrite',
-    'a2enconf wordpress',
+
+    // Wire up the web server + PHP handler.
+    ...(isNginx
+      ? [
+          // Start PHP-FPM, locate its socket, then write the nginx site config
+          // with the real socket path interpolated from the running service.
+          'PHP_FPM_SVC=$(systemctl list-unit-files "php*-fpm.service" --no-legend 2>/dev/null | awk "{print \\$1; exit}")',
+          '[ -n "$PHP_FPM_SVC" ] && systemctl enable --now "$PHP_FPM_SVC" || fail',
+          'sleep 3',
+          'PHP_FPM_SOCK=$(ls /run/php/php*-fpm.sock 2>/dev/null | grep -v admin | head -1)',
+          '[ -z "$PHP_FPM_SOCK" ] && fail',
+          'cat > /etc/nginx/sites-available/wordpress << NGINXEOF',
+          'server {',
+          '    listen 80 default_server;',
+          '    root /var/www/html;',
+          '    index index.php index.html;',
+          '    server_name _;',
+          '    location / {',
+          '        try_files \\$uri \\$uri/ /index.php?\\$args;',
+          '    }',
+          '    location ~ \\.php$ {',
+          '        include snippets/fastcgi-php.conf;',
+          '        fastcgi_pass unix:$PHP_FPM_SOCK;',
+          '    }',
+          '    location ~ /\\.ht {',
+          '        deny all;',
+          '    }',
+          '}',
+          'NGINXEOF',
+          'ln -sf /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/',
+          'rm -f /etc/nginx/sites-enabled/default',
+          'nginx -t && systemctl reload nginx',
+        ]
+      : useFastCgi
+        ? [
+            // Apache + PHP-FPM: enable proxy_fcgi, locate the fpm conf, enable it.
+            'a2enmod proxy_fcgi setenvif rewrite',
+            'PHP_FPM_CONF=$(ls /etc/apache2/conf-available/php*-fpm.conf 2>/dev/null | head -1 | sed "s|.*/||; s|\\.conf$||")',
+            '[ -n "$PHP_FPM_CONF" ] && a2enconf "$PHP_FPM_CONF" || true',
+            'PHP_FPM_SVC=$(systemctl list-unit-files "php*-fpm.service" --no-legend 2>/dev/null | awk "{print \\$1; exit}")',
+            '[ -n "$PHP_FPM_SVC" ] && systemctl enable --now "$PHP_FPM_SVC" || true',
+            "cat > /etc/apache2/conf-available/wordpress.conf <<'ACONF'",
+            '<Directory /var/www/html>',
+            '  AllowOverride All',
+            '</Directory>',
+            'ACONF',
+            'a2enconf wordpress',
+          ]
+        : [
+            // Apache + mod_php: just enable rewrite.
+            'a2enmod rewrite',
+            "cat > /etc/apache2/conf-available/wordpress.conf <<'ACONF'",
+            '<Directory /var/www/html>',
+            '  AllowOverride All',
+            '</Directory>',
+            'ACONF',
+            'a2enconf wordpress',
+          ]),
+
+    // Install WP-CLI, then download and configure WordPress.
     'curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar',
     'chmod +x wp-cli.phar',
     'mv wp-cli.phar /usr/local/bin/wp',
     'rm -f /var/www/html/index.html',
     'cd /var/www/html',
-    'wp core download --allow-root || fail',
+    `${wpDownloadCmd} || fail`,
     'wp config create --dbname=wordpress --dbuser=wordpress --dbpass="${DB_PASS}" --dbhost=localhost --allow-root || fail',
     'IP=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)',
-    '# Fall back to a public-IP service if the metadata API returns nothing, so',
-    '# WordPress is never installed with an empty/broken site URL that 404s.',
     '[ -z "$IP" ] && IP=$(curl -s https://ifconfig.me)',
     'SITE_URL="http://${IP}"',
-    // Optional free HTTPS via Let's Encrypt. A public CA will not certify a bare
-    // IP, so derive a hostname from the IP via nip.io (it resolves straight back
-    // to this IP) and let certbot obtain + install a real certificate for it.
+
+    // Optional HTTPS via Let's Encrypt. nip.io gives us a real hostname for the
+    // bare IP so certbot can obtain a certificate. Falls back to HTTP on failure.
     ...(enableHttps
       ? [
           'HOST="$(echo "$IP" | tr . -).nip.io"',
-          '$APT install -y certbot python3-certbot-apache',
-          'sed -i "s|#ServerName www.example.com|ServerName $HOST|" /etc/apache2/sites-available/000-default.conf',
-          'systemctl reload apache2',
-          '# Best-effort: stay on HTTP (the deploy still succeeds) if this fails.',
-          'if certbot --apache --non-interactive --agree-tos --no-eff-email -m "$ADMIN_EMAIL" -d "$HOST" --redirect; then SITE_URL="https://$HOST"; fi',
+          ...(isNginx
+            ? [
+                '$APT install -y certbot python3-certbot-nginx',
+                'sed -i "s/server_name _;/server_name $HOST;/" /etc/nginx/sites-available/wordpress',
+                'nginx -t && systemctl reload nginx',
+                'if certbot --nginx --non-interactive --agree-tos --no-eff-email -m "$ADMIN_EMAIL" -d "$HOST" --redirect; then SITE_URL="https://$HOST"; fi',
+              ]
+            : [
+                '$APT install -y certbot python3-certbot-apache',
+                'sed -i "s|#ServerName www.example.com|ServerName $HOST|" /etc/apache2/sites-available/000-default.conf',
+                'systemctl reload apache2',
+                'if certbot --apache --non-interactive --agree-tos --no-eff-email -m "$ADMIN_EMAIL" -d "$HOST" --redirect; then SITE_URL="https://$HOST"; fi',
+              ]),
         ]
       : ['# HTTPS not requested.']),
+
     'wp core install --url="$SITE_URL" --title="${SITE_TITLE}" --admin_user=admin --admin_password="${ADMIN_PASS}" --admin_email="${ADMIN_EMAIL}" --skip-email --allow-root || fail',
     pluginInstallCmd,
     'chown -R www-data:www-data /var/www/html',
-    'systemctl restart apache2',
+    ...(isNginx ? ['systemctl restart nginx'] : ['systemctl restart apache2']),
     '',
   ];
   return lines.join('\n');
@@ -329,6 +430,10 @@ function DeployWordPressPage() {
   const [installPlugin, setInstallPlugin] = useState(true);
   const [pluginVersion, setPluginVersion] = useState('stable');
   const [enableHttps, setEnableHttps] = useState(false);
+  const [webServer, setWebServer] = useState('apache');
+  const [phpMode, setPhpMode] = useState('mod_php');
+  const [phpVersion, setPhpVersion] = useState('latest');
+  const [wpVersion, setWpVersion] = useState('latest');
 
   // Result
   const [result, setResult] = useState(null); // { name, ip, username, password, pluginInstalled }
@@ -424,6 +529,12 @@ function DeployWordPressPage() {
     );
   }, []);
 
+  // Nginx only supports FastCGI - lock the PHP handler when switching to it.
+  const handleWebServerChange = useCallback((val) => {
+    setWebServer(val);
+    if (val === 'nginx') setPhpMode('fastcgi');
+  }, []);
+
   // Step 2: create the droplet + poll until it is live
   const handleDeploy = useCallback(
     async (e) => {
@@ -449,6 +560,10 @@ function DeployWordPressPage() {
           pluginVersion,
           rootPassword,
           enableHttps,
+          webServer,
+          phpMode,
+          phpVersion,
+          wpVersion,
         });
 
         const created = await doApi('/droplets', tk, {
@@ -523,6 +638,10 @@ function DeployWordPressPage() {
       installPlugin,
       pluginVersion,
       enableHttps,
+      webServer,
+      phpMode,
+      phpVersion,
+      wpVersion,
       account,
     ],
   );
@@ -783,6 +902,91 @@ function DeployWordPressPage() {
                       </Field>
                     )}
 
+                    <Field label="Web server">
+                      <select
+                        className={styles.input}
+                        value={webServer}
+                        onChange={(e) => handleWebServerChange(e.target.value)}
+                        disabled={busy}
+                      >
+                        <option value="apache">Apache</option>
+                        <option value="nginx">Nginx</option>
+                      </select>
+                    </Field>
+
+                    <Field
+                      label="PHP handler"
+                      hint={
+                        webServer === 'nginx'
+                          ? 'Nginx requires PHP-FPM - mod_php is not available.'
+                          : phpMode === 'fastcgi'
+                            ? 'PHP-FPM runs as a separate process pool. Apache proxies .php requests to it via mod_proxy_fcgi.'
+                            : 'mod_php embeds PHP directly inside Apache. Simpler setup, works reliably on any size droplet.'
+                      }
+                    >
+                      <select
+                        className={styles.input}
+                        value={phpMode}
+                        onChange={(e) => setPhpMode(e.target.value)}
+                        disabled={busy || webServer === 'nginx'}
+                      >
+                        <option value="mod_php">mod_php (Apache module)</option>
+                        <option value="fastcgi">PHP-FPM (FastCGI)</option>
+                      </select>
+                    </Field>
+
+                    <Field
+                      label="PHP version"
+                      hint={
+                        phpVersion !== 'latest' && parseFloat(phpVersion) < 8.0
+                          ? `PHP ${phpVersion} is end-of-life. Use only for compatibility testing.`
+                          : 'Specific versions are installed from the ondrej/php PPA.'
+                      }
+                    >
+                      <select
+                        className={styles.input}
+                        value={phpVersion}
+                        onChange={(e) => setPhpVersion(e.target.value)}
+                        disabled={busy}
+                      >
+                        <option value="latest">Latest (distro default)</option>
+                        <option value="8.3">PHP 8.3</option>
+                        <option value="8.2">PHP 8.2</option>
+                        <option value="8.1">PHP 8.1</option>
+                        <option value="8.0">PHP 8.0</option>
+                        <option value="7.4">PHP 7.4 (EOL)</option>
+                        <option value="7.2">PHP 7.2 (EOL)</option>
+                        <option value="7.1">PHP 7.1 (EOL)</option>
+                      </select>
+                    </Field>
+
+                    <Field
+                      label="WordPress version"
+                      hint={
+                        wpVersion !== 'latest'
+                          ? 'Older versions may be missing security patches. Use only for testing.'
+                          : 'Always installs the latest stable WordPress release.'
+                      }
+                    >
+                      <select
+                        className={styles.input}
+                        value={wpVersion}
+                        onChange={(e) => setWpVersion(e.target.value)}
+                        disabled={busy}
+                      >
+                        <option value="latest">Latest</option>
+                        <option value="6.7">WordPress 6.7</option>
+                        <option value="6.6">WordPress 6.6</option>
+                        <option value="6.5">WordPress 6.5</option>
+                        <option value="6.4">WordPress 6.4</option>
+                        <option value="6.3">WordPress 6.3</option>
+                        <option value="6.2">WordPress 6.2</option>
+                        <option value="6.1">WordPress 6.1</option>
+                        <option value="6.0">WordPress 6.0</option>
+                        <option value="5.9">WordPress 5.9</option>
+                      </select>
+                    </Field>
+
                     <label className={styles.checkRow}>
                       <input
                         type="checkbox"
@@ -955,7 +1159,7 @@ function DeployWordPressPage() {
                   WordPress server.
                 </p>
                 <Link to={REFERRAL_URL} className={styles.referralBtn}>
-                  Get $200 in credit <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                  Get $5 in credit <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                 </Link>
                 <p className={styles.sideFinePrint}>
                   Already have an account? Just paste your token on the left.

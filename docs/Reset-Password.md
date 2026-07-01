@@ -373,19 +373,19 @@ Configure under **Settings → Simple JWT Login → Reset Password**.
 
 ### Password Reset
 
-![Password Reset settings](/assets/screenshots/reset-password/password-reset.png)
+![Password Reset settings](/assets/images/screenshots/reset-password/password-reset.png)
 
 Enable or disable the password reset feature. When disabled, both Step 1 and Step 2 return a 403 error.
 
 ### Require Authentication Code
 
-![Require Authentication Code](/assets/screenshots/reset-password/require-authentication-code.png)
+![Require Authentication Code](/assets/images/screenshots/reset-password/require-authentication-code.png)
 
 When enabled, an additional Auth Code must be included in password reset requests. The parameter name is the **Auth Code URL Key** from Auth Codes settings (default: `AUTH_KEY`).
 
 ### Reset Flow
 
-![Reset Flow options](/assets/screenshots/reset-password/reset-flow.png)
+![Reset Flow options](/assets/images/screenshots/reset-password/reset-flow.png)
 
 Choose how the reset code is delivered to the user after a successful Step 1 request:
 
@@ -399,7 +399,7 @@ When **Send custom email** is selected, you can compose the subject and body and
 
 ### Step 2 - Set New Password
 
-![Step 2 - Set New Password](/assets/screenshots/reset-password/step-2---set-new-password.png)
+![Step 2 - Set New Password](/assets/images/screenshots/reset-password/step-2---set-new-password.png)
 
 #### Allow JWT-based password reset (skip reset code)
 

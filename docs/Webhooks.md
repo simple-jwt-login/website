@@ -16,7 +16,7 @@ Webhooks are **disabled by default**. Enable them in **Settings → Simple JWT L
 
 ## Configuration
 
-![Webhooks configuration](/assets/screenshots/config/webhooks.png)
+![Webhooks configuration](/assets/images/screenshots/config/webhooks.png)
 
 ### Enable Webhooks
 
@@ -98,7 +98,7 @@ Leave the field blank to use the default payload.
 
 ## Webhook Logs
 
-![Webhook Call Log](/assets/screenshots/logs/webhook-call-log.png)
+![Webhook Call Log](/assets/images/screenshots/logs/webhook-call-log.png)
 
 Every outgoing webhook request is logged. View the log under **Settings → Simple JWT Login → Webhooks → Logs**.
 

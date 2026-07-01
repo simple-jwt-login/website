@@ -12,4 +12,4 @@ Simple JWT Login integrates with four third-party WordPress plugins: **WPGraphQL
 
 Configure these under **Settings → Simple JWT Login → Integrations → Third Party Integrations**.
 
-![Third Party Integrations overview](/assets/screenshots/third-party-integrations/third-party-integrations.png)
+![Third Party Integrations overview](/assets/images/screenshots/third-party-integrations/third-party-integrations.png)

@@ -31,13 +31,13 @@ Configure under **Settings → Simple JWT Login → Protect Endpoints**.
 
 ### Protect Endpoints
 
-![Protect Endpoints settings](/assets/screenshots/protect-endpoints/protect-endpoints.png)
+![Protect Endpoints settings](/assets/images/screenshots/protect-endpoints/protect-endpoints.png)
 
 Enable or disable the endpoint protection feature. When disabled, no JWT check is applied to any REST route.
 
 ### Protection Scope
 
-![Protection Scope](/assets/screenshots/protect-endpoints/protection-scope.png)
+![Protection Scope](/assets/images/screenshots/protect-endpoints/protection-scope.png)
 
 Controls which endpoints are subject to JWT protection. Two options:
 
@@ -48,7 +48,7 @@ Controls which endpoints are subject to JWT protection. Two options:
 
 ### Whitelisted Endpoints
 
-![Whitelisted Endpoints](/assets/screenshots/protect-endpoints/whitelisted-endpoints.png)
+![Whitelisted Endpoints](/assets/images/screenshots/protect-endpoints/whitelisted-endpoints.png)
 
 Visible when "Apply on All REST Endpoints" is selected. Add endpoint rules here to allow public access to those routes even though global protection is enabled.
 

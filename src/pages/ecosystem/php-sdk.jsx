@@ -253,10 +253,10 @@ protected function setUp(): void
 
 /* ── Frameworks ─────────────────────────────────────────────── */
 const frameworks = [
-  { src: '/assets/img/frameworks/php.png', alt: 'PHP', label: 'Plain PHP' },
-  { src: '/assets/img/frameworks/laravel.png', alt: 'Laravel', label: 'Laravel' },
-  { src: '/assets/img/frameworks/yii.png', alt: 'Yii', label: 'Yii' },
-  { src: '/assets/img/frameworks/codeigniter.png', alt: 'CodeIgniter', label: 'CodeIgniter' },
+  { src: '/assets/images/frameworks/php.png', alt: 'PHP', label: 'Plain PHP' },
+  { src: '/assets/images/frameworks/laravel.png', alt: 'Laravel', label: 'Laravel' },
+  { src: '/assets/images/frameworks/yii.png', alt: 'Yii', label: 'Yii' },
+  { src: '/assets/images/frameworks/codeigniter.png', alt: 'CodeIgniter', label: 'CodeIgniter' },
 ];
 
 /* ── Page ───────────────────────────────────────────────────── */

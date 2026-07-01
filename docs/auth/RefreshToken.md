@@ -167,19 +167,19 @@ Configure the refresh token feature under **Settings → Simple JWT Login → Re
 
 ### Allow Refresh Token Endpoint
 
-![Allow Refresh Token Endpoint](/assets/screenshots/refresh-token/allow-refresh-token-endpoint.png)
+![Allow Refresh Token Endpoint](/assets/images/screenshots/refresh-token/allow-refresh-token-endpoint.png)
 
 Enable or disable the refresh token endpoint. When disabled, the `/auth/refresh` route returns a 403 error. When enabled, a `refresh_token` is also returned alongside the JWT from the Authentication endpoint.
 
 ### Require Authentication Code
 
-![Require Authentication Code](/assets/screenshots/refresh-token/require-authentication-code.png)
+![Require Authentication Code](/assets/images/screenshots/refresh-token/require-authentication-code.png)
 
 When enabled, the client must include a valid Auth Code in the refresh request. The parameter name used to pass the code is the **Auth Code URL Key** configured under **Auth Codes** settings (default: `AUTH_KEY`).
 
 ### JWT Refresh Window
 
-![Refresh Token Settings](/assets/screenshots/refresh-token/refresh-token-settings.png)
+![Refresh Token Settings](/assets/images/screenshots/refresh-token/refresh-token-settings.png)
 
 How long (in minutes) a refresh token remains valid from the time it was issued. The window is **rolling** - each successful refresh issues a new token with a fresh TTL, so an active client never expires as long as it refreshes within the window.
 

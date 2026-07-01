@@ -244,13 +244,13 @@ Configure under **Settings → Simple JWT Login → Register User**.
 
 ### User Registration
 
-![User Registration settings](/assets/screenshots/register/user-registration.png)
+![User Registration settings](/assets/images/screenshots/register/user-registration.png)
 
 Enable or disable the registration endpoint. When disabled, all POST requests to `/users` return a 403 error.
 
 ### Require Authentication Code
 
-![Require Authentication Code](/assets/screenshots/register/require-authentication-code.png)
+![Require Authentication Code](/assets/images/screenshots/register/require-authentication-code.png)
 
 When enabled, every registration request must include a valid Auth Code. Without it, anyone can create an account on your site.
 
@@ -260,7 +260,7 @@ Leaving registration open without an Auth Code is a security risk on public-faci
 
 ### New User Settings
 
-![New User Settings](/assets/screenshots/register/new-user-settings.png)
+![New User Settings](/assets/images/screenshots/register/new-user-settings.png)
 
 #### Default User Role
 
@@ -274,7 +274,7 @@ When enabled, a cryptographically secure random password is generated automatica
 
 ### Post-Registration Options
 
-![Post-Registration Options](/assets/screenshots/register/post-registration-options.png)
+![Post-Registration Options](/assets/images/screenshots/register/post-registration-options.png)
 
 #### Auto-login after registration
 
@@ -290,7 +290,7 @@ When enabled, WordPress sends its default new-user notification emails (to the n
 
 ### Access Control
 
-![Access Control settings](/assets/screenshots/register/access-control.png)
+![Access Control settings](/assets/images/screenshots/register/access-control.png)
 
 #### Allowed IP Addresses
 
@@ -302,7 +302,7 @@ Comma-separated list of email domains accepted during registration (e.g. `gmail.
 
 ### User Data
 
-![User Data settings](/assets/screenshots/register/user-data.png)
+![User Data settings](/assets/images/screenshots/register/user-data.png)
 
 #### Allowed User Meta Keys
 

@@ -32,6 +32,6 @@ Keep your credentials secure - never commit them to version control or expose th
 2. Enter the **Client ID** and **Client Secret** from the Google Cloud Console.
 3. Set the **Redirect URI** to match what you registered in Google.
 
-![Google OAuth Credentials](/assets/screenshots/oauth/credentials.png)
+![Google OAuth Credentials](/assets/images/screenshots/oauth/credentials.png)
 
 4. Toggle **Enable** to activate the Google provider.

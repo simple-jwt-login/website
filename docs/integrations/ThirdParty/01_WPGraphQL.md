@@ -10,7 +10,7 @@ author_url: https://github.com/nicumicle
 
 Requires the [WPGraphQL](https://www.wpgraphql.com/) plugin to be installed and activated.
 
-![WPGraphQL integration](/assets/screenshots/third-party-integrations/wpgraphql.png)
+![WPGraphQL integration](/assets/images/screenshots/third-party-integrations/wpgraphql.png)
 
 ## What it does
 
@@ -26,7 +26,7 @@ Toggle **Enable WPGraphQL authentication** to activate the integration. No addit
 
 **Without a JWT** - the request is rejected:
 
-![Unauthorized WPGraphQL request](/assets/img/wpgraphql/wpgraphql-postman-unauthorized.png)
+![Unauthorized WPGraphQL request](/assets/images/screenshots/third-party-integrations/wpgraphql-postman-unauthorized.png)
 
 **With a valid JWT** in the `Authorization` header:
 
@@ -37,4 +37,4 @@ curl -X POST "https://example.com/graphql" \
   -d '{"query":"{ viewer { name email } }"}'
 ```
 
-![Authenticated WPGraphQL request](/assets/img/wpgraphql/wpgraphql-postman-jwt.png)
+![Authenticated WPGraphQL request](/assets/images/screenshots/third-party-integrations/wpgraphql-postman-jwt.png)

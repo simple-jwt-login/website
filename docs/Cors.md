@@ -26,7 +26,7 @@ Enable CORS if your front-end application lives on a different domain than your 
 
 ### Allow CORS Support
 
-![Allow CORS Support](/assets/screenshots/cors/allow-cors-support.png)
+![Allow CORS Support](/assets/images/screenshots/cors/allow-cors-support.png)
 
 Enable or disable CORS header injection on all plugin responses. When disabled, no CORS headers are added.
 
@@ -34,7 +34,7 @@ Enable or disable CORS header injection on all plugin responses. When disabled, 
 
 ### CORS Headers Configuration
 
-![CORS Headers Configuration](/assets/screenshots/cors/cors-headers-configuration.png)
+![CORS Headers Configuration](/assets/images/screenshots/cors/cors-headers-configuration.png)
 
 Enable each header individually and configure its value:
 

@@ -166,12 +166,12 @@ Configure under **Settings → Simple JWT Login → Revoke Token**.
 
 ### Allow Revoke Token Endpoint
 
-![Allow Revoke Token Endpoint](/assets/screenshots/revoke-token/allow-revoke-token-endpoint.png)
+![Allow Revoke Token Endpoint](/assets/images/screenshots/revoke-token/allow-revoke-token-endpoint.png)
 
 Enable or disable the revoke token endpoint. When disabled, all POST requests to `/auth/revoke` return a 403 error. When enabled, clients can invalidate a JWT for all future requests.
 
 ### Require Authentication Code
 
-![Require Authentication Code](/assets/screenshots/revoke-token/require-authentication-code.png)
+![Require Authentication Code](/assets/images/screenshots/revoke-token/require-authentication-code.png)
 
 When enabled, an additional Auth Code must be provided alongside the JWT to use the revoke endpoint. The parameter name is the **Auth Code URL Key** from Auth Codes settings (default: `AUTH_KEY`). Configure the codes themselves in the **Auth Codes** tab.

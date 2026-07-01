@@ -25,7 +25,7 @@ Use long, random strings for Auth Code values. Short or predictable codes offer 
 
 Go to **Settings → Simple JWT Login → Auth Codes** to configure.
 
-![Auth Codes overview](/assets/screenshots/auth-codes/auth-codes.png)
+![Auth Codes overview](/assets/images/screenshots/auth-codes/auth-codes.png)
 
 ### Auth Code URL Key
 
@@ -41,7 +41,7 @@ Change this if you want to avoid exposing that your site uses Simple JWT Login, 
 
 Each code is a row with three fields - add as many codes as you need. You can have different codes for different purposes (e.g. one for mobile apps, one for server-to-server integrations).
 
-![Authorization codes list](/assets/screenshots/auth-codes/authorization-codes.png)
+![Authorization codes list](/assets/images/screenshots/auth-codes/authorization-codes.png)
 
 ## Auth Code structure
 
@@ -57,4 +57,4 @@ Each Auth Code has three fields:
 Leaving the expiration date blank means the code never expires.
 :::
 
-![Auth code configuration](/assets/screenshots/auth-codes/configuration.png)
+![Auth code configuration](/assets/images/screenshots/auth-codes/configuration.png)

@@ -338,7 +338,7 @@ Fires before the 2FA verify endpoint response is returned.
 
 ## Settings Screenshot
 
-![Hooks settings panel](/assets/screenshots/hooks/wordpress-hooks-integration.png)
+![Hooks settings panel](/assets/images/screenshots/hooks/wordpress-hooks-integration.png)
 
 ---
 

@@ -14,7 +14,7 @@ This endpoint accepts a Google `id_token` and returns a WordPress JWT. Use this 
 
 Enable **Exchange Google id_token for a WordPress JWT** in **Settings → Simple JWT Login → Integrations → OAuth → Google**.
 
-![Exchange Google id_token for a WordPress JWT](/assets/screenshots/oauth/exchange-google-idtoken-for-a-wordpress-jwt.png)
+![Exchange Google id_token for a WordPress JWT](/assets/images/screenshots/oauth/exchange-google-idtoken-for-a-wordpress-jwt.png)
 
 ---
 

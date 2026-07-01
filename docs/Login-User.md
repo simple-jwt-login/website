@@ -196,19 +196,19 @@ Configure under **Settings → Simple JWT Login → Autologin**.
 
 ### Auto-Login
 
-![Auto-Login settings](/assets/screenshots/login/auto-login.png)
+![Auto-Login settings](/assets/images/screenshots/login/auto-login.png)
 
 Enable or disable the autologin endpoint. When disabled, all GET requests to `/autologin` return a 403 error. When enabled, users can log in by passing a valid JWT via URL parameter or `Authorization: Bearer` header.
 
 ### Require Authentication Code
 
-![Require Authentication Code](/assets/screenshots/login/require-authentication-code.png)
+![Require Authentication Code](/assets/images/screenshots/login/require-authentication-code.png)
 
 When enabled, an additional Auth Code must be provided alongside the JWT to allow login. The parameter name is the **Auth Code URL Key** from Auth Codes settings (default: `AUTH_KEY`). Configure the codes themselves in the **Auth Codes** tab.
 
 ### Redirect Behavior
 
-![Redirect Behavior settings](/assets/screenshots/login/redirect-behavior.png)
+![Redirect Behavior settings](/assets/images/screenshots/login/redirect-behavior.png)
 
 Controls where users are sent after login succeeds or fails.
 
@@ -233,7 +233,7 @@ On the failure redirect page you can display the error message returned by the p
 
 ### Advanced Options
 
-![Advanced Options](/assets/screenshots/login/advanced-options.png)
+![Advanced Options](/assets/images/screenshots/login/advanced-options.png)
 
 #### Pass login request parameters to the redirect URL
 
@@ -269,7 +269,7 @@ https://yourdomain.com/profile?uid={{user_id}}&site={{site_url}}
 
 ### Access Control
 
-![Access Control settings](/assets/screenshots/login/access-control.png)
+![Access Control settings](/assets/images/screenshots/login/access-control.png)
 
 Restrict autologin to requests from specific sources. Leave fields blank to allow all.
 

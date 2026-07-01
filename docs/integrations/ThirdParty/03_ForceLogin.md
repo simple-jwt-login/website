@@ -10,7 +10,7 @@ author_url: https://github.com/nicumicle
 
 Requires the [Force Login](https://wordpress.org/plugins/force-login/) plugin (or a similar plugin that restricts REST API access to authenticated users only).
 
-![How third-party integrations work](/assets/screenshots/third-party-integrations/how-it-works.png)
+![How third-party integrations work](/assets/images/screenshots/third-party-integrations/how-it-works.png)
 
 ## What it does
 

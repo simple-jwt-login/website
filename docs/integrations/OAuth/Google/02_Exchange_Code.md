@@ -14,7 +14,7 @@ This endpoint exchanges the `code` returned from Google's OAuth flow for a Googl
 
 Enable **Exchange Google OAuth code for Google id_token** in **Settings → Simple JWT Login → Integrations → OAuth → Google**.
 
-![Exchange Google OAuth Code for id_token](/assets/screenshots/oauth/exchange-google-oauth-code-for-google-idtoken.png)
+![Exchange Google OAuth Code for id_token](/assets/images/screenshots/oauth/exchange-google-oauth-code-for-google-idtoken.png)
 
 :::note
 The `redirect_uri` used here must exactly match the one registered in your Google Cloud Console and saved in the plugin settings.

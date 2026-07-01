@@ -12,7 +12,7 @@ Simple JWT Login supports OAuth 2.0 authentication with four providers: **Google
 
 Configure OAuth under **Settings → Simple JWT Login → Integrations → OAuth**.
 
-![OAuth Applications](/assets/screenshots/oauth/oauth-applications.png)
+![OAuth Applications](/assets/images/screenshots/oauth/oauth-applications.png)
 
 ---
 
@@ -20,7 +20,7 @@ Configure OAuth under **Settings → Simple JWT Login → Integrations → OAuth
 
 Controls how the "Continue with..." buttons appear on the WordPress login and registration page.
 
-![Login Page Button Layout](/assets/screenshots/oauth/login-page-button-layout.png)
+![Login Page Button Layout](/assets/images/screenshots/oauth/login-page-button-layout.png)
 
 | Option | Description |
 | :----- | :---------- |
@@ -35,7 +35,7 @@ Controls how the "Continue with..." buttons appear on the WordPress login and re
 
 Each provider panel shares the same set of options.
 
-![Other Options](/assets/screenshots/oauth/other-options.png)
+![Other Options](/assets/images/screenshots/oauth/other-options.png)
 
 ### Enable
 
@@ -45,7 +45,7 @@ Toggle the provider on or off. When disabled, the provider's endpoints return er
 
 When enabled, a "Continue with [Provider]" button appears on the WordPress login and registration page.
 
-![OAuth on Login / Register](/assets/screenshots/oauth/oauth-on-login--register.png)
+![OAuth on Login / Register](/assets/images/screenshots/oauth/oauth-on-login--register.png)
 
 To make the OAuth redirect work, register the **Redirect URI** shown in the settings panel in the provider's developer console:
 
