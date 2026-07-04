@@ -34,4 +34,4 @@ Leaving the expiration date blank means the code never expires.
 :::
 
 ## Screenshot
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-8.png?raw=true)
+![](/assets/images/screenshots/legacy-3.0.0/screenshot-8.png)

@@ -24,4 +24,4 @@ This is the recommended configuration for:
 A wildcard CORS policy is intentionally permissive. Because Simple-JWT-Login endpoints are protected by JWT authentication (and optionally by Auth Codes and IP restrictions), this is generally safe. However, if your site exposes sensitive unauthenticated endpoints, consider restricting access at the web server or firewall level in addition to using CORS.
 
 ## Screenshot
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-10.png?raw=true)
+![](/assets/images/screenshots/legacy-3.0.0/screenshot-10.png)

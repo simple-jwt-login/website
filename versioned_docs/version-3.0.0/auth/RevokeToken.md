@@ -76,4 +76,4 @@ $result = $simpleJwtLogin->revokeToken('Your JWT here', 'AUTH CODE');
 
 ## Screenshot
 
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-7.png?raw=true)
+![](/assets/images/screenshots/legacy-3.0.0/screenshot-7.png)

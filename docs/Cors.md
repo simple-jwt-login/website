@@ -46,7 +46,7 @@ Specifies which origins are permitted to access the resource.
 | :---- | :-------- |
 | `*` | Any origin is allowed (permissive - suitable for public APIs) |
 | `https://app.example.com` | Only that specific origin is allowed |
-| `https://app1.com, https://app2.com` | Multiple specific origins (space-separated) |
+| `https://app1.com, https://app2.com` | Multiple specific origins (comma-separated) |
 
 Default example value: `*`
 

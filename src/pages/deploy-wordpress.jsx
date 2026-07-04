@@ -713,11 +713,6 @@ function DeployWordPressPage() {
             Marketplace setup, no terminal, no install wizard. We hand you the
             login.
           </p>
-          <p className={styles.heroNote}>
-            <FontAwesomeIcon icon={faShieldHalved} /> Your API token is used
-            only in your browser to talk to DigitalOcean. It is never sent to
-            us or stored anywhere.
-          </p>
         </div>
       </header>
 
@@ -737,6 +732,11 @@ function DeployWordPressPage() {
                     <p className={styles.cardLead}>
                       Paste a DigitalOcean Personal Access Token with{' '}
                       <strong>write</strong> scope to get started.
+                    </p>
+                    <p className={styles.infoHint}>
+                      <FontAwesomeIcon icon={faShieldHalved} /> Your API token
+                      is used only in your browser to talk to DigitalOcean. It
+                      is never sent to us or stored anywhere.
                     </p>
                     <Field
                       label="DigitalOcean API token"
@@ -1159,7 +1159,7 @@ function DeployWordPressPage() {
                   WordPress server.
                 </p>
                 <Link to={REFERRAL_URL} className={styles.referralBtn}>
-                  Get $5 in credit <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                  Get Free Credits <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                 </Link>
                 <p className={styles.sideFinePrint}>
                   Already have an account? Just paste your token on the left.

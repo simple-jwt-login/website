@@ -164,7 +164,7 @@ xhr.send(data);
 
 ## Screenshot
 
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-4.png?raw=true)
+![](/assets/images/screenshots/legacy-3.0.0/screenshot-4.png)
 
 
 ## Features

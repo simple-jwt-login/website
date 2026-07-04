@@ -88,7 +88,7 @@ window.location.href="https://simplejwt-login.com?rest_route=/simple-jwt-login/v
 
 ## Screenshot
 
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-3.png?raw=true)
+![](/assets/images/screenshots/legacy-3.0.0/screenshot-3.png)
 
 
 ## Features

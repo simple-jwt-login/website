@@ -34,6 +34,7 @@ You can authenticate using any of the following combinations:
 | password | `required` `string` | User plain password. It is required if the `password_hash` is missing.|
 | password_hash | `optional` `string` | User password hash that it is stored in the Database. It is required if the `password` is missing. |
 | AUTH_CODE | `optional` `string` | Auth Code from the "Auth codes" section. Required only if the "Authentication Requires Auth Code" option is enabled. |
+| payload | `optional` `string` | Extra claims to merge into the JWT payload, as a JSON-encoded string, e.g. `{"department":"engineering"}`. Reserved claims (`iat`, `exp`, `email`, `id`, `site`, `username`) are always overridden by the authenticated user's data and cannot be set this way. |
 
 ## Request
 
@@ -62,6 +63,16 @@ OR
   "login": "username or email",
   "password" : "SomeSuperSecretPassword",
   "AUTH_CODE": "MySecretAuthCode"
+}
+```
+
+With extra payload claims:
+
+```json
+{
+  "email" : "test@simplejwtlogin.com",
+  "password": "SomeSuperSecretPassword",
+  "payload": "{\"department\":\"engineering\",\"region\":\"eu\"}"
 }
 ```
 
@@ -110,7 +121,7 @@ $result = $simpleJwtLogin->authenticate('email@simplejwtlogin.com', 'your passwo
 
 ## Screenshot
 
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-7.png?raw=true)
+![](/assets/images/screenshots/legacy-3.0.0/screenshot-7.png)
 
 
 ## Features

@@ -27,7 +27,7 @@ The following error will be displayed, when an endpoint is protected and no JWT 
 
 ## Screenshot
 
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-11.png?raw=true)
+![](/assets/images/screenshots/legacy-3.0.0/screenshot-11.png)
 
 ## Protection Modes
 

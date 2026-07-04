@@ -22,3 +22,12 @@ properties:
     type: string
     example: "MY_SUPER_SECRET_AUTH_CODE"
     description: Required when "Authentication Requires Auth Code" is enabled
+  payload:
+    type: string
+    nullable: true
+    example: '{"department":"engineering","region":"eu"}'
+    description: |
+      Optional extra claims to merge into the JWT payload, as a JSON-encoded
+      string. Reserved identity claims (e.g. `email`, `id`, `username`, `site`,
+      `iss`, `exp`, `iat`) are always stripped from this value and set from the
+      authenticated user instead - they cannot be overridden by the caller.

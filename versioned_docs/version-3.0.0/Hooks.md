@@ -254,7 +254,7 @@ Fires before the `GET /auth/validate` response is returned.
 
 ## Settings Screenshot
 
-![Hooks settings panel](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-9.png?raw=true)
+![Hooks settings panel](/assets/images/screenshots/legacy-3.0.0/screenshot-9.png)
 
 ---
 

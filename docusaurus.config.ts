@@ -349,11 +349,11 @@ const config: Config = {
           title: 'Ecosystem',
         },
         {
-          type: 'docsVersionDropdown',
-          position: 'left',
+          type: 'search',
+          position: 'right',
         },
         {
-          type: 'search',
+          type: 'docsVersionDropdown',
           position: 'right',
         },
         // {

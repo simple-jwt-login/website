@@ -16,6 +16,11 @@ description: |
   - Authentication must be enabled in the plugin settings.
   - If "Authentication Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
 
+  **Custom payload claims**
+  Optionally supply `payload` as a JSON-encoded string or a native JSON object to add
+  extra claims to the issued JWT. Reserved identity claims are always derived from the
+  authenticated user and cannot be overridden this way.
+
   **Two-Factor Authentication**
   When the authenticated user has Two-Factor Authentication enabled and the 2FA
   integration is active, the endpoint returns HTTP 200 with a challenge response

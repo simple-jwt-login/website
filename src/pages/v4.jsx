@@ -352,11 +352,11 @@ const migrationSteps = [
   {
     n: '2',
     title: 'Work through the breaking changes',
-    desc: 'The breaking changes are listed above. Address them before going to production - the error envelope change, errorCode → error_code rename, register response shape, removed /register route, and User Identification location are the most likely to affect existing integrations.',
+    desc: 'The breaking changes are listed above. Address them before going to production - the error envelope change, the errorCode → error_code rename, the register response shape change, the removed /register route, and the relocated User Identification setting are the most likely to affect existing integrations.',
   },
   {
     n: '3',
-    title: 'Re-save your settings',
+    title: 'Validate your settings',
     desc: 'Your settings are automatically migrated. Open Settings → Simple JWT Login and verify your values carried over correctly.',
   },
   {
@@ -388,7 +388,7 @@ export default function V4Page() {
           </p>
           <div className={styles.heroCta}>
             <Link
-              to="https://github.com/nicumicle/simple-jwt-login/blob/v4/download/simple-jwt-login.zip?raw=true"
+              to="https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"
               className={styles.actionButton}
               title="Download v4 Release Candidate"
             >
@@ -518,7 +518,7 @@ export default function V4Page() {
             <span className={styles.sectionEyebrow}>Benchmarks</span>
             <h2 className={styles.sectionTitle}>v3 vs v4 Performance</h2>
             <p className={styles.sectionLead}>
-              Load-test results on identical infrastructure.
+              Load-test results from 100 calls per endpoint on identical infrastructure.
               All endpoints returned 100% success rate except where noted.
             </p>
             <div className={v4Styles.perfTableWrap}>
@@ -591,7 +591,7 @@ export default function V4Page() {
               </p>
               <div className={styles.ctaButtons}>
                 <Link
-                  to="https://github.com/nicumicle/simple-jwt-login/blob/v4/download/simple-jwt-login.zip?raw=true"
+                  to="https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"
                   className={styles.actionButton}
                   title="Download v4 Release Candidate"
                 >
