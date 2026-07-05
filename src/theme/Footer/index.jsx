@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import {useCdnUrl} from '@site/src/utils/cdn';
 import styles from './index.module.css';
 
 const PAYPAL_URL =
@@ -81,6 +82,7 @@ function LinkColumn({ title, links }) {
 }
 
 export default function Footer() {
+  const brandLogoSrc = useCdnUrl('/assets/favicons/favicon.ico');
   return (
     <footer className={styles.footer}>
 
@@ -130,7 +132,7 @@ export default function Footer() {
             {/* Brand column */}
             <div className={styles.brandCol}>
               <div className={styles.brandLogo}>
-                <img src="/assets/favicons/favicon.ico" alt="" width="28" height="28" />
+                <img src={brandLogoSrc} alt="" width="28" height="28" />
                 <span className={styles.brandName}>Simple JWT Login</span>
               </div>
               <p className={styles.brandDesc}>

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faScrewdriverWrench, faLock, faFlask, faBoxArchive, faPlug, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faPhp } from '@fortawesome/free-brands-svg-icons';
 import sharedStyles from '../styles.module.css';
+import {useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -261,6 +262,7 @@ const frameworks = [
 
 /* ── Page ───────────────────────────────────────────────────── */
 export default function PhpSdkPage() {
+  const cdnBase = useCdnBase();
   return (
     <Layout
       title="PHP Client SDK - Simple JWT Login"
@@ -357,7 +359,7 @@ export default function PhpSdkPage() {
             <div className={styles.frameworkGrid}>
               {frameworks.map(({ src, alt, label }) => (
                 <div key={alt} className={styles.frameworkCard}>
-                  <img src={src} alt={alt} className={styles.frameworkLogo} />
+                  <img src={resolveCdnUrl(cdnBase, src)} alt={alt} className={styles.frameworkLogo} />
                   <span className={styles.frameworkLabel}>{label}</span>
                 </div>
               ))}

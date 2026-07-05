@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTerminal, faEnvelope, faBoxArchive, faCheck } from '@fortawesome/free-solid-svg-icons';
 import styles from './index.module.css';
 import sharedStyles from '../styles.module.css';
+import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 
 /* ── Data ───────────────────────────────────────────────────── */
 
@@ -225,11 +226,12 @@ function AddonCard({ name, tagline, description, icon, tags, status, docsHref, p
 }
 
 function IntegrationCard({ name, tagline, description, logo, logoAlt, tags, status, primaryHref, primaryLabel, highlights }) {
+  const logoSrc = useCdnUrl(logo);
   return (
     <div className={styles.integrationCard}>
       <div className={styles.integrationHeader}>
         <div className={styles.integrationLogoWrap}>
-          <img src={logo} alt={logoAlt} className={styles.integrationLogo} />
+          <img src={logoSrc} alt={logoAlt} className={styles.integrationLogo} />
         </div>
         <div>
           <div className={styles.addonNameRow}>
@@ -254,11 +256,12 @@ function IntegrationCard({ name, tagline, description, logo, logoAlt, tags, stat
 }
 
 function SdkCard({ name, tagline, description, tags, logos, install, primaryHref, primaryLabel, secondaryHref, secondaryLabel }) {
+  const cdnBase = useCdnBase();
   return (
     <div className={styles.sdkCard}>
       <div className={styles.sdkLogos}>
         {logos.map(({ src, alt }) => (
-          <img key={alt} src={src} alt={alt} className={styles.sdkLogo} />
+          <img key={alt} src={resolveCdnUrl(cdnBase, src)} alt={alt} className={styles.sdkLogo} />
         ))}
       </div>
       <h3 className={styles.sdkName}>{name}</h3>

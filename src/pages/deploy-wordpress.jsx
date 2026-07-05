@@ -29,9 +29,9 @@ const TOKEN_URL = 'https://cloud.digitalocean.com/account/api/tokens';
 const PREFERRED_SIZE = 's-1vcpu-2gb';
 
 // Simple JWT Login install sources. Stable comes from the WordPress.org
-// directory; the v4 release candidate is shipped as a zip on the v4 branch.
+// directory; v4 is shipped as a zip on the master branch.
 const V4_RC_PLUGIN_ZIP =
-  'https://github.com/nicumicle/simple-jwt-login/raw/v4/download/simple-jwt-login.zip';
+  'https://github.com/nicumicle/simple-jwt-login/raw/master/download/simple-jwt-login.zip';
 
 // ── Helpers ──────────────────────────────────────────────────
 async function doApi(path, token, options = {}) {
@@ -888,7 +888,7 @@ function DeployWordPressPage() {
                     {installPlugin && (
                       <Field
                         label="Plugin version"
-                        hint="Stable is the latest release from WordPress.org. The v4 release candidate adds API Keys, 2FA, Audit Logs, and Webhooks."
+                        hint="Stable is the latest release from WordPress.org. v4 adds API Keys, 2FA, Audit Logs, and Webhooks."
                       >
                         <select
                           className={styles.input}
@@ -897,7 +897,7 @@ function DeployWordPressPage() {
                           disabled={busy}
                         >
                           <option value="stable">Stable (WordPress.org)</option>
-                          <option value="v4-rc">v4 Release Candidate</option>
+                          <option value="v4-rc">v4</option>
                         </select>
                       </Field>
                     )}
@@ -1104,7 +1104,7 @@ function DeployWordPressPage() {
                       {result.pluginInstalled
                         ? ` Simple JWT Login${
                             result.pluginVersion === 'v4-rc'
-                              ? ' (v4 release candidate)'
+                              ? ' (v4)'
                               : ''
                           } is activated automatically once the install finishes.`
                         : ''}

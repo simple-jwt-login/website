@@ -13,16 +13,49 @@ jobs:
       - name: 🛎️ Checkout
         uses: actions/checkout@v4
 
-      - name: 🔧 Install and Build
+      - name: 📦 Install dependencies
+        run: yarn install
+
+      # - name: 🖼️ Optimize images
+      #   run: yarn optimize-images
+
+      # # Uploads static/assets-optimized/* to the Space under the "assets/"
+      # # prefix, so the resulting CDN URLs mirror the local /assets/... paths
+      # # that resolveCdnUrl() rewrites at build time (see src/utils/cdn.js).
+      # # Must run before the build step below, so the site never references
+      # # CDN URLs for files that aren't there yet.
+      # #
+      # # Requires these to be set on the repo (Settings → Secrets and
+      # # variables → Actions):
+      # #   secrets.DO_SPACES_KEY       - Spaces access key ID
+      # #   secrets.DO_SPACES_SECRET    - Spaces secret access key
+      # #   vars.DO_SPACES_BUCKET       - Space name, e.g. "simple-jwt-login"
+      # #   vars.DO_SPACES_REGION       - Space region, e.g. "nyc3"
+      # #   vars.REACT_APP_CDN_URL      - public CDN URL, e.g.
+      # #                                 "https://simple-jwt-login.nyc3.cdn.digitaloceanspaces.com"
+      # - name: ☁️ Sync optimized images to DigitalOcean Spaces
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.DO_SPACES_KEY }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.DO_SPACES_SECRET }}
+      #     AWS_DEFAULT_REGION: us-east-1 # unused by Spaces, aws-cli just requires one
+      #   run: |
+      #     aws s3 sync static/assets-optimized/ \
+      #       "s3://${{ vars.DO_SPACES_BUCKET }}/assets/" \
+      #       --endpoint-url "https://${{ vars.DO_SPACES_REGION }}.digitaloceanspaces.com" \
+      #       --acl public-read \
+      #       --delete
+
+      - name: 🔧 Build
         env:
           # REACT_APP_DOMAIN: "https://simple-jwt-login.github.io/"
           # REACT_APP_BASE_URL: "/website/"
-          
+
           REACT_APP_DOMAIN: "https://simplejwtlogin.com"
           REACT_APP_BASE_URL: "/"
-        run: |
-          yarn install
-          yarn build
+          
+          REACT_APP_CDN_URL: ""
+          REACT_APP_GA_MEASUREMENT_ID: "G-5XPQMK41CP"
+        run: yarn build
 
       - name: 🚀 Deploy
         uses: JamesIves/github-pages-deploy-action@v4

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxArchive, faGlobe, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faReact, faVuejs, faNodeJs } from '@fortawesome/free-brands-svg-icons';
 import sharedStyles from '../styles.module.css';
+import {useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -258,6 +259,7 @@ const frameworks = [
 
 /* ── Page ───────────────────────────────────────────────────── */
 export default function JsSdkPage() {
+  const cdnBase = useCdnBase();
   return (
     <Layout
       title="JavaScript Client SDK - Simple JWT Login"
@@ -353,7 +355,7 @@ export default function JsSdkPage() {
             <div className={styles.frameworkGrid}>
               {frameworks.map(({ src, alt, label }) => (
                 <div key={alt} className={styles.frameworkCard}>
-                  <img src={src} alt={alt} className={styles.frameworkLogo} />
+                  <img src={resolveCdnUrl(cdnBase, src)} alt={alt} className={styles.frameworkLogo} />
                   <span className={styles.frameworkLabel}>{label}</span>
                 </div>
               ))}

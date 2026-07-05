@@ -23,7 +23,8 @@
     "gen-api-v3": "docusaurus clean-api-docs all --plugin-id openapi-v3 && docusaurus gen-api-docs all --plugin-id openapi-v3",
     "gen-api": "yarn gen-api-v4 && yarn gen-api-v3",
     "build-api": "yarn run gen-openapi && yarn gen-api",
-    "spellcheck": "cspell --config .cspell.json 'docs/**/*.{md,mdx}' 'blog/**/*.md' 'releases/**/*.md' 'src/**/*.{jsx,tsx,ts}'"
+    "spellcheck": "cspell --config .cspell.json 'docs/**/*.{md,mdx}' 'blog/**/*.md' 'releases/**/*.md' 'src/**/*.{jsx,tsx,ts}'",
+    "optimize-images": "bash scripts/optimize-images.sh"
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
@@ -53,6 +54,8 @@
     "@docusaurus/tsconfig": "^3.9.2",
     "@docusaurus/types": "^3.9.2",
     "cspell": "^8.0.0",
+    "sharp-cli": "^5.2.0",
+    "svgo": "^4.0.1",
     "swagger-cli": "^4.0.4",
     "typescript": "~6.0.2"
   },

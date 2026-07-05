@@ -347,7 +347,7 @@ const migrationSteps = [
   {
     n: '1',
     title: 'Update the plugin',
-    desc: 'Download the release candidate from GitHub and upload the zip via Plugins → Add New → Upload Plugin, or wait for the stable release on the WordPress plugin directory.',
+    desc: 'Download the plugin from GitHub and upload the zip via Plugins → Add New → Upload Plugin, or install it from the WordPress plugin directory.',
   },
   {
     n: '2',
@@ -381,7 +381,7 @@ export default function V4Page() {
       <header className={v4Styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
         <div className="container">
-          <div className={v4Styles.versionBadge}>Release Candidate - v4.0.0</div>
+          <div className={v4Styles.versionBadge}>v4.0.0</div>
           <h1 className={v4Styles.heroTitle}>Simple JWT Login v4</h1>
           <p className={v4Styles.heroSubtitle}>
             API Keys, 2FA, Audit Logs, Webhooks, 4 OAuth providers - the biggest release yet.
@@ -390,9 +390,9 @@ export default function V4Page() {
             <Link
               to="https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"
               className={styles.actionButton}
-              title="Download v4 Release Candidate"
+              title="Download v4"
             >
-              <FontAwesomeIcon icon={faDownload} /> Download RC
+              <FontAwesomeIcon icon={faDownload} /> Download v4
             </Link>
             <Link to="/docs/" className={styles.btn} title="Read the docs">
               Read the docs →
@@ -583,19 +583,18 @@ export default function V4Page() {
           <div className="container">
             <div className={styles.ctaCard}>
               <div className={styles.ctaGlow} aria-hidden="true" />
-              <div className={v4Styles.ctaVersion}>v4.0.0 — Release Candidate</div>
+              <div className={v4Styles.ctaVersion}>v4.0.0</div>
               <h2 className={styles.ctaTitle}>Try v4 today</h2>
               <p className={styles.ctaSubtitle}>
-                Simple JWT Login v4 is free, open-source, and available as a release candidate.
-                The stable release is coming soon to the WordPress plugin directory.
+                Simple JWT Login v4 is free, open-source, and available now.
               </p>
               <div className={styles.ctaButtons}>
                 <Link
                   to="https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"
                   className={styles.actionButton}
-                  title="Download v4 Release Candidate"
+                  title="Download v4"
                 >
-                  <FontAwesomeIcon icon={faDownload} /> Download RC
+                  <FontAwesomeIcon icon={faDownload} /> Download v4
                 </Link>
                 <Link
                   to="https://github.com/nicumicle/simple-jwt-login"

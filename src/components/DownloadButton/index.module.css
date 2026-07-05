@@ -1,0 +1,108 @@
+/* One joined pill: label + caret, no visible seam except a thin divider. */
+.group {
+  position: relative;
+  display: inline-flex;
+  isolation: isolate;
+  z-index: 10;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px 0 0 999px;
+  text-decoration: none !important;
+  background: #1a202c;
+  color: #ffffff !important;
+  border: 1px solid #2d3748;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background 150ms ease;
+}
+
+.link:hover {
+  background: #2d3748;
+  text-decoration: none !important;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  padding: 0;
+  border-radius: 0 999px 999px 0;
+  border: 1px solid #2d3748;
+  border-left: none;
+  background: #1a202c;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.toggle:hover {
+  background: #2d3748;
+}
+
+html[data-theme='dark'] .link,
+html[data-theme='dark'] .toggle {
+  background: #2d3748;
+  border-color: #4a5568;
+  color: #e2e8f0 !important;
+}
+
+html[data-theme='dark'] .link:hover,
+html[data-theme='dark'] .toggle:hover {
+  background: #3a4a5c;
+}
+
+/* Positioned inline via style={} once mounted in the body portal - see
+   index.jsx. top/right are computed from the button's bounding rect. */
+.menu {
+  position: absolute;
+  z-index: 9999;
+  min-width: 220px;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  text-align: left;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: var(--ifm-color-primary-lightest);
+}
+
+.menuItemSelected {
+  background: var(--ifm-color-primary-lightest);
+}
+
+.menuItemLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.menuItemHint {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}

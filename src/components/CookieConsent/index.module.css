@@ -1,0 +1,56 @@
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--ifm-background-surface-color);
+  border-top: 1px solid var(--ifm-toc-border-color);
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.text {
+  margin: 0;
+  flex: 1 1 320px;
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-base);
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.decline,
+.accept {
+  border-radius: var(--ifm-button-border-radius);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid var(--ifm-color-primary);
+}
+
+.decline {
+  background: transparent;
+  color: var(--ifm-color-primary);
+}
+
+.accept {
+  background: var(--ifm-color-primary);
+  color: var(--ifm-button-color, #fff);
+}
+
+.accept:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
+.decline:hover {
+  background: var(--ifm-color-primary-lightest);
+}

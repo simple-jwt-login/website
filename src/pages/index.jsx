@@ -5,7 +5,9 @@ import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import Feature from "@site/src/components/feature/feature";
 import Review from "@site/src/components/review/review";
+import DownloadButton from "@site/src/components/DownloadButton";
 import Counter from '../components/counter/counter';
+import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBolt, faLock, faRocket, faWrench, faGlobe, faLink,
@@ -116,7 +118,6 @@ const awesomeFeatures = [
     image: "assets/images/features/google-plus.png",
     alt: "Google OAuth",
     link: "/docs/applications/google/login/",
-    beta: true,
   },
   {
     title: <>Use Google JWT on All Endpoints</>,
@@ -124,7 +125,6 @@ const awesomeFeatures = [
     image: "assets/images/features/google-plus-jwt.png",
     alt: "Google OAuth endpoints",
     link: "/docs/applications/google/setup/",
-    beta: true,
   },
 ];
 
@@ -189,6 +189,7 @@ const reviews = [
 
 function RecentPosts() {
   const recentPosts = require("../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json");
+  const articleIconSrc = useCdnUrl('assets/svg/article.svg');
   if (recentPosts === null || typeof recentPosts.blogPosts !== 'object') return null;
   return (
     <section className={styles.sectionPadding}>
@@ -199,7 +200,7 @@ function RecentPosts() {
           {recentPosts.blogPosts.slice(0, 6).map((item, index) => (
             <div className="col col--4 text-center" id={"blog-post" + index} key={"key" + index}>
               <div className={styles.blogPostHomepage}>
-                <img src="assets/svg/article.svg" alt="Blog Article" title={item.metadata.title} width="100" height="100" />
+                <img src={articleIconSrc} alt="Blog Article" title={item.metadata.title} width="100" height="100" />
                 <span className={styles.blogPostHomepageDate}>{item.metadata.formattedDate}</span>
                 <h3>
                   <a href={item.metadata.permalink} aria-label={item.metadata.title} title={item.metadata.title}>
@@ -217,6 +218,8 @@ function RecentPosts() {
 }
 
 export default function HomePage() {
+  const cdnBase = useCdnBase();
+  const heroLogoSrc = resolveCdnUrl(cdnBase, 'assets/favicons/apple-touch-icon.png');
   return (
     <Layout
       title="Free WordPress JWT Authentication Plugin"
@@ -231,7 +234,7 @@ export default function HomePage() {
         <div className="container">
           <div className={styles.heroEyebrow}>Free &amp; Open Source WordPress Plugin</div>
           <img
-            src="assets/favicons/apple-touch-icon.png"
+            src={heroLogoSrc}
             alt="Simple JWT Login logo"
             title="Simple JWT Login logo"
             width="88"
@@ -247,14 +250,7 @@ export default function HomePage() {
             <Link to="/docs/" className={styles.actionButton} title="Get started">
               Get started →
             </Link>
-            <Link
-              to="https://github.com/nicumicle/simple-jwt-login/blob/v3/download/simple-jwt-login.zip?raw=true"
-              className={styles.btn}
-              download={true}
-              title="Download Plugin"
-            >
-              Download
-            </Link>
+            <DownloadButton />
           </div>
           <div className={styles.heroStats}>
             <div className={styles.heroStat}>
@@ -289,7 +285,7 @@ export default function HomePage() {
       <div className={styles.v4Banner}>
         <div className={styles.v4BannerInner}>
           <span className={styles.v4BannerBadge}>New</span>
-          <span className={styles.v4BannerText}>Simple JWT Login v4 is available as a release candidate - API Keys, 2FA, Audit Logs, Webhooks, and more.</span>
+          <span className={styles.v4BannerText}>Simple JWT Login v4 is now available - API Keys, 2FA, Audit Logs, Webhooks, and more.</span>
           <Link to="/v4" className={styles.v4BannerLink} title="See what's new in v4">
             See what's new →
           </Link>
@@ -419,7 +415,7 @@ export default function HomePage() {
                       {logos && logos.length > 0 && (
                         <div className={styles.clientCardLogos}>
                           {logos.map(({ src, alt }) => (
-                            <img key={alt} src={src} alt={alt} title={alt} width="36" height="36" />
+                            <img key={alt} src={resolveCdnUrl(cdnBase, src)} alt={alt} title={alt} width="36" height="36" />
                           ))}
                         </div>
                       )}
@@ -584,14 +580,7 @@ export default function HomePage() {
                 <Link to="/docs/" className={styles.actionButton} title="Read the documentation">
                   Get started →
                 </Link>
-                <Link
-                  to="https://github.com/nicumicle/simple-jwt-login/blob/v3/download/simple-jwt-login.zip?raw=true"
-                  className={styles.btn}
-                  download={true}
-                  title="Download the plugin"
-                >
-                  Download
-                </Link>
+                <DownloadButton />
               </div>
             </div>
           </div>

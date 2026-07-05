@@ -34,6 +34,18 @@ const config: Config = {
     },
   },
 
+  // Exposed to the client bundle. Google Analytics is only loaded once the
+  // visitor accepts the cookie consent banner - see src/theme/Root.jsx and
+  // src/utils/analytics.js.
+  //
+  // cdnUrl: when set, images are served from this CDN instead of /static -
+  // see src/utils/cdn.js (JSX images) and plugins/rehype-cdn-images.js
+  // (markdown/MDX images in docs, blog, releases, and API reference).
+  customFields: {
+    gaMeasurementId: process.env.REACT_APP_GA_MEASUREMENT_ID || '',
+    cdnUrl: process.env.REACT_APP_CDN_URL || '',
+  },
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -79,6 +91,8 @@ const config: Config = {
         blogSidebarCount: "ALL",
         postsPerPage: 6,
         blogTitle: 'Releases',
+        rehypePlugins: [require('./plugins/rehype-cdn-images')],
+        beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
       },
     ],
 
@@ -90,6 +104,8 @@ const config: Config = {
         routeBasePath: 'api/v4',
         docItemComponent: "@theme/ApiItem",
         sidebarPath: './api/v4/sidebar.ts',
+        rehypePlugins: [require('./plugins/rehype-cdn-images')],
+        beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
       },
     ],
 
@@ -100,6 +116,8 @@ const config: Config = {
         path: 'api/v3',
         routeBasePath: 'api/v3',
         docItemComponent: "@theme/ApiItem",
+        rehypePlugins: [require('./plugins/rehype-cdn-images')],
+        beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
       },
     ],
 
@@ -253,6 +271,8 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl:  'https://github.com/simple-jwt-login/website/tree/main',
           //docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
+          rehypePlugins: [require('./plugins/rehype-cdn-images')],
+          beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
           lastVersion: 'current',
           versions: {
             current: {
@@ -267,6 +287,8 @@ const config: Config = {
           },
         },
         blog: {
+          rehypePlugins: [require('./plugins/rehype-cdn-images')],
+          beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
           showReadingTime: true,
           feedOptions: {
             xslt: true,
