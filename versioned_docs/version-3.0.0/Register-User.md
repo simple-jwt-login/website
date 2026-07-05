@@ -164,7 +164,7 @@ xhr.send(data);
 
 ## Screenshot
 
-![](/assets/images/screenshots/legacy-3.0.0/screenshot-4.png)
+![Register user API settings screen for Simple JWT Login v3.0.0](/assets/images/screenshots/legacy-3.0.0/screenshot-4.png)
 
 
 ## Features

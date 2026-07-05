@@ -1,5 +1,5 @@
 ---
-title: "5 Features of Simple JWT Login That Make WordPress API Authentication a Breeze"
+title: "5 Standout Features of Simple JWT Login"
 description: A deep dive into the five standout features of Simple JWT Login that help you build secure, modern WordPress-powered applications without the boilerplate.
 slug: /top-features-simple-jwt-login/
 hide_table_of_contents: false

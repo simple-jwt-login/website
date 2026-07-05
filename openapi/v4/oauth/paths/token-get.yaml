@@ -1,6 +1,6 @@
 tags:
   - oauth
-summary: Exchange OAuth authorization code for a WordPress JWT (GET)
+summary: OAuth Redirect Login (GET)
 operationId: oauthTokenGet
 description: |
   Browser-redirect flow: exchanges a provider authorization code for a WordPress

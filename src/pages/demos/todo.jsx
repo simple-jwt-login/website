@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faShieldHalved, faDownload } from '@fortawesome/free-solid-svg-icons';
 import DemoFrame from '../../components/DemoFrame';
 import styles from '../styles.module.css';
 import ex from './demo.module.css';
@@ -42,6 +42,12 @@ export default function TodoDemoPage() {
           </div>
 
           <DemoFrame src="/demo-apps/todo/index.html" title="Todo app demo" height="640px" />
+
+          <div style={{ marginTop: '1.5rem' }}>
+            <a href="/demo-apps/todo/index.html" download className={styles.actionButton}>
+              <FontAwesomeIcon icon={faDownload} /> Download example
+            </a>
+          </div>
         </div>
       </main>
     </Layout>

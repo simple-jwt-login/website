@@ -121,7 +121,7 @@ $result = $simpleJwtLogin->authenticate('email@simplejwtlogin.com', 'your passwo
 
 ## Screenshot
 
-![](/assets/images/screenshots/legacy-3.0.0/screenshot-7.png)
+![Authentication API settings screen for Simple JWT Login v3.0.0](/assets/images/screenshots/legacy-3.0.0/screenshot-7.png)
 
 
 ## Features

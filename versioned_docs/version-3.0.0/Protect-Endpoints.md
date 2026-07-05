@@ -27,7 +27,7 @@ The following error will be displayed, when an endpoint is protected and no JWT 
 
 ## Screenshot
 
-![](/assets/images/screenshots/legacy-3.0.0/screenshot-11.png)
+![Protect endpoints settings screen for Simple JWT Login v3.0.0](/assets/images/screenshots/legacy-3.0.0/screenshot-11.png)
 
 ## Protection Modes
 

@@ -292,7 +292,7 @@ export default function EcosystemPage() {
   return (
     <Layout
       title="Ecosystem - Add-ons, Integrations & SDKs"
-      description="Explore every add-on, integration, and client SDK built around Simple JWT Login - from WP-CLI to Google OAuth, MailPoet magic links, WPGraphQL, PHP and JavaScript clients."
+      description="Explore every add-on, integration, and SDK for Simple JWT Login - WP-CLI, Google OAuth, MailPoet, WPGraphQL, PHP and JS clients."
     >
       <Head>
         <meta property="og:title" content="Ecosystem - Simple JWT Login" />

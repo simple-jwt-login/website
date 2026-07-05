@@ -1,10 +1,12 @@
 ---
-title: How to use the JavaScript SDK in a React App
-description: In this tutorial you will see and real world example on how to use the simple-jwt-login JS SDK in a React App.
+title: Using the JavaScript SDK in a React App
+description: A real-world walkthrough of using the Simple JWT Login JavaScript SDK inside a React app to authenticate against the WordPress REST API.
+keywords: [JavaScript SDK, React, JWT authentication, WordPress REST API, headless WordPress]
 slug: /javascript-sdk-usage-react/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [tutorials]
+image: /assets/favicons/android-chrome-192x192.png
 ---
 
 We just released the first version for the JavaScript SDK.

@@ -1,6 +1,6 @@
 tags:
   - oauth
-summary: Exchange OAuth token for a WordPress JWT (POST)
+summary: OAuth Token Exchange (API)
 operationId: oauthTokenPost
 description: |
   API flow: exchanges a provider-issued token for a WordPress JWT and returns the

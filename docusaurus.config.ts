@@ -142,12 +142,29 @@ const config: Config = {
               if (url === rest.siteConfig.url || url === rest.siteConfig.url + '/') {
                 return { ...item, priority: 1.0, changefreq: 'weekly' };
               }
+              // Current major-release landing page
+              if (url.endsWith('/v4') || url.endsWith('/v4/')) {
+                return { ...item, priority: 0.9, changefreq: 'weekly' };
+              }
+              // Old, unmaintained doc versions - keep indexable but deprioritize so
+              // they don't compete with current docs for the same search queries.
+              if (/\/docs\/\d+\.\d+\.\d+\//.test(url)) {
+                return { ...item, priority: 0.3, changefreq: 'yearly' };
+              }
               // Core doc pages
               if (url.includes('/docs/')) {
                 return { ...item, priority: 0.8, changefreq: 'monthly' };
               }
               // Blog posts are regularly updated
               if (url.includes('/blog/')) {
+                return { ...item, priority: 0.7, changefreq: 'monthly' };
+              }
+              // Release notes - same value as blog posts
+              if (url.includes('/releases/')) {
+                return { ...item, priority: 0.7, changefreq: 'monthly' };
+              }
+              // Ecosystem, demos, and other product pages
+              if (/\/(ecosystem|demos)(\/|$)/.test(url)) {
                 return { ...item, priority: 0.7, changefreq: 'monthly' };
               }
               // API reference

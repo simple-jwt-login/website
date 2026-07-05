@@ -2,7 +2,7 @@
 slug: /revoke-token/
 title: Revoke token
 sidebar_position: 4
-description: Immediately invalidate a JWT so it is rejected by all future requests. Use when logging out users or responding to suspicious activity in your headless WordPress app.
+description: Immediately invalidate a JWT so it's rejected by future requests - use on logout or when responding to suspicious activity.
 keywords: [WordPress revoke JWT, invalidate JWT WordPress, logout WordPress JWT, revoke token WordPress REST API, Simple JWT Login revoke]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

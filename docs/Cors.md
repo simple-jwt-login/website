@@ -2,7 +2,7 @@
 slug: /cors/
 title: CORS
 sidebar_position: 98
-description: Configure Cross-Origin Resource Sharing (CORS) headers for Simple JWT Login REST endpoints. Control allowed origins, methods, and headers for browser-based clients.
+description: Configure CORS headers for Simple JWT Login REST endpoints - control allowed origins, methods, and headers for browser clients.
 keywords: [WordPress CORS, Cross-Origin Resource Sharing WordPress, JWT CORS headers, headless WordPress CORS, Access-Control-Allow-Origin WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

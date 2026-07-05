@@ -1670,7 +1670,7 @@ paths:
     post:
       tags:
         - authenticate_user
-      summary: Validate a JWT and retrieve user details (POST variant)
+      summary: Validate a JWT (POST)
       operationId: validateJWTPost
       security:
         - BearerAuth: []
@@ -2066,7 +2066,7 @@ paths:
     get:
       tags:
         - oauth
-      summary: Exchange OAuth authorization code for a WordPress JWT (GET)
+      summary: OAuth Redirect Login (GET)
       operationId: oauthTokenGet
       description: |
         Browser-redirect flow: exchanges a provider authorization code for a WordPress
@@ -2164,7 +2164,7 @@ paths:
     post:
       tags:
         - oauth
-      summary: Exchange OAuth token for a WordPress JWT (POST)
+      summary: OAuth Token Exchange (API)
       operationId: oauthTokenPost
       description: |
         API flow: exchanges a provider-issued token for a WordPress JWT and returns the

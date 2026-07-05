@@ -1,6 +1,6 @@
 ---
-title: "Headless WordPress in 2026: JWT Authentication Done Right with Simple JWT Login"
-description: Learn how to add production-ready JWT authentication to your headless WordPress setup using Simple JWT Login - from token generation to protected endpoints and password resets.
+title: "Headless WordPress: JWT Auth Done Right"
+description: Add production-ready JWT authentication to your headless WordPress setup - from token generation to protected endpoints.
 slug: /headless-wordpress-jwt-authentication/
 hide_table_of_contents: false
 authors: nicumicle

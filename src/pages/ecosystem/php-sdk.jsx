@@ -266,7 +266,7 @@ export default function PhpSdkPage() {
   return (
     <Layout
       title="PHP Client SDK - Simple JWT Login"
-      description="Official PHP client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from any PHP application - one Composer package, any framework."
+      description="Official PHP client for Simple JWT Login. Authenticate, register, validate and revoke tokens from any PHP app - one Composer package."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>

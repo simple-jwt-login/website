@@ -105,7 +105,7 @@ xhr.send(data);
 
 ## Screenshot
 
-![](/assets/images/screenshots/legacy-3.0.0/screenshot-6.png)
+![Change password screen for Simple JWT Login v3.0.0](/assets/images/screenshots/legacy-3.0.0/screenshot-6.png)
 
 
 

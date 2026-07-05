@@ -1,6 +1,6 @@
 ---
 slug: /code-examples/woocommerce-headless-store
-title: Headless WooCommerce store with Vanilla JS
+title: Headless WooCommerce with Vanilla JS
 sidebar_label: WooCommerce Store (Vanilla JS)
 sidebar_position: 3
 author: Nicu Micle

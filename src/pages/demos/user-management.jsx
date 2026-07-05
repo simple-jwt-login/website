@@ -7,29 +7,30 @@ import DemoFrame from '../../components/DemoFrame';
 import styles from '../styles.module.css';
 import ex from './demo.module.css';
 
-export default function WooCommerceDemoPage() {
+export default function UserManagementDemoPage() {
   return (
     <Layout
-      title="Headless WooCommerce Demo"
-      description="Manage WooCommerce products, cart, and checkout with only a JWT, live in your browser."
+      title="WordPress User Management Demo"
+      description="List, search, and delete WordPress users with only a JWT, live in your browser - administrator access required."
     >
       <main className={styles.sectionPadding}>
         <div className="container">
           <Link to="/demos" className={ex.back}>
             <FontAwesomeIcon icon={faArrowLeft} /> All demos
           </Link>
-          <h1 className={styles.sectionTitle}>Headless WooCommerce store</h1>
+          <h1 className={styles.sectionTitle}>WordPress user management</h1>
           <p className={styles.sectionLead}>
-            Sign in with your WordPress credentials, then manage products, add items to the
-            cart, and place an order - all authenticated with a JWT in the Authorization header.
+            Sign in with your WordPress credentials, then list, search, and delete user
+            accounts - all authenticated with a JWT in the Authorization header. Requires
+            an Administrator account; any other role is denied access.
           </p>
 
           <div className={ex.notice}>
-            <strong>Before it works,</strong> on your WordPress site: activate WooCommerce
-            (with a payment method such as Cash on Delivery), enable the{' '}
-            <Link to="/docs/integrations/third-party/woocommerce/">WooCommerce integration</Link>{' '}
-            and its <em>Store API cart &amp; checkout</em> toggle, and enable CORS for this origin.
-            Product management needs an Administrator / Shop Manager account. Use HTTPS.
+            <strong>Before it works,</strong> on your WordPress site: enable CORS for this
+            origin and sign in with an <strong>Administrator</strong> account - listing and
+            deleting other users needs the <code>list_users</code> / <code>delete_users</code>{' '}
+            capability. Deleting a user reassigns their posts to the signed-in admin
+            (the REST API's <code>reassign</code> parameter). Use HTTPS.
           </div>
 
           <div className={ex.infoBox}>
@@ -41,10 +42,10 @@ export default function WooCommerceDemoPage() {
             </span>
           </div>
 
-          <DemoFrame src="/demo-apps/woocommerce/index.html" title="WooCommerce headless demo" />
+          <DemoFrame src="/demo-apps/user-management/index.html" title="User management headless demo" />
 
           <div style={{ marginTop: '1.5rem' }}>
-            <a href="/demo-apps/woocommerce/index.html" download className={styles.actionButton}>
+            <a href="/demo-apps/user-management/index.html" download className={styles.actionButton}>
               <FontAwesomeIcon icon={faDownload} /> Download example
             </a>
           </div>

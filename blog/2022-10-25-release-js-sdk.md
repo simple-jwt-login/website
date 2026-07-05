@@ -1,10 +1,12 @@
 ---
 title: Release JavaScript SDK
-description: The Javascript SDK 0.1.0 has been released
+description: The official Simple JWT Login JavaScript SDK is now available, making it easy to authenticate against the WordPress REST API from JS apps.
+keywords: [JavaScript SDK, JWT authentication, WordPress REST API, headless WordPress]
 slug: /simple-jwt-login-js-sdk-0.1.1/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [release]
+image: /assets/favicons/android-chrome-192x192.png
 ---
 
 Finally, the JavaScript SDK for Simple JWT Login has been released.

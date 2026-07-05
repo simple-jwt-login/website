@@ -1,6 +1,8 @@
 ---
 slug: /code-examples/todo-app
 title: Todo App with Vanilla JS
+description: Build a JWT-authenticated todo app in vanilla JavaScript, storing each todo as a private WordPress post via the REST API.
+keywords: [vanilla JavaScript, JWT authentication, WordPress REST API, todo app, code example]
 sidebar_label: Todo App (Vanilla JS)
 sidebar_position: 2
 author: Nicu Micle

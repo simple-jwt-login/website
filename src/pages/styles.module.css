@@ -316,6 +316,39 @@ html[data-theme='dark'] .sectionTitle {
   line-height: 1.65;
 }
 
+/* ── Feature Filter Bar ────────────────────────────────────── */
+.featureFilterBar {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.featureFilterBtn {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color, transparent);
+  color: var(--sjl-text-muted, #64748b);
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.featureFilterBtn:hover {
+  border-color: var(--ifm-color-primary-light);
+  color: var(--ifm-color-primary);
+}
+
+.featureFilterBtnActive,
+.featureFilterBtnActive:hover {
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #ffffff;
+}
+
 /* ── Gray Section ──────────────────────────────────────────── */
 .sectionGray {
   background: #f6f8fa;

@@ -1,6 +1,6 @@
 tags:
   - authenticate_user
-summary: Validate a JWT and retrieve user details (POST variant)
+summary: Validate a JWT (POST)
 operationId: validateJWTPost
 security:
   - BearerAuth: []

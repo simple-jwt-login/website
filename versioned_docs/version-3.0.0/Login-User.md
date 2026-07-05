@@ -88,7 +88,7 @@ window.location.href="https://simplejwt-login.com?rest_route=/simple-jwt-login/v
 
 ## Screenshot
 
-![](/assets/images/screenshots/legacy-3.0.0/screenshot-3.png)
+![Login user API settings screen for Simple JWT Login v3.0.0](/assets/images/screenshots/legacy-3.0.0/screenshot-3.png)
 
 
 ## Features

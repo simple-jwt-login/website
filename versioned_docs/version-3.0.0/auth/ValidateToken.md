@@ -109,4 +109,4 @@ $result = $simpleJwtLogin->validateToken('your JWT here', 'AUTH CODE');
 
 ## Screenshot
 
-![](/assets/images/screenshots/legacy-3.0.0/screenshot-7.png)
+![Validate token API settings screen for Simple JWT Login v3.0.0](/assets/images/screenshots/legacy-3.0.0/screenshot-7.png)

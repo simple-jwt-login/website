@@ -2,7 +2,7 @@
 slug: /webhooks/
 title: Webhooks
 sidebar_position: 14
-description: Fire HTTP notifications to external endpoints on login, register, auth, and other Simple JWT Login events. Configure URL, method, headers, and a custom JSON payload.
+description: Fire HTTP notifications to external endpoints on login, register, and other Simple JWT Login events with a custom JSON payload.
 keywords: [WordPress webhook, JWT webhook, WordPress REST API webhook, Simple JWT Login webhook, HTTP notification WordPress, event-driven WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

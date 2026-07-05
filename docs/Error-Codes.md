@@ -1,6 +1,8 @@
 ---
 slug: /error-codes/
 title: Error codes
+description: Full reference of Simple JWT Login error codes - what each numeric errorCode means and how to resolve it.
+keywords: [error codes, JWT errors, WordPress REST API, troubleshooting]
 sidebar_position: 99
 author: Nicu Micle
 author_url: https://github.com/nicumicle

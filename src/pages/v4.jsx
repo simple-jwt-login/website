@@ -375,8 +375,8 @@ const migrationSteps = [
 export default function V4Page() {
   return (
     <Layout
-      title="Simple JWT Login v4 - API Keys, 2FA, WooCommerce, Audit Logs, Webhooks & More"
-      description="Simple JWT Login v4 introduces API Keys, 2FA support, 4 OAuth providers, WooCommerce JWT, Audit Logs, Webhooks, JWT Decoder, code examples, and improved refresh tokens."
+      title="What's New in Simple JWT Login v4"
+      description="Simple JWT Login v4 introduces API Keys, 2FA, 4 OAuth providers, WooCommerce JWT, Audit Logs, Webhooks, and a JWT Decoder."
     >
       <Head>
         <meta property="og:title" content="Simple JWT Login v4 - API Keys, 2FA, WooCommerce, Audit Logs, Webhooks & More" />

@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faListCheck, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faListCheck, faArrowRight, faUsersGear } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles.module.css';
 import ex from './demo.module.css';
 
@@ -20,6 +20,13 @@ const demos = [
     desc: 'A minimal todo app where each todo is a private WordPress post, authenticated with a JWT.',
     tags: ['WP REST API', 'Private posts', 'Vanilla JS'],
     to: '/demos/todo',
+  },
+  {
+    icon: faUsersGear,
+    title: 'WordPress user management',
+    desc: 'List, search, and delete WordPress users with only a JWT - Administrator role required.',
+    tags: ['WP REST API', 'Users', 'Vanilla JS'],
+    to: '/demos/user-management',
   },
 ];
 

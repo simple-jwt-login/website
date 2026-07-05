@@ -2,7 +2,7 @@
 slug: /hooks/
 title: Hooks
 sidebar_position: 97
-description: Simple JWT Login exposes 16 WordPress action and filter hooks - customize JWT payloads, authentication responses, user registration, redirects, and more without touching plugin code.
+description: Simple JWT Login exposes 16 WordPress action and filter hooks to customize JWT payloads, auth responses, registration, redirects, and more.
 keywords: [WordPress JWT hooks, Simple JWT Login filters, custom JWT payload, WordPress authentication hooks, JWT plugin customization, WordPress action hooks, WordPress filter hooks]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
@@ -13,6 +13,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBolt, faLock, faRocket, faWrench, faGlobe, faLink,
   faArrowsRotate, faHeart, faStar, faChartLine, faEarthEurope,
+  faKey, faShieldHalved, faUserShield, faClipboardList, faBell,
+  faCartShopping, faLayerGroup, faVial,
 } from '@fortawesome/free-solid-svg-icons'
 import { faPhp } from '@fortawesome/free-brands-svg-icons'
 
@@ -50,6 +52,7 @@ const awesomeFeatures = [
     image: "assets/svg/login-user-2.svg",
     alt: "Login user",
     link: "/docs/autologin/",
+    version: "both",
   },
   {
     title: <>Register Users</>,
@@ -57,13 +60,14 @@ const awesomeFeatures = [
     image: "assets/svg/create-user.svg",
     alt: "Register user",
     link: "/docs/register-user/",
+    version: "both",
   },
   {
     title: <>Delete Users</>,
     description: <>Remove users securely via API using verified JWT tokens.</>,
     image: "assets/svg/delete-user.svg",
     alt: "Delete user",
-    link: "/docs/delete-user/",
+    version: "both",
   },
   {
     title: <>Authenticate Users</>,
@@ -71,6 +75,7 @@ const awesomeFeatures = [
     image: "assets/svg/authenticate-user.svg",
     alt: "Authenticate user",
     link: "/docs/authentication/",
+    version: "both",
   },
   {
     title: <>Change &amp; Reset Password</>,
@@ -78,12 +83,14 @@ const awesomeFeatures = [
     image: "assets/images/features/password.png",
     alt: "Change and Reset password",
     link: "/docs/reset-password/",
+    version: "both",
   },
   {
     title: <>Limit Access by IP</>,
     description: <>Restrict access to trusted IPs - supports wildcards (e.g. <code>85.*.*.*</code>) for subnet-level control.</>,
     image: "assets/images/features/ip.png",
     alt: "Limit access by IP",
+    version: "both",
   },
   {
     title: <>Create Users with Different Roles</>,
@@ -91,6 +98,7 @@ const awesomeFeatures = [
     image: "assets/images/features/roles.png",
     alt: "Roles",
     link: "/docs/register-user/#new-user-settings",
+    version: "both",
   },
   {
     title: <>Integrate with Other Plugins</>,
@@ -98,6 +106,7 @@ const awesomeFeatures = [
     image: "assets/images/features/plug-in.png",
     alt: "Integrate with other plugins",
     link: "/docs/mailpoet/",
+    version: "both",
   },
   {
     title: <>Protect Endpoints</>,
@@ -105,6 +114,7 @@ const awesomeFeatures = [
     image: "assets/images/features/protect-endpoints.png",
     alt: "Protect endpoints",
     link: "/docs/protect-endpoints/",
+    version: "both",
   },
   {
     title: <>Use JWT on Any Endpoint</>,
@@ -112,6 +122,7 @@ const awesomeFeatures = [
     image: "assets/images/features/protect.png",
     alt: "JWT on other endpoints",
     link: "/docs/configuration#jwt-middleware-for-all-wordpress-endpoints",
+    version: "both",
   },
   {
     title: <>Google OAuth Integration</>,
@@ -119,6 +130,7 @@ const awesomeFeatures = [
     image: "assets/images/features/google-plus.png",
     alt: "Google OAuth",
     link: "/docs/applications/google/login/",
+    version: "both",
   },
   {
     title: <>Use Google JWT on All Endpoints</>,
@@ -126,6 +138,71 @@ const awesomeFeatures = [
     image: "assets/images/features/google-plus-jwt.png",
     alt: "Google OAuth endpoints",
     link: "/docs/applications/google/setup/",
+    version: "both",
+  },
+  {
+    title: <>API Keys</>,
+    description: <>Issue long-lived, scoped API keys for server-to-server integrations and CI/CD - no JWT expiry to manage.</>,
+    faIcon: faKey,
+    alt: "API Keys",
+    link: "/docs/api-keys/",
+    version: "v4",
+  },
+  {
+    title: <>Sign In with Auth0, Facebook &amp; GitHub</>,
+    description: <>Expand OAuth beyond Google - let users sign in with Auth0, Facebook, or GitHub and receive a WordPress JWT.</>,
+    faIcon: faShieldHalved,
+    alt: "OAuth with Auth0, Facebook, and GitHub",
+    link: "/docs/oauth/",
+    version: "v4",
+  },
+  {
+    title: <>Two-Factor Authentication</>,
+    description: <>Require a 2FA code before issuing a full JWT - works with the WordPress Two Factor plugin.</>,
+    faIcon: faUserShield,
+    alt: "Two-Factor Authentication",
+    link: "/docs/integrations/third-party/two-factor/",
+    version: "v4",
+  },
+  {
+    title: <>Audit Logs</>,
+    description: <>Every login, registration, token, and OAuth event is logged for auditing and debugging - searchable from the admin.</>,
+    faIcon: faClipboardList,
+    alt: "Audit Logs",
+    link: "/docs/audit-logs/",
+    version: "v4",
+  },
+  {
+    title: <>Webhooks</>,
+    description: <>Fire HTTP callbacks on authentication events - integrate with Slack, logging services, or any external system.</>,
+    faIcon: faBell,
+    alt: "Webhooks",
+    link: "/docs/webhooks/",
+    version: "v4",
+  },
+  {
+    title: <>Headless WooCommerce</>,
+    description: <>Authenticate the WooCommerce REST and Store API with a JWT - manage products and run a headless cart &amp; checkout.</>,
+    faIcon: faCartShopping,
+    alt: "Headless WooCommerce",
+    link: "/docs/integrations/third-party/woocommerce/",
+    version: "v4",
+  },
+  {
+    title: <>Multiple JWT Decryption Keys</>,
+    description: <>Define multiple decryption keys and let the plugin pick the right one automatically, based on the JWT header or payload.</>,
+    faIcon: faLayerGroup,
+    alt: "Multiple JWT Decryption Keys",
+    link: "/docs/authentication/",
+    version: "v4",
+  },
+  {
+    title: <>JWT Decoder</>,
+    description: <>Paste any JWT in the WordPress admin to inspect its header and payload instantly - no external tools needed.</>,
+    faIcon: faVial,
+    alt: "JWT Decoder",
+    link: "/docs/dashboard/",
+    version: "v4",
   },
 ];
 
@@ -218,13 +295,30 @@ function RecentPosts() {
   );
 }
 
+const FEATURE_FILTERS = [
+  { key: 'all', label: 'All' },
+  { key: 'v3', label: 'V3' },
+  { key: 'v4', label: 'V4' },
+];
+
+function matchesFeatureFilter(feature, filter) {
+  if (filter === 'v3') return feature.version === 'both';
+  if (filter === 'v4') return feature.version === 'v4' || feature.version === 'both';
+  return true;
+}
+
 export default function HomePage() {
   const cdnBase = useCdnBase();
   const heroLogoSrc = resolveCdnUrl(cdnBase, 'assets/favicons/apple-touch-icon.png');
+  const [featureFilter, setFeatureFilter] = useState('all');
+  const filteredFeatures = useMemo(
+    () => awesomeFeatures.filter((feature) => matchesFeatureFilter(feature, featureFilter)),
+    [featureFilter]
+  );
   return (
     <Layout
       title="Free WordPress JWT Authentication Plugin"
-      description="Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the REST API. Login, register users, protect endpoints, auto-login, and more - no coding required."
+      description="Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the REST API - no coding required."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -244,7 +338,7 @@ export default function HomePage() {
           />
           <h1 className={styles.heroTitle}>Simple JWT Login</h1>
           <p className={styles.heroSubtitle}>
-            JWT authentication for your WordPress REST API -<br className={styles.heroBreak} />
+            The WordPress Authentication Framework for your REST API -<br className={styles.heroBreak} />
             set up in minutes, no coding required.
           </p>
           <div className={styles.heroCta}>
@@ -301,8 +395,25 @@ export default function HomePage() {
             <div className="container">
               <span className={styles.sectionEyebrow}>Core Features</span>
               <h2 className={styles.sectionTitle}>Everything you need for JWT authentication</h2>
+              <p className={styles.sectionLead}>
+                Each feature is tagged <strong>V3</strong> or <strong>V4</strong> depending on which version introduced it.{' '}
+                <Link to="/v4" title="See what's new in v4">See everything new in v4 →</Link>
+              </p>
+              <div className={styles.featureFilterBar} role="group" aria-label="Filter features by version">
+                {FEATURE_FILTERS.map(({ key, label }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    className={clsx(styles.featureFilterBtn, featureFilter === key && styles.featureFilterBtnActive)}
+                    onClick={() => setFeatureFilter(key)}
+                    aria-pressed={featureFilter === key}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
               <div className="row">
-                {awesomeFeatures.map((props, idx) => (
+                {filteredFeatures.map((props, idx) => (
                   <Feature key={idx} {...props} />
                 ))}
               </div>
@@ -435,6 +546,23 @@ export default function HomePage() {
             <div style={{ marginTop: '2.5rem' }}>
               <Link to="/ecosystem/" className={styles.actionButton} title="View all integrations &amp; SDKs">
                 View all integrations &amp; SDKs →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Demos ─────────────────────────────────────────── */}
+        <section className={styles.sectionPadding}>
+          <div className="container">
+            <span className={styles.sectionEyebrow}>Try it live</span>
+            <h2 className={styles.sectionTitle}>See it in action</h2>
+            <p className={styles.sectionLead}>
+              Run live demos right in your browser, against your own WordPress site -
+              nothing is sent anywhere except the URL you provide.
+            </p>
+            <div style={{ marginTop: '2rem' }}>
+              <Link to="/demos/" className={styles.actionButton} title="View all demos">
+                View all demos →
               </Link>
             </div>
           </div>

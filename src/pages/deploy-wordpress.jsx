@@ -680,7 +680,7 @@ function DeployWordPressPage() {
 
   return (
     <Layout
-      title="Deploy WordPress on DigitalOcean - One Click"
+      title="One-Click WordPress on DigitalOcean"
       description="Spin up a fully installed WordPress site on DigitalOcean in one click, with Simple JWT Login pre-installed. Your API token never leaves your browser."
     >
       {/* ── Hero ─────────────────────────────────────────── */}

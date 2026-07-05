@@ -2,7 +2,7 @@
 slug: /reset-password/
 title: Reset password
 sidebar_position: 6
-description: Implement a full password reset flow via the WordPress REST API using Simple JWT Login - request a reset code by email, then apply the new password in a second call.
+description: Implement a full password reset flow via the WordPress REST API - request a reset code by email, then apply the new password.
 keywords: [WordPress reset password API, REST API password reset WordPress, JWT reset password WordPress, Simple JWT Login reset password, headless WordPress password reset]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

@@ -2,7 +2,7 @@
 slug: /oauth/
 title: OAuth
 sidebar_position: 8
-description: Use Simple JWT Login to authenticate WordPress users via third-party OAuth providers (Google, Auth0). Exchange an authorization code or ID token for a signed WordPress JWT.
+description: Authenticate WordPress users via third-party OAuth (Google, Auth0) - exchange an authorization code or ID token for a signed WordPress JWT.
 keywords: [WordPress OAuth login, Google login WordPress, Auth0 WordPress, social login WordPress REST API, OAuth 2.0 WordPress, JWT OAuth, headless WordPress social login]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

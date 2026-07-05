@@ -2,7 +2,7 @@
 slug: /
 title: Introduction
 sidebar_position: 0
-description: Simple JWT Login is a free WordPress plugin that adds JWT authentication to the REST API - login, register, auto-login, protect endpoints, and more. No coding required.
+description: Simple JWT Login is a free WordPress plugin that adds JWT authentication to the REST API - login, register, auto-login, and more.
 keywords: [Simple JWT Login, WordPress JWT plugin, JWT authentication, WordPress REST API, JSON Web Token WordPress, headless WordPress authentication]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

@@ -76,4 +76,4 @@ $result = $simpleJwtLogin->revokeToken('Your JWT here', 'AUTH CODE');
 
 ## Screenshot
 
-![](/assets/images/screenshots/legacy-3.0.0/screenshot-7.png)
+![Revoke token API settings screen for Simple JWT Login v3.0.0](/assets/images/screenshots/legacy-3.0.0/screenshot-7.png)

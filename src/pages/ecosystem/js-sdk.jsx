@@ -263,7 +263,7 @@ export default function JsSdkPage() {
   return (
     <Layout
       title="JavaScript Client SDK - Simple JWT Login"
-      description="Official JavaScript client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from React, Vue, Angular, or Node.js - one npm package."
+      description="Official JavaScript client for Simple JWT Login. Authenticate, register, validate and revoke tokens from React, Vue, Angular, or Node.js."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>

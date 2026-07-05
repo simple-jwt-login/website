@@ -2,7 +2,7 @@
 slug: /integrations/oauth/
 title: OAuth
 sidebar_position: 1
-description: Connect Simple JWT Login with Google, Auth0, Facebook, and GitHub OAuth 2.0 providers. Let users sign in with their existing accounts and receive a WordPress JWT in return.
+description: Connect Simple JWT Login with Google, Auth0, Facebook, and GitHub OAuth 2.0 - let users sign in with existing accounts and get a WordPress JWT.
 keywords: [WordPress OAuth, social login JWT, OAuth 2.0 WordPress plugin, Google login WordPress, Auth0 WordPress, Facebook login WordPress, GitHub OAuth WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
