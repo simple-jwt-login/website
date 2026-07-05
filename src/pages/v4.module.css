@@ -1,5 +1,15 @@
 /* ── V4 Landing Page ──────────────────────────────────────── */
 
+/* Anchor targets (#whats-new, #breaking-changes, #upgrade-guide, #benchmark,
+   #get-started) sit under the sticky navbar without this offset. */
+#whats-new,
+#breaking-changes,
+#upgrade-guide,
+#benchmark,
+#get-started {
+  scroll-margin-top: var(--ifm-navbar-height, 64px);
+}
+
 /* ── Hero ──────────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -467,6 +477,17 @@ html[data-theme='dark'] .perfTable td {
   color: var(--sjl-text-muted, #64748b);
   margin-left: 0.15rem;
   vertical-align: super;
+}
+
+.perfEndpointPath {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--sjl-text-muted, #64748b);
+  background: none;
+  padding: 0;
+  white-space: nowrap;
 }
 
 .perfVal {

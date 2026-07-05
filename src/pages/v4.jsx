@@ -307,36 +307,42 @@ const breakingChanges = [
 const perfRows = [
   {
     endpoint: 'Register User',
+    route: 'POST /simple-jwt-login/v1/users',
     v3: { min: '0.370s', avg: '0.471s', median: '0.418s', p95: '0.906s', max: '1.406s' },
     v4: { min: '0.233s', avg: '0.255s', median: '0.255s', p95: '0.273s', max: '0.286s' },
     deltaP95: '-70%', trend: 'better', noteRef: null,
   },
   {
     endpoint: 'Autologin with JWT',
+    route: 'GET /simple-jwt-login/v1/autologin',
     v3: { min: '0.114s', avg: '0.133s', median: '0.127s', p95: '0.174s', max: '0.224s' },
     v4: { min: '0.113s', avg: '0.125s', median: '0.122s', p95: '0.134s', max: '0.310s' },
     deltaP95: '-23%', trend: 'better', noteRef: null,
   },
   {
     endpoint: 'Create Post (JWT)',
+    route: 'POST /wp/v2/posts (JWT bearer token)',
     v3: { min: '0.152s', avg: '0.175s', median: '0.168s', p95: '0.208s', max: '0.376s' },
     v4: { min: '0.130s', avg: '0.144s', median: '0.139s', p95: '0.170s', max: '0.227s' },
     deltaP95: '-18%', trend: 'better', noteRef: null,
   },
   {
     endpoint: 'Create Post (API Key)',
+    route: 'POST /wp/v2/posts (API key)',
     v3: null,
     v4: { min: '0.133s', avg: '0.160s', median: '0.144s', p95: '0.279s', max: '0.357s' },
     deltaP95: 'new', trend: 'new', noteRef: 1,
   },
   {
     endpoint: 'Validate Token',
+    route: 'POST /simple-jwt-login/v1/auth/validate',
     v3: { min: '0.080s', avg: '0.088s', median: '0.087s', p95: '0.101s', max: '0.111s' },
     v4: { min: '0.084s', avg: '0.090s', median: '0.088s', p95: '0.098s', max: '0.120s' },
     deltaP95: '-3%', trend: 'better', noteRef: null,
   },
   {
     endpoint: 'Auth User',
+    route: 'POST /simple-jwt-login/v1/auth',
     v3: { min: '0.128s', avg: '0.138s', median: '0.136s', p95: '0.151s', max: '0.217s' },
     v4: { min: '0.146s', avg: '0.174s', median: '0.153s', p95: '0.152s', max: '0.162s' },
     deltaP95: '+1%', trend: 'neutral', noteRef: null,
@@ -427,7 +433,7 @@ export default function V4Page() {
       <main>
 
         {/* ── What's new ─────────────────────────────────────── */}
-        <section className={clsx(styles.sectionPadding)}>
+        <section id="whats-new" className={clsx(styles.sectionPadding)}>
           <div className="container">
             <span className={styles.sectionEyebrow}>What's new</span>
             <h2 className={styles.sectionTitle}>Everything in v4</h2>
@@ -462,7 +468,7 @@ export default function V4Page() {
         </section>
 
         {/* ── Breaking changes ───────────────────────────────── */}
-        <section className={clsx(styles.sectionPadding, styles.sectionGray)}>
+        <section id="breaking-changes" className={clsx(styles.sectionPadding, styles.sectionGray)}>
           <div className="container">
             <span className={styles.sectionEyebrow}>v3 → v4</span>
             <h2 className={styles.sectionTitle}>Breaking Changes</h2>
@@ -490,7 +496,7 @@ export default function V4Page() {
         </section>
 
         {/* ── Migration guide ────────────────────────────────── */}
-        <section className={clsx(styles.sectionPadding)}>
+        <section id="upgrade-guide" className={clsx(styles.sectionPadding)}>
           <div className="container">
             <span className={styles.sectionEyebrow}>Upgrade guide</span>
             <h2 className={styles.sectionTitle}>Upgrading to v4</h2>
@@ -513,7 +519,7 @@ export default function V4Page() {
         </section>
 
         {/* ── Performance ─────────────────────────────────────── */}
-        <section className={clsx(styles.sectionPadding, styles.sectionGray)}>
+        <section id="benchmark" className={clsx(styles.sectionPadding, styles.sectionGray)}>
           <div className="container">
             <span className={styles.sectionEyebrow}>Benchmarks</span>
             <h2 className={styles.sectionTitle}>v3 vs v4 Performance</h2>
@@ -536,11 +542,12 @@ export default function V4Page() {
                     </tr>
                   </thead>
                   <tbody>
-                    {perfRows.map(({ endpoint, v3, v4, deltaP95, trend, noteRef }) => (
+                    {perfRows.map(({ endpoint, route, v3, v4, deltaP95, trend, noteRef }) => (
                       <tr key={endpoint}>
                         <td className={v4Styles.perfEndpoint}>
                           {endpoint}
                           {noteRef !== null && <sup className={v4Styles.perfSup}>{noteRef}</sup>}
+                          <code className={v4Styles.perfEndpointPath}>{route}</code>
                         </td>
                         {v3 ? (
                           <>
@@ -579,7 +586,7 @@ export default function V4Page() {
         </section>
 
         {/* ── CTA ────────────────────────────────────────────── */}
-        <section className={styles.ctaSection}>
+        <section id="get-started" className={styles.ctaSection}>
           <div className="container">
             <div className={styles.ctaCard}>
               <div className={styles.ctaGlow} aria-hidden="true" />
