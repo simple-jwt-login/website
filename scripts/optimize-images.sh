@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
-# Optimizes static/assets/** and writes the result to static/assets-optimized/,
-# mirroring the source directory structure. PNGs are re-encoded with sharp
+# Optimizes static/assets/** in place. PNGs are re-encoded with sharp
 # (palette quantization + max zlib compression), SVGs are minified with svgo.
-# Everything else (favicons, etc.) is copied through unchanged.
+# Everything else (favicons, etc.) is left untouched.
 #
 # Usage: scripts/optimize-images.sh
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC_DIR="$ROOT_DIR/static/assets"
-OUT_DIR="$ROOT_DIR/static/assets-optimized"
 SHARP="$ROOT_DIR/node_modules/.bin/sharp"
 SVGO="$ROOT_DIR/node_modules/.bin/svgo"
 
@@ -23,8 +21,8 @@ if [[ ! -x "$SHARP" || ! -x "$SVGO" ]]; then
   exit 1
 fi
 
-rm -rf "$OUT_DIR"
-mkdir -p "$OUT_DIR"
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR"' EXIT
 
 total_before=0
 total_after=0
@@ -32,30 +30,33 @@ count=0
 
 while IFS= read -r -d '' file; do
   rel_path="${file#"$SRC_DIR"/}"
-  out_file="$OUT_DIR/$rel_path"
-  mkdir -p "$(dirname "$out_file")"
+  tmp_file="$TMP_DIR/$rel_path"
+  mkdir -p "$(dirname "$tmp_file")"
 
   before=$(stat -c%s "$file")
 
   case "${file,,}" in
     *.png)
-      "$SHARP" -i "$file" -o "$(dirname "$out_file")" -c 9 --palette -q 90 -f png >/dev/null
+      "$SHARP" -i "$file" -o "$(dirname "$tmp_file")" -c 9 --palette -q 90 -f png >/dev/null
       ;;
     *.svg)
-      "$SVGO" "$file" -o "$out_file" >/dev/null
+      "$SVGO" "$file" -o "$tmp_file" >/dev/null
       ;;
     *)
-      cp "$file" "$out_file"
+      after="$before"
       ;;
   esac
 
-  after=$(stat -c%s "$out_file")
-
-  # Keep the original if "optimizing" made it bigger (can happen with tiny
-  # icon-like PNGs under palette quantization).
-  if [[ "$after" -ge "$before" ]]; then
-    cp "$file" "$out_file"
-    after="$before"
+  # Only overwrite the source if optimizing actually made it smaller (can
+  # regress with tiny icon-like PNGs under palette quantization), and skip
+  # entirely for file types that were just passed through above.
+  if [[ -f "$tmp_file" ]]; then
+    after=$(stat -c%s "$tmp_file")
+    if [[ "$after" -lt "$before" ]]; then
+      mv "$tmp_file" "$file"
+    else
+      after="$before"
+    fi
   fi
 
   total_before=$((total_before + before))
@@ -75,5 +76,4 @@ if [[ "$total_before" -gt 0 ]]; then
 fi
 
 echo ""
-echo "Optimized $count files: $total_before -> $total_after bytes (-${total_saved_pct}%)"
-echo "Output: $OUT_DIR"
+echo "Optimized $count files in place: $total_before -> $total_after bytes (-${total_saved_pct}%)"
