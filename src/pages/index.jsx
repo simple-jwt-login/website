@@ -8,6 +8,7 @@ import Review from "@site/src/components/review/review";
 import DownloadButton from "@site/src/components/DownloadButton";
 import Counter from '../components/counter/counter';
 import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
+import { ACTIVE_INSTALLS, TOTAL_DOWNLOADS, RATING, BEST_RATING, RATING_COUNT, ACTIVE_YEARS } from '@site/src/data/pluginStats';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBolt, faLock, faRocket, faWrench, faGlobe, faLink,
@@ -31,9 +32,9 @@ const jsonLd = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: '5',
-    bestRating: '5',
-    ratingCount: '50',
+    ratingValue: String(RATING),
+    bestRating: String(BEST_RATING),
+    ratingCount: String(RATING_COUNT),
   },
   author: {
     '@type': 'Person',
@@ -254,17 +255,17 @@ export default function HomePage() {
           </div>
           <div className={styles.heroStats}>
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number="5000" duration="3" />+</span>
+              <span className={styles.heroStatNum}><Counter number={String(ACTIVE_INSTALLS)} duration="3" />+</span>
               <span className={styles.heroStatLabel}>Active installs</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number="82000" duration="3" />+</span>
+              <span className={styles.heroStatNum}><Counter number={String(TOTAL_DOWNLOADS)} duration="3" />+</span>
               <span className={styles.heroStatLabel}>Downloads</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number="5" duration="2" /> / 5</span>
+              <span className={styles.heroStatNum}><Counter number={String(RATING)} duration="2" /> / 5</span>
               <span className={styles.heroStatLabel}>Rating</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
@@ -274,7 +275,7 @@ export default function HomePage() {
             </div>
             <br />
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}>6+ years</span>
+              <span className={styles.heroStatNum}>{ACTIVE_YEARS}+ years</span>
               <span className={styles.heroStatLabel}>Active development</span>
             </div>
           </div>

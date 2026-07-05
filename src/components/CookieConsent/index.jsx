@@ -41,8 +41,8 @@ export default function CookieConsent() {
   return (
     <div className={styles.banner} role="dialog" aria-label="Cookie consent">
       <p className={styles.text}>
-        We use cookies to analyze site traffic with Google Analytics. Analytics
-        cookies are only set if you accept.
+        We use Google Analytics to see which pages are useful and which
+        aren't - no cookies are set until you hit "Accept".
       </p>
       <div className={styles.actions}>
         <button

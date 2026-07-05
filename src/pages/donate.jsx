@@ -4,15 +4,16 @@ import Link from '@docusaurus/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDesktop, faLock, faBolt, faBook, faMugHot, faSeedling, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import styles from './donate.module.css';
+import { ACTIVE_INSTALLS, TOTAL_DOWNLOADS, RATING, ACTIVE_YEARS, formatNumber } from '@site/src/data/pluginStats';
 
 const PAYPAL_URL =
   'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PK9BCD6AYF58Y&source=url';
 
 const stats = [
-  { number: '5,000+', label: 'Active installs' },
-  { number: '80,000+', label: 'Total downloads' },
-  { number: '5 / 5', label: 'WordPress rating' },
-  { number: '6+ years', label: 'In active development' },
+  { number: `${formatNumber(ACTIVE_INSTALLS)}+`, label: 'Active installs' },
+  { number: `${formatNumber(TOTAL_DOWNLOADS)}+`, label: 'Total downloads' },
+  { number: `${RATING} / 5`, label: 'WordPress rating' },
+  { number: `${ACTIVE_YEARS}+ years`, label: 'In active development' },
 ];
 
 const impacts = [
@@ -81,7 +82,7 @@ function DonatePage() {
             Built with love.<br />Kept alive by <span className={styles.heroAccent}>people like you.</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Simple JWT Login has been free and open-source for over six years.
+            Simple JWT Login has been free and open-source for over {ACTIVE_YEARS} years.
             No premium tier, no paywalled features - just a maintainer who keeps
             showing up. If this plugin saves you time or makes your project possible,
             consider giving back.
