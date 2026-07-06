@@ -14,7 +14,7 @@ import {
   faBolt, faLock, faRocket, faWrench, faGlobe, faLink,
   faArrowsRotate, faHeart, faStar, faChartLine, faEarthEurope,
   faKey, faShieldHalved, faUserShield, faClipboardList, faBell,
-  faCartShopping, faLayerGroup, faVial,
+  faCartShopping, faLayerGroup, faVial, faPlay,
 } from '@fortawesome/free-solid-svg-icons'
 import { faPhp } from '@fortawesome/free-brands-svg-icons'
 
@@ -380,7 +380,7 @@ export default function HomePage() {
       <div className={styles.v4Banner}>
         <div className={styles.v4BannerInner}>
           <span className={styles.v4BannerBadge}>New</span>
-          <span className={styles.v4BannerText}>Simple JWT Login v4 is now available - API Keys, 2FA, Audit Logs, Webhooks, and more.</span>
+          <span className={styles.v4BannerText}>Simple JWT Login v4 is now available - API Keys, 2FA, Audit Logs, Webhooks, and more. v3 is now in maintenance mode (EOL Jan 31, 2027).</span>
           <Link to="/v4" className={styles.v4BannerLink} title="See what's new in v4">
             See what's new →
           </Link>
@@ -396,8 +396,7 @@ export default function HomePage() {
               <span className={styles.sectionEyebrow}>Core Features</span>
               <h2 className={styles.sectionTitle}>Everything you need for JWT authentication</h2>
               <p className={styles.sectionLead}>
-                Each feature is tagged <strong>V3</strong> or <strong>V4</strong> depending on which version introduced it.{' '}
-                <Link to="/v4" title="See what's new in v4">See everything new in v4 →</Link>
+                Each feature is tagged <strong>V3</strong> or <strong>V4</strong> depending on which version introduced it.
               </p>
               <div className={styles.featureFilterBar} role="group" aria-label="Filter features by version">
                 {FEATURE_FILTERS.map(({ key, label }) => (
@@ -554,7 +553,7 @@ export default function HomePage() {
         {/* ── Demos ─────────────────────────────────────────── */}
         <section className={styles.sectionPadding}>
           <div className="container">
-            <span className={styles.sectionEyebrow}>Try it live</span>
+            <span className={styles.sectionEyebrow}><FontAwesomeIcon icon={faPlay} style={{ marginRight: '0.4rem' }} /> Try it live</span>
             <h2 className={styles.sectionTitle}>See it in action</h2>
             <p className={styles.sectionLead}>
               Run live demos right in your browser, against your own WordPress site -
@@ -564,6 +563,33 @@ export default function HomePage() {
               <Link to="/demos/" className={styles.actionButton} title="View all demos">
                 View all demos →
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Deploy WordPress ──────────────────────────────── */}
+        <section className={styles.deploySection}>
+          <div className="container">
+            <div className={styles.deployBanner}>
+              <div className={styles.deployBannerGlow} aria-hidden="true" />
+              <div className={styles.deployBannerContent}>
+                <span className={styles.deployBannerEyebrow}>
+                  <FontAwesomeIcon icon={faRocket} /> One-click deploy
+                </span>
+                <h2 className={styles.deployBannerTitle}>
+                  Don&apos;t have a site yet? Launch one in one click
+                </h2>
+                <p className={styles.deployBannerText}>
+                  Spin up a fully installed WordPress server on DigitalOcean - with Simple JWT
+                  Login ready for headless and REST API authentication. No Marketplace setup,
+                  no terminal, no install wizard. We hand you the login.
+                </p>
+              </div>
+              <div className={styles.deployBannerActions}>
+                <Link to="/deploy-wordpress" className={styles.actionButton} title="Deploy WordPress on DigitalOcean">
+                  Deploy WordPress →
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -603,33 +629,6 @@ export default function HomePage() {
             <Link to="/docs/" className={styles.actionButton} style={{ marginTop: '3rem', display: 'inline-flex' }} title="Read the documentation">
               Get started →
             </Link>
-          </div>
-        </section>
-
-        {/* ── Deploy WordPress ──────────────────────────────── */}
-        <section className={styles.deploySection}>
-          <div className="container">
-            <div className={styles.deployBanner}>
-              <div className={styles.deployBannerGlow} aria-hidden="true" />
-              <div className={styles.deployBannerContent}>
-                <span className={styles.deployBannerEyebrow}>
-                  <FontAwesomeIcon icon={faRocket} /> One-click deploy
-                </span>
-                <h2 className={styles.deployBannerTitle}>
-                  Don&apos;t have a site yet? Launch one in one click
-                </h2>
-                <p className={styles.deployBannerText}>
-                  Spin up a fully installed WordPress server on DigitalOcean - with Simple JWT
-                  Login ready for headless and REST API authentication. No Marketplace setup,
-                  no terminal, no install wizard. We hand you the login.
-                </p>
-              </div>
-              <div className={styles.deployBannerActions}>
-                <Link to="/deploy-wordpress" className={styles.actionButton} title="Deploy WordPress on DigitalOcean">
-                  Deploy WordPress →
-                </Link>
-              </div>
-            </div>
           </div>
         </section>
 

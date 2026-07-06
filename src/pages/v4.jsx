@@ -349,6 +349,23 @@ const perfRows = [
   },
 ];
 
+const versionSupport = [
+  {
+    icon: faCheckCircle,
+    badge: 'Active (LTS)',
+    badgeClass: 'featureBadgeNew',
+    version: 'v4.x',
+    desc: 'New features, bug fixes, security patches, and WordPress compatibility fixes.',
+  },
+  {
+    icon: faLock,
+    badge: 'Maintenance',
+    badgeClass: 'featureBadgeWarn',
+    version: 'v3.x',
+    desc: 'Security patches and WordPress compatibility fixes only - no new features, no bug fixes. End of life: January 31, 2027.',
+  },
+];
+
 const migrationSteps = [
   {
     n: '1',
@@ -489,6 +506,30 @@ export default function V4Page() {
                       </Link>
                     )}
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Version Support Policy ─────────────────────────── */}
+        <section id="version-support" className={clsx(styles.sectionPadding, styles.sectionGray)}>
+          <div className="container">
+            <span className={styles.sectionEyebrow}>Version Support Policy</span>
+            <h2 className={styles.sectionTitle}>v3 is now in maintenance mode</h2>
+            <p className={styles.sectionLead}>
+              We recommend upgrading to v4 as soon as possible. After January 31, 2027, v3.x will no
+              longer receive any updates, including security patches.
+            </p>
+            <div className={clsx(styles.whyGrid, styles.whyGrid2)}>
+              {versionSupport.map(({ icon, badge, badgeClass, version, desc }) => (
+                <div key={version} className={styles.whyCard}>
+                  <div className={styles.whyCardIcon}><FontAwesomeIcon icon={icon} /></div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+                    <h3 className={styles.whyCardTitle}>{version}</h3>
+                    <span className={clsx(v4Styles.featureBadge, v4Styles[badgeClass])}>{badge}</span>
+                  </div>
+                  <p className={styles.whyCardDesc}>{desc}</p>
                 </div>
               ))}
             </div>

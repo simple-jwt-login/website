@@ -205,6 +205,18 @@ html[data-theme='dark'] .featureBadgeImproved {
   border-color: rgba(99,102,241,0.3);
 }
 
+.featureBadgeWarn {
+  background: rgba(217,119,6,0.12);
+  color: #b45309;
+  border: 1px solid rgba(217,119,6,0.3);
+}
+
+html[data-theme='dark'] .featureBadgeWarn {
+  background: rgba(217,119,6,0.15);
+  color: #fbbf24;
+  border-color: rgba(217,119,6,0.3);
+}
+
 .featureCardTitle {
   font-size: 1.15rem;
   font-weight: 700;
