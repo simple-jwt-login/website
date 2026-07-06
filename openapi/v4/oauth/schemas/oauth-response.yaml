@@ -1,0 +1,38 @@
+type: object
+required:
+  - success
+  - data
+properties:
+  success:
+    type: boolean
+    example: true
+  data:
+    type: object
+    required:
+      - jwt
+      - user
+    properties:
+      jwt:
+        type: string
+        description: Signed WordPress JWT for the authenticated user.
+        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+      user:
+        type: object
+        required:
+          - ID
+          - user_login
+          - user_email
+          - display_name
+        properties:
+          ID:
+            type: integer
+            example: 1
+          user_login:
+            type: string
+            example: "myuser"
+          user_email:
+            type: string
+            example: "myuser@simplejwtlogin.com"
+          display_name:
+            type: string
+            example: "My User"

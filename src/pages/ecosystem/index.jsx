@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTerminal, faEnvelope, faBoxArchive, faCheck } from '@fortawesome/free-solid-svg-icons';
 import styles from './index.module.css';
 import sharedStyles from '../styles.module.css';
+import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 
 /* ── Data ───────────────────────────────────────────────────── */
 
@@ -83,12 +84,12 @@ const integrations = [
     tagline: 'JWT authentication for GraphQL',
     description:
       'Use the same JWT tokens you issue through Simple JWT Login to authenticate any WPGraphQL query or mutation. Enable it with a single checkbox - no code, no custom middleware.',
-    logo: 'assets/img/wpgraphql/wpgraphql-logo.png',
+    logo: 'assets/images/screenshots/third-party-integrations/wpgraphql-logo.png',
     logoAlt: 'WPGraphQL logo',
     tags: ['GraphQL', 'Headless', 'REST-free'],
     status: 'stable',
-    docsHref: '/docs/wpgraphql/',
-    primaryHref: '/docs/wpgraphql/',
+    docsHref: '/docs/integrations/third-party/wpgraphql/',
+    primaryHref: '/docs/integrations/third-party/wpgraphql/',
     primaryLabel: 'Read the docs',
     highlights: [
       'Authenticate queries & mutations',
@@ -103,7 +104,7 @@ const integrations = [
     tagline: 'Sign in with Google',
     description:
       'Let users authenticate with their Google account. Simple JWT Login exchanges a Google ID token for a WordPress JWT, giving you full control over the session without storing passwords.',
-    logo: 'assets/img/google-plus.png',
+    logo: 'assets/images/features/google-plus.png',
     logoAlt: 'Google OAuth',
     tags: ['OAuth', 'Social Login', 'Passwordless'],
     status: 'beta',
@@ -128,10 +129,10 @@ const sdks = [
       'Integrate Simple JWT Login into any PHP app with a single dependency. Works out of the box with Laravel, Yii, CodeIgniter, Slim, and plain PHP.',
     tags: ['PHP', 'Laravel', 'Yii', 'Composer'],
     logos: [
-      { src: 'assets/img/frameworks/php.png', alt: 'PHP' },
-      { src: 'assets/img/frameworks/laravel.png', alt: 'Laravel' },
-      { src: 'assets/img/frameworks/yii.png', alt: 'Yii' },
-      { src: 'assets/img/frameworks/codeigniter.png', alt: 'CodeIgniter' },
+      { src: 'assets/images/frameworks/php.png', alt: 'PHP' },
+      { src: 'assets/images/frameworks/laravel.png', alt: 'Laravel' },
+      { src: 'assets/images/frameworks/yii.png', alt: 'Yii' },
+      { src: 'assets/images/frameworks/codeigniter.png', alt: 'CodeIgniter' },
     ],
     install: 'composer require "nicumicle/simple-jwt-login-client-php"',
     primaryHref: '/ecosystem/php-sdk',
@@ -147,10 +148,10 @@ const sdks = [
       'Add Simple JWT Login authentication to React, Vue, Angular, or any JavaScript app with a handful of lines. Works in the browser and in Node.js.',
     tags: ['JavaScript', 'React', 'Vue', 'Angular'],
     logos: [
-      { src: 'assets/img/frameworks/javascript.png', alt: 'JavaScript' },
-      { src: 'assets/img/frameworks/react.png', alt: 'React' },
-      { src: 'assets/img/frameworks/vue.png', alt: 'Vue' },
-      { src: 'assets/img/frameworks/angular.png', alt: 'Angular' },
+      { src: 'assets/images/frameworks/javascript.png', alt: 'JavaScript' },
+      { src: 'assets/images/frameworks/react.png', alt: 'React' },
+      { src: 'assets/images/frameworks/vue.png', alt: 'Vue' },
+      { src: 'assets/images/frameworks/angular.png', alt: 'Angular' },
     ],
     install: 'npm install simple-jwt-login',
     primaryHref: '/ecosystem/js-sdk',
@@ -225,11 +226,12 @@ function AddonCard({ name, tagline, description, icon, tags, status, docsHref, p
 }
 
 function IntegrationCard({ name, tagline, description, logo, logoAlt, tags, status, primaryHref, primaryLabel, highlights }) {
+  const logoSrc = useCdnUrl(logo);
   return (
     <div className={styles.integrationCard}>
       <div className={styles.integrationHeader}>
         <div className={styles.integrationLogoWrap}>
-          <img src={logo} alt={logoAlt} className={styles.integrationLogo} />
+          <img src={logoSrc} alt={logoAlt} className={styles.integrationLogo} />
         </div>
         <div>
           <div className={styles.addonNameRow}>
@@ -254,11 +256,12 @@ function IntegrationCard({ name, tagline, description, logo, logoAlt, tags, stat
 }
 
 function SdkCard({ name, tagline, description, tags, logos, install, primaryHref, primaryLabel, secondaryHref, secondaryLabel }) {
+  const cdnBase = useCdnBase();
   return (
     <div className={styles.sdkCard}>
       <div className={styles.sdkLogos}>
         {logos.map(({ src, alt }) => (
-          <img key={alt} src={src} alt={alt} className={styles.sdkLogo} />
+          <img key={alt} src={resolveCdnUrl(cdnBase, src)} alt={alt} className={styles.sdkLogo} />
         ))}
       </div>
       <h3 className={styles.sdkName}>{name}</h3>
@@ -289,7 +292,7 @@ export default function EcosystemPage() {
   return (
     <Layout
       title="Ecosystem - Add-ons, Integrations & SDKs"
-      description="Explore every add-on, integration, and client SDK built around Simple JWT Login - from WP-CLI to Google OAuth, MailPoet magic links, WPGraphQL, PHP and JavaScript clients."
+      description="Explore every add-on, integration, and SDK for Simple JWT Login - WP-CLI, Google OAuth, MailPoet, WPGraphQL, PHP and JS clients."
     >
       <Head>
         <meta property="og:title" content="Ecosystem - Simple JWT Login" />

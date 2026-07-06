@@ -1,10 +1,12 @@
 ---
-title: New Add-on for Simple-JWT-Login - Export-Import
-description: New add-on has been released for Simple-JWT-Login
+title: Export-Import Add-on Released
+description: The Export-Import add-on for Simple JWT Login lets you copy your full configuration - Auth Codes, protection rules, and settings - between WordPress sites.
+keywords: [export import, WordPress plugin, migration, staging, Auth Codes]
 slug: /simple-jwt-login-export-import-add-on/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [release, add-on]
+image: /assets/favicons/android-chrome-192x192.png
 ---
 
 We just released the `beta` version for export-import add-on.

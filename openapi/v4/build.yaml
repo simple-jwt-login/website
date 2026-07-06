@@ -1,0 +1,269 @@
+openapi: 3.0.1
+x-servers:
+  - url: "{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}"
+    variables:
+      protocol:
+        enum:
+          - 'http'
+          - 'https'
+        default: 'http'
+      domain:
+        default: 'localhost'
+        description: Website Domain
+      APIPath:
+        enum:
+          - "wp-json"
+          - "?rest_route="
+        default: 'wp-json'
+      simplejwtloginprefix:
+        default: "simple-jwt-login/v1"
+servers:
+  - url: "{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}"
+    variables:
+      protocol:
+        enum:
+          - 'http'
+          - 'https'
+        default: 'http'
+      domain:
+        default: 'localhost'
+        description: Website Domain
+      APIPath:
+        enum:
+          - "wp-json"
+          - "?rest_route="
+        default: 'wp-json'
+      simplejwtloginprefix:
+        default: "simple-jwt-login/v1"
+info:
+  title: Simple-JWT-Login
+  description: |
+    **Simple-JWT-Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT)
+    authentication to the WordPress REST API. It lets mobile apps, single-page applications, and
+    external services securely interact with your WordPress site - without exposing admin credentials.
+
+    With Simple-JWT-Login you can:
+    - **Authenticate** users and receive a signed JWT
+    - **Auto-login** users via a tokenized link
+    - **Register** and **delete** users programmatically
+    - **Reset and change passwords** through the REST API
+    - **Protect any REST endpoint** so it requires a valid JWT
+    - **Refresh, validate, and revoke** tokens to manage session lifecycle
+
+    Whether you're building a headless WordPress site, a React/Vue front-end, a mobile app, or a
+    third-party integration, Simple-JWT-Login provides a clean, standards-based authentication layer.
+
+    ## API Format
+
+    This API is documented in **OpenAPI format**. You can open it in [Swagger Editor](https://editor.swagger.io/),
+    view it on this website, or import it into Postman for local testing.
+
+    ## Server
+
+    You can access the Simple-JWT-Login API in two modes:
+      - using permalink: `https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}`
+      - using rest_route: `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}`
+
+    ## Authentication
+
+    Most endpoints accept a JWT via the `JWT` query parameter, request body field, or `Authorization: Bearer <token>` header.
+    API key management endpoints require an active WordPress session (cookie-based auth or equivalent).
+
+    ## Cross-Origin Resource Sharing
+
+    This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with [W3C spec](https://www.w3.org/TR/cors/).
+    All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+
+    ## Error Response Format
+
+    All error responses share a common envelope:
+    ```json
+    {
+      "success": false,
+      "data": {
+        "message": "Human-readable error description",
+        "error_code": 42
+      }
+    }
+    ```
+    The `error_code` field maps to a specific internal error constant that can be used for programmatic error handling.
+  contact:
+    email: contact@simplejwtlogin.com
+  license:
+    name: GPL 3.0
+    url: https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE
+  version: 4.0.0
+  x-logo:
+    url: 'https://simplejwtlogin.com/assets/favicons/android-chrome-192x192.png'
+    altText: Simple JWT Login Logo
+externalDocs:
+  description: Find out more about Simple-JWT-Login
+  url: https://simplejwtlogin.com/docs
+tags:
+  - name: login_user
+    description: |
+      Auto-login a WordPress user by providing a valid JWT in the URL. The plugin validates
+      the token, finds the matching user, and redirects the browser to the WordPress website
+      (or a custom URL). Useful for passwordless login flows in mobile apps and email links.
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/autologin
+  - name: register_user
+    description: |
+      Register a new WordPress user account. The caller supplies at minimum an email address
+      and password; all standard WordPress user fields are supported. An optional auth code
+      can be required by the plugin settings to prevent open registration. On success the
+      response includes the new user's profile and, optionally, a JWT.
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/register-user
+  - name: delete_user
+    description: |
+      Permanently delete a WordPress user identified by the JWT payload. The JWT must be
+      valid and the calling IP must pass any IP allow-list configured in the plugin settings.
+      An optional auth code can be required.
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/delete_user
+  - name: reset_password
+    description: |
+      Two-step password reset flow. First, `POST /user/reset_password` sends a one-time
+      code to the user's email address. Then, `PUT /user/reset_password` uses that code
+      (or a valid JWT when JWT-based reset is enabled) to set a new password.
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/change-password
+  - name: authenticate_user
+    description: |
+      Exchange WordPress credentials for a signed JWT (and optional refresh token). Related
+      sub-operations: refresh an expired JWT, validate a token to retrieve user details,
+      and revoke a token so it is rejected by future requests.
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/authentication
+  - name: oauth
+    description: |
+      OAuth 2.0 authorization-code flow for third-party providers (Google, Auth0, Facebook,
+      GitHub). Exchange a provider-issued authorization code, ID token, or access token for
+      a WordPress JWT. The provider must be enabled and configured in the plugin settings.
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/oauth
+  - name: api_keys
+    description: |
+      Manage long-lived API keys that can authenticate REST requests to any WordPress
+      endpoint when the API key middleware is enabled. Keys are scoped to one or more
+      permissions (`read`, `create`, `update`, `delete`). All endpoints in this group
+      require an active WordPress session.
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/api-keys
+x-tags:
+  - name: login_user
+    description: Login user in WordPress
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/autologin
+  - name: register_user
+    description: Register WordPress user
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/register-user
+  - name: delete_user
+    description: Delete WordPress user
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/delete_user
+  - name: reset_password
+    description: Reset User Password
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/change-password
+  - name: authenticate_user
+    description: Authenticate user
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/authentication
+  - name: oauth
+    description: OAuth 2.0 token exchange (Google, Auth0, Facebook, GitHub)
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/oauth
+  - name: api_keys
+    description: API key management
+    externalDocs:
+      description: Find out more
+      url: https://simplejwtlogin.com/docs/api-keys
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT passed in the `Authorization` header as `Bearer <token>`.
+        The header key name is configurable in plugin General Settings (default: `Authorization`).
+        This scheme must be enabled in the plugin General Settings under "JWT from Header".
+    QueryJWT:
+      type: apiKey
+      in: query
+      name: JWT
+      description: |
+        JWT passed as a URL query parameter. The parameter name defaults to `JWT` but is
+        configurable in plugin General Settings under "Request Keys".
+    WordPressSession:
+      type: apiKey
+      in: cookie
+      name: wordpress_logged_in
+      description: |
+        Active WordPress session cookie. Required for all `/api-keys` endpoints. The user
+        must be authenticated in WordPress before calling API key management endpoints.
+paths:
+  /autologin:
+    get:
+      $ref: "./autologin/paths/get-autologin.yaml"
+  /users:
+    post:
+      $ref: "./users/paths/create-user.yaml"
+    delete:
+      $ref: "./users/paths/delete-user.yaml"
+  /user/reset_password:
+    post:
+      $ref: "./users/paths/send-reset-password-code.yaml"
+    put:
+      $ref: "./users/paths/change-password.yaml"
+  /auth:
+    post:
+      $ref: "./auth/paths/authenticate.yaml"
+  /auth/refresh:
+    post:
+      $ref: "./auth/paths/refresh-token.yaml"
+  /auth/validate:
+    get:
+      $ref: "./auth/paths/validate-token.yaml"
+    post:
+      $ref: "./auth/paths/validate-token-post.yaml"
+  /auth/revoke:
+    post:
+      $ref: "./auth/paths/revoke-token.yaml"
+  /auth/2fa:
+    post:
+      $ref: "./auth/paths/two-factor.yaml"
+  /oauth/token:
+    get:
+      $ref: "./oauth/paths/token-get.yaml"
+    post:
+      $ref: "./oauth/paths/token-post.yaml"
+  /api-keys:
+    get:
+      $ref: "./api-keys/paths/list.yaml"
+    post:
+      $ref: "./api-keys/paths/create.yaml"
+  /api-keys/{id}:
+    put:
+      $ref: "./api-keys/paths/update.yaml"
+    delete:
+      $ref: "./api-keys/paths/delete.yaml"
+  /api-keys/{id}/revoke:
+    post:
+      $ref: "./api-keys/paths/revoke.yaml"

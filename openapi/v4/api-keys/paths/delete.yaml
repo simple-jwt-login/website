@@ -1,0 +1,84 @@
+tags:
+  - api_keys
+summary: Permanently delete an API key
+operationId: deleteApiKey
+security:
+  - WordPressSession: []
+description: |
+  Permanently removes the API key record from the database. This action is
+  irreversible. To merely disable a key while keeping its record, use
+  `POST /api-keys/{id}/revoke` instead.
+
+  Regular users may only delete their own keys. Administrators may delete any key.
+parameters:
+  - name: id
+    in: path
+    required: true
+    description: Numeric ID of the API key to permanently delete.
+    schema:
+      type: integer
+    example: 7
+responses:
+  '200':
+    description: API key permanently deleted.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - success
+            - message
+          properties:
+            success:
+              type: boolean
+              example: true
+            message:
+              type: string
+              example: "API key deleted successfully."
+  '401':
+    description: Unauthorized. No active WordPress session.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "You must be logged in to manage API keys."
+            error_code: 84
+  '403':
+    description: |
+      Forbidden. The authenticated user does not own this API key and does not have
+      administrator privileges.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "You are not allowed to manage this API key."
+            error_code: 84
+  '404':
+    description: No API key with the provided ID was found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Invalid API key ID."
+            error_code: 89
+  '500':
+    description: |
+      Internal server error. The database delete operation failed.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Failed to delete API key."
+            error_code: 92

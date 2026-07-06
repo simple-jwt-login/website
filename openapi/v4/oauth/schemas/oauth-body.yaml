@@ -1,0 +1,29 @@
+type: object
+required:
+  - provider
+properties:
+  provider:
+    type: string
+    enum: [google, auth0, facebook, github]
+    description: OAuth provider slug.
+    example: google
+  code:
+    type: string
+    description: Authorization code returned by the OAuth provider (Google, Auth0, Facebook, GitHub).
+    example: "4/0AfJohXmX..."
+  id_token:
+    type: string
+    description: |
+      Google ID token from Sign In With Google (Google provider only).
+      Alternative to the authorization `code` for Google.
+    example: "eyJhbGci..."
+  access_token:
+    type: string
+    description: |
+      Access token from the OAuth provider. Used for Facebook and GitHub instead
+      of an authorization code.
+    example: "EAABsbCS..."
+  AUTH_KEY:
+    type: string
+    example: "MY_SUPER_SECRET_AUTH_KEY"
+    description: Required when "Authentication Requires Auth Code" is enabled.

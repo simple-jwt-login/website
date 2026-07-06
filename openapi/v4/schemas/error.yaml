@@ -1,0 +1,25 @@
+type: object
+required:
+  - success
+  - data
+properties:
+  success:
+    type: boolean
+    example: false
+    description: Always `false` for error responses.
+  data:
+    type: object
+    required:
+      - message
+      - error_code
+    properties:
+      message:
+        type: string
+        description: Human-readable error description.
+        example: "An error occurred."
+      error_code:
+        type: number
+        description: |
+          Internal error code. Use this for programmatic error handling.
+          See the plugin source (`ErrorCodes.php`) for the full list of codes.
+        example: 22

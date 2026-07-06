@@ -1,10 +1,12 @@
 ---
 title: CORS Setup on Apache Server
-description: In this article, we are going to explain how to set up CORS on your server
+description: Step-by-step guide to configuring CORS on an Apache server so your headless frontend can call the WordPress REST API with Simple JWT Login.
+keywords: [CORS, Apache, WordPress REST API, headless WordPress, JWT authentication]
 slug: /cors-setup-apache/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [tutorials]
+image: /assets/favicons/android-chrome-192x192.png
 ---
 
 All the time I have issues setting up [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) on my server. I was always struggling with this, and this time I was thinking maybe it is a good time to create a blog article about this.

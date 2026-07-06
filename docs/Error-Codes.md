@@ -1,6 +1,8 @@
 ---
 slug: /error-codes/
 title: Error codes
+description: Full reference of Simple JWT Login error codes - what each numeric errorCode means and how to resolve it.
+keywords: [error codes, JWT errors, WordPress REST API, troubleshooting]
 sidebar_position: 99
 author: Nicu Micle
 author_url: https://github.com/nicumicle
@@ -93,5 +95,44 @@ Error responses follow this format:
 |     71     | The code or id_token parameter is missing from request. | The code or `id_token` parameter is missing from request when connecting with Google OAuth.                                                      |  
 |     72     |            The code you provided is invalid.            | The Google OAuth endpoint has received an invalid `code`.                                                                                        |  
 |     73     |            The provided id_token is invalid             | The Google OAuth endpoint has received an invalid `id_token`.                                                                                    |  
-|     74     |                 Wrong user credentials.                 | The Google OAuth could not find a user in the provided JWT.                                                                                      |  
- 
+|     74     |                 Wrong user credentials.                 | The Google OAuth could not find a user in the provided JWT.                                                                                      |
+|     75     |    JWT is not present and we can not search for a user.    | The JWT is missing from the request when accessing a protected endpoint.                                                                         |
+|     76     |         The custom email subject is empty.              | The Reset Password custom email subject is empty in the plugin settings.                                                                         |
+|     77     |  The code or access_token parameter is missing from request.  | The `code` or `access_token` parameter is missing when calling the Auth0 OAuth endpoint.                                                        |
+|     78     |          The code you provided is invalid.              | The Auth0 authorization `code` is invalid.                                                                                                       |
+|     79     |             The provided token is invalid.              | The Auth0 `access_token` is invalid or rejected by the Auth0 userinfo endpoint.                                                                 |
+|     80     |                Wrong user credentials.                  | No WordPress user was found matching the Auth0 account.                                                                                          |
+|     81     |       Refresh Token endpoint is not enabled.            | The Refresh Token endpoint is disabled in the plugin settings.                                                                                   |
+|     82     |       Validate Token endpoint is not enabled.           | The Validate Token endpoint is disabled in the plugin settings.                                                                                  |
+|     83     |        Revoke Token endpoint is not enabled.            | The Revoke Token endpoint is disabled in the plugin settings.                                                                                    |
+|     84     |      You must be logged in to manage API keys.          | You are not authenticated or not authorized to manage this API key.                                                                              |
+|     85     |              API key name is required.                  | The `name` parameter is missing when creating or updating an API key.                                                                            |
+|     86     |        At least one permission is required.             | The API key has no permissions defined. Provide at least one valid permission.                                                                    |
+|     87     |               Invalid permission: %s                    | The API key contains an unrecognized permission value.                                                                                           |
+|     88     |              Failed to create API key.                  | A database error occurred while inserting the new API key.                                                                                       |
+|     89     |                 Invalid API key ID.                     | No API key was found with the provided ID.                                                                                                       |
+|     90     |              Failed to update API key.                  | A database error occurred while updating the API key.                                                                                            |
+|     91     |              Failed to revoke API key.                  | A database error occurred while revoking the API key.                                                                                            |
+|     92     |              Failed to delete API key.                  | A database error occurred while deleting the API key.                                                                                            |
+|     93     |       This JWT can not change your password.            | The JWT provided does not match the user account whose password is being changed.                                                                |
+|     94     |               Auth Code is required.                   | An auth code is required but was not provided in the request.                                                                                    |
+|     95     |               Invalid email parameter.                 | The email address provided in the change-password request is invalid.                                                                            |
+|     96     |               Invalid email parameter.                 | The email address provided in the send-reset-password request is invalid.                                                                        |
+|     97     | The code or access_token parameter is missing from request. | The `code` or `access_token` parameter is missing when calling the Facebook OAuth endpoint.                                                 |
+|     98     |          The code you provided is invalid.             | The Facebook authorization `code` is invalid.                                                                                                    |
+|     99     |       The provided Facebook access_token is invalid.   | The Facebook `access_token` is invalid or rejected.                                                                                              |
+|    100     |                Wrong user credentials.                 | No WordPress user was found matching the Facebook account.                                                                                       |
+|    101     | The code or access_token parameter is missing from request. | The `code` or `access_token` parameter is missing when calling the GitHub OAuth endpoint.                                                   |
+|    102     |          The code you provided is invalid.             | The GitHub authorization `code` is invalid.                                                                                                      |
+|    103     |       The provided GitHub access_token is invalid.     | The GitHub `access_token` is invalid or rejected.                                                                                                |
+|    104     |                Wrong user credentials.                 | No WordPress user was found matching the GitHub account.                                                                                         |
+|    105     |   Two-factor authentication plugin is not active.      | The Two-Factor plugin is not installed/activated or the integration is not enabled in Simple JWT Login settings.                                  |
+|    106     |             Invalid interim JWT claims.                | The interim JWT provided for 2FA verification has invalid or missing claims.                                                                     |
+|    107     | Invalid or expired two-factor session. Please authenticate again. | The 2FA nonce has expired or is invalid. The user must authenticate from the beginning.                                                  |
+|    108     |     Too many failed attempts. Please wait N seconds.   | The 2FA verification is rate-limited due to too many failed attempts.                                                                            |
+|    109     |          The two-factor code is missing / Invalid two-factor code. | The 2FA code is missing or does not match.                                                                                               |
+|    110     |    This JWT requires two-factor verification before it can be used. | The provided JWT is an interim 2FA JWT and cannot be used for regular authenticated operations until 2FA is completed.                    |
+|    111     |             Email address is not verified.             | The Auth0 account email is not verified, and unverified emails are not allowed in the Auth0 integration settings.                                |
+|    112     |   No verified primary email found in the GitHub account. | The GitHub account has no verified primary email, and unverified emails are not allowed in the GitHub integration settings.                     |
+|    113     |    Authentication with password_hash is not enabled.    | The request sent a `password_hash` parameter, but authenticating with a password hash is disabled in the plugin settings.                       |
+|    114     |  You do not have the required role to access this endpoint. | The authenticated user does not have one of the WordPress roles required to access this protected endpoint.                                  |

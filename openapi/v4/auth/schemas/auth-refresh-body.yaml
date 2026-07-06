@@ -1,0 +1,12 @@
+type: object
+required:
+  - refresh_token
+properties:
+  refresh_token:
+    type: string
+    example: "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"
+    description: Refresh token obtained from a prior `/auth` response.
+  AUTH_KEY:
+    type: string
+    example: "MY_SUPER_SECRET_AUTH_KEY"
+    description: Required when "Authentication Requires Auth Code" is enabled.

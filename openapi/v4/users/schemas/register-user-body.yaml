@@ -1,0 +1,87 @@
+type: object
+required:
+  - email
+  - password
+properties:
+  email:
+    type: string
+    example: test@simplejwtlogin.com
+    description: User email address. Must be unique and well-formed.
+  password:
+    type: string
+    description: Plaintext password for the new account.
+  user_login:
+    type: string
+    description: The user's login username. Defaults to the email address if omitted.
+    example: myuser
+  user_nicename:
+    type: string
+    description: URL-friendly version of the username (used in author URLs).
+    example: myuser
+  user_url:
+    type: string
+    description: URL associated with the user's profile.
+    example: https://simplejwtlogin.com
+  display_name:
+    type: string
+    description: The user's display name. Defaults to `user_login` if omitted.
+    example: My User
+  nickname:
+    type: string
+    description: The user's nickname. Defaults to `user_login` if omitted.
+    example: myuser
+  first_name:
+    type: string
+    description: The user's first name.
+    example: John
+  last_name:
+    type: string
+    description: The user's last name.
+    example: Doe
+  description:
+    type: string
+    description: The user's biographical description.
+    example: This is a sample description
+  rich_editing:
+    type: string
+    description: Whether to enable the rich-editor. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
+    example: "true"
+  syntax_highlighting:
+    type: string
+    description: Whether to enable the rich code editor. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
+    example: "true"
+  comment_shortcuts:
+    type: string
+    description: Whether to enable comment moderation keyboard shortcuts. Accepts `'true'` or `'false'` as a string literal. Defaults to `'false'`.
+    example: "false"
+  admin_color:
+    type: string
+    description: Admin colour scheme for the user. Defaults to `'fresh'`.
+    example: fresh
+  use_ssl:
+    type: boolean
+    description: Whether the user should always access the admin over HTTPS. Defaults to `false`.
+    example: false
+  user_registered:
+    type: string
+    description: Registration date in `Y-m-d H:i:s` format. Defaults to the current date/time.
+    example: "2022-01-31 23:15:30"
+  user_activation_key:
+    type: string
+    description: Password reset key. Defaults to empty.
+  spam:
+    type: boolean
+    description: Multisite only. Whether the user is marked as spam. Defaults to `false`.
+    example: false
+  show_admin_bar_front:
+    type: string
+    description: Whether to display the Admin Bar on the front end. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
+    example: "true"
+  locale:
+    type: string
+    description: User's locale. Defaults to empty (inherits site locale).
+    example: "en_US"
+  AUTH_KEY:
+    type: string
+    example: "MY_SUPER_SECRET_AUTH_KEY"
+    description: Required when "Register Requires Auth Code" is enabled in the plugin settings.

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxArchive, faGlobe, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faReact, faVuejs, faNodeJs } from '@fortawesome/free-brands-svg-icons';
 import sharedStyles from '../styles.module.css';
+import {useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -250,18 +251,19 @@ app.use(async (req, res, next) => {
 
 /* ── Frameworks ─────────────────────────────────────────────── */
 const frameworks = [
-  { src: '/assets/img/frameworks/javascript.png', alt: 'JavaScript', label: 'Vanilla JS' },
-  { src: '/assets/img/frameworks/react.png', alt: 'React', label: 'React / Next.js' },
-  { src: '/assets/img/frameworks/vue.png', alt: 'Vue', label: 'Vue / Nuxt' },
-  { src: '/assets/img/frameworks/angular.png', alt: 'Angular', label: 'Angular' },
+  { src: '/assets/images/frameworks/javascript.png', alt: 'JavaScript', label: 'Vanilla JS' },
+  { src: '/assets/images/frameworks/react.png', alt: 'React', label: 'React / Next.js' },
+  { src: '/assets/images/frameworks/vue.png', alt: 'Vue', label: 'Vue / Nuxt' },
+  { src: '/assets/images/frameworks/angular.png', alt: 'Angular', label: 'Angular' },
 ];
 
 /* ── Page ───────────────────────────────────────────────────── */
 export default function JsSdkPage() {
+  const cdnBase = useCdnBase();
   return (
     <Layout
       title="JavaScript Client SDK - Simple JWT Login"
-      description="Official JavaScript client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from React, Vue, Angular, or Node.js - one npm package."
+      description="Official JavaScript client for Simple JWT Login. Authenticate, register, validate and revoke tokens from React, Vue, Angular, or Node.js."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -353,7 +355,7 @@ export default function JsSdkPage() {
             <div className={styles.frameworkGrid}>
               {frameworks.map(({ src, alt, label }) => (
                 <div key={alt} className={styles.frameworkCard}>
-                  <img src={src} alt={alt} className={styles.frameworkLogo} />
+                  <img src={resolveCdnUrl(cdnBase, src)} alt={alt} className={styles.frameworkLogo} />
                   <span className={styles.frameworkLabel}>{label}</span>
                 </div>
               ))}

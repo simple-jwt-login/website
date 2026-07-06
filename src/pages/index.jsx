@@ -1,15 +1,20 @@
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import Feature from "@site/src/components/feature/feature";
 import Review from "@site/src/components/review/review";
+import DownloadButton from "@site/src/components/DownloadButton";
 import Counter from '../components/counter/counter';
+import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
+import { ACTIVE_INSTALLS, TOTAL_DOWNLOADS, RATING, BEST_RATING, RATING_COUNT, ACTIVE_YEARS } from '@site/src/data/pluginStats';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBolt, faLock, faRocket, faWrench, faGlobe, faLink,
   faArrowsRotate, faHeart, faStar, faChartLine, faEarthEurope,
+  faKey, faShieldHalved, faUserShield, faClipboardList, faBell,
+  faCartShopping, faLayerGroup, faVial, faPlay,
 } from '@fortawesome/free-solid-svg-icons'
 import { faPhp } from '@fortawesome/free-brands-svg-icons'
 
@@ -29,9 +34,9 @@ const jsonLd = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: '5',
-    bestRating: '5',
-    ratingCount: '50',
+    ratingValue: String(RATING),
+    bestRating: String(BEST_RATING),
+    ratingCount: String(RATING_COUNT),
   },
   author: {
     '@type': 'Person',
@@ -47,6 +52,7 @@ const awesomeFeatures = [
     image: "assets/svg/login-user-2.svg",
     alt: "Login user",
     link: "/docs/autologin/",
+    version: "both",
   },
   {
     title: <>Register Users</>,
@@ -54,13 +60,14 @@ const awesomeFeatures = [
     image: "assets/svg/create-user.svg",
     alt: "Register user",
     link: "/docs/register-user/",
+    version: "both",
   },
   {
     title: <>Delete Users</>,
     description: <>Remove users securely via API using verified JWT tokens.</>,
     image: "assets/svg/delete-user.svg",
     alt: "Delete user",
-    link: "/docs/delete-user/",
+    version: "both",
   },
   {
     title: <>Authenticate Users</>,
@@ -68,63 +75,134 @@ const awesomeFeatures = [
     image: "assets/svg/authenticate-user.svg",
     alt: "Authenticate user",
     link: "/docs/authentication/",
+    version: "both",
   },
   {
     title: <>Change &amp; Reset Password</>,
     description: <>Let users change or reset their password through the API - ideal for headless and mobile apps.</>,
-    image: "assets/img/password.png",
+    image: "assets/images/features/password.png",
     alt: "Change and Reset password",
-    link: "/docs/change-password/",
+    link: "/docs/reset-password/",
+    version: "both",
   },
   {
     title: <>Limit Access by IP</>,
     description: <>Restrict access to trusted IPs - supports wildcards (e.g. <code>85.*.*.*</code>) for subnet-level control.</>,
-    image: "assets/img/ip.png",
+    image: "assets/images/features/ip.png",
     alt: "Limit access by IP",
+    version: "both",
   },
   {
     title: <>Create Users with Different Roles</>,
     description: <>Assign roles at registration time - create admins, editors, or subscribers through a single endpoint.</>,
-    image: "assets/img/roles.png",
+    image: "assets/images/features/roles.png",
     alt: "Roles",
-    link: "/docs/register-user/#user-roles",
+    link: "/docs/register-user/#new-user-settings",
+    version: "both",
   },
   {
     title: <>Integrate with Other Plugins</>,
     description: <>First-class support for MailPoet magic-link emails, WPGraphQL authorization, and any plugin that extends the WordPress REST API.</>,
-    image: "assets/img/plug-in.png",
+    image: "assets/images/features/plug-in.png",
     alt: "Integrate with other plugins",
     link: "/docs/mailpoet/",
+    version: "both",
   },
   {
     title: <>Protect Endpoints</>,
     description: <>Require a valid JWT per route - filter by HTTP method (GET, POST, PUT, DELETE) with exact or prefix matching.</>,
-    image: "assets/img/protect-endpoints.png",
+    image: "assets/images/features/protect-endpoints.png",
     alt: "Protect endpoints",
     link: "/docs/protect-endpoints/",
+    version: "both",
   },
   {
     title: <>Use JWT on Any Endpoint</>,
     description: <>Pass a JWT to any WordPress endpoint and act as a fully authenticated user - no session cookies required.</>,
-    image: "assets/img/protect.png",
+    image: "assets/images/features/protect.png",
     alt: "JWT on other endpoints",
-    link: "/docs/configuration#allow-jwt-usage-on-all-wordpress-endpoints",
+    link: "/docs/configuration#jwt-middleware-for-all-wordpress-endpoints",
+    version: "both",
   },
   {
     title: <>Google OAuth Integration</>,
     description: <>Let users sign in with their Google account - zero passwords, instant trust.</>,
-    image: "assets/img/google-plus.png",
+    image: "assets/images/features/google-plus.png",
     alt: "Google OAuth",
     link: "/docs/applications/google/login/",
-    beta: true,
+    version: "both",
   },
   {
     title: <>Use Google JWT on All Endpoints</>,
     description: <>Use Google-issued tokens to authenticate against any WordPress REST endpoint seamlessly.</>,
-    image: "assets/img/google-plus-jwt.png",
+    image: "assets/images/features/google-plus-jwt.png",
     alt: "Google OAuth endpoints",
     link: "/docs/applications/google/setup/",
-    beta: true,
+    version: "both",
+  },
+  {
+    title: <>API Keys</>,
+    description: <>Issue long-lived, scoped API keys for server-to-server integrations and CI/CD - no JWT expiry to manage.</>,
+    faIcon: faKey,
+    alt: "API Keys",
+    link: "/docs/api-keys/",
+    version: "v4",
+  },
+  {
+    title: <>Sign In with Auth0, Facebook &amp; GitHub</>,
+    description: <>Expand OAuth beyond Google - let users sign in with Auth0, Facebook, or GitHub and receive a WordPress JWT.</>,
+    faIcon: faShieldHalved,
+    alt: "OAuth with Auth0, Facebook, and GitHub",
+    link: "/docs/oauth/",
+    version: "v4",
+  },
+  {
+    title: <>Two-Factor Authentication</>,
+    description: <>Require a 2FA code before issuing a full JWT - works with the WordPress Two Factor plugin.</>,
+    faIcon: faUserShield,
+    alt: "Two-Factor Authentication",
+    link: "/docs/integrations/third-party/two-factor/",
+    version: "v4",
+  },
+  {
+    title: <>Audit Logs</>,
+    description: <>Every login, registration, token, and OAuth event is logged for auditing and debugging - searchable from the admin.</>,
+    faIcon: faClipboardList,
+    alt: "Audit Logs",
+    link: "/docs/audit-logs/",
+    version: "v4",
+  },
+  {
+    title: <>Webhooks</>,
+    description: <>Fire HTTP callbacks on authentication events - integrate with Slack, logging services, or any external system.</>,
+    faIcon: faBell,
+    alt: "Webhooks",
+    link: "/docs/webhooks/",
+    version: "v4",
+  },
+  {
+    title: <>Headless WooCommerce</>,
+    description: <>Authenticate the WooCommerce REST and Store API with a JWT - manage products and run a headless cart &amp; checkout.</>,
+    faIcon: faCartShopping,
+    alt: "Headless WooCommerce",
+    link: "/docs/integrations/third-party/woocommerce/",
+    version: "v4",
+  },
+  {
+    title: <>Multiple JWT Decryption Keys</>,
+    description: <>Define multiple decryption keys and let the plugin pick the right one automatically, based on the JWT header or payload.</>,
+    faIcon: faLayerGroup,
+    alt: "Multiple JWT Decryption Keys",
+    link: "/docs/authentication/",
+    version: "v4",
+  },
+  {
+    title: <>JWT Decoder</>,
+    description: <>Paste any JWT in the WordPress admin to inspect its header and payload instantly - no external tools needed.</>,
+    faIcon: faVial,
+    alt: "JWT Decoder",
+    link: "/docs/dashboard/",
+    version: "v4",
   },
 ];
 
@@ -189,6 +267,7 @@ const reviews = [
 
 function RecentPosts() {
   const recentPosts = require("../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json");
+  const articleIconSrc = useCdnUrl('assets/svg/article.svg');
   if (recentPosts === null || typeof recentPosts.blogPosts !== 'object') return null;
   return (
     <section className={styles.sectionPadding}>
@@ -199,7 +278,7 @@ function RecentPosts() {
           {recentPosts.blogPosts.slice(0, 6).map((item, index) => (
             <div className="col col--4 text-center" id={"blog-post" + index} key={"key" + index}>
               <div className={styles.blogPostHomepage}>
-                <img src="assets/svg/article.svg" alt="Blog Article" title={item.metadata.title} width="100" height="100" />
+                <img src={articleIconSrc} alt="Blog Article" title={item.metadata.title} width="100" height="100" />
                 <span className={styles.blogPostHomepageDate}>{item.metadata.formattedDate}</span>
                 <h3>
                   <a href={item.metadata.permalink} aria-label={item.metadata.title} title={item.metadata.title}>
@@ -216,11 +295,30 @@ function RecentPosts() {
   );
 }
 
+const FEATURE_FILTERS = [
+  { key: 'all', label: 'All' },
+  { key: 'v3', label: 'V3' },
+  { key: 'v4', label: 'V4' },
+];
+
+function matchesFeatureFilter(feature, filter) {
+  if (filter === 'v3') return feature.version === 'both';
+  if (filter === 'v4') return feature.version === 'v4' || feature.version === 'both';
+  return true;
+}
+
 export default function HomePage() {
+  const cdnBase = useCdnBase();
+  const heroLogoSrc = resolveCdnUrl(cdnBase, 'assets/favicons/apple-touch-icon.png');
+  const [featureFilter, setFeatureFilter] = useState('all');
+  const filteredFeatures = useMemo(
+    () => awesomeFeatures.filter((feature) => matchesFeatureFilter(feature, featureFilter)),
+    [featureFilter]
+  );
   return (
     <Layout
       title="Free WordPress JWT Authentication Plugin"
-      description="Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the REST API. Login, register users, protect endpoints, auto-login, and more - no coding required."
+      description="Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the REST API - no coding required."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -231,7 +329,7 @@ export default function HomePage() {
         <div className="container">
           <div className={styles.heroEyebrow}>Free &amp; Open Source WordPress Plugin</div>
           <img
-            src="assets/favicons/apple-touch-icon.png"
+            src={heroLogoSrc}
             alt="Simple JWT Login logo"
             title="Simple JWT Login logo"
             width="88"
@@ -240,35 +338,28 @@ export default function HomePage() {
           />
           <h1 className={styles.heroTitle}>Simple JWT Login</h1>
           <p className={styles.heroSubtitle}>
-            JWT authentication for your WordPress REST API -<br className={styles.heroBreak} />
+            The WordPress Authentication Framework for your REST API -<br className={styles.heroBreak} />
             set up in minutes, no coding required.
           </p>
           <div className={styles.heroCta}>
             <Link to="/docs/" className={styles.actionButton} title="Get started">
               Get started →
             </Link>
-            <Link
-              to="https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"
-              className={styles.btn}
-              download={true}
-              title="Download Plugin"
-            >
-              Download
-            </Link>
+            <DownloadButton />
           </div>
           <div className={styles.heroStats}>
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number="5000" duration="3" />+</span>
+              <span className={styles.heroStatNum}><Counter number={String(ACTIVE_INSTALLS)} duration="3" />+</span>
               <span className={styles.heroStatLabel}>Active installs</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number="82000" duration="3" />+</span>
+              <span className={styles.heroStatNum}><Counter number={String(TOTAL_DOWNLOADS)} duration="3" />+</span>
               <span className={styles.heroStatLabel}>Downloads</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number="5" duration="2" /> / 5</span>
+              <span className={styles.heroStatNum}><Counter number={String(RATING)} duration="2" /> / 5</span>
               <span className={styles.heroStatLabel}>Rating</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
@@ -278,12 +369,23 @@ export default function HomePage() {
             </div>
             <br />
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}>6+ years</span>
+              <span className={styles.heroStatNum}>{ACTIVE_YEARS}+ years</span>
               <span className={styles.heroStatLabel}>Active development</span>
             </div>
           </div>
         </div>
       </header>
+
+      {/* ── v4 Announcement Banner ────────────────────────── */}
+      <div className={styles.v4Banner}>
+        <div className={styles.v4BannerInner}>
+          <span className={styles.v4BannerBadge}>New</span>
+          <span className={styles.v4BannerText}>Simple JWT Login v4 is now available - API Keys, 2FA, Audit Logs, Webhooks, and more. v3 is now in maintenance mode (EOL Jan 31, 2027).</span>
+          <Link to="/v4" className={styles.v4BannerLink} title="See what's new in v4">
+            See what's new →
+          </Link>
+        </div>
+      </div>
 
       <main>
 
@@ -293,8 +395,24 @@ export default function HomePage() {
             <div className="container">
               <span className={styles.sectionEyebrow}>Core Features</span>
               <h2 className={styles.sectionTitle}>Everything you need for JWT authentication</h2>
+              <p className={styles.sectionLead}>
+                Each feature is tagged <strong>V3</strong> or <strong>V4</strong> depending on which version introduced it.
+              </p>
+              <div className={styles.featureFilterBar} role="group" aria-label="Filter features by version">
+                {FEATURE_FILTERS.map(({ key, label }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    className={clsx(styles.featureFilterBtn, featureFilter === key && styles.featureFilterBtnActive)}
+                    onClick={() => setFeatureFilter(key)}
+                    aria-pressed={featureFilter === key}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
               <div className="row">
-                {awesomeFeatures.map((props, idx) => (
+                {filteredFeatures.map((props, idx) => (
                   <Feature key={idx} {...props} />
                 ))}
               </div>
@@ -343,10 +461,10 @@ export default function HomePage() {
                   title: 'PHP',
                   desc: 'Connect any PHP app to Simple JWT Login with one Composer package - supports Laravel, Yii, CodeIgniter, and more.',
                   logos: [
-                    { src: 'assets/img/frameworks/php.png', alt: 'PHP' },
-                    { src: 'assets/img/frameworks/laravel.png', alt: 'Laravel' },
-                    { src: 'assets/img/frameworks/yii.png', alt: 'Yii' },
-                    { src: 'assets/img/frameworks/codeigniter.png', alt: 'CodeIgniter' },
+                    { src: 'assets/images/frameworks/php.png', alt: 'PHP' },
+                    { src: 'assets/images/frameworks/laravel.png', alt: 'Laravel' },
+                    { src: 'assets/images/frameworks/yii.png', alt: 'Yii' },
+                    { src: 'assets/images/frameworks/codeigniter.png', alt: 'CodeIgniter' },
                   ],
                   code: 'composer require "nicumicle/simple-jwt-login-client-php"',
                   href: '/ecosystem/php-sdk',
@@ -357,10 +475,10 @@ export default function HomePage() {
                   title: 'JavaScript',
                   desc: 'Add JWT authentication to React, Vue, Angular, or any JS app with an npm package and a handful of lines.',
                   logos: [
-                    { src: 'assets/img/frameworks/javascript.png', alt: 'JavaScript' },
-                    { src: 'assets/img/frameworks/vue.png', alt: 'Vue' },
-                    { src: 'assets/img/frameworks/react.png', alt: 'React' },
-                    { src: 'assets/img/frameworks/angular.png', alt: 'Angular' },
+                    { src: 'assets/images/frameworks/javascript.png', alt: 'JavaScript' },
+                    { src: 'assets/images/frameworks/vue.png', alt: 'Vue' },
+                    { src: 'assets/images/frameworks/react.png', alt: 'React' },
+                    { src: 'assets/images/frameworks/angular.png', alt: 'Angular' },
                   ],
                   code: 'npm install simple-jwt-login',
                   href: '/ecosystem/js-sdk',
@@ -370,8 +488,8 @@ export default function HomePage() {
                 {
                   title: 'WPGraphQL',
                   desc: 'Use your JWT tokens to authenticate GraphQL queries and mutations - enable it with a single checkbox.',
-                  logos: [{ src: 'assets/img/wpgraphql/wpgraphql-logo.png', alt: 'WPGraphQL' }],
-                  href: '/docs/wpgraphql/',
+                  logos: [{ src: 'assets/images/screenshots/third-party-integrations/wpgraphql-logo.png', alt: 'WPGraphQL' }],
+                  href: '/docs/integrations/third-party/wpgraphql/',
                   cta: 'Learn more',
                 },
                 {
@@ -408,7 +526,7 @@ export default function HomePage() {
                       {logos && logos.length > 0 && (
                         <div className={styles.clientCardLogos}>
                           {logos.map(({ src, alt }) => (
-                            <img key={alt} src={src} alt={alt} title={alt} width="36" height="36" />
+                            <img key={alt} src={resolveCdnUrl(cdnBase, src)} alt={alt} title={alt} width="36" height="36" />
                           ))}
                         </div>
                       )}
@@ -428,6 +546,50 @@ export default function HomePage() {
               <Link to="/ecosystem/" className={styles.actionButton} title="View all integrations &amp; SDKs">
                 View all integrations &amp; SDKs →
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Demos ─────────────────────────────────────────── */}
+        <section className={styles.sectionPadding}>
+          <div className="container">
+            <span className={styles.sectionEyebrow}><FontAwesomeIcon icon={faPlay} style={{ marginRight: '0.4rem' }} /> Try it live</span>
+            <h2 className={styles.sectionTitle}>See it in action</h2>
+            <p className={styles.sectionLead}>
+              Run live demos right in your browser, against your own WordPress site -
+              nothing is sent anywhere except the URL you provide.
+            </p>
+            <div style={{ marginTop: '2rem' }}>
+              <Link to="/demos/" className={styles.actionButton} title="View all demos">
+                View all demos →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Deploy WordPress ──────────────────────────────── */}
+        <section className={styles.deploySection}>
+          <div className="container">
+            <div className={styles.deployBanner}>
+              <div className={styles.deployBannerGlow} aria-hidden="true" />
+              <div className={styles.deployBannerContent}>
+                <span className={styles.deployBannerEyebrow}>
+                  <FontAwesomeIcon icon={faRocket} /> One-click deploy
+                </span>
+                <h2 className={styles.deployBannerTitle}>
+                  Don&apos;t have a site yet? Launch one in one click
+                </h2>
+                <p className={styles.deployBannerText}>
+                  Spin up a fully installed WordPress server on DigitalOcean - with Simple JWT
+                  Login ready for headless and REST API authentication. No Marketplace setup,
+                  no terminal, no install wizard. We hand you the login.
+                </p>
+              </div>
+              <div className={styles.deployBannerActions}>
+                <Link to="/deploy-wordpress" className={styles.actionButton} title="Deploy WordPress on DigitalOcean">
+                  Deploy WordPress →
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -546,14 +708,7 @@ export default function HomePage() {
                 <Link to="/docs/" className={styles.actionButton} title="Read the documentation">
                   Get started →
                 </Link>
-                <Link
-                  to="https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true"
-                  className={styles.btn}
-                  download={true}
-                  title="Download the plugin"
-                >
-                  Download
-                </Link>
+                <DownloadButton />
               </div>
             </div>
           </div>

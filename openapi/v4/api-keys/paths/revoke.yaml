@@ -1,0 +1,84 @@
+tags:
+  - api_keys
+summary: Revoke an API key
+operationId: revokeApiKey
+security:
+  - WordPressSession: []
+description: |
+  Soft-deletes (revokes) an API key by recording a `revoked_at` timestamp. The key
+  record is retained in the database but is rejected by the authentication middleware.
+  To permanently remove the record, use `DELETE /api-keys/{id}`.
+
+  Regular users may only revoke their own keys. Administrators may revoke any key.
+parameters:
+  - name: id
+    in: path
+    required: true
+    description: Numeric ID of the API key to revoke.
+    schema:
+      type: integer
+    example: 7
+responses:
+  '200':
+    description: API key revoked successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - success
+            - message
+          properties:
+            success:
+              type: boolean
+              example: true
+            message:
+              type: string
+              example: "API key revoked successfully."
+  '401':
+    description: Unauthorized. No active WordPress session.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "You must be logged in to manage API keys."
+            error_code: 84
+  '403':
+    description: |
+      Forbidden. The authenticated user does not own this API key and does not have
+      administrator privileges.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "You are not allowed to manage this API key."
+            error_code: 84
+  '404':
+    description: No API key with the provided ID was found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Invalid API key ID."
+            error_code: 89
+  '500':
+    description: |
+      Internal server error. The database revoke operation failed.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Failed to revoke API key."
+            error_code: 91

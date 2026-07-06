@@ -1,0 +1,129 @@
+type: object
+required:
+  - success
+  - data
+properties:
+  success:
+    type: boolean
+    example: true
+  data:
+    type: object
+    required:
+      - user
+      - roles
+      - jwt
+    properties:
+      user:
+        type: object
+        description: The matching WordPress user profile (excludes `user_pass`).
+        required:
+          - ID
+          - user_login
+          - user_nicename
+          - user_email
+          - user_url
+          - user_registered
+          - user_activation_key
+          - user_status
+          - display_name
+        properties:
+          ID:
+            type: string
+            example: "1"
+          user_login:
+            type: string
+            example: "myuser"
+          user_nicename:
+            type: string
+            example: "myuser"
+          user_email:
+            type: string
+            example: "myuser@simplejwtlogin.com"
+          user_url:
+            type: string
+            example: "https://simplejwtlogin.com/myuser"
+          user_registered:
+            type: string
+            example: "2021-01-01 23:31:50"
+          user_activation_key:
+            type: string
+            example: ""
+          user_status:
+            type: string
+            example: "0"
+          display_name:
+            type: string
+            example: "myuser"
+      roles:
+        type: array
+        items:
+          type: string
+          example: "administrator"
+      jwt:
+        type: object
+        required:
+          - token
+          - header
+          - payload
+        properties:
+          token:
+            type: string
+            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          header:
+            type: object
+            required:
+              - typ
+              - alg
+            properties:
+              typ:
+                type: string
+                example: "JWT"
+              alg:
+                type: string
+                example: "HS256"
+          payload:
+            type: object
+            required:
+              - iat
+            properties:
+              iat:
+                type: number
+                description: Issued-at timestamp. Always present.
+                example: 1516239022
+              exp:
+                type: number
+                nullable: true
+                description: Expiry timestamp. Present only when the `exp` payload parameter is enabled in plugin settings.
+                example: 1516242622
+              email:
+                type: string
+                nullable: true
+                description: User email. Present only when enabled in plugin settings.
+                example: "myuser@simplejwtlogin.com"
+              id:
+                type: number
+                nullable: true
+                description: WordPress user ID. Present only when enabled in plugin settings.
+                example: 1
+              site:
+                type: string
+                nullable: true
+                description: Site URL. Present only when enabled in plugin settings.
+                example: "https://simplejwtlogin.com"
+              username:
+                type: string
+                nullable: true
+                description: WordPress login username. Present only when enabled in plugin settings.
+                example: "myuser"
+              iss:
+                type: string
+                nullable: true
+                description: Issuer claim. Present only when enabled in plugin settings.
+                example: "https://simplejwtlogin.com"
+          expire_in:
+            type: integer
+            nullable: true
+            description: |
+              Seconds until the JWT expires (`exp - now`). Only present
+              when the JWT payload contains an `exp` claim.
+            example: 3600

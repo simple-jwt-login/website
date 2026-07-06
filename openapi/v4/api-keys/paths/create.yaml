@@ -1,0 +1,120 @@
+tags:
+  - api_keys
+summary: Create an API key
+operationId: createApiKey
+security:
+  - WordPressSession: []
+description: |
+  Generates a new API key for the authenticated WordPress user. The full key value
+  (`sjl_` prefix + 32 hex characters) is returned **only in this response** - it
+  cannot be retrieved again. Store it securely immediately.
+
+  **Permissions**
+  One or more of: `read`, `create`, `update`, `delete`. These map to the HTTP methods
+  the key may be used to authenticate: GET, POST, PUT/PATCH, and DELETE respectively.
+
+  **Requirements**
+  - An active WordPress session is required.
+  - `name` is required and must be non-empty.
+  - At least one permission must be specified.
+requestBody:
+  description: API key definition.
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/create-api-key-body.yaml'
+    multipart/form-data:
+      schema:
+        $ref: '../schemas/create-api-key-body.yaml'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: '../schemas/create-api-key-body.yaml'
+responses:
+  '200':
+    description: |
+      API key created. The `key` field contains the full plaintext key - save it now
+      as it will not be returned again.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - success
+            - data
+          properties:
+            success:
+              type: boolean
+              example: true
+            data:
+              type: object
+              required:
+                - id
+                - key
+                - name
+                - key_prefix
+                - permissions
+              properties:
+                id:
+                  type: integer
+                  description: Database ID of the newly created key.
+                  example: 7
+                key:
+                  type: string
+                  description: Full plaintext API key. Store securely - shown only once.
+                  example: "sjl_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"
+                name:
+                  type: string
+                  example: "My integration key"
+                key_prefix:
+                  type: string
+                  description: First 8 characters of the key, for identification.
+                  example: "sjl_a1b2"
+                permissions:
+                  type: array
+                  items:
+                    type: string
+                    enum: [read, create, update, delete]
+                  example: ["read", "create"]
+                expires_at:
+                  type: string
+                  nullable: true
+                  description: Expiry timestamp in `Y-m-d H:i:s` format, or null for no expiry.
+                  example: "2027-01-01 00:00:00"
+  '400':
+    description: |
+      Bad request. `name` is empty, no permissions were provided, or a permission
+      value is unrecognised.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "API key name is required."
+            error_code: 85
+  '401':
+    description: |
+      Unauthorized. No active WordPress session.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "You must be logged in to manage API keys."
+            error_code: 84
+  '500':
+    description: |
+      Internal server error. The database insert for the new API key failed.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Failed to create API key."
+            error_code: 88

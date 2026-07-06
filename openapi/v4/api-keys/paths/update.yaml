@@ -1,0 +1,109 @@
+tags:
+  - api_keys
+summary: Update an API key
+operationId: updateApiKey
+security:
+  - WordPressSession: []
+description: |
+  Updates the `name`, `permissions`, and/or `expires_at` of an existing API key.
+  Regular users may only update their own keys. Administrators (`manage_options`)
+  may update any key.
+parameters:
+  - name: id
+    in: path
+    required: true
+    description: Numeric ID of the API key to update.
+    schema:
+      type: integer
+    example: 7
+requestBody:
+  description: Updated API key fields.
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/update-api-key-body.yaml'
+    multipart/form-data:
+      schema:
+        $ref: '../schemas/update-api-key-body.yaml'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: '../schemas/update-api-key-body.yaml'
+responses:
+  '200':
+    description: API key updated successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - success
+            - message
+          properties:
+            success:
+              type: boolean
+              example: true
+            message:
+              type: string
+              example: "API key updated successfully."
+  '400':
+    description: |
+      Bad request. `name` is empty, no permissions were provided, or a permission
+      value is unrecognised.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "API key name is required."
+            error_code: 85
+  '401':
+    description: |
+      Unauthorized. No active WordPress session.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "You must be logged in to manage API keys."
+            error_code: 84
+  '403':
+    description: |
+      Forbidden. The authenticated user does not own this API key and does not have
+      administrator privileges.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "You are not allowed to manage this API key."
+            error_code: 84
+  '404':
+    description: No API key with the provided ID was found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Invalid API key ID."
+            error_code: 89
+  '500':
+    description: |
+      Internal server error. The database update for the API key failed.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Failed to update API key."
+            error_code: 90

@@ -1,0 +1,27 @@
+type: object
+required:
+  - name
+  - permissions
+properties:
+  name:
+    type: string
+    description: New human-readable name for the key.
+    example: "Updated key name"
+  permissions:
+    description: |
+      Updated permission set. Same format as for key creation.
+      Valid values: `read`, `create`, `update`, `delete`.
+    oneOf:
+      - type: array
+        items:
+          type: string
+          enum: [read, create, update, delete]
+      - type: string
+    example: ["read", "create", "update"]
+  expires_at:
+    type: string
+    nullable: true
+    description: |
+      Updated expiry date/time in `Y-m-d H:i:s` format, or `null` to remove the
+      expiry.
+    example: "2028-06-01 00:00:00"

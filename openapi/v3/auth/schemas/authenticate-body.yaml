@@ -1,0 +1,33 @@
+type: object
+properties:
+  email:
+    type: string
+    example: john@doe.com
+    description: Required when username and login are not provided.
+  username:
+    type: string
+    example: myuser
+    description: Required when email and login are not provided.
+  login:
+    type: string 
+    example: myuser
+    description: User email of username. It behaves as WordPress login. Required without email and username.
+  password:
+    type: string
+    description: User plain password. Required when pass_hash is not provided.
+  password_hash:
+    type: string
+    description: User hashed password from Database. Required when password is not provided.
+  AUTH_CODE:
+    type: string
+    example: "MY_SUPER_SECRET_AUTH_CODE"
+    description: Required when "Authentication Requires Auth Code" is enabled
+  payload:
+    type: string
+    nullable: true
+    example: '{"department":"engineering","region":"eu"}'
+    description: |
+      Optional extra claims to merge into the JWT payload, as a JSON-encoded
+      string. Reserved identity claims (e.g. `email`, `id`, `username`, `site`,
+      `iss`, `exp`, `iat`) are always stripped from this value and set from the
+      authenticated user instead - they cannot be overridden by the caller.

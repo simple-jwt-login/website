@@ -33,21 +33,6 @@ html[data-theme='dark'] .featureBlock:hover {
   border-color: rgba(66, 185, 131, 0.4);
 }
 
-/* Beta badge */
-.beta {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: #ffffff;
-}
-
 /* Icon circle */
 .featureIcon {
   display: flex;
@@ -76,6 +61,56 @@ html[data-theme='dark'] .featureBlock:hover {
 html[data-theme='dark'] .featureBlock img {
   filter: brightness(0) invert(1);
   opacity: 0.85;
+}
+
+.featureIcon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--ifm-color-primary);
+}
+html[data-theme='dark'] .featureIcon svg {
+  color: var(--ifm-color-primary-lightest);
+}
+
+/* Version badges */
+.versionBadgeGroup {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.versionBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.versionBadgeV3 {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-emphasis-700);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+html[data-theme='dark'] .versionBadgeV3 {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+  border-color: var(--ifm-color-emphasis-400);
+}
+
+.versionBadgeV4 {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darker);
+  border: 1px solid var(--ifm-color-primary-light);
+}
+html[data-theme='dark'] .versionBadgeV4 {
+  background: color-mix(in srgb, var(--ifm-color-primary) 15%, transparent);
+  color: var(--ifm-color-primary-lightest);
+  border-color: var(--ifm-color-primary);
 }
 
 /* Title */

@@ -1,0 +1,27 @@
+type: object
+required:
+  - name
+  - permissions
+properties:
+  name:
+    type: string
+    description: Human-readable name to identify the key.
+    example: "My integration key"
+  permissions:
+    description: |
+      Array (or comma-separated string) of permissions to grant.
+      Valid values: `read`, `create`, `update`, `delete`.
+    oneOf:
+      - type: array
+        items:
+          type: string
+          enum: [read, create, update, delete]
+      - type: string
+    example: ["read", "create"]
+  expires_at:
+    type: string
+    nullable: true
+    description: |
+      Optional expiry date/time in `Y-m-d H:i:s` format. Omit (or pass `null`) for
+      a non-expiring key.
+    example: "2027-01-01 00:00:00"

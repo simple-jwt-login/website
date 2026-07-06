@@ -1,0 +1,145 @@
+tags:
+  - authenticate_user
+summary: Revoke a JWT
+operationId: revokeJWT
+security:
+  - BearerAuth: []
+description: |
+  Marks the provided JWT as revoked in the database. Once revoked, the token is
+  rejected by all plugin endpoints that check for revocation (autologin, validate,
+  refresh, etc.).
+
+  **JWT delivery**
+  The JWT to revoke can be passed via:
+  - `JWT` field in the request body
+  - `Authorization: Bearer <token>` header (when enabled in plugin General Settings)
+
+  **Requirements**
+  - Token revocation must be enabled in the plugin settings.
+  - The JWT must be structurally valid (it does not need to be un-expired).
+  - If "Authentication Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
+requestBody:
+  description: The JWT to revoke, plus optional auth code.
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/auth-revoke-body.yaml'
+    multipart/form-data:
+      schema:
+        $ref: '../schemas/auth-revoke-body.yaml'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: '../schemas/auth-revoke-body.yaml'
+  required: true
+responses:
+  '200':
+    description: Token revoked successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - success
+            - message
+            - data
+          properties:
+            success:
+              type: boolean
+              description: Action status.
+              example: true
+            message:
+              type: string
+              description: Confirmation message.
+              example: "Token was revoked."
+            data:
+              type: object
+              required:
+                - jwt
+              properties:
+                jwt:
+                  type: array
+                  description: Array containing the revoked JWT string.
+                  items:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  '400':
+    description: |
+      Bad request. The JWT has a structural encoding error (wrong number of
+      segments, invalid base64 encoding of header, claims, or signature).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Wrong number of segments."
+            error_code: 2
+  '401':
+    description: |
+      Unauthorized. One of:
+      - The JWT signature verification failed or algorithm is unsupported
+        (`error_code` 6-11).
+      - The token was already revoked (`error_code` 55).
+      - The provided auth code is wrong (`error_code` 27).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "JWT signature verification failed."
+            error_code: 11
+  '403':
+    description: |
+      Forbidden. One of:
+      - Authentication is disabled in the plugin settings (`error_code` 45).
+      - Token revocation is disabled in the plugin settings (`error_code` 83).
+      - The client IP address is not on the allow-list (`error_code` 41).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Revoke Token endpoint is not enabled."
+            error_code: 83
+  '404':
+    description: |
+      The WordPress user identified by the JWT payload could not be found.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "User not found."
+            error_code: 24
+  '422':
+    description: |
+      Unprocessable entity. One of:
+      - The JWT is completely absent from the request (`error_code` 53).
+      - The auth code is required but was not provided (`error_code` 94).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "The `jwt` parameter is missing."
+            error_code: 53
+  '500':
+    description: Internal server error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "An unexpected error occurred."
+            error_code: 22

@@ -1,0 +1,81 @@
+---
+id: validate-jwt-post
+title: "Validate a JWT (POST)"
+description: "Identical to `GET /auth/validate` but accepts the JWT in the request body instead of"
+sidebar_label: "Validate a JWT (POST)"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: api/v4//simple-jwt-login
+custom_edit_url: null
+show_extensions: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Validate a JWT and retrieve user details (POST variant)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/validate"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Identical to `GET /auth/validate` but accepts the JWT in the request body instead of
+as a query parameter. Use this variant when the JWT is too long for a URL, or when
+sending it in the body is preferred for security reasons.
+
+**JWT delivery**
+The JWT can be passed via:
+- `JWT` field in the request body
+- `Authorization: Bearer <token>` header (when enabled in plugin General Settings)
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"JWT to validate.","content":{"application/json":{"schema":{"type":"object","required":["JWT"],"properties":{"JWT":{"type":"string","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","description":"The JWT to validate."},"AUTH_KEY":{"type":"string","example":"MY_SUPER_SECRET_AUTH_KEY","description":"Required when \"Authentication Requires Auth Code\" is enabled."}}}},"multipart/form-data":{"schema":{"type":"object","required":["JWT"],"properties":{"JWT":{"type":"string","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","description":"The JWT to validate."},"AUTH_KEY":{"type":"string","example":"MY_SUPER_SECRET_AUTH_KEY","description":"Required when \"Authentication Requires Auth Code\" is enabled."}}}},"application/x-www-form-urlencoded":{"schema":{"type":"object","required":["JWT"],"properties":{"JWT":{"type":"string","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","description":"The JWT to validate."},"AUTH_KEY":{"type":"string","example":"MY_SUPER_SECRET_AUTH_KEY","description":"Required when \"Authentication Requires Auth Code\" is enabled."}}}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"JWT is valid. Returns the decoded token and the associated WordPress user.","content":{"application/json":{"schema":{"type":"object","required":["success","data"],"properties":{"success":{"type":"boolean","example":true},"data":{"type":"object","required":["user","roles","jwt"],"properties":{"user":{"type":"object","description":"The matching WordPress user profile (excludes `user_pass`).","required":["ID","user_login","user_nicename","user_email","user_url","user_registered","user_activation_key","user_status","display_name"],"properties":{"ID":{"type":"string","example":"1"},"user_login":{"type":"string","example":"myuser"},"user_nicename":{"type":"string","example":"myuser"},"user_email":{"type":"string","example":"myuser@simplejwtlogin.com"},"user_url":{"type":"string","example":"https://simplejwtlogin.com/myuser"},"user_registered":{"type":"string","example":"2021-01-01 23:31:50"},"user_activation_key":{"type":"string","example":""},"user_status":{"type":"string","example":"0"},"display_name":{"type":"string","example":"myuser"}}},"roles":{"type":"array","items":{"type":"string","example":"administrator"}},"jwt":{"type":"object","required":["token","header","payload"],"properties":{"token":{"type":"string","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"},"header":{"type":"object","required":["typ","alg"],"properties":{"typ":{"type":"string","example":"JWT"},"alg":{"type":"string","example":"HS256"}}},"payload":{"type":"object","required":["iat"],"properties":{"iat":{"type":"number","description":"Issued-at timestamp. Always present.","example":1516239022},"exp":{"type":"number","nullable":true,"description":"Expiry timestamp. Present only when the `exp` payload parameter is enabled in plugin settings.","example":1516242622},"email":{"type":"string","nullable":true,"description":"User email. Present only when enabled in plugin settings.","example":"myuser@simplejwtlogin.com"},"id":{"type":"number","nullable":true,"description":"WordPress user ID. Present only when enabled in plugin settings.","example":1},"site":{"type":"string","nullable":true,"description":"Site URL. Present only when enabled in plugin settings.","example":"https://simplejwtlogin.com"},"username":{"type":"string","nullable":true,"description":"WordPress login username. Present only when enabled in plugin settings.","example":"myuser"},"iss":{"type":"string","nullable":true,"description":"Issuer claim. Present only when enabled in plugin settings.","example":"https://simplejwtlogin.com"}}},"expire_in":{"type":"integer","nullable":true,"description":"Seconds until the JWT expires (`exp - now`). Only present\nwhen the JWT payload contains an `exp` claim.\n","example":3600}}}}}}}}}},"400":{"description":"Bad request. The JWT has a structural encoding error (wrong number of\nsegments, invalid base64 encoding of header, claims, or signature).\n","content":{"application/json":{"schema":{"type":"object","required":["success","data"],"properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","required":["message","error_code"],"properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"error_code":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}}}}}},"401":{"description":"Unauthorized. The JWT signature verification failed, is expired, or has\nbeen revoked. The provided auth code is wrong.\n","content":{"application/json":{"schema":{"type":"object","required":["success","data"],"properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","required":["message","error_code"],"properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"error_code":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}}}}}},"403":{"description":"Forbidden. JWT validation is disabled in the plugin settings (`error_code` 82).\n","content":{"application/json":{"schema":{"type":"object","required":["success","data"],"properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","required":["message","error_code"],"properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"error_code":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}}}}}},"422":{"description":"Unprocessable entity. The `JWT` field is absent from the request body\n(`error_code` 53), or the auth code is required but not provided (`error_code` 94).\n","content":{"application/json":{"schema":{"type":"object","required":["success","data"],"properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","required":["message","error_code"],"properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"error_code":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}}}}}},"500":{"description":"Internal server error.","content":{"application/json":{"schema":{"type":"object","required":["success","data"],"properties":{"success":{"type":"boolean","example":false,"description":"Always `false` for error responses."},"data":{"type":"object","required":["message","error_code"],"properties":{"message":{"type":"string","description":"Human-readable error description.","example":"An error occurred."},"error_code":{"type":"number","description":"Internal error code. Use this for programmatic error handling.\nSee the plugin source (`ErrorCodes.php`) for the full list of codes.\n","example":22}}}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

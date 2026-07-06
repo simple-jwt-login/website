@@ -221,7 +221,7 @@ export default function CliPage() {
   return (
     <Layout
       title="WP-CLI Add-on - Simple JWT Login"
-      description="Manage Simple JWT Login from the command line. Generate tokens, validate JWTs, revoke sessions, and configure the plugin without touching the WordPress admin UI."
+      description="Manage Simple JWT Login from the command line - generate tokens, validate JWTs, revoke sessions, and configure the plugin."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>

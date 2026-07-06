@@ -2,7 +2,7 @@
 slug: /
 title: Introduction
 sidebar_position: 0
-description: Simple JWT Login is a free WordPress plugin that adds JWT authentication to the REST API - login, register, auto-login, protect endpoints, and more. No coding required.
+description: Simple JWT Login is a free WordPress plugin that adds JWT authentication to the REST API - login, register, auto-login, and more.
 keywords: [Simple JWT Login, WordPress JWT plugin, JWT authentication, WordPress REST API, JSON Web Token WordPress, headless WordPress authentication]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
@@ -39,28 +39,28 @@ Setting up Simple-JWT-Login is quick and easy. Choose one of the following insta
 ### Method 1: Install from WordPress.org (Recommended)
 - Go to the **Plugins** menu in WordPress and click "**Add New**".
 
-    ![Add new plugin](/assets/img/docs/add_plugin.png "Add new plugin")
+    ![Add new plugin](/assets/images/docs/add_plugin.png "Add new plugin")
 - Search for "**Simple JWT Login**" and select "**Install Now**".
 
-    ![Search for Simple-JWT-Login plugin](/assets/img/docs/search_simple-jwt-login-plugin.png "Search for simple-jwt-login")
+    ![Search for Simple-JWT-Login plugin](/assets/images/docs/search_simple-jwt-login-plugin.png "Search for simple-jwt-login")
 - **Activate** the plugin when prompted.
 
-    ![Activate the plugin](/assets/img/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
+    ![Activate the plugin](/assets/images/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
 
 ### Method 2: Download and Install Manually
 - Access [https://wordpress.org/plugins/simple-jwt-login/](https://wordpress.org/plugins/simple-jwt-login/).
 
 - Click "**Download**" to get the latest Simple-JWT-Login plugin version.
 
-    ![Download the plugin](/assets/img/docs/download_from_wordpress.org.png "Download the plugin")
+    ![Download the plugin](/assets/images/docs/download_from_wordpress.org.png "Download the plugin")
 
 - Upload the `.zip` file via the WordPress plugin uploader (**Plugins → Add New → Upload Plugin**).
 
-    ![Upload the plugin zip](/assets/img/docs/upload_plugin_file_in_wordpress.png "Upload plugin zip file")
+    ![Upload the plugin zip](/assets/images/docs/upload_plugin_file_in_wordpress.png "Upload plugin zip file")
 
 - Click "**Install Now**" and **Activate** the plugin.
 
-   ![Activate the plugin](/assets/img/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
+   ![Activate the plugin](/assets/images/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
 
 
 

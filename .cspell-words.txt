@@ -48,6 +48,19 @@ wp
 wp-cli
 wpcli
 
+# DigitalOcean deploy page
+vcpu
+vcpus
+LEMP
+mbstring
+phar
+dbname
+dbuser
+dbpass
+creds
+fallocate
+swapon
+
 # Testimonials
 lejager
 mdruart

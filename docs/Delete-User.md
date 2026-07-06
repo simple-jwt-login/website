@@ -1,52 +1,67 @@
 ---
 slug: /delete-user/
-title: Delete WordPress User
+title: Delete User
 sidebar_position: 7
+description: Delete WordPress user accounts via a JWT-authenticated REST API call. Useful for self-service account deletion in mobile apps and headless front-ends.
+keywords: [WordPress delete user API, REST API delete user WordPress, JWT delete account, headless WordPress user deletion]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-The Delete User endpoint allows you to remove a WordPress user account via a REST API call authenticated with a JWT. This is useful for self-service account deletion flows in mobile apps or headless front-ends.
+The Delete User endpoint removes a WordPress user account via a REST API call authenticated with a valid JWT. The user to delete is identified from the claims inside the JWT.
 
-Deletion is **disabled by default**. Enable it in the plugin settings before use.
+Deletion is **disabled by default**. Enable it in **Settings → Simple JWT Login → Delete User**.
 
-The plugin identifies which user to delete from the JWT payload. You can configure it to look for either:
-- **WordPress User ID** - the numeric user ID stored in the JWT
-- **Email address** - the user's email address stored in the JWT
+:::tip[API Reference]
+Explore and test this endpoint using the [interactive API reference →](/api/v4/delete-user)
+:::
 
-Configure the JWT payload key to use in the plugin settings under the **Delete User** tab.
+:::caution
+Enable "Require Authentication Code" unless you have a specific reason not to. Without it, any holder of a valid JWT can delete their account.
+:::
 
 ## Endpoint
 
-**METHOD** : `DELETE`
+**METHOD**: `DELETE`
 
-**ENDPOINT** : `/simple-jwt-login/v1/users`
+**ENDPOINT**: `/simple-jwt-login/v1/users`
 
-**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users&JWT={{JWT}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
+**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users&JWT={{JWT}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
+
+The JWT can be passed in any of these ways:
+- Query parameter or request body: `JWT=your_token`
+- Authorization header: `Authorization: Bearer YOUR_JWT`
 
 **PARAMETERS**:
 
-| Parameter       |   Type           |   Description|
-| :-------------: | :--------------: | ------------ |
-|   JWT  | `required` `string` | Your JWT |
-| AUTH_CODE | `optional` `string` | Auth Code from the "Auth codes" section. Required only if "Delete User Requires Auth Code" is enabled. |
+| Parameter | Type | Description |
+| :-------: | :--: | ----------- |
+| `JWT` | `required` `string` | A valid JWT identifying the user to delete. Can alternatively be passed as `Authorization: Bearer <token>`. |
+| `AUTH_KEY` | `optional` `string` | Auth Code value. Required only if "Require Authentication Code" is enabled. The parameter name matches the **Auth Code URL Key** in Auth Codes settings (default: `AUTH_KEY`). |
 
-
-## Request 
+## Request
 
 ```json
 {
   "JWT": "YOUR_JWT_HERE",
-  "AUTH_CODE" : "SUPER_SECRET_AUTH_CODE"
+  "AUTH_KEY": "SUPER_SECRET_AUTH_CODE"
 }
 ```
 
-## Response
+Or via Authorization header:
+
+```bash
+DELETE /wp-json/simple-jwt-login/v1/users
+Authorization: Bearer YOUR_JWT_HERE
+```
+
+## Responses
 
 ### 200
 
 ```json
 {
+  "success": true,
   "message": "User was successfully deleted.",
   "id": 1
 }
@@ -54,10 +69,71 @@ Configure the JWT payload key to use in the plugin settings under the **Delete U
 
 ### 400
 
+JWT parameter is missing or cannot be decoded.
+
 ```json
 {
   "success": false,
-  "error" : "Error message"
+  "data": {
+    "message": "JWT is missing.",
+    "errorCode": 42
+  }
+}
+```
+
+### 401
+
+JWT is invalid, has a bad signature, is expired, is revoked, or the auth code is wrong.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "JWT has expired.",
+    "errorCode": 14
+  }
+}
+```
+
+### 403
+
+User deletion is disabled in plugin settings, or the client IP is not on the allow-list.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "Delete is not enabled.",
+    "errorCode": 39
+  }
+}
+```
+
+### 404
+
+No WordPress user matches the claims in the JWT.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "User not found.",
+    "errorCode": 24
+  }
+}
+```
+
+### 500
+
+Internal server error.
+
+```json
+{
+  "success": false,
+  "data": {
+    "message": "An unexpected error occurred.",
+    "errorCode": 22
+  }
 }
 ```
 
@@ -66,58 +142,72 @@ Configure the JWT payload key to use in the plugin settings under the **Delete U
 ### SHELL
 
 ```bash
-curl -X DELETE https://simplejwtlogin.com/simple-jwt-login/v1/users \
-  -H "Content-type: application/json" 
-  -d '{"JWT":"YOUR_JWT","AUTH_CODE":"SECRET_AUTH_CODE"}'
+curl -X DELETE 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
+  -H "Content-type: application/json" \
+  -d '{"JWT":"YOUR_JWT","AUTH_KEY":"SECRET_AUTH_CODE"}'
+```
+
+Or using the Authorization header:
+
+```bash
+curl -X DELETE 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
+  -H "Authorization: Bearer YOUR_JWT"
 ```
 
 ### PHP
 
 ```php
-$simpleJWT = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+$simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
     'https://simplejwtlogin.com',
-    '/simple-jwt-login-v1'
+    '/simple-jwt-login/v1'
 );
-$simpleJWT->delete('Your JWT');
+$simpleJwtLogin->deleteUser('Your JWT');
 ```
 
 ### JavaScript
 
 ```js
-var data = JSON.stringify({
-    "JWT":"YOUR_JWT",
-    "AUTH_CODE":"SECRET_AUTH_CODE"
-});
-
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener("readystatechange", function() {
-    if(this.readyState === 4) {
-        console.log(this.responseText);
-    }
-});
-
-xhr.open("DELETE", "https://simplejwtlogin.com" + "/simple-jwt-login/v1/users");
-xhr.setRequestHeader("Content-Type", "application/json");
-
-xhr.send(data);
+fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users', {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_JWT'
+  }
+}).then(r => r.json()).then(console.log);
 ```
 
-## Screenshot
+## Error responses
 
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-5.png?raw=true)
+| Code | Meaning |
+| :--: | ------- |
+| `24` | No WordPress user matches the JWT claims. |
+| `39` | User deletion is not enabled in plugin settings. |
+| `40` | Auth Code is missing when it is required. |
+| `41` | Client IP is not on the allowed IP list. |
+| `42` | JWT is missing from the request. |
 
-## Features
+JWT decoding errors (`1`-`22`) may also appear when the token cannot be parsed or its signature is invalid.
 
-### Limit by IP address
+---
 
-You can limit the deletion of users to specific IP addresses for security reasons.
+## Settings
 
-You can set multiple IP addresses, separated by commas.
+Configure under **Settings → Simple JWT Login → Delete User**.
 
-Example: 
+### Delete User
 
-```
-  127.0.0.1, 123.123.123.123
-```
+![Delete User settings](/assets/images/screenshots/delete/delete-user.png)
+
+Enable or disable the delete endpoint. When disabled, all DELETE requests to `/users` return a 403 error.
+
+### Require Authentication Code
+
+![Require Authentication Code](/assets/images/screenshots/delete/require-authentication-code.png)
+
+When enabled, every deletion request must include a valid Auth Code alongside the JWT. The parameter name is the **Auth Code URL Key** from the Auth Codes settings (default: `AUTH_KEY`).
+
+### Access Control
+
+![Access Control settings](/assets/images/screenshots/delete/access-control.png)
+
+Comma-separated list of IP addresses allowed to call the delete endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (e.g. `192.168.*.*`).

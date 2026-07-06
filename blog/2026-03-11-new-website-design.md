@@ -1,6 +1,6 @@
 ---
-title: "New Website Design: Faster, Smarter, and Easier to Navigate"
-description: We've completely redesigned the Simple JWT Login website with a cleaner UI, built-in search, AI-friendly content, improved SEO, and new blog content - here's what's new.
+title: "A Faster, Smarter New Website Design"
+description: We've redesigned the Simple JWT Login website with a cleaner UI, built-in search, AI-friendly content, and improved SEO.
 slug: /new-website-design-2026/
 hide_table_of_contents: false
 authors: nicumicle

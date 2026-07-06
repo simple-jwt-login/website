@@ -1,10 +1,12 @@
 ---
-title: "Simple JWT Login Security Hardening Guide: Lock Down Your WordPress API"
-description: A practical checklist for hardening Simple JWT Login in production - covering algorithm selection, Auth Codes, IP restrictions, endpoint protection, token revocation, and more.
+title: "JWT Security Hardening Guide"
+description: A practical checklist for hardening Simple JWT Login in production - algorithm selection, Auth Codes, IP restrictions, and more.
 slug: /simple-jwt-login-security-hardening/
 hide_table_of_contents: false
 authors: nicumicle
-tags: [tutorials]
+tags: [tutorials, security]
+image: /assets/favicons/android-chrome-192x192.png
+keywords: [Simple JWT Login, security hardening, WordPress REST API, JWT authentication, Auth Codes]
 ---
 
 Installing Simple JWT Login takes minutes. Configuring it securely for production takes a bit more thought. The plugin ships with most sensitive features **disabled by default**, which is the right approach - but it also means the defaults aren't always sufficient for a hardened deployment.

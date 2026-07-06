@@ -1,10 +1,12 @@
 ---
-title: How to use the JavaScript SDK in a React App
-description: In this tutorial you will see and real world example on how to use the simple-jwt-login JS SDK in a React App.
+title: Using the JavaScript SDK in a React App
+description: A real-world walkthrough of using the Simple JWT Login JavaScript SDK inside a React app to authenticate against the WordPress REST API.
+keywords: [JavaScript SDK, React, JWT authentication, WordPress REST API, headless WordPress]
 slug: /javascript-sdk-usage-react/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [tutorials]
+image: /assets/favicons/android-chrome-192x192.png
 ---
 
 We just released the first version for the JavaScript SDK.
@@ -47,7 +49,7 @@ npm start
 
 Once the React starts, a new tab will be opened in your Browser:
 
-![React App](/assets/images/react-homescreen.png "React Home-screen")
+![React App](/assets/images/blog/react-homescreen.png "React Home-screen")
 
 
 ## Install the Simple-JWT-Login SDK
@@ -173,7 +175,7 @@ export default App;
 
 At this moment, we have a register form:
 
-![React register form](/assets/images/react_register_form.png "React Register Form")
+![React register form](/assets/images/blog/react_register_form.png "React Register Form")
 
 
 ## Add the Simple-JWT-Login SDK library
@@ -313,7 +315,7 @@ export default App;
 
 After filling the form and click on "Register User" you will get something similar in your console:
 
-![Register user result](/assets/images/react_register_user_console.png "The final result")
+![Register user result](/assets/images/blog/react_register_user_console.png "The final result")
 
 
 ## Conclusion

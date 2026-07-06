@@ -1,0 +1,179 @@
+tags:
+  - register_user
+summary: Register a new WordPress user
+description: |
+  Creates a new WordPress user account. At minimum, `email` and `password` must be
+  supplied. All standard WordPress user fields (display name, locale, etc.) are
+  accepted and passed to `wp_insert_user()`.
+
+  **Requirements**
+  - User registration must be enabled in the plugin settings.
+  - If "Register Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
+  - The calling IP must pass any IP allow-list configured in the plugin settings.
+  - The email address must be unique and well-formed.
+  - If email domain restrictions are configured, the domain must match.
+
+  **Success behaviour**
+  Returns the new user's profile object, their roles, and optionally a JWT if
+  "Generate JWT on register" is enabled in the plugin settings.
+requestBody:
+  description: New user data. `email` and `password` are required; all other fields are optional.
+  content:
+    application/json:
+      schema:
+        $ref: '../schemas/register-user-body.yaml'
+    multipart/form-data:
+      schema:
+        $ref: '../schemas/register-user-body.yaml'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: '../schemas/register-user-body.yaml'
+  required: true
+responses:
+  '200':
+    description: User registered successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - success
+            - data
+          properties:
+            success:
+              type: boolean
+              example: true
+              description: Action status.
+            data:
+              type: object
+              required:
+                - id
+                - login
+                - nicename
+                - email
+                - url
+                - registered
+                - activation_key
+                - status
+                - display_name
+                - roles
+              properties:
+                id:
+                  type: integer
+                  description: New user ID.
+                  example: 1
+                login:
+                  type: string
+                  example: "myuser"
+                nicename:
+                  type: string
+                  example: "myuser"
+                email:
+                  type: string
+                  example: "myuser@simplejwtlogin.com"
+                url:
+                  type: string
+                  description: User URL. Empty string when not set.
+                  example: ""
+                registered:
+                  type: string
+                  example: "2021-01-01 23:31:50"
+                activation_key:
+                  type: string
+                  description: Password reset key. Empty string when not set.
+                  example: ""
+                status:
+                  type: string
+                  example: "0"
+                display_name:
+                  type: string
+                  example: "myuser"
+                roles:
+                  type: array
+                  items:
+                    type: string
+                    example: "subscriber"
+                jwt:
+                  type: string
+                  nullable: true
+                  description: Only present when "Generate JWT on register" is enabled.
+                  example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  '400':
+    description: |
+      Bad request. Missing required fields (`email` or `password`), or an unclassified
+      validation error.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "The email address or password is missing."
+            error_code: 35
+  '401':
+    description: |
+      Unauthorized. The provided auth code is invalid or missing when required.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Invalid auth code."
+            error_code: 32
+  '403':
+    description: |
+      Forbidden. User registration is disabled in the plugin settings, or the client
+      IP address is not on the allow-list.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "Register is not allowed."
+            error_code: 31
+  '409':
+    description: A WordPress user with the provided email address already exists.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "User already exists."
+            error_code: 38
+  '422':
+    description: |
+      Unprocessable entity. One of:
+      - The email address format is invalid (`error_code` 36).
+      - The `user_login` exceeds 60 characters, or the email address (used as
+        login when `user_login` is omitted) exceeds 60 characters (`error_code` 36).
+      - The email domain is not permitted by the plugin's domain allow-list
+        (`error_code` 37).
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "The email address is invalid."
+            error_code: 36
+  '500':
+    description: |
+      Internal server error. WordPress `wp_insert_user()` returned an error, or an
+      unexpected internal failure occurred.
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/error.yaml'
+        example:
+          success: false
+          data:
+            message: "User could not be created."
+            error_code: 52

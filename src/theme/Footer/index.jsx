@@ -1,16 +1,22 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import {useCdnUrl} from '@site/src/utils/cdn';
 import styles from './index.module.css';
 
 const PAYPAL_URL =
   'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PK9BCD6AYF58Y&source=url';
 
-const generalLinks = [
+const productLinks = [
   { label: 'Documentation', to: '/docs/' },
-  { label: 'API Reference', to: '/api/simple-jwt-login' },
-  { label: 'Ecosystem', to: '/ecosystem/' },
+  { label: 'API Reference', to: '/api/v4/simple-jwt-login' },
   { label: 'Releases', to: '/releases/' },
   { label: 'Donate', to: '/donate/' },
+];
+
+const exploreLinks = [
+  { label: 'Deploy WordPress', to: '/deploy-wordpress' },
+  { label: 'Demos', to: '/demos/' },
+  { label: 'Ecosystem', to: '/ecosystem/' },
 ];
 
 const helpLinks = [
@@ -76,6 +82,7 @@ function LinkColumn({ title, links }) {
 }
 
 export default function Footer() {
+  const brandLogoSrc = useCdnUrl('/assets/favicons/favicon.ico');
   return (
     <footer className={styles.footer}>
 
@@ -125,7 +132,7 @@ export default function Footer() {
             {/* Brand column */}
             <div className={styles.brandCol}>
               <div className={styles.brandLogo}>
-                <img src="/assets/favicons/favicon.ico" alt="" width="28" height="28" />
+                <img src={brandLogoSrc} alt="" width="28" height="28" />
                 <span className={styles.brandName}>Simple JWT Login</span>
               </div>
               <p className={styles.brandDesc}>
@@ -163,7 +170,8 @@ export default function Footer() {
               </div>
             </div>
 
-            <LinkColumn title="Links" links={generalLinks} />
+            <LinkColumn title="Project" links={productLinks} />
+            <LinkColumn title="Explore" links={exploreLinks} />
             <LinkColumn title="Get Help" links={helpLinks} />
             <LinkColumn title="Connect" links={connectLinks} />
 

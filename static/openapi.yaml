@@ -24,10 +24,10 @@ info:
     All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
   license:
     name: GPL 3.0
-    url: 'https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE'
+    url: 'https://github.com/nicumicle/simple-jwt-login/blob/v3/LICENSE'
   version: 3.6.5
   x-logo:
-    url: 'https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/master/wordpress.org/assets/icon-128x128.png'
+    url: 'https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/v3/wordpress.org/assets/icon-128x128.png'
     altText: Simple-Jwt-Login Logo
 externalDocs:
   description: Find out more about Simple-JWT-Login

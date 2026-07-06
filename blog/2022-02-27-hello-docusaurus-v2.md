@@ -1,10 +1,12 @@
 ---
-title: Welcome to the new Simple JWT Login Website
-description: New website built with Docusaurus
+title: Welcome to the New Simple JWT Login Site
+description: Simple JWT Login's documentation and blog have moved to a new Docusaurus-powered site, with better docs and a smoother experience for WordPress developers.
+keywords: [Simple JWT Login, WordPress plugin, JWT authentication, Docusaurus, documentation]
 slug: simple-jwt-login-plus-docusaurus/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [news]
+image: /assets/favicons/android-chrome-192x192.png
 ---
 
 I'm very excited about this new website for Simple JWT Login, using [**Docusaurus 2**](https://docusaurus.io/).

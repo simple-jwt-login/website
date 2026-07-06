@@ -1,0 +1,49 @@
+type: object
+required:
+  - id
+  - name
+  - key_prefix
+  - permissions
+  - created_at
+properties:
+  id:
+    type: integer
+    description: Database ID of the key.
+    example: 7
+  name:
+    type: string
+    description: Human-readable key name.
+    example: "My integration key"
+  key_prefix:
+    type: string
+    description: First 8 characters of the key followed by `****`.
+    example: "sjl_a1b2****"
+  permissions:
+    type: array
+    items:
+      type: string
+      enum: [read, create, update, delete]
+    example: ["read", "create"]
+  expires_at:
+    type: string
+    nullable: true
+    description: Expiry timestamp in `Y-m-d H:i:s` format, or `null`.
+    example: null
+  last_used_at:
+    type: string
+    nullable: true
+    description: Timestamp of last successful use, or `null` if never used.
+    example: "2026-04-15 10:30:00"
+  created_at:
+    type: string
+    description: Timestamp when the key was created.
+    example: "2026-01-01 12:00:00"
+  revoked_at:
+    type: string
+    nullable: true
+    description: Timestamp when the key was revoked, or `null` if still active.
+    example: null
+  user_id:
+    type: integer
+    description: WordPress user ID who owns this key. Only present in admin responses.
+    example: 3

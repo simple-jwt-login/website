@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faScrewdriverWrench, faLock, faFlask, faBoxArchive, faPlug, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faPhp } from '@fortawesome/free-brands-svg-icons';
 import sharedStyles from '../styles.module.css';
+import {useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -253,18 +254,19 @@ protected function setUp(): void
 
 /* ── Frameworks ─────────────────────────────────────────────── */
 const frameworks = [
-  { src: '/assets/img/frameworks/php.png', alt: 'PHP', label: 'Plain PHP' },
-  { src: '/assets/img/frameworks/laravel.png', alt: 'Laravel', label: 'Laravel' },
-  { src: '/assets/img/frameworks/yii.png', alt: 'Yii', label: 'Yii' },
-  { src: '/assets/img/frameworks/codeigniter.png', alt: 'CodeIgniter', label: 'CodeIgniter' },
+  { src: '/assets/images/frameworks/php.png', alt: 'PHP', label: 'Plain PHP' },
+  { src: '/assets/images/frameworks/laravel.png', alt: 'Laravel', label: 'Laravel' },
+  { src: '/assets/images/frameworks/yii.png', alt: 'Yii', label: 'Yii' },
+  { src: '/assets/images/frameworks/codeigniter.png', alt: 'CodeIgniter', label: 'CodeIgniter' },
 ];
 
 /* ── Page ───────────────────────────────────────────────────── */
 export default function PhpSdkPage() {
+  const cdnBase = useCdnBase();
   return (
     <Layout
       title="PHP Client SDK - Simple JWT Login"
-      description="Official PHP client for Simple JWT Login. Authenticate users, register accounts, validate and revoke tokens from any PHP application - one Composer package, any framework."
+      description="Official PHP client for Simple JWT Login. Authenticate, register, validate and revoke tokens from any PHP app - one Composer package."
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -357,7 +359,7 @@ export default function PhpSdkPage() {
             <div className={styles.frameworkGrid}>
               {frameworks.map(({ src, alt, label }) => (
                 <div key={alt} className={styles.frameworkCard}>
-                  <img src={src} alt={alt} className={styles.frameworkLogo} />
+                  <img src={resolveCdnUrl(cdnBase, src)} alt={alt} className={styles.frameworkLogo} />
                   <span className={styles.frameworkLabel}>{label}</span>
                 </div>
               ))}

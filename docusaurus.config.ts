@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+const redirects = require('./redirects.js');
 
 // note that parts of the complete config were left out for brevity
 import type * as Plugin from "@docusaurus/types/src/plugin";
@@ -31,6 +32,18 @@ const config: Config = {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
     },
+  },
+
+  // Exposed to the client bundle. Google Analytics is only loaded once the
+  // visitor accepts the cookie consent banner - see src/theme/Root.jsx and
+  // src/utils/analytics.js.
+  //
+  // cdnUrl: when set, images are served from this CDN instead of /static -
+  // see src/utils/cdn.js (JSX images) and plugins/rehype-cdn-images.js
+  // (markdown/MDX images in docs, blog, releases, and API reference).
+  customFields: {
+    gaMeasurementId: process.env.REACT_APP_GA_MEASUREMENT_ID || '',
+    cdnUrl: process.env.REACT_APP_CDN_URL || '',
   },
 
   // Even if you don't use internationalization, you can use this field to set
@@ -78,6 +91,8 @@ const config: Config = {
         blogSidebarCount: "ALL",
         postsPerPage: 6,
         blogTitle: 'Releases',
+        rehypePlugins: [require('./plugins/rehype-cdn-images')],
+        beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
       },
     ],
 
@@ -85,13 +100,27 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'api-docs',
-        path: 'api',
-        routeBasePath: 'api',
-        docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
-        // sidebarPath: './sidebarsCommunity.js',
-        // ... other options
+        path: 'api/v4',
+        routeBasePath: 'api/v4',
+        docItemComponent: "@theme/ApiItem",
+        sidebarPath: './api/v4/sidebar.ts',
+        rehypePlugins: [require('./plugins/rehype-cdn-images')],
+        beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
       },
     ],
+
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api-docs-v3',
+        path: 'api/v3',
+        routeBasePath: 'api/v3',
+        docItemComponent: "@theme/ApiItem",
+        rehypePlugins: [require('./plugins/rehype-cdn-images')],
+        beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
+      },
+    ],
+
 
     [
       '@docusaurus/plugin-sitemap',
@@ -113,12 +142,29 @@ const config: Config = {
               if (url === rest.siteConfig.url || url === rest.siteConfig.url + '/') {
                 return { ...item, priority: 1.0, changefreq: 'weekly' };
               }
+              // Current major-release landing page
+              if (url.endsWith('/v4') || url.endsWith('/v4/')) {
+                return { ...item, priority: 0.9, changefreq: 'weekly' };
+              }
+              // Old, unmaintained doc versions - keep indexable but deprioritize so
+              // they don't compete with current docs for the same search queries.
+              if (/\/docs\/\d+\.\d+\.\d+\//.test(url)) {
+                return { ...item, priority: 0.3, changefreq: 'yearly' };
+              }
               // Core doc pages
               if (url.includes('/docs/')) {
                 return { ...item, priority: 0.8, changefreq: 'monthly' };
               }
               // Blog posts are regularly updated
               if (url.includes('/blog/')) {
+                return { ...item, priority: 0.7, changefreq: 'monthly' };
+              }
+              // Release notes - same value as blog posts
+              if (url.includes('/releases/')) {
+                return { ...item, priority: 0.7, changefreq: 'monthly' };
+              }
+              // Ecosystem, demos, and other product pages
+              if (/\/(ecosystem|demos)(\/|$)/.test(url)) {
                 return { ...item, priority: 0.7, changefreq: 'monthly' };
               }
               // API reference
@@ -146,19 +192,39 @@ const config: Config = {
     [
       'docusaurus-plugin-openapi-docs',
       {
-        id: "opeanapi-1", // plugin id
-        docsPluginId: "api-docs", // configured for preset-classic
+        id: "openapi-v4",
+        docsPluginId: "api-docs",
         config: {
-          apiv1: {
-            specPath: "static/openapi.yaml",
-            outputDir: "./api",
+          apiv4: {
+            specPath: "static/openapi/v4.yaml",
+            outputDir: "./api/v4",
             showSchemas: false,
-            baseUrl: "/api", // Leading slash is important
-            showExtensions: true, 
+            baseUrl: "/api/v4",
+            showExtensions: true,
             showInfoPage: true,
             sidebarOptions: {
               groupPathsBy: "tag",
-             // categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+        }
+      },
+    ],
+
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "openapi-v3",
+        docsPluginId: "api-docs-v3",
+        config: {
+          apiv3: {
+            specPath: "static/openapi/v3.yaml",
+            outputDir: "./api/v3",
+            showSchemas: false,
+            baseUrl: "/api/v3",
+            showExtensions: true,
+            showInfoPage: true,
+            sidebarOptions: {
+              groupPathsBy: "tag",
             },
           } satisfies OpenApiPlugin.Options,
         }
@@ -166,24 +232,31 @@ const config: Config = {
     ],
 
 
-    //
-    function webpackPolyfillPlugin() {
-      return {
-        name: 'webpack-polyfill-plugin',
-        configureWebpack(config, isServer) {
-          if (!isServer) {
-            return {
-              resolve: {
-                fallback: {
-                  path: require.resolve('path-browserify'),
+    [
+      '@docusaurus/plugin-client-redirects',
+      { redirects },
+    ],
+
+    [
+      function webpackPolyfillPlugin() {
+        return {
+          name: 'webpack-polyfill-plugin',
+          configureWebpack(config, isServer) {
+            if (!isServer) {
+              return {
+                resolve: {
+                  fallback: {
+                    path: require.resolve('path-browserify'),
+                  },
                 },
-              },
-            };
-          }
-          return {};
-        },
-      };
-    },
+              };
+            }
+            return {};
+          },
+        };
+      },
+      {},
+    ],
 
   ],
 
@@ -215,8 +288,24 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl:  'https://github.com/simple-jwt-login/website/tree/main',
           //docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
+          rehypePlugins: [require('./plugins/rehype-cdn-images')],
+          beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '4.x',
+              badge: true,
+            },
+            '3.0.0': {
+              label: '3.x',
+              badge: true,
+              banner: 'unmaintained',
+            },
+          },
         },
         blog: {
+          rehypePlugins: [require('./plugins/rehype-cdn-images')],
+          beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
           showReadingTime: true,
           feedOptions: {
             xslt: true,
@@ -283,10 +372,8 @@ const config: Config = {
           title: 'Docs',
         },
         {
-          label: 'API Reference',
+          type: 'custom-ApiVersionLink',
           position: 'left',
-          to: '/api/simple-jwt-login',
-          title: 'API Reference',
         },
         {
           label: 'Blog',
@@ -304,6 +391,10 @@ const config: Config = {
           type: 'search',
           position: 'right',
         },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+        },
         // {
         //   type: 'localeDropdown',
         //   position: 'left',
@@ -319,89 +410,6 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Quick Links',
-          items: [
-            {
-              label: 'WordPress plugin',
-              href: 'https://wordpress.org/plugins/simple-jwt-login',
-              title: "WordPress plugin"
-            },
-            {
-              label: 'GitHub repository',
-              href: 'https://github.com/nicumicle/simple-jwt-login',
-              title: 'GitHub repository',
-            },
-            {
-              label: 'Releases',
-              to: '/releases/',
-              title: 'Releases',
-            },
-            {
-              label: 'Donate',
-              to: '/donate/',
-              title: 'Donate',
-            },
-            {
-              label: 'Contact Us',
-              to: '/contact/',
-              title: 'Contact Us',
-            },
-          ],
-        },
-        {
-          title: 'Support',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/nicumicle/simple-jwt-login/issues',
-              title: "GitHub",
-            },
-            {
-              label: 'Support forum',
-              href: 'https://wordpress.org/support/plugin/simple-jwt-login',
-              title: 'Support forum',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'X.com',
-              href : 'https://x.com/simplejwtlogin',
-              title: 'X.com',
-            },
-            {
-              label: 'GitHub',
-              href : 'https://github.com/nicumicle/simple-jwt-login/stargazers',
-              title: 'GitHub',
-            },
-            {
-              label: "Discord",
-              href: "https://discord.gg/c4AeefD8Dr",
-              title: "Discord",
-            }
-          ],
-        },
-        {
-          title: "Sponsors",
-          items: [
-            {
-              html: `
-              <p>This project is supported by:</p>
-                <p>
-                  <a href="https://www.digitalocean.com/">
-                    <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" alt="DigitalOcean" width="201px">
-                  </a>
-                </p>
-              </p>
-              `
-            }
-          ]
-        }
-      ],
     },
     prism: {
       theme: prismThemes.github,
