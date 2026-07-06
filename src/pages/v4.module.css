@@ -368,9 +368,20 @@ html[data-theme='dark'] .breakingLink {
 }
 
 /* ── Performance Table ─────────────────────────────────────── */
+.perfBreakout {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
 .perfTableWrap {
   overflow-x: auto;
   margin-top: 1.5rem;
+  padding: 0 2rem;
+  
 }
 
 html[data-theme='dark'] .perfTableWrap {
@@ -381,8 +392,8 @@ html[data-theme='dark'] .perfTableWrap {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.875rem;
+  max-width: 1030px;
   margin: 0 auto;
-  max-width: 950px;
 }
 
 .perfTable thead {
@@ -411,7 +422,7 @@ html[data-theme='dark'] .perfTable th {
 
 .perfTable .perfThEndpoint {
   text-align: left !important;
-  min-width: 160px;
+  min-width: 110px;
 }
 
 .perfGroupRow th {
@@ -494,7 +505,7 @@ html[data-theme='dark'] .perfTable td {
 .perfEndpointPath {
   display: block;
   margin-top: 0.2rem;
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   font-weight: 400;
   color: var(--sjl-text-muted, #64748b);
   background: none;

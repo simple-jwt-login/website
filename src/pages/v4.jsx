@@ -568,6 +568,8 @@ export default function V4Page() {
               Load-test results from 100 calls per endpoint on identical infrastructure.
               All endpoints returned 100% success rate except where noted.
             </p>
+          </div>
+          <div className={v4Styles.perfBreakout}>
             <div className={v4Styles.perfTableWrap}>
                 <table className={v4Styles.perfTable}>
                   <thead>
@@ -617,6 +619,8 @@ export default function V4Page() {
                   </tbody>
                 </table>
             </div>
+          </div>
+          <div className="container">
             <ol className={v4Styles.perfNotesList}>
               <li>API Keys did not exist in v3; the v3 run returned 0% success rate. v4 introduces this endpoint and handles it correctly.</li>
             </ol>
