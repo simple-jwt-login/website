@@ -284,7 +284,7 @@ html[data-theme='dark'] .featureBadgeWarn {
 
 .breakingItem {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 0 1.25rem;
   background: #fff8f0;
   border: 1px solid rgba(234,88,12,0.25);
@@ -328,6 +328,7 @@ html[data-theme='dark'] .breakingIcon {
   color: var(--sjl-text-muted, #64748b);
   line-height: 1.6;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .breakingAction {
