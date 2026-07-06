@@ -1,4 +1,4 @@
-# How to Authenticate WordPress GraphQL Queries with Simple JWT Login and WPGraphQL
+# Authenticate WPGraphQL with JWT Tokens
 
 March 10, 2026 ·
 

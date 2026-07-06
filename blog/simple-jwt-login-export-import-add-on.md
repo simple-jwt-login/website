@@ -1,4 +1,4 @@
-# New Add-on for Simple-JWT-Login - Export-Import
+# Export-Import Add-on Released
 
 March 4, 2023 ·
 

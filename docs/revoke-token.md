@@ -6,25 +6,39 @@ note
 
 Once a token is revoked, it cannot be un-revoked. The user must authenticate again to obtain a new token.
 
-**METHOD** : `POST`
+API Reference
+
+Explore and test this endpoint using the [interactive API reference →](/api/v4/revoke-jwt.md)
+
+## Endpoint[​](#endpoint "Direct link to Endpoint")
+
+**METHOD**: `POST`
 
 **ENDPOINT**: `/simple-jwt-login/v1/auth/revoke`
 
-**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/auth/revoke&JWT={{YOUR_JWT}}`
+**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/auth/revoke&JWT={{YOUR_JWT}}`
 
 **PARAMETERS**:
 
-| Parameter  | Type                | Description                                                                                                          |
-| ---------- | ------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| JWT        | `required` `string` | Your JWT                                                                                                             |
-| AUTH\_CODE | `optional` `string` | Auth Code from the "Auth codes" section. Required only if the "Authentication Requires Auth Code" option is enabled. |
+| Parameter  | Type                | Description                                                                                                                                                                    |
+| ---------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `JWT`      | `required` `string` | Your JWT. Can alternatively be passed as `Authorization: Bearer <token>`.                                                                                                      |
+| `AUTH_KEY` | `optional` `string` | Auth Code value. Required only if "Require Authentication Code" is enabled. The parameter name matches the **Auth Code URL Key** in Auth Codes settings (default: `AUTH_KEY`). |
 
 ## Request[​](#request "Direct link to Request")
 
 ```
 {
-  "JWT" : "YOUR_JWT_HERE",
-  "AUTH_CODE": "MySecretAuthCode"
+  "JWT": "YOUR_JWT_HERE"
+}
+```
+
+With optional Auth Code:
+
+```
+{
+  "JWT": "YOUR_JWT_HERE",
+  "AUTH_KEY": "MySecretAuthCode"
 }
 ```
 
@@ -35,16 +49,65 @@ Once a token is revoked, it cannot be un-revoked. The user must authenticate aga
 ```
 {
   "success": true,
-  "message": "Token was revoked"
+  "data": {
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  }
 }
 ```
 
 ### 400[​](#400 "Direct link to 400")
 
+Bad request - the `JWT` field is missing from the request body.
+
 ```
 {
   "success": false,
-  "error" : "Error message"
+  "data": {
+    "message": "JWT is missing.",
+    "errorCode": 42
+  }
+}
+```
+
+### 401[​](#401 "Direct link to 401")
+
+Unauthorized - JWT is structurally invalid, has a bad signature, or the auth code is wrong.
+
+```
+{
+  "success": false,
+  "data": {
+    "message": "JWT signature verification failed.",
+    "errorCode": 11
+  }
+}
+```
+
+### 403[​](#403 "Direct link to 403")
+
+Forbidden - token revocation is disabled in plugin settings.
+
+```
+{
+  "success": false,
+  "data": {
+    "message": "Revoke token is not enabled.",
+    "errorCode": 83
+  }
+}
+```
+
+### 500[​](#500 "Direct link to 500")
+
+Internal server error.
+
+```
+{
+  "success": false,
+  "data": {
+    "message": "An unexpected error occurred.",
+    "errorCode": 22
+  }
 }
 ```
 
@@ -54,7 +117,7 @@ Once a token is revoked, it cannot be un-revoked. The user must authenticate aga
 
 ```
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/revoke \
-  -H "Content-type: application/json" \ 
+  -H "Content-type: application/json" \
   -d '{"JWT":"YOUR_JWT"}'
 ```
 
@@ -64,10 +127,43 @@ curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/re
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
     'https://simplejwtlogin.com',
     '/simple-jwt-login/v1'
-); 
+);
 $result = $simpleJwtLogin->revokeToken('Your JWT here', 'AUTH CODE');
 ```
 
-## Screenshot[​](#screenshot "Direct link to Screenshot")
+### JavaScript[​](#javascript "Direct link to JavaScript")
 
-![](https://github.com/nicumicle/simple-jwt-login/blob/master/wordpress.org/assets/screenshot-7.png?raw=true)
+```
+fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/auth/revoke', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ JWT: 'YOUR_JWT_HERE' })
+}).then(r => r.json()).then(console.log);
+```
+
+## Error responses[​](#error-responses "Direct link to Error responses")
+
+| Code | Meaning                                                  |
+| ---- | -------------------------------------------------------- |
+| `42` | JWT is missing from the request.                         |
+| `83` | The revoke-token feature is disabled in plugin settings. |
+
+JWT decoding errors (`1`-`22`) may also appear when the supplied token cannot be parsed or its signature is invalid.
+
+***
+
+## Settings[​](#settings "Direct link to Settings")
+
+Configure under **Settings → Simple JWT Login → Revoke Token**.
+
+### Allow Revoke Token Endpoint[​](#allow-revoke-token-endpoint "Direct link to Allow Revoke Token Endpoint")
+
+![Allow Revoke Token Endpoint](/assets/images/allow-revoke-token-endpoint-4972020a487ec97e6456285a6010d1a0.png)
+
+Enable or disable the revoke token endpoint. When disabled, all POST requests to `/auth/revoke` return a 403 error. When enabled, clients can invalidate a JWT for all future requests.
+
+### Require Authentication Code[​](#require-authentication-code "Direct link to Require Authentication Code")
+
+![Require Authentication Code](data:image/png;base64,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)
+
+When enabled, an additional Auth Code must be provided alongside the JWT to use the revoke endpoint. The parameter name is the **Auth Code URL Key** from Auth Codes settings (default: `AUTH_KEY`). Configure the codes themselves in the **Auth Codes** tab.

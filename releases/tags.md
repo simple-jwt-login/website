@@ -1,5 +1,6 @@
 ## B[​](#B "Direct link to B")
 
-* [bugfix18](/releases/tags/bugfix.md)
+* [breaking-change1](/releases/tags/breaking-change.md)
+* [bugfix19](/releases/tags/bugfix.md)
 
 ***

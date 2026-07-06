@@ -18,7 +18,7 @@ The first add-on for Simple JWT Login plugin has been released.
 
 MailPoet add on allows you to generate Autologin links in your newsletters.
 
-![](https://ps.w.org/simple-jwt-login-mailpoet/assets/banner-1544x500.png)
+![Simple JWT Login MailPoet add-on banner](https://ps.w.org/simple-jwt-login-mailpoet/assets/banner-1544x500.png)
 
 The MailPoet add-on allows you to automatically login users from the newsletter sent by MailPoet into a WordPress website using a JWT.
 

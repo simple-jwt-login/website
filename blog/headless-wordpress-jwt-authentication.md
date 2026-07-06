@@ -1,4 +1,4 @@
-# Headless WordPress in 2026: JWT Authentication Done Right with Simple JWT Login
+# Headless WordPress: JWT Auth Done Right
 
 March 10, 2026 ·
 

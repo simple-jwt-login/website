@@ -1,4 +1,4 @@
-# Welcome to the new Simple JWT Login Website
+# Welcome to the New Simple JWT Login Site
 
 February 27, 2022 ·
 

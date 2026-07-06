@@ -1,0 +1,153 @@
+# Webhooks
+
+Webhooks let you push notifications to any external HTTP endpoint when plugin events occur - no polling required. Use them to sync user activity to a CRM, trigger CI pipelines, send Slack alerts, or integrate with any service that accepts HTTP calls.
+
+Webhooks are **disabled by default**. Enable them in **Settings → Simple JWT Login → Webhooks → Config**.
+
+***
+
+## Configuration[​](#configuration "Direct link to Configuration")
+
+![Webhooks configuration](data:image/png;base64,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)
+
+### Enable Webhooks[​](#enable-webhooks "Direct link to Enable Webhooks")
+
+Toggle the **Enable Webhooks** switch at the top of the Webhooks page to activate the feature. Each individual webhook also has its own enable/disable toggle, so you can disable specific hooks without deleting them.
+
+***
+
+### Adding a Webhook[​](#adding-a-webhook "Direct link to Adding a Webhook")
+
+Click **Add Webhook** to create a new entry. Each webhook is configured with the following fields:
+
+#### Endpoint URL[​](#endpoint-url "Direct link to Endpoint URL")
+
+The full URL that will receive the HTTP request when the event fires.
+
+```
+https://example.com/webhook
+```
+
+#### HTTP Method[​](#http-method "Direct link to HTTP Method")
+
+The HTTP verb to use when calling the endpoint. Supported methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`.
+
+Default: `POST`
+
+#### Trigger Events[​](#trigger-events "Direct link to Trigger Events")
+
+Select one or more events that will fire this webhook. Each event corresponds to a specific plugin action:
+
+| Event                    | Trigger                                    |
+| ------------------------ | ------------------------------------------ |
+| `login`                  | User successfully auto-logged in via JWT   |
+| `register`               | New WordPress user successfully registered |
+| `auth`                   | User authenticated and received a JWT      |
+| `delete_user`            | WordPress user account deleted via the API |
+| `reset_password_request` | Password reset code requested              |
+| `reset_password`         | Password successfully changed              |
+
+***
+
+### Custom Headers[​](#custom-headers "Direct link to Custom Headers")
+
+Add any number of custom HTTP headers to the webhook request. This is useful for passing authentication tokens or content-type hints to the receiving service.
+
+Example:
+
+```
+X-Secret-Token : my-shared-secret
+Content-Type   : application/json
+```
+
+***
+
+### Custom Payload[​](#custom-payload "Direct link to Custom Payload")
+
+By default, the plugin sends a standard JSON payload. To override it, enter a JSON template in the **Custom Payload** textarea.
+
+Use the following template variables - they are replaced at delivery time with real values:
+
+| Variable         | Description                                              |
+| ---------------- | -------------------------------------------------------- |
+| `{{user_id}}`    | WordPress user ID of the user involved in the event      |
+| `{{user_email}}` | Email address of the user                                |
+| `{{event}}`      | The event name that triggered the webhook (e.g. `login`) |
+
+Example custom payload:
+
+```
+{
+  "user_id": "{{user_id}}",
+  "email": "{{user_email}}",
+  "event": "{{event}}",
+  "source": "my-wordpress-site"
+}
+```
+
+Leave the field blank to use the default payload.
+
+***
+
+## Webhook Logs[​](#webhook-logs "Direct link to Webhook Logs")
+
+![Webhook Call Log](data:image/png;base64,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)
+
+Every outgoing webhook request is logged. View the log under **Settings → Simple JWT Login → Webhooks → Logs**.
+
+Each log entry shows:
+
+* The webhook URL that was called
+* The HTTP method used
+* The event that triggered it
+* The response status code
+* The timestamp
+
+tip
+
+Webhook logs help you debug delivery failures. If a webhook is not reaching your endpoint, check the log for the HTTP status code returned by your server.
+
+***
+
+## Delivery Behavior[​](#delivery-behavior "Direct link to Delivery Behavior")
+
+Webhook HTTP calls are dispatched **after the API response is sent to the client** - they never block or delay the response your app receives.
+
+The plugin uses PHP's `fastcgi_finish_request()` to flush the response to the client first, then process all queued webhooks in the same PHP process. If that function is unavailable (see table below), webhooks are processed synchronously before the response is returned, which adds latency equal to the total time of all outgoing HTTP calls.
+
+| Server environment                         | Async delivery                                    |
+| ------------------------------------------ | ------------------------------------------------- |
+| **nginx + PHP-FPM** (standard nginx setup) | Yes - response flushed before HTTP calls are made |
+| **Apache + PHP-FPM** (`mod_proxy_fcgi`)    | Yes - response flushed before HTTP calls are made |
+| **Apache + mod\_php**                      | No - webhooks block the response                  |
+| **LiteSpeed / OpenLiteSpeed**              | Depends on version - generally no                 |
+
+tip
+
+If your site runs on Apache with `mod_php` and you have slow webhook endpoints, consider keeping webhook payloads small and endpoints fast to avoid adding visible latency to your login/register API calls.
+
+***
+
+## Security Recommendations[​](#security-recommendations "Direct link to Security Recommendations")
+
+* Use **HTTPS** endpoints only - avoid sending event data over plain HTTP.
+* Pass a shared secret in a custom header (e.g. `X-Webhook-Secret`) and verify it on the receiving side to ensure the request originated from your site.
+* Validate the payload on the receiver before acting on it.
+
+***
+
+## Example: Notify Slack on User Registration[​](#example-notify-slack-on-user-registration "Direct link to Example: Notify Slack on User Registration")
+
+1. Create a Slack Incoming Webhook URL in your Slack workspace.
+2. In the plugin, add a new webhook with that URL.
+3. Set the method to `POST`.
+4. Enable the `register` event.
+5. Set a custom payload:
+
+```
+{
+  "text": "New user registered: {{user_email}}"
+}
+```
+
+Slack will display the message in your chosen channel each time a new user registers.

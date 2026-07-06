@@ -1,4 +1,4 @@
-# New Website Design: Faster, Smarter, and Easier to Navigate
+# A Faster, Smarter New Website Design
 
 March 11, 2026 ·
 

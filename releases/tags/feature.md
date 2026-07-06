@@ -1,19 +1,19 @@
-[bugfix](/releases/tags/bugfix.md)[feature](/releases/tags/feature.md)
+[feature](/releases/tags/feature.md)[bugfix](/releases/tags/bugfix.md)[breaking-change](/releases/tags/breaking-change.md)
 
-## [New Plugin Release 3.6.1](/releases/simple-jwt-login-release-3.6.1.md)
+## [New Plugin Release 4.0.0](/releases/simple-jwt-login-release-4.0.0.md)
 
  · 
 
 <!-- -->
 
-1
+7
 
 <!-- -->
 
 min read
 
-Released version 3.6.1
+Released version 4.0.0 - major redesign, new features, OAuth expansion, 2FA, API Keys, Audit Logs, Webhooks, and more
 
 ![Nicu Micle](https://github.com/nicumicle.png)Nicu Micle
 
-[Read more →](/releases/simple-jwt-login-release-3.6.1.md)
+[Read more →](/releases/simple-jwt-login-release-4.0.0.md)

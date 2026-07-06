@@ -21,7 +21,7 @@ This update brings new hooks for customizing responses, a fix for empty JWT head
 ## New Features[​](#new-features "Direct link to New Features")
 
 * New hooks have been added to allow customization of all success responses
-* New [OpenAPI](https://github.com/nicumicle/simple-jwt-login/blob/master/postman/openapi.yaml) spec file has been added
+* New [OpenAPI](https://github.com/nicumicle/simple-jwt-login/blob/v3/postman/openapi.yaml) spec file has been added
 
 ## Bug Fixes[​](#bug-fixes "Direct link to Bug Fixes")
 

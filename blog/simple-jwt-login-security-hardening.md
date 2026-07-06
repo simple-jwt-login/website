@@ -1,4 +1,4 @@
-# Simple JWT Login Security Hardening Guide: Lock Down Your WordPress API
+# JWT Security Hardening Guide
 
 March 10, 2026 ·
 
@@ -273,5 +273,6 @@ The [full documentation](/docs.md) covers every setting in detail, and the [erro
 **Tags:**
 
 * [Tutorial](/blog/tags/tags/tutorial.md "Tutorials and guides for Simple JWT Login")
+* [Security](/blog/tags/tags/security.md "WordPress REST API security and authentication best practices")
 
 [Edit this page](https://github.com/simple-jwt-login/website/tree/main/blog/2026-03-10-security-hardening-guide.md)

@@ -4,9 +4,14 @@
 
 [![Simple-JWT-Login Logo](/assets/favicons/favicon.ico)![Simple-JWT-Login Logo](/assets/favicons/favicon.ico)](/)
 
-[**Simple JWT Login**](/)[Docs](/docs.md "Docs")[API Reference](/api/simple-jwt-login.md "API Reference")[Blog](/blog.md "Blog")[Ecosystem](/ecosystem "Ecosystem")
+[**Simple JWT Login**](/)[Docs](/docs.md "Docs")[API Reference](/api/v4/simple-jwt-login.md)[Blog](/blog.md "Blog")[Ecosystem](/ecosystem "Ecosystem")
 
 Search
+
+[4.x](/docs.md)
+
+* [4.x](/docs.md)
+* [3.x](/docs/3.0.0.md)
 
 [](https://github.com/nicumicle/simple-jwt-login "GitHub")
 
@@ -22,13 +27,18 @@ JWT authentication for WordPress - REST API, headless WP, WPGraphQL, and WP-CLI.
 
 [](https://github.com/nicumicle/simple-jwt-login "GitHub")[](https://discord.gg/c4AeefD8Dr "Discord")[](https://twitter.com/simplejwtlogin "X (Twitter)")
 
-### Links
+### Project
 
 * [Documentation](/docs.md)
-* [API Reference](/api/simple-jwt-login.md)
-* [Ecosystem](/ecosystem)
+* [API Reference](/api/v4/simple-jwt-login.md)
 * [Releases](/releases.md)
 * [Donate](/donate)
+
+### Explore
+
+* [Deploy WordPress](/deploy-wordpress)
+* [Demos](/demos)
+* [Ecosystem](/ecosystem)
 
 ### Get Help
 

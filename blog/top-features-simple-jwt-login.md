@@ -1,4 +1,4 @@
-# 5 Features of Simple JWT Login That Make WordPress API Authentication a Breeze
+# 5 Standout Features of Simple JWT Login
 
 March 10, 2026 ·
 
