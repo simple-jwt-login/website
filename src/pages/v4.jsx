@@ -42,7 +42,7 @@ const newFeatures = [
       'GitHub: authorization code flow',
       'Auto-register users if no matching account exists',
     ],
-    link: '/docs/oauth/',
+    link: '/docs/integrations/oauth/',
     cta: 'OAuth docs',
   },
   {

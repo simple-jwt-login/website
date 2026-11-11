@@ -11,7 +11,7 @@ author_url: https://github.com/nicumicle
 Revoking a token immediately invalidates it - the plugin rejects any later request that uses that token. Call this endpoint when a user logs out or when you need to end a specific session (for example, after a password change or suspicious activity).
 
 :::note
-Once a token is revoked, it cannot be un-revoked. The user must authenticate again to obtain a new token.
+A revoked token stays rejected until it expires. The user must authenticate again to obtain a new token. Only an administrator can undo a revocation, by [deleting the revoked token entry](#manage-revoked-tokens).
 :::
 
 :::tip[API Reference]
@@ -175,3 +175,75 @@ Enable or disable the revoke token endpoint. When disabled, all POST requests to
 ![Require Authentication Code](/assets/images/screenshots/revoke-token/require-authentication-code.png)
 
 When enabled, an additional Auth Code must be provided alongside the JWT to use the revoke endpoint. The parameter name is the **Auth Code URL Key** from Auth Codes settings (default: `AUTH_KEY`). Configure the codes themselves in the **Auth Codes** tab.
+
+---
+
+## Manage revoked tokens
+
+Administrators can list the revoked tokens and delete entries. Deleting an entry un-revokes the token: if it has not expired yet, it is accepted again.
+
+These endpoints require a WordPress user with the `manage_options` capability (administrator). Authenticate with a WordPress session cookie or with a JWT (`Authorization: Bearer <token>`), the same way as the [API key management endpoints](../API-Keys.md#managing-api-keys---authentication).
+
+### List revoked tokens
+
+**METHOD**: `GET`
+
+**ENDPOINT**: `/simple-jwt-login/v1/revoked-tokens`
+
+| Parameter | Type | Description |
+| :-------: | :--: | ----------- |
+| `page` | `optional` `integer` | Page number. Default: `1`. |
+| `per_page` | `optional` `integer` | Items per page, from `1` to `100`. Default: `20`. |
+
+```bash
+curl "https://{{yoursite}}/wp-json/simple-jwt-login/v1/revoked-tokens?page=1&per_page=20" \
+  -H "Authorization: Bearer <admin-jwt>"
+```
+
+```json
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": 12,
+        "user_id": 5,
+        "token_hash_masked": "a1b2c3d4...9f0e",
+        "expires_at": "2026-11-12 10:00:00",
+        "revoked_at": "2026-11-11 09:15:00"
+      }
+    ],
+    "total": 1,
+    "page": 1,
+    "per_page": 20
+  }
+}
+```
+
+The token itself is never returned - only a masked hash.
+
+### Delete a revoked token entry
+
+**METHOD**: `DELETE`
+
+**ENDPOINT**: `/simple-jwt-login/v1/revoked-tokens/{id}`
+
+```bash
+curl -X DELETE "https://{{yoursite}}/wp-json/simple-jwt-login/v1/revoked-tokens/12" \
+  -H "Authorization: Bearer <admin-jwt>"
+```
+
+```json
+{
+  "success": true,
+  "message": "Revoked token entry deleted. If the token has not expired, it is valid again."
+}
+```
+
+### Error responses
+
+| Code | Meaning |
+| :--: | ------- |
+| `115` | The caller is not an administrator. |
+| `116` | The `id` is invalid or no revoked token entry has that ID. |
+| `117` | A database error occurred while deleting the entry. |

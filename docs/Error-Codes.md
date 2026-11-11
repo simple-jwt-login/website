@@ -39,6 +39,33 @@ Requests authenticated with an [API key](./API-Keys.md) return errors in the sta
 Read the code from `data.error_code` - it is in the same place in both formats.
 :::
 
+## Codes by feature
+
+| Feature | Codes |
+| :------ | :---- |
+| JWT decoding, signature, expiry, and user lookup | 1-22, 54 |
+| Revoked or 2FA-interim JWT | 55, 110 |
+| [Authentication](./auth/Authentication.md) (`/auth`) | 45-48, 113 |
+| [Refresh](./auth/RefreshToken.md), [validate](./auth/ValidateToken.md), [revoke](./auth/RevokeToken.md) | 49-51, 53, 81-83 |
+| [Autologin](./Login-User.md) | 23-30, 68 |
+| [Register user](./Register-User.md) | 31-38, 52 |
+| [Delete user](./Delete-User.md) | 39-42 |
+| [Reset password](./Reset-Password.md) | 56-66, 76, 93, 95, 96 |
+| [Protect endpoints](./Protect-Endpoints.md) | 75, 114 |
+| [API keys](./API-Keys.md) | 84-92 |
+| [Revoked tokens administration](./auth/RevokeToken.md#manage-revoked-tokens) | 115-117 |
+| [OAuth](./integrations/OAuth/index.md) - provider | 69, 70 |
+| [Google](./integrations/OAuth/Google/01_Setup.md) | 71-74, 118, 119 |
+| [Auth0](./integrations/OAuth/Auth0/01_Setup.md) | 77-80, 111 |
+| [Facebook](./integrations/OAuth/Facebook/01_Setup.md) | 97-100 |
+| [GitHub](./integrations/OAuth/Github/01_Setup.md) | 101-104, 112 |
+| [Two-Factor](./integrations/ThirdParty/02_TwoFactor.md) | 105-110 |
+| [AI Abilities](./integrations/ThirdParty/05_AIAbilities.md) | 120-128 |
+| [Auth codes](./Auth-Codes.md) | 94 |
+| Routing and plugin settings | 43, 44, 67 |
+
+## All codes
+
 | Error Code |                         Message                         | Description                                                                                                                                      |
 |:----------:|:-------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------|
 |     1      |                  Key may not be empty                   | JWT is missing from request                                                                                                                      |

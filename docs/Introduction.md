@@ -20,6 +20,37 @@ With Simple-JWT-Login you can:
 
 Whether you're building a headless WordPress site, a React/Vue front-end, a mobile app, or a third-party integration, Simple-JWT-Login provides a clean, standards-based authentication layer.
 
+:::tip[New here?]
+Follow the [Quick Start](./Quick-Start.md) - get a JWT and make your first authenticated call in 5 minutes. Already set up? See every route in the [Endpoints overview](./Endpoints.md).
+:::
+
+## I want to...
+
+| Goal | Where to look |
+| :--- | :------------ |
+| Log a user in and get a JWT | [Authentication](./auth/Authentication.md) |
+| Send the JWT with my requests | [JWT Input Sources](./Configuration.mdx#jwt-input-sources) |
+| Call `/wp/v2/*` or my own routes as the logged-in user | [JWT Middleware](./Configuration.mdx#jwt-middleware-for-all-wordpress-endpoints) |
+| Keep users logged in without asking for the password again | [Refresh token](./auth/RefreshToken.md) |
+| Log a user out | [Revoke token](./auth/RevokeToken.md) |
+| Check that a JWT is still valid | [Validate token](./auth/ValidateToken.md) |
+| Let users sign up from my app | [Register user](./Register-User.md) |
+| Let users reset a forgotten password | [Reset password](./Reset-Password.md) |
+| Open a logged-in WordPress session from a link | [Autologin](./Login-User.md) |
+| Require a JWT, or a role, for some REST routes | [Protect endpoints](./Protect-Endpoints.md) |
+| Call the API from a browser on another domain | [CORS](./Cors.md) |
+| Log in with Google, Auth0, Facebook, or GitHub | [OAuth](./integrations/OAuth/index.md) |
+| Add two-factor authentication | [Two-Factor](./integrations/ThirdParty/02_TwoFactor.md) |
+| Use JWTs with WPGraphQL | [WPGraphQL](./integrations/ThirdParty/01_WPGraphQL.md) |
+| Build a headless WooCommerce store | [WooCommerce](./integrations/ThirdParty/04_WooCommerce.md) |
+| Authenticate server-to-server without a user password | [API keys](./API-Keys.md) |
+| Accept JWTs issued by another service (Auth0, Firebase, ...) | [JWT Verification Rules](./Configuration.mdx#jwt-verification-rules) |
+| Add custom claims to the JWT | [Authentication - custom claims](./auth/Authentication.md#custom-payload-claims) |
+| Run my own code on login, register, etc. | [Hooks](./Hooks.md) |
+| Notify another system when something happens | [Webhooks](./Webhooks.md) |
+| Understand an error response | [Error codes](./Error-Codes.md) |
+| See complete working code | [Code examples](./code_examples/index.mdx) |
+
 ## Requirements
 
 Before installing Simple-JWT-Login, ensure your environment meets the following minimum requirements:
@@ -64,4 +95,4 @@ Setting up Simple-JWT-Login is quick and easy. Choose one of the following insta
 
 
 
-Now that you've installed **Simple-JWT-Login**, check out the **Configuration Guide** to set up your JWT secret key and enable the features you need.
+Now that you've installed **Simple-JWT-Login**, follow the [Quick Start](./Quick-Start.md) to get your first JWT, or see the [Configuration guide](./Configuration.mdx) to set up your JWT secret key and enable the features you need.

@@ -108,8 +108,8 @@ const integrations = [
     logoAlt: 'Google OAuth',
     tags: ['OAuth', 'Social Login', 'Passwordless'],
     status: 'beta',
-    docsHref: '/docs/applications/google/setup/',
-    primaryHref: '/docs/applications/google/setup/',
+    docsHref: '/docs/integrations/oauth/google/setup',
+    primaryHref: '/docs/integrations/oauth/google/setup',
     primaryLabel: 'Read the docs',
     highlights: [
       'Google ID token → WordPress JWT',

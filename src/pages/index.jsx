@@ -129,7 +129,7 @@ const awesomeFeatures = [
     description: <>Let users sign in with their Google Account - zero passwords, instant trust.</>,
     image: "assets/images/features/google-plus.png",
     alt: "Google OAuth",
-    link: "/docs/applications/google/login/",
+    link: "/docs/integrations/oauth/google/setup",
     version: "both",
   },
   {
@@ -137,7 +137,7 @@ const awesomeFeatures = [
     description: <>Use Google-issued tokens to authenticate against any WordPress REST endpoint seamlessly.</>,
     image: "assets/images/features/google-plus-jwt.png",
     alt: "Google OAuth endpoints",
-    link: "/docs/applications/google/setup/",
+    link: "/docs/integrations/oauth/google/setup",
     version: "both",
   },
   {
@@ -153,7 +153,7 @@ const awesomeFeatures = [
     description: <>Expand OAuth beyond Google - let users sign in with Auth0, Facebook, or GitHub and receive a WordPress JWT.</>,
     faIcon: faShieldHalved,
     alt: "OAuth with Auth0, Facebook, and GitHub",
-    link: "/docs/oauth/",
+    link: "/docs/integrations/oauth/",
     version: "v4",
   },
   {
