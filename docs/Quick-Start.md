@@ -19,7 +19,7 @@ Install and activate **Simple JWT Login** from **Plugins → Add New** in WordPr
 wp plugin install simple-jwt-login --activate
 ```
 
-More options: [Installation guide](./Introduction.md#installation-guide).
+For more options, see the [Installation guide](./Introduction.md#installation-guide).
 
 ## 2. Set the signing key
 
@@ -62,7 +62,7 @@ Response:
 }
 ```
 
-You can also log in with `username` or `login` instead of `email`. Full reference: [Authentication](./auth/Authentication.md).
+You can also log in with `username` or `login` instead of `email`. For the full reference, see [Authentication](./auth/Authentication.md).
 
 ## 5. Use the JWT
 
@@ -75,7 +75,7 @@ curl "https://example.com/wp-json/simple-jwt-login/v1/auth/validate" \
 
 The [validate endpoint](./auth/ValidateToken.md) returns the user the token belongs to, so it is a quick way to check that everything works.
 
-To use the token with the **WordPress REST API** (`/wp/v2/posts`, `/wp/v2/users/me`, ...) or with your own endpoints, enable **JWT Middleware for all WordPress endpoints** under **General → Integration Options**. WordPress then treats every request with a valid JWT as coming from that user:
+To use the token with the **WordPress REST API** (such as `/wp/v2/posts` or `/wp/v2/users/me`) or with your own endpoints, enable **JWT Middleware for all WordPress endpoints** under **General → Integration Options**. WordPress then treats every request with a valid JWT as coming from that user:
 
 ```bash
 curl "https://example.com/wp-json/wp/v2/users/me" \
@@ -86,7 +86,7 @@ The plugin can also read the JWT from a query parameter, the request body, a coo
 
 ## Handling errors
 
-Every error has the same shape. Branch on `data.error_code`, not on the message text:
+Plugin endpoints return errors in this shape. Branch on `data.error_code`, not on the message text (errors on other REST routes use the WordPress error format, with the code in the same `data.error_code` field):
 
 ```json
 {

@@ -137,7 +137,7 @@ const awesomeFeatures = [
     description: <>Use Google-issued tokens to authenticate against any WordPress REST endpoint seamlessly.</>,
     image: "assets/images/features/google-plus-jwt.png",
     alt: "Google OAuth endpoints",
-    link: "/docs/integrations/oauth/google/setup",
+    link: "/docs/integrations/oauth/#allow-usage-on-all-endpoints",
     version: "both",
   },
   {

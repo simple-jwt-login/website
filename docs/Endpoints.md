@@ -15,7 +15,7 @@ https://example.com/?rest_route=/simple-jwt-login/v1/{endpoint}
 ```
 
 :::info
-Every endpoint is **disabled by default**. Enable the ones you need in the settings tab listed below. A disabled endpoint returns `403`.
+Every endpoint except `/revoked-tokens` is **disabled by default**. Enable the ones you need in the settings tab listed below. A disabled endpoint returns `403`.
 :::
 
 ## Tokens
@@ -46,7 +46,7 @@ Every endpoint is **disabled by default**. Enable the ones you need in the setti
 
 ## Administration
 
-These endpoints need a logged-in WordPress user (session cookie) or a JWT.
+These endpoints need a logged-in WordPress user: a session cookie with an `X-WP-Nonce` header, or a JWT in the `Authorization` header or the JWT cookie (not in the query string).
 
 | Method | Endpoint | What it does | Enable in | Guide | API |
 | :----- | :------- | :----------- | :-------- | :---- | :-- |

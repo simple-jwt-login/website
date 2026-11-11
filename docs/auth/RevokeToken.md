@@ -182,7 +182,7 @@ When enabled, an additional Auth Code must be provided alongside the JWT to use 
 
 Administrators can list the revoked tokens and delete entries. Deleting an entry un-revokes the token: if it has not expired yet, it is accepted again.
 
-These endpoints require a WordPress user with the `manage_options` capability (administrator). Authenticate with a WordPress session cookie or with a JWT (`Authorization: Bearer <token>`), the same way as the [API key management endpoints](../API-Keys.md#managing-api-keys---authentication).
+These endpoints require a WordPress user with the `manage_options` capability (administrator). Authenticate with a WordPress session cookie (plus the `X-WP-Nonce` header) or with a JWT in the `Authorization: Bearer <token>` header or the JWT cookie, the same way as the [API key management endpoints](../API-Keys.md#managing-api-keys---authentication).
 
 ### List revoked tokens
 

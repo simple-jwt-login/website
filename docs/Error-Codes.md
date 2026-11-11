@@ -22,7 +22,7 @@ Error responses follow this format:
 }
 ```
 
-Requests authenticated with an [API key](./API-Keys.md) return errors in the standard WordPress REST error format instead. The numeric code is in `data.error_code`:
+Errors raised while authenticating a request to **another** REST route (for example `/wp/v2/posts`) use the standard WordPress REST error format instead. This happens when an [API key](./API-Keys.md) is rejected (`code`: `simple_jwt_login_api_key_error`), when the [JWT Middleware](./Configuration.mdx#jwt-middleware-for-all-wordpress-endpoints) rejects a JWT (`code`: `simple_jwt_login_middleware_error`), and for errors from the `/api-keys` management endpoints. The numeric code is in `data.error_code`:
 
 ```json
 {
@@ -184,7 +184,7 @@ Read the code from `data.error_code` - it is in the same place in both formats.
 |    116     |              Invalid revoked token ID.                 | The `id` passed to `DELETE /revoked-tokens/{id}` is missing, not a positive number, or no revoked token entry exists with that ID.               |
 |    117     |        Failed to delete revoked token entry.           | A database error occurred while deleting the revoked token entry.                                                                                |
 |    118     |   The provided id_token was not issued for this website. | The Google `id_token` audience (`aud`) does not match the Google Client ID saved in the plugin settings - it was issued for another client.   |
-|    119     |  The email address of this Google account is not verified. | The Google `id_token` reports `email_verified: false`, so the account cannot be used to log in.                                             |
+|    119     |  The email address of this Google Account is not verified. | The Google `id_token` reports `email_verified: false`, so the Google Account cannot be used to log in.                                             |
 |    120     |               Unknown settings section.                | AI Abilities: the requested settings section does not exist. Call `simple-jwt-login/get-settings` to list the available sections.               |
 |    121     |                Unknown setting: `%s`                   | AI Abilities: the setting key does not exist in that section. Only existing keys can be changed.                                                 |
 |    122     | The setting "%s" cannot be changed through AI abilities. | AI Abilities: the setting is a secret or human-only. Change it from the plugin settings page.                                                  |
@@ -193,4 +193,4 @@ Read the code from `data.error_code` - it is in the same place in both formats.
 |    125     |  A webhook needs a URL and at least one valid event.   | AI Abilities: the webhook being added has an invalid URL or no valid events.                                                                     |
 |    126     |         The list item `%s` does not match.             | AI Abilities: the list item at that index no longer matches the `match` value (the settings changed meanwhile). Read the settings again and retry. |
 |    127     |  `%d` is not a Simple JWT Login error code.            | AI Abilities: the `explain-error` ability was called with a code that does not belong to Simple JWT Login.                                       |
-|    128     |      AI permission denied for this setting.            | AI Abilities: the change needs an AI permission that the administrator has not granted (e.g. "Allow changing roles"), or it tries to assign a role with administrator capabilities. Enable it in **Integrations > AI Abilities (MCP)**. |
+|    128     |      AI permission denied for this setting.            | AI Abilities: the change needs an AI permission that the administrator has not granted (for example, "Allow changing roles"), or it tries to assign a role with administrator capabilities. Enable it in **Integrations > AI Abilities (MCP)**. |
