@@ -113,7 +113,7 @@ At minimum, a POST request with `email` and `password` is all that's needed. Add
   "success": false,
   "data": {
     "message": "Error message string",
-    "error_code": 0
+    "errorCode": 0
   }
 }
 ```
