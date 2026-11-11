@@ -114,7 +114,7 @@ Required parameters are missing.
   "success": false,
   "data": {
     "message": "The email address or password is missing.",
-    "errorCode": 35
+    "error_code": 35
   }
 }
 ```
@@ -128,7 +128,7 @@ Auth code is invalid or missing when required.
   "success": false,
   "data": {
     "message": "Invalid auth code.",
-    "errorCode": 32
+    "error_code": 32
   }
 }
 ```
@@ -142,7 +142,7 @@ Registration is disabled, or the client IP is not on the allow-list.
   "success": false,
   "data": {
     "message": "Register is not allowed.",
-    "errorCode": 31
+    "error_code": 31
   }
 }
 ```
@@ -156,7 +156,7 @@ A user with this email already exists.
   "success": false,
   "data": {
     "message": "User already exists.",
-    "errorCode": 38
+    "error_code": 38
   }
 }
 ```
@@ -170,7 +170,7 @@ Email format is invalid or the email domain is not on the allow-list.
   "success": false,
   "data": {
     "message": "The email address is invalid.",
-    "errorCode": 36
+    "error_code": 36
   }
 }
 ```
@@ -184,7 +184,7 @@ Email format is invalid or the email domain is not on the allow-list.
   "success": false,
   "data": {
     "message": "User could not be created.",
-    "errorCode": 52
+    "error_code": 52
   }
 }
 ```

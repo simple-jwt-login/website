@@ -66,7 +66,7 @@ Bad request - unclassified error (for example, malformed JWT encoding).
   "success": false,
   "data": {
     "message": "Invalid JWT.",
-    "errorCode": 25
+    "error_code": 25
   }
 }
 ```
@@ -80,7 +80,7 @@ Unauthorized - JWT is invalid, has a bad signature, is expired, is revoked, or t
   "success": false,
   "data": {
     "message": "JWT has expired.",
-    "errorCode": 14
+    "error_code": 14
   }
 }
 ```
@@ -94,7 +94,7 @@ Forbidden - auto-login is disabled in plugin settings, or the client IP is not o
   "success": false,
   "data": {
     "message": "Auto-login is not enabled.",
-    "errorCode": 26
+    "error_code": 26
   }
 }
 ```
@@ -108,7 +108,7 @@ The WordPress user identified by the JWT payload could not be found.
   "success": false,
   "data": {
     "message": "User not found.",
-    "errorCode": 24
+    "error_code": 24
   }
 }
 ```
@@ -122,7 +122,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```
@@ -168,7 +168,7 @@ All error responses follow the standard envelope:
   "success": false,
   "data": {
     "message": "Human-readable error description",
-    "errorCode": 26
+    "error_code": 26
   }
 }
 ```

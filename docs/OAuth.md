@@ -90,7 +90,7 @@ Or using a Google ID token instead of a code:
   "success": false,
   "data": {
     "message": "The code or id_token parameter is missing from request.",
-    "errorCode": 71
+    "error_code": 71
   }
 }
 ```
@@ -102,7 +102,7 @@ Or using a Google ID token instead of a code:
   "success": false,
   "data": {
     "message": "The code you provided is invalid.",
-    "errorCode": 72
+    "error_code": 72
   }
 }
 ```
@@ -114,7 +114,7 @@ Or using a Google ID token instead of a code:
   "success": false,
   "data": {
     "message": "This Oauth provider is not available.",
-    "errorCode": 70
+    "error_code": 70
   }
 }
 ```
@@ -126,7 +126,7 @@ Or using a Google ID token instead of a code:
   "success": false,
   "data": {
     "message": "User not found.",
-    "errorCode": 74
+    "error_code": 74
   }
 }
 ```

@@ -102,7 +102,7 @@ Bad request - the `JWT` parameter is missing.
   "success": false,
   "data": {
     "message": "JWT is missing.",
-    "errorCode": 53
+    "error_code": 53
   }
 }
 ```
@@ -116,7 +116,7 @@ Unauthorized - JWT is invalid, has a bad signature, is expired, or has been revo
   "success": false,
   "data": {
     "message": "JWT has expired.",
-    "errorCode": 14
+    "error_code": 14
   }
 }
 ```
@@ -130,7 +130,7 @@ Forbidden - token validation is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Validate token is not enabled.",
-    "errorCode": 82
+    "error_code": 82
   }
 }
 ```
@@ -144,7 +144,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```

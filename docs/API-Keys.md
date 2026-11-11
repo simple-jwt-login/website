@@ -346,7 +346,7 @@ All error responses from the API key endpoints follow the standard envelope:
   "success": false,
   "data": {
     "message": "Human-readable error description",
-    "errorCode": 84
+    "error_code": 84
   }
 }
 ```

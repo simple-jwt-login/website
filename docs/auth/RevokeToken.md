@@ -72,7 +72,7 @@ Bad request - the `JWT` field is missing from the request body.
   "success": false,
   "data": {
     "message": "JWT is missing.",
-    "errorCode": 42
+    "error_code": 42
   }
 }
 ```
@@ -86,7 +86,7 @@ Unauthorized - JWT is structurally invalid, has a bad signature, or the auth cod
   "success": false,
   "data": {
     "message": "JWT signature verification failed.",
-    "errorCode": 11
+    "error_code": 11
   }
 }
 ```
@@ -100,7 +100,7 @@ Forbidden - token revocation is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Revoke token is not enabled.",
-    "errorCode": 83
+    "error_code": 83
   }
 }
 ```
@@ -114,7 +114,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```

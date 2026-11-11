@@ -76,7 +76,7 @@ JWT parameter is missing or cannot be decoded.
   "success": false,
   "data": {
     "message": "JWT is missing.",
-    "errorCode": 42
+    "error_code": 42
   }
 }
 ```
@@ -90,7 +90,7 @@ JWT is invalid, has a bad signature, is expired, is revoked, or the auth code is
   "success": false,
   "data": {
     "message": "JWT has expired.",
-    "errorCode": 14
+    "error_code": 14
   }
 }
 ```
@@ -104,7 +104,7 @@ User deletion is disabled in plugin settings, or the client IP is not on the all
   "success": false,
   "data": {
     "message": "Delete is not enabled.",
-    "errorCode": 39
+    "error_code": 39
   }
 }
 ```
@@ -118,7 +118,7 @@ No WordPress user matches the claims in the JWT.
   "success": false,
   "data": {
     "message": "User not found.",
-    "errorCode": 24
+    "error_code": 24
   }
 }
 ```
@@ -132,7 +132,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```

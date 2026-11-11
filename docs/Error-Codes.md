@@ -8,7 +8,7 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Every error response from Simple-JWT-Login includes a numeric `errorCode` field. Use the table below to look up the meaning of a specific code and how to resolve it.
+Every error response from Simple-JWT-Login includes a numeric `error_code` field. Use the table below to look up the meaning of a specific code and how to resolve it.
 
 Error responses follow this format:
 
@@ -17,10 +17,27 @@ Error responses follow this format:
   "success": false,
   "data": {
     "message": "Human-readable error message",
-    "errorCode": 48
+    "error_code": 48
   }
 }
 ```
+
+Requests authenticated with an [API key](./API-Keys.md) return errors in the standard WordPress REST error format instead. The numeric code is in `data.error_code`:
+
+```json
+{
+  "code": "simple_jwt_login_api_key_error",
+  "message": "Human-readable error message",
+  "data": {
+    "status": 401,
+    "error_code": 84
+  }
+}
+```
+
+:::tip
+Read the code from `data.error_code` - it is in the same place in both formats.
+:::
 
 | Error Code |                         Message                         | Description                                                                                                                                      |
 |:----------:|:-------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------|

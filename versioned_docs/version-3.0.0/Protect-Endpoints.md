@@ -19,7 +19,7 @@ The following error will be displayed, when an endpoint is protected and no JWT 
 "success": false,
   "data": {
     "message": "You are not authorized to access this endpoint.",
-    "errorCode": 403,
+    "error_code": 403,
     "type": "simple-jwt-login-route-protect"
   }
 }

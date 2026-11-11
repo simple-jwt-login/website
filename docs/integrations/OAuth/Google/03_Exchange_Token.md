@@ -61,7 +61,7 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   "success": false,
   "data": {
     "message": "The code or jwt parameter is missing from request.",
-    "errorCode": 71
+    "error_code": 71
   }
 }
 ```

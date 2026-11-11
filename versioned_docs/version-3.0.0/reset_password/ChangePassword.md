@@ -54,7 +54,7 @@ Alternatively, if **"Allow Reset password with JWT"** is enabled in the plugin s
   "success": false,
   "data": {
     "message": "string",
-    "errorCode": 0
+    "error_code": 0
   }
 }
 ```

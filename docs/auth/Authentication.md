@@ -111,7 +111,7 @@ Bad request - required parameters are missing.
   "success": false,
   "data": {
     "message": "Email or username is required.",
-    "errorCode": 46
+    "error_code": 46
   }
 }
 ```
@@ -125,7 +125,7 @@ Unauthorized - credentials are incorrect or the auth code is invalid.
   "success": false,
   "data": {
     "message": "Wrong user credentials.",
-    "errorCode": 48
+    "error_code": 48
   }
 }
 ```
@@ -139,7 +139,7 @@ Forbidden - authentication is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Authentication is not enabled.",
-    "errorCode": 45
+    "error_code": 45
   }
 }
 ```
@@ -153,7 +153,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 16
+    "error_code": 16
   }
 }
 ```
@@ -187,7 +187,7 @@ All error responses follow the standard envelope:
   "success": false,
   "data": {
     "message": "Human-readable error description",
-    "errorCode": 48
+    "error_code": 48
   }
 }
 ```

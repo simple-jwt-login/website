@@ -75,7 +75,7 @@ The `refresh_token` parameter is missing from the request.
   "success": false,
   "data": {
     "message": "Refresh token is missing.",
-    "errorCode": 51
+    "error_code": 51
   }
 }
 ```
@@ -89,7 +89,7 @@ The refresh token was not found or has expired.
   "success": false,
   "data": {
     "message": "Invalid refresh token.",
-    "errorCode": 51
+    "error_code": 51
   }
 }
 ```
@@ -103,7 +103,7 @@ The refresh token feature is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Refresh Token endpoint is not enabled.",
-    "errorCode": 81
+    "error_code": 81
   }
 }
 ```
@@ -117,7 +117,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```

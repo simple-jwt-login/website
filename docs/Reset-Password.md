@@ -72,7 +72,7 @@ Bad request - the `email` field is missing.
   "success": false,
   "data": {
     "message": "Email is required.",
-    "errorCode": 59
+    "error_code": 59
   }
 }
 ```
@@ -86,7 +86,7 @@ Unauthorized - the provided auth code is invalid or missing when required.
   "success": false,
   "data": {
     "message": "Invalid auth code.",
-    "errorCode": 58
+    "error_code": 58
   }
 }
 ```
@@ -100,7 +100,7 @@ Forbidden - password reset is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Reset password is not allowed.",
-    "errorCode": 56
+    "error_code": 56
   }
 }
 ```
@@ -114,7 +114,7 @@ No WordPress user with the provided email address was found.
   "success": false,
   "data": {
     "message": "User not found.",
-    "errorCode": 64
+    "error_code": 64
   }
 }
 ```
@@ -128,7 +128,7 @@ Internal server error (for example, email sending failure).
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```
@@ -242,7 +242,7 @@ Bad request - `email`, `code`, or `new_password` is missing.
   "success": false,
   "data": {
     "message": "New password is required.",
-    "errorCode": 61
+    "error_code": 61
   }
 }
 ```
@@ -256,7 +256,7 @@ Unauthorized - the JWT is invalid or expired, or was already used for a password
   "success": false,
   "data": {
     "message": "This JWT cannot be used to change the password.",
-    "errorCode": 93
+    "error_code": 93
   }
 }
 ```
@@ -270,7 +270,7 @@ Forbidden - password reset is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Reset password is not allowed.",
-    "errorCode": 56
+    "error_code": 56
   }
 }
 ```
@@ -284,7 +284,7 @@ No WordPress user with the provided email address was found.
   "success": false,
   "data": {
     "message": "User not found.",
-    "errorCode": 64
+    "error_code": 64
   }
 }
 ```
@@ -298,7 +298,7 @@ Unprocessable entity - the one-time reset code is invalid or expired.
   "success": false,
   "data": {
     "message": "Invalid reset password code.",
-    "errorCode": 62
+    "error_code": 62
   }
 }
 ```
@@ -312,7 +312,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```

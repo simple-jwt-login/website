@@ -6,7 +6,7 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Every error response from Simple-JWT-Login includes a numeric `errorCode` field. Use the table below to look up the meaning of a specific code and how to resolve it.
+Every error response from Simple-JWT-Login includes a numeric `error_code` field. Use the table below to look up the meaning of a specific code and how to resolve it.
 
 Error responses follow this format:
 
@@ -15,7 +15,7 @@ Error responses follow this format:
   "success": false,
   "data": {
     "message": "Human-readable error message",
-    "errorCode": 48
+    "error_code": 48
   }
 }
 ```

@@ -47,7 +47,7 @@ This endpoint initiates the password reset flow for an existing WordPress user. 
   "success": false,
   "data": {
     "message": "string",
-    "errorCode": 0
+    "error_code": 0
   }
 }
 ```
