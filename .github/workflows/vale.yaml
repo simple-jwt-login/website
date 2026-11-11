@@ -1,0 +1,30 @@
+name: CI-vale
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    paths:
+      - "docs/**"
+      - "openapi/**"
+      - "src/pages/**"
+      - "src/components/**"
+      - ".vale.ini"
+      - "styles/config/**"
+      - "scripts/vale.sh"
+      - ".github/workflows/vale.yaml"
+
+jobs:
+  vale-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🧑‍💻 Setup
+        run: |
+          yarn install --frozen-lockfile
+
+      # Lints docs, OpenAPI and website pages (builds the site for the pages).
+      - name: ✍️ Vale prose linting
+        run: yarn lint:vale

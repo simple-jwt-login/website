@@ -34,7 +34,7 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 | :-------------: | :--------------: | ------------ |
 | `JWT` | `required` `string` | Your JWT. Can alternatively be passed as `Authorization: Bearer <token>`. |
 | `AUTH_KEY` | `optional` `string` | Auth Code value. Required only if "Require Authentication Code" is enabled. The parameter name matches the **Auth Code URL Key** in Auth Codes settings (default: `AUTH_KEY`). |
-| `redirectUrl` | `optional` `string` | If provided and "Honor the redirectUrl parameter" is enabled in settings, the user is redirected here after a successful login instead of the configured destination. |
+| `redirectUrl` | `optional` `string` | If provided and "Honor the `redirectUrl` parameter" is enabled in settings, the user is redirected here after a successful login instead of the configured destination. |
 
 Parameters can be sent as query params.
 
@@ -59,7 +59,7 @@ The browser is redirected (HTTP 302) to the WordPress site or the custom `redire
 
 ### 400
 
-Bad request - unclassified error (e.g. malformed JWT encoding).
+Bad request - unclassified error (for example, malformed JWT encoding).
 
 ```json
 {
@@ -223,7 +223,7 @@ Controls where users are sent after login succeeds or fails.
 
 **On login failure, redirect to:**
 
-Enter a URL to redirect the user when login fails (e.g. expired token, invalid auth code). Leave blank to return an error JSON response without redirecting.
+Enter a URL to redirect the user when login fails (for example, expired token, invalid auth code). Leave blank to return an error JSON response without redirecting.
 
 On the failure redirect page you can display the error message returned by the plugin using the `simple-jwt-login:request` shortcode:
 
@@ -241,7 +241,7 @@ When enabled, the original JWT and any other login request parameters are append
 
 #### Strip these parameters from the redirect URL
 
-Comma-separated list of query parameters to remove after redirect (e.g. `jwt, auth_code`). Useful for cleaning sensitive values out of the browser address bar. Leave blank to keep all parameters.
+Comma-separated list of query parameters to remove after redirect (for example, `jwt, auth_code`). Useful for cleaning sensitive values out of the browser address bar. Leave blank to keep all parameters.
 
 #### Honor the `redirectUrl` query parameter as a redirect override
 
@@ -277,7 +277,7 @@ Restrict autologin to requests from specific sources. Leave fields blank to allo
 
 Comma-separated list of IP addresses allowed to use the autologin endpoint. Leave blank to allow all IPs.
 
-#### Allowed JWT Issuers (iss)
+#### Allowed JWT Issuers (`iss`)
 
 Comma-separated list of accepted `iss` (issuer) claim values. When set, a JWT whose `iss` does not match any value in this list is rejected with error code `68`. Leave blank to accept any issuer.
 
@@ -285,7 +285,7 @@ Comma-separated list of accepted `iss` (issuer) claim values. When set, a JWT wh
 
 ## FAQ
 
-### How do I tell the plugin which field in the JWT contains the WordPress user ID or email?
+### How do you tell the plugin which field in the JWT contains the WordPress user ID or email?
 
 In the plugin settings, set the **"JWT Parameter Key"** field to the name of the JWT payload property that holds the user identifier.
 
@@ -299,4 +299,4 @@ For example, if your JWT payload looks like this:
 }
 ```
 
-Set **JWT Parameter Key** to `UserID`. The plugin will use that value to look up the WordPress user.
+Set **JWT Parameter Key** to `UserID`. The plugin uses that value to look up the WordPress user.

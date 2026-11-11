@@ -9,18 +9,18 @@ requestBody:
         $ref: '../schemas/create-user-body.yaml'
   required: true
 responses:
-  400:
+  '400':
     description: Error.
     content:
       application/json:
         schema:
           $ref: '../../schemas/400.yaml'
           examples: 
-            - succes: false
+            - success: false
               data: 
                 message: "Missing email or passowrd"
                 errorCode: 35
-  200:
+  '200':
     description: User Registered
     content:
       application/json:

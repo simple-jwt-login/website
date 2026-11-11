@@ -103,7 +103,7 @@ const integrations = [
     name: 'Google OAuth',
     tagline: 'Sign in with Google',
     description:
-      'Let users authenticate with their Google account. Simple JWT Login exchanges a Google ID token for a WordPress JWT, giving you full control over the session without storing passwords.',
+      'Let users authenticate with their Google Account. Simple JWT Login exchanges a Google ID token for a WordPress JWT, giving you full control over the session without storing passwords.',
     logo: 'assets/images/features/google-plus.png',
     logoAlt: 'Google OAuth',
     tags: ['OAuth', 'Social Login', 'Passwordless'],

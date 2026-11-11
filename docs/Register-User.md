@@ -264,7 +264,7 @@ Leaving registration open without an Auth Code is a security risk on public-faci
 
 #### Default User Role
 
-The WordPress role assigned to newly registered users (e.g. `subscriber`, `contributor`, `author`, `editor`, `administrator`, or any custom role).
+The WordPress role assigned to newly registered users (for example, `subscriber`, `contributor`, `author`, `editor`, `administrator`, or any custom role).
 
 You can also assign a **different role per Auth Code** - when a user registers using a specific code, they receive the role tied to that code. Configure this in the Auth Codes settings.
 
@@ -294,11 +294,11 @@ When enabled, WordPress sends its default new-user notification emails (to the n
 
 #### Allowed IP Addresses
 
-Comma-separated list of IP addresses allowed to call the registration endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (e.g. `85.*.*.*`).
+Comma-separated list of IP addresses allowed to call the registration endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (for example, `85.*.*.*`).
 
 #### Allowed Email Domains
 
-Comma-separated list of email domains accepted during registration (e.g. `gmail.com, company.org`). Leave blank to accept all domains.
+Comma-separated list of email domains accepted during registration (for example, `gmail.com, company.org`). Leave blank to accept all domains.
 
 ### User Data
 

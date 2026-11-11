@@ -35,6 +35,6 @@ Keep your credentials secure - never commit them to version control or expose th
 
 | Field | Description |
 | :---- | :---------- |
-| **Domain** | Your Auth0 tenant domain, e.g. `your-tenant.auth0.com` |
+| **Domain** | Your Auth0 tenant domain, for example, `your-tenant.auth0.com` |
 | **Client ID** | The application Client ID |
 | **Client Secret** | The application Client Secret |

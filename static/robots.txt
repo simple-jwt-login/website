@@ -9,3 +9,5 @@ Disallow: /search
 # LLM-friendly files
 Allow: /llms.txt
 Allow: /llms-full.txt
+
+Sitemap: https://simplejwtlogin.com/sitemap.xml

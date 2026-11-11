@@ -91,8 +91,8 @@ const newFeatures = [
     desc: 'A new at-a-glance status page shows every feature\'s state in one place - routes, security, integrations, and monitoring.',
     bullets: [
       'All routes and their enabled/disabled state',
-      'Security: CORS, Protect Endpoints, Auth Codes, API Keys',
-      'Monitoring: Webhooks, Webhook Logs, Audit Logs',
+      'Security - CORS, Protect Endpoints, Auth Codes, API Keys',
+      'Monitoring - Webhooks, Webhook Logs, Audit Logs',
     ],
     link: '/docs/dashboard/',
     cta: 'Dashboard docs',
@@ -186,7 +186,7 @@ const newFeatures = [
     desc: 'Protect Endpoints has been rethought as a single ordered rules table - each rule sets access to Public, JWT required, or JWT + Roles, and the first matching rule wins.',
     bullets: [
       'Unified rules table replaces separate whitelist and protected lists',
-      'Per-rule access level: Public, JWT required, or JWT + specific Roles',
+      'Per-rule access level - Public, JWT required, or JWT + specific Roles',
       'Top-to-bottom evaluation with first-match-wins logic',
       'Existing settings auto-migrate on first load',
       'Role names are validated against WordPress on save',
@@ -241,8 +241,8 @@ const newFeatures = [
 const breakingChanges = [
   {
     title: 'Register user response shape changed',
-    detail: 'POST /users used to return {"success":true,"ID":1,...}. It now returns {"success":true,"data":{"id":1,...}}. The user object is nested under "data", "ID" is lowercase "id", and several fields were renamed: user_login → login, user_nicename → nicename, user_email → email, user_url → url, user_registered → registered, user_activation_key → activation_key, user_status → status.',
-    action: 'Update any code that reads user fields from the register response - check both the new nesting under "data" and the renamed field keys.',
+    detail: <><code>POST /users</code> used to return <code>{'{"success":true,"ID":1,...}'}</code>. It now returns <code>{'{"success":true,"data":{"id":1,...}}'}</code>. The user object is nested under <code>data</code>, <code>ID</code> is lowercase <code>id</code>, and these fields were renamed: <code>user_login</code> → <code>login</code>, <code>user_nicename</code> → <code>nicename</code>, <code>user_email</code> → <code>email</code>, <code>user_url</code> → <code>url</code>, <code>user_registered</code> → <code>registered</code>, <code>user_activation_key</code> → <code>activation_key</code>, <code>user_status</code> → <code>status</code>.</>,
+    action: <>Update any code that reads user fields from the register response - check both the new nesting under <code>data</code> and the renamed field keys.</>,
     link: '/docs/register-user/',
     linkLabel: 'Register User docs',
   },
@@ -262,14 +262,14 @@ const breakingChanges = [
   },
   {
     title: 'Settings storage structure reorganized',
-    detail: 'The internal layout of plugin options in wp_options has changed. Existing settings are migrated automatically on first load, but the old keys are removed.',
+    detail: <>The internal layout of plugin options in <code>wp_options</code> has changed. Existing settings are migrated automatically on first load, but the old keys are removed.</>,
     action: 'Review every settings tab after upgrading to confirm values carried over correctly.',
     link: null,
     linkLabel: null,
   },
   {
-    title: 'Authentication response now includes refresh_token',
-    detail: 'POST /auth returns a new "refresh_token" field when the refresh token feature is enabled. The JWT field itself is unchanged.',
+    title: <>Authentication response now includes <code>refresh_token</code></>,
+    detail: <><code>POST /auth</code> returns a new <code>refresh_token</code> field when the refresh token feature is enabled. The JWT field itself is unchanged.</>,
     action: 'No action needed unless your client strictly rejects unexpected response fields or you need to store the token.',
     link: '/docs/refresh-token/',
     linkLabel: 'Refresh Token docs',
@@ -282,9 +282,9 @@ const breakingChanges = [
     linkLabel: '2FA docs',
   },
   {
-    title: 'Error response envelope: message and error_code moved under data',
-    detail: 'In v3, error responses had the form {"success":false,"message":"...","error_code":N}. In v4, both fields moved under a nested data object: {"success":false,"data":{"message":"...","error_code":N}}. Every endpoint follows this new shape.',
-    action: 'Update all error-handling code to read response.data.message and response.data.error_code instead of response.message and response.error_code.',
+    title: <>Error response envelope: <code>message</code> and <code>error_code</code> moved under <code>data</code></>,
+    detail: <>In v3, error responses had the form <code>{'{"success":false,"message":"...","error_code":N}'}</code>. In v4, both fields moved under a nested <code>data</code> object: <code>{'{"success":false,"data":{"message":"...","error_code":N}}'}</code>. Every endpoint follows this new shape.</>,
+    action: <>Update all error-handling code to read <code>response.data.message</code> and <code>response.data.error_code</code> instead of <code>response.message</code> and <code>response.error_code</code>.</>,
     link: '/docs/error-codes/',
     linkLabel: 'Error codes docs',
   },
@@ -296,9 +296,9 @@ const breakingChanges = [
     linkLabel: 'Protect Endpoint docs',
   },
   {
-    title: 'Error field renamed: errorCode → error_code',
-    detail: 'In v3, the error field in responses was named "errorCode" (camelCase). In v4, it is renamed to "error_code" (snake_case) to match the rest of the API\'s naming convention.',
-    action: 'Update all error-handling code that reads response.errorCode (or response.data.errorCode) to use error_code instead.',
+    title: <>Error field renamed: <code>errorCode</code> → <code>error_code</code></>,
+    detail: <>In v3, the error field in responses was named <code>errorCode</code> (camelCase). In v4, it is renamed to <code>error_code</code> (snake_case) to match the naming convention used across the API.</>,
+    action: <>Update all error-handling code that reads <code>response.errorCode</code> (or <code>response.data.errorCode</code>) to use <code>error_code</code> instead.</>,
     link: '/docs/error-codes/',
     linkLabel: 'Error codes docs',
   },
@@ -362,7 +362,7 @@ const versionSupport = [
     badge: 'Maintenance',
     badgeClass: 'featureBadgeWarn',
     version: 'v3.x',
-    desc: 'Security patches and WordPress compatibility fixes only - no new features, no bug fixes. End of life: January 31, 2027.',
+    desc: 'Security patches and WordPress compatibility fixes only - no new features, no bug fixes. End of life is January 31, 2027.',
   },
 ];
 
@@ -375,7 +375,7 @@ const migrationSteps = [
   {
     n: '2',
     title: 'Work through the breaking changes',
-    desc: 'The breaking changes are listed above. Address them before going to production - the error envelope change, the errorCode → error_code rename, the register response shape change, the removed /register route, and the relocated User Identification setting are the most likely to affect existing integrations.',
+    desc: <>The breaking changes are listed above. Address them before going to production - the error envelope change, the <code>errorCode</code> → <code>error_code</code> rename, the register response shape change, the removed /register route, and the relocated User Identification setting are the most likely to affect existing integrations.</>,
   },
   {
     n: '3',
@@ -493,8 +493,8 @@ export default function V4Page() {
               Most JWT flows continue to work without changes. Review these items before upgrading.
             </p>
             <div className={v4Styles.breakingList}>
-              {breakingChanges.map(({ title, detail, action, link, linkLabel }) => (
-                <div key={title} className={v4Styles.breakingItem}>
+              {breakingChanges.map(({ title, detail, action, link, linkLabel }, index) => (
+                <div key={index} className={v4Styles.breakingItem}>
                   <FontAwesomeIcon icon={faTriangleExclamation} className={v4Styles.breakingIcon} />
                   <div className={v4Styles.breakingContent}>
                     <p className={v4Styles.breakingTitle}>{title}</p>
@@ -518,8 +518,8 @@ export default function V4Page() {
             <span className={styles.sectionEyebrow}>Version Support Policy</span>
             <h2 className={styles.sectionTitle}>v3 is now in maintenance mode</h2>
             <p className={styles.sectionLead}>
-              We recommend upgrading to v4 as soon as possible. After January 31, 2027, v3.x will no
-              longer receive any updates, including security patches.
+              We recommend upgrading to v4 as soon as possible. After January 31, 2027, v3.x no
+              longer receives any updates, including security patches.
             </p>
             <div className={clsx(styles.whyGrid, styles.whyGrid2)}>
               {versionSupport.map(({ icon, badge, badgeClass, version, desc }) => (
@@ -571,7 +571,7 @@ export default function V4Page() {
           </div>
           <div className={v4Styles.perfBreakout}>
             <div className={v4Styles.perfTableWrap}>
-                <table className={v4Styles.perfTable}>
+                <table className={clsx(v4Styles.perfTable, "vale-ignore")}>
                   <thead>
                     <tr className={v4Styles.perfGroupRow}>
                       <th rowSpan={2} className={v4Styles.perfThEndpoint}>Endpoint</th>

@@ -36,18 +36,18 @@ Simple-JWT-Login is open-source and distributed under the [GPL 3.0](https://gith
 
 Setting up Simple-JWT-Login is quick and easy. Choose one of the following installation methods:
 
-### Method 1: Install from WordPress.org (Recommended)
-- Go to the **Plugins** menu in WordPress and click "**Add New**".
+### Method 1 - Install from WordPress.org (Recommended)
+- Go to the **Plugins** menu in WordPress and click **Add New**.
 
     ![Add new plugin](/assets/images/docs/add_plugin.png "Add new plugin")
-- Search for "**Simple JWT Login**" and select "**Install Now**".
+- Search for **Simple JWT Login** and select **Install Now**.
 
     ![Search for Simple-JWT-Login plugin](/assets/images/docs/search_simple-jwt-login-plugin.png "Search for simple-jwt-login")
 - **Activate** the plugin when prompted.
 
     ![Activate the plugin](/assets/images/docs/activate-simple-jwt-login-plugin.png "Activate the plugin")
 
-### Method 2: Download and Install Manually
+### Method 2 - Download and Install Manually
 - Access [https://wordpress.org/plugins/simple-jwt-login/](https://wordpress.org/plugins/simple-jwt-login/).
 
 - Click "**Download**" to get the latest Simple-JWT-Login plugin version.

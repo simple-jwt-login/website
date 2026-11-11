@@ -39,7 +39,7 @@ Change this if you want to avoid exposing that your site uses Simple JWT Login, 
 
 ### Auth Codes list
 
-Each code is a row with three fields - add as many codes as you need. You can have different codes for different purposes (e.g. one for mobile apps, one for server-to-server integrations).
+Each code is a row with three fields - add as many codes as you need. You can have different codes for different purposes (for example, one for mobile apps, one for server-to-server integrations).
 
 ![Authorization codes list](/assets/images/screenshots/auth-codes/authorization-codes.png)
 
@@ -50,8 +50,8 @@ Each Auth Code has three fields:
 | Field | Description |
 | :---- | :---------- |
 | **Authentication Key** | The actual code value that must be included in requests using the **Auth Code URL Key** parameter name (default: `AUTH_KEY`). |
-| **WordPress User Role** | *(Optional)* When set, users registered using this code are assigned this role instead of the default role configured in Register Settings. Useful for creating multiple user tiers (e.g., "premium" vs "free") from a single endpoint. |
-| **Expiration Date** | *(Optional)* The date and time after which this code is no longer accepted. Format: `Y-M-D H:m:s` - e.g., `2025-12-31 23:59:59`. |
+| **WordPress User Role** | *(Optional)* When set, users registered using this code are assigned this role instead of the default role configured in Register Settings. Useful for creating multiple user tiers (for example, "premium" vs "free") from a single endpoint. |
+| **Expiration Date** | *(Optional)* The date and time after which this code is no longer accepted. Format: `Y-M-D H:m:s` - for example, `2025-12-31 23:59:59`. |
 
 :::note
 Leaving the expiration date blank means the code never expires.

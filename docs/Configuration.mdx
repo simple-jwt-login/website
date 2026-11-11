@@ -64,7 +64,7 @@ https://example.com/wp-json/simple-jwt-login/v1/auth
 ```
 
 :::caution
-If you change the route namespace after you have already issued JWTs, any existing links that embed the old endpoint URL (e.g. autologin links in emails) will stop working.
+If you change the route namespace after you have already issued JWTs, any existing links that embed the old endpoint URL (for example, autologin links in emails) stop working.
 :::
 
 ---
@@ -90,7 +90,7 @@ Each rule has three parts:
 | Field | Options | Description |
 | :---- | :------ | :---------- |
 | JWT Part | `Payload claim` / `Header claim` | Which part of the JWT to inspect |
-| Claim Key | text | The key to look up (e.g. `iss`, `alg`, `x-provider`) |
+| Claim Key | text | The key to look up (for example, `iss`, `alg`, `x-provider`) |
 | Operator | `equals` / `contains` | Comparison to apply |
 | Expected Value | text | The value the claim must match |
 
@@ -107,9 +107,9 @@ Each rule has three parts:
 | Field | Options |
 | :---- | :------ |
 | Identify user by | `Email address` / `WordPress User ID` / `WordPress Username` |
-| JWT payload key | The payload field that holds the identifier (e.g. `email`, `sub`, `user.id`) |
+| JWT payload key | The payload field that holds the identifier (for example, `email`, `sub`, `user.id`) |
 
-Use dot notation for nested values - e.g. `user.id` to read `{ "user": { "id": 42 } }`.
+Use dot notation for nested values - for example, `user.id` to read `{ "user": { "id": 42 } }`.
 
 ### The ELSE rule (required default)
 
@@ -131,18 +131,18 @@ define('SIMPLE_JWT_PRIVATE_KEY', 'my-super-secret-key');
 define('SIMPLE_JWT_PUBLIC_KEY', '-----BEGIN PUBLIC KEY-----\n...');
 ```
 
-**Step 2 - Algorithm:** Select the signing algorithm (`HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`).
+**Step 2 - Algorithm:** select the signing algorithm (`HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`).
 
-**Step 3 - Verification Key:** Enter the secret key (HS*) or public/private key pair (RS*). For HS* algorithms, check "JWT key is Base64 encoded" if your key is Base64-encoded.
+**Step 3 - Verification Key:** enter the secret key (HS*) or public/private key pair (RS*). For HS* algorithms, check "JWT key is Base64 encoded" if your key is Base64-encoded.
 
-**Step 4 - User Identification:** Which JWT payload field identifies the WordPress user.
+**Step 4 - User Identification:** the JWT payload field that identifies the WordPress user.
 
 | Field | Options |
 | :---- | :------ |
 | Identify user by | `Email address` / `WordPress User ID` / `WordPress Username` |
-| JWT payload key | The payload field name that holds the identifier (e.g. `email`, `sub`, `user.id`) |
+| JWT payload key | The payload field name that holds the identifier (for example, `email`, `sub`, `user.id`) |
 
-Use dot notation for nested values, e.g. `user.id` to read `{ "user": { "id": 42 } }`.
+Use dot notation for nested values, for example, `user.id` to read `{ "user": { "id": 42 } }`.
 
 ### Example: multi-provider setup
 
@@ -181,7 +181,7 @@ The recommended approach is to keep **HEADER** enabled and send tokens as `Autho
 
 ### JWT Middleware for all WordPress endpoints
 
-When enabled, **any** WordPress REST API request that includes a valid JWT will be automatically authenticated as the identified user before WordPress processes the request.
+When enabled, **any** WordPress REST API request that includes a valid JWT is automatically authenticated as the identified user before WordPress processes the request.
 
 This lets you do things like creating posts or accessing user-specific data through the standard WordPress REST API (`/wp/v2/*`) using a Simple JWT Login token - without any extra plugin.
 

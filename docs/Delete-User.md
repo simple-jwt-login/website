@@ -210,4 +210,4 @@ When enabled, every deletion request must include a valid Auth Code alongside th
 
 ![Access Control settings](/assets/images/screenshots/delete/access-control.png)
 
-Comma-separated list of IP addresses allowed to call the delete endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (e.g. `192.168.*.*`).
+Comma-separated list of IP addresses allowed to call the delete endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (for example, `192.168.*.*`).

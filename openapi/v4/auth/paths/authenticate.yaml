@@ -47,8 +47,8 @@ responses:
       Authentication successful. Returns a signed JWT and an optional refresh token.
 
       **Two-Factor challenge**: when the user has 2FA enabled, this response is
-      returned instead of a regular JWT. `two_factor_required` will be `true` and
-      `jwt` will contain a short-lived interim token. Submit it with the 2FA code
+      returned instead of a regular JWT. `two_factor_required` is `true` and
+      `jwt` contains a short-lived interim token. Submit it with the 2FA code
       to `POST /auth/2fa` to obtain the final JWT.
     content:
       application/json:
@@ -93,7 +93,7 @@ responses:
                   type: string
                   nullable: true
                   description: |
-                    Fully-qualified class name of the user's primary 2FA provider.
+                    Fully qualified class name of the user's primary 2FA provider.
                     Only present when `two_factor_required` is `true`.
                   example: "Two_Factor_Totp"
   '401':

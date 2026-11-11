@@ -18,7 +18,7 @@ It covers the three most common steps in a headless WordPress workflow:
 2. **Authenticate** - exchange credentials for a JWT
 3. **Use the JWT** - call a protected endpoint
 
-For this example, we can create a helper function, that will do the actual call:
+For this example, create a helper function that makes the actual call:
 ```php
 <?php
 
@@ -58,10 +58,10 @@ function call($method, $endpoint, $data = array(), $headers = array())
 }
 ```
 
-## Step 1: Register a WordPress user
+## Step 1 - Register a WordPress user
 
 :::note
-Please note that, in order to be able to register a new user, you need have "Allow Register: yes" in the plugin settings.
+To register a new user, you need "Allow Register: yes" in the plugin settings.
 :::
 
 ```php
@@ -98,10 +98,10 @@ try{
 }
 ```
 
-## Step 2: Obtain a JWT
+## Step 2 - Obtain a JWT
 
 :::note
-Please note that, in order to use the Authentication endpoint, you need have "Allow Authentication: yes" in the plugin settings.
+To use the Authentication endpoint, you need "Allow Authentication: yes" in the plugin settings.
 :::
 
 ```php
@@ -140,13 +140,13 @@ try{
 }
 ```
 
-## Step 3: Use the JWT to create a WordPress post
+## Step 3 - Use the JWT to create a WordPress post
 
 :::note
-In order to use the JWT on all endpoint, you need to enable "All WordPress endpoints checks for JWT authentication" from the plugin General Settings.
+To use the JWT on all endpoints, enable "All WordPress endpoints checks for JWT authentication" from the plugin General Settings.
 :::
 
-In this example, we will create a new WordPress post:
+This example creates a new WordPress post:
 ```php
 <?php
 $domain = "http://localhost:88";   

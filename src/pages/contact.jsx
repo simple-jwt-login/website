@@ -104,7 +104,7 @@ function ContactPage() {
             <div className={styles.notice}>
               <div className={styles.noticeIcon} aria-hidden="true"><FontAwesomeIcon icon={faCircleInfo} /></div>
               <div>
-                <strong>Email support was discontinued on 1 December 2024.</strong>
+                <strong>Email support was discontinued on December 1, 2024.</strong>
                 {' '}Please use Discord, GitHub, or the WordPress forum for all
                 support requests - responses there are faster and help the
                 whole community.
@@ -131,7 +131,7 @@ function ContactPage() {
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faLightbulb} /></span>
                 <h3>Feature requests</h3>
-                <p>Submit a GitHub issue tagged "enhancement". Upvotes and comments help prioritize what gets built next.</p>
+                <p>Submit a GitHub issue tagged <code>enhancement</code>. Upvotes and comments help prioritize what gets built next.</p>
               </div>
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faHandshake} /></span>

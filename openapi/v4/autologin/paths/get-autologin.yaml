@@ -58,9 +58,9 @@ responses:
       Login successful. Two possible responses depending on the plugin's
       "Redirect after auto-login" setting:
 
-      - **Redirect (default)**: The browser is redirected (302) to the WordPress
+      - **Redirect (default)** - the browser is redirected (302) to the WordPress
         home URL, dashboard, or a custom URL. The response body is empty HTML.
-      - **No redirect**: When "No redirect" is configured, returns a JSON body:
+      - **No redirect** - when **No redirect** is configured, returns a JSON body:
         `{"success": true, "message": "User was logged in."}`.
     content:
       application/html:
@@ -141,7 +141,7 @@ responses:
   '422':
     description: |
       Unprocessable entity. One of:
-      - The JWT is completely absent from the request (`error_code` 23).
+      - The JWT is absent from the request (`error_code` 23).
       - The auth code is required by the plugin settings but was not provided
         (`error_code` 94).
       - The JWT is a short-lived interim token issued during a 2FA challenge

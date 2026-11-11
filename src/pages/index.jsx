@@ -87,7 +87,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Limit Access by IP</>,
-    description: <>Restrict access to trusted IPs - supports wildcards (e.g. <code>85.*.*.*</code>) for subnet-level control.</>,
+    description: <>Restrict access to trusted IPs - supports wildcards (for example, <code>85.*.*.*</code>) for subnet-level control.</>,
     image: "assets/images/features/ip.png",
     alt: "Limit access by IP",
     version: "both",
@@ -126,7 +126,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Google OAuth Integration</>,
-    description: <>Let users sign in with their Google account - zero passwords, instant trust.</>,
+    description: <>Let users sign in with their Google Account - zero passwords, instant trust.</>,
     image: "assets/images/features/google-plus.png",
     alt: "Google OAuth",
     link: "/docs/applications/google/login/",
@@ -190,7 +190,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Multiple JWT Decryption Keys</>,
-    description: <>Define multiple decryption keys and let the plugin pick the right one automatically, based on the JWT header or payload.</>,
+    description: <>Define multiple decryption keys and let the plugin pick the right one automatically from the JWT header or payload.</>,
     faIcon: faLayerGroup,
     alt: "Multiple JWT Decryption Keys",
     link: "/docs/authentication/",
@@ -432,7 +432,7 @@ export default function HomePage() {
                 { icon: faRocket,        title: '4 JWT delivery methods', desc: 'Authorization header, cookie, session, or query parameter - works everywhere.' },
                 { icon: faWrench,        title: 'Built for developers',   desc: '16 WordPress action and filter hooks to customize every authentication flow.' },
                 { icon: faGlobe,         title: 'CORS-ready',             desc: 'Works out of the box with React, Vue, Angular, mobile apps, WPGraphQL, and headless CMS setups.' },
-                { icon: faPhp,           title: 'PHP 5.5+ compatible',    desc: 'Works on any PHP version from 5.5 onwards - no matter how old or new your server is.' },
+                { icon: faPhp,           title: 'PHP 5.5+ compatible',    desc: 'Works on any PHP version from 5.5 onward - no matter how old or new your server is.' },
                 { icon: faLink,          title: 'Auto-login & magic links', desc: 'Authenticate users via a tokenized URL - no password form needed. Perfect for email campaigns and passwordless flows.' },
                 { icon: faArrowsRotate,  title: 'Full token lifecycle',   desc: 'Refresh, validate, and revoke tokens on demand to keep sessions secure and under your control.' },
                 { icon: faHeart,         title: 'Free & open source',     desc: 'GPL3.0-licensed, community-supported, no hidden costs - ever.' },
@@ -678,7 +678,7 @@ export default function HomePage() {
               <h2 className={styles.sectionTitle}>What developers are saying</h2>
               <div className="row">
                 {reviews.map((props, idx) => (
-                  <div key={idx} className="col col--3">
+                  <div key={idx} className="col col--3 vale-ignore">
                     <Review {...props} />
                   </div>
                 ))}
@@ -702,7 +702,7 @@ export default function HomePage() {
               <h2 className={styles.ctaTitle}>Ready to add JWT to your WordPress site?</h2>
               <p className={styles.ctaSubtitle}>
                 Install Simple JWT Login in minutes, configure it through the admin UI,
-                and start issuing tokens - completely free, no account required.
+                and start issuing tokens - free, no account required.
               </p>
               <div className={styles.ctaButtons}>
                 <Link to="/docs/" className={styles.actionButton} title="Read the documentation">

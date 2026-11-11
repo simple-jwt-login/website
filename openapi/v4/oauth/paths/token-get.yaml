@@ -58,7 +58,7 @@ responses:
   '400':
     description: |
       Bad request. The `code` parameter is missing, or the provider slug is
-      unrecognised. (`error_code` 69 for invalid provider slug.)
+      unrecognized. (`error_code` 69 for invalid provider slug.)
     content:
       application/json:
         schema:

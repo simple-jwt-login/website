@@ -27,8 +27,8 @@ export default function WooCommerceDemoPage() {
           <div className={ex.notice}>
             <strong>Before it works,</strong> on your WordPress site: activate WooCommerce
             (with a payment method such as Cash on Delivery), enable the{' '}
-            <Link to="/docs/integrations/third-party/woocommerce/">WooCommerce integration</Link>{' '}
-            and its <em>Store API cart &amp; checkout</em> toggle, and enable CORS for this origin.
+            <Link to="/docs/integrations/third-party/woocommerce/">WooCommerce integration</Link> and its{' '}
+            <em>Store API cart &amp; checkout</em> toggle, and enable CORS for this origin.
             Product management needs an Administrator / Shop Manager account. Use HTTPS.
           </div>
 

@@ -8,26 +8,26 @@ info:
 
     This API is documented in **OpenAPI format**. You can either open it in [swagger editor](https://editor.swagger.io/) or you can view it on this website.
 
-    Also, you open it in postman, and you will be able to do local tests.
+    You can also open it in Postman to run local tests.
 
     ## Server
 
     You can access the Simple-JWT-Login API in two modes:
       - using permalink: https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}
-      - using rest_route: https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
+      - using `rest_route`: https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}
 
     ## Cross-Origin Resource Sharing
     This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
 
     And that allows cross-domain communication from the browser.
 
-    All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+    All responses have a wildcard same-origin which makes them public and accessible to everyone, including any code on any site.
   license:
     name: GPL 3.0
-    url: 'https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE'
+    url: 'https://github.com/nicumicle/simple-jwt-login/blob/v3/LICENSE'
   version: 3.6.5
   x-logo:
-    url: 'https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/master/wordpress.org/assets/icon-128x128.png'
+    url: 'https://raw.githubusercontent.com/nicumicle/simple-jwt-login/refs/heads/v3/wordpress.org/assets/icon-128x128.png'
     altText: Simple-Jwt-Login Logo
 externalDocs:
   description: Find out more about Simple-JWT-Login
@@ -57,12 +57,12 @@ paths:
         - name: redirectUrl
           in: query
           example: 'https://simplejwtlogin.com'
-          description: Custom URL to redirect the user after successful login. This will override the default redirect URL set in the plugin settings. Ensure the option is enabled in the plugin settings.
+          description: Custom URL to redirect the user after successful login. This overrides the default redirect URL set in the plugin settings. Ensure the option is enabled in the plugin settings.
           schema:
             type: string
       responses:
         '200':
-          description: Successful login. The user will be redirected to the WordPress website.
+          description: Successful login. The plugin redirects the user to the WordPress website.
           content:
             application/html:
               example: ''
@@ -113,11 +113,11 @@ paths:
                   example: myuser
                 first_name:
                   type: string
-                  description: 'The user''s first name. For new users, will be used to build the first part of the user''s display name if "display_name" is not specified.'
+                  description: 'The user''s first name. For new users, it builds the first part of the user''s display name if `display_name` is not specified.'
                   example: myuser
                 last_name:
                   type: string
-                  description: 'The user''s last name. For new users, will be used to build the second part of the user''s display name if "display_name" is not specified.'
+                  description: 'The user''s last name. For new users, it builds the second part of the user''s display name if `display_name` is not specified.'
                   example: myuser
                 description:
                   type: string
@@ -141,7 +141,7 @@ paths:
                   example: fresh
                 use_ssl:
                   type: boolean
-                  description: Whether the user should always access the admin over https. Default false.
+                  description: Whether the user should always access the admin over HTTPS. Default false.
                   example: true
                 user_registered:
                   type: string
@@ -156,7 +156,7 @@ paths:
                   example: false
                 show_admin_bar_front:
                   type: string
-                  description: 'Whether to display the Admin Bar for the user on the site''s front end.Accepts ''true'' or ''false'' as a string literal, not boolean. Default ''true''.'
+                  description: 'Whether to display the Admin Bar for the user on the site''s front end. Accepts ''true'' or ''false'' as a string literal, not boolean. Default ''true''.'
                   example: true
                 locale:
                   type: string
@@ -236,7 +236,7 @@ paths:
               schema:
                 $ref: '#/paths/~1simple-jwt-login~1v1~1auth/post/responses/400/content/application~1json/schema'
                 examples:
-                  - succes: false
+                  - success: false
                     data:
                       message: Missing email or passowrd
                       errorCode: 35
@@ -288,7 +288,7 @@ paths:
       operationId: sendResetPasswordCode
       summary: Send reset password code
       requestBody:
-        description: Send an email with the reset pasword code to the user
+        description: Send an email with the reset password code to the user
         content:
           application/json:
             schema:
@@ -345,7 +345,7 @@ paths:
                   example: New user password
                 JWT:
                   example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-                  description: 'In order to reset password with JWT, you need to check "Allow Reset password with JWT". If a JWT is provided, the `code` parameter is no loger required.'
+                  description: 'To reset the password with a JWT, enable **Allow Reset password with JWT**. If a JWT is provided, the `code` parameter is no longer required.'
                 AUTH_CODE:
                   type: string
                   example: MY_SUPER_SECRET_AUTH_CODE
@@ -398,7 +398,7 @@ paths:
                   description: User email of username. It behaves as WordPress login. Required without email and username.
                 password:
                   type: string
-                  description: User plain password. Required when pass_hash is not provided.
+                  description: User plain password. Required when `pass_hash` is not provided.
                 password_hash:
                   type: string
                   description: User hashed password from Database. Required when password is not provided.
@@ -412,7 +412,7 @@ paths:
                   example: '{"department":"engineering","region":"eu"}'
                   description: |
                     Optional extra claims to merge into the JWT payload, as a JSON-encoded
-                    string. Reserved identity claims (e.g. `email`, `id`, `username`, `site`,
+                    string. Reserved identity claims (for example, `email`, `id`, `username`, `site`,
                     `iss`, `exp`, `iat`) are always stripped from this value and set from the
                     authenticated user instead - they cannot be overridden by the caller.
         required: true
@@ -442,7 +442,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  succes:
+                  success:
                     type: boolean
                     example: false
                     description: Indicates whether the request was successful.
@@ -457,7 +457,7 @@ paths:
                         type: number
                         description: |
                           A numeric code representing the specific error encountered.  
-                          For a detailed list of error codes, visit:  [Error Codes Documentation](https://simplejwtlogin.com/docs/error-codes)
+                          For a detailed list of error codes, see the [Error Codes Documentation](https://simplejwtlogin.com/docs/error-codes)
                         example: 48
   /simple-jwt-login/v1/auth/refresh:
     post:
@@ -485,7 +485,7 @@ paths:
         required: true
       responses:
         '200':
-          description: Token has been refreshed succcessfully
+          description: Token has been refreshed successfully
           content:
             application/json:
               schema:
@@ -625,7 +625,7 @@ paths:
       summary: Revoke JWT
       operationId: revokeJWT
       requestBody:
-        description: 'Revoke JWT. When a JWT is revoken, it will be marked as invalid in future request.'
+        description: Revoke JWT. A revoked JWT is treated as invalid in future requests.
         content:
           application/json:
             schema:

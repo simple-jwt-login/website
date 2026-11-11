@@ -56,7 +56,7 @@ properties:
     example: "false"
   admin_color:
     type: string
-    description: Admin colour scheme for the user. Defaults to `'fresh'`.
+    description: Admin color scheme for the user. Defaults to `'fresh'`.
     example: fresh
   use_ssl:
     type: boolean

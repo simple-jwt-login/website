@@ -16,7 +16,7 @@ Requires the [Force Login](https://wordpress.org/plugins/force-login/) plugin (o
 
 The Force Login plugin redirects unauthenticated users away from your site and can lock down the REST API. Enabling this integration **exempts all Simple JWT Login endpoints** from that restriction.
 
-This is necessary because unauthenticated clients need to reach the login, register, and token endpoints in order to authenticate in the first place - they cannot provide a WordPress session cookie before they have logged in.
+This is necessary because unauthenticated clients need to reach the login, register, and token endpoints to authenticate in the first place - they cannot provide a WordPress session cookie before they have logged in.
 
 ## Enable
 

@@ -12,11 +12,11 @@ Requires the [WooCommerce](https://woocommerce.com/) plugin to be installed and 
 
 ## What it does
 
-When a JWT is sent on a WooCommerce REST request, the plugin authenticates the request as the identified WordPress user **before WooCommerce checks permissions** - so you can drive the store with a JWT instead of a consumer key / secret.
+When a JWT is sent on a WooCommerce REST request, the plugin authenticates the request as the identified WordPress user **before WooCommerce checks permissions**. This lets you drive the store with a JWT instead of a consumer key / secret.
 
 It covers every `/wc/` route:
 
-- **Classic CRUD API** (`/wc/v3`, `/wc/v2`, `/wc/v1`) - products, orders, customers, coupons, settings, ...
+- **Classic CRUD API** (`/wc/v3`, `/wc/v2`, `/wc/v1`) - products, orders, customers, coupons, and settings
 - **Store API** (`/wc/store/v1`) - the customer-facing cart & checkout used by headless storefronts.
 
 This works even when the global **"All WordPress endpoints check for JWT"** middleware is disabled - it is scoped to WooCommerce routes only.
@@ -82,7 +82,7 @@ For logged-in (JWT) users the cart persists by user ID, so no cart cookie is nee
 | WooCommerce integration **Enabled** | Authenticates the JWT on `/wc/` routes |
 | **Store API cart & checkout** toggle | Lets header-JWT requests skip the Store API nonce (cart/checkout) |
 | Admin / Shop Manager token | Required only to manage products & orders |
-| A payment method (e.g. Cash on Delivery) | So checkout can complete |
+| A payment method (for example, Cash on Delivery) | Required for checkout to complete |
 | HTTPS | A bearer token must never travel over plain HTTP |
 | CORS enabled | For cross-origin browser clients |
 

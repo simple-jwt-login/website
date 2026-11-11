@@ -79,7 +79,7 @@ function DonatePage() {
         <div className="container">
           <div className={styles.heroBadge}>Open-source · Free forever</div>
           <h1 className={styles.heroTitle}>
-            Built with love.<br />Kept alive by <span className={styles.heroAccent}>people like you.</span>
+            Built with love.<br />Kept alive by <span className={styles.heroAccent}>people like you</span>
           </h1>
           <p className={styles.heroSubtitle}>
             Simple JWT Login has been free and open-source for over {ACTIVE_YEARS} years.
@@ -168,7 +168,7 @@ function DonatePage() {
           <div className="container">
             <div className={styles.quoteCard}>
               <div className={styles.quoteIcon}>"</div>
-              <blockquote className={styles.quoteText}>
+              <blockquote className={`${styles.quoteText} vale-ignore`}>
                 I started Simple JWT Login because I needed it myself, and I
                 open-sourced it because I believe good tools should be available
                 to everyone. Thousands of developers now rely on it daily. Your

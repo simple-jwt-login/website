@@ -265,7 +265,7 @@ Choose which user data fields are included in the JWT payload. At minimum, `iat`
 | `username` | The WordPress `user_login` value. |
 | `iss` | Issuer claim. The value is taken from the **Issuer value** field below. |
 
-#### Issuer (iss)
+#### Issuer (`iss`)
 
 When `iss` is enabled in the payload, this field sets its value. Defaults to the site URL if left blank. Used to identify the token's origin, especially in multi-provider setups.
 

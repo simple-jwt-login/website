@@ -62,7 +62,7 @@ info:
 
     You can access the Simple-JWT-Login API in two modes:
       - using permalink: `https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}`
-      - using rest_route: `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}`
+      - using `rest_route`: `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}`
 
     ## Authentication
 
@@ -72,7 +72,7 @@ info:
     ## Cross-Origin Resource Sharing
 
     This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with [W3C spec](https://www.w3.org/TR/cors/).
-    All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+    All responses have a wildcard same-origin which makes them public and accessible to everyone, including any code on any site.
 
     ## Error Response Format
 
@@ -203,14 +203,14 @@ components:
       description: |
         JWT passed in the `Authorization` header as `Bearer <token>`.
         The header key name is configurable in plugin General Settings (default: `Authorization`).
-        This scheme must be enabled in the plugin General Settings under "JWT from Header".
+        This scheme must be enabled in the plugin General Settings under **JWT from Header**.
     QueryJWT:
       type: apiKey
       in: query
       name: JWT
       description: |
         JWT passed as a URL query parameter. The parameter name defaults to `JWT` but is
-        configurable in plugin General Settings under "Request Keys".
+        configurable in plugin General Settings under **Request Keys**.
     WordPressSession:
       type: apiKey
       in: cookie
@@ -281,9 +281,9 @@ paths:
             Login successful. Two possible responses depending on the plugin's
             "Redirect after auto-login" setting:
 
-            - **Redirect (default)**: The browser is redirected (302) to the WordPress
+            - **Redirect (default)** - the browser is redirected (302) to the WordPress
               home URL, dashboard, or a custom URL. The response body is empty HTML.
-            - **No redirect**: When "No redirect" is configured, returns a JSON body:
+            - **No redirect** - when **No redirect** is configured, returns a JSON body:
               `{"success": true, "message": "User was logged in."}`.
           content:
             application/html:
@@ -364,7 +364,7 @@ paths:
         '422':
           description: |
             Unprocessable entity. One of:
-            - The JWT is completely absent from the request (`error_code` 23).
+            - The JWT is absent from the request (`error_code` 23).
             - The auth code is required by the plugin settings but was not provided
               (`error_code` 94).
             - The JWT is a short-lived interim token issued during a 2FA challenge
@@ -474,7 +474,7 @@ paths:
                   example: 'false'
                 admin_color:
                   type: string
-                  description: Admin colour scheme for the user. Defaults to `'fresh'`.
+                  description: Admin color scheme for the user. Defaults to `'fresh'`.
                   example: fresh
                 use_ssl:
                   type: boolean
@@ -771,7 +771,7 @@ paths:
         '422':
           description: |
             Unprocessable entity. One of:
-            - The JWT is completely absent from the request (`error_code` 42).
+            - The JWT is absent from the request (`error_code` 42).
             - The auth code is required but was not provided (`error_code` 94).
           content:
             application/json:
@@ -909,7 +909,7 @@ paths:
                   message: Missing email parameter.
                   error_code: 63
         '500':
-          description: Internal server error (e.g. email sending failure).
+          description: 'Internal server error (for example, email sending failure).'
           content:
             application/json:
               schema:
@@ -1148,7 +1148,7 @@ paths:
                     Optional extra claims merged into the JWT payload. Accepted either as a
                     JSON-encoded string (form-encoded/query-string requests) or as a native
                     JSON object (JSON body requests).
-                    Reserved identity claims configured in the plugin's payload settings (e.g.
+                    Reserved identity claims configured in the plugin's payload settings (for example,
                     `email`, `id`, `username`, `site`, `iss`, `exp`, `iat`) and the custom
                     "JWT payload key" claim, if configured, are always stripped from this
                     value and set from the authenticated user instead - they cannot be
@@ -1166,8 +1166,8 @@ paths:
             Authentication successful. Returns a signed JWT and an optional refresh token.
 
             **Two-Factor challenge**: when the user has 2FA enabled, this response is
-            returned instead of a regular JWT. `two_factor_required` will be `true` and
-            `jwt` will contain a short-lived interim token. Submit it with the 2FA code
+            returned instead of a regular JWT. `two_factor_required` is `true` and
+            `jwt` contains a short-lived interim token. Submit it with the 2FA code
             to `POST /auth/2fa` to obtain the final JWT.
           content:
             application/json:
@@ -1212,7 +1212,7 @@ paths:
                         type: string
                         nullable: true
                         description: |
-                          Fully-qualified class name of the user's primary 2FA provider.
+                          Fully qualified class name of the user's primary 2FA provider.
                           Only present when `two_factor_required` is `true`.
                         example: Two_Factor_Totp
         '401':
@@ -1645,7 +1645,7 @@ paths:
         '422':
           description: |
             Unprocessable entity. One of:
-            - The JWT is completely absent from the request (`error_code` 53).
+            - The JWT is absent from the request (`error_code` 53).
             - The auth code is required but was not provided (`error_code` 94).
           content:
             application/json:
@@ -1785,7 +1785,7 @@ paths:
                 JWT:
                   type: string
                   example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-                  description: The JWT to revoke. May be expired — the signature is still verified.
+                  description: The JWT to revoke. May be expired - the signature is still verified.
                 AUTH_KEY:
                   type: string
                   example: MY_SUPER_SECRET_AUTH_KEY
@@ -1887,7 +1887,7 @@ paths:
         '422':
           description: |
             Unprocessable entity. One of:
-            - The JWT is completely absent from the request (`error_code` 53).
+            - The JWT is absent from the request (`error_code` 53).
             - The auth code is required but was not provided (`error_code` 94).
           content:
             application/json:
@@ -2128,7 +2128,7 @@ paths:
         '400':
           description: |
             Bad request. The `code` parameter is missing, or the provider slug is
-            unrecognised. (`error_code` 69 for invalid provider slug.)
+            unrecognized. (`error_code` 69 for invalid provider slug.)
           content:
             application/json:
               schema:
@@ -2280,7 +2280,7 @@ paths:
         '400':
           description: |
             Bad request. One of:
-            - The `provider` slug is unrecognised (`error_code` 69).
+            - The `provider` slug is unrecognized (`error_code` 69).
             - Required parameters are missing - `code` for Google/Auth0/Facebook/GitHub,
               or `id_token` for Google, or `access_token` for Facebook/GitHub
               (`error_code` 71 Google, 75 Auth0, 97 Facebook, 101 GitHub).
@@ -2556,7 +2556,7 @@ paths:
         '200':
           description: |
             API key created. The `key` field contains the full plaintext key - save it now
-            as it will not be returned again.
+            as it is not returned again.
           content:
             application/json:
               schema:
@@ -2612,7 +2612,7 @@ paths:
         '400':
           description: |
             Bad request. `name` is empty, no permissions were provided, or a permission
-            value is unrecognised.
+            value is unrecognized.
           content:
             application/json:
               schema:
@@ -2732,7 +2732,7 @@ paths:
         '400':
           description: |
             Bad request. `name` is empty, no permissions were provided, or a permission
-            value is unrecognised.
+            value is unrecognized.
           content:
             application/json:
               schema:

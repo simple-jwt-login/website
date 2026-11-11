@@ -30,7 +30,7 @@ Click **Add Webhook** to create a new entry. Each webhook is configured with the
 
 #### Endpoint URL
 
-The full URL that will receive the HTTP request when the event fires.
+The full URL that receives the HTTP request when the event fires.
 
 ```
 https://example.com/webhook
@@ -44,7 +44,7 @@ Default: `POST`
 
 #### Trigger Events
 
-Select one or more events that will fire this webhook. Each event corresponds to a specific plugin action:
+Select one or more events that fire this webhook. Each event corresponds to a specific plugin action:
 
 | Event | Trigger |
 | :---- | :------ |
@@ -79,7 +79,7 @@ Use the following template variables - they are replaced at delivery time with r
 | :------- | :---------- |
 | `{{user_id}}` | WordPress user ID of the user involved in the event |
 | `{{user_email}}` | Email address of the user |
-| `{{event}}` | The event name that triggered the webhook (e.g. `login`) |
+| `{{event}}` | The event name that triggered the webhook (for example, `login`) |
 
 Example custom payload:
 
@@ -125,7 +125,7 @@ The plugin uses PHP's `fastcgi_finish_request()` to flush the response to the cl
 | :--- | :--- |
 | **nginx + PHP-FPM** (standard nginx setup) | Yes - response flushed before HTTP calls are made |
 | **Apache + PHP-FPM** (`mod_proxy_fcgi`) | Yes - response flushed before HTTP calls are made |
-| **Apache + mod_php** | No - webhooks block the response |
+| **Apache + `mod_php`** | No - webhooks block the response |
 | **LiteSpeed / OpenLiteSpeed** | Depends on version - generally no |
 
 :::tip
@@ -137,12 +137,12 @@ If your site runs on Apache with `mod_php` and you have slow webhook endpoints, 
 ## Security Recommendations
 
 - Use **HTTPS** endpoints only - avoid sending event data over plain HTTP.
-- Pass a shared secret in a custom header (e.g. `X-Webhook-Secret`) and verify it on the receiving side to ensure the request originated from your site.
+- Pass a shared secret in a custom header (for example, `X-Webhook-Secret`) and verify it on the receiving side to ensure the request originated from your site.
 - Validate the payload on the receiver before acting on it.
 
 ---
 
-## Example: Notify Slack on User Registration
+## Example - Notify Slack on User Registration
 
 1. Create a Slack Incoming Webhook URL in your Slack workspace.
 2. In the plugin, add a new webhook with that URL.
@@ -156,4 +156,4 @@ If your site runs on Apache with `mod_php` and you have slow webhook endpoints, 
 }
 ```
 
-Slack will display the message in your chosen channel each time a new user registers.
+Slack displays the message in your chosen channel each time a new user registers.

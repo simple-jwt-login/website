@@ -10,14 +10,14 @@ requestBody:
         $ref: '../schemas/refresh-token-body.yaml'
   required: true
 responses:
-  400:
+  '400':
     description: Error
     content:
       application/json:
         schema:
           $ref: '../../schemas/400.yaml'
-  200:
-    description: Token has been refreshed succcessfully
+  '200':
+    description: Token has been refreshed successfully
     content:
       application/json:
         schema:

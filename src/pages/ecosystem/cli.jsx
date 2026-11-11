@@ -312,7 +312,7 @@ export default function CliPage() {
           <div className="container">
             <h2 className={sharedStyles.sectionTitle}>Built for real workflows</h2>
             <p className={styles.sectionLead}>
-              The CLI is designed for the scenarios where speed and scriptability matter most.
+              The CLI is designed for the scenarios where speed and automation matter most.
             </p>
             <div className={styles.useCaseGrid}>
               {useCases.map(({ icon, title, description, code }) => (

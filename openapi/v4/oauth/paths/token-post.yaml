@@ -47,7 +47,7 @@ responses:
   '400':
     description: |
       Bad request. One of:
-      - The `provider` slug is unrecognised (`error_code` 69).
+      - The `provider` slug is unrecognized (`error_code` 69).
       - Required parameters are missing - `code` for Google/Auth0/Facebook/GitHub,
         or `id_token` for Google, or `access_token` for Facebook/GitHub
         (`error_code` 71 Google, 75 Auth0, 97 Facebook, 101 GitHub).

@@ -14,7 +14,7 @@ Requires the [Two Factor](https://wordpress.org/plugins/two-factor/) plugin to b
 
 When enabled, users who have 2FA configured in the Two Factor plugin must complete a second authentication step before receiving a full JWT. The flow is:
 
-1. Client POSTs credentials to `POST /simple-jwt-login/v1/auth`. Instead of a full JWT, the response contains a short-lived **interim JWT**.
+1. Client sends credentials to `POST /simple-jwt-login/v1/auth`. Instead of a full JWT, the response contains a short-lived **interim JWT**.
 2. Client submits the interim JWT and the user's 2FA code to `POST /simple-jwt-login/v1/auth/2fa`.
 3. On success, a full JWT (and optional refresh token) is returned - identical to a normal auth response.
 
@@ -26,7 +26,7 @@ Users without 2FA configured receive a full JWT directly from step 1, as usual.
 
 How long the interim JWT (issued after the password check, before 2FA verification) remains valid. Range: 1-60 minutes.
 
-A short TTL (e.g. 5 minutes) minimises the window in which an intercepted interim JWT could be misused.
+A short TTL (for example, 5 minutes) minimises the window in which an intercepted interim JWT could be misused.
 
 ## 2FA Endpoint
 

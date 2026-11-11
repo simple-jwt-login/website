@@ -121,7 +121,7 @@ No WordPress user with the provided email address was found.
 
 #### 500
 
-Internal server error (e.g. email sending failure).
+Internal server error (for example, email sending failure).
 
 ```json
 {
@@ -421,7 +421,7 @@ When using the **Send custom email** flow, the body supports the following varia
 | :------- | :---------- |
 | `{{CODE}}` | **Required.** The reset password code the user must submit in Step 2. |
 | `{{NAME}}` | User's full name (first + last) |
-| `{{USERNAME}}` | WordPress username (user_login) |
+| `{{USERNAME}}` | WordPress username (`user_login`) |
 | `{{EMAIL}}` | User's email address |
 | `{{NICKNAME}}` | User's nickname |
 | `{{FIRST_NAME}}` | User's first name |

@@ -34,7 +34,7 @@ responses:
   '200':
     description: |
       API key created. The `key` field contains the full plaintext key - save it now
-      as it will not be returned again.
+      as it is not returned again.
     content:
       application/json:
         schema:
@@ -84,7 +84,7 @@ responses:
   '400':
     description: |
       Bad request. `name` is empty, no permissions were provided, or a permission
-      value is unrecognised.
+      value is unrecognized.
     content:
       application/json:
         schema:

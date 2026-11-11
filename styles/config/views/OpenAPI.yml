@@ -1,0 +1,11 @@
+engine: dasel
+scopes:
+  - name: description
+    expr: ..description
+    type: md
+  - name: summary
+    expr: ..summary
+    type: text
+  - name: title
+    expr: ..title
+    type: text

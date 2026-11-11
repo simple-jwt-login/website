@@ -89,6 +89,7 @@ const sidebars: SidebarsConfig = {
             'integrations/ThirdParty/TwoFactor',
             'integrations/ThirdParty/ForceLogin',
             'integrations/ThirdParty/WooCommerce',
+            'integrations/ThirdParty/AIAbilities',
           ],
         },
       ],

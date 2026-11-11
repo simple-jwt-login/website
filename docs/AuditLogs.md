@@ -78,6 +78,13 @@ The full list of trackable events:
 | `api_key.delete.failed` | API Key Delete Failed | API key deletion failed |
 | `api_key.used` | API Key Used | A request was authenticated using an API key |
 
+#### AI Ability events
+
+| Event key | Label | Description |
+|-----------|-------|-------------|
+| `ai.ability.success` | AI Ability Executed | An AI agent ran a [Simple JWT Login ability](/docs/integrations/third-party/ai-abilities/) successfully |
+| `ai.ability.failed` | AI Ability Failed | An AI agent ran an ability and it failed |
+
 ---
 
 ### Retention Period
@@ -99,11 +106,11 @@ For compliance use cases (GDPR, SOC 2, etc.), set the retention period to match 
 Go to **Settings → Simple JWT Login → Audit Logs → Logs** to view the stored entries.
 
 Each entry records:
-- **Event** - the event key (e.g. `auth.login.success`)
+- **Event** - the event key (for example, `auth.login.success`)
 - **User ID** - the WordPress user involved (where applicable)
 - **User Email** - the email of the user involved
 - **Status** - `success` or `failed`
-- **Details** - additional context (e.g. changed setting keys)
+- **Details** - additional context (for example, changed setting keys)
 - **IP Address** - the client IP that triggered the event
 - **Timestamp** - when the event occurred
 
@@ -119,7 +126,7 @@ The plugin uses PHP's `fastcgi_finish_request()` to flush the response first, th
 | :--- | :--- |
 | **nginx + PHP-FPM** (standard nginx setup) | Yes - response flushed before log is written |
 | **Apache + PHP-FPM** (`mod_proxy_fcgi`) | Yes - response flushed before log is written |
-| **Apache + mod_php** | No - log write blocks the response |
+| **Apache + `mod_php`** | No - log write blocks the response |
 | **LiteSpeed / OpenLiteSpeed** | Depends on version - generally no |
 
 ---

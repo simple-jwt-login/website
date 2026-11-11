@@ -32,7 +32,7 @@ properties:
       Optional extra claims merged into the JWT payload. Accepted either as a
       JSON-encoded string (form-encoded/query-string requests) or as a native
       JSON object (JSON body requests).
-      Reserved identity claims configured in the plugin's payload settings (e.g.
+      Reserved identity claims configured in the plugin's payload settings (for example,
       `email`, `id`, `username`, `site`, `iss`, `exp`, `iat`) and the custom
       "JWT payload key" claim, if configured, are always stripped from this
       value and set from the authenticated user instead - they cannot be

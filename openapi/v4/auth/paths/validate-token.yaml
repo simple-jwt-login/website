@@ -87,7 +87,7 @@ responses:
   '422':
     description: |
       Unprocessable entity. One of:
-      - The JWT is completely absent from the request (`error_code` 53).
+      - The JWT is absent from the request (`error_code` 53).
       - The auth code is required but was not provided (`error_code` 94).
     content:
       application/json:

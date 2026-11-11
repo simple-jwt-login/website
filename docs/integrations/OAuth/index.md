@@ -8,7 +8,7 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Simple JWT Login supports OAuth 2.0 authentication with four providers: **Google**, **Auth0**, **Facebook**, and **GitHub**. When configured, users can sign in with their existing provider accounts and receive a WordPress JWT in return.
+Simple JWT Login supports OAuth 2.0 authentication with four providers - **Google**, **Auth0**, **Facebook**, and **GitHub**. When configured, users can sign in with their existing provider accounts and receive a WordPress JWT in return.
 
 Configure OAuth under **Settings → Simple JWT Login → Integrations → OAuth**.
 
@@ -18,7 +18,7 @@ Configure OAuth under **Settings → Simple JWT Login → Integrations → OAuth
 
 ## Login Page Button Layout
 
-Controls how the "Continue with..." buttons appear on the WordPress login and registration page.
+Controls how the "Continue with" buttons appear on the WordPress login and registration page.
 
 ![Login Page Button Layout](/assets/images/screenshots/oauth/login-page-button-layout.png)
 

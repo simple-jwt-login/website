@@ -1,7 +1,7 @@
 ---
 slug: /error-codes/
 title: Error codes
-description: Full reference of Simple JWT Login error codes - what each numeric errorCode means and how to resolve it.
+description: Full reference of Simple JWT Login error codes - what each numeric error code means and how to resolve it.
 keywords: [error codes, JWT errors, WordPress REST API, troubleshooting]
 sidebar_position: 99
 author: Nicu Micle
@@ -25,7 +25,7 @@ Error responses follow this format:
 | Error Code |                         Message                         | Description                                                                                                                                      |
 |:----------:|:-------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------|
 |     1      |                  Key may not be empty                   | JWT is missing from request                                                                                                                      |
-|     2      |                Wrong number of segments                 | The JWT contains 3 parts, separated by dots(Header, Payload, Signature). So, your JWT does not have 2 dots in it.                                |
+|     2      |                Wrong number of segments                 | The JWT contains 3 parts, separated by dots (Header, Payload, Signature). Your JWT does not have 2 dots in it.                                |
 |     3      |                 Invalid header encoding                 | The encoding of the first part of the JWT, is invalid. This means, that the first part of your JWT is incorrect.                                 |
 |     4      |                 Invalid claims encoding                 | The second part of your JWT is invalid.                                                                                                          |
 |     5      |               Invalid signature encoding                | The signature that you provided in "JWT Decryption key" is invalid.                                                                              |
@@ -35,8 +35,8 @@ Error responses follow this format:
 |     9      |       'kid' invalid, unable to lookup correct key       | Your JWT is malformed.                                                                                                                           |
 |     10     |       'kid' invalid, unable to lookup correct key       | Your JWT is malformed.                                                                                                                           |
 |     11     |              Signature verification failed              | Invalid "JWT Decryption key" provided in config.                                                                                                 |
-|     12     |            Cannot handle token prior to ...             | Check that this token has been created before 'now'. Timestamp verified from 'nbf'.                                                              |
-|     13     |            Cannot handle token prior to ...             | Check that this token has been created before 'now'. This prevents. Timestamp verified from 'iat'.                                               |
+|     12     |            `Cannot handle token prior to <date>`           | Check that this token has been created before the current time. Timestamp verified from `nbf`.                                                              |
+|     13     |            `Cannot handle token prior to <date>`           | Check that this token has been created before the current time. Timestamp verified from `iat`.                                               |
 |     14     |                      Expired token                      | JWT is expired.                                                                                                                                  |
 |     15     |                 Algorithm not supported                 | Algorithm not supported when JWT was signed.                                                                                                     |
 |     16     |               OpenSSL unable to sign data               | Error while JWT is signed with OpenSSL.                                                                                                          | 
@@ -74,7 +74,7 @@ Error responses follow this format:
 |     50     |             JWT is too old to be refreshed.             | The JWT generated time is too old. You can not refresh this token.                                                                               |  
 |     51     |            JWT is missing from /auth/refresh            | The JWT parameter was not sent to the /auth/refresh endpoint.                                                                                    | 
 |     52     |                 Unable to create user.                  | There was an error while trying to create the user.                                                                                              |  
-|     53     |             The `jwt` parameter is missing.             | The JWT is missing from reset password, revoke token or validate user                                                                            |  
+|     53     |             The `jwt` parameter is missing.             | The JWT is missing from reset password, revoke token, or validate user requests.                                                                            |  
 |     54     |                WordPress user not found                 | Unable to find a valid user in the provided JWT.                                                                                                 |  
 |     55     |                  This JWT is invalid.                   | The JWT has been revoked. It can not be used anymore.                                                                                            |  
 |     56     |             Reset Password is not allowed.              | The Reset Password endpoint is disabled.                                                                                                         |  
@@ -82,13 +82,13 @@ Error responses follow this format:
 |     58     |           Invalid Auth Code ( %s ) provided.            | The Reset Password endpoint is called with an invalid AUTH CODE.                                                                                 |  
 |     59     |                Missing email parameter.                 | Missing or empty `email` parameter when calling the Reset Password endpoint.                                                                     |  
 |     60     |                 Missing code parameter.                 | Missing `code` parameter when calling change user password endpoint.                                                                             |  
-|     61     |             Missing new_password parameter.             | Missing `new_password` when calling the change user password endpoint                                                                            |  
+|     61     |             Missing `new_password` parameter.             | Missing `new_password` when calling the change user password endpoint                                                                            |  
 |     62     |                 Invalid code provided.                  | The `code` and `user_email` does not match when calling the Reset Password endpoint.                                                             |  
 |     63     |                Missing email parameter.                 | Missing `email` parameter when calling the Send reset password endpoint.                                                                         |  
 |     64     |                       Wrong user.                       | User was not found while calling the Send reset password endpoint.                                                                               |  
 |     65     |                   Invalid flow type.                    | Invalid plugin settings for Reset password flow.                                                                                                 |  
 |     66     |  You need to add the \{\{CODE\}\} variable in email body.   | The `{{CODE}}` parameter is missing from Reset Password email body.                                                                              |  
-|     67     |    Something is wrong. We can not save the settings.    | Something is wrong with the plugin configuration. The `_wpnonce` field is missing or it is invalid.                                              |  
+|     67     |    `Something is wrong. We can not save the settings.`    | Something is wrong with the plugin configuration. The `_wpnonce` field is missing or it is invalid.                                              |  
 |     68     |   'The JWT issuer(iss) is not allowed to auto-login.    | The JWT is issued by an authorized issuer.                                                                                                       |  
 |     69     |             The Oauth provider is invalid.              | Invalid `provider` parameter provided.                                                                                                           |  
 |     70     |          This Oauth provider is not available.          | OAuth provided is not enabled or unavailable.                                                                                                    |  
@@ -96,7 +96,7 @@ Error responses follow this format:
 |     72     |            The code you provided is invalid.            | The Google OAuth endpoint has received an invalid `code`.                                                                                        |  
 |     73     |            The provided id_token is invalid             | The Google OAuth endpoint has received an invalid `id_token`.                                                                                    |  
 |     74     |                 Wrong user credentials.                 | The Google OAuth could not find a user in the provided JWT.                                                                                      |
-|     75     |    JWT is not present and we can not search for a user.    | The JWT is missing from the request when accessing a protected endpoint.                                                                         |
+|     75     |    `JWT is not present and we can not search for a user.`    | The JWT is missing from the request when accessing a protected endpoint.                                                                         |
 |     76     |         The custom email subject is empty.              | The Reset Password custom email subject is empty in the plugin settings.                                                                         |
 |     77     |  The code or access_token parameter is missing from request.  | The `code` or `access_token` parameter is missing when calling the Auth0 OAuth endpoint.                                                        |
 |     78     |          The code you provided is invalid.              | The Auth0 authorization `code` is invalid.                                                                                                       |
@@ -134,5 +134,5 @@ Error responses follow this format:
 |    110     |    This JWT requires two-factor verification before it can be used. | The provided JWT is an interim 2FA JWT and cannot be used for regular authenticated operations until 2FA is completed.                    |
 |    111     |             Email address is not verified.             | The Auth0 account email is not verified, and unverified emails are not allowed in the Auth0 integration settings.                                |
 |    112     |   No verified primary email found in the GitHub account. | The GitHub account has no verified primary email, and unverified emails are not allowed in the GitHub integration settings.                     |
-|    113     |    Authentication with password_hash is not enabled.    | The request sent a `password_hash` parameter, but authenticating with a password hash is disabled in the plugin settings.                       |
+|    113     |    Authentication with `password_hash` is not enabled.    | The request sent a `password_hash` parameter, but authenticating with a password hash is disabled in the plugin settings.                       |
 |    114     |  You do not have the required role to access this endpoint. | The authenticated user does not have one of the WordPress roles required to access this protected endpoint.                                  |

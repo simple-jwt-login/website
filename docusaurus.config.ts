@@ -28,6 +28,8 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
   trailingSlash: false,
+  // Separator between page title and site name in <title> tags
+  titleDelimiter: '-',
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
@@ -129,7 +131,7 @@ const config: Config = {
         lastmod: 'datetime',
         changefreq: 'weekly',
         priority: 0.5,
-        ignorePatterns: ['/tags/**'],
+        ignorePatterns: ['/tags/**', '/search', '/**/authors/**'],
         filename: 'sitemap.xml',
         createSitemapItems: async (params) => {
           const {defaultCreateSitemapItems, ...rest} = params;
@@ -332,8 +334,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Delimiter between page title and site name in <title> tags
-    titleDelimiter: '-',
     // Global <head> metadata (Open Graph, Twitter Card, keywords)
     metadata: [
       { name: 'keywords', content: 'JWT, WordPress plugin, JWT authentication, WordPress REST API, headless WordPress, JSON Web Token, WPGraphQL, JWT login, auto login, token-based authentication' },
@@ -342,7 +342,6 @@ const config: Config = {
       { name: 'twitter:creator', content: '@simplejwtlogin' },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'Simple JWT Login' },
-      { property: 'og:image', content: '/assets/favicons/android-chrome-192x192.png' },
     ],
     announcementBar: {
       id: 'support_us',

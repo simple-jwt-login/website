@@ -37,7 +37,7 @@ Use the form in the settings page to issue a new key. Fields:
 
 | Field | Description |
 | :---- | :---------- |
-| **Name** | A human-readable label to identify the key (e.g., "Mobile App", "CI pipeline"). |
+| **Name** | A human-readable label to identify the key (for example, `Mobile App` or `CI pipeline`). |
 | **Expires at** | Optional expiry date/time. Leave blank for a non-expiring key. |
 | **Permissions** | One or more of: `read`, `create`, `update`, `delete`. See the permissions table below. |
 
@@ -47,7 +47,7 @@ After clicking **Create API Key**, a modal appears showing the raw key value. Co
 
 ![Existing API Keys table](/assets/images/screenshots/api-keys/existing-api-keys.png)
 
-A paginated table of all keys (admins see all keys; other users see only their own). Columns: Name, Prefix, Permissions, Expires, Last Used, Action (Revoke / Delete). The `User ID` column is visible to admins only.
+A paginated table of all keys (admins see all keys; other users see only their own). The columns are Name, Prefix, Permissions, Expires, Last Used, Action (Revoke / Delete). The `User ID` column is visible to admins only.
 
 ## How authentication works
 
@@ -153,7 +153,7 @@ curl 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys' \
 
 **ENDPOINT**: `/simple-jwt-login/v1/api-keys`
 
-Generates a new API key. The full plaintext key is returned **only in this response** - it cannot be retrieved later. Store it securely immediately (e.g., in a secrets manager or environment variable).
+Generates a new API key. The full plaintext key is returned **only in this response** - it cannot be retrieved later. Store it securely immediately (for example, in a secrets manager or environment variable).
 
 **Request body**:
 
@@ -262,7 +262,7 @@ curl -X PUT 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7' 
 
 **ENDPOINT**: `/simple-jwt-login/v1/api-keys/{id}/revoke`
 
-Soft-deletes the key by recording a `revoked_at` timestamp. The record is kept in the database (useful for auditing), but the middleware will reject the key immediately. To permanently remove the record, use the [permanent delete](#permanently-delete-an-api-key) endpoint.
+Soft-deletes the key by recording a `revoked_at` timestamp. The record is kept in the database (useful for auditing), but the middleware rejects the key immediately. To permanently remove the record, use the [permanent delete](#permanently-delete-an-api-key) endpoint.
 
 **Path parameter**: `id` - numeric ID of the key.
 
@@ -367,13 +367,13 @@ Common error codes:
 
 ## FAQ
 
-### Can I use a JWT to manage API keys?
+### Can you use a JWT to manage API keys?
 
 Yes. All `/simple-jwt-login/v1/api-keys` endpoints accept a valid JWT in place of a WordPress session cookie. Pass it via `Authorization: Bearer <token>` or through whichever JWT transport is configured in the plugin settings.
 
-### Can I use an API key instead of a JWT for Simple JWT Login's own endpoints?
+### Can you use an API key instead of a JWT for Simple JWT Login's own endpoints?
 
-No. API keys authenticate requests to standard WordPress REST endpoints (e.g., `/wp/v2/posts`). Simple JWT Login's own endpoints (`/simple-jwt-login/v1/auth`, `/simple-jwt-login/v1/users`, etc.) use JWT-based authentication as documented on their respective pages.
+No. API keys authenticate requests to standard WordPress REST endpoints (for example, `/wp/v2/posts`). Simple JWT Login's own endpoints (`/simple-jwt-login/v1/auth`, `/simple-jwt-login/v1/users`, etc.) use JWT-based authentication as documented on their respective pages.
 
 ### What happens if a key expires?
 
@@ -385,4 +385,4 @@ No. Only the SHA-256 hash of the key is persisted. The plaintext key is returned
 
 ### Who can see other users' keys?
 
-Regular users can only list, update, revoke, and delete their own keys. WordPress administrators (users with the `manage_options` capability) can manage all keys and will also see the `user_id` field in list responses to identify key ownership.
+Regular users can only list, update, revoke, and delete their own keys. WordPress administrators (users with the `manage_options` capability) can manage all keys and also see the `user_id` field in list responses to identify key ownership.

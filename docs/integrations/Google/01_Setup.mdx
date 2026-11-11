@@ -16,10 +16,10 @@ To enable Google authentication in your application, follow these step-by-step i
 
 1. Navigate to Google Developer Console [https://console.developers.google.com/apis/](https://console.developers.google.com/apis/)
 2. Create a new project
-3. Once the project has been created, go to "Credentials" and click on "+Create Credentials"
+3. Once the project has been created, go to "Credentials" and click "+Create Credentials"
 4. Select "OAuth client ID"
 5. Choose Application Type "Web application"
-6. Configure Authorized Redirect URIs: In the "Authorized redirect URIs" section, add the URL where the OAuth flow will redirect users after successful authentication. This URL is crucial for the OAuth process.
+6. Configure Authorized Redirect URIs. In the "Authorized redirect URIs" section, add the URL where the OAuth flow redirects users after successful authentication. This URL is crucial for the OAuth process.
 7. Copy `client_id`, `client_secret`, and `redirect_uri`
 
 :::note
@@ -31,7 +31,7 @@ http://{{your-wordpressdomain}}/?rest_route=/simple-jwt-login/v1/oauth/token&pro
 
 :::warning Important Notes
 - Keep your credentials secure. Do not expose them in publicly accessible locations or version control systems.
-- If your application has multiple environments (e.g., development, production), create separate OAuth client IDs and redirect URIs for each environment.
+- Use a separate OAuth client ID and redirect URI for each environment your application runs in (development or production).
 :::
 
 ## Google Setup In WordPress

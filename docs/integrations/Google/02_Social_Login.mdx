@@ -13,8 +13,8 @@ import styles from '../../styles.module.css';
 
 ##  Enable OAuth on WordPress login
 
-This ensures a seamless integration between your WordPress site and Google authentication, allowing for a secure and effective OAuth process.
-Once this option is enabled, on the WordPress login/register screens there will appear a new button: `Continue with Google`.
+This connects your WordPress site to Google authentication for a secure OAuth sign-in.
+Once you enable this option, the WordPress login and register screens show a new `Continue with Google` button.
 
 To enable OAuth on WordPress, it's crucial to ensure that you have the correct `return_uri` configured in Google.
 
@@ -29,8 +29,8 @@ To enable the `Continue with Google` button on your login screen, make sure you 
 
 ## Create user if not exists
 
-If you will have google users that may not have an account on WordPress, you can select the `Create user if not exists` option from WordPress.
-If somebody uses the OAuth flow, and if there is no user with  `user_email` equal with email from google, it will automatically create a random user, with this email and a random password.
+If some Google users may not have a WordPress account, select the `Create user if not exists` option from WordPress.
+When someone signs in through OAuth and no user has a matching `user_email`, the plugin creates a new user with that email address and a random password.
 
 For example, a new user can have:
 ```json

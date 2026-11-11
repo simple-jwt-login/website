@@ -58,7 +58,7 @@ view it on this website, or import it into Postman for local testing.
 
 You can access the Simple-JWT-Login API in two modes:
   - using permalink: `https://{domain}/wp-json/simple-jwt-login/v1/{endpoint}`
-  - using rest_route: `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}`
+  - using `rest_route`: `https://{domain}/?rest_route=/simple-jwt-login/v1/{endpoint}`
 
 ## Authentication
 
@@ -68,7 +68,7 @@ API key management endpoints require an active WordPress session (cookie-based a
 ## Cross-Origin Resource Sharing
 
 This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with [W3C spec](https://www.w3.org/TR/cors/).
-All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+All responses have a wildcard same-origin which makes them public and accessible to everyone, including any code on any site.
 
 ## Error Response Format
 
@@ -105,7 +105,7 @@ The `error_code` field maps to a specific internal error constant that can be us
       
       JWT passed in the `Authorization` header as `Bearer <token>`.
       The header key name is configurable in plugin General Settings (default: `Authorization`).
-      This scheme must be enabled in the plugin General Settings under "JWT from Header".
+      This scheme must be enabled in the plugin General Settings under **JWT from Header**.
       
       
       <div>
@@ -140,7 +140,7 @@ The `error_code` field maps to a specific internal error constant that can be us
       
       
       JWT passed as a URL query parameter. The parameter name defaults to `JWT` but is
-      configurable in plugin General Settings under "Request Keys".
+      configurable in plugin General Settings under **Request Keys**.
       
       
       <div>

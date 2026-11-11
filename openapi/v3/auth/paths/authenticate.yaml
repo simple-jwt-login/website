@@ -10,13 +10,13 @@ requestBody:
         $ref: '../schemas/authenticate-body.yaml'
   required: true
 responses:
-  400:
+  '400':
     description: Error.
     content:
       application/json:
         schema:
           $ref: '../../schemas/400.yaml'
-  200:
+  '200':
     description: Successfully authenticated
     content:
       application/json:

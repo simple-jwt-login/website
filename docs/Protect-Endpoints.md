@@ -8,7 +8,7 @@ author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-The Protect Endpoints feature lets you require a valid JWT for any WordPress REST API route. Use it to lock down sensitive data - such as user profiles, private posts, or custom post types - so they can only be accessed by authenticated callers, optionally restricted to specific WordPress roles.
+The Protect Endpoints feature lets you require a valid JWT for any WordPress REST API route. Use it to lock down sensitive data, such as user profiles, private posts, or custom post types, so only authenticated callers can access it, optionally restricted to specific WordPress roles.
 
 When a protected endpoint is called without a valid JWT, the plugin returns a `401` error immediately, before WordPress processes the request:
 
@@ -56,15 +56,15 @@ Define per-endpoint rules. Click **+ Add Endpoint** to add a rule. Rules are eva
 | :---- | :------ | :---------- |
 | HTTP Method | ALL, GET, POST, PUT, PATCH, DELETE | Which request methods the rule applies to. |
 | Match type | Starts with, Exact match | Whether the path must start with the value or match it exactly. |
-| Endpoint | text input | The REST API path to match (e.g. `/wp/v2/users`). |
+| Endpoint | text input | The REST API path to match (for example, `/wp/v2/users`). |
 | Type | Public, JWT required, JWT + Roles | **Public** - always accessible, even with protection enabled by default. **JWT required** - a valid JWT is required, for any authenticated user. **JWT + Roles** - a valid JWT is required *and* the user must have at least one of the specified WordPress roles. |
-| Roles | comma-separated list | Only shown when Type is **JWT + Roles**. WordPress roles allowed to access the endpoint (e.g. `administrator, editor`). |
+| Roles | comma-separated list | Only shown when Type is **JWT + Roles**. WordPress roles allowed to access the endpoint (for example, `administrator, editor`). |
 
 ### Default Action
 
 ![Default Action](/assets/images/screenshots/protect-endpoints/default-action.png)
 
-Controls what happens to any endpoint that doesn't match a rule above:
+Controls what happens to any endpoint that doesn't match any of the preceding rules:
 
 | Option | Behavior |
 | :----- | :------- |
@@ -95,9 +95,9 @@ The rule applies to these URLs when called with `GET` only:
 #### Example 3
 Assume you add a rule for `/wp/v2` with `ALL`, `Starts With` and Type `JWT required`, and set the **Default Action** to `Allow access - protect only the endpoints listed above`.
 
-This way, you are making all the endpoints under `/wp/v2*` protected and they will be accessible only with a JWT.
+This way, all the endpoints under `/wp/v2*` are protected and accessible only with a JWT.
 
-For example, all these endpoints will be protected:
+For example, all these endpoints are protected:
 - `/wp/v2/users` 
 - `/wp/v2/posts`
 - `/wp/v2/comments`

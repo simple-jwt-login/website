@@ -56,7 +56,7 @@ const examples = [
     label: 'Authenticate',
     headline: 'Exchange credentials for a JWT',
     description:
-      'Authenticate any WordPress user by email or username and receive a signed JWT. Store it in memory or localStorage and attach it to every subsequent request via the Authorization header.',
+      'Authenticate any WordPress user by email or username and receive a signed JWT. Store it in memory or in local storage and attach it to every subsequent request via the Authorization header.',
     lines: [
       { comment: true, text: '// Authenticate a user and get a JWT' },
       { text: "import SimpleJwtLogin from 'simple-jwt-login';" },

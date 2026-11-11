@@ -49,7 +49,7 @@ responses:
   '400':
     description: |
       Bad request. `name` is empty, no permissions were provided, or a permission
-      value is unrecognised.
+      value is unrecognized.
     content:
       application/json:
         schema:

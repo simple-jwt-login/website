@@ -184,7 +184,7 @@ curl -X POST 'https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/oauth/
 
 The standard OAuth 2.0 authorization-code flow. Your front-end redirects the user to Google's consent screen with your Client ID and Redirect URI. Google returns a short-lived `code` to your redirect URI, which you pass to this endpoint. The plugin exchanges it for a Google ID token, extracts the email, and issues a WordPress JWT.
 
-Requires: **Client ID**, **Client Secret**, and **Redirect URI** configured in plugin settings.
+This flow requires the **Client ID**, **Client Secret**, and **Redirect URI** to be configured in the plugin settings.
 
 **ID token (Sign In With Google)**
 
@@ -198,7 +198,7 @@ Requires: only the **Client ID** (no secret needed).
 
 Your front-end redirects the user to Auth0's Universal Login. Auth0 returns an authorization `code` to your callback URL. Pass that code to this endpoint. The plugin exchanges it for an Auth0 token, extracts the user's email, and issues a WordPress JWT.
 
-Requires: **Client ID**, **Client Secret**, and **Redirect URI** configured in plugin settings.
+This flow requires the **Client ID**, **Client Secret**, and **Redirect URI** to be configured in the plugin settings.
 
 ### Auto-register on first login
 
@@ -216,7 +216,7 @@ The `GET` method appends the authorization code and other parameters to the URL,
 
 ## FAQ
 
-### Can I use OAuth without enabling JWT authentication?
+### Can you use OAuth without enabling JWT authentication?
 
 No. The OAuth endpoint is part of the Simple JWT Login plugin. It requires the plugin's JWT configuration (secret key, algorithm, payload options) to be set up, since the response always includes a signed WordPress JWT.
 
@@ -224,6 +224,6 @@ No. The OAuth endpoint is part of the Simple JWT Login plugin. It requires the p
 
 Authorization codes are single-use. Sending a previously redeemed code returns a 401 error from the provider. Direct the user through the OAuth consent screen again to obtain a fresh code.
 
-### Do I need to set up a Redirect URI for the ID token flow?
+### Do you need to set up a Redirect URI for the ID token flow?
 
 No. When using `id_token` with Google Sign In With Google, no redirect URI or client secret is needed. Only the Client ID is required in the plugin settings.

@@ -17,13 +17,13 @@ parameters:
     schema:
       type: string
 responses:
-  400:
+  '400':
     description: Error.
     content:
       application/json:
         schema:
           $ref: '../../schemas/400.yaml'
-  200:
+  '200':
     description: Validate token
     content:
       application/json:
