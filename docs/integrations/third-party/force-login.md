@@ -8,7 +8,7 @@ Requires the [Force Login](https://wordpress.org/plugins/force-login/) plugin (o
 
 The Force Login plugin redirects unauthenticated users away from your site and can lock down the REST API. Enabling this integration **exempts all Simple JWT Login endpoints** from that restriction.
 
-This is necessary because unauthenticated clients need to reach the login, register, and token endpoints in order to authenticate in the first place - they cannot provide a WordPress session cookie before they have logged in.
+This is necessary because unauthenticated clients need to reach the login, register, and token endpoints to authenticate in the first place - they cannot provide a WordPress session cookie before they have logged in.
 
 ## Enable[​](#enable "Direct link to Enable")
 
@@ -17,3 +17,5 @@ Toggle **Enable Force Login integration** to allow unauthenticated access to Sim
 caution
 
 This integration only bypasses the Force Login restriction for Simple JWT Login's own endpoints. All other WordPress REST endpoints remain subject to the Force Login rules.
+
+Since version 4.1.0, the bypass applies only to anonymous requests blocked by Force Login. It never skips WordPress's own checks for logged-in users, so cookie-authenticated requests still need a valid REST nonce (CSRF protection), and errors raised by other plugins are left untouched.

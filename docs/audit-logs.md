@@ -56,6 +56,10 @@ The full list of trackable events:
 | ----------------------- | -------------- | -------------------------------------- |
 | `settings.save.success` | Settings Saved | Plugin settings were saved by an admin |
 
+note
+
+Since version 4.1.0, the **Settings Saved** entry never stores secrets in plain text: auth codes, JWT decryption rule keys and webhook header values are shown as `[REDACTED]`.
+
 #### API Key events[​](#api-key-events "Direct link to API Key events")
 
 | Event key                | Label                 | Description                                  |
@@ -69,6 +73,13 @@ The full list of trackable events:
 | `api_key.delete.success` | API Key Deleted       | An API key was deleted                       |
 | `api_key.delete.failed`  | API Key Delete Failed | API key deletion failed                      |
 | `api_key.used`           | API Key Used          | A request was authenticated using an API key |
+
+#### AI Ability events[​](#ai-ability-events "Direct link to AI Ability events")
+
+| Event key            | Label               | Description                                                                                               |
+| -------------------- | ------------------- | --------------------------------------------------------------------------------------------------------- |
+| `ai.ability.success` | AI Ability Executed | An AI agent ran a [Simple JWT Login ability](/docs/integrations/third-party/ai-abilities.md) successfully |
+| `ai.ability.failed`  | AI Ability Failed   | An AI agent ran an ability and it failed                                                                  |
 
 ***
 
@@ -92,11 +103,11 @@ Go to **Settings → Simple JWT Login → Audit Logs → Logs** to view the stor
 
 Each entry records:
 
-* **Event** - the event key (e.g. `auth.login.success`)
+* **Event** - the event key (for example, `auth.login.success`)
 * **User ID** - the WordPress user involved (where applicable)
 * **User Email** - the email of the user involved
 * **Status** - `success` or `failed`
-* **Details** - additional context (e.g. changed setting keys)
+* **Details** - additional context (for example, changed setting keys)
 * **IP Address** - the client IP that triggered the event
 * **Timestamp** - when the event occurred
 
@@ -112,7 +123,7 @@ The plugin uses PHP's `fastcgi_finish_request()` to flush the response first, th
 | ------------------------------------------ | -------------------------------------------- |
 | **nginx + PHP-FPM** (standard nginx setup) | Yes - response flushed before log is written |
 | **Apache + PHP-FPM** (`mod_proxy_fcgi`)    | Yes - response flushed before log is written |
-| **Apache + mod\_php**                      | No - log write blocks the response           |
+| **Apache + `mod_php`**                     | No - log write blocks the response           |
 | **LiteSpeed / OpenLiteSpeed**              | Depends on version - generally no            |
 
 ***

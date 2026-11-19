@@ -22,6 +22,7 @@ Creates a new WordPress user account. At minimum, `email` and `password` must be
 ## Responses[​](#responses "Direct link to Responses")
 
 * 200
+* 302
 * 400
 * 401
 * 403
@@ -31,18 +32,31 @@ Creates a new WordPress user account. At minimum, `email` and `password` must be
 
 User registered successfully.
 
-Bad request. Missing required fields (`email` or `password`), or an unclassified validation error.
+User registered and logged in. Returned when auto-login is enabled together with "Force login after register": the browser is redirected the same way as `GET /autologin` (or a `200` JSON body is returned when "No redirect" is configured).
 
-Unauthorized. The provided auth code is invalid or missing when required.
+**Response Headers**
 
-Forbidden. User registration is disabled in the plugin settings, or the client IP address is not on the allow-list.
+* **Location**
 
-A WordPress user with the provided email address already exists.
+  **Example:<!-- -->&#x20;**`https://example.com/wp-admin/`
+
+The JWT for the new user could not be signed (JWT library error, for example, OpenSSL signing failure `error_code` 16). Only when "Generate JWT on register" is enabled.
+
+Unauthorized. The auth code does not match any configured auth code (`error_code` 27). An auth code is validated whenever it is sent, even when it is not required.
+
+Forbidden. One of:
+
+* User registration is disabled in the plugin settings (`error_code` 31).
+* The client IP address is not on the allow-list (`error_code` 33).
+
+A WordPress user with the provided email address or `user_login` already exists (`error_code` 38).
 
 Unprocessable entity. One of:
 
+* `email` is missing, or `password` is missing while "Random password" is off (`error_code` 35).
 * The email address format is invalid (`error_code` 36).
 * The `user_login` exceeds 60 characters, or the email address (used as login when `user_login` is omitted) exceeds 60 characters (`error_code` 36).
 * The email domain is not permitted by the plugin's domain allow-list (`error_code` 37).
+* The auth code is required but was not provided (`error_code` 94).
 
-Internal server error. WordPress `wp_insert_user()` returned an error, or an unexpected internal failure occurred.
+Internal server error. WordPress `wp_insert_user()` returned an error (`error_code` 52, the message is the WordPress error), or an unexpected internal failure occurred.

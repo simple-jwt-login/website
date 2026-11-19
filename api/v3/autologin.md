@@ -14,6 +14,6 @@ Authenticate and automatically log in a user to WordPress using a valid JSON Web
 * 200
 * 400
 
-Successful login. The user will be redirected to the WordPress website.
+Successful login. The plugin redirects the user to the WordPress website.
 
 Invalid request or authentication failure.

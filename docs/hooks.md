@@ -41,7 +41,7 @@ Action hooks let you run side-effect code at a specific point in the request lif
 
 ### `simple_jwt_login_before_endpoint`[​](#simple_jwt_login_before_endpoint "Direct link to simple_jwt_login_before_endpoint")
 
-Fires before a Simple JWT Login REST route is processed. Use it to validate requests, block specific callers, enforce policies (e.g. minimum password length), or log activity - for any endpoint.
+Fires before a Simple JWT Login REST route is processed. Use it to validate requests, block specific callers, enforce policies (for example, minimum password length), or log activity - for any endpoint.
 
 | Parameter   | Type     | Description                        |
 | ----------- | -------- | ---------------------------------- |
@@ -74,7 +74,7 @@ Fires before the user is redirected to the URL configured in the Login settings.
 
 tip
 
-Enable **"Include request parameters in the redirect URL"** in Login settings to forward custom query parameters (e.g. `&page=dashboard`) that your hook can read.
+Enable **"Include request parameters in the redirect URL"** in Login settings to forward custom query parameters (for example, `&page=dashboard`) that your hook can read.
 
 ***
 
@@ -202,6 +202,10 @@ Fires before the `POST /auth/refresh` response is returned.
 
 Fires before the `POST /user/reset_password` response is returned.
 
+caution
+
+Since version 4.2.0, this filter runs only for emails that belong to a user. If it changes the response or adds a delay, callers can tell which emails have an account.
+
 | Parameter   | Type      | Description                           |
 | ----------- | --------- | ------------------------------------- |
 | `$response` | `array`   | The response data (modify and return) |
@@ -269,7 +273,7 @@ These hooks relate to the Two-Factor Authentication integration. Enable Two-Fact
 
 ### `simple_jwt_login_audit_2fa_challenge_issued`[​](#simple_jwt_login_audit_2fa_challenge_issued "Direct link to simple_jwt_login_audit_2fa_challenge_issued")
 
-Fires when a two-factor authentication challenge has been issued (i.e. after the user submits valid credentials and an interim JWT is returned, triggering a 2FA code delivery).
+Fires when a two-factor authentication challenge has been issued (that is, after the user submits valid credentials and an interim JWT is returned, triggering a 2FA code delivery).
 
 | Parameter    | Type     | Description          |
 | ------------ | -------- | -------------------- |
@@ -337,7 +341,7 @@ Fires before the 2FA verify endpoint response is returned.
 
 ### Add custom claims to the JWT payload[​](#add-custom-claims-to-the-jwt-payload "Direct link to Add custom claims to the JWT payload")
 
-Enrich the token with user metadata - roles, plan, tenant ID - so downstream services don't need a separate lookup.
+Enrich the token with user metadata (roles, plan, tenant ID) so downstream services don't need a separate lookup.
 
 ```
 add_filter('simple_jwt_login_jwt_payload_auth', function (array $payload, array $request): array {

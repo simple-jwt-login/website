@@ -2,13 +2,13 @@
 
 **Simple-JWT-Login CLI** is a [WP-CLI](https://wp-cli.org/) add-on that brings the full power of Simple JWT Login to your terminal. Generate tokens, inspect payloads, revoke sessions, and manage every plugin setting - all without opening the WordPress admin UI.
 
-It is the go-to companion for DevOps pipelines, staging-to-production migrations, automated testing, and any workflow where speed and scriptability matter.
+It is the go-to companion for DevOps pipelines, staging-to-production migrations, automated testing, and any workflow where speed and automation matter.
 
 ## Requirements[​](#requirements "Direct link to Requirements")
 
 | Requirement                                                         | Minimum version         |
 | ------------------------------------------------------------------- | ----------------------- |
-| WordPress                                                           | 4.4+                    |
+| WordPress                                                           | 6.2+                    |
 | PHP                                                                 | 5.5+                    |
 | [Simple JWT Login](https://wordpress.org/plugins/simple-jwt-login/) | active on the same site |
 | [WP-CLI](https://wp-cli.org/)                                       | any recent stable       |
@@ -164,10 +164,10 @@ Print the current value of a plugin setting. Use dot notation for nested keys.
 wp jwt config get <key> [--format=<format>]
 ```
 
-| Argument / Option | Required | Description                                                         |
-| ----------------- | -------- | ------------------------------------------------------------------- |
-| `<key>`           | Yes      | Setting key; use dot notation for nested keys (e.g. `cors.enabled`) |
-| `--format`        | No       | `text` (default) or `json`                                          |
+| Argument / Option | Required | Description                                                                 |
+| ----------------- | -------- | --------------------------------------------------------------------------- |
+| `<key>`           | Yes      | Setting key; use dot notation for nested keys (for example, `cors.enabled`) |
+| `--format`        | No       | `text` (default) or `json`                                                  |
 
 ```
 wp jwt config get allow_authentication     # 1
@@ -188,7 +188,7 @@ wp jwt config set <key> <value> [--type=<type>] [--force]
 
 | Argument / Option | Required | Description                                                                                                             |
 | ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `<key>`           | Yes      | Setting key; use dot notation for nested keys (e.g. `cors.enabled`)                                                     |
+| `<key>`           | Yes      | Setting key; use dot notation for nested keys (for example, `cors.enabled`)                                             |
 | `<value>`         | Yes      | New value to store                                                                                                      |
 | `--type`          | No       | `auto` (default), `string`, `int`, `bool`, or `json`. With `auto`, the type is inferred from the currently stored value |
 | `--force`         | No       | Skip plugin validation and save regardless of validation errors                                                         |
@@ -356,7 +356,7 @@ STATUS=$(wp jwt validate "$TOKEN" --format=json | jq -r '.valid')
 
 ## Contributing[​](#contributing "Direct link to Contributing")
 
-Contributions are welcome! Open an issue on [GitHub](https://github.com/simple-jwt-login/simple-jwt-login-cli) before submitting a pull request.
+Contributions are welcome. Open an issue on [GitHub](https://github.com/simple-jwt-login/simple-jwt-login-cli) before submitting a pull request.
 
 ```
 # Clone the repository

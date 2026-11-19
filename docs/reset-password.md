@@ -8,6 +8,12 @@ Simple JWT Login exposes a two-step password reset flow entirely through the RES
 
 Send the user's email address to trigger the reset flow. The plugin generates a one-time code and delivers it according to the configured Reset Flow option.
 
+note
+
+Since version 4.2.0, an email that doesn't belong to any account gets the same `200` answer as a real one, but nothing is sent. This way the endpoint can't be used to find out which emails have an account. The attempt is still written to the [audit log](/docs/audit-logs.md), and webhooks and the response hook only run for real users.
+
+If you use the `simple_jwt_login_response_send_reset_password` filter or reset password webhooks, keep in mind that they run only for real users. If they change the response or add a delay, callers can tell which emails exist.
+
 API Reference
 
 Explore and test this step using the [interactive API reference →](/api/v4/send-reset-password-code.md)
@@ -64,7 +70,7 @@ Bad request - the `email` field is missing.
   "success": false,
   "data": {
     "message": "Email is required.",
-    "errorCode": 59
+    "error_code": 59
   }
 }
 ```
@@ -78,7 +84,7 @@ Unauthorized - the provided auth code is invalid or missing when required.
   "success": false,
   "data": {
     "message": "Invalid auth code.",
-    "errorCode": 58
+    "error_code": 58
   }
 }
 ```
@@ -92,35 +98,21 @@ Forbidden - password reset is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Reset password is not allowed.",
-    "errorCode": 56
-  }
-}
-```
-
-#### 404[​](#404 "Direct link to 404")
-
-No WordPress user with the provided email address was found.
-
-```
-{
-  "success": false,
-  "data": {
-    "message": "User not found.",
-    "errorCode": 64
+    "error_code": 56
   }
 }
 ```
 
 #### 500[​](#500 "Direct link to 500")
 
-Internal server error (e.g. email sending failure).
+Internal server error (for example, email sending failure).
 
 ```
 {
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```
@@ -162,7 +154,6 @@ fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_passwor
 | `56` | Password reset is not enabled in plugin settings.                  |
 | `58` | Invalid Auth Code provided.                                        |
 | `59` | Email address is missing from the request.                         |
-| `64` | No WordPress user found with the provided email address.           |
 | `65` | Invalid flow type configured in plugin settings.                   |
 | `66` | The `{{CODE}}` variable is missing from the custom email template. |
 
@@ -234,7 +225,7 @@ Bad request - `email`, `code`, or `new_password` is missing.
   "success": false,
   "data": {
     "message": "New password is required.",
-    "errorCode": 61
+    "error_code": 61
   }
 }
 ```
@@ -248,7 +239,7 @@ Unauthorized - the JWT is invalid or expired, or was already used for a password
   "success": false,
   "data": {
     "message": "This JWT cannot be used to change the password.",
-    "errorCode": 93
+    "error_code": 93
   }
 }
 ```
@@ -262,12 +253,12 @@ Forbidden - password reset is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Reset password is not allowed.",
-    "errorCode": 56
+    "error_code": 56
   }
 }
 ```
 
-#### 404[​](#404-1 "Direct link to 404")
+#### 404[​](#404 "Direct link to 404")
 
 No WordPress user with the provided email address was found.
 
@@ -276,7 +267,7 @@ No WordPress user with the provided email address was found.
   "success": false,
   "data": {
     "message": "User not found.",
-    "errorCode": 64
+    "error_code": 64
   }
 }
 ```
@@ -290,7 +281,7 @@ Unprocessable entity - the one-time reset code is invalid or expired.
   "success": false,
   "data": {
     "message": "Invalid reset password code.",
-    "errorCode": 62
+    "error_code": 62
   }
 }
 ```
@@ -304,7 +295,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```
@@ -401,6 +392,10 @@ When enabled, the `code` parameter is not required. The plugin identifies the us
 
 When enabled, WordPress sends its default password changed notification email to the site admin after the password is successfully updated.
 
+tip
+
+To log the user out everywhere after a reset (a stolen JWT or refresh token then stops working), turn on [Revoke sessions on password change](/docs/authentication.md#revoke-sessions-on-password-change) in the Authentication settings.
+
 ***
 
 ## Features[​](#features "Direct link to Features")
@@ -413,7 +408,7 @@ When using the **Send custom email** flow, the body supports the following varia
 | ---------------- | --------------------------------------------------------------------- |
 | `{{CODE}}`       | **Required.** The reset password code the user must submit in Step 2. |
 | `{{NAME}}`       | User's full name (first + last)                                       |
-| `{{USERNAME}}`   | WordPress username (user\_login)                                      |
+| `{{USERNAME}}`   | WordPress username (`user_login`)                                     |
 | `{{EMAIL}}`      | User's email address                                                  |
 | `{{NICKNAME}}`   | User's nickname                                                       |
 | `{{FIRST_NAME}}` | User's first name                                                     |

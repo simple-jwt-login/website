@@ -28,7 +28,7 @@ Before running this example, make sure the following are configured:
 
 | Setting                                                    | Value                                                                                  |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| WooCommerce                                                | Installed & active, with a payment method (e.g. **Cash on Delivery**) enabled          |
+| WooCommerce                                                | Installed & active, with a payment method (for example, **Cash on Delivery**) enabled  |
 | Simple JWT Login → Allow Authentication                    | Yes (so `/auth` issues tokens)                                                         |
 | Integrations → WooCommerce → **Enable**                    | Yes                                                                                    |
 | Integrations → WooCommerce → **Store API cart & checkout** | Yes (lets header-JWT requests skip the Store API nonce)                                |
@@ -722,4 +722,4 @@ The **Request log** panel shows every JWT-authenticated request and response, an
 
 Still getting a nonce error on add-to-cart?
 
-That means the request reached the Store API without being recognised as a header-token request. Double-check the **Store API cart & checkout** toggle is on, the token is sent in the `Authorization` header, and CORS allows that header. See the [WooCommerce integration](/docs/integrations/third-party/woocommerce.md) page.
+That means the request reached the Store API without being recognized as a header-token request. Double-check the **Store API cart & checkout** toggle is on, the token is sent in the `Authorization` header, and CORS allows that header. See the [WooCommerce integration](/docs/integrations/third-party/woocommerce.md) page.

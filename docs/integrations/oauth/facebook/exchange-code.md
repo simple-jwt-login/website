@@ -58,7 +58,7 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   "success": false,
   "data": {
     "message": "The code you provided is invalid.",
-    "errorCode": 72
+    "error_code": 72
   }
 }
 ```

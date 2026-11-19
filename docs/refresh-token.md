@@ -67,7 +67,7 @@ The `refresh_token` parameter is missing from the request.
   "success": false,
   "data": {
     "message": "Refresh token is missing.",
-    "errorCode": 51
+    "error_code": 51
   }
 }
 ```
@@ -81,7 +81,7 @@ The refresh token was not found or has expired.
   "success": false,
   "data": {
     "message": "Invalid refresh token.",
-    "errorCode": 51
+    "error_code": 51
   }
 }
 ```
@@ -95,7 +95,7 @@ The refresh token feature is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Refresh Token endpoint is not enabled.",
-    "errorCode": 81
+    "error_code": 81
   }
 }
 ```
@@ -109,7 +109,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 22
+    "error_code": 22
   }
 }
 ```
@@ -146,10 +146,11 @@ fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/auth/refresh', {
 
 ## Error responses[​](#error-responses "Direct link to Error responses")
 
-| Code | Meaning                                                                             |
-| ---- | ----------------------------------------------------------------------------------- |
-| `51` | The `refresh_token` parameter is missing, or the token was not found / has expired. |
-| `81` | The refresh token feature is disabled in plugin settings.                           |
+| Code  | Meaning                                                                                                                                                           |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `51`  | The `refresh_token` parameter is missing, or the token was not found, has expired or was already used (refresh tokens are single-use since version 4.2.0).        |
+| `81`  | The refresh token feature is disabled in plugin settings.                                                                                                         |
+| `131` | Since version 4.2.0: the new refresh token could not be saved in the database (`500`). The old refresh token is already used up, so the client must log in again. |
 
 ***
 

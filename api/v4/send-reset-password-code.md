@@ -11,7 +11,8 @@ Sends a one-time reset code to the user's registered email address. The code mus
 
 * Password reset must be enabled in the plugin settings.
 * If "Reset Password Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
-* The email address must belong to an existing WordPress user.
+
+An email that does not belong to a WordPress user gets the same `200` answer as one that does (nothing is sent), so the endpoint can not be used to find which emails have an account. Exception: the `simple_jwt_login_response_send_reset_password` filter and the reset password webhooks run only for real users. When they change the response or add a delay, callers can tell which emails exist.
 
 **Flow**
 
@@ -26,22 +27,20 @@ Sends a one-time reset code to the user's registered email address. The code mus
 * 200
 * 401
 * 403
-* 404
 * 422
 * 500
 
-Reset password email sent successfully.
+Request accepted (also for emails without an account). The message depends on the "Reset password flow" setting.
 
 Unauthorized. The provided auth code is wrong (`error_code` 27).
 
 Forbidden. Password reset is disabled in the plugin settings (`error_code` 56).
-
-No WordPress user with the provided email address was found.
 
 Unprocessable entity. One of:
 
 * The `email` field is missing (`error_code` 63).
 * The email address format is invalid (`error_code` 96).
 * The auth code is required but was not provided (`error_code` 94).
+* The configured reset password flow is invalid (`error_code` 65).
 
-Internal server error (e.g. email sending failure).
+Internal server error, for example, WordPress could not send the reset email. The message is the one of the underlying error.

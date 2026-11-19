@@ -21,10 +21,14 @@ Regular users may only revoke their own keys. Administrators may revoke any key.
 
 API key revoked successfully.
 
-Unauthorized. No active WordPress session.
+WordPress core error: the request is not authenticated (no logged-in session with a valid `X-WP-Nonce`, and no valid JWT in the header or cookie). The plugin is not called.
 
-Forbidden. The authenticated user does not own this API key and does not have administrator privileges.
+Forbidden (`error_code` 84). One of:
 
-No API key with the provided ID was found.
+* The user is not logged in.
+* The user does not own this API key and is not an administrator.
+* A non-administrator tries to grant a permission they do not have.
 
-Internal server error. The database revoke operation failed.
+The id is not a positive number (`error_code` 89).
+
+The revoke failed, including an administrator revoking a key id that does not exist (`error_code` 91).

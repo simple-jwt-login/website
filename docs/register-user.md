@@ -36,9 +36,6 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 | `comment_shortcuts`    | `optional` `string`  | Whether to enable comment moderation keyboard shortcuts. Default `'false'`.                                                                                                    |
 | `admin_color`          | `optional` `string`  | Admin color scheme. Default `'fresh'`.                                                                                                                                         |
 | `use_ssl`              | `optional` `boolean` | Whether the user always accesses the admin over HTTPS. Default `false`.                                                                                                        |
-| `user_registered`      | `optional` `string`  | Date the user registered. Format: `Y-m-d H:i:s`.                                                                                                                               |
-| `user_activation_key`  | `optional` `string`  | Password reset key. Default empty.                                                                                                                                             |
-| `spam`                 | `optional` `boolean` | Multisite only. Whether the user is marked as spam. Default `false`.                                                                                                           |
 | `show_admin_bar_front` | `optional` `string`  | Whether to show the Admin Bar on the front end. Accepts `'true'` or `'false'` as a string. Default `'true'`.                                                                   |
 | `locale`               | `optional` `string`  | User locale. Default empty.                                                                                                                                                    |
 | `user_meta`            | `optional` `string`  | Custom user meta as a JSON string. Only keys listed in **Allowed User Meta Keys** (in plugin settings) are saved. Example: `{"plan":"premium","source":"app"}`                 |
@@ -83,7 +80,6 @@ Full registration with optional fields:
     "user_email": "myuser@simplejwtlogin.com",
     "user_url": "https://simplejwtlogin.com/myuser",
     "user_registered": "2021-01-01 23:31:50",
-    "user_activation_key": "",
     "user_status": "0",
     "display_name": "myuser",
     "user_level": 0
@@ -106,7 +102,7 @@ Required parameters are missing.
   "success": false,
   "data": {
     "message": "The email address or password is missing.",
-    "errorCode": 35
+    "error_code": 35
   }
 }
 ```
@@ -120,7 +116,7 @@ Auth code is invalid or missing when required.
   "success": false,
   "data": {
     "message": "Invalid auth code.",
-    "errorCode": 32
+    "error_code": 32
   }
 }
 ```
@@ -134,7 +130,7 @@ Registration is disabled, or the client IP is not on the allow-list.
   "success": false,
   "data": {
     "message": "Register is not allowed.",
-    "errorCode": 31
+    "error_code": 31
   }
 }
 ```
@@ -148,7 +144,7 @@ A user with this email already exists.
   "success": false,
   "data": {
     "message": "User already exists.",
-    "errorCode": 38
+    "error_code": 38
   }
 }
 ```
@@ -162,7 +158,7 @@ Email format is invalid or the email domain is not on the allow-list.
   "success": false,
   "data": {
     "message": "The email address is invalid.",
-    "errorCode": 36
+    "error_code": 36
   }
 }
 ```
@@ -176,7 +172,7 @@ Email format is invalid or the email domain is not on the allow-list.
   "success": false,
   "data": {
     "message": "User could not be created.",
-    "errorCode": 52
+    "error_code": 52
   }
 }
 ```
@@ -256,7 +252,7 @@ Leaving registration open without an Auth Code is a security risk on public-faci
 
 #### Default User Role[​](#default-user-role "Direct link to Default User Role")
 
-The WordPress role assigned to newly registered users (e.g. `subscriber`, `contributor`, `author`, `editor`, `administrator`, or any custom role).
+The WordPress role assigned to newly registered users (for example, `subscriber`, `contributor`, `author`, `editor`, `administrator`, or any custom role).
 
 You can also assign a **different role per Auth Code** - when a user registers using a specific code, they receive the role tied to that code. Configure this in the Auth Codes settings.
 
@@ -286,11 +282,11 @@ When enabled, WordPress sends its default new-user notification emails (to the n
 
 #### Allowed IP Addresses[​](#allowed-ip-addresses "Direct link to Allowed IP Addresses")
 
-Comma-separated list of IP addresses allowed to call the registration endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (e.g. `85.*.*.*`).
+Comma-separated list of IP addresses allowed to call the registration endpoint. Leave blank to allow all IPs. Supports wildcards in any octet (for example, `85.*.*.*`).
 
 #### Allowed Email Domains[​](#allowed-email-domains "Direct link to Allowed Email Domains")
 
-Comma-separated list of email domains accepted during registration (e.g. `gmail.com, company.org`). Leave blank to accept all domains.
+Comma-separated list of email domains accepted during registration (for example, `gmail.com, company.org`). Leave blank to accept all domains.
 
 ### User Data[​](#user-data "Direct link to User Data")
 
@@ -301,3 +297,9 @@ Comma-separated list of email domains accepted during registration (e.g. `gmail.
 Comma-separated list of `user_meta` keys that may be set via the `user_meta` request parameter. Keys not listed here are silently ignored, even if sent in the request. Leave blank to disallow all custom meta.
 
 Example: `plan, referral_source, subscription_tier`
+
+note
+
+Since version 4.1.0, meta keys that grant privileges or hold sessions - `{prefix}capabilities`, `{prefix}user_level` and `session_tokens` - are never set from a registration request, even if you list them here.
+
+Since version 4.2.0, the `user_activation_key`, `user_registered` and `spam` user properties are not accepted from the request either, so a registrant can't plant a password reset key and take over an account.

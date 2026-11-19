@@ -59,7 +59,7 @@ https://example.com/wp-json/simple-jwt-login/v1/auth
 
 caution
 
-If you change the route namespace after you have already issued JWTs, any existing links that embed the old endpoint URL (e.g. autologin links in emails) will stop working.
+If you change the route namespace after you have already issued JWTs, any existing links that embed the old endpoint URL (for example, autologin links in emails) stop working.
 
 ***
 
@@ -81,12 +81,12 @@ Each rule has three parts:
 
 **IF** - a condition that inspects a claim in the incoming JWT
 
-| Field          | Options                          | Description                                          |
-| -------------- | -------------------------------- | ---------------------------------------------------- |
-| JWT Part       | `Payload claim` / `Header claim` | Which part of the JWT to inspect                     |
-| Claim Key      | text                             | The key to look up (e.g. `iss`, `alg`, `x-provider`) |
-| Operator       | `equals` / `contains`            | Comparison to apply                                  |
-| Expected Value | text                             | The value the claim must match                       |
+| Field          | Options                          | Description                                                  |
+| -------------- | -------------------------------- | ------------------------------------------------------------ |
+| JWT Part       | `Payload claim` / `Header claim` | Which part of the JWT to inspect                             |
+| Claim Key      | text                             | The key to look up (for example, `iss`, `alg`, `x-provider`) |
+| Operator       | `equals` / `contains`            | Comparison to apply                                          |
+| Expected Value | text                             | The value the claim must match                               |
 
 **THEN USE** - the algorithm and key to apply when the condition matches
 
@@ -98,12 +98,16 @@ Each rule has three parts:
 
 **IDENTIFY** - how to look up the WordPress user from the token payload
 
-| Field            | Options                                                                      |
-| ---------------- | ---------------------------------------------------------------------------- |
-| Identify user by | `Email address` / `WordPress User ID` / `WordPress Username`                 |
-| JWT payload key  | The payload field that holds the identifier (e.g. `email`, `sub`, `user.id`) |
+| Field            | Options                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| Identify user by | `Email address` / `WordPress User ID` / `WordPress Username`                         |
+| JWT payload key  | The payload field that holds the identifier (for example, `email`, `sub`, `user.id`) |
 
-Use dot notation for nested values - e.g. `user.id` to read `{ "user": { "id": 42 } }`.
+Use dot notation for nested values - for example, `user.id` to read `{ "user": { "id": 42 } }`.
+
+Since version 4.2.0, the matched rule's IDENTIFY settings are used on every endpoint that reads the JWT - validate, refresh, revoke, autologin, reset password, delete user, the API middleware, and Protect Endpoints. An external token with `"id": 1` is never read as WordPress user 1 just because the site's own login uses user IDs.
+
+**Expected audience (aud)** - available since version 4.2.0. Optional, but recommended (for example, your app's client ID). When set, only JWTs whose `aud` claim contains this value match the rule's key. Otherwise they're rejected with error code `130`.
 
 ### The ELSE rule (required default)[​](#the-else-rule-required-default "Direct link to The ELSE rule (required default)")
 
@@ -125,18 +129,18 @@ define('SIMPLE_JWT_PRIVATE_KEY', 'my-super-secret-key');
 define('SIMPLE_JWT_PUBLIC_KEY', '-----BEGIN PUBLIC KEY-----\n...');
 ```
 
-**Step 2 - Algorithm:** Select the signing algorithm (`HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`).
+**Step 2 - Algorithm:** select the signing algorithm (`HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`).
 
-**Step 3 - Verification Key:** Enter the secret key (HS\*) or public/private key pair (RS\*). For HS\* algorithms, check "JWT key is Base64 encoded" if your key is Base64-encoded.
+**Step 3 - Verification Key:** enter the secret key (HS\*) or public/private key pair (RS\*). For HS\* algorithms, check "JWT key is Base64 encoded" if your key is Base64-encoded.
 
-**Step 4 - User Identification:** Which JWT payload field identifies the WordPress user.
+**Step 4 - User Identification:** the JWT payload field that identifies the WordPress user.
 
-| Field            | Options                                                                           |
-| ---------------- | --------------------------------------------------------------------------------- |
-| Identify user by | `Email address` / `WordPress User ID` / `WordPress Username`                      |
-| JWT payload key  | The payload field name that holds the identifier (e.g. `email`, `sub`, `user.id`) |
+| Field            | Options                                                                                   |
+| ---------------- | ----------------------------------------------------------------------------------------- |
+| Identify user by | `Email address` / `WordPress User ID` / `WordPress Username`                              |
+| JWT payload key  | The payload field name that holds the identifier (for example, `email`, `sub`, `user.id`) |
 
-Use dot notation for nested values, e.g. `user.id` to read `{ "user": { "id": 42 } }`.
+Use dot notation for nested values, for example, `user.id` to read `{ "user": { "id": 42 } }`.
 
 ### Example: multi-provider setup[​](#example-multi-provider-setup "Direct link to Example: multi-provider setup")
 
@@ -167,6 +171,20 @@ note
 
 The recommended approach is to keep **HEADER** enabled and send tokens as `Authorization: Bearer <token>`. This is the most widely adopted pattern and avoids tokens appearing in access logs.
 
+### Cross-site requests[​](#cross-site-requests "Direct link to Cross-site requests")
+
+Since version 4.1.1, to prevent CSRF, a JWT from the **HEADER**, **COOKIE** or **SESSION** source only authenticates requests that come from your site itself or from an origin listed in the [CORS](/docs/cors.md) **Allow origin** setting. On a cross-site request - including sibling subdomains and other ports - that JWT is ignored.
+
+| Request                                                                           | HEADER JWT | COOKIE / SESSION JWT |
+| --------------------------------------------------------------------------------- | ---------- | -------------------- |
+| From your own site                                                                | Accepted   | Accepted             |
+| From an origin listed in **Allow origin**                                         | Accepted   | Accepted             |
+| From another origin, when **Allow origin** contains `*`                           | Accepted   | Ignored              |
+| From another site, when CORS (or **Allow origin**) is disabled                    | Ignored    | Ignored              |
+| Server-to-server, mobile apps, CLI tools (no `Origin` / `Sec-Fetch-Site` headers) | Accepted   | Accepted             |
+
+JWTs sent through the **REQUEST** source (URL or body, for example [autologin](/docs/autologin.md) links) are not affected.
+
 ***
 
 ## Integration Options[​](#integration-options "Direct link to Integration Options")
@@ -175,9 +193,11 @@ The recommended approach is to keep **HEADER** enabled and send tokens as `Autho
 
 ### JWT Middleware for all WordPress endpoints[​](#jwt-middleware-for-all-wordpress-endpoints "Direct link to JWT Middleware for all WordPress endpoints")
 
-When enabled, **any** WordPress REST API request that includes a valid JWT will be automatically authenticated as the identified user before WordPress processes the request.
+When enabled, **any** WordPress REST API request that includes a valid JWT is automatically authenticated as the identified user before WordPress processes the request.
 
 This lets you do things like creating posts or accessing user-specific data through the standard WordPress REST API (`/wp/v2/*`) using a Simple JWT Login token - without any extra plugin.
+
+Since version 4.1.0, the middleware decides whether a request is a REST request from the route WordPress resolved, not by searching the URL, so query strings or paths that only contain `wp-json` don't trigger it.
 
 ```
 curl -X POST "https://example.com/wp-json/wp/v2/posts" \
@@ -198,3 +218,11 @@ curl -X POST "https://example.com/wp-json/wp/v2/posts" \
 When enabled, the plugin uses WordPress's `wp_safe_redirect()` for all redirects instead of `wp_redirect()`. This restricts redirect destinations to the same host and a configured allow-list, preventing open redirect vulnerabilities.
 
 Enable this option unless you have a specific reason to redirect to external domains.
+
+### Trust reverse proxy IP headers[​](#trust-reverse-proxy-ip-headers "Direct link to Trust reverse proxy IP headers")
+
+When enabled, the plugin reads the client IP (since version 4.2.0) from the **last** `X-Forwarded-For` entry - the one added by your proxy - and only when it is a valid IP. Since version 4.1.1, it also reads the scheme (`http` / `https`) from `X-Forwarded-Proto`, which is used to recognize requests coming from your own site in the [cross-site check](#cross-site-requests).
+
+Since version 4.2.0, the `Client-IP` header is not used: proxies pass it through from the client, so it could bypass IP allowlists. If your proxy sends the client IP only in `Client-IP`, switch it to `X-Forwarded-For`.
+
+Enable this only when the site runs behind a trusted reverse proxy or load balancer that appends to `X-Forwarded-For`, and not when the web server already rewrites the client IP (for example, Apache `mod_remoteip`) - clients can set these headers themselves. When disabled, IP restrictions use the connection address (`REMOTE_ADDR`), which can't be spoofed.

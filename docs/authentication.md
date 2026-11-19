@@ -104,7 +104,7 @@ Bad request - required parameters are missing.
   "success": false,
   "data": {
     "message": "Email or username is required.",
-    "errorCode": 46
+    "error_code": 46
   }
 }
 ```
@@ -118,7 +118,7 @@ Unauthorized - credentials are incorrect or the auth code is invalid.
   "success": false,
   "data": {
     "message": "Wrong user credentials.",
-    "errorCode": 48
+    "error_code": 48
   }
 }
 ```
@@ -132,7 +132,7 @@ Forbidden - authentication is disabled in plugin settings.
   "success": false,
   "data": {
     "message": "Authentication is not enabled.",
-    "errorCode": 45
+    "error_code": 45
   }
 }
 ```
@@ -146,7 +146,7 @@ Internal server error.
   "success": false,
   "data": {
     "message": "An unexpected error occurred.",
-    "errorCode": 16
+    "error_code": 16
   }
 }
 ```
@@ -180,7 +180,7 @@ All error responses follow the standard envelope:
   "success": false,
   "data": {
     "message": "Human-readable error description",
-    "errorCode": 48
+    "error_code": 48
   }
 }
 ```
@@ -195,6 +195,19 @@ Common error codes:
 | `48` | Credentials are incorrect.                        |
 
 ***
+
+## Password checks[​](#password-checks "Direct link to Password checks")
+
+Since version 4.2.0, the `password` is checked with WordPress's `wp_authenticate()`, the same way as `wp-login.php`:
+
+* Brute-force and user-block plugins (Limit Login Attempts, Wordfence and similar) protect `/auth` too.
+* Every failed attempt - unknown user, wrong password or wrong hash - fires the `wp_login_failed` action, so those plugins count it.
+* [Application passwords](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/) can't be exchanged for a JWT.
+* Unknown logins take the same password hashing time as known ones, so response timing doesn't reveal which accounts exist.
+
+warning
+
+Authenticating with `password_hash` lets anyone holding a database dump get JWTs without cracking the hashes, and login protection plugins don't apply to it. Keep it disabled unless you really need it - the AI Abilities security report flags it.
 
 ## Settings[​](#settings "Direct link to Settings")
 
@@ -218,7 +231,7 @@ When enabled, every authentication request must include a valid Auth Code. The p
 
 #### Base64-encoded password[​](#base64-encoded-password "Direct link to Base64-encoded password")
 
-Enable when the `password` or `password_hash` value is Base64-encoded before sending. Useful when passwords contain special characters that would be mangled in query string parameters.
+Enable when the `password` or `password_hash` value is Base64-encoded before sending. Useful when passwords contain special characters (including `'`, `"` and `\`) that would be mangled in query string parameters. Since version 4.2.0, a value that isn't valid Base64 gets the "Wrong user credentials." error.
 
 ***
 
@@ -258,7 +271,7 @@ Choose which user data fields are included in the JWT payload. At minimum, `iat`
 | `username` | The WordPress `user_login` value.                                           |
 | `iss`      | Issuer claim. The value is taken from the **Issuer value** field below.     |
 
-#### Issuer (iss)[​](#issuer-iss "Direct link to Issuer (iss)")
+#### Issuer (`iss`)[​](#issuer-iss "Direct link to issuer-iss")
 
 When `iss` is enabled in the payload, this field sets its value. Defaults to the site URL if left blank. Used to identify the token's origin, especially in multi-provider setups.
 
@@ -292,6 +305,31 @@ How long (in minutes) the generated JWT is valid. After this period the token is
 Default: **60 minutes**.
 
 Set to `0` to disable expiry (not recommended for production).
+
+***
+
+### Audience (aud)[​](#audience-aud "Direct link to Audience (aud)")
+
+#### Expected audience[​](#expected-audience "Direct link to Expected audience")
+
+Available since version 4.2.0. Optional. When set, new JWTs from `/auth`, `/auth/refresh`, register and OAuth carry this value in the `aud` claim, and a JWT signed with the plugin key is only accepted when its `aud` (a string or a list) contains it. This stops another site or app that shares the same signing key or issuer from using its JWTs on your site. A good value is your site URL.
+
+JWTs issued before you set it have no `aud` and are rejected with error code `130` - users must log in again (a refresh token still gets a new JWT).
+
+For JWTs matched by a [JWT Rule](/docs/configuration.md#jwt-verification-rules), set the **Expected audience (aud)** on the rule instead.
+
+***
+
+### Revoke sessions on password change[​](#revoke-sessions-on-password-change "Direct link to Revoke sessions on password change")
+
+Available since version 4.2.0, off by default. When on, changing a user's password deletes that user's refresh tokens and rejects every JWT issued before the change, so a stolen token stops working once the password is reset. It applies to:
+
+* the plugin's [reset password](/docs/reset-password.md) endpoint
+* the `wp-login.php` lost password form
+* on WordPress 5.8+, profile and admin edits and `/wp/v2/users` updates
+* since version 4.2.0, any password set with `wp_set_password()` - for example, the Two Factor compromised-password reset, WP-CLI or other plugins
+
+Rejected JWTs return error code `55`. JWTs without an `iat` claim (for example, issued by an external service through JWT Rules) are then also rejected for that user.
 
 ***
 

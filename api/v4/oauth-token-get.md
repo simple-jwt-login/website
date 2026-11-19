@@ -9,13 +9,11 @@ Browser-redirect flow: exchanges a provider authorization code for a WordPress s
 
 Supported providers: `google`, `auth0`, `facebook`, `github`.
 
-**Google flow** - pass `provider=google` with `code`.
+Auth codes, IP allow-lists and the "Authentication enabled" setting do not apply to this endpoint; only the provider must be enabled.
 
-**Auth0 flow** - pass `provider=auth0` with `code`.
+**Login start** - `provider` only (no `code`, no `error`): the login buttons point here. The plugin stores a random `state` in a 10-minute HttpOnly cookie (`sjl_oauth_state_<provider>`) and answers `302` to the provider's consent screen with that `state`.
 
-**Facebook flow** - pass `provider=facebook` with `code`.
-
-**GitHub flow** - pass `provider=github` with `code`.
+**Callback** - the provider redirects back with `code` and `state`. The callback is only accepted when `state` matches the cookie of the same browser (login CSRF protection); the cookie is single use. Otherwise the code is not exchanged and the browser is redirected to the login page with an error (`error_code` 129 in the audit log). Links that send visitors straight to the provider, without the login start, are rejected.
 
 If the OAuth identity matches an existing WordPress user (by email), the user is logged in. If no match is found and "Register on OAuth login" is enabled, a new user is created automatically. On failure the browser is redirected to the WordPress login page.
 
@@ -26,14 +24,27 @@ If the OAuth identity matches an existing WordPress user (by email), the user is
 ## Responses[​](#responses "Direct link to Responses")
 
 * 200
-* 400
+* 302
 * 403
-* 500
+* 422
 
-Browser redirected to the WordPress admin URL after a successful login, or to the WordPress login page on failure. The response body is empty HTML.
+The user has Two-Factor enabled: a small HTML page redirects the browser (meta refresh + JavaScript) to the `wp-login.php?action=validate_2fa` form of the Two Factor plugin. The session starts only after a valid code.
 
-Bad request. The `code` parameter is missing, or the provider slug is unrecognised. (`error_code` 69 for invalid provider slug.)
+One of:
 
-Forbidden. The requested OAuth provider is not enabled in the plugin settings.
+* Login start (`provider` only): redirect to the provider's consent screen with `client_id`, `redirect_uri`, `response_type=code`, `scope` and `state`, plus a `Set-Cookie: sjl_oauth_state_<provider>` header.
+* Callback success: the user is logged in (created first when "Register on OAuth login" is on) and redirected to the WordPress admin.
+* Callback failure (invalid `state`, code rejected by the provider, or user not found): redirect to `wp-login.php` with an `error` query parameter.
 
-Internal server error.
+**Response Headers**
+
+* **Location**
+
+  **Example:<!-- -->&#x20;**`https://accounts.google.com/o/oauth2/v2/auth?client_id=...&redirect_uri=...&response_type=code&scope=...&state=...`
+
+The requested OAuth provider is not enabled in the plugin settings (`error_code` 70).
+
+Unprocessable entity. One of:
+
+* `provider` is missing or unknown (`error_code` 69).
+* The provider sent back an `error` without a `code` (for example, the user denied consent): the request has neither `code` nor the token parameter (`error_code` 71 Google, 77 Auth0, 97 Facebook, 101 GitHub).

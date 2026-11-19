@@ -34,13 +34,19 @@ Enable each header individually and configure its value:
 
 Specifies which origins are permitted to access the resource.
 
-| Value                                | Behaviour                                                     |
-| ------------------------------------ | ------------------------------------------------------------- |
-| `*`                                  | Any origin is allowed (permissive - suitable for public APIs) |
-| `https://app.example.com`            | Only that specific origin is allowed                          |
-| `https://app1.com, https://app2.com` | Multiple specific origins (comma-separated)                   |
+| Value                                | Behaviour                                                                                                                                                                         |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `*`                                  | Any origin is allowed. Since version 4.1.0, the plugin echoes the request's `Origin` back instead of a literal `*`, so credentialed requests (cookies, `Authorization`) also work |
+| `https://app.example.com`            | Only that specific origin is allowed                                                                                                                                              |
+| `https://app1.com, https://app2.com` | Multiple specific origins (comma-separated). When the request's `Origin` matches one of them, that origin is echoed back                                                          |
 
 Default example value: `*`
+
+Required for cross-origin JWT requests
+
+Since version 4.1.1, a browser app on another origin can only authenticate with a JWT if its origin is listed here. A `*` entry trusts the `Authorization: Bearer` header only, never the cookie or session JWT - list the exact origin if your app relies on cookies. With CORS disabled, or this header turned off, a JWT sent from another site's page is ignored. See [Cross-site requests](/docs/configuration.md#cross-site-requests).
+
+Since version 4.1.0, CORS headers are also added to REST error responses (for example, the `401`/`403` errors returned by JWT authentication and Protect Endpoints), so browser clients can read the error body instead of seeing a generic CORS failure.
 
 [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)
 

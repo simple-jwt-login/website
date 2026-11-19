@@ -22,17 +22,26 @@ Enable or disable the API Keys feature. When disabled, the header is ignored on 
 
 The HTTP header clients must send the API key in. Default: `X-API-Key`. Change this only if you need to avoid a header name collision with another system.
 
+#### Update "Last used"[​](#update-last-used "Direct link to Update \"Last used\"")
+
+Available since version 4.1.0. How often a key's **Last Used** time is saved:
+
+| Option                     | Behavior                                                                                                     |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Every minute** (default) | The timestamp is updated at most once per minute per key, which avoids a database write on every API request |
+| **Every request**          | The timestamp is updated on every request, so it is exact to the second                                      |
+
 ### Create API Key[​](#create-api-key "Direct link to Create API Key")
 
 ![Create API Key form](data:image/png;base64,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)
 
 Use the form in the settings page to issue a new key. Fields:
 
-| Field           | Description                                                                            |
-| --------------- | -------------------------------------------------------------------------------------- |
-| **Name**        | A human-readable label to identify the key (e.g., "Mobile App", "CI pipeline").        |
-| **Expires at**  | Optional expiry date/time. Leave blank for a non-expiring key.                         |
-| **Permissions** | One or more of: `read`, `create`, `update`, `delete`. See the permissions table below. |
+| Field           | Description                                                                                                               |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Name**        | A human-readable label to identify the key (for example, `Mobile App` or `CI pipeline`).                                  |
+| **Expires at**  | Optional expiry date/time. Enter it in your local time - the form converts it to UTC. Leave blank for a non-expiring key. |
+| **Permissions** | One or more of: `read`, `create`, `update`, `delete`. See the permissions table below.                                    |
 
 After clicking **Create API Key**, a modal appears showing the raw key value. Copy it immediately - it is shown only once and cannot be recovered.
 
@@ -40,7 +49,7 @@ After clicking **Create API Key**, a modal appears showing the raw key value. Co
 
 ![Existing API Keys table](/assets/images/existing-api-keys-85db6c35193302a7e17153335a8e919b.png)
 
-A paginated table of all keys (admins see all keys; other users see only their own). Columns: Name, Prefix, Permissions, Expires, Last Used, Action (Revoke / Delete). The `User ID` column is visible to admins only.
+A paginated table of all keys (admins see all keys; other users see only their own). The columns are Name, Prefix, Permissions, Expires, Last Used, Action (Revoke / Delete). The `User ID` column is visible to admins only.
 
 ## How authentication works[​](#how-authentication-works "Direct link to How authentication works")
 
@@ -54,6 +63,12 @@ Permission → HTTP method mapping:
 | `create`   | `POST`         |
 | `update`   | `PUT`, `PATCH` |
 | `delete`   | `DELETE`       |
+
+Since version 4.2.0, the permission is checked against the method WordPress actually dispatches. A `?_method=DELETE` parameter or an `X-HTTP-Method-Override` header can't turn a `read` key into a `delete` key.
+
+Since version 4.2.0, a request to the WordPress batch endpoint (`/batch/v1`) can hold any write call, so it needs the `create`, `update` **and** `delete` permissions. Keys without all three get a `401` on `/batch/v1`.
+
+Since version 4.2.0, when a user is deleted in wp-admin, their API keys (and refresh tokens) are deleted too.
 
 The key itself is **never stored in plain text** - only its SHA-256 hash is saved. The full key is returned only once, at creation time.
 
@@ -146,7 +161,7 @@ curl 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys' \
 
 **ENDPOINT**: `/simple-jwt-login/v1/api-keys`
 
-Generates a new API key. The full plaintext key is returned **only in this response** - it cannot be retrieved later. Store it securely immediately (e.g., in a secrets manager or environment variable).
+Generates a new API key. The full plaintext key is returned **only in this response** - it cannot be retrieved later. Store it securely immediately (for example, in a secrets manager or environment variable).
 
 **Request body**:
 
@@ -158,11 +173,11 @@ Generates a new API key. The full plaintext key is returned **only in this respo
 }
 ```
 
-| Field         | Type                | Description                                                            |
-| ------------- | ------------------- | ---------------------------------------------------------------------- |
-| `name`        | `required` `string` | Human-readable label for the key.                                      |
-| `permissions` | `required` `array`  | One or more of: `read`, `create`, `update`, `delete`.                  |
-| `expires_at`  | `optional` `string` | Expiry date/time in `Y-m-d H:i:s` format. Omit for a non-expiring key. |
+| Field         | Type                | Description                                                                                                                                                                                                                                                                |
+| ------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | `required` `string` | Human-readable label for the key.                                                                                                                                                                                                                                          |
+| `permissions` | `required` `array`  | One or more of: `read`, `create`, `update`, `delete`.                                                                                                                                                                                                                      |
+| `expires_at`  | `optional` `string` | Expiry date/time in UTC (since version 4.2.0): `Y-m-d`, `Y-m-d H:i[:s]` or ISO 8601 with an optional zone (`2027-01-01T00:00:00Z`, `+02:00`). A value without a zone is read as UTC. Other values are rejected with `422` (error code `132`). Omit for a non-expiring key. |
 
 **Response 200**:
 
@@ -255,7 +270,7 @@ curl -X PUT 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7' 
 
 **ENDPOINT**: `/simple-jwt-login/v1/api-keys/{id}/revoke`
 
-Soft-deletes the key by recording a `revoked_at` timestamp. The record is kept in the database (useful for auditing), but the middleware will reject the key immediately. To permanently remove the record, use the [permanent delete](#permanently-delete-an-api-key) endpoint.
+Soft-deletes the key by recording a `revoked_at` timestamp. The record is kept in the database (useful for auditing), but the middleware rejects the key immediately. To permanently remove the record, use the [permanent delete](#permanently-delete-an-api-key) endpoint.
 
 **Path parameter**: `id` - numeric ID of the key.
 
@@ -339,7 +354,7 @@ All error responses from the API key endpoints follow the standard envelope:
   "success": false,
   "data": {
     "message": "Human-readable error description",
-    "errorCode": 84
+    "error_code": 84
   }
 }
 ```
@@ -360,17 +375,17 @@ Common error codes:
 
 ## FAQ[​](#faq "Direct link to FAQ")
 
-### Can I use a JWT to manage API keys?[​](#can-i-use-a-jwt-to-manage-api-keys "Direct link to Can I use a JWT to manage API keys?")
+### Can you use a JWT to manage API keys?[​](#can-you-use-a-jwt-to-manage-api-keys "Direct link to Can you use a JWT to manage API keys?")
 
 Yes. All `/simple-jwt-login/v1/api-keys` endpoints accept a valid JWT in place of a WordPress session cookie. Pass it via `Authorization: Bearer <token>` or through whichever JWT transport is configured in the plugin settings.
 
-### Can I use an API key instead of a JWT for Simple JWT Login's own endpoints?[​](#can-i-use-an-api-key-instead-of-a-jwt-for-simple-jwt-logins-own-endpoints "Direct link to Can I use an API key instead of a JWT for Simple JWT Login's own endpoints?")
+### Can you use an API key instead of a JWT for Simple JWT Login's own endpoints?[​](#can-you-use-an-api-key-instead-of-a-jwt-for-simple-jwt-logins-own-endpoints "Direct link to Can you use an API key instead of a JWT for Simple JWT Login's own endpoints?")
 
-No. API keys authenticate requests to standard WordPress REST endpoints (e.g., `/wp/v2/posts`). Simple JWT Login's own endpoints (`/simple-jwt-login/v1/auth`, `/simple-jwt-login/v1/users`, etc.) use JWT-based authentication as documented on their respective pages.
+No. API keys authenticate requests to standard WordPress REST endpoints (for example, `/wp/v2/posts`). Simple JWT Login's own endpoints (`/simple-jwt-login/v1/auth`, `/simple-jwt-login/v1/users`, etc.) use JWT-based authentication as documented on their respective pages.
 
 ### What happens if a key expires?[​](#what-happens-if-a-key-expires "Direct link to What happens if a key expires?")
 
-The middleware checks the `expires_at` timestamp on every request. Once the current time passes the expiry, the key is rejected as if it were revoked. Update the key with a new `expires_at` to extend its lifetime.
+The middleware checks the `expires_at` timestamp (UTC, compared with the database's UTC clock) on every request. Once the current time passes the expiry, the key is rejected as if it were revoked. Update the key with a new `expires_at` to extend its lifetime.
 
 ### Is the full key stored anywhere?[​](#is-the-full-key-stored-anywhere "Direct link to Is the full key stored anywhere?")
 
@@ -378,4 +393,4 @@ No. Only the SHA-256 hash of the key is persisted. The plaintext key is returned
 
 ### Who can see other users' keys?[​](#who-can-see-other-users-keys "Direct link to Who can see other users' keys?")
 
-Regular users can only list, update, revoke, and delete their own keys. WordPress administrators (users with the `manage_options` capability) can manage all keys and will also see the `user_id` field in list responses to identify key ownership.
+Regular users can only list, update, revoke, and delete their own keys. WordPress administrators (users with the `manage_options` capability) can manage all keys and also see the `user_id` field in list responses to identify key ownership.

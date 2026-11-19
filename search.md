@@ -19,7 +19,7 @@ Search
 
 This project is supported by:
 
-[![DigitalOcean](https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg)](https://www.digitalocean.com/ "DigitalOcean - cloud infrastructure sponsor")
+[![DigitalOcean](https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg)](https://www.digitalocean.com/ "DigitalOcean - cloud infrastructure sponsor")[![CodeRabbit](https://www.coderabbit.ai/press-kit/coderabbit-reverse-white.svg)](https://coderabbit.link/nicumicle "CodeRabbit - AI code review sponsor")
 
 ![](/assets/favicons/favicon.ico)Simple JWT Login
 

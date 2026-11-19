@@ -21,10 +21,14 @@ Regular users may only delete their own keys. Administrators may delete any key.
 
 API key permanently deleted.
 
-Unauthorized. No active WordPress session.
+WordPress core error: the request is not authenticated (no logged-in session with a valid `X-WP-Nonce`, and no valid JWT in the header or cookie). The plugin is not called.
 
-Forbidden. The authenticated user does not own this API key and does not have administrator privileges.
+Forbidden (`error_code` 84). One of:
 
-No API key with the provided ID was found.
+* The user is not logged in.
+* The user does not own this API key and is not an administrator.
+* A non-administrator tries to grant a permission they do not have.
 
-Internal server error. The database delete operation failed.
+The id is not a positive number (`error_code` 89).
+
+The delete failed, including an administrator deleting a key id that does not exist (`error_code` 92).

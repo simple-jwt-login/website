@@ -4,10 +4,210 @@
         <title>Simple JWT Login Blog</title>
         <link>https://simplejwtlogin.com/releases</link>
         <description>Simple JWT Login Blog</description>
-        <lastBuildDate>Fri, 05 Jun 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 18 Nov 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[New Plugin Release 4.2.0]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.2.0</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.2.0</guid>
+            <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 4.2.0 - an important security release with JWT audience checks, session revocation on password change, and many fixes]]></description>
+            <content:encoded><![CDATA[<p>The version <code>4.2.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
+<div class="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>Upgrade notice</div><div class="admonitionContent_BuS1"><p>Important security release. It fixes multiple security vulnerabilities affecting authentication, authorization, and REST API endpoints. All users are strongly encouraged to upgrade as soon as possible. Review the <strong>Breaking Changes</strong> section before upgrading.</p></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="security">Security<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.2.0#security" class="hash-link" aria-label="Direct link to Security" title="Direct link to Security" translate="no">​</a></h2>
+<ul>
+<li class="">Fixed multiple security vulnerabilities affecting authentication, authorization, and REST API endpoints</li>
+<li class="">Strengthened validation and authorization across the affected endpoints</li>
+<li class="">Improved the data returned by REST API endpoints</li>
+<li class="">Added security regression tests to prevent these issues from coming back</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.2.0#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
+<ul>
+<li class=""><strong>Expected audience (aud)</strong> - new optional setting for the plugin's own JWTs (Authentication) and for each JWT Rule. When set, new JWTs carry that <code>aud</code> and only JWTs whose <code>aud</code> contains it are accepted (new error code <code>130</code>). Read more about the <a class="" href="https://simplejwtlogin.com/docs/authentication#audience-aud">audience setting</a>.</li>
+<li class=""><strong>Revoke sessions on password change</strong> - new option in Authentication, off by default. When on, changing a password deletes the user's refresh tokens and rejects every JWT issued before the change. JWTs without an <code>iat</code> claim are then also rejected for that user. Read more about <a class="" href="https://simplejwtlogin.com/docs/authentication#revoke-sessions-on-password-change">revoking sessions</a>.</li>
+<li class=""><code>/auth</code> now checks the password with <code>wp_authenticate()</code>, so brute-force and user-block plugins (Limit Login Attempts, Wordfence and similar) protect it like <code>wp-login.php</code>. Application passwords can't be exchanged for a JWT. Read more about <a class="" href="https://simplejwtlogin.com/docs/authentication#password-checks">password checks</a>.</li>
+<li class=""><strong>OAuth backward-compatibility options</strong> - new options, off by default, to accept tokens that aren't bound to the configured app. They are <strong>Allow tokens issued for other Google clients</strong>, <strong>Allow tokens issued for other Facebook apps</strong>, <strong>Allow tokens issued for other GitHub apps</strong> (also accepts personal access tokens) and Auth0 <strong>Allow opaque access tokens</strong>. The admin screen shows a security warning while one is on, because any app on that provider could then log its users into the matching WordPress accounts. See <a class="" href="https://simplejwtlogin.com/docs/integrations/oauth#backward-compatibility">OAuth backward compatibility</a>.</li>
+<li class=""><strong>Dashboard security notices</strong> - a new <strong>Security notices</strong> section lists the enabled options and settings that weaken security (the critical and warning findings of the security report), most severe first. Click a notice to open the matching settings tab. The dashboard and the AI <code>security-report</code> ability also report the OAuth options above when they are on. See the <a class="" href="https://simplejwtlogin.com/docs/dashboard">Dashboard</a>.</li>
+<li class="">The AI Abilities security report now warns when authentication with <code>password_hash</code> is enabled</li>
+<li class="">Admin: optional support banner with a donation link at the top of the settings page. It can be dismissed for 6 months, and no features are locked behind donations</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="breaking-changes">Breaking Changes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.2.0#breaking-changes" class="hash-link" aria-label="Direct link to Breaking Changes" title="Direct link to Breaking Changes" translate="no">​</a></h2>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Why these changes are breaking</div><div class="admonitionContent_BuS1"><p>These changes were introduced on purpose to strengthen the security of your WordPress site, so most of them can't be kept optional. The OAuth token checks are the exception. The new options <strong>Allow tokens issued for other Google clients</strong>, <strong>Allow opaque access tokens</strong>, <strong>Allow tokens issued for other Facebook apps</strong>, and <strong>Allow tokens issued for other GitHub apps</strong> turn them off for one provider each. When one is on, your applications stay backward compatible and keep working as before 4.2.0, but without the security fix for that provider. See <a class="" href="https://simplejwtlogin.com/docs/integrations/oauth#backward-compatibility">OAuth backward compatibility</a>.</p></div></div>
+<ul>
+<li class="">
+<p><strong>WordPress 6.2 or newer</strong> is required (was 4.4). The plugin's database queries use the <code>%i</code> identifier placeholder added in WordPress 6.2.</p>
+</li>
+<li class="">
+<p><strong>OAuth login links</strong> - the OAuth login buttons (Google, Auth0, Facebook, GitHub) now go through the plugin, which redirects to the provider. Custom login buttons or links that send visitors straight to the provider with the plugin's callback as <code>redirect_uri</code> stop working. Link to <code>GET /oauth/token?provider=&lt;provider&gt;</code> instead. See the <a class="" href="https://simplejwtlogin.com/docs/integrations/oauth#typical-oauth-flow">OAuth flow</a>.</p>
+</li>
+<li class="">
+<p><strong>OAuth tokens</strong> - tokens sent to the OAuth endpoint (and Google <code>id_token</code>s used on all endpoints) must be issued for the app configured in the plugin:</p>
+<ul>
+<li class="">a Facebook or GitHub <code>access_token</code> must belong to the configured app (GitHub personal access tokens are rejected)</li>
+<li class="">a Google <code>id_token</code> must have the configured Client ID as <code>aud</code></li>
+<li class="">an Auth0 <code>access_token</code> must be a JWT issued for the configured Auth0 Client ID (<code>azp</code> or <code>aud</code>), so opaque Auth0 access tokens are rejected</li>
+</ul>
+<p>To stay backward compatible, turn on the matching new OAuth option. See <a class="" href="https://simplejwtlogin.com/docs/integrations/oauth#backward-compatibility">OAuth backward compatibility</a>.</p>
+</li>
+<li class="">
+<p><strong>Reset password</strong> - <code>POST /user/reset_password</code> with an unknown email now answers <code>200</code> instead of <code>404</code> with the "Wrong user." message.</p>
+</li>
+<li class="">
+<p><strong>Reverse proxy</strong> - with "Trust reverse proxy IP headers" on, the client IP is read from the last <code>X-Forwarded-For</code> entry only. Sites whose proxy sends the client IP only in <code>Client-IP</code> must switch the proxy to <code>X-Forwarded-For</code>. See <a class="" href="https://simplejwtlogin.com/docs/configuration#trust-reverse-proxy-ip-headers">Trust reverse proxy IP headers</a>.</p>
+</li>
+<li class="">
+<p><strong>Two-factor</strong> - after too many wrong two-factor codes (30 by default, Two Factor filter <code>two_factor_failed_attempt_limit</code>) sent to <code>POST /auth/2fa</code> or the OAuth two-factor form, the user's password is reset and the user and admin are emailed, as on <code>wp-login.php</code>. Read more about <a class="" href="https://simplejwtlogin.com/docs/integrations/third-party/two-factor#failed-codes-and-reuse">two-factor failed codes</a>.</p>
+</li>
+<li class="">
+<p><strong>API keys on <code>/batch/v1</code></strong> - API keys need the <code>create</code>, <code>update</code> and <code>delete</code> permissions, otherwise they get <code>401</code>. See <a class="" href="https://simplejwtlogin.com/docs/api-keys">API Keys</a>.</p>
+</li>
+<li class="">
+<p><strong>HTTP status of error responses</strong> - client errors that used to answer <code>500</code> now answer their real status (<code>401</code>, <code>403</code>, <code>404</code>, <code>422</code> or <code>429</code>). The <code>error_code</code> values didn't change, so code that checks <code>error_code</code> keeps working. See the <a class="" href="https://simplejwtlogin.com/docs/error-codes">full list of changed statuses</a>.</p>
+</li>
+<li class="">
+<p><strong>Audience</strong> - once you set an expected audience, JWTs issued before it have no <code>aud</code> and stop working, so users must log in again</p>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.2.0#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
+<ul>
+<li class="">Fix the Facebook browser login returning a <code>500</code> error instead of the login page with the error message when Facebook rejects the code</li>
+<li class="">Fix two parallel <code>/auth/refresh</code> calls with the same refresh token both getting a new JWT: a refresh token can now be used once only</li>
+<li class="">Fix API keys and refresh tokens staying in the database when a user is deleted in wp-admin, and an API key of a deleted user causing a <code>500</code> error instead of <code>401</code></li>
+<li class="">Fix <code>/auth</code> rejecting Base64 passwords that contain <code>'</code>, <code>"</code> or <code>\</code>. Invalid Base64 now answers "Wrong user credentials."</li>
+<li class="">Fix <code>/auth</code> and <code>/auth/refresh</code> returning a refresh token that couldn't be saved: they now answer <code>500</code> (new error code <code>131</code>)</li>
+<li class="">Fix API key <code>expires_at</code> accepting any text: it must be a date, a date time or an ISO 8601 date (new error code <code>132</code>), is read as UTC and stored as UTC. The admin form now sends the browser's local time converted to UTC</li>
+<li class="">Fix the <strong>Delete</strong> button in <strong>Security &gt; Revoked Tokens</strong>, which always failed with "Invalid revoked token ID."</li>
+<li class="">Failing to store the two-factor session now has its own error code <code>133</code> (<code>500</code>). It used to share code <code>107</code> with "two-factor session expired"</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="api-reference">API Reference<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.2.0#api-reference" class="hash-link" aria-label="Direct link to API Reference" title="Direct link to API Reference" translate="no">​</a></h2>
+<ul>
+<li class="">Every endpoint in the <a class="" href="https://simplejwtlogin.com/api/v4/simple-jwt-login">API reference</a> now documents its real request parameters, status codes and error codes, with examples taken from the plugin messages</li>
+<li class="">The endpoints used by the plugin admin screens (<code>/api-keys*</code> and <a class="" href="https://simplejwtlogin.com/api/v4/list-revoked-tokens"><code>/revoked-tokens*</code></a>) are tagged <code>internal</code>, with their access rules: revoked tokens are for administrators only, and API keys can be managed by their owner, while administrators can manage every user's keys</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>security</category>
+            <category>feature</category>
+            <category>bugfix</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 4.1.1]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.1</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.1</guid>
+            <pubDate>Sun, 15 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 4.1.1 - a security release with stricter CORS origin rules for JWTs and a fix for JWT from session]]></description>
+            <content:encoded><![CDATA[<p>The version <code>4.1.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
+<p>A security release. Updating is recommended for everyone. If a browser app on another origin sends the JWT, list that origin in the CORS <strong>Allow origin</strong> setting before updating.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="security">Security<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.1#security" class="hash-link" aria-label="Direct link to Security" title="Direct link to Security" translate="no">​</a></h2>
+<ul>
+<li class="">Fixed a security vulnerability affecting JWT authentication of REST requests (reported via Patchstack)</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="breaking-changes">Breaking Changes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.1#breaking-changes" class="hash-link" aria-label="Direct link to Breaking Changes" title="Direct link to Breaking Changes" translate="no">​</a></h2>
+<ul>
+<li class="">Cross-origin browser apps that send the JWT must have their origin listed in the CORS <strong>Allow origin</strong> setting. A <code>*</code> entry trusts the <code>Authorization</code> header only - cookie and session JWTs are never trusted</li>
+<li class="">With CORS disabled (or <strong>Allow origin</strong> off), a JWT sent by a browser page on another site, even in the <code>Authorization</code> header, is ignored</li>
+</ul>
+<p>Requests from the site itself, server-to-server calls, mobile apps and JWTs passed in the URL (for example, autologin links) are not affected.</p>
+<p>Read more about <a class="" href="https://simplejwtlogin.com/docs/configuration#cross-site-requests">cross-site requests</a> and <a class="" href="https://simplejwtlogin.com/docs/cors">CORS</a>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.1#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
+<ul>
+<li class="">Fix "JWT from session" making every plugin endpoint and Protect Endpoints fail with a <code>500</code> error (call to an undefined session function)</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>security</category>
+            <category>bugfix</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 4.1.0]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.0</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.0</guid>
+            <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 4.1.0 - AI Abilities (MCP) integration, security hardening, faster API key and WooCommerce requests, and CORS fixes]]></description>
+            <content:encoded><![CDATA[<p>The version <code>4.1.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
+<p>This release adds the AI Abilities (MCP) integration, hardens security across Protect Endpoints, registration, webhooks and integrations, cuts database work on every authenticated request and fixes CORS headers on error responses. Updating is recommended for everyone.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.0#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
+<ul>
+<li class=""><strong>AI Abilities (MCP)</strong> - let AI agents manage and troubleshoot the plugin through the WordPress Abilities API (WordPress 6.9+). Read more about the <a class="" href="https://simplejwtlogin.com/docs/integrations/third-party/ai-abilities">AI Abilities integration</a>.</li>
+<li class=""><strong>CORS: multiple allowed origins</strong> - <code>Access-Control-Allow-Origin</code> now accepts a comma-separated list. The matching request origin is echoed back, and <code>*</code> echoes the request origin so credentialed requests work (<a href="https://github.com/nicumicle/simple-jwt-login/issues/179" target="_blank" rel="noopener noreferrer" class="">#179</a>). Read more about <a class="" href="https://simplejwtlogin.com/docs/cors">CORS</a>.</li>
+<li class=""><strong>New API Keys setting - Update "Last used"</strong> - choose whether a key's "Last used" time is saved at most once per minute (the new default) or on every request. Read more about <a class="" href="https://simplejwtlogin.com/docs/api-keys">API Keys</a>.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="security">Security<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.0#security" class="hash-link" aria-label="Direct link to Security" title="Direct link to Security" translate="no">​</a></h2>
+<ul>
+<li class="">Fix CSRF in the Force Login integration on cookie-authenticated REST requests (reported via Patchstack)</li>
+<li class="">The JWT middleware and the WooCommerce integration now check the resolved REST route instead of searching the URL</li>
+<li class="">Protect Endpoints now enforces <strong>JWT + Roles</strong> rules for logged-in (cookie-authenticated) users and API key owners. Read more about <a class="" href="https://simplejwtlogin.com/docs/protect-endpoints">Protect Endpoints</a>.</li>
+<li class="">Registration never sets capability, user level or session meta keys from the request, even when they are listed in <strong>Allowed User Meta Keys</strong></li>
+<li class="">Webhook calls time out after at most 30 seconds (<code>0</code> now means 30 seconds instead of no timeout), so a slow webhook endpoint can't hang logins</li>
+<li class="">Secrets (auth codes, JWT rule keys, webhook header values) are no longer written in plain text to the <strong>Settings Saved</strong> audit log entry</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="performance">Performance<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.0#performance" class="hash-link" aria-label="Direct link to Performance" title="Direct link to Performance" translate="no">​</a></h2>
+<ul>
+<li class="">Login no longer creates two WordPress sessions instead of one (autologin, register with auto-login, OAuth), reducing database writes per login</li>
+<li class="">The API key "last used" timestamp is updated at most once per minute per key by default, instead of on every request</li>
+<li class="">Remove an extra database query on every API key request</li>
+<li class="">WooCommerce integration: JWT requests are authenticated without a full login, so API calls no longer create a new WordPress session, set auth cookies or fire <code>wp_login</code> on every request</li>
+<li class="">Load the WordPress admin user functions only when deleting a user, instead of on every request</li>
+<li class="">Protect Endpoints no longer checks the revoked-token table twice for every JWT-authenticated request, and checks access once per REST request instead of every time WordPress reads the route list</li>
+<li class="">The Force Login, WooCommerce and WPGraphQL integrations reuse the plugin settings instead of re-reading and decoding them on every REST request</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.1.0#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
+<ul>
+<li class="">Fix CORS headers missing on REST error responses (<code>401</code>/<code>403</code> from JWT authentication and protected endpoints) (<a href="https://github.com/nicumicle/simple-jwt-login/issues/179" target="_blank" rel="noopener noreferrer" class="">#179</a>)</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>feature</category>
+            <category>security</category>
+            <category>bugfix</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 4.0.2]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.2</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.2</guid>
+            <pubDate>Fri, 09 Oct 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 4.0.2 - WooCommerce fix and WordPress 7.1 compatibility]]></description>
+            <content:encoded><![CDATA[<p>The version <code>4.0.2</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
+<p>A small maintenance release that fixes the WooCommerce integration and confirms compatibility with WordPress 7.1.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.2#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
+<ul>
+<li class="">Fix the WooCommerce integration so JWT-authenticated requests to the WooCommerce REST and Store APIs work as expected (<a href="https://github.com/nicumicle/simple-jwt-login/issues/177" target="_blank" rel="noopener noreferrer" class="">#177</a>)</li>
+</ul>
+<p>Read more about the <a class="" href="https://simplejwtlogin.com/docs/integrations/third-party/woocommerce">WooCommerce integration</a>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.2#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility" translate="no">​</a></h2>
+<ul>
+<li class="">Tested with WordPress 7.1</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
+            <category>compatibility</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 4.0.1]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.1</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.1</guid>
+            <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 4.0.1 - Protect Endpoints fix and Google OAuth security improvement]]></description>
+            <content:encoded><![CDATA[<p>The version <code>4.0.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
+<p>The first patch release for the 4.x line. It narrows Protect Endpoints to REST requests, hardens Google OAuth and improves how reserved JWT claims are handled.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="security">Security<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.1#security" class="hash-link" aria-label="Direct link to Security" title="Direct link to Security" translate="no">​</a></h2>
+<ul>
+<li class="">Improve Google OAuth security. Thanks to <a href="https://github.com/FaridNarimanov" target="_blank" rel="noopener noreferrer" class="">@FaridNarimanov</a> for reporting it (<a href="https://github.com/nicumicle/simple-jwt-login/issues/174" target="_blank" rel="noopener noreferrer" class="">#174</a>)</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.1#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
+<ul>
+<li class="">Protect Endpoints rules now apply only to REST API endpoints, so regular front-end and admin pages are no longer affected</li>
+<li class="">Improve how reserved claims (such as <code>exp</code> and <code>iat</code>) are stripped from custom JWT payload data</li>
+</ul>
+<p>Read more about <a class="" href="https://simplejwtlogin.com/docs/protect-endpoints">Protect Endpoints</a>.</p>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>bugfix</category>
+            <category>security</category>
+        </item>
         <item>
             <title><![CDATA[New Plugin Release 4.0.0]]></title>
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0</link>
@@ -118,6 +318,22 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <category>feature</category>
             <category>bugfix</category>
             <category>breaking-change</category>
+        </item>
+        <item>
+            <title><![CDATA[New Plugin Release 3.6.6]]></title>
+            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.6</link>
+            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.6</guid>
+            <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Released version 3.6.6 - WordPress 7.0 compatibility]]></description>
+            <content:encoded><![CDATA[<p>The version <code>3.6.6</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
+<p>A maintenance release for the 3.x line that confirms compatibility with WordPress 7.0.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.6#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility" translate="no">​</a></h2>
+<ul>
+<li class="">Tested with WordPress 7.0</li>
+</ul>
+<hr>
+<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
+            <category>compatibility</category>
         </item>
         <item>
             <title><![CDATA[New Plugin Release 3.6.5]]></title>
@@ -381,170 +597,6 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
 <hr>
 <p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
             <category>bugfix</category>
-            <category>feature</category>
-        </item>
-        <item>
-            <title><![CDATA[New Plugin Release 3.5.1]]></title>
-            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1</link>
-            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1</guid>
-            <pubDate>Sun, 01 Oct 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.1]]></description>
-            <content:encoded><![CDATA[<p>The version <code>3.5.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This update resolves PHP 8.2 warnings and adds WordPress 6.3 compatibility.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
-<ul>
-<li class="">Fix warnings and failed tests on PHP 8.2</li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements" translate="no">​</a></h2>
-<ul>
-<li class="">Publish code coverage to Codecov</li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.1#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility" translate="no">​</a></h2>
-<ul>
-<li class="">Update WordPress 6.3 compatibility</li>
-</ul>
-<hr>
-<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>bugfix</category>
-        </item>
-        <item>
-            <title><![CDATA[New Plugin Release 3.5.0]]></title>
-            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0</link>
-            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0</guid>
-            <pubDate>Thu, 05 Jan 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.0]]></description>
-            <content:encoded><![CDATA[<p>The version <code>3.5.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This update fixes compatibility issues with Protect Endpoints, improves Reset Password, and drops legacy PHP support.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
-<ul>
-<li class="">Search user by email on Reset Password <a href="https://github.com/nicumicle/simple-jwt-login/issues/31" target="_blank" rel="noopener noreferrer" class="">#31</a></li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
-<ul>
-<li class="">Fix: unable to create a post when Protect Endpoints is enabled for all endpoints <a href="https://github.com/nicumicle/simple-jwt-login/issues/62" target="_blank" rel="noopener noreferrer" class="">#62</a></li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.0#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements" translate="no">​</a></h2>
-<ul>
-<li class="">Switch <code>get_user_by_email</code> to <code>get_user_by()</code> due to WordPress deprecation</li>
-<li class="">Remove <code>convertUserToArray</code> method from <code>WordPressData</code></li>
-<li class="">Drop support for PHP 5.3 and PHP 5.4</li>
-</ul>
-<hr>
-<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>bugfix</category>
-            <category>feature</category>
-        </item>
-        <item>
-            <title><![CDATA[New Plugin Release 3.4.9]]></title>
-            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.9</link>
-            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.9</guid>
-            <pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.4.9]]></description>
-            <content:encoded><![CDATA[<p>The version <code>3.4.9</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This update introduces several new features around password handling, autologin flexibility, and a new plugin lifecycle hook.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.9#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
-<ul>
-<li class="">Add a strength indicator for the JWT decryption key</li>
-<li class="">Allow setting a custom length for randomly generated passwords (default: 10 characters)</li>
-<li class="">Allow sending base64-encoded <code>password</code> and <code>passhash</code> on the <code>/auth</code> endpoint</li>
-<li class="">Add query parameters filter on autologin redirect</li>
-<li class="">Add the <code>simple_jwt_login_before_endpoint</code> hook, fired before all plugin routes are initialized</li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.9#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
-<ul>
-<li class="">Fix <code>includeRequestParameters</code> building incorrect redirect URLs</li>
-</ul>
-<hr>
-<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>bugfix</category>
-            <category>feature</category>
-        </item>
-        <item>
-            <title><![CDATA[New Plugin Release 3.4.8]]></title>
-            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8</link>
-            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8</guid>
-            <pubDate>Sat, 05 Nov 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.4.8]]></description>
-            <content:encoded><![CDATA[<p>The version <code>3.4.8</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This update brings new filter hooks, improved security through request sanitization, and a bug fix for passwords with special characters.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
-<ul>
-<li class="">Add <code>simple_jwt_login_generate_payload</code> filter to allow customization of the authentication payload</li>
-<li class=""><code>/auth/validate</code> endpoint now supports both <code>GET</code> and <code>POST</code> methods</li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
-<ul>
-<li class="">Fix password that contains special characters <a href="https://github.com/nicumicle/simple-jwt-login/issues/50" target="_blank" rel="noopener noreferrer" class="">#50</a></li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.8#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements" translate="no">​</a></h2>
-<ul>
-<li class="">Change how the user is logged in when using the Protect Endpoints feature</li>
-<li class="">Refactor <code>RouteService::getUserFromJWT</code> method</li>
-<li class="">Sanitize all data from incoming requests</li>
-<li class="">Update License to GPL v3</li>
-</ul>
-<hr>
-<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>bugfix</category>
-            <category>feature</category>
-        </item>
-        <item>
-            <title><![CDATA[New Plugin Release 3.4.7]]></title>
-            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7</link>
-            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7</guid>
-            <pubDate>Tue, 04 Oct 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.4.7]]></description>
-            <content:encoded><![CDATA[<p>The version <code>3.4.7</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This is a <strong>security release</strong> following a WordPress team review. We recommend updating immediately.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="security-fixes">Security Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7#security-fixes" class="hash-link" aria-label="Direct link to Security Fixes" title="Direct link to Security Fixes" translate="no">​</a></h2>
-<ul>
-<li class="">Remove code vulnerability from the JWT library</li>
-<li class="">Fix local file inclusion risk</li>
-<li class="">Variables sanitization across the plugin</li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements" translate="no">​</a></h2>
-<ul>
-<li class="">Apply PHPCS checks to the entire plugin folder, not only the <code>src/</code> directory</li>
-<li class="">Keep the current active tab when plugin settings are saved</li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.7#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility" translate="no">​</a></h2>
-<ul>
-<li class="">The plugin has been tested with WordPress 6.0.2</li>
-</ul>
-<hr>
-<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
-            <category>bugfix</category>
-            <category>security</category>
-        </item>
-        <item>
-            <title><![CDATA[New Plugin Release 3.4.5]]></title>
-            <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5</link>
-            <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5</guid>
-            <pubDate>Mon, 11 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.4.5]]></description>
-            <content:encoded><![CDATA[<p>The version <code>3.4.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This update introduces two new Autologin features: a redirect on failure and a shortcode for displaying error details.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
-<ul>
-<li class="">Add Redirect on Fail Autologin</li>
-<li class="">Shortcode for displaying Autologin errors</li>
-</ul>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="redirect-on-fail">Redirect on Fail<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#redirect-on-fail" class="hash-link" aria-label="Direct link to Redirect on Fail" title="Direct link to Redirect on Fail" translate="no">​</a></h2>
-<p>This feature allows you to set a redirect URL for when Autologin fails - for example, when the JWT is invalid or expired - so you can show users a helpful error page instead of a blank screen.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="shortcode-for-autologin-errors">Shortcode for Autologin Errors<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.4.5#shortcode-for-autologin-errors" class="hash-link" aria-label="Direct link to Shortcode for Autologin Errors" title="Direct link to Shortcode for Autologin Errors" translate="no">​</a></h2>
-<p>The new shortcode lets you display the autologin error code or message directly on any page:</p>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">[simple-jwt-login:request key="error_code"]</span><br></span></code></pre></div></div>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">[simple-jwt-login:request key="error_message"]</span><br></span></code></pre></div></div>
-<p>You can also use it to read any query parameter from the URL. For example, given:</p>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">https://simplejwtlogin.com?my_parameter=test&amp;error_code=21&amp;error_message=This is an error</span><br></span></code></pre></div></div>
-<ul>
-<li class=""><code>[simple-jwt-login:request key="error_code"]</code> → <code>21</code></li>
-<li class=""><code>[simple-jwt-login:request key="error_message"]</code> → <code>This is an error</code></li>
-<li class=""><code>[simple-jwt-login:request key="my_parameter"]</code> → <code>test</code></li>
-</ul>
-<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>These shortcodes strip all HTML tags from the output.</p></div></div>
-<hr>
-<p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
             <category>feature</category>
         </item>
     </channel>

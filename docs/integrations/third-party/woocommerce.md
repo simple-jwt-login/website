@@ -4,14 +4,16 @@ Requires the [WooCommerce](https://woocommerce.com/) plugin to be installed and 
 
 ## What it does[​](#what-it-does "Direct link to What it does")
 
-When a JWT is sent on a WooCommerce REST request, the plugin authenticates the request as the identified WordPress user **before WooCommerce checks permissions** - so you can drive the store with a JWT instead of a consumer key / secret.
+When a JWT is sent on a WooCommerce REST request, the plugin authenticates the request as the identified WordPress user **before WooCommerce checks permissions**. This lets you drive the store with a JWT instead of a consumer key / secret.
 
 It covers every `/wc/` route:
 
-* **Classic CRUD API** (`/wc/v3`, `/wc/v2`, `/wc/v1`) - products, orders, customers, coupons, settings, ...
+* **Classic CRUD API** (`/wc/v3`, `/wc/v2`, `/wc/v1`) - products, orders, customers, coupons, and settings
 * **Store API** (`/wc/store/v1`) - the customer-facing cart & checkout used by headless storefronts.
 
-This works even when the global **"All WordPress endpoints check for JWT"** middleware is disabled - it is scoped to WooCommerce routes only.
+This works even when the global **"All WordPress endpoints check for JWT"** middleware is disabled - it is scoped to WooCommerce routes only. Since version 4.1.0, the plugin checks the resolved REST route, not the raw URL, so a `/wc/` string elsewhere in the URL does not trigger it.
+
+Since version 4.1.0, the JWT authenticates only the current request. It does not do a full WordPress login: no session is created, no auth cookies are set and `wp_login` is not fired, so repeated API calls don't pile up sessions.
 
 Capabilities still apply
 
@@ -68,14 +70,14 @@ For logged-in (JWT) users the cart persists by user ID, so no cart cookie is nee
 
 ## Requirements summary[​](#requirements-summary "Direct link to Requirements summary")
 
-| Requirement                              | Why                                                               |
-| ---------------------------------------- | ----------------------------------------------------------------- |
-| WooCommerce active                       | Provides the `/wc/` REST routes                                   |
-| WooCommerce integration **Enabled**      | Authenticates the JWT on `/wc/` routes                            |
-| **Store API cart & checkout** toggle     | Lets header-JWT requests skip the Store API nonce (cart/checkout) |
-| Admin / Shop Manager token               | Required only to manage products & orders                         |
-| A payment method (e.g. Cash on Delivery) | So checkout can complete                                          |
-| HTTPS                                    | A bearer token must never travel over plain HTTP                  |
-| CORS enabled                             | For cross-origin browser clients                                  |
+| Requirement                                      | Why                                                               |
+| ------------------------------------------------ | ----------------------------------------------------------------- |
+| WooCommerce active                               | Provides the `/wc/` REST routes                                   |
+| WooCommerce integration **Enabled**              | Authenticates the JWT on `/wc/` routes                            |
+| **Store API cart & checkout** toggle             | Lets header-JWT requests skip the Store API nonce (cart/checkout) |
+| Admin / Shop Manager token                       | Required only to manage products & orders                         |
+| A payment method (for example, Cash on Delivery) | Required for checkout to complete                                 |
+| HTTPS                                            | A bearer token must never travel over plain HTTP                  |
+| CORS enabled                                     | For cross-origin browser clients                                  |
 
 See a complete browser implementation in the [Headless WooCommerce store (Vanilla JS)](/docs/code-examples/woocommerce-headless-store.md) code example.

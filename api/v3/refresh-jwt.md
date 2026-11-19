@@ -14,6 +14,6 @@ Refresh expired JWT
 * 200
 * 400
 
-Token has been refreshed succcessfully
+Token has been refreshed successfully
 
 Error

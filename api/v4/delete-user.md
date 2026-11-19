@@ -26,27 +26,28 @@ Permanently deletes the WordPress user identified by the JWT payload. The JWT is
 * 422
 * 500
 
-User deleted successfully.
+User deleted. Their refresh tokens and revoked-token records are removed too. The body can be changed with the `simple_jwt_login_response_delete_user` filter.
 
-Bad request. The JWT has a structural encoding error (wrong number of segments, invalid base64 encoding of header, claims, or signature).
+The JWT could not be decoded or validated (all JWT library errors return 400): malformed token (`error_code` 2-5), algorithm/`kid` problems (`error_code` 6-10), bad signature (`error_code` 11), not yet valid or expired (`error_code` 12-14).
 
 Unauthorized. One of:
 
-* The JWT signature verification failed or algorithm is unsupported (`error_code` 6-11).
-* The JWT has `nbf`/`iat` violations or is expired (`error_code` 12-14).
-* The JWT has been revoked (`error_code` 55).
+* The JWT has been revoked, or was issued before the user's last password change (`error_code` 55).
+* The `aud` claim does not match the expected audience (`error_code` 130).
 * The provided auth code is wrong (`error_code` 27).
+* The JWT is a 2FA interim token: finish the `/auth/2fa` step first (`error_code` 110).
+* The JWT does not contain the claim configured as "JWT login by" parameter (`error_code` 29, 30).
 
 Forbidden. One of:
 
 * User deletion is disabled in the plugin settings (`error_code` 39).
 * The client IP address is not on the allow-list (`error_code` 41).
 
-The WordPress user identified by the JWT payload could not be found.
+The WordPress user identified by the JWT payload could not be found (`error_code` 24).
 
 Unprocessable entity. One of:
 
-* The JWT is completely absent from the request (`error_code` 42).
+* The JWT is absent from the request (`error_code` 42).
 * The auth code is required but was not provided (`error_code` 94).
 
-Internal server error.
+Internal server error (any other unexpected error).

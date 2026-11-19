@@ -4,7 +4,7 @@
 
   ## [Nicu Micle](/releases/authors/nicumicle.md)
 
-  21
+  76
 
   Creator of Simple JWT Login
 

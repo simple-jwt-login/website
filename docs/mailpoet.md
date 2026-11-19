@@ -8,14 +8,14 @@ The add-on generates a shortcode that you drop into your MailPoet email template
 
 ## Shortcode parameters[​](#shortcode-parameters "Direct link to Shortcode parameters")
 
-| Parameter     | Description                                                                                                           |
-| ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `text`        | The visible link text (e.g., `"Log in to your account"`)                                                              |
-| `class`       | CSS class(es) to apply to the link element                                                                            |
-| `style`       | Inline CSS styles for the link                                                                                        |
-| `validity`    | How long the generated JWT is valid, in seconds. Default: `604800` (one week)                                         |
-| `authCode`    | The Auth Code required by the Autologin endpoint. Find your codes under **Simple-JWT-Login → Auth Codes**.            |
-| `redirectUrl` | Overrides the redirect URL set in Simple-JWT-Login settings. The user will be sent here after a successful autologin. |
+| Parameter     | Description                                                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `text`        | The visible link text (for example, `"Log in to your account"`)                                                           |
+| `class`       | CSS class(es) to apply to the link element                                                                                |
+| `style`       | Inline CSS styles for the link                                                                                            |
+| `validity`    | How long the generated JWT is valid, in seconds. Default: `604800` (one week)                                             |
+| `authCode`    | The Auth Code required by the Autologin endpoint. Find your codes under **Simple-JWT-Login → Auth Codes**.                |
+| `redirectUrl` | Overrides the redirect URL set in Simple-JWT-Login settings. The plugin sends the user here after a successful autologin. |
 
 ```
 [custom:simple-jwt-login text="Login" class="myClassName" style="color:red;" validity="604800" authCode="1" redirectUrl="https://simplejwtlogin.com"]

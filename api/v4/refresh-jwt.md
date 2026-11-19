@@ -5,25 +5,32 @@ POST
 /auth/refresh
 ```
 
-Exchanges a valid refresh token for a new JWT (and a new refresh token). The original refresh token is invalidated after use.
+Exchanges a valid refresh token for a new JWT (and a new refresh token). The original refresh token is single-use: when several requests send the same token at once, only one of them gets a new JWT, the others answer "Invalid refresh token."
 
 **Requirements**
 
 * The refresh-token feature must be enabled in the plugin settings.
 * The refresh token must exist in the database and not have exceeded the maximum token age configured in the plugin settings.
-* If "Authentication Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
+* Authentication must be enabled in the plugin settings.
+* If "Refresh Token Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
+* If a JWT is also sent (header, cookie, session or `JWT` parameter) and it has been revoked, the request is rejected. Any other problem with that JWT (for example, expired) is ignored.
+
+**Custom payload claims** Optionally supply `payload` as a JSON-encoded object to add extra claims to the newly issued JWT. Reserved identity claims are always derived from the authenticated user and cannot be overridden this way.
 
 ## Request[​](#request "Direct link to request")
 
 ## Responses[​](#responses "Direct link to Responses")
 
 * 200
+* 400
 * 401
 * 403
 * 422
 * 500
 
 JWT refreshed successfully. Returns a new JWT and a new refresh token.
+
+The new JWT could not be signed (JWT library error, for example, OpenSSL signing failure `error_code` 16).
 
 Unauthorized. One of:
 
@@ -43,4 +50,4 @@ Unprocessable entity. One of:
 * The `refresh_token` field is absent from the request (`error_code` 51).
 * The auth code is required but was not provided (`error_code` 94).
 
-Internal server error.
+The new refresh token could not be saved in the database (`error_code` 131). The old refresh token is already used up, so the client must log in again.

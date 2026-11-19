@@ -6,11 +6,20 @@ Requires the [Two Factor](https://wordpress.org/plugins/two-factor/) plugin to b
 
 When enabled, users who have 2FA configured in the Two Factor plugin must complete a second authentication step before receiving a full JWT. The flow is:
 
-1. Client POSTs credentials to `POST /simple-jwt-login/v1/auth`. Instead of a full JWT, the response contains a short-lived **interim JWT**.
+1. Client sends credentials to `POST /simple-jwt-login/v1/auth`. Instead of a full JWT, the response contains a short-lived **interim JWT**.
 2. Client submits the interim JWT and the user's 2FA code to `POST /simple-jwt-login/v1/auth/2fa`.
 3. On success, a full JWT (and optional refresh token) is returned - identical to a normal auth response.
 
 Users without 2FA configured receive a full JWT directly from step 1, as usual.
+
+### Failed codes and reuse[​](#failed-codes-and-reuse "Direct link to Failed codes and reuse")
+
+Since version 4.2.0, these rules apply to `POST /auth/2fa` and to the OAuth two-factor login form:
+
+* Each wrong code counts as a failed attempt for the Two Factor plugin, so its rate limit applies (error code `108`). Requesting a new interim JWT from `/auth` doesn't reset the counter - only a valid code does.
+* Each wrong code also fires `wp_login_failed`, so brute-force plugins can block the client.
+* After too many wrong codes (30 by default, set with the Two Factor filter `two_factor_failed_attempt_limit`), the user's password is reset and the user and the admin are emailed, as on `wp-login.php`. The call answers error code `109` with a message asking the user to check their email. The user must set a new password before logging in again.
+* An interim JWT can be exchanged for a JWT only once. After a valid code, call `POST /auth` again to start a new two-factor login.
 
 ## Settings[​](#settings "Direct link to Settings")
 
@@ -18,7 +27,7 @@ Users without 2FA configured receive a full JWT directly from step 1, as usual.
 
 How long the interim JWT (issued after the password check, before 2FA verification) remains valid. Range: 1-60 minutes.
 
-A short TTL (e.g. 5 minutes) minimises the window in which an intercepted interim JWT could be misused.
+A short TTL (for example, 5 minutes) minimises the window in which an intercepted interim JWT could be misused.
 
 ## 2FA Endpoint[​](#2fa-endpoint "Direct link to 2FA Endpoint")
 

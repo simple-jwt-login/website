@@ -31,7 +31,7 @@ The "All WordPress endpoints check for JWT" option (under **General Settings**) 
 
 CORS must be enabled so that the browser can make requests to your WordPress domain from a different origin. Configure the allowed origins in the plugin's CORS settings to match the domain where your app is hosted.
 
-## Step 1: Login and obtain a JWT[​](#step-1-login-and-obtain-a-jwt "Direct link to Step 1: Login and obtain a JWT")
+## Step 1 - Login and obtain a JWT[​](#step-1---login-and-obtain-a-jwt "Direct link to Step 1 - Login and obtain a JWT")
 
 Send the user's credentials to the Simple JWT Login auth endpoint. Store the returned JWT so it can be attached to every subsequent request.
 
@@ -55,7 +55,7 @@ async function login(email, password) {
 }
 ```
 
-## Step 2: Fetch todos[​](#step-2-fetch-todos "Direct link to Step 2: Fetch todos")
+## Step 2 - Fetch todos[​](#step-2---fetch-todos "Direct link to Step 2 - Fetch todos")
 
 Private posts are only returned when the request is authenticated. Pass the JWT in the `Authorization` header.
 
@@ -76,7 +76,7 @@ async function fetchTodos(jwt) {
 }
 ```
 
-## Step 3: Add a todo[​](#step-3-add-a-todo "Direct link to Step 3: Add a todo")
+## Step 3 - Add a todo[​](#step-3---add-a-todo "Direct link to Step 3 - Add a todo")
 
 Create a new private post. The post `title` holds the todo text; `status: "private"` keeps it visible only to the owner.
 
@@ -99,7 +99,7 @@ async function addTodo(jwt, title) {
 }
 ```
 
-## Step 4: Delete a todo[​](#step-4-delete-a-todo "Direct link to Step 4: Delete a todo")
+## Step 4 - Delete a todo[​](#step-4---delete-a-todo "Direct link to Step 4 - Delete a todo")
 
 Delete a post by its ID. Add `?force=true` to bypass the WordPress trash and permanently remove it.
 
@@ -397,4 +397,4 @@ The complete single-file app below wires everything together. Save it as `index.
 
 * The JWT is kept in `localStorage` so the user stays logged in across page reloads.
 * Todos are stored as **private** WordPress posts - only the authenticated user can read or modify them.
-* When a request returns an error (e.g. expired JWT), the app clears the stored token and redirects to the login screen.
+* When a request returns an error (for example, expired JWT), the app clears the stored token and redirects to the login screen.

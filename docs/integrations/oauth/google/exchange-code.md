@@ -62,7 +62,7 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   "success": false,
   "data": {
     "message": "The code you provided is invalid. Bad Request. Invalid_grant",
-    "errorCode": 72
+    "error_code": 72
   }
 }
 ```
@@ -72,7 +72,7 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   "success": false,
   "data": {
     "message": "The code you provided is invalid. Bad Request. Redirect_uri_mismatch",
-    "errorCode": 72
+    "error_code": 72
   }
 }
 ```

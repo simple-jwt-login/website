@@ -140,12 +140,45 @@ Archive
 #### nicumicle
 
 - [Nicu Micle](/releases/authors/nicumicle.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/10.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/11.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/12.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/13.md)
 - [Nicu Micle](/releases/authors/nicumicle/authors/2.md)
 - [Nicu Micle](/releases/authors/nicumicle/authors/3.md)
 - [Nicu Micle](/releases/authors/nicumicle/authors/4.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/5.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/6.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/7.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/8.md)
+- [Nicu Micle](/releases/authors/nicumicle/authors/9.md)
 
 ### page
 
+
+#### 10
+
+Blog
+
+- [Release Notes](/releases/page/10.md): Blog
+
+#### 11
+
+Blog
+
+- [Release Notes](/releases/page/11.md): Blog
+
+#### 12
+
+Blog
+
+- [Release Notes](/releases/page/12.md): Blog
+
+#### 13
+
+Blog
+
+- [Release Notes](/releases/page/13.md): Blog
 
 #### 2
 
@@ -165,6 +198,324 @@ Blog
 
 - [Release Notes](/releases/page/4.md): Blog
 
+#### 5
+
+Blog
+
+- [Release Notes](/releases/page/5.md): Blog
+
+#### 6
+
+Blog
+
+- [Release Notes](/releases/page/6.md): Blog
+
+#### 7
+
+Blog
+
+- [Release Notes](/releases/page/7.md): Blog
+
+#### 8
+
+Blog
+
+- [Release Notes](/releases/page/8.md): Blog
+
+#### 9
+
+Blog
+
+- [Release Notes](/releases/page/9.md): Blog
+
+### simple-jwt-login-release-1.0.0
+
+Released version 1.0.0 - initial release
+
+- [New Plugin Release 1.0.0](/releases/simple-jwt-login-release-1.0.0.md): Released version 1.0.0 - initial release
+
+### simple-jwt-login-release-1.1.0
+
+Released version 1.1.0 - IP restrictions and email domain restrictions
+
+- [New Plugin Release 1.1.0](/releases/simple-jwt-login-release-1.1.0.md): Released version 1.1.0 - IP restrictions and email domain restrictions
+
+### simple-jwt-login-release-1.2.0
+
+Released version 1.2.0 - login by email or user ID
+
+- [New Plugin Release 1.2.0](/releases/simple-jwt-login-release-1.2.0.md): Released version 1.2.0 - login by email or user ID
+
+### simple-jwt-login-release-1.2.1
+
+Released version 1.2.1 - copy example URLs
+
+- [New Plugin Release 1.2.1](/releases/simple-jwt-login-release-1.2.1.md): Released version 1.2.1 - copy example URLs
+
+### simple-jwt-login-release-1.2.2
+
+Released version 1.2.2 - read the key from the JWT payload
+
+- [New Plugin Release 1.2.2](/releases/simple-jwt-login-release-1.2.2.md): Released version 1.2.2 - read the key from the JWT payload
+
+### simple-jwt-login-release-1.2.3
+
+Released version 1.2.3 - custom Auth Key parameter
+
+- [New Plugin Release 1.2.3](/releases/simple-jwt-login-release-1.2.3.md): Released version 1.2.3 - custom Auth Key parameter
+
+### simple-jwt-login-release-1.2.4
+
+Released version 1.2.4 - Auth Codes UI improvements
+
+- [New Plugin Release 1.2.4](/releases/simple-jwt-login-release-1.2.4.md): Released version 1.2.4 - Auth Codes UI improvements
+
+### simple-jwt-login-release-1.3.0
+
+Released version 1.3.0 - translations
+
+- [New Plugin Release 1.3.0](/releases/simple-jwt-login-release-1.3.0.md): Released version 1.3.0 - translations
+
+### simple-jwt-login-release-1.3.1
+
+Released version 1.3.1 - administrator-only settings
+
+- [New Plugin Release 1.3.1](/releases/simple-jwt-login-release-1.3.1.md): Released version 1.3.1 - administrator-only settings
+
+### simple-jwt-login-release-1.4.0
+
+Released version 1.4.0 - error codes and settings improvements
+
+- [New Plugin Release 1.4.0](/releases/simple-jwt-login-release-1.4.0.md): Released version 1.4.0 - error codes and settings improvements
+
+### simple-jwt-login-release-1.5.0
+
+Released version 1.5.0 - delete users and custom route namespace
+
+- [New Plugin Release 1.5.0](/releases/simple-jwt-login-release-1.5.0.md): Released version 1.5.0 - delete users and custom route namespace
+
+### simple-jwt-login-release-1.6.0
+
+Released version 1.6.0 - hooks and JWT in header
+
+- [New Plugin Release 1.6.0](/releases/simple-jwt-login-release-1.6.0.md): Released version 1.6.0 - hooks and JWT in header
+
+### simple-jwt-login-release-1.6.1
+
+Released version 1.6.1 - JWT from cookie and session
+
+- [New Plugin Release 1.6.1](/releases/simple-jwt-login-release-1.6.1.md): Released version 1.6.1 - JWT from cookie and session
+
+### simple-jwt-login-release-1.6.2
+
+Released version 1.6.2 - random passwords and more registration options
+
+- [New Plugin Release 1.6.2](/releases/simple-jwt-login-release-1.6.2.md): Released version 1.6.2 - random passwords and more registration options
+
+### simple-jwt-login-release-1.6.3
+
+Released version 1.6.3 - redirect hook
+
+- [New Plugin Release 1.6.3](/releases/simple-jwt-login-release-1.6.3.md): Released version 1.6.3 - redirect hook
+
+### simple-jwt-login-release-1.6.4
+
+Released version 1.6.4 - route warning fix
+
+- [New Plugin Release 1.6.4](/releases/simple-jwt-login-release-1.6.4.md): Released version 1.6.4 - route warning fix
+
+### simple-jwt-login-release-2.0.0
+
+Released version 2.0.0 - new settings UI, JWT generation and refresh
+
+- [New Plugin Release 2.0.0](/releases/simple-jwt-login-release-2.0.0.md): Released version 2.0.0 - new settings UI, JWT generation and refresh
+
+### simple-jwt-login-release-2.1.0
+
+Released version 2.1.0 - CORS support and Auth Code expiration
+
+- [New Plugin Release 2.1.0](/releases/simple-jwt-login-release-2.1.0.md): Released version 2.1.0 - CORS support and Auth Code expiration
+
+### simple-jwt-login-release-2.1.1
+
+Released version 2.1.1 - autologin after register fix
+
+- [New Plugin Release 2.1.1](/releases/simple-jwt-login-release-2.1.1.md): Released version 2.1.1 - autologin after register fix
+
+### simple-jwt-login-release-2.2.0
+
+Released version 2.2.0 - validate token endpoint
+
+- [New Plugin Release 2.2.0](/releases/simple-jwt-login-release-2.2.0.md): Released version 2.2.0 - validate token endpoint
+
+### simple-jwt-login-release-2.2.1
+
+Released version 2.2.1 - Bootstrap fix
+
+- [New Plugin Release 2.2.1](/releases/simple-jwt-login-release-2.2.1.md): Released version 2.2.1 - Bootstrap fix
+
+### simple-jwt-login-release-2.2.2
+
+Released version 2.2.2 - asset loading improvements
+
+- [New Plugin Release 2.2.2](/releases/simple-jwt-login-release-2.2.2.md): Released version 2.2.2 - asset loading improvements
+
+### simple-jwt-login-release-2.2.3
+
+Released version 2.2.3 - hooks toggle and CORS fix
+
+- [New Plugin Release 2.2.3](/releases/simple-jwt-login-release-2.2.3.md): Released version 2.2.3 - hooks toggle and CORS fix
+
+### simple-jwt-login-release-2.2.4
+
+Released version 2.2.4 - tabs visibility fix
+
+- [New Plugin Release 2.2.4](/releases/simple-jwt-login-release-2.2.4.md): Released version 2.2.4 - tabs visibility fix
+
+### simple-jwt-login-release-2.2.5
+
+Released version 2.2.5 - login by username and private endpoint access
+
+- [New Plugin Release 2.2.5](/releases/simple-jwt-login-release-2.2.5.md): Released version 2.2.5 - login by username and private endpoint access
+
+### simple-jwt-login-release-2.2.6
+
+Released version 2.2.6 - certificate support and username login
+
+- [New Plugin Release 2.2.6](/releases/simple-jwt-login-release-2.2.6.md): Released version 2.2.6 - certificate support and username login
+
+### simple-jwt-login-release-2.2.7
+
+Released version 2.2.7 - base64 decryption keys
+
+- [New Plugin Release 2.2.7](/releases/simple-jwt-login-release-2.2.7.md): Released version 2.2.7 - base64 decryption keys
+
+### simple-jwt-login-release-2.3.0
+
+Released version 2.3.0 - revoke token, custom payload and user meta
+
+- [New Plugin Release 2.3.0](/releases/simple-jwt-login-release-2.3.0.md): Released version 2.3.0 - revoke token, custom payload and user meta
+
+### simple-jwt-login-release-2.3.1
+
+Released version 2.3.1 - clearer settings errors
+
+- [New Plugin Release 2.3.1](/releases/simple-jwt-login-release-2.3.1.md): Released version 2.3.1 - clearer settings errors
+
+### simple-jwt-login-release-2.4.0
+
+Released version 2.4.0 - redirectUrl parameter
+
+- [New Plugin Release 2.4.0](/releases/simple-jwt-login-release-2.4.0.md): Released version 2.4.0 - redirectUrl parameter
+
+### simple-jwt-login-release-2.4.1
+
+Released version 2.4.1 - more redirect URL variables
+
+- [New Plugin Release 2.4.1](/releases/simple-jwt-login-release-2.4.1.md): Released version 2.4.1 - more redirect URL variables
+
+### simple-jwt-login-release-2.5.0
+
+Released version 2.5.0 - custom JWT parameter keys
+
+- [New Plugin Release 2.5.0](/releases/simple-jwt-login-release-2.5.0.md): Released version 2.5.0 - custom JWT parameter keys
+
+### simple-jwt-login-release-2.5.1
+
+Released version 2.5.1 - Authorization header fix
+
+- [New Plugin Release 2.5.1](/releases/simple-jwt-login-release-2.5.1.md): Released version 2.5.1 - Authorization header fix
+
+### simple-jwt-login-release-2.5.2
+
+Released version 2.5.2 - REST route permission callbacks
+
+- [New Plugin Release 2.5.2](/releases/simple-jwt-login-release-2.5.2.md): Released version 2.5.2 - REST route permission callbacks
+
+### simple-jwt-login-release-2.6.0
+
+Released version 2.6.0 - autologin without redirect
+
+- [New Plugin Release 2.6.0](/releases/simple-jwt-login-release-2.6.0.md): Released version 2.6.0 - autologin without redirect
+
+### simple-jwt-login-release-2.6.1
+
+Released version 2.6.1 - documentation link
+
+- [New Plugin Release 2.6.1](/releases/simple-jwt-login-release-2.6.1.md): Released version 2.6.1 - documentation link
+
+### simple-jwt-login-release-2.6.2
+
+Released version 2.6.2 - documentation link update
+
+- [New Plugin Release 2.6.2](/releases/simple-jwt-login-release-2.6.2.md): Released version 2.6.2 - documentation link update
+
+### simple-jwt-login-release-3.0.0
+
+Released version 3.0.0 - code refactor, JSON requests, Force Login support and IP restrictions
+
+- [New Plugin Release 3.0.0](/releases/simple-jwt-login-release-3.0.0.md): Released version 3.0.0 - code refactor, JSON requests, Force Login support and IP restrictions
+
+### simple-jwt-login-release-3.1.0
+
+Released version 3.1.0 - reset password endpoints
+
+- [New Plugin Release 3.1.0](/releases/simple-jwt-login-release-3.1.0.md): Released version 3.1.0 - reset password endpoints
+
+### simple-jwt-login-release-3.2.0
+
+Released version 3.2.0 - user data in hooks and JWT on register
+
+- [New Plugin Release 3.2.0](/releases/simple-jwt-login-release-3.2.0.md): Released version 3.2.0 - user data in hooks and JWT on register
+
+### simple-jwt-login-release-3.2.1
+
+Released version 3.2.1 - CSRF fix for admin settings
+
+- [New Plugin Release 3.2.1](/releases/simple-jwt-login-release-3.2.1.md): Released version 3.2.1 - CSRF fix for admin settings
+
+### simple-jwt-login-release-3.3.0
+
+Released version 3.3.0 - sanitized texts, translations and stronger random passwords
+
+- [New Plugin Release 3.3.0](/releases/simple-jwt-login-release-3.3.0.md): Released version 3.3.0 - sanitized texts, translations and stronger random passwords
+
+### simple-jwt-login-release-3.3.1
+
+Released version 3.3.1 - safer view loading
+
+- [New Plugin Release 3.3.1](/releases/simple-jwt-login-release-3.3.1.md): Released version 3.3.1 - safer view loading
+
+### simple-jwt-login-release-3.4.0
+
+Released version 3.4.0 - Protect Endpoints
+
+- [New Plugin Release 3.4.0](/releases/simple-jwt-login-release-3.4.0.md): Released version 3.4.0 - Protect Endpoints
+
+### simple-jwt-login-release-3.4.1
+
+Released version 3.4.1 - change password with JWT and Protect Endpoints improvements
+
+- [New Plugin Release 3.4.1](/releases/simple-jwt-login-release-3.4.1.md): Released version 3.4.1 - change password with JWT and Protect Endpoints improvements
+
+### simple-jwt-login-release-3.4.10
+
+Released version 3.4.10 - REST routes fix
+
+- [New Plugin Release 3.4.10](/releases/simple-jwt-login-release-3.4.10.md): Released version 3.4.10 - REST routes fix
+
+### simple-jwt-login-release-3.4.2
+
+Released version 3.4.2 - user roles in responses
+
+- [New Plugin Release 3.4.2](/releases/simple-jwt-login-release-3.4.2.md): Released version 3.4.2 - user roles in responses
+
+### simple-jwt-login-release-3.4.3
+
+Released version 3.4.3 - WordPress 5.9 compatibility
+
+- [New Plugin Release 3.4.3](/releases/simple-jwt-login-release-3.4.3.md): Released version 3.4.3 - WordPress 5.9 compatibility
+
 ### simple-jwt-login-release-3.4.4
 
 Released version 3.4.4
@@ -176,6 +527,12 @@ Released version 3.4.4
 Released version 3.4.5
 
 - [New Plugin Release 3.4.5](/releases/simple-jwt-login-release-3.4.5.md): Released version 3.4.5
+
+### simple-jwt-login-release-3.4.6
+
+Released version 3.4.6 - user meta fix
+
+- [New Plugin Release 3.4.6](/releases/simple-jwt-login-release-3.4.6.md): Released version 3.4.6 - user meta fix
 
 ### simple-jwt-login-release-3.4.7
 
@@ -285,11 +642,47 @@ Released version 3.6.5 - security patch, bug fixes, and WordPress 6.9 compatibil
 
 - [New Plugin Release 3.6.5](/releases/simple-jwt-login-release-3.6.5.md): Released version 3.6.5 - security patch, bug fixes, and WordPress 6.9 compatibility
 
+### simple-jwt-login-release-3.6.6
+
+Released version 3.6.6 - WordPress 7.0 compatibility
+
+- [New Plugin Release 3.6.6](/releases/simple-jwt-login-release-3.6.6.md): Released version 3.6.6 - WordPress 7.0 compatibility
+
 ### simple-jwt-login-release-4.0.0
 
 Released version 4.0.0 - major redesign, new features, OAuth expansion, 2FA, API Keys, Audit Logs, Webhooks, and more
 
 - [New Plugin Release 4.0.0](/releases/simple-jwt-login-release-4.0.0.md): Released version 4.0.0 - major redesign, new features, OAuth expansion, 2FA, API Keys, Audit Logs, Webhooks, and more
+
+### simple-jwt-login-release-4.0.1
+
+Released version 4.0.1 - Protect Endpoints fix and Google OAuth security improvement
+
+- [New Plugin Release 4.0.1](/releases/simple-jwt-login-release-4.0.1.md): Released version 4.0.1 - Protect Endpoints fix and Google OAuth security improvement
+
+### simple-jwt-login-release-4.0.2
+
+Released version 4.0.2 - WooCommerce fix and WordPress 7.1 compatibility
+
+- [New Plugin Release 4.0.2](/releases/simple-jwt-login-release-4.0.2.md): Released version 4.0.2 - WooCommerce fix and WordPress 7.1 compatibility
+
+### simple-jwt-login-release-4.1.0
+
+Released version 4.1.0 - AI Abilities (MCP) integration, security hardening, faster API key and WooCommerce requests, and CORS fixes
+
+- [New Plugin Release 4.1.0](/releases/simple-jwt-login-release-4.1.0.md): Released version 4.1.0 - AI Abilities (MCP) integration, security hardening, faster API key and WooCommerce requests, and CORS fixes
+
+### simple-jwt-login-release-4.1.1
+
+Released version 4.1.1 - a security release with stricter CORS origin rules for JWTs and a fix for JWT from session
+
+- [New Plugin Release 4.1.1](/releases/simple-jwt-login-release-4.1.1.md): Released version 4.1.1 - a security release with stricter CORS origin rules for JWTs and a fix for JWT from session
+
+### simple-jwt-login-release-4.2.0
+
+Released version 4.2.0 - an important security release with JWT audience checks, session revocation on password change, and many fixes
+
+- [New Plugin Release 4.2.0](/releases/simple-jwt-login-release-4.2.0.md): Released version 4.2.0 - an important security release with JWT audience checks, session revocation on password change, and many fixes
 
 ### tags
 
@@ -301,19 +694,38 @@ Released version 4.0.0 - major redesign, new features, OAuth expansion, 2FA, API
 
 #### bugfix
 
-- [19 posts tagged with "bugfix"](/releases/tags/bugfix.md)
-- [19 posts tagged with "bugfix"](/releases/tags/bugfix/page/2.md)
-- [19 posts tagged with "bugfix"](/releases/tags/bugfix/page/3.md)
-- [19 posts tagged with "bugfix"](/releases/tags/bugfix/page/4.md)
+- [43 posts tagged with "bugfix"](/releases/tags/bugfix.md)
+- [43 posts tagged with "bugfix"](/releases/tags/bugfix/page/2.md)
+- [43 posts tagged with "bugfix"](/releases/tags/bugfix/page/3.md)
+- [43 posts tagged with "bugfix"](/releases/tags/bugfix/page/4.md)
+- [43 posts tagged with "bugfix"](/releases/tags/bugfix/page/5.md)
+- [43 posts tagged with "bugfix"](/releases/tags/bugfix/page/6.md)
+- [43 posts tagged with "bugfix"](/releases/tags/bugfix/page/7.md)
+- [43 posts tagged with "bugfix"](/releases/tags/bugfix/page/8.md)
+
+#### compatibility
+
+- [3 posts tagged with "compatibility"](/releases/tags/compatibility.md)
 
 #### feature
 
-- [10 posts tagged with "feature"](/releases/tags/feature.md)
-- [10 posts tagged with "feature"](/releases/tags/feature/page/2.md)
+- [43 posts tagged with "feature"](/releases/tags/feature.md)
+- [43 posts tagged with "feature"](/releases/tags/feature/page/2.md)
+- [43 posts tagged with "feature"](/releases/tags/feature/page/3.md)
+- [43 posts tagged with "feature"](/releases/tags/feature/page/4.md)
+- [43 posts tagged with "feature"](/releases/tags/feature/page/5.md)
+- [43 posts tagged with "feature"](/releases/tags/feature/page/6.md)
+- [43 posts tagged with "feature"](/releases/tags/feature/page/7.md)
+- [43 posts tagged with "feature"](/releases/tags/feature/page/8.md)
+
+#### maintenance
+
+- [5 posts tagged with "maintenance"](/releases/tags/maintenance.md)
 
 #### security
 
-- [2 posts tagged with "security"](/releases/tags/security.md)
+- [10 posts tagged with "security"](/releases/tags/security.md)
+- [10 posts tagged with "security"](/releases/tags/security/page/2.md)
 
 ## search
 
@@ -412,6 +824,12 @@ Permanently removes the API key record from the database. This action is
 
 - [Permanently delete an API key](/api/v4/delete-api-key.md): Permanently removes the API key record from the database. This action is
 
+#### delete-revoked-token
+
+Removes a revoked-token record. This un-revokes the underlying JWT - if it has not
+
+- [Delete a revoked-token entry](/api/v4/delete-revoked-token.md): Removes a revoked-token record. This un-revokes the underlying JWT - if it has not
+
 #### delete-user
 
 Permanently deletes the WordPress user identified by the JWT payload. The JWT is
@@ -426,9 +844,15 @@ Validates the user's WordPress credentials and returns a signed JWT. An optional
 
 #### list-api-keys
 
-Returns a paginated list of API keys owned by the authenticated WordPress user.
+Returns a paginated list of API keys, newest first. Administrators (`manage_options`)
 
-- [List API keys](/api/v4/list-api-keys.md): Returns a paginated list of API keys owned by the authenticated WordPress user.
+- [List API keys](/api/v4/list-api-keys.md): Returns a paginated list of API keys, newest first. Administrators (`manage_options`)
+
+#### list-revoked-tokens
+
+Returns a paginated list of revoked-token records across all users, newest first.
+
+- [List revoked tokens](/api/v4/list-revoked-tokens.md): Returns a paginated list of revoked-token records across all users, newest first.
 
 #### oauth-token-get
 
@@ -480,9 +904,9 @@ Sends a one-time reset code to the user's registered email address. The code mus
 
 #### update-api-key
 
-Updates the `name`, `permissions`, and/or `expires_at` of an existing API key.
+Replaces the `name`, `permissions` and `expires_at` of an existing API key. All three
 
-- [Update an API key](/api/v4/update-api-key.md): Updates the `name`, `permissions`, and/or `expires_at` of an existing API key.
+- [Update an API key](/api/v4/update-api-key.md): Replaces the `name`, `permissions` and `expires_at` of an existing API key. All three
 
 #### validate-jwt
 
@@ -652,17 +1076,6 @@ Create long-lived API keys in Simple JWT Login to authenticate REST API requests
 
 - [API Keys](/docs/api-keys.md): Create long-lived API keys in Simple JWT Login to authenticate REST API requests without a JWT - scoped permissions, expiry dates.
 
-### applications
-
-
-#### google
-
-- [Exchange id_token with a WordPress JWT](/docs/applications/google/id_token_to_wp_jwt.md): Exchange a Google id_token for a WordPress JWT, completing Google Sign-In authentication with Simple JWT Login.
-- [OAuth Login](/docs/applications/google/login.md): Enable a "Continue with Google" button on the WordPress login and register screens with Simple JWT Login.
-- [Exchange OAuth Code with Google ID Token](/docs/applications/google/oauth_code.md): Exchange a Google OAuth authorization code for an access_token or id_token using Simple JWT Login.
-- [Setup](/docs/applications/google/setup.md): Create a Google Developer Console project and obtain OAuth credentials for Google Sign-In with Simple JWT Login.
-- [Shortcode](/docs/applications/google/shortcode.md): Configure the "Continue with Google" button shortcode options for Simple JWT Login's Google OAuth integration.
-
 ### audit-logs
 
 Record and review authentication events in Simple JWT Login - logins, registrations, password resets, OAuth, 2FA, API key usage, and settings changes.
@@ -741,11 +1154,17 @@ Delete WordPress user accounts via a JWT-authenticated REST API call. Useful for
 
 - [Delete User](/docs/delete-user.md): Delete WordPress user accounts via a JWT-authenticated REST API call. Useful for self-service account deletion in mobile apps and headless front-ends.
 
+### endpoints
+
+Every Simple JWT Login REST endpoint on one page - method, path, the setting that enables it, and links to the guide and the API reference.
+
+- [Endpoints Overview](/docs/endpoints.md): Every Simple JWT Login REST endpoint on one page - method, path, the setting that enables it, and links to the guide and the API reference.
+
 ### error-codes
 
-Full reference of Simple JWT Login error codes - what each numeric errorCode means and how to resolve it.
+Full reference of Simple JWT Login error codes - what each numeric error code means and how to resolve it.
 
-- [Error codes](/docs/error-codes.md): Full reference of Simple JWT Login error codes - what each numeric errorCode means and how to resolve it.
+- [Error codes](/docs/error-codes.md): Full reference of Simple JWT Login error codes - what each numeric error code means and how to resolve it.
 
 ### export-import
 
@@ -783,9 +1202,10 @@ Connect Simple JWT Login with Google, Auth0, Facebook, and GitHub OAuth 2.0 - le
 
 #### third-party
 
-Connect Simple JWT Login with WPGraphQL, Two-Factor auth, Force Login, and WooCommerce - enabling GraphQL auth, 2FA, and headless WooCommerce.
+Connect Simple JWT Login with WPGraphQL, Two-Factor, Force Login, WooCommerce, and AI agents over MCP - GraphQL auth, 2FA, headless stores and AI management.
 
-- [Third Party](/docs/integrations/third-party.md): Connect Simple JWT Login with WPGraphQL, Two-Factor auth, Force Login, and WooCommerce - enabling GraphQL auth, 2FA, and headless WooCommerce.
+- [Third Party](/docs/integrations/third-party.md): Connect Simple JWT Login with WPGraphQL, Two-Factor, Force Login, WooCommerce, and AI agents over MCP - GraphQL auth, 2FA, headless stores and AI management.
+- [AI Abilities (MCP)](/docs/integrations/third-party/ai-abilities.md): Let AI agents like Claude, Cursor and Copilot manage and troubleshoot Simple JWT Login through the WordPress Abilities API and MCP.
 - [Force Login](/docs/integrations/third-party/force-login.md): Exempt Simple JWT Login endpoints from Force Login plugin restrictions so unauthenticated clients can still reach the authentication API.
 - [Two-Factor](/docs/integrations/third-party/two-factor.md): Require two-factor authentication before issuing a WordPress JWT using Simple JWT Login and the Two Factor plugin.
 - [WooCommerce](/docs/integrations/third-party/woocommerce.md): Use a JWT to authenticate the WooCommerce REST and Store API - manage products and run a headless cart & checkout, no consumer key/secret.
@@ -797,17 +1217,17 @@ Embed personalized, one-click magic-link logins in MailPoet email campaigns with
 
 - [MailPoet](/docs/mailpoet.md): Embed personalized, one-click magic-link logins in MailPoet email campaigns with the Simple JWT Login MailPoet add-on.
 
-### oauth
-
-Authenticate WordPress users via third-party OAuth (Google, Auth0) - exchange an authorization code or ID token for a signed WordPress JWT.
-
-- [OAuth](/docs/oauth.md): Authenticate WordPress users via third-party OAuth (Google, Auth0) - exchange an authorization code or ID token for a signed WordPress JWT.
-
 ### protect-endpoints
 
 Require a valid JWT for any WordPress REST API route using Simple JWT Login. Lock down sensitive endpoints by HTTP method with exact or prefix matching.
 
 - [Protect Endpoints](/docs/protect-endpoints.md): Require a valid JWT for any WordPress REST API route using Simple JWT Login. Lock down sensitive endpoints by HTTP method with exact or prefix matching.
+
+### quick-start
+
+Get a JWT from WordPress and call the REST API with it in 5 minutes - set the signing key, enable authentication, and send a Bearer token.
+
+- [Quick Start](/docs/quick-start.md): Get a JWT from WordPress and call the REST API with it in 5 minutes - set the signing key, enable authentication, and send a Bearer token.
 
 ### refresh-token
 
