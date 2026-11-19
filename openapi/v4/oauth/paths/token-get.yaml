@@ -1,7 +1,6 @@
 tags:
   - oauth
-summary: OAuth Redirect Login (GET)
-operationId: oauthTokenGet
+summary: Exchange OAuth authorization code for a WordPress JWT (GET)
 description: |
   Browser-redirect flow: exchanges a provider authorization code for a WordPress
   session and redirects the browser to the WordPress admin (or login page on failure).
@@ -9,13 +8,20 @@ description: |
 
   Supported providers: `google`, `auth0`, `facebook`, `github`.
 
-  **Google flow** - pass `provider=google` with `code`.
+  Auth codes, IP allow-lists and the "Authentication enabled" setting do not apply to
+  this endpoint; only the provider must be enabled.
 
-  **Auth0 flow** - pass `provider=auth0` with `code`.
+  **Login start** - `provider` only (no `code`, no `error`): the login buttons point
+  here. The plugin stores a random `state` in a 10-minute HttpOnly cookie
+  (`sjl_oauth_state_<provider>`) and answers `302` to the provider's consent screen
+  with that `state`.
 
-  **Facebook flow** - pass `provider=facebook` with `code`.
-
-  **GitHub flow** - pass `provider=github` with `code`.
+  **Callback** - the provider redirects back with `code` and `state`. The callback is
+  only accepted when `state` matches the cookie of the same browser (login CSRF
+  protection); the cookie is single use. Otherwise the code is not exchanged and the
+  browser is redirected to the login page with an error (`error_code` 129 in the audit
+  log). Links that send visitors straight to the provider, without the login start,
+  are rejected.
 
   If the OAuth identity matches an existing WordPress user (by email), the user is
   logged in. If no match is found and "Register on OAuth login" is enabled, a new
@@ -25,6 +31,7 @@ description: |
   > **Note**: this endpoint is designed for browser redirect callbacks (OAuth consent
   > screen redirect_uri). To obtain a JWT programmatically, use `POST /oauth/token`
   > instead.
+operationId: oauthTokenGet
 parameters:
   - name: provider
     in: query
@@ -32,62 +39,87 @@ parameters:
     description: OAuth provider slug.
     schema:
       type: string
-      enum: [google, auth0, facebook, github]
+      enum:
+        - google
+        - auth0
+        - facebook
+        - github
     example: google
   - name: code
     in: query
     description: Authorization code returned by the OAuth provider's consent screen.
     schema:
       type: string
-  - name: AUTH_KEY
+  - name: state
     in: query
     description: |
-      Required when "Authentication Requires Auth Code" is enabled. The parameter
-      name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
-      settings.
+      Returned by the provider on the callback. Must match the `sjl_oauth_state_<provider>`
+      cookie set by the login start.
+    schema:
+      type: string
+  - name: error
+    in: query
+    description: |
+      Sent by the provider instead of `code` when the login failed (for example, `access_denied`).
+      A request with `error` is not treated as a login start.
     schema:
       type: string
 responses:
   '200':
     description: |
-      Browser redirected to the WordPress admin URL after a successful login,
-      or to the WordPress login page on failure. The response body is empty HTML.
+      The user has Two-Factor enabled: a small HTML page redirects the browser (meta
+      refresh + JavaScript) to the `wp-login.php?action=validate_2fa` form of the Two Factor
+      plugin. The session starts only after a valid code.
     content:
-      application/html:
-        example: ""
-  '400':
+      text/html:
+        example: '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=https://example.com/wp-login.php?action=validate_2fa&..."></head><body></body></html>'
+  '302':
     description: |
-      Bad request. The `code` parameter is missing, or the provider slug is
-      unrecognized. (`error_code` 69 for invalid provider slug.)
-    content:
-      application/json:
+      One of:
+      - Login start (`provider` only): redirect to the provider's consent screen with
+        `client_id`, `redirect_uri`, `response_type=code`, `scope` and `state`, plus a
+        `Set-Cookie: sjl_oauth_state_<provider>` header.
+      - Callback success: the user is logged in (created first when "Register on OAuth
+        login" is on) and redirected to the WordPress admin.
+      - Callback failure (invalid `state`, code rejected by the provider, or user not found):
+        redirect to `wp-login.php` with an `error` query parameter.
+    headers:
+      Location:
         schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "The Oauth provider is invalid."
-            error_code: 69
+          type: string
+        example: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=...&redirect_uri=...&response_type=code&scope=...&state=...'
   '403':
-    description: |
-      Forbidden. The requested OAuth provider is not enabled in the plugin settings.
+    description: The requested OAuth provider is not enabled in the plugin settings (`error_code` 70).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "This Oauth provider is not available."
+            message: This Oauth provider is not available.
             error_code: 70
-  '500':
-    description: Internal server error.
+  '422':
+    description: |
+      Unprocessable entity. One of:
+      - `provider` is missing or unknown (`error_code` 69).
+      - The provider sent back an `error` without a `code` (for example, the user denied
+        consent): the request has neither `code` nor the token parameter
+        (`error_code` 71 Google, 77 Auth0, 97 Facebook, 101 GitHub).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "An unexpected error occurred."
-            error_code: 22
+          $ref: ../../schemas/error.yaml
+        examples:
+          invalidProvider:
+            value:
+              success: false
+              data:
+                message: The Oauth provider is invalid.
+                error_code: 69
+          missingCode:
+            value:
+              success: false
+              data:
+                message: The code or id_token parameter is missing from request.
+                error_code: 71

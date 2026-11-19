@@ -105,7 +105,8 @@ const config: Config = {
         path: 'api/v4',
         routeBasePath: 'api/v4',
         docItemComponent: "@theme/ApiItem",
-        sidebarPath: './api/v4/sidebar.ts',
+        // Optional so `clean-api-docs` (which deletes it) doesn't break config loading before `gen-api-docs` recreates it
+        sidebarPath: require('fs').existsSync('./api/v4/sidebar.ts') ? './api/v4/sidebar.ts' : undefined,
         rehypePlugins: [require('./plugins/rehype-cdn-images')],
         beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
       },

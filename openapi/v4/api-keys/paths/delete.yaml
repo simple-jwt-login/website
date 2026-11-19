@@ -1,84 +1,46 @@
 tags:
   - api_keys
+  - internal
 summary: Permanently delete an API key
-operationId: deleteApiKey
-security:
-  - WordPressSession: []
 description: |
   Permanently removes the API key record from the database. This action is
   irreversible. To merely disable a key while keeping its record, use
   `POST /api-keys/{id}/revoke` instead.
 
   Regular users may only delete their own keys. Administrators may delete any key.
+operationId: deleteApiKey
+security:
+  - WordPressSession: []
+  - BearerAuth: []
 parameters:
-  - name: id
-    in: path
-    required: true
-    description: Numeric ID of the API key to permanently delete.
-    schema:
-      type: integer
-    example: 7
+  - $ref: ../parameters/api-key-id.yaml
 responses:
   '200':
     description: API key permanently deleted.
     content:
       application/json:
         schema:
-          type: object
-          required:
-            - success
-            - message
-          properties:
-            success:
-              type: boolean
-              example: true
-            message:
-              type: string
-              example: "API key deleted successfully."
+          $ref: ../schemas/api-key-action-response.yaml
+        example:
+          success: true
+          message: API key deleted successfully.
   '401':
-    description: Unauthorized. No active WordPress session.
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "You must be logged in to manage API keys."
-            error_code: 84
+    $ref: ../../responses/rest-forbidden.yaml
   '403':
-    description: |
-      Forbidden. The authenticated user does not own this API key and does not have
-      administrator privileges.
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "You are not allowed to manage this API key."
-            error_code: 84
+    $ref: ../responses/forbidden.yaml
   '404':
-    description: No API key with the provided ID was found.
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "Invalid API key ID."
-            error_code: 89
+    $ref: ../responses/not-found.yaml
   '500':
     description: |
-      Internal server error. The database delete operation failed.
+      The delete failed, including an administrator deleting a key id that does not
+      exist (`error_code` 92).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../schemas/api-key-error.yaml
         example:
-          success: false
+          code: simple_jwt_login_api_key_error
+          message: Failed to delete API key.
           data:
-            message: "Failed to delete API key."
+            status: 500
             error_code: 92

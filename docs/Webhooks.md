@@ -55,6 +55,10 @@ Select one or more events that fire this webhook. Each event corresponds to a sp
 | `reset_password_request` | Password reset code requested |
 | `reset_password` | Password successfully changed |
 
+#### Timeout (seconds)
+
+How long the plugin waits for the endpoint to respond. Since version 4.1.0, the maximum is `30` seconds, and `0` (the default) also means `30` seconds, so a slow or unreachable endpoint can never hang a login or registration request.
+
 ---
 
 ### Custom Headers

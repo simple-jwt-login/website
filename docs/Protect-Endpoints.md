@@ -50,6 +50,10 @@ Enable or disable the endpoint protection feature. When disabled, no JWT check i
 
 Define per-endpoint rules. Click **+ Add Endpoint** to add a rule. Rules are evaluated top to bottom - the first matching rule wins.
 
+Since version 4.2.0, rules match the route and HTTP method WordPress actually dispatches. Alternate URLs such as `/index.php/wp-json/...` and method overrides (`?_method=` or `X-HTTP-Method-Override`) can't be used to get around a rule.
+
+Since version 4.2.0, requests to the WordPress batch endpoint (`/batch/v1`) and `_embed` sub-requests are checked too: each sub-request is matched against the rules with its own route and method.
+
 **Each rule has the following fields:**
 
 | Field | Options | Description |
@@ -107,6 +111,12 @@ Assume you add a rule for `/wp/v2/users` with `ALL`, `Starts With` and Type `JWT
 
 Only users with a valid JWT *and* the `administrator` or `editor` role can access `/wp/v2/users` and its sub-paths. Any other authenticated or anonymous request receives the "You do not have the required role to access this endpoint." error.
 
+## Logged-in Users and API Keys
+
+Since version 4.1.0, requests from users already logged in to WordPress (cookie + nonce authentication, as used by the block editor and other plugins) and requests authenticated with an [API key](/docs/api-keys/) don't need a JWT to pass a **JWT required** rule.
+
+**JWT + Roles** rules still apply to them: the logged-in user, or the API key's owner, must have one of the listed roles. Otherwise the request is rejected the same way as a JWT request with the wrong role.
+
 ## How to Pass the JWT
 
 The JWT token can be provided in multiple ways, depending on the options set in the plugin’s General settings:
@@ -115,6 +125,8 @@ The JWT token can be provided in multiple ways, depending on the options set in 
 - Request Body
 - Session
 - Cookie
+
+Since version 4.1.1, header, cookie and session JWTs are ignored on requests from other sites unless their origin is listed in the CORS **Allow origin** setting. See [Cross-site requests](/docs/configuration/#cross-site-requests).
 
 ### Examples
 

@@ -237,11 +237,11 @@ On the failure redirect page you can display the error message returned by the p
 
 #### Pass login request parameters to the redirect URL
 
-When enabled, the original JWT and any other login request parameters are appended to the redirect URL as query string arguments.
+When enabled, the login request parameters are appended to the redirect URL as query string arguments. Since version 4.2.0, the JWT itself is never copied, whatever its URL key is (see **JWT Input Sources** in [General settings](/docs/configuration#jwt-input-sources)) and in any letter case (for example, `?Jwt=`).
 
 #### Strip these parameters from the redirect URL
 
-Comma-separated list of query parameters to remove after redirect (for example, `jwt, auth_code`). Useful for cleaning sensitive values out of the browser address bar. Leave blank to keep all parameters.
+Comma-separated list of query parameters to remove after redirect (for example, `auth_code`). Matching ignores letter case. Useful for cleaning sensitive values out of the browser address bar. Leave blank to keep all parameters.
 
 #### Honor the `redirectUrl` query parameter as a redirect override
 

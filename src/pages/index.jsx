@@ -26,7 +26,7 @@ const jsonLd = {
   name: 'Simple JWT Login',
   applicationCategory: 'DeveloperApplication',
   applicationSubCategory: 'WordPress Plugin',
-  operatingSystem: 'WordPress 4.4+, PHP 5.5+',
+  operatingSystem: 'WordPress 6.2+, PHP 5.5+',
   description: 'Free, open-source WordPress plugin that adds JWT authentication to the WordPress REST API. Supports login, register, auto-login, endpoint protection, token refresh, and more.',
   url: 'https://wordpress.org/plugins/simple-jwt-login/',
   downloadUrl: 'https://downloads.wordpress.org/plugin/simple-jwt-login.latest-stable.zip',

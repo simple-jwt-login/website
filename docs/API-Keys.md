@@ -29,6 +29,15 @@ Enable or disable the API Keys feature. When disabled, the header is ignored on 
 
 The HTTP header clients must send the API key in. Default: `X-API-Key`. Change this only if you need to avoid a header name collision with another system.
 
+#### Update "Last used"
+
+Available since version 4.1.0. How often a key's **Last Used** time is saved:
+
+| Option | Behavior |
+| :----- | :------- |
+| **Every minute** (default) | The timestamp is updated at most once per minute per key, which avoids a database write on every API request |
+| **Every request** | The timestamp is updated on every request, so it is exact to the second |
+
 ### Create API Key
 
 ![Create API Key form](/assets/images/screenshots/api-keys/create-api-key.png)
@@ -38,7 +47,7 @@ Use the form in the settings page to issue a new key. Fields:
 | Field | Description |
 | :---- | :---------- |
 | **Name** | A human-readable label to identify the key (for example, `Mobile App` or `CI pipeline`). |
-| **Expires at** | Optional expiry date/time. Leave blank for a non-expiring key. |
+| **Expires at** | Optional expiry date/time. Enter it in your local time - the form converts it to UTC. Leave blank for a non-expiring key. |
 | **Permissions** | One or more of: `read`, `create`, `update`, `delete`. See the permissions table below. |
 
 After clicking **Create API Key**, a modal appears showing the raw key value. Copy it immediately - it is shown only once and cannot be recovered.
@@ -61,6 +70,12 @@ Permission → HTTP method mapping:
 | `create`   | `POST`       |
 | `update`   | `PUT`, `PATCH` |
 | `delete`   | `DELETE`     |
+
+Since version 4.2.0, the permission is checked against the method WordPress actually dispatches. A `?_method=DELETE` parameter or an `X-HTTP-Method-Override` header can't turn a `read` key into a `delete` key.
+
+Since version 4.2.0, a request to the WordPress batch endpoint (`/batch/v1`) can hold any write call, so it needs the `create`, `update` **and** `delete` permissions. Keys without all three get a `401` on `/batch/v1`.
+
+Since version 4.2.0, when a user is deleted in wp-admin, their API keys (and refresh tokens) are deleted too.
 
 The key itself is **never stored in plain text** - only its SHA-256 hash is saved. The full key is returned only once, at creation time.
 
@@ -169,7 +184,7 @@ Generates a new API key. The full plaintext key is returned **only in this respo
 | :---: | :--: | ----------- |
 | `name` | `required` `string` | Human-readable label for the key. |
 | `permissions` | `required` `array` | One or more of: `read`, `create`, `update`, `delete`. |
-| `expires_at` | `optional` `string` | Expiry date/time in `Y-m-d H:i:s` format. Omit for a non-expiring key. |
+| `expires_at` | `optional` `string` | Expiry date/time in UTC (since version 4.2.0): `Y-m-d`, `Y-m-d H:i[:s]` or ISO 8601 with an optional zone (`2027-01-01T00:00:00Z`, `+02:00`). A value without a zone is read as UTC. Other values are rejected with `422` (error code `132`). Omit for a non-expiring key. |
 
 **Response 200**:
 
@@ -377,7 +392,7 @@ No. API keys authenticate requests to standard WordPress REST endpoints (for exa
 
 ### What happens if a key expires?
 
-The middleware checks the `expires_at` timestamp on every request. Once the current time passes the expiry, the key is rejected as if it were revoked. Update the key with a new `expires_at` to extend its lifetime.
+The middleware checks the `expires_at` timestamp (UTC, compared with the database's UTC clock) on every request. Once the current time passes the expiry, the key is rejected as if it were revoked. Update the key with a new `expires_at` to extend its lifetime.
 
 ### Is the full key stored anywhere?
 

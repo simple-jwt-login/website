@@ -64,6 +64,10 @@ The full list of trackable events:
 | :-------- | :---- | :---------- |
 | `settings.save.success` | Settings Saved | Plugin settings were saved by an admin |
 
+:::note
+Since version 4.1.0, the **Settings Saved** entry never stores secrets in plain text: auth codes, JWT decryption rule keys and webhook header values are shown as `[REDACTED]`.
+:::
+
 #### API Key events
 
 | Event key | Label | Description |

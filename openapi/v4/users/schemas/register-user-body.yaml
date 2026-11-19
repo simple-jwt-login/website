@@ -1,87 +1,113 @@
 type: object
+description: |
+  Only the fields below are passed to `wp_insert_user()`; any other field is ignored.
+  Roles come from the plugin settings (or from the auth code), never from the request.
 required:
   - email
-  - password
 properties:
   email:
     type: string
     example: test@simplejwtlogin.com
-    description: User email address. Must be unique and well-formed.
+    description: 'User email address. Must be unique, well-formed and at most 60 characters when `user_login` is omitted.'
   password:
     type: string
-    description: Plaintext password for the new account.
+    description: |
+      Plaintext password for the new account. Required unless "Random password" is
+      enabled in the plugin settings (then it is ignored and a random one is generated).
+    example: MyS3cretP@ss
   user_login:
     type: string
-    description: The user's login username. Defaults to the email address if omitted.
+    nullable: true
+    description: The user's login username (max 60 characters). Defaults to the email address if omitted.
     example: myuser
   user_nicename:
     type: string
+    nullable: true
     description: URL-friendly version of the username (used in author URLs).
     example: myuser
   user_url:
     type: string
+    nullable: true
     description: URL associated with the user's profile.
-    example: https://simplejwtlogin.com
+    example: 'https://simplejwtlogin.com'
   display_name:
     type: string
+    nullable: true
     description: The user's display name. Defaults to `user_login` if omitted.
     example: My User
   nickname:
     type: string
+    nullable: true
     description: The user's nickname. Defaults to `user_login` if omitted.
     example: myuser
   first_name:
     type: string
+    nullable: true
     description: The user's first name.
     example: John
   last_name:
     type: string
+    nullable: true
     description: The user's last name.
     example: Doe
   description:
     type: string
+    nullable: true
     description: The user's biographical description.
     example: This is a sample description
   rich_editing:
     type: string
+    nullable: true
     description: Whether to enable the rich-editor. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
-    example: "true"
+    example: 'true'
   syntax_highlighting:
     type: string
+    nullable: true
     description: Whether to enable the rich code editor. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
-    example: "true"
+    example: 'true'
   comment_shortcuts:
     type: string
+    nullable: true
     description: Whether to enable comment moderation keyboard shortcuts. Accepts `'true'` or `'false'` as a string literal. Defaults to `'false'`.
-    example: "false"
+    example: 'false'
   admin_color:
     type: string
+    nullable: true
     description: Admin color scheme for the user. Defaults to `'fresh'`.
     example: fresh
   use_ssl:
     type: boolean
+    nullable: true
     description: Whether the user should always access the admin over HTTPS. Defaults to `false`.
-    example: false
-  user_registered:
-    type: string
-    description: Registration date in `Y-m-d H:i:s` format. Defaults to the current date/time.
-    example: "2022-01-31 23:15:30"
-  user_activation_key:
-    type: string
-    description: Password reset key. Defaults to empty.
-  spam:
-    type: boolean
-    description: Multisite only. Whether the user is marked as spam. Defaults to `false`.
     example: false
   show_admin_bar_front:
     type: string
+    nullable: true
     description: Whether to display the Admin Bar on the front end. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
-    example: "true"
+    example: 'true'
   locale:
     type: string
+    nullable: true
     description: User's locale. Defaults to empty (inherits site locale).
-    example: "en_US"
+    example: en_US
+  user_meta:
+    nullable: true
+    description: |
+      Optional user meta to set on the new account. Accepted as a JSON-encoded
+      object string or as a plain object. Only keys listed in "Allowed user meta"
+      in the plugin settings are stored; all others are silently discarded.
+    example: '{"billing_city":"New York"}'
+    oneOf:
+      - type: string
+      - type: object
+        additionalProperties:
+          type: string
   AUTH_KEY:
     type: string
-    example: "MY_SUPER_SECRET_AUTH_KEY"
-    description: Required when "Register Requires Auth Code" is enabled in the plugin settings.
+    nullable: true
+    example: MY_SUPER_SECRET_AUTH_CODE
+    description: |
+      Required when "Register Requires Auth Code" is enabled in the plugin settings.
+      When sent, it is always validated (`401`, `error_code` 27 if wrong), and the role
+      linked to the auth code, if any, is given to the new user. The parameter name
+      defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes settings.

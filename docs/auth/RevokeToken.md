@@ -184,6 +184,10 @@ Administrators can list the revoked tokens and delete entries. Deleting an entry
 
 These endpoints require a WordPress user with the `manage_options` capability (administrator). Authenticate with a WordPress session cookie (plus the `X-WP-Nonce` header) or with a JWT in the `Authorization: Bearer <token>` header or the JWT cookie, the same way as the [API key management endpoints](../API-Keys.md#managing-api-keys---authentication).
 
+:::warning Administrators only
+Other logged-in users get `403` (`error_code` `115`), and a logged-out call gets `401` `rest_forbidden` from WordPress. These endpoints are used by the **Security > Revoked Tokens** admin screen and are tagged `internal` in the [API reference](/api/v4/list-revoked-tokens).
+:::
+
 ### List revoked tokens
 
 **METHOD**: `GET`

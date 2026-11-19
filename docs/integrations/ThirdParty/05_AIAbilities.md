@@ -183,7 +183,7 @@ If you get `401 Sorry, you are not allowed to do that` with correct credentials,
 |---------|--------|-------------|
 | `simple-jwt-login/get-settings` | Read | Returns all settings, or one section, with secrets masked (unless **Allow viewing secrets** is on), the paths that are read-only right now and the granted AI permissions. |
 | `simple-jwt-login/diagnose` | Read | Health report: versions, endpoint URLs with their enabled and auth code state, JWT input sources, valid role names, and configuration warnings. |
-| `simple-jwt-login/security-report` | Read | Security review with a score (0-100), a grade (A-F) and the findings, most severe first. `min_severity` filters the list. |
+| `simple-jwt-login/security-report` | Read | Security review with a score (0-100), a grade (A-F) and the findings, most severe first. `min_severity` filters the list. Since version 4.2.0 it also reports authentication with `password_hash` and the OAuth backward-compatibility options (for example, **Allow tokens issued for other Google clients**). The [Dashboard](/docs/dashboard/#security-notices) shows the same critical and warning findings. |
 | `simple-jwt-login/explain-error` | Read | Explains an `error_code` from a REST response or a failed settings save (for example, `2005`) and returns the related settings. Any logged-in user can run it; only administrators also get the current setting values. |
 | `simple-jwt-login/inspect-jwt` | Read | Checks a JWT the same way the plugin endpoints do: matching JWT rule, algorithm, signature, expiry, two-factor interim tokens, WordPress user lookup, and revocation. |
 | `simple-jwt-login/list-api-keys` | Read | Lists API keys. Raw key values are never returned. |

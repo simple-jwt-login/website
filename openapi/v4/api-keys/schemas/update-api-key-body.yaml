@@ -6,7 +6,7 @@ properties:
   name:
     type: string
     description: New human-readable name for the key.
-    example: "Updated key name"
+    example: Updated key name
   permissions:
     description: |
       Updated permission set. Same format as for key creation.
@@ -15,13 +15,20 @@ properties:
       - type: array
         items:
           type: string
-          enum: [read, create, update, delete]
+          enum:
+            - read
+            - create
+            - update
+            - delete
       - type: string
-    example: ["read", "create", "update"]
+    example:
+      - read
+      - create
+      - update
   expires_at:
     type: string
     nullable: true
     description: |
-      Updated expiry date/time in `Y-m-d H:i:s` format, or `null` to remove the
-      expiry.
-    example: "2028-06-01 00:00:00"
+      Updated expiry date/time in UTC (same forms as for key creation; invalid values
+      get `422`, `error_code` 132), or `null` to remove the expiry.
+    example: '2028-06-01 00:00:00'

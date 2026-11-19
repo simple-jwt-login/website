@@ -1,0 +1,27 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: Database ID of the revoked-token record.
+    example: 7
+  user_id:
+    type: integer
+    description: WordPress user ID the revoked JWT belonged to.
+    example: 3
+  token_hash_masked:
+    type: string
+    description: |
+      First 8 and last 4 characters of the SHA-256 hash of the revoked JWT, separated
+      by `...`. The full hash and the raw JWT are never returned.
+    example: a1b2c3d4...ef01
+  expires_at:
+    type: string
+    nullable: true
+    description: |
+      Expiry timestamp (from the JWT's `exp` claim) in `Y-m-d H:i:s` format, or `null`
+      if the JWT had no expiry claim.
+    example: '2027-01-01 00:00:00'
+  revoked_at:
+    type: string
+    description: Timestamp when the token was revoked.
+    example: '2026-01-01 12:00:00'

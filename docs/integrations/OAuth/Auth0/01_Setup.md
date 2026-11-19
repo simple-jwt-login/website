@@ -38,3 +38,7 @@ Keep your credentials secure - never commit them to version control or expose th
 | **Domain** | Your Auth0 tenant domain, for example, `your-tenant.auth0.com` |
 | **Client ID** | The application Client ID |
 | **Client Secret** | The application Client Secret |
+
+:::note
+Since version 4.2.0, the login is rejected when Auth0's userinfo answer has no `email_verified` claim, unless unverified emails are allowed in the Auth0 settings.
+:::

@@ -14,6 +14,14 @@ This endpoint accepts a Facebook `access_token` and returns a WordPress JWT. Use
 
 Enable **Exchange Facebook access_token for a WordPress JWT** in **Settings → Simple JWT Login → Integrations → OAuth → Facebook**.
 
+:::note
+Since version 4.2.0, the `access_token` must have been issued for the Facebook app configured in the plugin (the plugin checks it with Facebook's `debug_token` endpoint), so a token obtained by another app can't log its users in. The **App ID** and **App Secret** must both be set.
+:::
+
+:::danger Allow tokens issued for other Facebook apps
+Turn on **Allow tokens issued for other Facebook apps** (off by default) to keep applications built for versions before 4.2.0 backward compatible: tokens issued for other Facebook apps are accepted again. But then any Facebook app, including one you don't own, can send a token of its users and get a WordPress JWT for the matching account. Turn it on only while you migrate your apps to the configured App ID. See [Backward compatibility](/docs/integrations/oauth/#backward-compatibility).
+:::
+
 ---
 
 ## Endpoint

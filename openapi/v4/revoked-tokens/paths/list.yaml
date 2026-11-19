@@ -1,0 +1,89 @@
+tags:
+  - revoked_tokens
+  - internal
+summary: List revoked tokens
+description: |
+  Returns a paginated list of revoked-token records across all users, newest first.
+  Tokens are stored hashed (SHA-256) - the raw JWT is never persisted or returned, only
+  a masked prefix/suffix of the hash for identification.
+
+  **Requirements**
+  - The user must be authenticated (logged-in session with `X-WP-Nonce`, or a JWT in
+    the header or cookie). Otherwise WordPress answers `401` `rest_forbidden`.
+  - The user must have the `manage_options` capability (administrator).
+operationId: listRevokedTokens
+security:
+  - WordPressSession: []
+  - BearerAuth: []
+parameters:
+  - name: page
+    in: query
+    description: Page number (1-based). Values below 1 are treated as 1.
+    schema:
+      type: integer
+      minimum: 1
+      default: 1
+    example: 1
+  - name: per_page
+    in: query
+    description: Number of results per page. Clamped to 1-100.
+    schema:
+      type: integer
+      minimum: 1
+      maximum: 100
+      default: 20
+    example: 20
+responses:
+  '200':
+    description: Paginated list of revoked tokens.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              example: true
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: ../schemas/revoked-token-item.yaml
+                total:
+                  type: integer
+                  description: Total number of revoked-token records.
+                  example: 1
+                page:
+                  type: integer
+                  example: 1
+                per_page:
+                  type: integer
+                  example: 20
+        example:
+          success: true
+          data:
+            items:
+              - id: 1713
+                user_id: 12
+                token_hash_masked: cdac64f6...8738
+                expires_at: '2026-11-16 05:25:32'
+                revoked_at: '2026-11-16 04:25:33'
+            total: 1
+            page: 1
+            per_page: 20
+  '401':
+    $ref: ../../responses/rest-forbidden.yaml
+  '403':
+    description: |
+      The user is not an administrator (`error_code` 115).
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/error.yaml
+        example:
+          success: false
+          data:
+            message: You must be an administrator to manage revoked tokens.
+            error_code: 115

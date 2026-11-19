@@ -1,0 +1,19 @@
+type: object
+description: Standard WordPress REST API error.
+properties:
+  code:
+    type: string
+    example: rest_forbidden
+  message:
+    type: string
+    example: 'Sorry, you are not allowed to do that.'
+  data:
+    type: object
+    properties:
+      status:
+        type: integer
+        example: 401
+      error_code:
+        type: integer
+        description: Plugin error code. Only on plugin errors.
+        example: 84

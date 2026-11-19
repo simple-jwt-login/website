@@ -156,8 +156,9 @@ fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/auth/refresh', {
 
 | Code | Meaning |
 | :--: | ------- |
-| `51` | The `refresh_token` parameter is missing, or the token was not found / has expired. |
+| `51` | The `refresh_token` parameter is missing, or the token was not found, has expired or was already used (refresh tokens are single-use since version 4.2.0). |
 | `81` | The refresh token feature is disabled in plugin settings. |
+| `131` | Since version 4.2.0: the new refresh token could not be saved in the database (`500`). The old refresh token is already used up, so the client must log in again. |
 
 ---
 

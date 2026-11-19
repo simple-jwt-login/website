@@ -211,6 +211,10 @@ Fires before the `POST /auth/refresh` response is returned.
 
 Fires before the `POST /user/reset_password` response is returned.
 
+:::caution
+Since version 4.2.0, this filter runs only for emails that belong to a user. If it changes the response or adds a delay, callers can tell which emails have an account.
+:::
+
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$response` | `array` | The response data (modify and return) |

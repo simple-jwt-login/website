@@ -16,7 +16,7 @@ It is the go-to companion for DevOps pipelines, staging-to-production migrations
 
 | Requirement | Minimum version |
 |-------------|----------------|
-| WordPress | 4.4+ |
+| WordPress | 6.2+ |
 | PHP | 5.5+ |
 | [Simple JWT Login](https://wordpress.org/plugins/simple-jwt-login/) | active on the same site |
 | [WP-CLI](https://wp-cli.org/) | any recent stable |

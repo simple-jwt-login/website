@@ -4,9 +4,31 @@ required:
 properties:
   refresh_token:
     type: string
-    example: "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"
+    example: a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012
     description: Refresh token obtained from a prior `/auth` response.
   AUTH_KEY:
     type: string
-    example: "MY_SUPER_SECRET_AUTH_KEY"
-    description: Required when "Authentication Requires Auth Code" is enabled.
+    nullable: true
+    example: MY_SUPER_SECRET_AUTH_CODE
+    description: |
+      Required when "Refresh Token Requires Auth Code" is enabled. The parameter
+      name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+      settings.
+  payload:
+    nullable: true
+    oneOf:
+      - type: string
+        example: '{"department":"engineering","region":"eu"}'
+      - type: object
+        example:
+          department: engineering
+          region: eu
+    description: |
+      Optional extra claims merged into the newly issued JWT payload. Accepted
+      either as a JSON-encoded string (form-encoded/query-string requests) or as a
+      native JSON object (JSON body requests).
+      Reserved identity claims configured in the plugin's payload settings (for example,
+      `email`, `id`, `username`, `site`, `iss`, `exp`, `iat`) and the custom
+      "Login by parameter" claim, if configured, are always stripped from this
+      value and set from the authenticated user instead - they cannot be
+      overridden by the caller.

@@ -1,7 +1,6 @@
 tags:
   - delete_user
 summary: Delete a WordPress user
-operationId: deleteUser
 description: |
   Permanently deletes the WordPress user identified by the JWT payload. The JWT is
   decoded to extract the user identifier (email, ID, or login, depending on plugin
@@ -12,17 +11,20 @@ description: |
   - The JWT must be valid, not expired, and not revoked.
   - If "Delete Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
   - The calling IP must pass any IP allow-list configured in the plugin settings.
+operationId: deleteUser
 parameters:
   - name: JWT
     in: query
-    description: A valid signed JWT identifying the WordPress user to delete.
-    required: true
-    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    description: |
+      A valid signed JWT identifying the WordPress user to delete. Can also be sent in the
+      `Authorization` header, cookie, or session (when enabled in General Settings).
+    required: false
+    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
     schema:
       type: string
   - name: AUTH_KEY
     in: query
-    example: "MY_SUPER_SECRET_AUTH_KEY"
+    example: MY_SUPER_SECRET_AUTH_CODE
     description: |
       Required when "Delete User Requires Auth Code" is enabled in the plugin settings.
       The parameter name defaults to `AUTH_KEY` but is configurable in the plugin's
@@ -31,22 +33,19 @@ parameters:
       type: string
 responses:
   '200':
-    description: User deleted successfully.
+    description: |
+      User deleted. Their refresh tokens and revoked-token records are removed too.
+      The body can be changed with the `simple_jwt_login_response_delete_user` filter.
     content:
       application/json:
         schema:
           type: object
-          required:
-            - success
-            - data
           properties:
             success:
               type: boolean
               example: true
             data:
               type: object
-              required:
-                - message
               properties:
                 message:
                   type: string
@@ -54,34 +53,35 @@ responses:
                   example: User was successfully deleted.
   '400':
     description: |
-      Bad request. The JWT has a structural encoding error (wrong number of
-      segments, invalid base64 encoding of header, claims, or signature).
+      The JWT could not be decoded or validated (all JWT library errors return 400):
+      malformed token (`error_code` 2-5), algorithm/`kid` problems (`error_code` 6-10),
+      bad signature (`error_code` 11), not yet valid or expired (`error_code` 12-14).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "Wrong number of segments."
-            error_code: 2
+            message: Expired token
+            error_code: 14
   '401':
     description: |
       Unauthorized. One of:
-      - The JWT signature verification failed or algorithm is unsupported
-        (`error_code` 6-11).
-      - The JWT has `nbf`/`iat` violations or is expired (`error_code` 12-14).
-      - The JWT has been revoked (`error_code` 55).
+      - The JWT has been revoked, or was issued before the user's last password change (`error_code` 55).
+      - The `aud` claim does not match the expected audience (`error_code` 130).
       - The provided auth code is wrong (`error_code` 27).
+      - The JWT is a 2FA interim token: finish the `/auth/2fa` step first (`error_code` 110).
+      - The JWT does not contain the claim configured as "JWT login by" parameter (`error_code` 29, 30).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "JWT has expired."
-            error_code: 14
+            message: This JWT is invalid.
+            error_code: 55
   '403':
     description: |
       Forbidden. One of:
@@ -90,22 +90,22 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "Delete is not enabled."
+            message: Delete is not enabled.
             error_code: 39
   '404':
-    description: The WordPress user identified by the JWT payload could not be found.
+    description: The WordPress user identified by the JWT payload could not be found (`error_code` 24).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "User not found."
+            message: User not found.
             error_code: 24
   '422':
     description: |
@@ -115,20 +115,15 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "The `jwt` parameter is missing."
+            message: The `jwt` parameter is missing.
             error_code: 42
   '500':
-    description: Internal server error.
+    description: Internal server error (any other unexpected error).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "An unexpected error occurred."
-            error_code: 22
+          $ref: ../../schemas/error.yaml

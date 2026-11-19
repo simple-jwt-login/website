@@ -1,0 +1,64 @@
+tags:
+  - revoked_tokens
+  - internal
+summary: Delete a revoked-token entry
+description: |
+  Removes a revoked-token record. This un-revokes the underlying JWT - if it has not
+  yet expired, it becomes valid again for authentication. Administrators only.
+operationId: deleteRevokedToken
+security:
+  - WordPressSession: []
+  - BearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    description: Numeric ID of the revoked-token record to delete.
+    schema:
+      type: integer
+    example: 7
+responses:
+  '200':
+    description: Revoked-token entry deleted.
+    content:
+      application/json:
+        schema:
+          $ref: ../../api-keys/schemas/api-key-action-response.yaml
+        example:
+          success: true
+          message: 'Revoked token entry deleted. If the token has not expired, it is valid again.'
+  '401':
+    $ref: ../../responses/rest-forbidden.yaml
+  '403':
+    description: The user is not an administrator (`error_code` 115).
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/error.yaml
+        example:
+          success: false
+          data:
+            message: You must be an administrator to manage revoked tokens.
+            error_code: 115
+  '404':
+    description: 'The id is invalid, or no record has it (`error_code` 116).'
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/error.yaml
+        example:
+          success: false
+          data:
+            message: Invalid revoked token ID.
+            error_code: 116
+  '500':
+    description: The database delete failed (`error_code` 117).
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/error.yaml
+        example:
+          success: false
+          data:
+            message: Failed to delete revoked token entry.
+            error_code: 117

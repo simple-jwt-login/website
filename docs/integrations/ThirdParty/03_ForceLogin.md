@@ -25,3 +25,5 @@ Toggle **Enable Force Login integration** to allow unauthenticated access to Sim
 :::caution
 This integration only bypasses the Force Login restriction for Simple JWT Login's own endpoints. All other WordPress REST endpoints remain subject to the Force Login rules.
 :::
+
+Since version 4.1.0, the bypass applies only to anonymous requests blocked by Force Login. It never skips WordPress's own checks for logged-in users, so cookie-authenticated requests still need a valid REST nonce (CSRF protection), and errors raised by other plugins are left untouched.

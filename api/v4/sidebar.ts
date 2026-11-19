@@ -136,6 +136,25 @@ const sidebar: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: "category",
+      label: "Revoked Tokens",
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "list-revoked-tokens",
+          label: "List revoked tokens",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "delete-revoked-token",
+          label: "Delete a revoked-token entry",
+          className: "api-method delete",
+        },
+      ],
+    },
   ],
 };
 

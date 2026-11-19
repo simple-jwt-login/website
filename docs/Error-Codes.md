@@ -39,27 +39,39 @@ Errors raised while authenticating a request to **another** REST route (for exam
 Read the code from `data.error_code` - it is in the same place in both formats.
 :::
 
+:::warning HTTP status changed in 4.2.0
+Client errors that used to answer HTTP `500` now answer their real status. The `error_code` values didn't change, so code that checks `error_code` keeps working. Code that checks only the HTTP status must be updated:
+
+- `401` - two-factor errors `106`, `107`, `109`, interim 2FA JWT used as a normal JWT `110`, JWT without the "JWT login by" claim `29`, `30`, invalid Facebook or GitHub code or token `98`, `99`, `102`, `103`, Google `id_token` issued for another client `118`
+- `403` - revoked token endpoints called by a non-administrator `115`, OAuth account email not verified `111` (Auth0), `112` (GitHub), `119` (Google)
+- `404` - Facebook or GitHub user not found `100`, `104`, revoked token ID not found `116`
+- `422` - invalid OAuth provider or missing OAuth code or token `69`, `71`, `77`, `97`, `101`, missing reset password code `60`, API key without a name or permissions, or with an unknown permission `85`, `86`, `87`
+- `429` - too many wrong two-factor codes `108`
+
+JWT library errors (`1`-`21`) answer `400`, other validation errors answer `422`, and errors with no status of their own answer `500`.
+:::
+
 ## Codes by feature
 
 | Feature | Codes |
 | :------ | :---- |
-| JWT decoding, signature, expiry, and user lookup | 1-22, 54 |
+| JWT decoding, signature, expiry, audience, and user lookup | 1-22, 54, 130 |
 | Revoked or 2FA-interim JWT | 55, 110 |
-| [Authentication](./auth/Authentication.md) (`/auth`) | 45-48, 113 |
-| [Refresh](./auth/RefreshToken.md), [validate](./auth/ValidateToken.md), [revoke](./auth/RevokeToken.md) | 49-51, 53, 81-83 |
+| [Authentication](./auth/Authentication.md) (`/auth`) | 45-48, 113, 131 |
+| [Refresh](./auth/RefreshToken.md), [validate](./auth/ValidateToken.md), [revoke](./auth/RevokeToken.md) | 49-51, 53, 81-83, 131 |
 | [Autologin](./Login-User.md) | 23-30, 68 |
 | [Register user](./Register-User.md) | 31-38, 52 |
 | [Delete user](./Delete-User.md) | 39-42 |
-| [Reset password](./Reset-Password.md) | 56-66, 76, 93, 95, 96 |
+| [Reset password](./Reset-Password.md) | 56-63, 65, 66, 76, 93, 95, 96 |
 | [Protect endpoints](./Protect-Endpoints.md) | 75, 114 |
-| [API keys](./API-Keys.md) | 84-92 |
+| [API keys](./API-Keys.md) | 84-92, 132 |
 | [Revoked tokens administration](./auth/RevokeToken.md#manage-revoked-tokens) | 115-117 |
-| [OAuth](./integrations/OAuth/index.md) - provider | 69, 70 |
+| [OAuth](./integrations/OAuth/index.md) - provider and login `state` | 69, 70, 129 |
 | [Google](./integrations/OAuth/Google/01_Setup.md) | 71-74, 118, 119 |
 | [Auth0](./integrations/OAuth/Auth0/01_Setup.md) | 77-80, 111 |
 | [Facebook](./integrations/OAuth/Facebook/01_Setup.md) | 97-100 |
 | [GitHub](./integrations/OAuth/Github/01_Setup.md) | 101-104, 112 |
-| [Two-Factor](./integrations/ThirdParty/02_TwoFactor.md) | 105-110 |
+| [Two-Factor](./integrations/ThirdParty/02_TwoFactor.md) | 105-110, 133 |
 | [AI Abilities](./integrations/ThirdParty/05_AIAbilities.md) | 120-128 |
 | [Auth codes](./Auth-Codes.md) | 94 |
 | Routing and plugin settings | 43, 44, 67 |
@@ -129,7 +141,7 @@ Read the code from `data.error_code` - it is in the same place in both formats.
 |     61     |             Missing `new_password` parameter.             | Missing `new_password` when calling the change user password endpoint                                                                            |  
 |     62     |                 Invalid code provided.                  | The `code` and `user_email` does not match when calling the Reset Password endpoint.                                                             |  
 |     63     |                Missing email parameter.                 | Missing `email` parameter when calling the Send reset password endpoint.                                                                         |  
-|     64     |                       Wrong user.                       | User was not found while calling the Send reset password endpoint.                                                                               |  
+|     64     |                       Wrong user.                       | No longer returned since 4.2.0: the Send reset password endpoint answers `200` for unknown emails so it can't be used to find which emails have an account. |  
 |     65     |                   Invalid flow type.                    | Invalid plugin settings for Reset password flow.                                                                                                 |  
 |     66     |  You need to add the \{\{CODE\}\} variable in email body.   | The `{{CODE}}` parameter is missing from Reset Password email body.                                                                              |  
 |     67     |    `Something is wrong. We can not save the settings.`    | Something is wrong with the plugin configuration. The `_wpnonce` field is missing or it is invalid.                                              |  
@@ -144,7 +156,7 @@ Read the code from `data.error_code` - it is in the same place in both formats.
 |     76     |         The custom email subject is empty.              | The Reset Password custom email subject is empty in the plugin settings.                                                                         |
 |     77     |  The code or access_token parameter is missing from request.  | The `code` or `access_token` parameter is missing when calling the Auth0 OAuth endpoint.                                                        |
 |     78     |          The code you provided is invalid.              | The Auth0 authorization `code` is invalid.                                                                                                       |
-|     79     |             The provided token is invalid.              | The Auth0 `access_token` is invalid or rejected by the Auth0 userinfo endpoint.                                                                 |
+|     79     |             The provided token is invalid.              | The Auth0 `access_token` is invalid or rejected by the Auth0 userinfo endpoint. Since 4.2.0 it is also returned for an opaque access token, unless **Allow opaque access tokens** is on. |
 |     80     |                Wrong user credentials.                  | No WordPress user was found matching the Auth0 account.                                                                                          |
 |     81     |       Refresh Token endpoint is not enabled.            | The Refresh Token endpoint is disabled in the plugin settings.                                                                                   |
 |     82     |       Validate Token endpoint is not enabled.           | The Validate Token endpoint is disabled in the plugin settings.                                                                                  |
@@ -172,9 +184,9 @@ Read the code from `data.error_code` - it is in the same place in both formats.
 |    104     |                Wrong user credentials.                 | No WordPress user was found matching the GitHub account.                                                                                         |
 |    105     |   Two-factor authentication plugin is not active.      | The Two-Factor plugin is not installed/activated or the integration is not enabled in Simple JWT Login settings.                                  |
 |    106     |             Invalid interim JWT claims.                | The interim JWT provided for 2FA verification has invalid or missing claims.                                                                     |
-|    107     | Invalid or expired two-factor session. Please authenticate again. | The 2FA nonce has expired or is invalid. The user must authenticate from the beginning.                                                  |
+|    107     | Invalid or expired two-factor session. Please authenticate again. | The 2FA nonce has expired or is invalid. The user must authenticate from the beginning (`401`).                                                  |
 |    108     |     Too many failed attempts. Please wait N seconds.   | The 2FA verification is rate-limited due to too many failed attempts.                                                                            |
-|    109     |          The two-factor code is missing / Invalid two-factor code. | The 2FA code is missing or does not match.                                                                                               |
+|    109     |          The two-factor code is missing / Invalid two-factor code. | The 2FA code is missing or does not match. After too many wrong codes (30 by default) the user's password is reset and emailed, and the message asks the user to check their email. |
 |    110     |    This JWT requires two-factor verification before it can be used. | The provided JWT is an interim 2FA JWT and cannot be used for regular authenticated operations until 2FA is completed.                    |
 |    111     |             Email address is not verified.             | The Auth0 account email is not verified, and unverified emails are not allowed in the Auth0 integration settings.                                |
 |    112     |   No verified primary email found in the GitHub account. | The GitHub account has no verified primary email, and unverified emails are not allowed in the GitHub integration settings.                     |
@@ -183,7 +195,7 @@ Read the code from `data.error_code` - it is in the same place in both formats.
 |    115     | You must be an administrator to manage revoked tokens. | Only users with the `manage_options` capability (administrators) can list or delete entries on the `/revoked-tokens` endpoints.                  |
 |    116     |              Invalid revoked token ID.                 | The `id` passed to `DELETE /revoked-tokens/{id}` is missing, not a positive number, or no revoked token entry exists with that ID.               |
 |    117     |        Failed to delete revoked token entry.           | A database error occurred while deleting the revoked token entry.                                                                                |
-|    118     |   The provided id_token was not issued for this website. | The Google `id_token` audience (`aud`) does not match the Google Client ID saved in the plugin settings - it was issued for another client.   |
+|    118     |   The provided id_token was not issued for this website. | The Google `id_token` audience (`aud`) does not match the Google Client ID saved in the plugin settings - it was issued for another client. Turn on **Allow tokens issued for other Google clients** to accept it (not recommended). |
 |    119     |  The email address of this Google Account is not verified. | The Google `id_token` reports `email_verified: false`, so the Google Account cannot be used to log in.                                             |
 |    120     |               Unknown settings section.                | AI Abilities: the requested settings section does not exist. Call `simple-jwt-login/get-settings` to list the available sections.               |
 |    121     |                Unknown setting: `%s`                   | AI Abilities: the setting key does not exist in that section. Only existing keys can be changed.                                                 |
@@ -194,3 +206,8 @@ Read the code from `data.error_code` - it is in the same place in both formats.
 |    126     |         The list item `%s` does not match.             | AI Abilities: the list item at that index no longer matches the `match` value (the settings changed meanwhile). Read the settings again and retry. |
 |    127     |  `%d` is not a Simple JWT Login error code.            | AI Abilities: the `explain-error` ability was called with a code that does not belong to Simple JWT Login.                                       |
 |    128     |      AI permission denied for this setting.            | AI Abilities: the change needs an AI permission that the administrator has not granted (for example, "Allow changing roles"), or it tries to assign a role with administrator capabilities. Enable it in **Integrations > AI Abilities (MCP)**. |
+|    129     | The OAuth state is invalid. Please start the login again. | The browser OAuth callback `state` is missing or doesn't match the `sjl_oauth_state_<provider>` cookie set by the login start (login CSRF protection). Shown on the login page and written to the audit log. Start the login from `GET /oauth/token?provider=<provider>`. |
+|    130     | The JWT was not issued for this audience (aud).        | An expected audience is set (Authentication **Expected audience**, or the JWT Rule's **Expected audience (aud)**), and the JWT's `aud` claim doesn't contain it. JWTs issued before the audience was set have no `aud` - log in again. |
+|    131     |            Unable to save the refresh token.           | `/auth` or `/auth/refresh` could not save the new refresh token in the database, so no tokens were issued (`500`). Check the database and that the refresh tokens table exists, then log in again. |
+|    132     | `The expires_at value must be a date such as 2030-01-31 or 2030-01-31 23:59:00 (UTC).` | The API key `expires_at` is not a valid date. Send a UTC date (`2030-01-31`, `2030-01-31 23:59:00`), an ISO 8601 date with a zone (`2030-01-31T23:59:00Z`), or `null` for no expiry. |
+|    133     |          Unable to create two-factor nonce.            | `/auth` or the OAuth login could not store the two-factor session (database or object cache write failed) for a user with 2FA enabled, so no interim JWT was issued (`500`). Retry, and check the server error log. Before 4.2.0 this case shared code `107` with an expired session. |

@@ -1,0 +1,11 @@
+description: The id is not a positive number (`error_code` 89).
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/api-key-error.yaml
+    example:
+      code: simple_jwt_login_api_key_error
+      message: Invalid API key ID.
+      data:
+        status: 404
+        error_code: 89

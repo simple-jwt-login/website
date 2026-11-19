@@ -44,9 +44,6 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 | `comment_shortcuts` | `optional` `string` | Whether to enable comment moderation keyboard shortcuts. Default `'false'`. |
 | `admin_color` | `optional` `string` | Admin color scheme. Default `'fresh'`. |
 | `use_ssl` | `optional` `boolean` | Whether the user always accesses the admin over HTTPS. Default `false`. |
-| `user_registered` | `optional` `string` | Date the user registered. Format: `Y-m-d H:i:s`. |
-| `user_activation_key` | `optional` `string` | Password reset key. Default empty. |
-| `spam` | `optional` `boolean` | Multisite only. Whether the user is marked as spam. Default `false`. |
 | `show_admin_bar_front` | `optional` `string` | Whether to show the Admin Bar on the front end. Accepts `'true'` or `'false'` as a string. Default `'true'`. |
 | `locale` | `optional` `string` | User locale. Default empty. |
 | `user_meta` | `optional` `string` | Custom user meta as a JSON string. Only keys listed in **Allowed User Meta Keys** (in plugin settings) are saved. Example: `{"plan":"premium","source":"app"}` |
@@ -91,7 +88,6 @@ Full registration with optional fields:
     "user_email": "myuser@simplejwtlogin.com",
     "user_url": "https://simplejwtlogin.com/myuser",
     "user_registered": "2021-01-01 23:31:50",
-    "user_activation_key": "",
     "user_status": "0",
     "display_name": "myuser",
     "user_level": 0
@@ -309,3 +305,9 @@ Comma-separated list of email domains accepted during registration (for example,
 Comma-separated list of `user_meta` keys that may be set via the `user_meta` request parameter. Keys not listed here are silently ignored, even if sent in the request. Leave blank to disallow all custom meta.
 
 Example: `plan, referral_source, subscription_tier`
+
+:::note
+Since version 4.1.0, meta keys that grant privileges or hold sessions - `{prefix}capabilities`, `{prefix}user_level` and `session_tokens` - are never set from a registration request, even if you list them here.
+
+Since version 4.2.0, the `user_activation_key`, `user_registered` and `spam` user properties are not accepted from the request either, so a registrant can't plant a password reset key and take over an account.
+:::

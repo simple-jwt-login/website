@@ -14,6 +14,14 @@ The Dashboard is the first page you see when you open Simple JWT Login (**Settin
 
 ---
 
+## Security notices
+
+Since version 4.2.0, the top of the Dashboard lists the enabled options and settings that weaken the security of your site, the **Critical** and **Warning** findings of the security report, most severe first. Click a notice to open the matching settings tab. When nothing is found, it shows "No security issues found in the current configuration."
+
+For example, a notice appears while one of the OAuth backward-compatibility options is on (**Allow tokens issued for other Google clients**, **Allow tokens issued for other Facebook apps**, **Allow tokens issued for other GitHub apps** or Auth0 **Allow opaque access tokens**). The AI `security-report` ability reports the same findings.
+
+---
+
 ## Routes
 
 REST API endpoints exposed by the plugin and whether each one is currently enabled.

@@ -56,7 +56,7 @@ Follow the [Quick Start](./Quick-Start.md) - get a JWT and make your first authe
 Before installing Simple-JWT-Login, ensure your environment meets the following minimum requirements:
 
 - PHP **5.5** or higher
-- WordPress **4.4.0** or higher
+- WordPress **6.2** or higher (since version 4.2.0, was 4.4.0)
 
 ## License
 

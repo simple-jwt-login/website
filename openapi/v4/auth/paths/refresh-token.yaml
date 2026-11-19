@@ -1,28 +1,37 @@
 tags:
   - authenticate_user
 summary: Refresh an expired JWT
-operationId: refreshJWT
 description: |
   Exchanges a valid refresh token for a new JWT (and a new refresh token). The
-  original refresh token is invalidated after use.
+  original refresh token is single-use: when several requests send the same token
+  at once, only one of them gets a new JWT, the others answer "Invalid refresh token."
 
   **Requirements**
   - The refresh-token feature must be enabled in the plugin settings.
   - The refresh token must exist in the database and not have exceeded the maximum
     token age configured in the plugin settings.
-  - If "Authentication Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
+  - Authentication must be enabled in the plugin settings.
+  - If "Refresh Token Requires Auth Code" is enabled, `AUTH_KEY` must be provided.
+  - If a JWT is also sent (header, cookie, session or `JWT` parameter) and it has been
+    revoked, the request is rejected. Any other problem with that JWT (for example, expired) is ignored.
+
+  **Custom payload claims**
+  Optionally supply `payload` as a JSON-encoded object to add extra claims to the
+  newly issued JWT. Reserved identity claims are always derived from the
+  authenticated user and cannot be overridden this way.
+operationId: refreshJWT
 requestBody:
   description: Refresh token obtained from a prior `/auth` response.
   content:
     application/json:
       schema:
-        $ref: '../schemas/auth-refresh-body.yaml'
+        $ref: ../schemas/auth-refresh-body.yaml
     multipart/form-data:
       schema:
-        $ref: '../schemas/auth-refresh-body.yaml'
+        $ref: ../schemas/auth-refresh-body.yaml
     application/x-www-form-urlencoded:
       schema:
-        $ref: '../schemas/auth-refresh-body.yaml'
+        $ref: ../schemas/auth-refresh-body.yaml
   required: true
 responses:
   '200':
@@ -31,9 +40,6 @@ responses:
       application/json:
         schema:
           type: object
-          required:
-            - success
-            - data
           properties:
             success:
               type: boolean
@@ -41,18 +47,28 @@ responses:
               example: true
             data:
               type: object
-              required:
-                - jwt
-                - refresh_token
               properties:
                 jwt:
                   type: string
                   description: Newly issued JWT.
-                  example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
                 refresh_token:
                   type: string
                   description: New refresh token replacing the one that was consumed.
-                  example: "f6e7g8h9i0j123456789012345678901234567890123456789012345678901234567"
+                  example: f6e7a8b9c0d123456789012345678901234567890123456789012345678901234567
+  '400':
+    description: |
+      The new JWT could not be signed (JWT library error, for example, OpenSSL signing failure
+      `error_code` 16).
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/error.yaml
+        example:
+          success: false
+          data:
+            message: OpenSSL unable to sign data
+            error_code: 16
   '401':
     description: |
       Unauthorized. One of:
@@ -66,11 +82,11 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "Invalid refresh token."
+            message: Invalid refresh token.
             error_code: 51
   '403':
     description: |
@@ -81,11 +97,11 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "Refresh Token endpoint is not enabled."
+            message: Refresh Token endpoint is not enabled.
             error_code: 81
   '422':
     description: |
@@ -95,20 +111,22 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "Refresh token is missing."
+            message: Refresh token is missing.
             error_code: 51
   '500':
-    description: Internal server error.
+    description: |
+      The new refresh token could not be saved in the database (`error_code` 131).
+      The old refresh token is already used up, so the client must log in again.
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "An unexpected error occurred."
-            error_code: 22
+            message: Unable to save the refresh token.
+            error_code: 131

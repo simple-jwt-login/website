@@ -4,26 +4,32 @@ required:
 properties:
   provider:
     type: string
-    enum: [google, auth0, facebook, github]
+    enum:
+      - google
+      - auth0
+      - facebook
+      - github
     description: OAuth provider slug.
     example: google
   code:
     type: string
-    description: Authorization code returned by the OAuth provider (Google, Auth0, Facebook, GitHub).
-    example: "4/0AfJohXmX..."
+    nullable: true
+    description: |
+      Authorization code returned by the OAuth provider's consent screen.
+      Used by Google, Auth0, Facebook, and GitHub.
+    example: 4/0AfJohXmX...
   id_token:
     type: string
+    nullable: true
     description: |
-      Google ID token from Sign In With Google (Google provider only).
-      Alternative to the authorization `code` for Google.
-    example: "eyJhbGci..."
+      Google ID token from Sign In With Google (Google provider only). Can be
+      supplied instead of `code` to obtain a WordPress JWT directly.
+    example: eyJhbGci...
   access_token:
     type: string
+    nullable: true
     description: |
-      Access token from the OAuth provider. Used for Facebook and GitHub instead
-      of an authorization code.
-    example: "EAABsbCS..."
-  AUTH_KEY:
-    type: string
-    example: "MY_SUPER_SECRET_AUTH_KEY"
-    description: Required when "Authentication Requires Auth Code" is enabled.
+      Provider access token passed directly by the client. Used by Auth0
+      (`provider=auth0`), Facebook (`provider=facebook`) and GitHub (`provider=github`)
+      instead of `code`.
+    example: EAABs...

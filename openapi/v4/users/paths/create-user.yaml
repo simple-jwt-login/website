@@ -21,13 +21,13 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: '../schemas/register-user-body.yaml'
+        $ref: ../schemas/register-user-body.yaml
     multipart/form-data:
       schema:
-        $ref: '../schemas/register-user-body.yaml'
+        $ref: ../schemas/register-user-body.yaml
     application/x-www-form-urlencoded:
       schema:
-        $ref: '../schemas/register-user-body.yaml'
+        $ref: ../schemas/register-user-body.yaml
   required: true
 responses:
   '200':
@@ -36,9 +36,6 @@ responses:
       application/json:
         schema:
           type: object
-          required:
-            - success
-            - data
           properties:
             success:
               type: boolean
@@ -46,17 +43,6 @@ responses:
               description: Action status.
             data:
               type: object
-              required:
-                - id
-                - login
-                - nicename
-                - email
-                - url
-                - registered
-                - activation_key
-                - status
-                - display_name
-                - roles
               properties:
                 id:
                   type: integer
@@ -64,116 +50,140 @@ responses:
                   example: 1
                 login:
                   type: string
-                  example: "myuser"
+                  example: myuser
                 nicename:
                   type: string
-                  example: "myuser"
+                  example: myuser
                 email:
                   type: string
-                  example: "myuser@simplejwtlogin.com"
+                  example: myuser@simplejwtlogin.com
                 url:
                   type: string
                   description: User URL. Empty string when not set.
-                  example: ""
+                  example: ''
                 registered:
                   type: string
-                  example: "2021-01-01 23:31:50"
-                activation_key:
-                  type: string
-                  description: Password reset key. Empty string when not set.
-                  example: ""
+                  example: '2021-01-01 23:31:50'
                 status:
                   type: string
-                  example: "0"
+                  example: '0'
                 display_name:
                   type: string
-                  example: "myuser"
+                  example: myuser
                 roles:
                   type: array
                   items:
                     type: string
-                    example: "subscriber"
+                    example: subscriber
                 jwt:
                   type: string
                   nullable: true
                   description: Only present when "Generate JWT on register" is enabled.
-                  example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  '302':
+    description: |
+      User registered and logged in. Returned when auto-login is enabled together with
+      "Force login after register": the browser is redirected the same way as
+      `GET /autologin` (or a `200` JSON body is returned when "No redirect" is configured).
+    headers:
+      Location:
+        schema:
+          type: string
+        example: 'https://example.com/wp-admin/'
   '400':
     description: |
-      Bad request. Missing required fields (`email` or `password`), or an unclassified
-      validation error.
+      The JWT for the new user could not be signed (JWT library error, for example, OpenSSL
+      signing failure `error_code` 16). Only when "Generate JWT on register" is enabled.
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "The email address or password is missing."
-            error_code: 35
+            message: OpenSSL unable to sign data
+            error_code: 16
   '401':
     description: |
-      Unauthorized. The provided auth code is invalid or missing when required.
+      Unauthorized. The auth code does not match any configured auth code (`error_code` 27).
+      An auth code is validated whenever it is sent, even when it is not required.
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "Invalid auth code."
-            error_code: 32
+            message: Invalid Auth Code ( AUTH_KEY ) provided.
+            error_code: 27
   '403':
     description: |
-      Forbidden. User registration is disabled in the plugin settings, or the client
-      IP address is not on the allow-list.
+      Forbidden. One of:
+      - User registration is disabled in the plugin settings (`error_code` 31).
+      - The client IP address is not on the allow-list (`error_code` 33).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "Register is not allowed."
+            message: Register is not allowed.
             error_code: 31
   '409':
-    description: A WordPress user with the provided email address already exists.
+    description: A WordPress user with the provided email address or `user_login` already exists (`error_code` 38).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "User already exists."
+            message: User already exists.
             error_code: 38
   '422':
     description: |
       Unprocessable entity. One of:
+      - `email` is missing, or `password` is missing while "Random password" is off (`error_code` 35).
       - The email address format is invalid (`error_code` 36).
       - The `user_login` exceeds 60 characters, or the email address (used as
         login when `user_login` is omitted) exceeds 60 characters (`error_code` 36).
       - The email domain is not permitted by the plugin's domain allow-list
         (`error_code` 37).
+      - The auth code is required but was not provided (`error_code` 94).
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
-        example:
-          success: false
-          data:
-            message: "The email address is invalid."
-            error_code: 36
+          $ref: ../../schemas/error.yaml
+        examples:
+          missingEmail:
+            value:
+              success: false
+              data:
+                message: Missing email.
+                error_code: 35
+          invalidEmail:
+            value:
+              success: false
+              data:
+                message: Invalid email address.
+                error_code: 36
+          domainNotAllowed:
+            value:
+              success: false
+              data:
+                message: This website does not allows users from this domain.
+                error_code: 37
   '500':
     description: |
-      Internal server error. WordPress `wp_insert_user()` returned an error, or an
-      unexpected internal failure occurred.
+      Internal server error. WordPress `wp_insert_user()` returned an error (`error_code` 52,
+      the message is the WordPress error), or an unexpected internal failure occurred.
     content:
       application/json:
         schema:
-          $ref: '../../schemas/error.yaml'
+          $ref: ../../schemas/error.yaml
         example:
           success: false
           data:
-            message: "User could not be created."
+            message: 'Sorry, that username already exists!'
             error_code: 52

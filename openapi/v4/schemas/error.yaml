@@ -1,7 +1,4 @@
 type: object
-required:
-  - success
-  - data
 properties:
   success:
     type: boolean
@@ -9,14 +6,11 @@ properties:
     description: Always `false` for error responses.
   data:
     type: object
-    required:
-      - message
-      - error_code
     properties:
       message:
         type: string
         description: Human-readable error description.
-        example: "An error occurred."
+        example: An error occurred.
       error_code:
         type: number
         description: |

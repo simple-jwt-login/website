@@ -19,7 +19,9 @@ It covers every `/wc/` route:
 - **Classic CRUD API** (`/wc/v3`, `/wc/v2`, `/wc/v1`) - products, orders, customers, coupons, and settings
 - **Store API** (`/wc/store/v1`) - the customer-facing cart & checkout used by headless storefronts.
 
-This works even when the global **"All WordPress endpoints check for JWT"** middleware is disabled - it is scoped to WooCommerce routes only.
+This works even when the global **"All WordPress endpoints check for JWT"** middleware is disabled - it is scoped to WooCommerce routes only. Since version 4.1.0, the plugin checks the resolved REST route, not the raw URL, so a `/wc/` string elsewhere in the URL does not trigger it.
+
+Since version 4.1.0, the JWT authenticates only the current request. It does not do a full WordPress login: no session is created, no auth cookies are set and `wp_login` is not fired, so repeated API calls don't pile up sessions.
 
 :::info Capabilities still apply
 A JWT only establishes **who** the user is. To manage products/orders the token must belong to an **Administrator** or **Shop Manager**. A customer token can browse, manage its own cart, and check out - but not edit the catalog or other people's orders.

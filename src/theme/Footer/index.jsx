@@ -109,6 +109,21 @@ export default function Footer() {
                   height="auto"
                 />
               </a>
+              <a
+                href="https://coderabbit.link/nicumicle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.sponsorLogo}
+                title="CodeRabbit - AI code review sponsor"
+              >
+                {/* Footer is always dark, so use the white (reverse) logo */}
+                <img
+                  src="https://www.coderabbit.ai/press-kit/coderabbit-reverse-white.svg"
+                  alt="CodeRabbit"
+                  width="140"
+                  height="auto"
+                />
+              </a>
             </div>
             {/* <div className={styles.sponsorsBecome}>
               <a

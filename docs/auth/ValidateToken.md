@@ -66,7 +66,6 @@ With optional Auth Code:
       "user_email": "myuser@simplejwtlogin.com",
       "user_url": "https://simplejwtlogin.com/myuser",
       "user_registered": "2021-01-01 23:31:50",
-      "user_activation_key": "",
       "user_status": "0",
       "display_name": "myuser"
     },

@@ -16,6 +16,12 @@ Simple JWT Login exposes a two-step password reset flow entirely through the RES
 
 Send the user's email address to trigger the reset flow. The plugin generates a one-time code and delivers it according to the configured Reset Flow option.
 
+:::note
+Since version 4.2.0, an email that doesn't belong to any account gets the same `200` answer as a real one, but nothing is sent. This way the endpoint can't be used to find out which emails have an account. The attempt is still written to the [audit log](/docs/audit-logs/), and webhooks and the response hook only run for real users.
+
+If you use the `simple_jwt_login_response_send_reset_password` filter or reset password webhooks, keep in mind that they run only for real users. If they change the response or add a delay, callers can tell which emails exist.
+:::
+
 :::tip[API Reference]
 Explore and test this step using the [interactive API reference →](/api/v4/send-reset-password-code)
 :::
@@ -105,20 +111,6 @@ Forbidden - password reset is disabled in plugin settings.
 }
 ```
 
-#### 404
-
-No WordPress user with the provided email address was found.
-
-```json
-{
-  "success": false,
-  "data": {
-    "message": "User not found.",
-    "error_code": 64
-  }
-}
-```
-
 #### 500
 
 Internal server error (for example, email sending failure).
@@ -170,7 +162,6 @@ fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_passwor
 | `56` | Password reset is not enabled in plugin settings. |
 | `58` | Invalid Auth Code provided. |
 | `59` | Email address is missing from the request. |
-| `64` | No WordPress user found with the provided email address. |
 | `65` | Invalid flow type configured in plugin settings. |
 | `66` | The `{{CODE}}` variable is missing from the custom email template. |
 
@@ -408,6 +399,10 @@ When enabled, the `code` parameter is not required. The plugin identifies the us
 #### Send WordPress default password changed notification
 
 When enabled, WordPress sends its default password changed notification email to the site admin after the password is successfully updated.
+
+:::tip
+To log the user out everywhere after a reset (a stolen JWT or refresh token then stops working), turn on [Revoke sessions on password change](/docs/authentication/#revoke-sessions-on-password-change) in the Authentication settings.
+:::
 
 ---
 

@@ -5,6 +5,7 @@
  *   - Routes        (all WordPress route operations, flat)
  *   - OAuth         (token-exchange operations)
  *   - API Keys      (API key management operations)
+ *   - Revoked Tokens (revoked JWT management operations)
  *
  * The generated sidebar groups operations by tag (one nested category per
  * tag). This script ignores that nesting: it extracts every operation
@@ -58,6 +59,11 @@ const GROUPS = [
       'delete-api-key',
       'revoke-api-key',
     ],
+  },
+  {
+    label: 'Revoked Tokens',
+    collapsed: true,
+    ids: ['list-revoked-tokens', 'delete-revoked-token'],
   },
 ];
 
@@ -153,5 +159,5 @@ export default sidebar;
 
 writeFileSync(sidebarPath, out, 'utf8');
 console.log(
-  'api/v4/sidebar.ts patched: Introduction + Routes + OAuth + API Keys structure applied.'
+  'api/v4/sidebar.ts patched: Introduction + Routes + OAuth + API Keys + Revoked Tokens structure applied.'
 );
