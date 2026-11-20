@@ -14,7 +14,11 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 
 **ENDPOINT**: `/simple-jwt-login/v1/users`
 
-**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users&email=NEW_USER_EMAIL&password=NEW_USER_PASSWORD`
+**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users`
+
+Keep credentials out of the URL
+
+Send the new user's email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history and monitoring tools.
 
 **PARAMETERS**:
 

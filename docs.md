@@ -46,10 +46,18 @@ Follow the [Quick Start](/docs/quick-start.md) - get a JWT and make your first a
 
 ## Requirements[​](#requirements "Direct link to Requirements")
 
-Before installing Simple-JWT-Login, ensure your environment meets the following minimum requirements:
+### Minimum requirements[​](#minimum-requirements "Direct link to Minimum requirements")
 
-* PHP **5.5** or higher
-* WordPress **6.2** or higher (since version 4.2.0, was 4.4.0)
+* WordPress **6.2** or higher (since plugin version 4.2.0, previously 4.4.0)
+* PHP **5.5** or higher for the plugin code itself
+
+The plugin code stays compatible with PHP 5.5, but WordPress sets its own PHP floor. WordPress 6.2 requires PHP **5.6.20+**, and WordPress 6.6 and later require PHP **7.2.24+**. In practice, your PHP version is set by the WordPress version you run.
+
+### Recommended for production[​](#recommended-for-production "Direct link to Recommended for production")
+
+* The latest WordPress release
+* A PHP version that still receives security updates (PHP **8.2** or newer)
+* HTTPS on every request that carries a JWT
 
 ## License[​](#license "Direct link to License")
 

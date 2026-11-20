@@ -21,6 +21,8 @@ This project is supported by:
 
 [![DigitalOcean](https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg)](https://www.digitalocean.com/ "DigitalOcean - cloud infrastructure sponsor")[![CodeRabbit](https://www.coderabbit.ai/press-kit/coderabbit-reverse-white.svg)](https://coderabbit.link/nicumicle "CodeRabbit - AI code review sponsor")
 
+[Become a sponsor →](/sponsors)
+
 ![](/assets/favicons/favicon.ico)Simple JWT Login
 
 JWT authentication for WordPress - REST API, headless WP, WPGraphQL, and WP-CLI. Free and open-source, forever.
@@ -33,6 +35,7 @@ JWT authentication for WordPress - REST API, headless WP, WPGraphQL, and WP-CLI.
 * [API Reference](/api/v4/simple-jwt-login.md)
 * [Releases](/releases.md)
 * [Donate](/donate)
+* [Sponsors](/sponsors)
 
 ### Explore
 
@@ -45,6 +48,7 @@ JWT authentication for WordPress - REST API, headless WP, WPGraphQL, and WP-CLI.
 * [WordPress Plugin Page](https://wordpress.org/plugins/simple-jwt-login)
 * [Support Forum](https://wordpress.org/support/plugin/simple-jwt-login)
 * [Report an Issue](https://github.com/nicumicle/simple-jwt-login/issues)
+* [Report a Security Issue](https://github.com/nicumicle/simple-jwt-login/security/advisories/new)
 * [Contact](/contact)
 
 ### Connect

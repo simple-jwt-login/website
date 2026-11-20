@@ -18,19 +18,23 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 
 **ENDPOINT**: `/simple-jwt-login/v1/auth`
 
-**URL Example**: `http://{{yoursite}}/?rest_route=/simple-jwt-login/v1/auth&email={{email}}&password={{password}}`
+**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/auth`
+
+Keep credentials out of the URL
+
+Send the email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history and monitoring tools.
 
 **PARAMETERS**:
 
-| Parameter       | Type                            | Description                                                                                                                                                                                                                                                                               |
-| --------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `email`         | `required*` `string`            | User email address. Required when `username` and `login` are absent.                                                                                                                                                                                                                      |
-| `username`      | `required*` `string`            | WordPress username. Required when `email` and `login` are absent.                                                                                                                                                                                                                         |
-| `login`         | `required*` `string`            | WordPress username or email. Simulates the WordPress login page flow. Required when `email` and `username` are absent.                                                                                                                                                                    |
-| `password`      | `required*` `string`            | User plain-text password. Required when `password_hash` is absent.                                                                                                                                                                                                                        |
-| `password_hash` | `optional` `string`             | The user's hashed password as stored in the database. Required when `password` is absent.                                                                                                                                                                                                 |
-| `AUTH_KEY`      | `optional` `string`             | Auth Code value. Required only if "Require Authentication Code" is enabled. The parameter name matches the **Auth Code URL Key** configured in Auth Codes settings (default: `AUTH_KEY`).                                                                                                 |
-| `payload`       | `optional` `string` \| `object` | Extra claims merged into the JWT payload. Send a JSON-encoded string for form-encoded/query-string requests, or a native JSON object for JSON body requests. [Reserved claims](#custom-payload-claims) are always overridden by the authenticated user's data and cannot be set this way. |
+| Parameter       | Type                            | Description                                                                                                                                                                                                                                                                  |
+| --------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `email`         | `required*` `string`            | User email address. Required when `username` and `login` are absent.                                                                                                                                                                                                         |
+| `username`      | `required*` `string`            | WordPress username. Required when `email` and `login` are absent.                                                                                                                                                                                                            |
+| `login`         | `required*` `string`            | WordPress username or email. Simulates the WordPress login page flow. Required when `email` and `username` are absent.                                                                                                                                                       |
+| `password`      | `required*` `string`            | User plain-text password. Required when `password_hash` is absent.                                                                                                                                                                                                           |
+| `password_hash` | `optional` `string`             | The user's hashed password as stored in the database. Required when `password` is absent.                                                                                                                                                                                    |
+| `AUTH_KEY`      | `optional` `string`             | Auth Code value. Required only if "Require Authentication Code" is enabled. The parameter name matches the **Auth Code URL Key** configured in Auth Codes settings (default: `AUTH_KEY`).                                                                                    |
+| `payload`       | `optional` `string` \| `object` | Extra claims merged into the JWT payload. Send a JSON-encoded string for form-encoded requests, or a native JSON object for JSON body requests. [Reserved claims](#custom-payload-claims) are always overridden by the authenticated user's data and cannot be set this way. |
 
 ## Request[​](#request "Direct link to Request")
 
@@ -73,7 +77,7 @@ With extra payload claims (JSON body - native object):
 }
 ```
 
-With extra payload claims (form-encoded/query-string - JSON-encoded string):
+With extra payload claims (form-encoded body - JSON-encoded string):
 
 ```
 email=test@simplejwtlogin.com&password=SomeSuperSecretPassword&payload={"department":"engineering","region":"eu"}
