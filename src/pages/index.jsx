@@ -6,17 +6,17 @@ import clsx from 'clsx';
 import Feature from "@site/src/components/feature/feature";
 import Review from "@site/src/components/review/review";
 import DownloadButton from "@site/src/components/DownloadButton";
-import Counter from '../components/counter/counter';
 import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
-import { ACTIVE_INSTALLS, TOTAL_DOWNLOADS, RATING, BEST_RATING, RATING_COUNT, ACTIVE_YEARS } from '@site/src/data/pluginStats';
+import { ACTIVE_INSTALLS, TOTAL_DOWNLOADS, RATING, BEST_RATING, RATING_COUNT, ACTIVE_YEARS, formatNumber } from '@site/src/data/pluginStats';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBolt, faLock, faRocket, faWrench, faGlobe, faLink,
   faArrowsRotate, faHeart, faStar, faChartLine, faEarthEurope,
   faKey, faShieldHalved, faUserShield, faClipboardList, faBell,
   faCartShopping, faLayerGroup, faVial, faPlay,
+  faBug, faCodeBranch, faEnvelope,
 } from '@fortawesome/free-solid-svg-icons'
-import { faPhp } from '@fortawesome/free-brands-svg-icons'
+import { faPhp, faWordpress } from '@fortawesome/free-brands-svg-icons'
 
 import styles from './styles.module.css';
 
@@ -265,6 +265,20 @@ const reviews = [
   },
 ];
 
+const GITHUB_REPO = 'https://github.com/nicumicle/simple-jwt-login';
+
+// Same live demo as the GitHub README (WordPress Playground blueprint).
+const PLAYGROUND_URL = 'https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/nicumicle/simple-jwt-login/master/wordpress.org/assets/blueprints/blueprint.json';
+
+// Only list practices that are verifiable in the public repo - no certifications or audit claims.
+const SECURITY_ITEMS = [
+  { icon: faBug,          title: 'Security vulnerability fixes', desc: 'Reported vulnerabilities are fixed and shipped in regular releases, documented in the release notes.', href: '/releases/tags/security', linkLabel: 'Security releases' },
+  { icon: faVial,         title: 'Security regression tests',    desc: 'A dedicated security test suite covers CSRF, user enumeration, trusted proxy IPs and ambient credentials, so fixed issues stay fixed.', href: `${GITHUB_REPO}/tree/master/tests/Feature/Security`, linkLabel: 'Browse the tests' },
+  { icon: faCodeBranch,   title: 'Continuous integration',       desc: 'Unit, feature and cross-site test suites run automatically in GitHub Actions.', href: `${GITHUB_REPO}/actions`, linkLabel: 'CI workflows' },
+  { icon: faWordpress,    title: 'WordPress compatibility testing', desc: 'Feature tests run against a real WordPress install, alongside PHP syntax checks across multiple PHP versions and the official WordPress Plugin Check.', href: `${GITHUB_REPO}/tree/master/.github/workflows`, linkLabel: 'View the workflows' },
+  { icon: faEnvelope,     title: 'Responsible disclosure',       desc: 'Found a vulnerability? Report it privately through GitHub security advisories instead of opening a public issue, so a fix can ship before details go public.', href: `${GITHUB_REPO}/security/advisories/new`, linkLabel: 'Report a vulnerability' },
+];
+
 function RecentPosts() {
   const recentPosts = require("../../.docusaurus/docusaurus-plugin-content-blog/default/blog-post-list-prop-default.json");
   const articleIconSrc = useCdnUrl('assets/svg/article.svg');
@@ -345,21 +359,24 @@ export default function HomePage() {
             <Link to="/docs/" className={styles.actionButton} title="Get started">
               Get started →
             </Link>
+            <Link to={PLAYGROUND_URL} className={styles.tryButton} title="Open the Simple JWT Login live demo in WordPress Playground">
+              <FontAwesomeIcon icon={faPlay} /> Live Demo
+            </Link>
             <DownloadButton />
           </div>
           <div className={styles.heroStats}>
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number={String(ACTIVE_INSTALLS)} duration="3" />+</span>
+              <span className={styles.heroStatNum}>{formatNumber(ACTIVE_INSTALLS)}+</span>
               <span className={styles.heroStatLabel}>Active installs</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number={String(TOTAL_DOWNLOADS)} duration="3" />+</span>
+              <span className={styles.heroStatNum}>{formatNumber(TOTAL_DOWNLOADS)}+</span>
               <span className={styles.heroStatLabel}>Downloads</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
             <div className={styles.heroStat}>
-              <span className={styles.heroStatNum}><Counter number={String(RATING)} duration="2" /> / 5</span>
+              <span className={styles.heroStatNum}>{RATING} / 5</span>
               <span className={styles.heroStatLabel}>Rating</span>
             </div>
             <div className={styles.heroStatDivider} aria-hidden="true" />
@@ -441,6 +458,28 @@ export default function HomePage() {
                   <div className={styles.whyCardIcon}><FontAwesomeIcon icon={icon} /></div>
                   <h3 className={styles.whyCardTitle}>{title}</h3>
                   <p className={styles.whyCardDesc}>{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Security & maintenance ────────────────────────── */}
+        <section className={styles.sectionPadding}>
+          <div className="container">
+            <span className={styles.sectionEyebrow}>Security</span>
+            <h2 className={styles.sectionTitle}>Security is a priority</h2>
+            <p className={styles.sectionLead}>
+              Simple JWT Login is continuously maintained with a focus on authentication security,
+              token lifecycle management and reliable WordPress integrations.
+            </p>
+            <div className={styles.whyGrid}>
+              {SECURITY_ITEMS.map(({ icon, title, desc, href, linkLabel }) => (
+                <div key={title} className={styles.whyCard}>
+                  <div className={styles.whyCardIcon}><FontAwesomeIcon icon={icon} /></div>
+                  <h3 className={styles.whyCardTitle}>{title}</h3>
+                  <p className={styles.whyCardDesc}>{desc}</p>
+                  <Link to={href} className={styles.communityCardLink}>{linkLabel} →</Link>
                 </div>
               ))}
             </div>

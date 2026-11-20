@@ -1,0 +1,94 @@
+.perMonth {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.benefits {
+  text-align: left;
+  margin: 1rem 0;
+  padding-left: 1.2rem;
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-800);
+  /* Grow to fill the card so every CTA lines up at the bottom */
+  flex: 1;
+}
+
+.cta {
+  white-space: nowrap;
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+}
+
+.benefits li {
+  margin-bottom: 0.4rem;
+}
+
+.logoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.logoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 260px;
+  max-width: 100%;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-emphasis-700);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.logoCard:hover {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.logoCard img {
+  height: 40px;
+  width: auto;
+}
+
+/* For white logos that need a dark backdrop in both themes */
+.logoCardDark {
+  background: var(--ifm-color-gray-900);
+  color: var(--ifm-color-gray-300);
+}
+
+.logoRole {
+  font-size: 0.85rem;
+}
+
+/* Four levels: wider than the donate page grid so they fit on one row on desktop */
+.tiersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+@media (max-width: 996px) { .tiersGrid { grid-template-columns: repeat(2, 1fr); max-width: 640px; } }
+@media (max-width: 600px) { .tiersGrid { grid-template-columns: 1fr; max-width: 360px; } }
+
+/* Light card behind the embedded 123FormBuilder form (the CTA section is dark).
+   min-height reserves space while the script loads; the card then grows to the form's real height. */
+.formHost {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  min-height: 420px;
+  margin: 2rem auto 1.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #ffffff;
+  text-align: left;
+}

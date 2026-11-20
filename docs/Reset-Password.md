@@ -181,7 +181,11 @@ Explore and test this step using the [interactive API reference →](/api/v4/cha
 
 **ENDPOINT**: `/simple-jwt-login/v1/user/reset_password`
 
-**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/user/reset_password&email={{email}}&code={{code}}&new_password={{new_password}}`
+**URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/user/reset_password`
+
+:::warning[Keep credentials out of the URL]
+Send the reset code and new password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history and monitoring tools.
+:::
 
 **PARAMETERS**:
 

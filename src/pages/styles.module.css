@@ -181,6 +181,28 @@
 }
 .actionButton:active { transform: translateY(0); }
 
+/* Outlined companion to .actionButton (hero "Live Demo") */
+.tryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  text-decoration: none !important;
+  color: var(--ifm-color-primary) !important;
+  border: 2px solid var(--ifm-color-primary);
+  transition: transform 150ms ease, background 150ms ease;
+}
+.tryButton:hover {
+  transform: translateY(-2px);
+  background: var(--ifm-color-primary);
+  color: #ffffff !important;
+}
+.tryButton:active { transform: translateY(0); }
+
 /* ── Generic CTA / Download Btn ────────────────────────────── */
 .btn {
   display: inline-flex;

@@ -11,6 +11,7 @@ const productLinks = [
   { label: 'API Reference', to: '/api/v4/simple-jwt-login' },
   { label: 'Releases', to: '/releases/' },
   { label: 'Donate', to: '/donate/' },
+  { label: 'Sponsors', to: '/sponsors/' },
 ];
 
 const exploreLinks = [
@@ -23,6 +24,7 @@ const helpLinks = [
   { label: 'WordPress Plugin Page', href: 'https://wordpress.org/plugins/simple-jwt-login' },
   { label: 'Support Forum', href: 'https://wordpress.org/support/plugin/simple-jwt-login' },
   { label: 'Report an Issue', href: 'https://github.com/nicumicle/simple-jwt-login/issues' },
+  { label: 'Report a Security Issue', href: 'https://github.com/nicumicle/simple-jwt-login/security/advisories/new' },
   { label: 'Contact', to: '/contact/' },
 ];
 
@@ -125,14 +127,11 @@ export default function Footer() {
                 />
               </a>
             </div>
-            {/* <div className={styles.sponsorsBecome}>
-              <a
-                href="mailto:contact@simplejwtlogin.com"
-                className={styles.sponsorsBecomeCta}
-              >
+            <div className={styles.sponsorsBecome}>
+              <Link to="/sponsors/" className={styles.sponsorsBecomeCta}>
                 Become a sponsor →
-              </a>
-            </div> */}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
