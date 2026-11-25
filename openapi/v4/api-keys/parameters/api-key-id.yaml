@@ -1,8 +1,0 @@
-name: id
-in: path
-required: true
-description: Numeric ID of the API key.
-schema:
-  type: integer
-  minimum: 1
-example: 7

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import useBrokenLinks from '@docusaurus/useBrokenLinks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShieldHalved, faCodeBranch, faServer, faBook,
@@ -13,7 +14,8 @@ import { ACTIVE_INSTALLS, TOTAL_DOWNLOADS, RATING, ACTIVE_YEARS, formatNumber } 
 
 const SPONSOR_EMAIL = 'contact@simplejwtlogin.com';
 const mailto = (subject) => `mailto:${SPONSOR_EMAIL}?subject=${encodeURIComponent(subject)}`;
-const FORM_ANCHOR = '#sponsor-form';
+const FORM_ID = 'sponsor-form';
+const FORM_ANCHOR = `#${FORM_ID}`;
 const FORM_SCRIPT = 'https://form.123formbuilder.com/embed/5979635.js';
 
 // 123FormBuilder renders the form where its script tag sits; JSX <script> tags never execute,
@@ -152,6 +154,7 @@ const sponsors = [
 ];
 
 function SponsorsPage() {
+  useBrokenLinks().collectAnchor(FORM_ID);
   return (
     <Layout
       title="Sponsor Simple JWT Login"
@@ -277,7 +280,7 @@ function SponsorsPage() {
           </div>
         </section>
 
-        <section id="sponsor-form" className={styles.finalCta}>
+        <section id={FORM_ID} className={styles.finalCta}>
           <div className="container">
             <div className={styles.impactIcon}><FontAwesomeIcon icon={faBolt} /></div>
             <h2 className={styles.finalCtaTitle}>Let&apos;s partner up</h2>

@@ -29,4 +29,4 @@ while IFS= read -r src; do
   pages+=("$html")
 done < <(find src/pages -name '*.jsx' | sort)
 
-npx vale "$@" docs openapi "${pages[@]}"
+npx vale "$@" docs openapi static/openapi/v4.yaml "${pages[@]}"

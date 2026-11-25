@@ -1,0 +1,29 @@
+name: CI-openapi
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "static/openapi/**"
+      - ".github/workflows/openapi.yaml"
+  pull_request:
+    paths:
+      - "static/openapi/**"
+      - ".github/workflows/openapi.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-openapi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🧑‍💻 Setup
+        run: |
+          yarn install --frozen-lockfile
+
+      - name: ✅ Validate OpenAPI files
+        run: yarn redocly lint --extends=spec static/openapi/*.yaml

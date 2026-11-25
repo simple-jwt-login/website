@@ -23,8 +23,7 @@ properties:
     example: "MY_SUPER_SECRET_AUTH_CODE"
     description: Required when "Authentication Requires Auth Code" is enabled
   payload:
-    type: string
-    nullable: true
+    type: [string, 'null']
     example: '{"department":"engineering","region":"eu"}'
     description: |
       Optional extra claims to merge into the JWT payload, as a JSON-encoded
