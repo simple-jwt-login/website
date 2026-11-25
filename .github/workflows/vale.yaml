@@ -26,6 +26,19 @@ jobs:
         run: |
           yarn install --frozen-lockfile
 
+      # The npm wrapper downloads Vale via the rate-limited GitHub API, so it is optional
+      # and may be missing. Keep the version in sync with package.json.
+      - name: 📥 Install Vale
+        env:
+          VALE_VERSION: "3.25.1"
+          VALE_SHA256: 4bf5c5176b682b1da0830f471584d3494f1c2e27ee3029e1ad6f6661d4962182
+        run: |
+          curl -fsSL --retry 5 -o "$RUNNER_TEMP/vale.tar.gz" "https://github.com/vale-cli/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz"
+          echo "${VALE_SHA256}  $RUNNER_TEMP/vale.tar.gz" | sha256sum -c
+          mkdir -p "$RUNNER_TEMP/vale"
+          tar -xzf "$RUNNER_TEMP/vale.tar.gz" -C "$RUNNER_TEMP/vale" vale
+          echo "$RUNNER_TEMP/vale" >> "$GITHUB_PATH"
+
       # Lints docs, OpenAPI and website pages (builds the site for the pages).
       - name: ✍️ Vale prose linting
         run: yarn lint:vale

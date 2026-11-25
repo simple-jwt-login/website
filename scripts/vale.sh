@@ -9,7 +9,10 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-npx vale sync
+# Prefer the npm-installed binary, fall back to a system one (CI installs Vale itself).
+export PATH="$PWD/node_modules/.bin:$PATH"
+
+vale sync
 
 if [[ ! -f build/index.html ]] || [[ -n "$(find src/pages src/components -newer build/index.html -print -quit)" ]]; then
   echo "Building site so website pages can be linted..."
@@ -29,4 +32,4 @@ while IFS= read -r src; do
   pages+=("$html")
 done < <(find src/pages -name '*.jsx' | sort)
 
-npx vale "$@" docs openapi static/openapi/v4.yaml "${pages[@]}"
+vale "$@" docs openapi static/openapi/v4.yaml "${pages[@]}"
