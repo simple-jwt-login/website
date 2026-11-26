@@ -6,8 +6,7 @@ on:
   pull_request:
     paths:
       - "docs/**"
-      - "openapi/**"
-      - "static/openapi/v4.yaml"
+      - "static/openapi/**"
       - "src/pages/**"
       - "src/components/**"
       - ".vale.ini"

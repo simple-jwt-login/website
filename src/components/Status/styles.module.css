@@ -1,0 +1,21 @@
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.yes {
+  color: var(--ifm-color-primary);
+}
+
+.no {
+  color: var(--ifm-color-danger);
+}
+
+.partial {
+  color: var(--ifm-color-warning);
+}
+
+.soon {
+  color: var(--ifm-color-info);
+}

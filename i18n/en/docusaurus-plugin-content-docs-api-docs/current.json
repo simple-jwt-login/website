@@ -1,0 +1,106 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.apisidebar.category.Routes": {
+    "message": "Routes",
+    "description": "The label for category 'Routes' in sidebar 'apisidebar'"
+  },
+  "sidebar.apisidebar.category.OAuth": {
+    "message": "OAuth",
+    "description": "The label for category 'OAuth' in sidebar 'apisidebar'"
+  },
+  "sidebar.apisidebar.category.API Keys": {
+    "message": "API Keys",
+    "description": "The label for category 'API Keys' in sidebar 'apisidebar'"
+  },
+  "sidebar.apisidebar.category.Revoked Tokens": {
+    "message": "Revoked Tokens",
+    "description": "The label for category 'Revoked Tokens' in sidebar 'apisidebar'"
+  },
+  "sidebar.apisidebar.doc.Introduction": {
+    "message": "Introduction",
+    "description": "The label for the doc item 'Introduction' in sidebar 'apisidebar', linking to the doc simple-jwt-login"
+  },
+  "sidebar.apisidebar.doc.Auto-login user into WordPress": {
+    "message": "Auto-login user into WordPress",
+    "description": "The label for the doc item 'Auto-login user into WordPress' in sidebar 'apisidebar', linking to the doc autologin"
+  },
+  "sidebar.apisidebar.doc.Register a new WordPress user": {
+    "message": "Register a new WordPress user",
+    "description": "The label for the doc item 'Register a new WordPress user' in sidebar 'apisidebar', linking to the doc register-a-new-word-press-user"
+  },
+  "sidebar.apisidebar.doc.Delete a WordPress user": {
+    "message": "Delete a WordPress user",
+    "description": "The label for the doc item 'Delete a WordPress user' in sidebar 'apisidebar', linking to the doc delete-user"
+  },
+  "sidebar.apisidebar.doc.Send reset password email": {
+    "message": "Send reset password email",
+    "description": "The label for the doc item 'Send reset password email' in sidebar 'apisidebar', linking to the doc send-reset-password-code"
+  },
+  "sidebar.apisidebar.doc.Change user password": {
+    "message": "Change user password",
+    "description": "The label for the doc item 'Change user password' in sidebar 'apisidebar', linking to the doc change-user-password"
+  },
+  "sidebar.apisidebar.doc.Authenticate and obtain a JWT": {
+    "message": "Authenticate and obtain a JWT",
+    "description": "The label for the doc item 'Authenticate and obtain a JWT' in sidebar 'apisidebar', linking to the doc get-jwt"
+  },
+  "sidebar.apisidebar.doc.Refresh an expired JWT": {
+    "message": "Refresh an expired JWT",
+    "description": "The label for the doc item 'Refresh an expired JWT' in sidebar 'apisidebar', linking to the doc refresh-jwt"
+  },
+  "sidebar.apisidebar.doc.Validate a JWT and retrieve user details": {
+    "message": "Validate a JWT and retrieve user details",
+    "description": "The label for the doc item 'Validate a JWT and retrieve user details' in sidebar 'apisidebar', linking to the doc validate-jwt"
+  },
+  "sidebar.apisidebar.doc.Validate a JWT and retrieve user details (POST variant)": {
+    "message": "Validate a JWT and retrieve user details (POST variant)",
+    "description": "The label for the doc item 'Validate a JWT and retrieve user details (POST variant)' in sidebar 'apisidebar', linking to the doc validate-jwt-post"
+  },
+  "sidebar.apisidebar.doc.Revoke a JWT": {
+    "message": "Revoke a JWT",
+    "description": "The label for the doc item 'Revoke a JWT' in sidebar 'apisidebar', linking to the doc revoke-jwt"
+  },
+  "sidebar.apisidebar.doc.Verify Two-Factor Authentication code": {
+    "message": "Verify Two-Factor Authentication code",
+    "description": "The label for the doc item 'Verify Two-Factor Authentication code' in sidebar 'apisidebar', linking to the doc verify-two-factor"
+  },
+  "sidebar.apisidebar.doc.Exchange OAuth authorization code for a WordPress JWT (GET)": {
+    "message": "Exchange OAuth authorization code for a WordPress JWT (GET)",
+    "description": "The label for the doc item 'Exchange OAuth authorization code for a WordPress JWT (GET)' in sidebar 'apisidebar', linking to the doc oauth-token-get"
+  },
+  "sidebar.apisidebar.doc.Exchange OAuth token for a WordPress JWT (POST)": {
+    "message": "Exchange OAuth token for a WordPress JWT (POST)",
+    "description": "The label for the doc item 'Exchange OAuth token for a WordPress JWT (POST)' in sidebar 'apisidebar', linking to the doc oauth-token-post"
+  },
+  "sidebar.apisidebar.doc.List API keys": {
+    "message": "List API keys",
+    "description": "The label for the doc item 'List API keys' in sidebar 'apisidebar', linking to the doc list-api-keys"
+  },
+  "sidebar.apisidebar.doc.Create an API key": {
+    "message": "Create an API key",
+    "description": "The label for the doc item 'Create an API key' in sidebar 'apisidebar', linking to the doc create-api-key"
+  },
+  "sidebar.apisidebar.doc.Update an API key": {
+    "message": "Update an API key",
+    "description": "The label for the doc item 'Update an API key' in sidebar 'apisidebar', linking to the doc update-api-key"
+  },
+  "sidebar.apisidebar.doc.Permanently delete an API key": {
+    "message": "Permanently delete an API key",
+    "description": "The label for the doc item 'Permanently delete an API key' in sidebar 'apisidebar', linking to the doc delete-api-key"
+  },
+  "sidebar.apisidebar.doc.Revoke an API key": {
+    "message": "Revoke an API key",
+    "description": "The label for the doc item 'Revoke an API key' in sidebar 'apisidebar', linking to the doc revoke-api-key"
+  },
+  "sidebar.apisidebar.doc.List revoked tokens": {
+    "message": "List revoked tokens",
+    "description": "The label for the doc item 'List revoked tokens' in sidebar 'apisidebar', linking to the doc list-revoked-tokens"
+  },
+  "sidebar.apisidebar.doc.Delete a revoked-token entry": {
+    "message": "Delete a revoked-token entry",
+    "description": "The label for the doc item 'Delete a revoked-token entry' in sidebar 'apisidebar', linking to the doc delete-revoked-token"
+  }
+}

@@ -1,8 +1,8 @@
 ---
 slug: /integrations/oauth/auth0/setup
-title: Setup
-sidebar_position: 1
-description: Configure Auth0 OAuth credentials in Simple JWT Login to enable Auth0 sign-in for your WordPress site.
+title: Auth0 OAuth Setup for WordPress
+sidebar_label: Setup
+description: Set up Auth0 login for WordPress - create an Auth0 OAuth app, copy the credentials into Simple JWT Login, and enable the provider.
 keywords: [Auth0 WordPress, Auth0 OAuth, Auth0 Client ID, Auth0 Client Secret, social login WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
@@ -42,3 +42,8 @@ Keep your credentials secure - never commit them to version control or expose th
 :::note
 Since version 4.2.0, the login is rejected when Auth0's userinfo answer has no `email_verified` claim, unless unverified emails are allowed in the Auth0 settings.
 :::
+
+## Next steps
+
+- [Exchange an Auth0 OAuth code for tokens](./02_Exchange_Code.md)
+- [Exchange an Auth0 token for a WordPress JWT](./03_Exchange_Token.md)

@@ -19,6 +19,8 @@ import type {Props} from '@theme/BlogTagsPostsPage';
 import BlogPostItems from '@theme/BlogPostItems';
 import Unlisted from '@theme/ContentVisibility/Unlisted';
 import Heading from '@theme/Heading';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTag} from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
 
 function BlogTagsPostsPageMetadata({tag}: Props): JSX.Element {
@@ -42,7 +44,9 @@ function BlogTagsPostsPageContent({
     <BlogLayout sidebar={sidebar}>
       {tag.unlisted && <Unlisted />}
       <header className={styles.header}>
-        <div className={styles.heroBadge}>🏷️ Tag</div>
+        <div className={styles.heroBadge}>
+          <FontAwesomeIcon icon={faTag} aria-hidden="true" /> Tag
+        </div>
         <Heading as="h1" className={styles.heroTitle}>{title}</Heading>
         {tag.description && <p className={styles.heroSubtitle}>{tag.description}</p>}
         <Link href={tag.allTagsPath} className={styles.allTagsLink}>

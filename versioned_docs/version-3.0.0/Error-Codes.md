@@ -1,6 +1,8 @@
 ---
 slug: /error-codes/
-title: Error codes
+title: v3 Error codes
+description: Simple JWT Login v3 error codes - look up what each numeric errorCode in a response means and how to resolve it in your app.
+sidebar_label: Error codes
 sidebar_position: 99
 author: Nicu Micle
 author_url: https://github.com/nicumicle

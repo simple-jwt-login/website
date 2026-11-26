@@ -1,6 +1,6 @@
 ---
 slug: /code-examples/register-and-get-jwt
-title: Register a User in PHP and Get a JWT
+title: Register WordPress User in PHP, Get JWT
 description: Complete PHP example - register a WordPress user, obtain a JWT with Simple JWT Login, and create a post via the REST API.
 keywords: [PHP, register user, JWT, WordPress REST API, code example]
 sidebar_label: Register & Get JWT (PHP)
@@ -11,7 +11,7 @@ author_url: https://github.com/nicumicle
 
 ## Introduction
 
-This example walks through a complete PHP integration with Simple-JWT-Login: registering a new WordPress user, obtaining a JWT for that user, and using the token to create a WordPress post via the REST API.
+This example walks through a complete PHP integration with Simple JWT Login: registering a new WordPress user, obtaining a JWT for that user, and using the token to create a WordPress post via the REST API.
 
 It covers the three most common steps in a headless WordPress workflow:
 1. **Register** - create a new user account
@@ -279,3 +279,8 @@ try {
     echo "There was an error: " . $exception->getMessage() . PHP_EOL;
 }
 ```
+
+## Next steps
+
+- [User registration reference](../Register-User.md)
+- [Build a JavaScript todo app](./todo-app.md)

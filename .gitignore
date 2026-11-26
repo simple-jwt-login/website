@@ -7,6 +7,8 @@
 # Generated files
 .docusaurus
 .cache-loader
+# Created by `yarn gen-api` (runs before start and build)
+/api/
 
 # Misc
 .DS_Store
@@ -22,3 +24,6 @@ yarn-error.log*
 # Vale - packages are downloaded by `vale sync`; only our own vocab is committed
 /styles/*
 !/styles/config/
+
+# Cloudflare previews (local `wrangler dev`)
+/.wrangler/

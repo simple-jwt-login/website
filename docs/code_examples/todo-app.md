@@ -1,6 +1,6 @@
 ---
 slug: /code-examples/todo-app
-title: Todo App with Vanilla JS
+title: WordPress JWT Todo App in JavaScript
 description: Build a JWT-authenticated todo app in vanilla JavaScript, storing each todo as a private WordPress post via the REST API.
 keywords: [vanilla JavaScript, JWT authentication, WordPress REST API, todo app, code example]
 sidebar_label: Todo App (Vanilla JS)
@@ -414,3 +414,8 @@ The complete single-file app below wires everything together. Save it as `index.
 - The JWT is kept in `localStorage` so the user stays logged in across page reloads.
 - Todos are stored as **private** WordPress posts - only the authenticated user can read or modify them.
 - When a request returns an error (for example, expired JWT), the app clears the stored token and redirects to the login screen.
+
+## Next steps
+
+- [Build a headless WooCommerce store](./woocommerce-headless-store.md)
+- [Use the JWT from Next.js](./nextjs.md)

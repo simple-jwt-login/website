@@ -27,6 +27,7 @@ const config: Config = {
   projectName: 'documentation', // Usually your repo name.
 
   onBrokenLinks: 'throw',
+  onBrokenAnchors: 'throw',
   trailingSlash: false,
   // Separator between page title and site name in <title> tags
   titleDelimiter: '-',
@@ -93,6 +94,7 @@ const config: Config = {
         blogSidebarCount: "ALL",
         postsPerPage: 6,
         blogTitle: 'Releases',
+        blogDescription: 'Release notes for Simple JWT Login, the free WordPress JWT authentication plugin - new features, security fixes, and bug fixes.',
         rehypePlugins: [require('./plugins/rehype-cdn-images')],
         beforeDefaultRemarkPlugins: [require('./plugins/remark-cdn-images')],
       },
@@ -132,7 +134,7 @@ const config: Config = {
         lastmod: 'datetime',
         changefreq: 'weekly',
         priority: 0.5,
-        ignorePatterns: ['/tags/**', '/search', '/**/authors/**'],
+        ignorePatterns: ['/**/tags', '/**/tags/**', '/**/archive', '/search', '/**/authors', '/**/authors/**'],
         filename: 'sitemap.xml',
         createSitemapItems: async (params) => {
           const {defaultCreateSitemapItems, ...rest} = params;
@@ -167,7 +169,7 @@ const config: Config = {
                 return { ...item, priority: 0.7, changefreq: 'monthly' };
               }
               // Ecosystem, demos, and other product pages
-              if (/\/(ecosystem|demos)(\/|$)/.test(url)) {
+              if (/\/(ecosystem|demos|headless-wordpress|wordpress-jwt-plugin-comparison|security|faq)(\/|$)/.test(url)) {
                 return { ...item, priority: 0.7, changefreq: 'monthly' };
               }
               // API reference
@@ -187,7 +189,12 @@ const config: Config = {
         content: {
           enableLlmsFullTxt: true,
           includeBlog: true,
-          includePages: false,
+          includePages: true,
+          // AI assistants should cite the maintained v4 docs, not the unmaintained 3.x pages.
+          includeVersionedDocs: false,
+          // Custom pages are split into many sections; the default 'main .container .col' keeps only the first one, and heroes sit outside main.
+          contentSelectors: ['.theme-doc-markdown', 'main article', '.main-wrapper', 'main'],
+          excludeRoutes: ['/**/tags', '/**/tags/**', '/**/authors', '/**/authors/**', '/**/archive', '/**/page/**', '/search', '/404'],
         },
       },
     ],
@@ -289,6 +296,7 @@ const config: Config = {
         docs: {
           routeBasePath: '/docs/',
           sidebarPath: './sidebars.ts',
+          showLastUpdateTime: true,
           editUrl:  'https://github.com/simple-jwt-login/website/tree/main',
           //docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
           rehypePlugins: [require('./plugins/rehype-cdn-images')],
@@ -313,10 +321,10 @@ const config: Config = {
           feedOptions: {
             xslt: true,
             type: 'all',
-            copyright: `Copyright © ${new Date().getFullYear()} Simple-JWT-Login.`,
+            copyright: `Copyright © ${new Date().getFullYear()} Simple JWT Login.`,
           },
-          blogTitle: 'Simple-JWT-Login blog!',
-          blogDescription: 'News and tutorials about Simple-JWT-Login',
+          blogTitle: 'WordPress JWT Authentication Blog',
+          blogDescription: 'News and tutorials about WordPress JWT authentication, headless WordPress, WPGraphQL, and REST API security with Simple JWT Login.',
           blogSidebarTitle: 'All posts',
           blogSidebarCount: 0, //'ALL'
           postsPerPage: 8, // or "ALL"
@@ -347,16 +355,16 @@ const config: Config = {
     announcementBar: {
       id: 'support_us',
       content:
-          '⭐️ If you like Simple-JWT-Login, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/nicumicle/simple-jwt-login">GitHub</a>.',
+          '<svg class="announcement-star" aria-hidden="true" viewBox="0 0 576 512"><path fill="currentColor" d="M309.5-18.9c-4.1-8-12.4-13.1-21.4-13.1s-17.3 5.1-21.4 13.1L193.1 125.3 33.2 150.7c-8.9 1.4-16.3 7.7-19.1 16.3s-.5 18 5.8 24.4l114.4 114.5-25.2 159.9c-1.4 8.9 2.3 17.9 9.6 23.2s16.9 6.1 25 2L288.1 417.6 432.4 491c8 4.1 17.7 3.3 25-2s11-14.2 9.6-23.2L441.7 305.9 556.1 191.4c6.4-6.4 8.6-15.8 5.8-24.4s-10.1-14.9-19.1-16.3L383 125.3 309.5-18.9z"/></svg> If you like Simple JWT Login, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/nicumicle/simple-jwt-login">GitHub</a>.',
       backgroundColor: '#1d5e41',
       textColor: '#d4f5e5',
       isCloseable: true,
     },
-    image: 'assets/favicons/android-chrome-192x192.png',
+    image: 'assets/images/social-card.png',
     navbar: {
       title: 'Simple JWT Login',
       logo: {
-        alt: 'Simple-JWT-Login Logo',
+        alt: 'Simple JWT Login logo',
         src: '/assets/favicons/favicon.ico',
         srcDark: '/assets/favicons/favicon.ico',
         href: '/',

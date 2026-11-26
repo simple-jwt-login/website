@@ -1,7 +1,7 @@
 ---
 slug: /webhooks/
-title: Webhooks
-sidebar_position: 14
+title: WordPress Login and User Webhooks
+sidebar_label: Webhooks
 description: Fire HTTP notifications to external endpoints on login, register, and other Simple JWT Login events with a custom JSON payload.
 keywords: [WordPress webhook, JWT webhook, WordPress REST API webhook, Simple JWT Login webhook, HTTP notification WordPress, event-driven WordPress]
 author: Nicu Micle
@@ -161,3 +161,8 @@ If your site runs on Apache with `mod_php` and you have slow webhook endpoints, 
 ```
 
 Slack displays the message in your chosen channel each time a new user registers.
+
+## Next steps
+
+- [Review events in the audit logs](./AuditLogs.md)
+- [Run custom PHP with hooks](./Hooks.md)

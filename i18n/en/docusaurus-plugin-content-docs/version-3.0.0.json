@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "3.x",
+    "description": "The label for version 3.0.0"
+  },
+  "sidebar.tutorialSidebar.category.Authentication": {
+    "message": "Authentication",
+    "description": "The label for category 'Authentication' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Reset Password": {
+    "message": "Reset Password",
+    "description": "The label for category 'Reset Password' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Integrations": {
+    "message": "Integrations",
+    "description": "The label for category 'Integrations' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Google": {
+    "message": "Google",
+    "description": "The label for category 'Google' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Code Examples": {
+    "message": "Code Examples",
+    "description": "The label for category 'Code Examples' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.php": {
+    "message": "php",
+    "description": "The label for category 'php' in sidebar 'tutorialSidebar'"
+  }
+}

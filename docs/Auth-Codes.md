@@ -1,7 +1,7 @@
 ---
 slug: /auth-codes/
-title: Auth Codes
-sidebar_position: 3
+title: Auth Codes for WordPress Endpoints
+sidebar_label: Auth Codes
 description: Add a shared-secret layer to Simple JWT Login endpoints. Auth Codes protect login, register, delete, and password-reset routes.
 keywords: [WordPress auth code, JWT shared secret, Simple JWT Login auth code, WordPress API protection, REST API secret key WordPress]
 author: Nicu Micle

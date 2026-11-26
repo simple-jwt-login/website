@@ -15,6 +15,8 @@ const productLinks = [
 ];
 
 const exploreLinks = [
+  { label: 'Headless WordPress', to: '/headless-wordpress' },
+  { label: 'Compare JWT Plugins', to: '/wordpress-jwt-plugin-comparison' },
   { label: 'Deploy WordPress', to: '/deploy-wordpress' },
   { label: 'Demos', to: '/demos/' },
   { label: 'Ecosystem', to: '/ecosystem/' },
@@ -24,7 +26,8 @@ const helpLinks = [
   { label: 'WordPress Plugin Page', href: 'https://wordpress.org/plugins/simple-jwt-login' },
   { label: 'Support Forum', href: 'https://wordpress.org/support/plugin/simple-jwt-login' },
   { label: 'Report an Issue', href: 'https://github.com/nicumicle/simple-jwt-login/issues' },
-  { label: 'Report a Security Issue', href: 'https://github.com/nicumicle/simple-jwt-login/security/advisories/new' },
+  { label: 'Report a Security Issue', to: '/security' },
+  { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact/' },
 ];
 

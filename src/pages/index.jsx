@@ -47,8 +47,8 @@ const jsonLd = {
 
 const awesomeFeatures = [
   {
-    title: <>Auto Login</>,
-    description: <>Log users in instantly via URL, header, cookie, or session - perfect for magic links, email campaigns, and SSO flows.</>,
+    title: <>Autologin</>,
+    description: <>Open a WordPress session from a JWT link - for example, send a renewal email that lands the member on their account page, already logged in.</>,
     image: "assets/svg/login-user-2.svg",
     alt: "Login user",
     link: "/docs/autologin/",
@@ -56,7 +56,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Register Users</>,
-    description: <>Expose a secure REST endpoint to register new WordPress users programmatically - no custom code needed.</>,
+    description: <>Create WordPress users from a mobile sign-up screen, and limit who can register by Auth Code, IP, or email domain.</>,
     image: "assets/svg/create-user.svg",
     alt: "Register user",
     link: "/docs/register-user/",
@@ -64,14 +64,15 @@ const awesomeFeatures = [
   },
   {
     title: <>Delete Users</>,
-    description: <>Remove users securely via API using verified JWT tokens.</>,
+    description: <>Offer an account deletion button in your app. The JWT identifies the account to remove.</>,
     image: "assets/svg/delete-user.svg",
     alt: "Delete user",
+    link: "/docs/delete-user/",
     version: "both",
   },
   {
     title: <>Authenticate Users</>,
-    description: <>Generate, refresh, revoke, and validate JWT tokens via REST. Supports HS256/384/512 and RS256/384/512 algorithms.</>,
+    description: <>Exchange WordPress credentials for a JWT, then refresh, validate, or revoke it - the login flow for a React or mobile app.</>,
     image: "assets/svg/authenticate-user.svg",
     alt: "Authenticate user",
     link: "/docs/authentication/",
@@ -79,7 +80,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Change &amp; Reset Password</>,
-    description: <>Let users change or reset their password through the API - ideal for headless and mobile apps.</>,
+    description: <>Build a "Forgot password" screen in your app: email a reset code, then set the new password through the REST API.</>,
     image: "assets/images/features/password.png",
     alt: "Change and Reset password",
     link: "/docs/reset-password/",
@@ -87,14 +88,15 @@ const awesomeFeatures = [
   },
   {
     title: <>Limit Access by IP</>,
-    description: <>Restrict access to trusted IPs - supports wildcards (for example, <code>85.*.*.*</code>) for subnet-level control.</>,
+    description: <>Accept logins or registrations only from your backend or office network - wildcards such as <code>85.*.*.*</code> work too.</>,
     image: "assets/images/features/ip.png",
     alt: "Limit access by IP",
+    link: "/docs/authentication/#access-control",
     version: "both",
   },
   {
     title: <>Create Users with Different Roles</>,
-    description: <>Assign roles at registration time - create admins, editors, or subscribers through a single endpoint.</>,
+    description: <>Tie a role to each Auth Code - for example, one code for free members and another for premium - on a single endpoint.</>,
     image: "assets/images/features/roles.png",
     alt: "Roles",
     link: "/docs/register-user/#new-user-settings",
@@ -102,7 +104,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Integrate with Other Plugins</>,
-    description: <>First-class support for MailPoet magic-link emails, WPGraphQL authorization, and any plugin that extends the WordPress REST API.</>,
+    description: <>Send login links from MailPoet, authorize WPGraphQL queries, or call the REST routes that other plugins add.</>,
     image: "assets/images/features/plug-in.png",
     alt: "Integrate with other plugins",
     link: "/docs/mailpoet/",
@@ -110,7 +112,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Protect Endpoints</>,
-    description: <>Require a valid JWT per route - filter by HTTP method (GET, POST, PUT, DELETE) with exact or prefix matching.</>,
+    description: <>Require a JWT or a role per route and HTTP method - for example, stop anonymous visitors from listing <code>/wp/v2/users</code>.</>,
     image: "assets/images/features/protect-endpoints.png",
     alt: "Protect endpoints",
     link: "/docs/protect-endpoints/",
@@ -118,7 +120,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Use JWT on Any Endpoint</>,
-    description: <>Pass a JWT to any WordPress endpoint and act as a fully authenticated user - no session cookies required.</>,
+    description: <>Publish a post to <code>/wp/v2/posts</code> from a mobile app as the logged-in author, without session cookies.</>,
     image: "assets/images/features/protect.png",
     alt: "JWT on other endpoints",
     link: "/docs/configuration#jwt-middleware-for-all-wordpress-endpoints",
@@ -126,7 +128,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Google OAuth Integration</>,
-    description: <>Let users sign in with their Google Account - zero passwords, instant trust.</>,
+    description: <>Add Google sign-in to your front end and get a WordPress JWT back, so users have no extra password to remember.</>,
     image: "assets/images/features/google-plus.png",
     alt: "Google OAuth",
     link: "/docs/integrations/oauth/google/setup",
@@ -134,7 +136,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Use Google JWT on All Endpoints</>,
-    description: <>Use Google-issued tokens to authenticate against any WordPress REST endpoint seamlessly.</>,
+    description: <>Already use Google sign-in in your app? Send the Google-issued token directly to WordPress REST endpoints.</>,
     image: "assets/images/features/google-plus-jwt.png",
     alt: "Google OAuth endpoints",
     link: "/docs/integrations/oauth/#allow-usage-on-all-endpoints",
@@ -142,7 +144,7 @@ const awesomeFeatures = [
   },
   {
     title: <>API Keys</>,
-    description: <>Issue long-lived, scoped API keys for server-to-server integrations and CI/CD - no JWT expiry to manage.</>,
+    description: <>Give a CI pipeline a key that can only read and create content, with an expiry date you choose.</>,
     faIcon: faKey,
     alt: "API Keys",
     link: "/docs/api-keys/",
@@ -150,7 +152,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Sign In with Auth0, Facebook &amp; GitHub</>,
-    description: <>Expand OAuth beyond Google - let users sign in with Auth0, Facebook, or GitHub and receive a WordPress JWT.</>,
+    description: <>Use the identity provider you already have: exchange an Auth0, Facebook, or GitHub login for a WordPress JWT.</>,
     faIcon: faShieldHalved,
     alt: "OAuth with Auth0, Facebook, and GitHub",
     link: "/docs/integrations/oauth/",
@@ -158,7 +160,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Two-Factor Authentication</>,
-    description: <>Require a 2FA code before issuing a full JWT - works with the WordPress Two Factor plugin.</>,
+    description: <>A stolen password alone gets no JWT: users with 2FA in the WordPress Two Factor plugin must also enter their code.</>,
     faIcon: faUserShield,
     alt: "Two-Factor Authentication",
     link: "/docs/integrations/third-party/two-factor/",
@@ -166,7 +168,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Audit Logs</>,
-    description: <>Every login, registration, token, and OAuth event is logged for auditing and debugging - searchable from the admin.</>,
+    description: <>Find out who deleted an account or why a login failed - search authentication events in wp-admin.</>,
     faIcon: faClipboardList,
     alt: "Audit Logs",
     link: "/docs/audit-logs/",
@@ -174,7 +176,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Webhooks</>,
-    description: <>Fire HTTP callbacks on authentication events - integrate with Slack, logging services, or any external system.</>,
+    description: <>Post to Slack when a user registers, or forward authentication events to your logging service.</>,
     faIcon: faBell,
     alt: "Webhooks",
     link: "/docs/webhooks/",
@@ -182,7 +184,7 @@ const awesomeFeatures = [
   },
   {
     title: <>Headless WooCommerce</>,
-    description: <>Authenticate the WooCommerce REST and Store API with a JWT - manage products and run a headless cart &amp; checkout.</>,
+    description: <>Build a React storefront: manage products and run the cart &amp; checkout through the WooCommerce REST and Store APIs.</>,
     faIcon: faCartShopping,
     alt: "Headless WooCommerce",
     link: "/docs/integrations/third-party/woocommerce/",
@@ -190,15 +192,15 @@ const awesomeFeatures = [
   },
   {
     title: <>Multiple JWT Decryption Keys</>,
-    description: <>Define multiple decryption keys and let the plugin pick the right one automatically from the JWT header or payload.</>,
+    description: <>Accept Auth0 tokens next to your own, or rotate keys in stages - rules pick the key from a JWT header or payload claim.</>,
     faIcon: faLayerGroup,
     alt: "Multiple JWT Decryption Keys",
-    link: "/docs/authentication/",
+    link: "/docs/configuration#jwt-verification-rules",
     version: "v4",
   },
   {
     title: <>JWT Decoder</>,
-    description: <>Paste any JWT in the WordPress admin to inspect its header and payload instantly - no external tools needed.</>,
+    description: <>Debug a rejected token without pasting it into a third-party site: read its header and payload in wp-admin.</>,
     faIcon: faVial,
     alt: "JWT Decoder",
     link: "/docs/dashboard/",
@@ -272,6 +274,10 @@ const PLAYGROUND_URL = 'https://playground.wordpress.net/?blueprint-url=https://
 
 // Only list practices that are verifiable in the public repo - no certifications or audit claims.
 const SECURITY_ITEMS = [
+  { icon: faLock,         title: 'Off by default',               desc: 'Every plugin endpoint starts disabled. You expose only the operations your app needs.', href: '/blog/simple-jwt-login-security-hardening/', linkLabel: 'Hardening guide' },
+  { icon: faGlobe,        title: 'Cross-site request checks',    desc: 'Cookie and session JWTs are ignored on cross-site requests unless you list that exact origin, which blocks CSRF.', href: '/docs/configuration#cross-site-requests', linkLabel: 'How it works' },
+  { icon: faArrowsRotate, title: 'Tokens you can take back',     desc: 'Refresh tokens rotate on every use, JWTs can be revoked, and an optional setting ends sessions when a password changes.', href: '/docs/authentication/#revoke-sessions-on-password-change', linkLabel: 'Session revocation' },
+  { icon: faKey,          title: 'Hashed, least-privilege keys', desc: 'API keys are stored only as SHA-256 hashes. Permissions follow the dispatched method, so method overrides cannot raise them.', href: '/docs/api-keys/', linkLabel: 'API key design' },
   { icon: faBug,          title: 'Security vulnerability fixes', desc: 'Reported vulnerabilities are fixed and shipped in regular releases, documented in the release notes.', href: '/releases/tags/security', linkLabel: 'Security releases' },
   { icon: faVial,         title: 'Security regression tests',    desc: 'A dedicated security test suite covers CSRF, user enumeration, trusted proxy IPs and ambient credentials, so fixed issues stay fixed.', href: `${GITHUB_REPO}/tree/master/tests/Feature/Security`, linkLabel: 'Browse the tests' },
   { icon: faCodeBranch,   title: 'Continuous integration',       desc: 'Unit, feature and cross-site test suites run automatically in GitHub Actions.', href: `${GITHUB_REPO}/actions`, linkLabel: 'CI workflows' },
@@ -352,8 +358,8 @@ export default function HomePage() {
           />
           <h1 className={styles.heroTitle}>Simple JWT Login</h1>
           <p className={styles.heroSubtitle}>
-            The WordPress Authentication Framework for your REST API -<br className={styles.heroBreak} />
-            set up in minutes, no coding required.
+            JWT login, registration, and endpoint protection for the WordPress REST API -<br className={styles.heroBreak} />
+            for headless sites, mobile apps, and WPGraphQL. Configured from wp-admin.
           </p>
           <div className={styles.heroCta}>
             <Link to="/docs/" className={styles.actionButton} title="Get started">
@@ -411,7 +417,7 @@ export default function HomePage() {
           <section className={clsx(styles.sectionPadding, styles.features)}>
             <div className="container">
               <span className={styles.sectionEyebrow}>Core Features</span>
-              <h2 className={styles.sectionTitle}>Everything you need for JWT authentication</h2>
+              <h2 className={styles.sectionTitle}>From first login to token revocation</h2>
               <p className={styles.sectionLead}>
                 Each feature is tagged <strong>V3</strong> or <strong>V4</strong> depending on which version introduced it.
               </p>
@@ -444,15 +450,15 @@ export default function HomePage() {
             <h2 className={styles.sectionTitle}>Why developers choose Simple JWT Login</h2>
             <div className={styles.whyGrid}>
               {[
-                { icon: faBolt,          title: 'No coding required',     desc: 'Set up JWT authentication in minutes via the WordPress admin UI - no custom code needed.' },
-                { icon: faLock,          title: '6 supported algorithms', desc: 'Choose from HS256/384/512 or RS256/384/512 to match your security policy.' },
-                { icon: faRocket,        title: '4 JWT delivery methods', desc: 'Authorization header, cookie, session, or query parameter - works everywhere.' },
-                { icon: faWrench,        title: 'Built for developers',   desc: '16 WordPress action and filter hooks to customize every authentication flow.' },
-                { icon: faGlobe,         title: 'CORS-ready',             desc: 'Works out of the box with React, Vue, Angular, mobile apps, WPGraphQL, and headless CMS setups.' },
-                { icon: faPhp,           title: 'PHP 5.5+ compatible',    desc: 'Works on any PHP version from 5.5 onward - no matter how old or new your server is.' },
-                { icon: faLink,          title: 'Auto-login & magic links', desc: 'Authenticate users via a tokenized URL - no password form needed. Perfect for email campaigns and passwordless flows.' },
-                { icon: faArrowsRotate,  title: 'Full token lifecycle',   desc: 'Refresh, validate, and revoke tokens on demand to keep sessions secure and under your control.' },
-                { icon: faHeart,         title: 'Free & open source',     desc: 'GPL3.0-licensed, community-supported, no hidden costs - ever.' },
+                { icon: faBolt,          title: 'No coding required',     desc: 'Keys, expiration, allowed IPs, and protected routes are all settings in wp-admin.' },
+                { icon: faLock,          title: '6 supported algorithms', desc: 'Sign with a shared secret (HS256/384/512), or use RS256/384/512 so other services can verify tokens with only the public key.' },
+                { icon: faRocket,        title: '4 JWT delivery methods', desc: 'Authorization header, cookie, session, or request parameter. Turn off the ones your app does not use.' },
+                { icon: faWrench,        title: 'Built for developers',   desc: 'Action and filter hooks let you add JWT claims, block a login, or change an API response from your own plugin.' },
+                { icon: faGlobe,         title: 'CORS per origin',        desc: 'List the exact front-end origins that can call your API, so a React or Vue app on another domain can log users in.' },
+                { icon: faPhp,           title: 'PHP 5.5+ compatible',    desc: 'The plugin code runs on PHP 5.5+, so your WordPress version sets the minimum. PHP 8.2 or newer is recommended in production.' },
+                { icon: faLink,          title: 'Auto-login & magic links', desc: 'Put a short-lived JWT in an email link and the subscriber lands on the page already logged in.' },
+                { icon: faArrowsRotate,  title: 'Full token lifecycle',   desc: 'Keep a mobile user signed in with refresh tokens, and revoke the JWT when they log out.' },
+                { icon: faHeart,         title: 'Free & open source',     desc: 'GPL 3.0 licensed, free and open-source, forever. No paid tier and no locked features.' },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className={styles.whyCard}>
                   <div className={styles.whyCardIcon}><FontAwesomeIcon icon={icon} /></div>
@@ -468,10 +474,10 @@ export default function HomePage() {
         <section className={styles.sectionPadding}>
           <div className="container">
             <span className={styles.sectionEyebrow}>Security</span>
-            <h2 className={styles.sectionTitle}>Security is a priority</h2>
+            <h2 className={styles.sectionTitle}>Secure defaults you can verify</h2>
             <p className={styles.sectionLead}>
-              Simple JWT Login is continuously maintained with a focus on authentication security,
-              token lifecycle management and reliable WordPress integrations.
+              A login plugin guards your whole site. Here is how the latest v4 release limits what an attacker can do,
+              and how the project tests and fixes it - each card links to the details.
             </p>
             <div className={styles.whyGrid}>
               {SECURITY_ITEMS.map(({ icon, title, desc, href, linkLabel }) => (
@@ -493,7 +499,7 @@ export default function HomePage() {
         <section className={styles.sectionPadding}>
           <div className="container">
             <span className={styles.sectionEyebrow}>Ecosystem</span>
-            <h2 className={styles.sectionTitle}>Drop into any stack in minutes</h2>
+            <h2 className={styles.sectionTitle}>SDKs and integrations for PHP, JavaScript, WPGraphQL, and WP-CLI</h2>
             <div className="row" style={{ rowGap: '1.5rem' }}>
               {[
                 {
@@ -526,7 +532,7 @@ export default function HomePage() {
                 },
                 {
                   title: 'WPGraphQL',
-                  desc: 'Use your JWT tokens to authenticate GraphQL queries and mutations - enable it with a single checkbox.',
+                  desc: 'Use your JWTs to authenticate GraphQL queries and mutations - enable it with a single checkbox.',
                   logos: [{ src: 'assets/images/screenshots/third-party-integrations/wpgraphql-logo.png', alt: 'WPGraphQL' }],
                   href: '/docs/integrations/third-party/wpgraphql/',
                   cta: 'Learn more',
@@ -593,7 +599,7 @@ export default function HomePage() {
         <section className={styles.sectionPadding}>
           <div className="container">
             <span className={styles.sectionEyebrow}><FontAwesomeIcon icon={faPlay} style={{ marginRight: '0.4rem' }} /> Try it live</span>
-            <h2 className={styles.sectionTitle}>See it in action</h2>
+            <h2 className={styles.sectionTitle}>Try the API against your own site</h2>
             <p className={styles.sectionLead}>
               Run live demos right in your browser, against your own WordPress site -
               nothing is sent anywhere except the URL you provide.
@@ -648,12 +654,12 @@ export default function HomePage() {
                 {
                   n: '2',
                   title: 'Configure Settings',
-                  desc: 'Customize authentication rules, token expiration, algorithms, and access control from the WordPress admin UI.',
+                  desc: 'Set a JWT secret key, enable the endpoints you need (all are off by default), and choose how long tokens live.',
                 },
                 {
                   n: '3',
-                  title: 'Authenticate Effortlessly',
-                  desc: 'Use JWT tokens to authenticate users on any WordPress REST API endpoint - no additional code required.',
+                  title: 'Send the JWT',
+                  desc: 'Call POST /auth to get a JWT, then send it as a Bearer token to the WordPress REST API endpoints you enable.',
                 },
               ].map(({ n, title, desc }) => (
                 <div key={n} className={styles.installStep}>
@@ -738,10 +744,10 @@ export default function HomePage() {
           <div className="container">
             <div className={styles.ctaCard}>
               <div className={styles.ctaGlow} aria-hidden="true" />
-              <h2 className={styles.ctaTitle}>Ready to add JWT to your WordPress site?</h2>
+              <h2 className={styles.ctaTitle}>Get your first WordPress JWT in 5 minutes</h2>
               <p className={styles.ctaSubtitle}>
-                Install Simple JWT Login in minutes, configure it through the admin UI,
-                and start issuing tokens - free, no account required.
+                Install the plugin, set a secret key, and call POST /auth. Free and open-source, forever -
+                no account required.
               </p>
               <div className={styles.ctaButtons}>
                 <Link to="/docs/" className={styles.actionButton} title="Read the documentation">

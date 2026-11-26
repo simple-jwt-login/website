@@ -1,0 +1,62 @@
+{
+  "version.label": {
+    "message": "4.x",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category 'Getting Started' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Endpoints": {
+    "message": "Endpoints",
+    "description": "The label for category 'Endpoints' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Security": {
+    "message": "Security",
+    "description": "The label for category 'Security' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Integrations": {
+    "message": "Integrations",
+    "description": "The label for category 'Integrations' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.OAuth": {
+    "message": "OAuth",
+    "description": "The label for category 'OAuth' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Google": {
+    "message": "Google",
+    "description": "The label for category 'Google' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Auth0": {
+    "message": "Auth0",
+    "description": "The label for category 'Auth0' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Facebook": {
+    "message": "Facebook",
+    "description": "The label for category 'Facebook' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.GitHub": {
+    "message": "GitHub",
+    "description": "The label for category 'GitHub' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Third Party": {
+    "message": "Third Party",
+    "description": "The label for category 'Third Party' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Code Examples": {
+    "message": "Code Examples",
+    "description": "The label for category 'Code Examples' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Add-ons": {
+    "message": "Add-ons",
+    "description": "The label for category 'Add-ons' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Reference": {
+    "message": "Reference",
+    "description": "The label for category 'Reference' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.link.API Reference (OpenAPI)": {
+    "message": "API Reference (OpenAPI)",
+    "description": "The label for link 'API Reference (OpenAPI)' in sidebar 'tutorialSidebar', linking to '/api/v4/simple-jwt-login'"
+  }
+}

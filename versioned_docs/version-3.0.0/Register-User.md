@@ -1,8 +1,9 @@
 ---
 slug: /register-user/
-title: Register User
+title: v3 Register User
+sidebar_label: Register User
 sidebar_position: 4
-description: Register new WordPress users programmatically via a REST API endpoint using Simple JWT Login. Supports role assignment, auth codes, and IP restrictions.
+description: Register WordPress users in Simple JWT Login v3 with a REST API call, for headless registration forms and mobile app sign-ups.
 keywords: [WordPress register user API, REST API create user WordPress, WordPress user registration endpoint, JWT register user, headless WordPress registration]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

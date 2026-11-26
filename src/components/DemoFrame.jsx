@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from '../pages/demos/demo.module.css';
 
@@ -17,7 +19,7 @@ export default function DemoFrame({ src, title, height }) {
         <span className={`${styles.dot} ${styles.dotGreen}`} />
         <span className={styles.frameBarUrl}>{title}</span>
         <Link className={styles.openNew} to={url} target="_blank" rel="noopener noreferrer">
-          Open in new tab ↗
+          Open in new tab <FontAwesomeIcon icon={faArrowUpRightFromSquare} aria-hidden="true" />
         </Link>
       </div>
       <iframe

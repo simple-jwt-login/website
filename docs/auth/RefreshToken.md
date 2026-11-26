@@ -1,14 +1,14 @@
 ---
 slug: /refresh-token/
-title: Refresh token
-sidebar_position: 2
+title: Refresh a WordPress JWT Token
+sidebar_label: Refresh Token
 description: Exchange a refresh token for a new JWT without requiring user credentials again. Enables long-running sessions in headless WordPress applications.
 keywords: [WordPress refresh token, JWT refresh token WordPress, renew JWT WordPress, headless WordPress session, Simple JWT Login refresh]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Use this endpoint to exchange a refresh token for a new JWT, without requiring the user to re-enter their credentials. This is the standard mechanism for keeping long-running sessions alive.
+Refresh a WordPress JWT by exchanging a refresh token for a new one, without requiring the user to re-enter their credentials. This is the standard mechanism for keeping long-running sessions alive.
 
 A `refresh_token` is returned alongside the JWT whenever you call the Authentication endpoint (`POST /auth`), provided the Refresh Token feature is enabled.
 

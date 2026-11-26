@@ -8,6 +8,7 @@ import {
   faHandshake, faBuilding, faStar,
   faUsers, faBullhorn, faBolt,
 } from '@fortawesome/free-solid-svg-icons';
+import CheckList from '@site/src/components/CheckList';
 import styles from './donate.module.css';
 import sponsorStyles from './sponsors.module.css';
 import { ACTIVE_INSTALLS, TOTAL_DOWNLOADS, RATING, ACTIVE_YEARS, formatNumber } from '@site/src/data/pluginStats';
@@ -47,7 +48,7 @@ const reasons = [
     icon: faUsers,
     title: 'Reach WordPress developers',
     description:
-      'Put your brand in front of developers building headless WordPress, mobile apps and REST API integrations.',
+      'Put your brand in front of developers building headless WordPress, mobile apps, and REST API integrations.',
   },
   {
     icon: faShieldHalved,
@@ -82,7 +83,7 @@ const funds = [
   {
     icon: faServer,
     title: 'Infrastructure',
-    description: 'Hosting for simplejwtlogin.com, demos and CI for automated testing.',
+    description: 'Hosting for simplejwtlogin.com, demos, and CI for automated testing.',
   },
 ];
 
@@ -170,8 +171,8 @@ function SponsorsPage() {
           </h1>
           <p className={styles.heroSubtitle}>
             Simple JWT Login powers authentication for thousands of WordPress sites,
-            headless apps and mobile clients. Free and open-source, forever.
-            Company sponsorship keeps it secure, maintained and growing.
+            headless apps, and mobile clients. Free and open-source, forever.
+            Company sponsorship keeps it secure, maintained, and growing.
           </p>
           <Link to={FORM_ANCHOR} className={styles.heroCta} title="Go to the sponsorship form">
             Become a sponsor →
@@ -246,9 +247,7 @@ function SponsorsPage() {
                   <div className={styles.tierIcon}><FontAwesomeIcon icon={tier.icon} /></div>
                   <div className={styles.tierAmount}>{tier.amount}<span className={sponsorStyles.perMonth}>{tier.period}</span></div>
                   <div className={styles.tierLabel}>{tier.label}</div>
-                  <ul className={sponsorStyles.benefits}>
-                    {tier.benefits.map((b) => <li key={b}>{b}</li>)}
-                  </ul>
+                  <CheckList items={tier.benefits} className={sponsorStyles.benefits} />
                   <div className={`${styles.tierCta} ${sponsorStyles.cta}`}>{tier.cta ?? `Become a ${tier.label}`} →</div>
                 </Link>
               ))}

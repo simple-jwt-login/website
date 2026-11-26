@@ -1,6 +1,7 @@
 ---
 slug: /quick-start/
-title: Quick Start
+title: WordPress JWT Quick Start
+sidebar_label: Quick Start
 description: Get a JWT from WordPress and call the REST API with it in 5 minutes - set the signing key, enable authentication, and send a Bearer token.
 keywords: [Simple JWT Login quick start, WordPress JWT tutorial, get JWT WordPress REST API, Bearer token WordPress, headless WordPress authentication]
 author: Nicu Micle
@@ -23,7 +24,7 @@ For more options, see the [Installation guide](./Introduction.md#installation-gu
 
 ## 2. Set the signing key
 
-Go to **Settings → Simple JWT Login → General**. In the **JWT Verification Rules** ELSE row:
+Go to **Settings → Simple JWT Login → General** and find **JWT Verification Rules**. The rules are checked top to bottom, and the last row, labeled **ELSE**, is the default that applies to every JWT no other rule matches. On a fresh install it is the only rule. In the ELSE row:
 
 1. Choose an algorithm - `HS256` is the simplest choice.
 2. Enter a long, random secret key.
@@ -38,7 +39,7 @@ Anyone who knows the secret key can forge valid tokens. For production, consider
 Go to **Settings → Simple JWT Login → Authentication**, turn on **Allow JWT Authentication**, and save. While you are there, also turn on **Allow Validate Token Endpoint** - step 5 uses it.
 
 :::info
-Every endpoint is **disabled by default**. A disabled endpoint returns a `403` with an error code such as `45` (authentication) or `82` (validate token). The [Endpoints overview](./Endpoints.md) lists the setting that enables each one.
+Every endpoint except `/revoked-tokens` is **disabled by default**. A disabled endpoint returns a `403` with an error code such as `45` (authentication) or `82` (validate token). The [Endpoints overview](./Endpoints.md) lists the setting that enables each one.
 :::
 
 ## 4. Get a JWT

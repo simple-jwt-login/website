@@ -1,7 +1,7 @@
 ---
 slug: /autologin/
-title: Autologin
-sidebar_position: 3
+title: WordPress Autologin with JWT
+sidebar_label: Autologin
 description: Use Simple JWT Login to auto-login WordPress users via a tokenized URL - perfect for magic links, email campaigns, and single sign-on (SSO) flows.
 keywords: [WordPress auto login, magic link WordPress, JWT auto login, WordPress SSO, tokenized login URL, auto-login WordPress plugin]
 author: Nicu Micle
@@ -300,3 +300,7 @@ For example, if your JWT payload looks like this:
 ```
 
 Set **JWT Parameter Key** to `UserID`. The plugin uses that value to look up the WordPress user.
+
+## Next steps
+
+- [Send magic links with MailPoet](./integrations/MailPoet.mdx)

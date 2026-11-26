@@ -11,7 +11,7 @@ export default function WooCommerceDemoPage() {
   return (
     <Layout
       title="Headless WooCommerce Demo"
-      description="Manage WooCommerce products, cart, and checkout with only a JWT, live in your browser."
+      description="Try a headless WooCommerce store in your browser - manage products, cart, and checkout through the WooCommerce APIs with only a JWT."
     >
       <main className={styles.sectionPadding}>
         <div className="container">

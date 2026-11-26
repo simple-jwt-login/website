@@ -1,7 +1,7 @@
 ---
 slug: /audit-logs/
-title: Audit Logs
-sidebar_position: 15
+title: WordPress Authentication Audit Logs
+sidebar_label: Audit Logs
 description: Record and review authentication events in Simple JWT Login - logins, registrations, password resets, OAuth, 2FA, API key usage, and settings changes.
 keywords: [WordPress audit log, JWT audit trail, WordPress authentication log, user activity log WordPress, Simple JWT Login events]
 author: Nicu Micle
@@ -141,3 +141,12 @@ The plugin uses PHP's `fastcgi_finish_request()` to flush the response first, th
 - **Compliance** - demonstrate an audit trail for authentication events
 - **Debugging** - reproduce exact event sequences when troubleshooting user-reported issues
 - **Change tracking** - see exactly which settings were modified and when via `settings.save.success`
+
+## Hooks for Audit Events
+
+Every authentication and 2FA event above also fires a WordPress action, such as `simple_jwt_login_audit_auth_login_failed`, so your own code can react to it. The action fires only when audit logging is enabled and the event is selected. See [Audit Hooks](./Hooks.md#audit-hooks) for the full list and arguments.
+
+## Next steps
+
+- [Send events to other services with webhooks](./Webhooks.md)
+- [React to audit events in PHP with audit hooks](./Hooks.md#audit-hooks)

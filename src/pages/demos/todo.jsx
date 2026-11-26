@@ -11,7 +11,7 @@ export default function TodoDemoPage() {
   return (
     <Layout
       title="Todo app - Interactive demo"
-      description="A JWT-authenticated todo app where each todo is a private WordPress post, live in your browser."
+      description="Try a JWT-authenticated todo app in your browser. Each todo is a private WordPress post, created and listed through the WordPress REST API."
     >
       <main className={styles.sectionPadding}>
         <div className="container">

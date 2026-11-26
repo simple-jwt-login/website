@@ -1,12 +1,14 @@
 ---
 slug: /integrations/third-party/wpgraphql/
-title: WPGraphQL
-sidebar_position: 1
-description: Enable JWT authentication for WPGraphQL queries and mutations in WordPress using Simple JWT Login.
+title: WPGraphQL JWT Authentication
+sidebar_label: WPGraphQL
+description: Add JWT authentication to WPGraphQL queries and mutations in headless WordPress, using the same token you use for the REST API.
 keywords: [WPGraphQL JWT authentication, WordPress GraphQL JWT, headless WordPress GraphQL, Simple JWT Login WPGraphQL]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
+
+Add JWT authentication to WPGraphQL, so headless WordPress clients can run authenticated queries and mutations.
 
 Requires the [WPGraphQL](https://www.wpgraphql.com/) plugin to be installed and activated.
 
@@ -16,7 +18,7 @@ Requires the [WPGraphQL](https://www.wpgraphql.com/) plugin to be installed and 
 
 When a JWT is included with a WPGraphQL query, the plugin authenticates the request as the identified WordPress user before executing the query. This lets your GraphQL queries access user-specific data and perform mutations that require authentication - using the same JWT you already have from Simple JWT Login.
 
-- Authenticate GraphQL requests with the same JWT tokens used for REST API calls
+- Authenticate GraphQL requests with the same JWTs used for REST API calls
 - Protect sensitive queries and mutations so only logged-in users can execute them
 - Works with any front-end framework (React, Vue, Next.js, etc.) or mobile client that supports HTTP headers
 
@@ -38,3 +40,8 @@ curl -X POST "https://example.com/graphql" \
 ```
 
 ![Authenticated WPGraphQL request](/assets/images/screenshots/third-party-integrations/wpgraphql-postman-jwt.png)
+
+## Next steps
+
+- [Get a JWT](../../auth/Authentication.md)
+- [Configure CORS for your front end](../../Cors.md)

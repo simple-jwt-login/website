@@ -1,8 +1,9 @@
 ---
 slug: /protect-endpoints/
-title: Protect Endpoints
+title: v3 Protect Endpoints
+sidebar_label: Protect Endpoints
 sidebar_position: 11
-description: Require a valid JWT for any WordPress REST API route using Simple JWT Login. Lock down sensitive endpoints by HTTP method with exact or prefix matching.
+description: Protect WordPress REST API routes in Simple JWT Login v3 - require a valid JWT before callers can reach sensitive endpoints.
 keywords: [protect WordPress REST API, require JWT WordPress, WordPress endpoint protection, secure REST API WordPress, JWT middleware WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

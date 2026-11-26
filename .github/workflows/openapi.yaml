@@ -26,4 +26,4 @@ jobs:
           yarn install --frozen-lockfile
 
       - name: ✅ Validate OpenAPI files
-        run: yarn redocly lint --extends=spec static/openapi/*.yaml
+        run: yarn validate-openapi

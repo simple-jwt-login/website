@@ -1,12 +1,14 @@
 ---
 slug: /integrations/third-party/force-login/
-title: Force Login
-sidebar_position: 3
+title: Force Login and REST API JWT Access
+sidebar_label: Force Login
 description: Exempt Simple JWT Login endpoints from Force Login plugin restrictions so unauthenticated clients can still reach the authentication API.
 keywords: [Force Login WordPress, bypass Force Login REST API, Simple JWT Login Force Login, WordPress REST API access]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
+
+Keep the JWT endpoints reachable when Force Login restricts your WordPress REST API.
 
 Requires the [Force Login](https://wordpress.org/plugins/force-login/) plugin (or a similar plugin that restricts REST API access to authenticated users only).
 

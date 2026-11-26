@@ -32,4 +32,7 @@ while IFS= read -r src; do
   pages+=("$html")
 done < <(find src/pages -name '*.jsx' | sort)
 
-vale "$@" docs openapi static/openapi/v4.yaml "${pages[@]}"
+# Markdown pages are linted from source.
+while IFS= read -r src; do pages+=("$src"); done < <(find src/pages -name '*.md' | sort)
+
+vale "$@" docs static/openapi "${pages[@]}"

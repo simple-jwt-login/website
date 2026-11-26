@@ -4,7 +4,8 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTerminal, faEnvelope, faBoxArchive, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTerminal, faEnvelope, faBoxArchive } from '@fortawesome/free-solid-svg-icons';
+import CheckList from '@site/src/components/CheckList';
 import styles from './index.module.css';
 import sharedStyles from '../styles.module.css';
 import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
@@ -83,7 +84,7 @@ const integrations = [
     name: 'WPGraphQL',
     tagline: 'JWT authentication for GraphQL',
     description:
-      'Use the same JWT tokens you issue through Simple JWT Login to authenticate any WPGraphQL query or mutation. Enable it with a single checkbox - no code, no custom middleware.',
+      'Use the same JWTs you issue through Simple JWT Login to authenticate any WPGraphQL query or mutation. Enable it with a single checkbox - no code, no custom middleware.',
     logo: 'assets/images/screenshots/third-party-integrations/wpgraphql-logo.png',
     logoAlt: 'WPGraphQL logo',
     tags: ['GraphQL', 'Headless', 'REST-free'],
@@ -172,19 +173,6 @@ function StatusBadge({ status }) {
   );
 }
 
-function CheckList({ items }) {
-  return (
-    <ul className={styles.checkList}>
-      {items.map((item) => (
-        <li key={item} className={styles.checkItem}>
-          <FontAwesomeIcon icon={faCheck} className={styles.checkIcon} aria-hidden="true" />
-          {item}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 function AddonCard({ name, tagline, description, icon, tags, status, docsHref, primaryHref, primaryLabel, secondaryHref, secondaryLabel, highlights }) {
   return (
     <div className={styles.addonCard}>
@@ -215,7 +203,7 @@ function AddonCard({ name, tagline, description, icon, tags, status, docsHref, p
         </div>
         <div className={styles.addonRight}>
           <p className={styles.highlightsLabel}>What it does</p>
-          <CheckList items={highlights} />
+          <CheckList items={highlights} className={styles.checkList} />
           <Link to={docsHref} className={styles.docsLink} title="View documentation">
             View documentation →
           </Link>
@@ -245,7 +233,7 @@ function IntegrationCard({ name, tagline, description, logo, logoAlt, tags, stat
       <div className={styles.addonTags} style={{ marginBottom: '1rem' }}>
         {tags.map((t) => <span key={t} className={styles.tag}>{t}</span>)}
       </div>
-      <CheckList items={highlights} />
+      <CheckList items={highlights} className={styles.checkList} />
       <div className={styles.integrationFooter}>
         <Link to={primaryHref} className={sharedStyles.actionButton} title={primaryLabel}>
           {primaryLabel} →

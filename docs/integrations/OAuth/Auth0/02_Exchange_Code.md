@@ -1,9 +1,9 @@
 ---
 slug: /integrations/oauth/auth0/exchange-code
-title: Exchange OAuth Code for Auth0 Tokens
-sidebar_position: 2
-description: Exchange the Auth0 authorization code for Auth0 tokens using Simple JWT Login.
-keywords: [Auth0 OAuth code, Auth0 access_token, exchange code, WordPress REST API, Simple JWT Login]
+title: Exchange an Auth0 OAuth Code for Tokens
+sidebar_label: Exchange OAuth Code for Auth0 Tokens
+description: Exchange an Auth0 OAuth authorization code for Auth0 tokens through the WordPress REST API - endpoint, parameters, curl request, and responses.
+keywords: [Auth0 OAuth code exchange, Auth0 authorization code, Auth0 access_token, Auth0 OAuth WordPress REST API]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -71,3 +71,8 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   }
 }
 ```
+
+## Next steps
+
+- [Exchange the Auth0 token for a WordPress JWT](./03_Exchange_Token.md)
+- [Check the Auth0 OAuth setup](./01_Setup.md)

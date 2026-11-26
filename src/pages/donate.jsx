@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDesktop, faLock, faBolt, faBook, faMugHot, faSeedling, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faDesktop, faLock, faBolt, faBook, faMugHot, faSeedling, faTrophy, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import styles from './donate.module.css';
 import { ACTIVE_INSTALLS, TOTAL_DOWNLOADS, RATING, ACTIVE_YEARS, formatNumber } from '@site/src/data/pluginStats';
 
@@ -88,7 +88,7 @@ function DonatePage() {
             consider giving back.
           </p>
           <Link to={PAYPAL_URL} className={styles.heroCta} title="Donate via PayPal">
-            Donate via PayPal ↗
+            Donate via PayPal <FontAwesomeIcon icon={faArrowUpRightFromSquare} aria-hidden="true" />
           </Link>
         </div>
       </header>
@@ -195,7 +195,7 @@ function DonatePage() {
               Join the developers and teams who already support this project.
             </p>
             <Link to={PAYPAL_URL} className={styles.heroCta} title="Donate now">
-              Donate now via PayPal ↗
+              Donate now via PayPal <FontAwesomeIcon icon={faArrowUpRightFromSquare} aria-hidden="true" />
             </Link>
             <p className={styles.finalCtaNote}>
               Prefer another method?{' '}

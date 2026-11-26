@@ -1,7 +1,7 @@
 ---
 slug: /register-user/
-title: Register User
-sidebar_position: 4
+title: Register WordPress Users via REST API
+sidebar_label: Register User
 description: Register new WordPress users programmatically via a REST API endpoint using Simple JWT Login. Supports role assignment, auth codes, and IP restrictions.
 keywords: [WordPress register user API, REST API create user WordPress, WordPress user registration endpoint, JWT register user, headless WordPress registration]
 author: Nicu Micle
@@ -25,7 +25,7 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 **URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users`
 
 :::warning[Keep credentials out of the URL]
-Send the new user's email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history and monitoring tools.
+Send the new user's email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history, and monitoring tools.
 :::
 
 **PARAMETERS**:
@@ -83,23 +83,20 @@ Full registration with optional fields:
 ```json
 {
   "success": true,
-  "id": 1,
-  "message": "User was successfully created.",
-  "user": {
-    "ID": 1,
-    "user_login": "myuser",
-    "user_nicename": "myuser",
-    "user_email": "myuser@simplejwtlogin.com",
-    "user_url": "https://simplejwtlogin.com/myuser",
-    "user_registered": "2021-01-01 23:31:50",
-    "user_status": "0",
+  "data": {
+    "id": 1,
+    "login": "myuser",
+    "nicename": "myuser",
+    "email": "myuser@simplejwtlogin.com",
+    "url": "https://simplejwtlogin.com/myuser",
+    "registered": "2021-01-01 23:31:50",
+    "status": "0",
     "display_name": "myuser",
-    "user_level": 0
-  },
-  "roles": [
-    "subscriber"
-  ],
-  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    "roles": [
+      "subscriber"
+    ],
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  }
 }
 ```
 
@@ -315,3 +312,8 @@ Since version 4.1.0, meta keys that grant privileges or hold sessions - `{prefix
 
 Since version 4.2.0, the `user_activation_key`, `user_registered` and `spam` user properties are not accepted from the request either, so a registrant can't plant a password reset key and take over an account.
 :::
+
+## Next steps
+
+- [Register a user from PHP](./code_examples/register-and-get-jwt.md)
+- [Send a webhook on registration](./Webhooks.md)

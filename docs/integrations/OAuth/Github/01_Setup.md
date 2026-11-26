@@ -1,8 +1,8 @@
 ---
 slug: /integrations/oauth/github/setup
-title: Setup
-sidebar_position: 1
-description: Configure GitHub OAuth credentials in Simple JWT Login to enable GitHub sign-in for your WordPress site.
+title: GitHub OAuth Setup for WordPress
+sidebar_label: Setup
+description: Set up GitHub login for WordPress - create a GitHub OAuth app, copy the credentials into Simple JWT Login, and enable the provider.
 keywords: [GitHub OAuth WordPress, GitHub Developer Settings, GitHub Client ID, GitHub Client Secret, social login WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
@@ -37,3 +37,8 @@ Keep your credentials secure - never commit them to version control or expose th
 | :---- | :---------- |
 | **Client ID** | The OAuth App Client ID |
 | **Client Secret** | The OAuth App Client Secret |
+
+## Next steps
+
+- [Exchange a GitHub OAuth code for tokens](./02_Exchange_Code.md)
+- [Exchange a GitHub token for a WordPress JWT](./03_Exchange_Token.md)

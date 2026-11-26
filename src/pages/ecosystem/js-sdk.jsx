@@ -479,7 +479,7 @@ export default function JsSdkPage() {
             <p className={styles.sectionLead}>All available client methods at a glance.</p>
             <div className={styles.refTable}>
               {[
-                { method: 'auth.login()', desc: 'Exchange credentials for a JWT token' },
+                { method: 'auth.login()', desc: 'Exchange credentials for a JWT' },
                 { method: 'auth.validateToken()', desc: 'Verify a token signature and expiry' },
                 { method: 'auth.refreshToken()', desc: 'Get a new token from an expiring one' },
                 { method: 'auth.revokeToken()', desc: 'Permanently invalidate a token' },

@@ -11,6 +11,7 @@ import {
   faVial, faCode, faRotate, faUserShield, faTriangleExclamation,
   faDownload, faLock, faUserPlus, faCartShopping,
 } from '@fortawesome/free-solid-svg-icons';
+import CheckList from '@site/src/components/CheckList';
 import styles from './styles.module.css';
 import v4Styles from './v4.module.css';
 
@@ -228,7 +229,7 @@ const newFeatures = [
     title: 'Improvements & Code Quality',
     desc: 'Standardized HTTP status codes across all endpoints and a cleaner, more maintainable internal codebase.',
     bullets: [
-      'All endpoints now respond with 400, 401, 403, 422, or 500 status codes',
+      'Client errors return a matching HTTP status (400, 401, 403, 404, 422, or 429) instead of 500 - 404 and 429 since 4.2.0',
       'Refactored internal service layer for better separation of concerns',
       'Improved unit test coverage across all core services',
       'Reduced code duplication across service classes',
@@ -241,7 +242,7 @@ const newFeatures = [
 const breakingChanges = [
   {
     title: 'Register user response shape changed',
-    detail: <><code>POST /users</code> used to return <code>{'{"success":true,"ID":1,...}'}</code>. It now returns <code>{'{"success":true,"data":{"id":1,...}}'}</code>. The user object is nested under <code>data</code>, <code>ID</code> is lowercase <code>id</code>, and these fields were renamed: <code>user_login</code> → <code>login</code>, <code>user_nicename</code> → <code>nicename</code>, <code>user_email</code> → <code>email</code>, <code>user_url</code> → <code>url</code>, <code>user_registered</code> → <code>registered</code>, <code>user_activation_key</code> → <code>activation_key</code>, <code>user_status</code> → <code>status</code>.</>,
+    detail: <><code>POST /users</code> used to return <code>{'{"success":true,"id":1,"message":"...","user":{"ID":1,...},"roles":[...]}'}</code>. It now returns <code>{'{"success":true,"data":{"id":1,...,"roles":[...]}}'}</code>. The user fields and roles are nested under <code>data</code>, <code>message</code> is gone, and these fields were renamed: <code>user_login</code> → <code>login</code>, <code>user_nicename</code> → <code>nicename</code>, <code>user_email</code> → <code>email</code>, <code>user_url</code> → <code>url</code>, <code>user_registered</code> → <code>registered</code>, <code>user_status</code> → <code>status</code>.</>,
     action: <>Update any code that reads user fields from the register response - check both the new nesting under <code>data</code> and the renamed field keys.</>,
     link: '/docs/register-user/',
     linkLabel: 'Register User docs',
@@ -280,13 +281,6 @@ const breakingChanges = [
     action: 'Update your authentication flow to handle the interim JWT case, or leave 2FA disabled for API users.',
     link: '/docs/integrations/third-party/two-factor/',
     linkLabel: '2FA docs',
-  },
-  {
-    title: <>Error response envelope: <code>message</code> and <code>error_code</code> moved under <code>data</code></>,
-    detail: <>In v3, error responses had the form <code>{'{"success":false,"message":"...","error_code":N}'}</code>. In v4, both fields moved under a nested <code>data</code> object: <code>{'{"success":false,"data":{"message":"...","error_code":N}}'}</code>. Every endpoint follows this new shape.</>,
-    action: <>Update all error-handling code to read <code>response.data.message</code> and <code>response.data.error_code</code> instead of <code>response.message</code> and <code>response.error_code</code>.</>,
-    link: '/docs/error-codes/',
-    linkLabel: 'Error codes docs',
   },
   {
     title: 'Protected endpoint auth failures return 401 instead of 403',
@@ -375,7 +369,7 @@ const migrationSteps = [
   {
     n: '2',
     title: 'Work through the breaking changes',
-    desc: <>The breaking changes are listed above. Address them before going to production - the error envelope change, the <code>errorCode</code> → <code>error_code</code> rename, the register response shape change, the removed /register route, and the relocated User Identification setting are the most likely to affect existing integrations.</>,
+    desc: <>The breaking changes are listed above. Address them before going to production - the <code>errorCode</code> → <code>error_code</code> rename, the register response shape change, the removed /register route, and the relocated User Identification setting are the most likely to affect existing integrations. The <Link to="/docs/upgrade-v3-to-v4/">upgrade guide</Link> covers every change, including those from later 4.x releases.</>,
   },
   {
     n: '3',
@@ -467,14 +461,7 @@ export default function V4Page() {
                   </div>
                   <h3 className={v4Styles.featureCardTitle}>{title}</h3>
                   <p className={v4Styles.featureCardDesc}>{desc}</p>
-                  <ul className={v4Styles.featureCardBullets}>
-                    {bullets.map((b) => (
-                      <li key={b}>
-                        <FontAwesomeIcon icon={faCheckCircle} className={v4Styles.bulletIcon} />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
+                  <CheckList items={bullets} className={v4Styles.featureCardBullets} />
                   <Link to={link} className={v4Styles.featureCardLink} title={cta}>
                     {cta} <FontAwesomeIcon icon={faArrowRight} />
                   </Link>

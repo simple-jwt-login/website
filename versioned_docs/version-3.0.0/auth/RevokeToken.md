@@ -1,6 +1,8 @@
 ---
 slug: /revoke-token/
-title: Revoke token
+title: v3 Revoke token
+description: Revoke a JWT in Simple JWT Login v3 - invalidate a token on logout or after a password change so later requests are rejected.
+sidebar_label: Revoke token
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---

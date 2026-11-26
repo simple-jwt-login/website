@@ -6,33 +6,29 @@ slug: simple-jwt-login-plus-docusaurus/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [news]
-image: /assets/favicons/android-chrome-192x192.png
+image: /assets/images/social-card.png
 ---
 
-I'm very excited about this new website for Simple JWT Login, using [**Docusaurus 2**](https://docusaurus.io/).
+:::info Update
+The site was redesigned again in 2026 - see [A Faster, Smarter New Website Design](/blog/new-website-design-2026/).
+:::
 
-Docusaurus offered me a simple way, to write documentation, and also build the website in the same place. The learning curve was fast, and I enjoyed writing code in React.  
+The Simple JWT Login website now runs on [**Docusaurus 2**](https://docusaurus.io/).
+
+Docusaurus makes it simple to write the documentation and build the website in one place. It was quick to learn, and writing the site in React is fun.
 
 <!--truncate-->
 
-## Previous website
-Previously, I've used [docsify](https://docsify.js.org/) ( Also, a very cool site documentation generator) and the website has been made in PHP.
+## Previous Website
 
-It was very hard to do changes, and add new pages because that involved a lot of coding, writing routes, and loading content.
+The previous documentation used [docsify](https://docsify.js.org/), another good documentation generator, and the website itself was written in PHP.
 
+Changing or adding pages was hard, because every page needed code for routes and for loading content.
 
-## About the blog
+## About the Blog
 
-While writing documentation, it came to my mind that it will also be cool to start a blog. In this blog I'm planning to write real world use-cases of the plugin and write announcements about the plugin.
+Writing the documentation was a good moment to start a blog too. It covers real-world use cases of the plugin and announces new releases.
 
-So, if you are interested on what features have been implemented, or what tips&tricks you can use while you develop your website, keep an eye on this blog.
+To learn about new features, or tips and tricks for building your site, follow this blog.
 
-
-Also, I'm planning to publish the documentation to GitHub, so that, anybody can add/modify the things there. In fact, this documentation is made for you to understand.
-
-I hope that, with the help of the community, there will be much easier for new users to use this plugin.
-
-
-
- 
-
+The documentation is also going to be public on GitHub, so anybody can suggest a fix or an improvement. It's written for you, so help from the community makes it easier for every new user to get started.

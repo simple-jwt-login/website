@@ -1,9 +1,9 @@
 ---
 slug: /integrations/oauth/github/exchange-code
-title: Exchange OAuth Code for GitHub Tokens
-sidebar_position: 2
-description: Exchange the GitHub authorization code for GitHub tokens using Simple JWT Login.
-keywords: [GitHub OAuth code, GitHub access_token, exchange code, WordPress REST API, Simple JWT Login]
+title: Exchange a GitHub OAuth Code for Tokens
+sidebar_label: Exchange OAuth Code for GitHub Tokens
+description: Exchange a GitHub OAuth authorization code for GitHub tokens through the WordPress REST API - endpoint, parameters, curl request, and responses.
+keywords: [GitHub OAuth code exchange, GitHub authorization code, GitHub access_token, GitHub OAuth WordPress REST API]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -70,3 +70,8 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   }
 }
 ```
+
+## Next steps
+
+- [Exchange the GitHub token for a WordPress JWT](./03_Exchange_Token.md)
+- [Check the GitHub OAuth setup](./01_Setup.md)

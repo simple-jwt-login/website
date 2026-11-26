@@ -391,7 +391,7 @@ export default function CliPage() {
             <p className={styles.sectionLead}>All 8 commands at a glance.</p>
             <div className={styles.refTable}>
               {[
-                { cmd: 'wp jwt login', desc: 'Authenticate a user and return a JWT token' },
+                { cmd: 'wp jwt login', desc: 'Authenticate a user and return a JWT' },
                 { cmd: 'wp jwt decode', desc: 'Decode a JWT payload (signature not verified)' },
                 { cmd: 'wp jwt validate', desc: 'Verify signature and expiry of a token' },
                 { cmd: 'wp jwt revoke', desc: 'Permanently revoke a token' },

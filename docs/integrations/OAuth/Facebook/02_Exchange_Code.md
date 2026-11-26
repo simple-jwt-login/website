@@ -1,9 +1,9 @@
 ---
 slug: /integrations/oauth/facebook/exchange-code
-title: Exchange OAuth Code for Facebook Tokens
-sidebar_position: 2
-description: Exchange the Facebook authorization code for Facebook tokens using Simple JWT Login.
-keywords: [Facebook OAuth code, Facebook access_token, exchange code, WordPress REST API, Simple JWT Login]
+title: Exchange a Facebook OAuth Code for Tokens
+sidebar_label: Exchange OAuth Code for Facebook Tokens
+description: Exchange a Facebook OAuth authorization code for Facebook tokens through the WordPress REST API - endpoint, parameters, curl request, and responses.
+keywords: [Facebook OAuth code exchange, Facebook authorization code, Facebook access_token, Facebook OAuth WordPress REST API]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -70,3 +70,8 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   }
 }
 ```
+
+## Next steps
+
+- [Exchange the Facebook token for a WordPress JWT](./03_Exchange_Token.md)
+- [Check the Facebook OAuth setup](./01_Setup.md)

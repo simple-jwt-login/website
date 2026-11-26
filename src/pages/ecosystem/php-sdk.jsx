@@ -480,7 +480,7 @@ export default function PhpSdkPage() {
             <p className={styles.sectionLead}>All available client methods at a glance.</p>
             <div className={styles.refTable}>
               {[
-                { method: 'authenticate()', desc: 'Exchange credentials for a JWT token' },
+                { method: 'authenticate()', desc: 'Exchange credentials for a JWT' },
                 { method: 'register()', desc: 'Create a new WordPress user account' },
                 { method: 'deleteUser()', desc: 'Delete a user via a verified JWT' },
                 { method: 'validateToken()', desc: 'Verify a token signature and expiry' },
