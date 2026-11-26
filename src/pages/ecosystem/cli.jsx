@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
+import Translate, {translate} from '@docusaurus/Translate';
 import clsx from 'clsx';
 import styles from './cli.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -54,9 +55,12 @@ const commands = [
   {
     id: 'login',
     label: 'jwt login',
-    headline: 'Authenticate & get a token',
-    description:
-      'Authenticate any WordPress user by username, email, or a combined login flag and receive a signed JWT immediately. Pipe it directly into curl, store it in a variable, or forward it to other tools.',
+    headline: translate({id: 'ecosystem.cli.commands.login.headline', message: 'Authenticate & get a token'}),
+    description: translate({
+      id: 'ecosystem.cli.commands.login.description',
+      message:
+        'Authenticate any WordPress user by username, email, or a combined login flag and receive a signed JWT immediately. Pipe it directly into curl, store it in a variable, or forward it to other tools.',
+    }),
     lines: [
       { comment: true, text: '# Authenticate by username' },
       { text: 'wp jwt login --username=admin --password=secret' },
@@ -74,9 +78,12 @@ const commands = [
   {
     id: 'decode',
     label: 'jwt decode',
-    headline: 'Inspect a JWT payload',
-    description:
-      'Decode any JWT and display its claims as a readable key/value table or JSON. Signature is not verified - use validate for that. Perfect for debugging token contents without a browser.',
+    headline: translate({id: 'ecosystem.cli.commands.decode.headline', message: 'Inspect a JWT payload'}),
+    description: translate({
+      id: 'ecosystem.cli.commands.decode.description',
+      message:
+        'Decode any JWT and display its claims as a readable key/value table or JSON. Signature is not verified - use validate for that. Perfect for debugging token contents without a browser.',
+    }),
     lines: [
       { comment: true, text: '# Decode a token' },
       { text: 'wp jwt decode eyJhbGciOiJIUzI1NiJ9...' },
@@ -93,9 +100,12 @@ const commands = [
   {
     id: 'validate',
     label: 'jwt validate',
-    headline: 'Verify signature & expiry',
-    description:
-      'Verify the token signature against the plugin decryption key and confirm it has not expired. Exits 0 in all cases - check the valid field in the output to drive conditional logic in scripts.',
+    headline: translate({id: 'ecosystem.cli.commands.validate.headline', message: 'Verify signature & expiry'}),
+    description: translate({
+      id: 'ecosystem.cli.commands.validate.description',
+      message:
+        'Verify the token signature against the plugin decryption key and confirm it has not expired. Exits 0 in all cases - check the valid field in the output to drive conditional logic in scripts.',
+    }),
     lines: [
       { comment: true, text: '# Validate a token' },
       { text: 'wp jwt validate "$TOKEN" --format=json' },
@@ -113,9 +123,12 @@ const commands = [
   {
     id: 'revoke',
     label: 'jwt revoke',
-    headline: 'Invalidate a token instantly',
-    description:
-      'Revoke a token so it can never be used again. The signature is verified before revocation to prevent spoofed revocation attempts. Ideal for forced log-out flows and post-deployment security sweeps.',
+    headline: translate({id: 'ecosystem.cli.commands.revoke.headline', message: 'Invalidate a token instantly'}),
+    description: translate({
+      id: 'ecosystem.cli.commands.revoke.description',
+      message:
+        'Revoke a token so it can never be used again. The signature is verified before revocation to prevent spoofed revocation attempts. Ideal for forced log-out flows and post-deployment security sweeps.',
+    }),
     lines: [
       { comment: true, text: '# Revoke a specific token' },
       { text: 'wp jwt revoke "$TOKEN" --format=json' },
@@ -129,9 +142,12 @@ const commands = [
   {
     id: 'config',
     label: 'jwt config',
-    headline: 'Manage plugin settings',
-    description:
-      'Get, set, list, export, and import every Simple JWT Login setting without touching the WordPress admin UI. Use dot notation for nested keys. Export/import enables reproducible config across environments.',
+    headline: translate({id: 'ecosystem.cli.commands.config.headline', message: 'Manage plugin settings'}),
+    description: translate({
+      id: 'ecosystem.cli.commands.config.description',
+      message:
+        'Get, set, list, export, and import every Simple JWT Login setting without touching the WordPress admin UI. Use dot notation for nested keys. Export/import enables reproducible config across environments.',
+    }),
     lines: [
       { comment: true, text: '# Read a setting' },
       { text: 'wp jwt config get jwt_algorithm' },
@@ -167,8 +183,8 @@ function CommandTabs() {
         <div className={styles.commandInfo}>
           <h3 className={styles.commandHeadline}>{cmd.headline}</h3>
           <p className={styles.commandDesc}>{cmd.description}</p>
-          <Link to="/docs/cli/" className={sharedStyles.btn} title="Full CLI documentation">
-            Full docs →
+          <Link to="/docs/cli/" className={sharedStyles.btn} title={translate({id: 'ecosystem.cli.commands.fullDocsTitle', message: 'Full CLI documentation'})}>
+            <Translate id="ecosystem.cli.commands.fullDocs">Full docs →</Translate>
           </Link>
         </div>
         <div className={styles.commandTerminal}>
@@ -183,9 +199,12 @@ function CommandTabs() {
 const useCases = [
   {
     icon: faGear,
-    title: 'CI / CD pipelines',
-    description:
-      'Generate a short-lived JWT inside your pipeline to seed test data, run authenticated smoke tests, or hit protected API endpoints - no browser, no cookies.',
+    title: translate({id: 'ecosystem.cli.useCases.ciCd.title', message: 'CI / CD pipelines'}),
+    description: translate({
+      id: 'ecosystem.cli.useCases.ciCd.description',
+      message:
+        'Generate a short-lived JWT inside your pipeline to seed test data, run authenticated smoke tests, or hit protected API endpoints - no browser, no cookies.',
+    }),
     code: `TOKEN=$(wp jwt login --username=admin --password="$WP_ADMIN_PASSWORD")
 curl -s -X POST https://my-site.com/wp-json/wp/v2/posts \\
   -H "Authorization: Bearer $TOKEN" \\
@@ -193,9 +212,12 @@ curl -s -X POST https://my-site.com/wp-json/wp/v2/posts \\
   },
   {
     icon: faArrowsRotate,
-    title: 'Staging → production migrations',
-    description:
-      'Export the full plugin config from staging with one command, preview the diff on production in dry-run mode, then apply - fully non-interactive.',
+    title: translate({id: 'ecosystem.cli.useCases.migration.title', message: 'Staging → production migrations'}),
+    description: translate({
+      id: 'ecosystem.cli.useCases.migration.description',
+      message:
+        'Export the full plugin config from staging with one command, preview the diff on production in dry-run mode, then apply - fully non-interactive.',
+    }),
     code: `# Export from staging
 wp jwt config export --file=jwt-staging.json
 
@@ -207,9 +229,12 @@ wp jwt config import jwt-staging.json --yes --url=https://example.com`,
   },
   {
     icon: faHeart,
-    title: 'Automated health checks',
-    description:
-      'Add a cron job or monitoring script that logs in, validates the token, and alerts your team when JWT authentication breaks.',
+    title: translate({id: 'ecosystem.cli.useCases.healthChecks.title', message: 'Automated health checks'}),
+    description: translate({
+      id: 'ecosystem.cli.useCases.healthChecks.description',
+      message:
+        'Add a cron job or monitoring script that logs in, validates the token, and alerts your team when JWT authentication breaks.',
+    }),
     code: `TOKEN=$(wp jwt login --username=healthcheck --password="$HC_PASSWORD")
 STATUS=$(wp jwt validate "$TOKEN" --format=json | jq -r '.valid')
 [ "$STATUS" = "true" ] && echo "JWT OK" || { echo "JWT FAILED"; exit 1; }`,
@@ -220,8 +245,8 @@ STATUS=$(wp jwt validate "$TOKEN" --format=json | jq -r '.valid')
 export default function CliPage() {
   return (
     <Layout
-      title="WP-CLI Add-on - Simple JWT Login"
-      description="Manage Simple JWT Login from the command line - generate tokens, validate JWTs, revoke sessions, and configure the plugin."
+      title={translate({id: 'ecosystem.cli.meta.title', message: 'WP-CLI Add-on - Simple JWT Login'})}
+      description={translate({id: 'ecosystem.cli.meta.description', message: 'Manage Simple JWT Login from the command line - generate tokens, validate JWTs, revoke sessions, and configure the plugin.'})}
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -231,25 +256,24 @@ export default function CliPage() {
       <header className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
         <div className="container">
-          <div className={styles.heroBadge}>WP-CLI Add-on</div>
+          <div className={styles.heroBadge}><Translate id="ecosystem.cli.hero.badge">WP-CLI Add-on</Translate></div>
           <h1 className={styles.heroTitle}>
-            JWT auth at your<br />
-            <span className={styles.heroAccent}>fingertips</span>
+            <Translate id="ecosystem.cli.hero.titleLead">JWT auth at your</Translate><br />
+            <span className={styles.heroAccent}><Translate id="ecosystem.cli.hero.titleAccent">fingertips</Translate></span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Generate tokens, validate JWTs, revoke sessions, and manage every plugin
-            setting directly from your terminal - no WordPress admin UI required.
+            <Translate id="ecosystem.cli.hero.subtitle">{'Generate tokens, validate JWTs, revoke sessions, and manage every plugin setting directly from your terminal - no WordPress admin UI required.'}</Translate>
           </p>
           <div className={styles.heroCta}>
-            <Link to="/docs/cli/" className={sharedStyles.actionButton} title="Read the CLI documentation">
-              Read the docs →
+            <Link to="/docs/cli/" className={sharedStyles.actionButton} title={translate({id: 'ecosystem.cli.hero.readDocsTitle', message: 'Read the CLI documentation'})}>
+              <Translate id="ecosystem.cli.hero.readDocs">Read the docs →</Translate>
             </Link>
             <Link
               to="https://github.com/simple-jwt-login/simple-jwt-login-cli"
               className={sharedStyles.btn}
-              title="View on GitHub"
+              title={translate({id: 'ecosystem.cli.hero.githubTitle', message: 'View on GitHub'})}
             >
-              View on GitHub
+              <Translate id="ecosystem.cli.hero.github">View on GitHub</Translate>
             </Link>
           </div>
 
@@ -282,12 +306,12 @@ export default function CliPage() {
           <div className="container">
             <div className={styles.highlightGrid}>
               {[
-                { icon: faDesktop, text: 'Works anywhere WP-CLI runs' },
-                { icon: faKey, text: '8 commands, everything covered' },
-                { icon: faPlug, text: 'Requires Simple JWT Login plugin' },
-                { icon: faHeart, text: 'Free & open source' },
-              ].map(({ icon, text }) => (
-                <div key={text} className={styles.highlightItem}>
+                { icon: faDesktop, text: translate({id: 'ecosystem.cli.highlights.worksAnywhere', message: 'Works anywhere WP-CLI runs'}) },
+                { icon: faKey, text: translate({id: 'ecosystem.cli.highlights.commands', message: '8 commands, everything covered'}) },
+                { icon: faPlug, text: translate({id: 'ecosystem.cli.highlights.requires', message: 'Requires Simple JWT Login plugin'}) },
+                { icon: faHeart, text: translate({id: 'ecosystem.cli.highlights.free', message: 'Free & open source'}) },
+              ].map(({ icon, text }, i) => (
+                <div key={i} className={styles.highlightItem}>
                   <span className={styles.highlightIcon}><FontAwesomeIcon icon={icon} /></span>
                   <span className={styles.highlightText}>{text}</span>
                 </div>
@@ -299,9 +323,9 @@ export default function CliPage() {
         {/* ── Commands ───────────────────────────────────────── */}
         <section className={clsx(sharedStyles.sectionPadding, sharedStyles.sectionGray)}>
           <div className="container">
-            <h2 className={sharedStyles.sectionTitle}>Every command you need</h2>
+            <h2 className={sharedStyles.sectionTitle}><Translate id="ecosystem.cli.commandsSection.title">Every command you need</Translate></h2>
             <p className={styles.sectionLead}>
-              From token generation to full config management - the CLI covers the complete JWT lifecycle.
+              <Translate id="ecosystem.cli.commandsSection.lead">From token generation to full config management - the CLI covers the complete JWT lifecycle.</Translate>
             </p>
             <CommandTabs />
           </div>
@@ -310,13 +334,13 @@ export default function CliPage() {
         {/* ── Use cases ──────────────────────────────────────── */}
         <section className={sharedStyles.sectionPadding}>
           <div className="container">
-            <h2 className={sharedStyles.sectionTitle}>Built for real workflows</h2>
+            <h2 className={sharedStyles.sectionTitle}><Translate id="ecosystem.cli.useCasesSection.title">Built for real workflows</Translate></h2>
             <p className={styles.sectionLead}>
-              The CLI is designed for the scenarios where speed and automation matter most.
+              <Translate id="ecosystem.cli.useCasesSection.lead">The CLI is designed for the scenarios where speed and automation matter most.</Translate>
             </p>
             <div className={styles.useCaseGrid}>
-              {useCases.map(({ icon, title, description, code }) => (
-                <div key={title} className={styles.useCaseCard}>
+              {useCases.map(({ icon, title, description, code }, i) => (
+                <div key={i} className={styles.useCaseCard}>
                   <div className={styles.useCaseHeader}>
                     <span className={styles.useCaseIcon}><FontAwesomeIcon icon={icon} /></span>
                     <h3 className={styles.useCaseTitle}>{title}</h3>
@@ -332,18 +356,18 @@ export default function CliPage() {
         {/* ── Requirements & install ─────────────────────────── */}
         <section className={clsx(sharedStyles.sectionPadding, sharedStyles.sectionGray)}>
           <div className="container">
-            <h2 className={sharedStyles.sectionTitle}>Get started in 60 seconds</h2>
+            <h2 className={sharedStyles.sectionTitle}><Translate id="ecosystem.cli.install.title">Get started in 60 seconds</Translate></h2>
             <div className={styles.installGrid}>
 
               {/* Requirements */}
               <div className={styles.requireBox}>
-                <h3 className={styles.requireTitle}>Requirements</h3>
+                <h3 className={styles.requireTitle}><Translate id="ecosystem.cli.install.requirements">Requirements</Translate></h3>
                 <ul className={styles.requireList}>
                   {[
                     ['WordPress', '4.4+'],
                     ['PHP', '5.5+'],
-                    ['Simple JWT Login', 'active'],
-                    ['WP-CLI', 'any recent stable'],
+                    ['Simple JWT Login', translate({id: 'ecosystem.cli.install.req.active', message: 'active'})],
+                    ['WP-CLI', translate({id: 'ecosystem.cli.install.req.anyStable', message: 'any recent stable'})],
                   ].map(([dep, ver]) => (
                     <li key={dep} className={styles.requireItem}>
                       <span className={styles.requireDep}>{dep}</span>
@@ -358,21 +382,31 @@ export default function CliPage() {
                 <div className={styles.installStep}>
                   <span className={sharedStyles.stepNumber}>1</span>
                   <div>
-                    <strong>Install from WordPress.org</strong>
-                    <p>Go to <em>Plugins → Add New</em>, search for <code>Simple JWT Login CLI</code>, and click Install Now.</p>
+                    <strong><Translate id="ecosystem.cli.install.step1.title">Install from WordPress.org</Translate></strong>
+                    <p>
+                      <Translate
+                        id="ecosystem.cli.install.step1.text"
+                        values={{
+                          menu: <em><Translate id="ecosystem.cli.install.step1.menu">Plugins → Add New</Translate></em>,
+                          plugin: <code>Simple JWT Login CLI</code>,
+                        }}
+                      >
+                        {'Go to {menu}, search for {plugin}, and click Install Now.'}
+                      </Translate>
+                    </p>
                   </div>
                 </div>
                 <div className={styles.installStep}>
                   <span className={sharedStyles.stepNumber}>2</span>
                   <div>
-                    <strong>Activate the plugin</strong>
-                    <p>The add-on registers its commands automatically once activated. Simple JWT Login must be active on the same site.</p>
+                    <strong><Translate id="ecosystem.cli.install.step2.title">Activate the plugin</Translate></strong>
+                    <p><Translate id="ecosystem.cli.install.step2.text">The add-on registers its commands automatically once activated. Simple JWT Login must be active on the same site.</Translate></p>
                   </div>
                 </div>
                 <div className={styles.installStep}>
                   <span className={sharedStyles.stepNumber}>3</span>
                   <div>
-                    <strong>Verify the commands</strong>
+                    <strong><Translate id="ecosystem.cli.install.step3.title">Verify the commands</Translate></strong>
                     <Terminal lines={[
                       { text: 'wp jwt --help' },
                       { output: true, text: 'usage: wp jwt <command> [<args>]' },
@@ -387,19 +421,19 @@ export default function CliPage() {
         {/* ── Command reference ─────────────────────────────── */}
         <section className={sharedStyles.sectionPadding}>
           <div className="container">
-            <h2 className={sharedStyles.sectionTitle}>Complete command reference</h2>
-            <p className={styles.sectionLead}>All 8 commands at a glance.</p>
+            <h2 className={sharedStyles.sectionTitle}><Translate id="ecosystem.cli.reference.title">Complete command reference</Translate></h2>
+            <p className={styles.sectionLead}><Translate id="ecosystem.cli.reference.lead">All 8 commands at a glance.</Translate></p>
             <div className={styles.refTable}>
               {[
-                { cmd: 'wp jwt login', desc: 'Authenticate a user and return a JWT' },
-                { cmd: 'wp jwt decode', desc: 'Decode a JWT payload (signature not verified)' },
-                { cmd: 'wp jwt validate', desc: 'Verify signature and expiry of a token' },
-                { cmd: 'wp jwt revoke', desc: 'Permanently revoke a token' },
-                { cmd: 'wp jwt config get', desc: 'Read a single plugin setting' },
-                { cmd: 'wp jwt config set', desc: 'Update a plugin setting' },
-                { cmd: 'wp jwt config list', desc: 'List all settings as key/value pairs' },
-                { cmd: 'wp jwt config export', desc: 'Export full config as JSON to stdout or file' },
-                { cmd: 'wp jwt config import', desc: 'Import config from a JSON file' },
+                { cmd: 'wp jwt login', desc: translate({id: 'ecosystem.cli.reference.login', message: 'Authenticate a user and return a JWT'}) },
+                { cmd: 'wp jwt decode', desc: translate({id: 'ecosystem.cli.reference.decode', message: 'Decode a JWT payload (signature not verified)'}) },
+                { cmd: 'wp jwt validate', desc: translate({id: 'ecosystem.cli.reference.validate', message: 'Verify signature and expiry of a token'}) },
+                { cmd: 'wp jwt revoke', desc: translate({id: 'ecosystem.cli.reference.revoke', message: 'Permanently revoke a token'}) },
+                { cmd: 'wp jwt config get', desc: translate({id: 'ecosystem.cli.reference.configGet', message: 'Read a single plugin setting'}) },
+                { cmd: 'wp jwt config set', desc: translate({id: 'ecosystem.cli.reference.configSet', message: 'Update a plugin setting'}) },
+                { cmd: 'wp jwt config list', desc: translate({id: 'ecosystem.cli.reference.configList', message: 'List all settings as key/value pairs'}) },
+                { cmd: 'wp jwt config export', desc: translate({id: 'ecosystem.cli.reference.configExport', message: 'Export full config as JSON to stdout or file'}) },
+                { cmd: 'wp jwt config import', desc: translate({id: 'ecosystem.cli.reference.configImport', message: 'Import config from a JSON file'}) },
               ].map(({ cmd, desc }) => (
                 <div key={cmd} className={styles.refRow}>
                   <code className={styles.refCmd}>{cmd}</code>
@@ -408,8 +442,8 @@ export default function CliPage() {
               ))}
             </div>
             <div style={{ marginTop: '2.5rem' }}>
-              <Link to="/docs/cli/" className={sharedStyles.actionButton} title="Full CLI documentation">
-                Full documentation →
+              <Link to="/docs/cli/" className={sharedStyles.actionButton} title={translate({id: 'ecosystem.cli.reference.fullDocsTitle', message: 'Full CLI documentation'})}>
+                <Translate id="ecosystem.cli.reference.fullDocs">Full documentation →</Translate>
               </Link>
             </div>
           </div>
@@ -420,20 +454,20 @@ export default function CliPage() {
           <div className="container">
             <div className={styles.ctaCard}>
               <div className={styles.ctaGlow} aria-hidden="true" />
-              <h2 className={styles.ctaTitle}>Ready to automate your JWT workflow?</h2>
+              <h2 className={styles.ctaTitle}><Translate id="ecosystem.cli.cta.title">Ready to automate your JWT workflow?</Translate></h2>
               <p className={styles.ctaSubtitle}>
-                Install the add-on in minutes and bring the full power of Simple JWT Login to your terminal.
+                <Translate id="ecosystem.cli.cta.subtitle">Install the add-on in minutes and bring the full power of Simple JWT Login to your terminal.</Translate>
               </p>
               <div className={styles.ctaButtons}>
-                <Link to="/docs/cli/" className={sharedStyles.actionButton} title="Read the CLI documentation">
-                  Get started →
+                <Link to="/docs/cli/" className={sharedStyles.actionButton} title={translate({id: 'ecosystem.cli.cta.readDocsTitle', message: 'Read the CLI documentation'})}>
+                  <Translate id="ecosystem.cli.cta.getStarted">Get started →</Translate>
                 </Link>
                 <Link
                   to="https://github.com/simple-jwt-login/simple-jwt-login-cli"
                   className={sharedStyles.btn}
-                  title="View source on GitHub"
+                  title={translate({id: 'ecosystem.cli.cta.githubTitle', message: 'View source on GitHub'})}
                 >
-                  View on GitHub
+                  <Translate id="ecosystem.cli.cta.github">View on GitHub</Translate>
                 </Link>
               </div>
             </div>

@@ -360,5 +360,4037 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "cookieConsent.ariaLabel": {
+    "message": "Cookie consent"
+  },
+  "cookieConsent.text": {
+    "message": "We use Google Analytics to see which pages are useful and which aren't - no cookies are set until you hit \"Accept\"."
+  },
+  "cookieConsent.decline": {
+    "message": "Decline"
+  },
+  "cookieConsent.accept": {
+    "message": "Accept"
+  },
+  "demoFrame.openNewTab": {
+    "message": "Open in new tab"
+  },
+  "card.readMore": {
+    "message": "Read more"
+  },
+  "contact.channels.discord.title": {
+    "message": "Community chat"
+  },
+  "contact.channels.discord.description": {
+    "message": "The fastest way to get an answer. Ask questions, share ideas, and chat with the maintainer and other users in real time."
+  },
+  "contact.channels.discord.cta": {
+    "message": "Join the server"
+  },
+  "contact.channels.github.title": {
+    "message": "Bug reports & features"
+  },
+  "contact.channels.github.description": {
+    "message": "Found a bug or have a feature request? Open an issue on GitHub. Browse existing issues before submitting a new one."
+  },
+  "contact.channels.github.cta": {
+    "message": "Open an issue"
+  },
+  "contact.channels.forum.title": {
+    "message": "Plugin support forum"
+  },
+  "contact.channels.forum.description": {
+    "message": "The official WordPress.org support forum for Simple JWT Login. Great for plugin-specific questions that the broader WordPress community can benefit from."
+  },
+  "contact.channels.forum.cta": {
+    "message": "Visit the forum"
+  },
+  "contact.meta.title": {
+    "message": "Contact Us"
+  },
+  "contact.meta.description": {
+    "message": "Get help with Simple JWT Login - join our Discord, open a GitHub issue, or visit the WordPress support forum."
+  },
+  "contact.hero.badge": {
+    "message": "Support"
+  },
+  "contact.hero.title": {
+    "message": "How can we help?"
+  },
+  "contact.hero.subtitle": {
+    "message": "Choose the channel that fits your question best. We're an open-source project, so community support is at the heart of everything - you're not alone."
+  },
+  "contact.card.fastest": {
+    "message": "Fastest response"
+  },
+  "contact.notice.title": {
+    "message": "Email support was discontinued on December 1, 2024."
+  },
+  "contact.notice.body": {
+    "message": "Please use Discord, GitHub, or the WordPress forum for all support requests - responses there are faster and help the whole community."
+  },
+  "contact.expect.title": {
+    "message": "What to expect"
+  },
+  "contact.expect.quick.title": {
+    "message": "Quick questions"
+  },
+  "contact.expect.quick.text": {
+    "message": "Discord is your best bet - conversations happen fast and the community is active."
+  },
+  "contact.expect.bugs.title": {
+    "message": "Bugs & reproducible issues"
+  },
+  "contact.expect.bugs.text": {
+    "message": "Open a GitHub issue with steps to reproduce. Include your PHP version, WordPress version, and plugin version."
+  },
+  "contact.expect.features.title": {
+    "message": "Feature requests"
+  },
+  "contact.expect.features.text": {
+    "message": "Submit a GitHub issue tagged {enhancement}. Upvotes and comments help prioritize what gets built next."
+  },
+  "contact.expect.help.title": {
+    "message": "General help"
+  },
+  "contact.expect.help.text": {
+    "message": "The WordPress forum is great for configuration questions that future users might search for too."
+  },
+  "deployWordpress.error.invalidToken": {
+    "message": "Invalid or expired token. Make sure it has write scope."
+  },
+  "deployWordpress.error.api": {
+    "message": "DigitalOcean API error ({status})."
+  },
+  "deployWordpress.copyRow.open": {
+    "message": "Open {label} in a new tab"
+  },
+  "deployWordpress.copyRow.copy": {
+    "message": "Copy {label}"
+  },
+  "deployWordpress.error.noUbuntu": {
+    "message": "Could not find an Ubuntu base image on this account."
+  },
+  "deployWordpress.status.creating": {
+    "message": "Creating your droplet…"
+  },
+  "deployWordpress.status.booting": {
+    "message": "Booting your server…"
+  },
+  "deployWordpress.error.noIp": {
+    "message": "The droplet was created but did not report an IP in time. Check your DigitalOcean dashboard."
+  },
+  "deployWordpress.destroy.confirm": {
+    "message": "Permanently destroy \"{name}\" ({ip})? This deletes the server and all its data. This cannot be undone."
+  },
+  "deployWordpress.meta.title": {
+    "message": "One-Click WordPress on DigitalOcean"
+  },
+  "deployWordpress.meta.description": {
+    "message": "Spin up a fully installed WordPress site on DigitalOcean in one click, with Simple JWT Login pre-installed. Your API token never leaves your browser."
+  },
+  "deployWordpress.hero.badge": {
+    "message": "Powered by DigitalOcean"
+  },
+  "deployWordpress.hero.title": {
+    "message": "Launch WordPress in {accent}"
+  },
+  "deployWordpress.hero.titleAccent": {
+    "message": "one click"
+  },
+  "deployWordpress.hero.logoTitle": {
+    "message": "DigitalOcean - cloud infrastructure"
+  },
+  "deployWordpress.hero.subtitle": {
+    "message": "Spin up a fully installed WordPress server on DigitalOcean - with Simple JWT Login ready for headless and REST API authentication. No Marketplace setup, no terminal, no install wizard. We hand you the login."
+  },
+  "deployWordpress.token.title": {
+    "message": "Connect your account"
+  },
+  "deployWordpress.token.lead": {
+    "message": "Paste a DigitalOcean Personal Access Token with {write} scope to get started."
+  },
+  "deployWordpress.token.leadWrite": {
+    "message": "write"
+  },
+  "deployWordpress.token.privacy": {
+    "message": "Your API token is used only in your browser to talk to DigitalOcean. It is never sent to us or stored anywhere."
+  },
+  "deployWordpress.token.label": {
+    "message": "DigitalOcean API token"
+  },
+  "deployWordpress.token.hint": {
+    "message": "Create one at {link} (enable the {write} scope)."
+  },
+  "deployWordpress.token.hintWrite": {
+    "message": "Write"
+  },
+  "deployWordpress.token.connecting": {
+    "message": "Connecting…"
+  },
+  "deployWordpress.token.connect": {
+    "message": "Connect"
+  },
+  "deployWordpress.config.title": {
+    "message": "Configure your server"
+  },
+  "deployWordpress.config.connected": {
+    "message": "Connected as {email}. Base image: {image}"
+  },
+  "deployWordpress.config.serverName": {
+    "message": "Server name"
+  },
+  "deployWordpress.config.siteTitle": {
+    "message": "Site title"
+  },
+  "deployWordpress.config.region": {
+    "message": "Region"
+  },
+  "deployWordpress.config.plan": {
+    "message": "Plan"
+  },
+  "deployWordpress.config.planHint": {
+    "message": "WordPress needs at least 1 GB RAM. 512 MB plans may fail to install."
+  },
+  "deployWordpress.config.planOption": {
+    "message": "{vcpus} vCPU · {memory} GB RAM · {disk} GB SSD - ${price}/mo"
+  },
+  "deployWordpress.config.sshKeys": {
+    "message": "SSH keys"
+  },
+  "deployWordpress.config.sshKeysHint": {
+    "message": "Selected keys are added so you can SSH in."
+  },
+  "deployWordpress.config.noSshKeys": {
+    "message": "No SSH keys on your account - that is fine, you will get your WordPress admin login here when the deploy finishes."
+  },
+  "deployWordpress.config.installPlugin": {
+    "message": "Pre-install & activate Simple JWT Login"
+  },
+  "deployWordpress.config.pluginVersion": {
+    "message": "Plugin version"
+  },
+  "deployWordpress.config.pluginVersionHint": {
+    "message": "Stable is the latest release from WordPress.org. v4 adds API Keys, 2FA, Audit Logs, and Webhooks."
+  },
+  "deployWordpress.config.pluginStable": {
+    "message": "Stable (WordPress.org)"
+  },
+  "deployWordpress.config.webServer": {
+    "message": "Web server"
+  },
+  "deployWordpress.config.phpHandler": {
+    "message": "PHP handler"
+  },
+  "deployWordpress.config.phpHandlerHintNginx": {
+    "message": "Nginx requires PHP-FPM - mod_php is not available."
+  },
+  "deployWordpress.config.phpHandlerHintFpm": {
+    "message": "PHP-FPM runs as a separate process pool. Apache proxies .php requests to it via mod_proxy_fcgi."
+  },
+  "deployWordpress.config.phpHandlerHintModPhp": {
+    "message": "mod_php embeds PHP directly inside Apache. Simpler setup, works reliably on any size droplet."
+  },
+  "deployWordpress.config.phpVersion": {
+    "message": "PHP version"
+  },
+  "deployWordpress.config.phpVersionHintEol": {
+    "message": "PHP {version} is end-of-life. Use only for compatibility testing."
+  },
+  "deployWordpress.config.phpVersionHint": {
+    "message": "Specific versions are installed from the ondrej/php PPA."
+  },
+  "deployWordpress.config.phpLatest": {
+    "message": "Latest (distro default)"
+  },
+  "deployWordpress.config.wpVersion": {
+    "message": "WordPress version"
+  },
+  "deployWordpress.config.wpVersionHintOld": {
+    "message": "Older versions may be missing security patches. Use only for testing."
+  },
+  "deployWordpress.config.wpVersionHintLatest": {
+    "message": "Always installs the latest stable WordPress release."
+  },
+  "deployWordpress.config.wpLatest": {
+    "message": "Latest"
+  },
+  "deployWordpress.config.https": {
+    "message": "Set up free HTTPS (Let's Encrypt)"
+  },
+  "deployWordpress.config.httpsHint": {
+    "message": "Since the droplet has no domain, we use a free {host} hostname (e.g. {example}) and get a real Let's Encrypt certificate for it. Your site URL becomes that HTTPS address. If certification fails, the deploy still completes over HTTP."
+  },
+  "deployWordpress.config.estimatedCost": {
+    "message": "Estimated cost"
+  },
+  "deployWordpress.config.deploy": {
+    "message": "Deploy WordPress"
+  },
+  "deployWordpress.config.provisioning": {
+    "message": "Provisioning the server usually takes 2-4 minutes. Keep this tab open - your login appears here when it is ready."
+  },
+  "deployWordpress.done.title": {
+    "message": "Your WordPress server is live"
+  },
+  "deployWordpress.done.lead": {
+    "message": "{name} is up. WordPress finishes installing in the background - usually 2-4 minutes."
+  },
+  "deployWordpress.done.wpLogin": {
+    "message": "WordPress login"
+  },
+  "deployWordpress.done.site": {
+    "message": "Site"
+  },
+  "deployWordpress.done.admin": {
+    "message": "Admin"
+  },
+  "deployWordpress.done.username": {
+    "message": "Username"
+  },
+  "deployWordpress.done.password": {
+    "message": "Password"
+  },
+  "deployWordpress.done.sshAccess": {
+    "message": "SSH access"
+  },
+  "deployWordpress.done.command": {
+    "message": "Command"
+  },
+  "deployWordpress.done.rootPassword": {
+    "message": "Root password"
+  },
+  "deployWordpress.done.saveWarning": {
+    "message": "Save the admin and SSH root passwords now - they are shown only once and never leave this page."
+  },
+  "deployWordpress.done.openAdmin": {
+    "message": "Open wp-admin"
+  },
+  "deployWordpress.done.booting": {
+    "message": "You will first see an \"Installing WordPress\" page that auto-refreshes. A brief connection error just means the server is still booting - give it a few minutes."
+  },
+  "deployWordpress.done.pluginActivated": {
+    "message": "Simple JWT Login{version} is activated automatically once the install finishes."
+  },
+  "deployWordpress.done.deployAnother": {
+    "message": "Deploy another"
+  },
+  "deployWordpress.done.destroying": {
+    "message": "Destroying…"
+  },
+  "deployWordpress.done.destroy": {
+    "message": "Destroy droplet"
+  },
+  "deployWordpress.side.howTitle": {
+    "message": "How it works"
+  },
+  "deployWordpress.side.step1": {
+    "message": "Paste a DigitalOcean API token (write scope)."
+  },
+  "deployWordpress.side.step2": {
+    "message": "Pick a region and a plan."
+  },
+  "deployWordpress.side.step3": {
+    "message": "We provision an Ubuntu server, install WordPress + Simple JWT Login automatically, and hand you the admin login."
+  },
+  "deployWordpress.side.noAccountTitle": {
+    "message": "No DigitalOcean account?"
+  },
+  "deployWordpress.side.noAccountText": {
+    "message": "Sign up with our link and get free credit to launch your first WordPress server."
+  },
+  "deployWordpress.side.credits": {
+    "message": "Get Free Credits"
+  },
+  "deployWordpress.side.haveAccount": {
+    "message": "Already have an account? Just paste your token on the left."
+  },
+  "donate.stats.activeInstalls": {
+    "message": "Active installs"
+  },
+  "donate.stats.totalDownloads": {
+    "message": "Total downloads"
+  },
+  "donate.stats.rating": {
+    "message": "WordPress rating"
+  },
+  "donate.stats.years": {
+    "message": "In active development"
+  },
+  "donate.impacts.keepLights.title": {
+    "message": "Keep the lights on"
+  },
+  "donate.impacts.keepLights.description": {
+    "message": "Cover monthly hosting and infrastructure costs for simplejwtlogin.com and all associated services."
+  },
+  "donate.impacts.audits.title": {
+    "message": "Security audits"
+  },
+  "donate.impacts.audits.description": {
+    "message": "Fund regular third-party security reviews to ensure the plugin meets the highest standards for JWT handling."
+  },
+  "donate.impacts.features.title": {
+    "message": "New features"
+  },
+  "donate.impacts.features.description": {
+    "message": "Acquire premium tools and dedicate development time to build the features most requested by the community."
+  },
+  "donate.impacts.docs.title": {
+    "message": "Better docs & SDKs"
+  },
+  "donate.impacts.docs.description": {
+    "message": "Improve documentation, code examples, and expand the official PHP and JavaScript SDKs."
+  },
+  "donate.tiers.coffee.label": {
+    "message": "Coffee"
+  },
+  "donate.tiers.coffee.description": {
+    "message": "A small thank-you that keeps the caffeine flowing during late-night debugging sessions."
+  },
+  "donate.tiers.supporter.label": {
+    "message": "Supporter"
+  },
+  "donate.tiers.supporter.description": {
+    "message": "Covers a month of hosting costs and shows real commitment to the project."
+  },
+  "donate.tiers.champion.label": {
+    "message": "Champion"
+  },
+  "donate.tiers.champion.description": {
+    "message": "Funds a security audit task or a significant new feature development sprint."
+  },
+  "donate.meta.title": {
+    "message": "Donate - Support Simple JWT Login"
+  },
+  "donate.meta.description": {
+    "message": "Support the development of Simple JWT Login, the free and open-source JWT authentication plugin for WordPress."
+  },
+  "donate.hero.badge": {
+    "message": "Open-source · Free forever"
+  },
+  "donate.hero.title1": {
+    "message": "Built with love."
+  },
+  "donate.hero.title2": {
+    "message": "Kept alive by {accent}"
+  },
+  "donate.hero.title2.accent": {
+    "message": "people like you"
+  },
+  "donate.hero.subtitle": {
+    "message": "Simple JWT Login has been free and open-source for over {years} years. No premium tier, no paywalled features - just a maintainer who keeps showing up. If this plugin saves you time or makes your project possible, consider giving back."
+  },
+  "donate.hero.ctaTitle": {
+    "message": "Donate via PayPal"
+  },
+  "donate.hero.cta": {
+    "message": "Donate via PayPal"
+  },
+  "donate.where.title": {
+    "message": "Where your donation goes"
+  },
+  "donate.where.subtitle": {
+    "message": "100% of contributions go directly into the project. No salaries, no company."
+  },
+  "donate.amount.title": {
+    "message": "Every amount matters"
+  },
+  "donate.amount.subtitle": {
+    "message": "Choose a suggested amount or enter your own on PayPal. Any contribution is deeply appreciated."
+  },
+  "donate.tiers.cardTitle": {
+    "message": "Donate {amount}"
+  },
+  "donate.tiers.mostPopular": {
+    "message": "Most popular"
+  },
+  "donate.tiers.cta": {
+    "message": "Donate {amount} →"
+  },
+  "donate.tiers.note": {
+    "message": "You can enter any custom amount on the PayPal page."
+  },
+  "donate.quote.text": {
+    "message": "I started Simple JWT Login because I needed it myself, and I open-sourced it because I believe good tools should be available to everyone. Thousands of developers now rely on it daily. Your donation - however small - tells me that this work matters, and it directly funds the time I can dedicate to making it better. Thank you."
+  },
+  "donate.quote.role": {
+    "message": "Creator & maintainer of Simple JWT Login"
+  },
+  "donate.final.title": {
+    "message": "Ready to make a difference?"
+  },
+  "donate.final.subtitle": {
+    "message": "Join the developers and teams who already support this project."
+  },
+  "donate.final.ctaTitle": {
+    "message": "Donate now"
+  },
+  "donate.final.cta": {
+    "message": "Donate now via PayPal"
+  },
+  "donate.final.note": {
+    "message": "Prefer another method? {contactLink} and we'll figure something out."
+  },
+  "donate.final.note.contactTitle": {
+    "message": "Contact us"
+  },
+  "donate.final.note.contactLink": {
+    "message": "Get in touch"
+  },
+  "faq.gettingStarted.title": {
+    "message": "Getting started"
+  },
+  "faq.gettingStarted.q1.q": {
+    "message": "What does Simple JWT Login do?"
+  },
+  "faq.gettingStarted.q1.a": {
+    "message": "It adds JWT authentication to the WordPress REST API. Apps can log users in, register them, reset passwords, and call any REST endpoint as that user, all configured from wp-admin."
+  },
+  "faq.gettingStarted.q1.link": {
+    "message": "Introduction"
+  },
+  "faq.gettingStarted.q2.q": {
+    "message": "Are any features paid?"
+  },
+  "faq.gettingStarted.q2.a": {
+    "message": "No. Every feature is in the free version, under GPLv3, with no paid plan or add-on to buy."
+  },
+  "faq.gettingStarted.q2.link": {
+    "message": "Compare JWT plugins"
+  },
+  "faq.gettingStarted.q3.q": {
+    "message": "Which WordPress and PHP versions are supported?"
+  },
+  "faq.gettingStarted.q3.a": {
+    "message": "WordPress 6.2 and later. The plugin code runs on PHP 5.5 to 8.5, but in practice your PHP version is set by the WordPress version you run."
+  },
+  "faq.gettingStarted.q3.link": {
+    "message": "Compatibility"
+  },
+  "faq.gettingStarted.q4.q": {
+    "message": "Why does every endpoint return \"not enabled\" after I install it?"
+  },
+  "faq.gettingStarted.q4.a": {
+    "message": "Every plugin endpoint starts disabled, so you expose only what you need. Turn on Allow JWT Authentication, and any other feature you use, in the plugin settings."
+  },
+  "faq.gettingStarted.q4.link": {
+    "message": "Quick start"
+  },
+  "faq.loggingIn.title": {
+    "message": "Logging in"
+  },
+  "faq.loggingIn.q1.q": {
+    "message": "Can users log in with a username instead of an email?"
+  },
+  "faq.loggingIn.q1.a": {
+    "message": "Yes. Send email, username, or login, which accepts either one, together with the password."
+  },
+  "faq.loggingIn.q1.link": {
+    "message": "Authentication"
+  },
+  "faq.loggingIn.q2.q": {
+    "message": "Can users log in with Google, Facebook, GitHub, or Auth0?"
+  },
+  "faq.loggingIn.q2.a": {
+    "message": "Yes. The app exchanges the provider token for a WordPress JWT, and the plugin can create the WordPress user on the first login."
+  },
+  "faq.loggingIn.q2.link": {
+    "message": "OAuth login"
+  },
+  "faq.loggingIn.q3.q": {
+    "message": "Does it support two-factor authentication?"
+  },
+  "faq.loggingIn.q3.a": {
+    "message": "Yes. With the Two Factor plugin installed, users who set up 2FA get a short-lived interim token and must pass the second step before they receive the full JWT."
+  },
+  "faq.loggingIn.q3.link": {
+    "message": "Two-factor login"
+  },
+  "faq.loggingIn.q4.q": {
+    "message": "How do I use the JWT on WordPress core endpoints such as /wp/v2/posts?"
+  },
+  "faq.loggingIn.q4.a": {
+    "message": "Turn on JWT Middleware for all WordPress endpoints. WordPress then treats any REST request with a valid JWT as coming from that user."
+  },
+  "faq.loggingIn.q4.link": {
+    "message": "JWT middleware"
+  },
+  "faq.tokens.title": {
+    "message": "Tokens"
+  },
+  "faq.tokens.q1.q": {
+    "message": "How long does a JWT last?"
+  },
+  "faq.tokens.q1.a": {
+    "message": "60 minutes by default. You can change the expiry in the Authentication settings. Keep it short and use refresh tokens to keep users logged in."
+  },
+  "faq.tokens.q1.link": {
+    "message": "JWT expiration"
+  },
+  "faq.tokens.q2.q": {
+    "message": "How do I keep users logged in after the JWT expires?"
+  },
+  "faq.tokens.q2.a": {
+    "message": "Turn on refresh tokens. The login response then includes a `refresh_token`, which the app exchanges for a new JWT before or after the old one expires."
+  },
+  "faq.tokens.q2.link": {
+    "message": "Refresh tokens"
+  },
+  "faq.tokens.q3.q": {
+    "message": "How do I log a user out?"
+  },
+  "faq.tokens.q3.a": {
+    "message": "Revoke the JWT. A revoked token is rejected even if it has not expired yet."
+  },
+  "faq.tokens.q3.link": {
+    "message": "Revoke a token"
+  },
+  "faq.tokens.q4.q": {
+    "message": "Can I add custom data to the JWT?"
+  },
+  "faq.tokens.q4.a": {
+    "message": "Yes. Choose the claims in the Authentication settings, or add your own with the `simple_jwt_login_jwt_payload_auth` filter."
+  },
+  "faq.tokens.q4.link": {
+    "message": "Hooks"
+  },
+  "faq.tokens.q5.q": {
+    "message": "Where is the signing key stored?"
+  },
+  "faq.tokens.q5.a": {
+    "message": "In the plugin settings by default. To keep it out of the database, define `SIMPLE_JWT_PRIVATE_KEY` in `wp-config.php` instead."
+  },
+  "faq.tokens.q5.link": {
+    "message": "Configuration"
+  },
+  "faq.security.title": {
+    "message": "Security"
+  },
+  "faq.security.q1.q": {
+    "message": "Should servers and scripts use a JWT?"
+  },
+  "faq.security.q1.a": {
+    "message": "Use an API key instead. API keys are long-lived, scoped to read, create, update, or delete, and can be revoked at any time."
+  },
+  "faq.security.q1.link": {
+    "message": "API keys"
+  },
+  "faq.security.q2.q": {
+    "message": "How do I require a JWT on a REST route?"
+  },
+  "faq.security.q2.a": {
+    "message": "Add a rule in Protect Endpoints. Requests to that route without a valid JWT are rejected."
+  },
+  "faq.security.q2.link": {
+    "message": "Protect Endpoints"
+  },
+  "faq.security.q3.q": {
+    "message": "How do I report a security vulnerability?"
+  },
+  "faq.security.q3.a": {
+    "message": "Report it privately through GitHub security advisories, never in a public issue or forum."
+  },
+  "faq.security.q3.link": {
+    "message": "Security policy"
+  },
+  "faq.troubleshooting.title": {
+    "message": "Troubleshooting"
+  },
+  "faq.troubleshooting.q1.q": {
+    "message": "Why is my JWT ignored even though I send it?"
+  },
+  "faq.troubleshooting.q1.a": {
+    "message": "The web server most likely strips the Authorization header before it reaches PHP. Send the token in another header, such as `X-Token`, or fix the server configuration."
+  },
+  "faq.troubleshooting.q1.link": {
+    "message": "Missing Authorization header"
+  },
+  "faq.troubleshooting.q2.q": {
+    "message": "Why does my browser app get a CORS error?"
+  },
+  "faq.troubleshooting.q2.a": {
+    "message": "Add the app origin to Allow origin in the CORS settings, and Authorization to Allow headers. Since version 4.1.1, a JWT from another site is trusted only when its origin is listed. A `*` entry trusts the `Authorization` header, but never cookie or session JWTs."
+  },
+  "faq.troubleshooting.q2.link": {
+    "message": "CORS"
+  },
+  "faq.troubleshooting.q3.q": {
+    "message": "What does an error code mean?"
+  },
+  "faq.troubleshooting.q3.a": {
+    "message": "Every error response includes an `error_code`. The error codes page explains each one and how to fix it."
+  },
+  "faq.troubleshooting.q3.link": {
+    "message": "Error codes"
+  },
+  "faq.meta.title": {
+    "message": "WordPress JWT Authentication FAQ"
+  },
+  "faq.meta.description": {
+    "message": "Answers to common questions about Simple JWT Login - setup, login options, token expiry, refresh tokens, security, and fixing JWT errors in WordPress."
+  },
+  "faq.hero.title": {
+    "message": "Frequently asked {questions}"
+  },
+  "faq.hero.title.questions": {
+    "message": "questions"
+  },
+  "faq.hero.subtitle": {
+    "message": "Quick answers about JWT authentication for WordPress with Simple JWT Login."
+  },
+  "headlessWordpress.steps.install.title": {
+    "message": "Install the plugin"
+  },
+  "headlessWordpress.steps.install.text": {
+    "message": "Add Simple JWT Login to WordPress, set a signing key, and turn on authentication."
+  },
+  "headlessWordpress.steps.token.title": {
+    "message": "Get a JWT"
+  },
+  "headlessWordpress.steps.token.text": {
+    "message": "Your front end sends the user credentials to the REST API and gets a signed token back."
+  },
+  "headlessWordpress.steps.call.title": {
+    "message": "Call WordPress"
+  },
+  "headlessWordpress.steps.call.text": {
+    "message": "Send the token as a Bearer header. WordPress treats the request as coming from that user."
+  },
+  "headlessWordpress.features.login.title": {
+    "message": "Login for any client"
+  },
+  "headlessWordpress.features.login.text": {
+    "message": "Log in by email or username, or with Google, GitHub, Facebook, and Auth0."
+  },
+  "headlessWordpress.features.login.link": {
+    "message": "JWT authentication"
+  },
+  "headlessWordpress.features.accounts.title": {
+    "message": "User accounts over REST"
+  },
+  "headlessWordpress.features.accounts.text": {
+    "message": "Register users, reset passwords, and delete accounts without opening wp-login.php."
+  },
+  "headlessWordpress.features.accounts.link": {
+    "message": "User registration"
+  },
+  "headlessWordpress.features.protected.title": {
+    "message": "Protected endpoints"
+  },
+  "headlessWordpress.features.protected.text": {
+    "message": "Require a valid JWT for any WordPress REST API route."
+  },
+  "headlessWordpress.features.protected.link": {
+    "message": "Endpoint protection"
+  },
+  "headlessWordpress.features.lifecycle.title": {
+    "message": "Token lifecycle"
+  },
+  "headlessWordpress.features.lifecycle.text": {
+    "message": "Refresh tokens to keep users logged in, and revoke them on logout."
+  },
+  "headlessWordpress.features.lifecycle.link": {
+    "message": "Refresh tokens"
+  },
+  "headlessWordpress.features.cors.title": {
+    "message": "CORS built in"
+  },
+  "headlessWordpress.features.cors.text": {
+    "message": "Choose which front-end origins can call the plugin and authenticate with a JWT."
+  },
+  "headlessWordpress.features.cors.link": {
+    "message": "CORS settings"
+  },
+  "headlessWordpress.features.twoFactor.title": {
+    "message": "Two-factor login"
+  },
+  "headlessWordpress.features.twoFactor.text": {
+    "message": "Ask for a second factor before WordPress issues the final token."
+  },
+  "headlessWordpress.features.twoFactor.link": {
+    "message": "Two-factor login"
+  },
+  "headlessWordpress.stacks.nextjs.title": {
+    "message": "Next.js"
+  },
+  "headlessWordpress.stacks.nextjs.text": {
+    "message": "Server-side login with an HttpOnly cookie."
+  },
+  "headlessWordpress.stacks.nextjs.link": {
+    "message": "Next.js example"
+  },
+  "headlessWordpress.stacks.flutter.title": {
+    "message": "Flutter"
+  },
+  "headlessWordpress.stacks.flutter.text": {
+    "message": "Mobile login with secure token storage."
+  },
+  "headlessWordpress.stacks.flutter.link": {
+    "message": "Flutter example"
+  },
+  "headlessWordpress.stacks.reactNative.title": {
+    "message": "React Native"
+  },
+  "headlessWordpress.stacks.reactNative.text": {
+    "message": "Expo app with secure token storage."
+  },
+  "headlessWordpress.stacks.reactNative.link": {
+    "message": "React Native example"
+  },
+  "headlessWordpress.stacks.react.title": {
+    "message": "React"
+  },
+  "headlessWordpress.stacks.react.text": {
+    "message": "Browser login with a Vite app."
+  },
+  "headlessWordpress.stacks.react.link": {
+    "message": "React example"
+  },
+  "headlessWordpress.stacks.vue.title": {
+    "message": "Vue"
+  },
+  "headlessWordpress.stacks.vue.text": {
+    "message": "Browser login with a Vue 3 app."
+  },
+  "headlessWordpress.stacks.vue.link": {
+    "message": "Vue example"
+  },
+  "headlessWordpress.stacks.angular.title": {
+    "message": "Angular"
+  },
+  "headlessWordpress.stacks.angular.text": {
+    "message": "Browser login with HttpClient."
+  },
+  "headlessWordpress.stacks.angular.link": {
+    "message": "Angular example"
+  },
+  "headlessWordpress.stacks.javascript.title": {
+    "message": "JavaScript"
+  },
+  "headlessWordpress.stacks.javascript.text": {
+    "message": "A todo app with no framework."
+  },
+  "headlessWordpress.stacks.javascript.link": {
+    "message": "JavaScript example"
+  },
+  "headlessWordpress.stacks.woocommerce.title": {
+    "message": "WooCommerce"
+  },
+  "headlessWordpress.stacks.woocommerce.text": {
+    "message": "Products, cart, and checkout with a JWT."
+  },
+  "headlessWordpress.stacks.woocommerce.link": {
+    "message": "Headless store example"
+  },
+  "headlessWordpress.stacks.wpgraphql.title": {
+    "message": "WPGraphQL"
+  },
+  "headlessWordpress.stacks.wpgraphql.text": {
+    "message": "Authenticated queries and mutations."
+  },
+  "headlessWordpress.stacks.wpgraphql.link": {
+    "message": "WPGraphQL guide"
+  },
+  "headlessWordpress.stacks.aiAgents.title": {
+    "message": "AI agents"
+  },
+  "headlessWordpress.stacks.aiAgents.text": {
+    "message": "Manage the plugin through MCP."
+  },
+  "headlessWordpress.stacks.aiAgents.link": {
+    "message": "MCP guide"
+  },
+  "headlessWordpress.faq.q1.q": {
+    "message": "What is headless WordPress?"
+  },
+  "headlessWordpress.faq.q1.a": {
+    "message": "Headless WordPress uses WordPress to manage content and users, while a separate front end, such as a Next.js site or a mobile app, shows it. The two communicate through the REST API or GraphQL."
+  },
+  "headlessWordpress.faq.q2.q": {
+    "message": "Why use JWT authentication with headless WordPress?"
+  },
+  "headlessWordpress.faq.q2.a": {
+    "message": "WordPress login cookies are made for pages that WordPress serves. A JWT is a signed token that any client can send with a request, so it also works for separate front ends, mobile apps, and servers."
+  },
+  "headlessWordpress.faq.q3.q": {
+    "message": "Does it work with WooCommerce and WPGraphQL?"
+  },
+  "headlessWordpress.faq.q3.a": {
+    "message": "Yes. The same JWT can authenticate the WooCommerce REST and Store APIs and WPGraphQL requests."
+  },
+  "headlessWordpress.faq.q4.q": {
+    "message": "Where should the front end store the JWT?"
+  },
+  "headlessWordpress.faq.q4.a": {
+    "message": "For websites, keep it in an HttpOnly cookie set by your server. For mobile apps, use the secure storage of the device. Avoid browser local storage for sensitive apps."
+  },
+  "headlessWordpress.faq.q5.q": {
+    "message": "Is Simple JWT Login free?"
+  },
+  "headlessWordpress.faq.q5.a": {
+    "message": "Yes. It is free and open-source, forever, with no paid tier."
+  },
+  "headlessWordpress.actions.start": {
+    "message": "Start in 5 minutes →"
+  },
+  "headlessWordpress.actions.plugin": {
+    "message": "Get the free plugin"
+  },
+  "headlessWordpress.meta.title": {
+    "message": "Headless WordPress Authentication"
+  },
+  "headlessWordpress.meta.description": {
+    "message": "Add JWT authentication to headless WordPress - login, registration, and protected REST API endpoints for Next.js, React, Angular, Flutter, and WooCommerce."
+  },
+  "headlessWordpress.hero.title": {
+    "message": "Headless WordPress {highlight}"
+  },
+  "headlessWordpress.hero.title.highlight": {
+    "message": "authentication with JWT"
+  },
+  "headlessWordpress.hero.subtitle": {
+    "message": "Keep WordPress for content and users. Build the front end with any framework, and log users in through the REST API."
+  },
+  "headlessWordpress.how.eyebrow": {
+    "message": "How it works"
+  },
+  "headlessWordpress.how.title": {
+    "message": "From WordPress login to API call"
+  },
+  "headlessWordpress.how.codeTitle": {
+    "message": "Log in and call WordPress"
+  },
+  "headlessWordpress.how.cors": {
+    "message": "Calling from the browser? Add your front-end origin in {cors} and turn on the {middleware}."
+  },
+  "headlessWordpress.how.cors.cors": {
+    "message": "CORS"
+  },
+  "headlessWordpress.how.cors.middleware": {
+    "message": "JWT middleware"
+  },
+  "headlessWordpress.features.eyebrow": {
+    "message": "Features"
+  },
+  "headlessWordpress.features.title": {
+    "message": "What a headless site needs"
+  },
+  "headlessWordpress.stacks.eyebrow": {
+    "message": "Examples"
+  },
+  "headlessWordpress.stacks.title": {
+    "message": "Pick your stack"
+  },
+  "headlessWordpress.faq.eyebrow": {
+    "message": "FAQ"
+  },
+  "headlessWordpress.faq.title": {
+    "message": "Headless WordPress questions"
+  },
+  "headlessWordpress.cta.title": {
+    "message": "Go headless with WordPress"
+  },
+  "headlessWordpress.cta.text": {
+    "message": "Free and open-source, forever."
+  },
+  "homepage.jsonLd.description": {
+    "message": "Free, open-source WordPress plugin that adds JWT authentication to the WordPress REST API. Supports login, register, auto-login, endpoint protection, token refresh, and more."
+  },
+  "homepage.features.autologin.title": {
+    "message": "Autologin"
+  },
+  "homepage.features.autologin.description": {
+    "message": "Open a WordPress session from a JWT link - for example, send a renewal email that lands the member on their account page, already logged in."
+  },
+  "homepage.features.autologin.alt": {
+    "message": "Login user"
+  },
+  "homepage.features.register.title": {
+    "message": "Register Users"
+  },
+  "homepage.features.register.description": {
+    "message": "Create WordPress users from a mobile sign-up screen, and limit who can register by Auth Code, IP, or email domain."
+  },
+  "homepage.features.register.alt": {
+    "message": "Register user"
+  },
+  "homepage.features.delete.title": {
+    "message": "Delete Users"
+  },
+  "homepage.features.delete.description": {
+    "message": "Offer an account deletion button in your app. The JWT identifies the account to remove."
+  },
+  "homepage.features.delete.alt": {
+    "message": "Delete user"
+  },
+  "homepage.features.authenticate.title": {
+    "message": "Authenticate Users"
+  },
+  "homepage.features.authenticate.description": {
+    "message": "Exchange WordPress credentials for a JWT, then refresh, validate, or revoke it - the login flow for a React or mobile app."
+  },
+  "homepage.features.authenticate.alt": {
+    "message": "Authenticate user"
+  },
+  "homepage.features.resetPassword.title": {
+    "message": "Change & Reset Password"
+  },
+  "homepage.features.resetPassword.description": {
+    "message": "Build a \"Forgot password\" screen in your app: email a reset code, then set the new password through the REST API."
+  },
+  "homepage.features.resetPassword.alt": {
+    "message": "Change and Reset password"
+  },
+  "homepage.features.limitIp.title": {
+    "message": "Limit Access by IP"
+  },
+  "homepage.features.limitIp.description": {
+    "message": "Accept logins or registrations only from your backend or office network - wildcards such as {code} work too."
+  },
+  "homepage.features.limitIp.alt": {
+    "message": "Limit access by IP"
+  },
+  "homepage.features.roles.title": {
+    "message": "Create Users with Different Roles"
+  },
+  "homepage.features.roles.description": {
+    "message": "Tie a role to each Auth Code - for example, one code for free members and another for premium - on a single endpoint."
+  },
+  "homepage.features.roles.alt": {
+    "message": "Roles"
+  },
+  "homepage.features.plugins.title": {
+    "message": "Integrate with Other Plugins"
+  },
+  "homepage.features.plugins.description": {
+    "message": "Send login links from MailPoet, authorize WPGraphQL queries, or call the REST routes that other plugins add."
+  },
+  "homepage.features.plugins.alt": {
+    "message": "Integrate with other plugins"
+  },
+  "homepage.features.protectEndpoints.title": {
+    "message": "Protect Endpoints"
+  },
+  "homepage.features.protectEndpoints.description": {
+    "message": "Require a JWT or a role per route and HTTP method - for example, stop anonymous visitors from listing {code}."
+  },
+  "homepage.features.protectEndpoints.alt": {
+    "message": "Protect endpoints"
+  },
+  "homepage.features.jwtAnyEndpoint.title": {
+    "message": "Use JWT on Any Endpoint"
+  },
+  "homepage.features.jwtAnyEndpoint.description": {
+    "message": "Publish a post to {code} from a mobile app as the logged-in author, without session cookies."
+  },
+  "homepage.features.jwtAnyEndpoint.alt": {
+    "message": "JWT on other endpoints"
+  },
+  "homepage.features.googleOauth.title": {
+    "message": "Google OAuth Integration"
+  },
+  "homepage.features.googleOauth.description": {
+    "message": "Add Google sign-in to your front end and get a WordPress JWT back, so users have no extra password to remember."
+  },
+  "homepage.features.googleOauth.alt": {
+    "message": "Google OAuth"
+  },
+  "homepage.features.googleJwt.title": {
+    "message": "Use Google JWT on All Endpoints"
+  },
+  "homepage.features.googleJwt.description": {
+    "message": "Already use Google sign-in in your app? Send the Google-issued token directly to WordPress REST endpoints."
+  },
+  "homepage.features.googleJwt.alt": {
+    "message": "Google OAuth endpoints"
+  },
+  "homepage.features.apiKeys.title": {
+    "message": "API Keys"
+  },
+  "homepage.features.apiKeys.description": {
+    "message": "Give a CI pipeline a key that can only read and create content, with an expiry date you choose."
+  },
+  "homepage.features.apiKeys.alt": {
+    "message": "API Keys"
+  },
+  "homepage.features.oauthProviders.title": {
+    "message": "Sign In with Auth0, Facebook & GitHub"
+  },
+  "homepage.features.oauthProviders.description": {
+    "message": "Use the identity provider you already have: exchange an Auth0, Facebook, or GitHub login for a WordPress JWT."
+  },
+  "homepage.features.oauthProviders.alt": {
+    "message": "OAuth with Auth0, Facebook, and GitHub"
+  },
+  "homepage.features.twoFactor.title": {
+    "message": "Two-Factor Authentication"
+  },
+  "homepage.features.twoFactor.description": {
+    "message": "A stolen password alone gets no JWT: users with 2FA in the WordPress Two Factor plugin must also enter their code."
+  },
+  "homepage.features.twoFactor.alt": {
+    "message": "Two-Factor Authentication"
+  },
+  "homepage.features.auditLogs.title": {
+    "message": "Audit Logs"
+  },
+  "homepage.features.auditLogs.description": {
+    "message": "Find out who deleted an account or why a login failed - search authentication events in wp-admin."
+  },
+  "homepage.features.auditLogs.alt": {
+    "message": "Audit Logs"
+  },
+  "homepage.features.webhooks.title": {
+    "message": "Webhooks"
+  },
+  "homepage.features.webhooks.description": {
+    "message": "Post to Slack when a user registers, or forward authentication events to your logging service."
+  },
+  "homepage.features.webhooks.alt": {
+    "message": "Webhooks"
+  },
+  "homepage.features.woocommerce.title": {
+    "message": "Headless WooCommerce"
+  },
+  "homepage.features.woocommerce.description": {
+    "message": "Build a React storefront: manage products and run the cart & checkout through the WooCommerce REST and Store APIs."
+  },
+  "homepage.features.woocommerce.alt": {
+    "message": "Headless WooCommerce"
+  },
+  "homepage.features.multipleKeys.title": {
+    "message": "Multiple JWT Decryption Keys"
+  },
+  "homepage.features.multipleKeys.description": {
+    "message": "Accept Auth0 tokens next to your own, or rotate keys in stages - rules pick the key from a JWT header or payload claim."
+  },
+  "homepage.features.multipleKeys.alt": {
+    "message": "Multiple JWT Decryption Keys"
+  },
+  "homepage.features.jwtDecoder.title": {
+    "message": "JWT Decoder"
+  },
+  "homepage.features.jwtDecoder.description": {
+    "message": "Debug a rejected token without pasting it into a third-party site: read its header and payload in wp-admin."
+  },
+  "homepage.features.jwtDecoder.alt": {
+    "message": "JWT Decoder"
+  },
+  "homepage.security.off.title": {
+    "message": "Off by default"
+  },
+  "homepage.security.off.desc": {
+    "message": "Every plugin endpoint starts disabled. You expose only the operations your app needs."
+  },
+  "homepage.security.off.linkLabel": {
+    "message": "Hardening guide"
+  },
+  "homepage.security.csrf.title": {
+    "message": "Cross-site request checks"
+  },
+  "homepage.security.csrf.desc": {
+    "message": "Cookie and session JWTs are ignored on cross-site requests unless you list that exact origin, which blocks CSRF."
+  },
+  "homepage.security.csrf.linkLabel": {
+    "message": "How it works"
+  },
+  "homepage.security.tokens.title": {
+    "message": "Tokens you can take back"
+  },
+  "homepage.security.tokens.desc": {
+    "message": "Refresh tokens rotate on every use, JWTs can be revoked, and an optional setting ends sessions when a password changes."
+  },
+  "homepage.security.tokens.linkLabel": {
+    "message": "Session revocation"
+  },
+  "homepage.security.keys.title": {
+    "message": "Hashed, least-privilege keys"
+  },
+  "homepage.security.keys.desc": {
+    "message": "API keys are stored only as SHA-256 hashes. Permissions follow the dispatched method, so method overrides cannot raise them."
+  },
+  "homepage.security.keys.linkLabel": {
+    "message": "API key design"
+  },
+  "homepage.security.fixes.title": {
+    "message": "Security vulnerability fixes"
+  },
+  "homepage.security.fixes.desc": {
+    "message": "Reported vulnerabilities are fixed and shipped in regular releases, documented in the release notes."
+  },
+  "homepage.security.fixes.linkLabel": {
+    "message": "Security releases"
+  },
+  "homepage.security.tests.title": {
+    "message": "Security regression tests"
+  },
+  "homepage.security.tests.desc": {
+    "message": "A dedicated security test suite covers CSRF, user enumeration, trusted proxy IPs and ambient credentials, so fixed issues stay fixed."
+  },
+  "homepage.security.tests.linkLabel": {
+    "message": "Browse the tests"
+  },
+  "homepage.security.ci.title": {
+    "message": "Continuous integration"
+  },
+  "homepage.security.ci.desc": {
+    "message": "Unit, feature and cross-site test suites run automatically in GitHub Actions."
+  },
+  "homepage.security.ci.linkLabel": {
+    "message": "CI workflows"
+  },
+  "homepage.security.wpCompat.title": {
+    "message": "WordPress compatibility testing"
+  },
+  "homepage.security.wpCompat.desc": {
+    "message": "Feature tests run against a real WordPress install, alongside PHP syntax checks across multiple PHP versions and the official WordPress Plugin Check."
+  },
+  "homepage.security.wpCompat.linkLabel": {
+    "message": "View the workflows"
+  },
+  "homepage.security.disclosure.title": {
+    "message": "Responsible disclosure"
+  },
+  "homepage.security.disclosure.desc": {
+    "message": "Found a vulnerability? Report it privately through GitHub security advisories instead of opening a public issue, so a fix can ship before details go public."
+  },
+  "homepage.security.disclosure.linkLabel": {
+    "message": "Report a vulnerability"
+  },
+  "homepage.blog.eyebrow": {
+    "message": "Blog"
+  },
+  "homepage.blog.title": {
+    "message": "From the blog"
+  },
+  "homepage.blog.articleAlt": {
+    "message": "Blog Article"
+  },
+  "homepage.features.filter.all": {
+    "message": "All"
+  },
+  "homepage.meta.title": {
+    "message": "Free WordPress JWT Authentication Plugin"
+  },
+  "homepage.meta.description": {
+    "message": "Simple JWT Login is a free, open-source WordPress plugin that adds JWT authentication to the REST API - no coding required."
+  },
+  "homepage.hero.eyebrow": {
+    "message": "Free & Open Source WordPress Plugin"
+  },
+  "homepage.hero.logoAlt": {
+    "message": "Simple JWT Login logo"
+  },
+  "homepage.hero.logoTitle": {
+    "message": "Simple JWT Login logo"
+  },
+  "homepage.hero.subtitle": {
+    "message": "JWT login, registration, and endpoint protection for the WordPress REST API -{br}for headless sites, mobile apps, and WPGraphQL. Configured from wp-admin."
+  },
+  "homepage.hero.getStartedTitle": {
+    "message": "Get started"
+  },
+  "homepage.hero.getStarted": {
+    "message": "Get started →"
+  },
+  "homepage.hero.liveDemoTitle": {
+    "message": "Open the Simple JWT Login live demo in WordPress Playground"
+  },
+  "homepage.hero.liveDemo": {
+    "message": "Live Demo"
+  },
+  "homepage.stats.activeInstalls": {
+    "message": "Active installs"
+  },
+  "homepage.stats.downloads": {
+    "message": "Downloads"
+  },
+  "homepage.stats.rating": {
+    "message": "Rating"
+  },
+  "homepage.stats.free": {
+    "message": "Free"
+  },
+  "homepage.stats.years": {
+    "message": "{years}+ years"
+  },
+  "homepage.stats.development": {
+    "message": "Active development"
+  },
+  "homepage.v4Banner.badge": {
+    "message": "New"
+  },
+  "homepage.v4Banner.text": {
+    "message": "Simple JWT Login v4 is now available - API Keys, 2FA, Audit Logs, Webhooks, and more. v3 is now in maintenance mode (EOL Jan 31, 2027)."
+  },
+  "homepage.v4Banner.linkTitle": {
+    "message": "See what's new in v4"
+  },
+  "homepage.v4Banner.link": {
+    "message": "See what's new →"
+  },
+  "homepage.features.eyebrow": {
+    "message": "Core Features"
+  },
+  "homepage.features.title": {
+    "message": "From first login to token revocation"
+  },
+  "homepage.features.lead": {
+    "message": "Each feature is tagged {v3} or {v4} depending on which version introduced it."
+  },
+  "homepage.features.filter.ariaLabel": {
+    "message": "Filter features by version"
+  },
+  "homepage.why.eyebrow": {
+    "message": "Benefits"
+  },
+  "homepage.why.title": {
+    "message": "Why developers choose Simple JWT Login"
+  },
+  "homepage.why.noCoding.title": {
+    "message": "No coding required"
+  },
+  "homepage.why.noCoding.desc": {
+    "message": "Keys, expiration, allowed IPs, and protected routes are all settings in wp-admin."
+  },
+  "homepage.why.algorithms.title": {
+    "message": "6 supported algorithms"
+  },
+  "homepage.why.algorithms.desc": {
+    "message": "Sign with a shared secret (HS256/384/512), or use RS256/384/512 so other services can verify tokens with only the public key."
+  },
+  "homepage.why.delivery.title": {
+    "message": "4 JWT delivery methods"
+  },
+  "homepage.why.delivery.desc": {
+    "message": "Authorization header, cookie, session, or request parameter. Turn off the ones your app does not use."
+  },
+  "homepage.why.developers.title": {
+    "message": "Built for developers"
+  },
+  "homepage.why.developers.desc": {
+    "message": "Action and filter hooks let you add JWT claims, block a login, or change an API response from your own plugin."
+  },
+  "homepage.why.cors.title": {
+    "message": "CORS per origin"
+  },
+  "homepage.why.cors.desc": {
+    "message": "List the exact front-end origins that can call your API, so a React or Vue app on another domain can log users in."
+  },
+  "homepage.why.php.title": {
+    "message": "PHP 5.5+ compatible"
+  },
+  "homepage.why.php.desc": {
+    "message": "The plugin code runs on PHP 5.5+, so your WordPress version sets the minimum. PHP 8.2 or newer is recommended in production."
+  },
+  "homepage.why.autologin.title": {
+    "message": "Auto-login & magic links"
+  },
+  "homepage.why.autologin.desc": {
+    "message": "Put a short-lived JWT in an email link and the subscriber lands on the page already logged in."
+  },
+  "homepage.why.lifecycle.title": {
+    "message": "Full token lifecycle"
+  },
+  "homepage.why.lifecycle.desc": {
+    "message": "Keep a mobile user signed in with refresh tokens, and revoke the JWT when they log out."
+  },
+  "homepage.why.free.title": {
+    "message": "Free & open source"
+  },
+  "homepage.why.free.desc": {
+    "message": "GPL 3.0 licensed, free and open-source, forever. No paid tier and no locked features."
+  },
+  "homepage.security.eyebrow": {
+    "message": "Security"
+  },
+  "homepage.security.title": {
+    "message": "Secure defaults you can verify"
+  },
+  "homepage.security.lead": {
+    "message": "A login plugin guards your whole site. Here is how the latest v4 release limits what an attacker can do, and how the project tests and fixes it - each card links to the details."
+  },
+  "homepage.ecosystem.eyebrow": {
+    "message": "Ecosystem"
+  },
+  "homepage.ecosystem.title": {
+    "message": "SDKs and integrations for PHP, JavaScript, WPGraphQL, and WP-CLI"
+  },
+  "homepage.ecosystem.php.desc": {
+    "message": "Connect any PHP app to Simple JWT Login with one Composer package - supports Laravel, Yii, CodeIgniter, and more."
+  },
+  "homepage.ecosystem.php.cta": {
+    "message": "Learn more"
+  },
+  "homepage.ecosystem.js.desc": {
+    "message": "Add JWT authentication to React, Vue, Angular, or any JS app with an npm package and a handful of lines."
+  },
+  "homepage.ecosystem.js.cta": {
+    "message": "Learn more"
+  },
+  "homepage.ecosystem.wpgraphql.desc": {
+    "message": "Use your JWTs to authenticate GraphQL queries and mutations - enable it with a single checkbox."
+  },
+  "homepage.ecosystem.wpgraphql.cta": {
+    "message": "Learn more"
+  },
+  "homepage.ecosystem.mailpoet.desc": {
+    "message": "Send magic-link login emails via MailPoet - let subscribers log in with one click, no password required."
+  },
+  "homepage.ecosystem.mailpoet.cta": {
+    "message": "Learn more"
+  },
+  "homepage.ecosystem.exportImport.title": {
+    "message": "Export & Import"
+  },
+  "homepage.ecosystem.exportImport.desc": {
+    "message": "Back up and restore your entire plugin configuration in one click - perfect for staging-to-production migrations."
+  },
+  "homepage.ecosystem.exportImport.cta": {
+    "message": "Learn more"
+  },
+  "homepage.ecosystem.cli.desc": {
+    "message": "Generate tokens, validate JWTs, revoke sessions, and manage every setting from your terminal - ideal for CI/CD."
+  },
+  "homepage.ecosystem.cli.cta": {
+    "message": "Learn more"
+  },
+  "homepage.ecosystem.downloadTitle": {
+    "message": "Download {title}"
+  },
+  "homepage.ecosystem.download": {
+    "message": "Download"
+  },
+  "homepage.ecosystem.viewAllTitle": {
+    "message": "View all integrations & SDKs"
+  },
+  "homepage.ecosystem.viewAll": {
+    "message": "View all integrations & SDKs →"
+  },
+  "homepage.demos.eyebrow": {
+    "message": "Try it live"
+  },
+  "homepage.demos.title": {
+    "message": "Try the API against your own site"
+  },
+  "homepage.demos.lead": {
+    "message": "Run live demos right in your browser, against your own WordPress site - nothing is sent anywhere except the URL you provide."
+  },
+  "homepage.demos.viewAllTitle": {
+    "message": "View all demos"
+  },
+  "homepage.demos.viewAll": {
+    "message": "View all demos →"
+  },
+  "homepage.deploy.eyebrow": {
+    "message": "One-click deploy"
+  },
+  "homepage.deploy.title": {
+    "message": "Don't have a site yet? Launch one in one click"
+  },
+  "homepage.deploy.text": {
+    "message": "Spin up a fully installed WordPress server on DigitalOcean - with Simple JWT Login ready for headless and REST API authentication. No Marketplace setup, no terminal, no install wizard. We hand you the login."
+  },
+  "homepage.deploy.ctaTitle": {
+    "message": "Deploy WordPress on DigitalOcean"
+  },
+  "homepage.deploy.cta": {
+    "message": "Deploy WordPress →"
+  },
+  "homepage.quickStart.eyebrow": {
+    "message": "Quick Start"
+  },
+  "homepage.quickStart.title": {
+    "message": "Up and running in 3 steps"
+  },
+  "homepage.quickStart.install.title": {
+    "message": "Install & Activate"
+  },
+  "homepage.quickStart.install.desc": {
+    "message": "Search for Simple JWT Login in the WordPress plugin directory, install, and activate in one click."
+  },
+  "homepage.quickStart.configure.title": {
+    "message": "Configure Settings"
+  },
+  "homepage.quickStart.configure.desc": {
+    "message": "Set a JWT secret key, enable the endpoints you need (all are off by default), and choose how long tokens live."
+  },
+  "homepage.quickStart.send.title": {
+    "message": "Send the JWT"
+  },
+  "homepage.quickStart.send.desc": {
+    "message": "Call POST /auth to get a JWT, then send it as a Bearer token to the WordPress REST API endpoints you enable."
+  },
+  "homepage.quickStart.ctaTitle": {
+    "message": "Read the documentation"
+  },
+  "homepage.quickStart.cta": {
+    "message": "Get started →"
+  },
+  "homepage.community.eyebrow": {
+    "message": "Community"
+  },
+  "homepage.community.title": {
+    "message": "Join the community"
+  },
+  "homepage.community.lead": {
+    "message": "Simple JWT Login is built in the open, by the community. Whether you write code, speak another language, or just want to spread the word - there's a place for you."
+  },
+  "homepage.community.star.title": {
+    "message": "Star on GitHub"
+  },
+  "homepage.community.star.desc": {
+    "message": "Show your appreciation and help others discover the project."
+  },
+  "homepage.community.star.linkTitle": {
+    "message": "GitHub repository"
+  },
+  "homepage.community.star.link": {
+    "message": "Star on GitHub →"
+  },
+  "homepage.community.code.title": {
+    "message": "Contribute Code"
+  },
+  "homepage.community.code.desc": {
+    "message": "Submit issues, propose features, or open a pull request on GitHub."
+  },
+  "homepage.community.code.linkTitle": {
+    "message": "GitHub Pull Requests"
+  },
+  "homepage.community.code.link": {
+    "message": "Open a PR →"
+  },
+  "homepage.community.rate.title": {
+    "message": "Rate on WordPress"
+  },
+  "homepage.community.rate.desc": {
+    "message": "Love the plugin? A 5-star review on WordPress.org makes a big difference."
+  },
+  "homepage.community.rate.linkTitle": {
+    "message": "Rate on WordPress.org"
+  },
+  "homepage.community.rate.link": {
+    "message": "Leave a review →"
+  },
+  "homepage.community.translate.title": {
+    "message": "Help Translate"
+  },
+  "homepage.community.translate.desc": {
+    "message": "Make JWT auth accessible in every language - join us on translate.wordpress.org."
+  },
+  "homepage.community.translate.linkTitle": {
+    "message": "Translate Simple JWT Login"
+  },
+  "homepage.community.translate.link": {
+    "message": "Start translating →"
+  },
+  "homepage.reviews.eyebrow": {
+    "message": "Reviews"
+  },
+  "homepage.reviews.title": {
+    "message": "What developers are saying"
+  },
+  "homepage.reviews.moreTitle": {
+    "message": "View more reviews"
+  },
+  "homepage.reviews.more": {
+    "message": "View more reviews →"
+  },
+  "homepage.cta.title": {
+    "message": "Get your first WordPress JWT in 5 minutes"
+  },
+  "homepage.cta.subtitle": {
+    "message": "Install the plugin, set a secret key, and call POST /auth. Free and open-source, forever - no account required."
+  },
+  "homepage.cta.getStartedTitle": {
+    "message": "Read the documentation"
+  },
+  "homepage.cta.getStarted": {
+    "message": "Get started →"
+  },
+  "sponsors.stats.activeInstalls": {
+    "message": "Active installs"
+  },
+  "sponsors.stats.totalDownloads": {
+    "message": "Total downloads"
+  },
+  "sponsors.stats.rating": {
+    "message": "WordPress rating"
+  },
+  "sponsors.stats.years": {
+    "message": "In active development"
+  },
+  "sponsors.reasons.reach.title": {
+    "message": "Reach WordPress developers"
+  },
+  "sponsors.reasons.reach.description": {
+    "message": "Put your brand in front of developers building headless WordPress, mobile apps, and REST API integrations."
+  },
+  "sponsors.reasons.secure.title": {
+    "message": "Secure the stack you rely on"
+  },
+  "sponsors.reasons.secure.description": {
+    "message": "If your product or clients depend on JWT authentication in WordPress, sponsoring keeps it maintained and secure."
+  },
+  "sponsors.reasons.leadership.title": {
+    "message": "Show open-source leadership"
+  },
+  "sponsors.reasons.leadership.description": {
+    "message": "Back a free and open-source plugin with no paywall - a visible signal to the developer community."
+  },
+  "sponsors.funds.security.title": {
+    "message": "Security & maintenance"
+  },
+  "sponsors.funds.security.description": {
+    "message": "Security reviews, fast patches and compatibility with new WordPress and PHP releases."
+  },
+  "sponsors.funds.features.title": {
+    "message": "New features"
+  },
+  "sponsors.funds.features.description": {
+    "message": "Development time for REST API, WPGraphQL and WP-CLI features requested by the community."
+  },
+  "sponsors.funds.docs.title": {
+    "message": "Docs & SDKs"
+  },
+  "sponsors.funds.docs.description": {
+    "message": "Documentation, code examples and the official PHP and JavaScript SDKs."
+  },
+  "sponsors.funds.infra.title": {
+    "message": "Infrastructure"
+  },
+  "sponsors.funds.infra.description": {
+    "message": "Hosting for simplejwtlogin.com, demos, and CI for automated testing."
+  },
+  "sponsors.tiers.supporter.period": {
+    "message": " / month"
+  },
+  "sponsors.tiers.supporter.label": {
+    "message": "Supporter"
+  },
+  "sponsors.tiers.supporter.benefit1": {
+    "message": "Logo on the Sponsors page"
+  },
+  "sponsors.tiers.supporter.benefit2": {
+    "message": "Logo in the site footer on every page"
+  },
+  "sponsors.tiers.supporter.benefit3": {
+    "message": "Mention in the GitHub README"
+  },
+  "sponsors.tiers.supporter.benefit4": {
+    "message": "Thank-you in every release notes post"
+  },
+  "sponsors.tiers.partner.period": {
+    "message": " / month"
+  },
+  "sponsors.tiers.partner.label": {
+    "message": "Partner"
+  },
+  "sponsors.tiers.partner.benefit1": {
+    "message": "Everything in Supporter"
+  },
+  "sponsors.tiers.partner.benefit2": {
+    "message": "A dedicated blog post about your sponsorship"
+  },
+  "sponsors.tiers.partner.benefit3": {
+    "message": "Social media shout-out when you join"
+  },
+  "sponsors.tiers.premier.period": {
+    "message": " / month"
+  },
+  "sponsors.tiers.premier.label": {
+    "message": "Premier"
+  },
+  "sponsors.tiers.premier.benefit1": {
+    "message": "Everything in Partner"
+  },
+  "sponsors.tiers.premier.benefit2": {
+    "message": "Larger logo placement in the footer and Sponsors page"
+  },
+  "sponsors.tiers.premier.benefit3": {
+    "message": "Large logo on the homepage"
+  },
+  "sponsors.tiers.premier.benefit4": {
+    "message": "Priority triage for issues you report"
+  },
+  "sponsors.tiers.infra.amount": {
+    "message": "Services"
+  },
+  "sponsors.tiers.infra.period": {
+    "message": " / credits"
+  },
+  "sponsors.tiers.infra.label": {
+    "message": "Infrastructure partner"
+  },
+  "sponsors.tiers.infra.cta": {
+    "message": "Offer services"
+  },
+  "sponsors.tiers.infra.benefit1": {
+    "message": "Hosting, CI, tooling or cloud credits instead of money"
+  },
+  "sponsors.tiers.infra.benefit2": {
+    "message": "Logo on the Sponsors page and in the site footer"
+  },
+  "sponsors.tiers.infra.benefit3": {
+    "message": "Credited as infrastructure partner in the GitHub README"
+  },
+  "sponsors.partners.digitalocean.role": {
+    "message": "Infrastructure partner"
+  },
+  "sponsors.partners.coderabbit.role": {
+    "message": "AI code review partner"
+  },
+  "sponsors.meta.title": {
+    "message": "Sponsor Simple JWT Login"
+  },
+  "sponsors.meta.description": {
+    "message": "Sponsor Simple JWT Login, the free and open-source JWT authentication plugin for WordPress REST API, headless WP and WPGraphQL."
+  },
+  "sponsors.hero.badge": {
+    "message": "For companies · Monthly sponsorship"
+  },
+  "sponsors.hero.title1": {
+    "message": "Sponsor the JWT plugin"
+  },
+  "sponsors.hero.title2": {
+    "message": "your stack depends on"
+  },
+  "sponsors.hero.subtitle": {
+    "message": "Simple JWT Login powers authentication for thousands of WordPress sites, headless apps, and mobile clients. Free and open-source, forever. Company sponsorship keeps it secure, maintained, and growing."
+  },
+  "sponsors.hero.ctaTitle": {
+    "message": "Go to the sponsorship form"
+  },
+  "sponsors.hero.cta": {
+    "message": "Become a sponsor →"
+  },
+  "sponsors.why.title": {
+    "message": "Why sponsor Simple JWT Login"
+  },
+  "sponsors.why.subtitle": {
+    "message": "A small monthly budget with a direct effect on a plugin your team or clients already use."
+  },
+  "sponsors.funds.title": {
+    "message": "What sponsorship funds"
+  },
+  "sponsors.funds.subtitle": {
+    "message": "Every dollar goes back into the project."
+  },
+  "sponsors.tiers.title": {
+    "message": "Sponsorship levels"
+  },
+  "sponsors.tiers.subtitle": {
+    "message": "Invoices are available. Need something custom? Just ask."
+  },
+  "sponsors.tiers.cardTitle": {
+    "message": "Become a {label} sponsor"
+  },
+  "sponsors.tiers.defaultCta": {
+    "message": "Become a {label}"
+  },
+  "sponsors.current.title": {
+    "message": "Current sponsors & infrastructure partners"
+  },
+  "sponsors.current.subtitle": {
+    "message": "Thank you to the companies that already support Simple JWT Login."
+  },
+  "sponsors.current.logoTitle": {
+    "message": "{name} - {role}"
+  },
+  "sponsors.cta.title": {
+    "message": "Let's partner up"
+  },
+  "sponsors.cta.subtitle": {
+    "message": "Tell us about your company and preferred level - I'll reply within a few days."
+  },
+  "sponsors.cta.note": {
+    "message": "Prefer email? Write to {email}. Individual developer? See the {donateLink}."
+  },
+  "sponsors.cta.note.donateLink": {
+    "message": "donate page"
+  },
+  "v4.features.badgeNew": {
+    "message": "New"
+  },
+  "v4.features.badgeImproved": {
+    "message": "Improved"
+  },
+  "v4.features.apiKeys.title": {
+    "message": "API Keys"
+  },
+  "v4.features.apiKeys.desc": {
+    "message": "Create long-lived, scoped credentials for server-to-server integrations, CI/CD pipelines, and third-party services - no JWT expiry management needed."
+  },
+  "v4.features.apiKeys.bullet1": {
+    "message": "Scoped permissions: read, create, update, delete"
+  },
+  "v4.features.apiKeys.bullet2": {
+    "message": "SHA-256 hashed - the key is never stored in plain text"
+  },
+  "v4.features.apiKeys.bullet3": {
+    "message": "Revoke or expire keys at any time"
+  },
+  "v4.features.apiKeys.bullet4": {
+    "message": "JWT authentication also accepted on the /api-keys endpoint"
+  },
+  "v4.features.apiKeys.bullet5": {
+    "message": "Non-admin users can manage their own keys without admin access"
+  },
+  "v4.features.apiKeys.cta": {
+    "message": "API Keys docs"
+  },
+  "v4.features.oauth.title": {
+    "message": "OAuth: 4 Providers"
+  },
+  "v4.features.oauth.desc": {
+    "message": "Users can sign in with Google, Auth0, Facebook, or GitHub and receive a WordPress JWT - no password form required."
+  },
+  "v4.features.oauth.bullet1": {
+    "message": "Google: authorization code or ID token (Sign In With Google)"
+  },
+  "v4.features.oauth.bullet2": {
+    "message": "Auth0: authorization code flow"
+  },
+  "v4.features.oauth.bullet3": {
+    "message": "Facebook: authorization code flow"
+  },
+  "v4.features.oauth.bullet4": {
+    "message": "GitHub: authorization code flow"
+  },
+  "v4.features.oauth.bullet5": {
+    "message": "Auto-register users if no matching account exists"
+  },
+  "v4.features.oauth.cta": {
+    "message": "OAuth docs"
+  },
+  "v4.features.multiKeys.title": {
+    "message": "Multiple JWT Decryption Keys"
+  },
+  "v4.features.multiKeys.desc": {
+    "message": "Define multiple decryption keys and let the plugin pick the right one automatically based on the JWT header or payload."
+  },
+  "v4.features.multiKeys.bullet1": {
+    "message": "Key selection based on JWT header or payload field"
+  },
+  "v4.features.multiKeys.bullet2": {
+    "message": "Supports HS256/384/512 and RS256/384/512 per key"
+  },
+  "v4.features.multiKeys.bullet3": {
+    "message": "Seamless key rotation without breaking existing tokens"
+  },
+  "v4.features.multiKeys.cta": {
+    "message": "Auth docs"
+  },
+  "v4.features.auditLogs.title": {
+    "message": "Audit Logs"
+  },
+  "v4.features.auditLogs.desc": {
+    "message": "Every authentication event - logins, token issues, revocations, and errors - is now logged for auditing and debugging."
+  },
+  "v4.features.auditLogs.bullet1": {
+    "message": "Logs login, register, delete, OAuth, 2FA, and token events"
+  },
+  "v4.features.auditLogs.bullet2": {
+    "message": "Searchable from the WordPress admin"
+  },
+  "v4.features.auditLogs.bullet3": {
+    "message": "Configurable retention period"
+  },
+  "v4.features.auditLogs.cta": {
+    "message": "Audit Logs docs"
+  },
+  "v4.features.webhooks.title": {
+    "message": "Webhooks"
+  },
+  "v4.features.webhooks.desc": {
+    "message": "Fire HTTP callbacks on authentication events - integrate with Slack, logging services, or any external system in real time."
+  },
+  "v4.features.webhooks.bullet1": {
+    "message": "Configurable per event type"
+  },
+  "v4.features.webhooks.bullet2": {
+    "message": "Custom URL, method, headers, and JSON payload"
+  },
+  "v4.features.webhooks.bullet3": {
+    "message": "Works with any HTTP endpoint"
+  },
+  "v4.features.webhooks.cta": {
+    "message": "Webhooks docs"
+  },
+  "v4.features.dashboard.title": {
+    "message": "Dashboard"
+  },
+  "v4.features.dashboard.desc": {
+    "message": "A new at-a-glance status page shows every feature's state in one place - routes, security, integrations, and monitoring."
+  },
+  "v4.features.dashboard.bullet1": {
+    "message": "All routes and their enabled/disabled state"
+  },
+  "v4.features.dashboard.bullet2": {
+    "message": "Security - CORS, Protect Endpoints, Auth Codes, API Keys"
+  },
+  "v4.features.dashboard.bullet3": {
+    "message": "Monitoring - Webhooks, Webhook Logs, Audit Logs"
+  },
+  "v4.features.dashboard.cta": {
+    "message": "Dashboard docs"
+  },
+  "v4.features.settingsUi.title": {
+    "message": "Redesigned Settings UI"
+  },
+  "v4.features.settingsUi.desc": {
+    "message": "The plugin admin panel has been fully redesigned - cleaner layout, better grouping, and less noise so you can find what you need faster."
+  },
+  "v4.features.settingsUi.bullet1": {
+    "message": "Reorganized sections for a more logical flow"
+  },
+  "v4.features.settingsUi.bullet2": {
+    "message": "User identification consolidated in General settings"
+  },
+  "v4.features.settingsUi.bullet3": {
+    "message": "Cleaner forms with improved field descriptions"
+  },
+  "v4.features.settingsUi.bullet4": {
+    "message": "Light/Dark mode support"
+  },
+  "v4.features.settingsUi.cta": {
+    "message": "Dashboard docs"
+  },
+  "v4.features.twoFa.title": {
+    "message": "2FA Support"
+  },
+  "v4.features.twoFa.desc": {
+    "message": "Require a second authentication step before issuing a full JWT - compatible with the WordPress Two Factor plugin."
+  },
+  "v4.features.twoFa.bullet1": {
+    "message": "Interim JWT issued after password check; 2FA code completes the flow"
+  },
+  "v4.features.twoFa.bullet2": {
+    "message": "Dedicated POST /auth/2fa endpoint"
+  },
+  "v4.features.twoFa.bullet3": {
+    "message": "Configurable interim JWT TTL (1-60 minutes)"
+  },
+  "v4.features.twoFa.bullet4": {
+    "message": "Users without 2FA configured are unaffected"
+  },
+  "v4.features.twoFa.cta": {
+    "message": "2FA docs"
+  },
+  "v4.features.woocommerce.title": {
+    "message": "WooCommerce"
+  },
+  "v4.features.woocommerce.desc": {
+    "message": "Drive a WooCommerce store with a JWT instead of a consumer key/secret - manage products and run a fully headless cart & checkout with the token alone."
+  },
+  "v4.features.woocommerce.bullet1": {
+    "message": "JWT auth on every /wc/ route: CRUD (wc/v3) and the Store API (wc/store)"
+  },
+  "v4.features.woocommerce.bullet2": {
+    "message": "Scoped to WooCommerce routes - works even with the global middleware off"
+  },
+  "v4.features.woocommerce.bullet3": {
+    "message": "Optional Store API cart & checkout: header-JWT requests skip the CSRF nonce"
+  },
+  "v4.features.woocommerce.bullet4": {
+    "message": "Admin / Shop Manager tokens manage the catalog; customers manage their own cart"
+  },
+  "v4.features.woocommerce.cta": {
+    "message": "WooCommerce docs"
+  },
+  "v4.features.refreshToken.title": {
+    "message": "Refresh Token"
+  },
+  "v4.features.refreshToken.desc": {
+    "message": "Refresh tokens are now more secure and configurable - rolling rotation, a separate encryption key, and custom payload support."
+  },
+  "v4.features.refreshToken.bullet1": {
+    "message": "Rolling rotation: each refresh issues a new token and invalidates the old one"
+  },
+  "v4.features.refreshToken.bullet2": {
+    "message": "Separate refresh token secret key, independent of the JWT signing key"
+  },
+  "v4.features.refreshToken.bullet3": {
+    "message": "Custom payload merged into the newly issued JWT on refresh"
+  },
+  "v4.features.refreshToken.bullet4": {
+    "message": "Auth Code protection option for the refresh endpoint"
+  },
+  "v4.features.refreshToken.cta": {
+    "message": "Refresh Token docs"
+  },
+  "v4.features.jwtDecoder.title": {
+    "message": "JWT Decoder"
+  },
+  "v4.features.jwtDecoder.desc": {
+    "message": "Paste any JWT directly in the WordPress admin panel to inspect its header and payload - no external tools needed."
+  },
+  "v4.features.jwtDecoder.bullet1": {
+    "message": "Decodes header and payload instantly in the browser"
+  },
+  "v4.features.jwtDecoder.bullet2": {
+    "message": "Token is never sent to the server"
+  },
+  "v4.features.jwtDecoder.bullet3": {
+    "message": "Useful for debugging token claims and expiry"
+  },
+  "v4.features.jwtDecoder.cta": {
+    "message": "Learn more"
+  },
+  "v4.features.codeExamples.title": {
+    "message": "Code Examples"
+  },
+  "v4.features.codeExamples.desc": {
+    "message": "Every endpoint page in the plugin admin panel now shows ready-to-copy code snippets tailored to your current settings."
+  },
+  "v4.features.codeExamples.bullet1": {
+    "message": "cURL, PHP, and JavaScript examples per endpoint"
+  },
+  "v4.features.codeExamples.bullet2": {
+    "message": "Examples use your configured namespace and site URL"
+  },
+  "v4.features.codeExamples.bullet3": {
+    "message": "Auth Code and parameter values pre-filled from your settings"
+  },
+  "v4.features.codeExamples.cta": {
+    "message": "Code Examples"
+  },
+  "v4.features.protectEndpoints.title": {
+    "message": "Protect Endpoints Redesign"
+  },
+  "v4.features.protectEndpoints.desc": {
+    "message": "Protect Endpoints has been rethought as a single ordered rules table - each rule sets access to Public, JWT required, or JWT + Roles, and the first matching rule wins."
+  },
+  "v4.features.protectEndpoints.bullet1": {
+    "message": "Unified rules table replaces separate whitelist and protected lists"
+  },
+  "v4.features.protectEndpoints.bullet2": {
+    "message": "Per-rule access level - Public, JWT required, or JWT + specific Roles"
+  },
+  "v4.features.protectEndpoints.bullet3": {
+    "message": "Top-to-bottom evaluation with first-match-wins logic"
+  },
+  "v4.features.protectEndpoints.bullet4": {
+    "message": "Existing settings auto-migrate on first load"
+  },
+  "v4.features.protectEndpoints.bullet5": {
+    "message": "Role names are validated against WordPress on save"
+  },
+  "v4.features.protectEndpoints.cta": {
+    "message": "Protect Endpoints docs"
+  },
+  "v4.features.registration.title": {
+    "message": "Registration Enhancements"
+  },
+  "v4.features.registration.desc": {
+    "message": "User registration is now more flexible - assign multiple default roles, trigger built-in WordPress notification emails, and use variables in reset password email subjects."
+  },
+  "v4.features.registration.bullet1": {
+    "message": "Support multiple default user roles on registration"
+  },
+  "v4.features.registration.bullet2": {
+    "message": "Option to send the default WordPress welcome email on registration"
+  },
+  "v4.features.registration.bullet3": {
+    "message": "Option to send the default WordPress password-changed email from the change-password endpoint"
+  },
+  "v4.features.registration.bullet4": {
+    "message": "Variables now supported in the reset password email subject line"
+  },
+  "v4.features.registration.cta": {
+    "message": "Register User docs"
+  },
+  "v4.features.tokenControls.title": {
+    "message": "Granular Token Controls"
+  },
+  "v4.features.tokenControls.desc": {
+    "message": "Enable or disable refresh, revoke, and validate token endpoints independently - ship only the surface area your app needs."
+  },
+  "v4.features.tokenControls.bullet1": {
+    "message": "Toggle refresh token endpoint on/off"
+  },
+  "v4.features.tokenControls.bullet2": {
+    "message": "Toggle revoke token endpoint on/off"
+  },
+  "v4.features.tokenControls.bullet3": {
+    "message": "Toggle validate token endpoint on/off"
+  },
+  "v4.features.tokenControls.bullet4": {
+    "message": "Optionally require the \"Bearer\" prefix in the Authorization header"
+  },
+  "v4.features.tokenControls.cta": {
+    "message": "Auth docs"
+  },
+  "v4.features.improvements.title": {
+    "message": "Improvements & Code Quality"
+  },
+  "v4.features.improvements.desc": {
+    "message": "Standardized HTTP status codes across all endpoints and a cleaner, more maintainable internal codebase."
+  },
+  "v4.features.improvements.bullet1": {
+    "message": "Client errors return a matching HTTP status (400, 401, 403, 404, 422, or 429) instead of 500 - 404 and 429 since 4.2.0"
+  },
+  "v4.features.improvements.bullet2": {
+    "message": "Refactored internal service layer for better separation of concerns"
+  },
+  "v4.features.improvements.bullet3": {
+    "message": "Improved unit test coverage across all core services"
+  },
+  "v4.features.improvements.bullet4": {
+    "message": "Reduced code duplication across service classes"
+  },
+  "v4.features.improvements.cta": {
+    "message": "Error codes"
+  },
+  "v4.breaking.registerResponse.title": {
+    "message": "Register user response shape changed"
+  },
+  "v4.breaking.registerResponse.detail": {
+    "message": "{postUsers} used to return {oldShape}. It now returns {newShape}. The user fields and roles are nested under {data}, {message} is gone, and these fields were renamed: {userLogin} → {login}, {userNicename} → {nicename}, {userEmail} → {email}, {userUrl} → {url}, {userRegistered} → {registered}, {userStatus} → {status}."
+  },
+  "v4.breaking.registerResponse.action": {
+    "message": "Update any code that reads user fields from the register response - check both the new nesting under {data} and the renamed field keys."
+  },
+  "v4.breaking.registerResponse.linkLabel": {
+    "message": "Register User docs"
+  },
+  "v4.breaking.legacyRegister.title": {
+    "message": "Legacy /register endpoint removed"
+  },
+  "v4.breaking.legacyRegister.detail": {
+    "message": "The old POST /simple-jwt-login/v1/register route no longer exists. The canonical route is POST /simple-jwt-login/v1/users."
+  },
+  "v4.breaking.legacyRegister.action": {
+    "message": "Update all callers to use POST /simple-jwt-login/v1/users."
+  },
+  "v4.breaking.legacyRegister.linkLabel": {
+    "message": "Register User docs"
+  },
+  "v4.breaking.userIdentification.title": {
+    "message": "User Identification moved to General settings"
+  },
+  "v4.breaking.userIdentification.detail": {
+    "message": "The \"User Identification\" option (email, login, ID) has moved from the Delete User settings tab to the General settings tab. It now applies globally to all endpoints."
+  },
+  "v4.breaking.userIdentification.action": {
+    "message": "After upgrading, verify the User Identification value in Settings → Simple JWT Login → General."
+  },
+  "v4.breaking.userIdentification.linkLabel": {
+    "message": "General settings docs"
+  },
+  "v4.breaking.settingsStorage.title": {
+    "message": "Settings storage structure reorganized"
+  },
+  "v4.breaking.settingsStorage.detail": {
+    "message": "The internal layout of plugin options in {wpOptions} has changed. Existing settings are migrated automatically on first load, but the old keys are removed."
+  },
+  "v4.breaking.settingsStorage.action": {
+    "message": "Review every settings tab after upgrading to confirm values carried over correctly."
+  },
+  "v4.breaking.authRefreshToken.title": {
+    "message": "Authentication response now includes {refreshToken}"
+  },
+  "v4.breaking.authRefreshToken.detail": {
+    "message": "{postAuth} returns a new {refreshToken} field when the refresh token feature is enabled. The JWT field itself is unchanged."
+  },
+  "v4.breaking.authRefreshToken.action": {
+    "message": "No action needed unless your client strictly rejects unexpected response fields or you need to store the token."
+  },
+  "v4.breaking.authRefreshToken.linkLabel": {
+    "message": "Refresh Token docs"
+  },
+  "v4.breaking.twoFa.title": {
+    "message": "2FA changes the /auth flow for affected users"
+  },
+  "v4.breaking.twoFa.detail": {
+    "message": "Users with the Two Factor plugin configured now receive a short-lived interim JWT from /auth instead of a full JWT. A second request to POST /auth/2fa (with the interim JWT + 2FA code) is required to get the real token."
+  },
+  "v4.breaking.twoFa.action": {
+    "message": "Update your authentication flow to handle the interim JWT case, or leave 2FA disabled for API users."
+  },
+  "v4.breaking.twoFa.linkLabel": {
+    "message": "2FA docs"
+  },
+  "v4.breaking.protectedStatus.title": {
+    "message": "Protected endpoint auth failures return 401 instead of 403"
+  },
+  "v4.breaking.protectedStatus.detail": {
+    "message": "When the Protect Endpoint feature blocks an unauthenticated request, the plugin previously returned HTTP 403 Forbidden. It now returns HTTP 401 Unauthorized to align with the HTTP spec."
+  },
+  "v4.breaking.protectedStatus.action": {
+    "message": "Update any code that checks specifically for status 403 on protected routes to handle 401 instead."
+  },
+  "v4.breaking.protectedStatus.linkLabel": {
+    "message": "Protect Endpoint docs"
+  },
+  "v4.breaking.errorField.title": {
+    "message": "Error field renamed: {errorCode} → {errorCodeSnake}"
+  },
+  "v4.breaking.errorField.detail": {
+    "message": "In v3, the error field in responses was named {errorCode} (camelCase). In v4, it is renamed to {errorCodeSnake} (snake_case) to match the naming convention used across the API."
+  },
+  "v4.breaking.errorField.action": {
+    "message": "Update all error-handling code that reads {respErrorCode} (or {respDataErrorCode}) to use {errorCodeSnake} instead."
+  },
+  "v4.breaking.errorField.linkLabel": {
+    "message": "Error codes docs"
+  },
+  "v4.perf.endpoint.registerUser": {
+    "message": "Register User"
+  },
+  "v4.perf.endpoint.autologin": {
+    "message": "Autologin with JWT"
+  },
+  "v4.perf.endpoint.createPostJwt": {
+    "message": "Create Post (JWT)"
+  },
+  "v4.perf.endpoint.createPostApiKey": {
+    "message": "Create Post (API Key)"
+  },
+  "v4.perf.deltaNew": {
+    "message": "new"
+  },
+  "v4.perf.endpoint.validateToken": {
+    "message": "Validate Token"
+  },
+  "v4.perf.endpoint.authUser": {
+    "message": "Auth User"
+  },
+  "v4.support.v4.badge": {
+    "message": "Active (LTS)"
+  },
+  "v4.support.v4.desc": {
+    "message": "New features, bug fixes, security patches, and WordPress compatibility fixes."
+  },
+  "v4.support.v3.badge": {
+    "message": "Maintenance"
+  },
+  "v4.support.v3.desc": {
+    "message": "Security patches and WordPress compatibility fixes only - no new features, no bug fixes. End of life is January 31, 2027."
+  },
+  "v4.migration.step1.title": {
+    "message": "Update the plugin"
+  },
+  "v4.migration.step1.desc": {
+    "message": "Download the plugin from GitHub and upload the zip via Plugins → Add New → Upload Plugin, or install it from the WordPress plugin directory."
+  },
+  "v4.migration.step2.title": {
+    "message": "Work through the breaking changes"
+  },
+  "v4.migration.step2.desc": {
+    "message": "The breaking changes are listed above. Address them before going to production - the {errorCode} → {errorCodeSnake} rename, the register response shape change, the removed /register route, and the relocated User Identification setting are the most likely to affect existing integrations. The {upgradeGuide} covers every change, including those from later 4.x releases."
+  },
+  "v4.migration.step2.upgradeGuide": {
+    "message": "upgrade guide"
+  },
+  "v4.migration.step3.title": {
+    "message": "Validate your settings"
+  },
+  "v4.migration.step3.desc": {
+    "message": "Your settings are automatically migrated. Open Settings → Simple JWT Login and verify your values carried over correctly."
+  },
+  "v4.migration.step4.title": {
+    "message": "Explore new features"
+  },
+  "v4.migration.step4.desc": {
+    "message": "Enable API Keys, Webhooks, Audit Logs, 2FA, and the 4 OAuth providers from Settings → Simple JWT Login to start using the new capabilities."
+  },
+  "v4.meta.title": {
+    "message": "What's New in Simple JWT Login v4"
+  },
+  "v4.meta.description": {
+    "message": "Simple JWT Login v4 introduces API Keys, 2FA, 4 OAuth providers, WooCommerce JWT, Audit Logs, Webhooks, and a JWT Decoder."
+  },
+  "v4.meta.ogTitle": {
+    "message": "Simple JWT Login v4 - API Keys, 2FA, WooCommerce, Audit Logs, Webhooks & More"
+  },
+  "v4.meta.ogDescription": {
+    "message": "v4 brings API Keys, 2FA, 4 OAuth providers, WooCommerce JWT, Audit Logs, Webhooks, JWT Decoder, code examples, and improved refresh tokens."
+  },
+  "v4.hero.title": {
+    "message": "Simple JWT Login v4"
+  },
+  "v4.hero.subtitle": {
+    "message": "API Keys, 2FA, Audit Logs, Webhooks, 4 OAuth providers - the biggest release yet."
+  },
+  "v4.hero.downloadTitle": {
+    "message": "Download v4"
+  },
+  "v4.hero.download": {
+    "message": "Download v4"
+  },
+  "v4.hero.docsTitle": {
+    "message": "Read the docs"
+  },
+  "v4.hero.docs": {
+    "message": "Read the docs →"
+  },
+  "v4.hero.githubTitle": {
+    "message": "View on GitHub"
+  },
+  "v4.hero.github": {
+    "message": "View on GitHub"
+  },
+  "v4.hero.highlight.apiKeys": {
+    "message": "API Keys"
+  },
+  "v4.hero.highlight.oauth": {
+    "message": "4 OAuth Providers"
+  },
+  "v4.hero.highlight.twoFa": {
+    "message": "2FA Support"
+  },
+  "v4.hero.highlight.auditLogs": {
+    "message": "Audit Logs"
+  },
+  "v4.hero.highlight.webhooks": {
+    "message": "Webhooks"
+  },
+  "v4.hero.highlight.woocommerce": {
+    "message": "WooCommerce"
+  },
+  "v4.hero.highlight.codeExamples": {
+    "message": "Code Examples"
+  },
+  "v4.whatsNew.eyebrow": {
+    "message": "What's new"
+  },
+  "v4.whatsNew.title": {
+    "message": "Everything in v4"
+  },
+  "v4.breaking.eyebrow": {
+    "message": "v3 → v4"
+  },
+  "v4.breaking.title": {
+    "message": "Breaking Changes"
+  },
+  "v4.breaking.lead": {
+    "message": "Most JWT flows continue to work without changes. Review these items before upgrading."
+  },
+  "v4.breaking.actionLabel": {
+    "message": "Action:"
+  },
+  "v4.support.eyebrow": {
+    "message": "Version Support Policy"
+  },
+  "v4.support.title": {
+    "message": "v3 is now in maintenance mode"
+  },
+  "v4.support.lead": {
+    "message": "We recommend upgrading to v4 as soon as possible. After January 31, 2027, v3.x no longer receives any updates, including security patches."
+  },
+  "v4.upgrade.eyebrow": {
+    "message": "Upgrade guide"
+  },
+  "v4.upgrade.title": {
+    "message": "Upgrading to v4"
+  },
+  "v4.upgrade.lead": {
+    "message": "Most existing JWT flows continue to work without changes. Review the breaking changes section above before upgrading."
+  },
+  "v4.bench.eyebrow": {
+    "message": "Benchmarks"
+  },
+  "v4.bench.title": {
+    "message": "v3 vs v4 Performance"
+  },
+  "v4.bench.lead": {
+    "message": "Load-test results from 100 calls per endpoint on identical infrastructure. All endpoints returned 100% success rate except where noted."
+  },
+  "v4.bench.endpoint": {
+    "message": "Endpoint"
+  },
+  "v4.bench.delta": {
+    "message": "Delta (p95)"
+  },
+  "v4.bench.min": {
+    "message": "Min"
+  },
+  "v4.bench.avg": {
+    "message": "Avg"
+  },
+  "v4.bench.median": {
+    "message": "Median"
+  },
+  "v4.bench.p95": {
+    "message": "P95"
+  },
+  "v4.bench.max": {
+    "message": "Max"
+  },
+  "v4.bench.na": {
+    "message": "N/A"
+  },
+  "v4.bench.note1": {
+    "message": "API Keys did not exist in v3; the v3 run returned 0% success rate. v4 introduces this endpoint and handles it correctly."
+  },
+  "v4.bench.formula": {
+    "message": "{delta} = {formula}. Negative values mean v4 is faster."
+  },
+  "v4.bench.formula.delta": {
+    "message": "Delta (p95)"
+  },
+  "v4.cta.title": {
+    "message": "Try v4 today"
+  },
+  "v4.cta.subtitle": {
+    "message": "Simple JWT Login v4 is free, open-source, and available now."
+  },
+  "v4.cta.downloadTitle": {
+    "message": "Download v4"
+  },
+  "v4.cta.download": {
+    "message": "Download v4"
+  },
+  "v4.cta.githubTitle": {
+    "message": "View on GitHub"
+  },
+  "v4.cta.github": {
+    "message": "View on GitHub"
+  },
+  "v4.cta.docsTitle": {
+    "message": "Read the docs"
+  },
+  "v4.cta.docs": {
+    "message": "Read the docs"
+  },
+  "downloadButton.v4.label": {
+    "message": "Download v4"
+  },
+  "downloadButton.v4.hint": {
+    "message": "Latest - API Keys, 2FA, Webhooks, Audit Logs"
+  },
+  "downloadButton.v3.label": {
+    "message": "Download v3"
+  },
+  "downloadButton.v3.hint": {
+    "message": "Stable release"
+  },
+  "downloadButton.ariaLabel": {
+    "message": "Choose plugin version to download"
+  },
+  "feature.readMore": {
+    "message": "read more"
+  },
+  "stars.alt": {
+    "message": "star"
+  },
+  "stars.title": {
+    "message": "star"
+  },
+  "theme.blogListPage.badge.changelog": {
+    "message": "Changelog"
+  },
+  "theme.blogListPage.badge.blog": {
+    "message": "Blog"
+  },
+  "theme.blogListPage.title.releases": {
+    "message": "Release Notes"
+  },
+  "theme.blogListPage.title.blog": {
+    "message": "Blog"
+  },
+  "theme.blogListPage.subtitle.releases": {
+    "message": "Full changelog and release history for Simple JWT Login."
+  },
+  "theme.blogListPage.subtitle.releasesCount": {
+    "message": "{count} releases and counting."
+  },
+  "theme.blogListPage.subtitle.blog": {
+    "message": "Tutorials, deep dives, and updates from the Simple JWT Login team."
+  },
+  "theme.blogPostItem.readingTime": {
+    "message": "{minutes} min read"
+  },
+  "theme.blogPostItem.readMoreAbout": {
+    "message": "Read more about {title}"
+  },
+  "theme.blogPostItem.readMore": {
+    "message": "Read more →"
+  },
+  "theme.blogTagsPostsPage.badge": {
+    "message": "Tag"
+  },
+  "footer.product.documentation": {
+    "message": "Documentation"
+  },
+  "footer.product.apiReference": {
+    "message": "API Reference"
+  },
+  "footer.product.releases": {
+    "message": "Releases"
+  },
+  "footer.product.donate": {
+    "message": "Donate"
+  },
+  "footer.product.sponsors": {
+    "message": "Sponsors"
+  },
+  "footer.explore.headlessWordpress": {
+    "message": "Headless WordPress"
+  },
+  "footer.explore.compareJwtPlugins": {
+    "message": "Compare JWT Plugins"
+  },
+  "footer.explore.deployWordpress": {
+    "message": "Deploy WordPress"
+  },
+  "footer.explore.demos": {
+    "message": "Demos"
+  },
+  "footer.explore.ecosystem": {
+    "message": "Ecosystem"
+  },
+  "footer.help.pluginPage": {
+    "message": "WordPress Plugin Page"
+  },
+  "footer.help.supportForum": {
+    "message": "Support Forum"
+  },
+  "footer.help.reportIssue": {
+    "message": "Report an Issue"
+  },
+  "footer.help.reportSecurity": {
+    "message": "Report a Security Issue"
+  },
+  "footer.help.faq": {
+    "message": "FAQ"
+  },
+  "footer.help.contact": {
+    "message": "Contact"
+  },
+  "footer.connect.githubRepo": {
+    "message": "GitHub Repository"
+  },
+  "footer.connect.discord": {
+    "message": "Discord Community"
+  },
+  "footer.connect.twitter": {
+    "message": "X (Twitter)"
+  },
+  "footer.connect.blog": {
+    "message": "Blog"
+  },
+  "footer.sponsors.label": {
+    "message": "This project is supported by:"
+  },
+  "footer.sponsors.digitalOceanTitle": {
+    "message": "DigitalOcean - cloud infrastructure sponsor"
+  },
+  "footer.sponsors.codeRabbitTitle": {
+    "message": "CodeRabbit - AI code review sponsor"
+  },
+  "footer.sponsors.become": {
+    "message": "Become a sponsor →"
+  },
+  "footer.brand.description": {
+    "message": "JWT authentication for WordPress - REST API, headless WP, WPGraphQL, and WP-CLI. Free and open-source, forever."
+  },
+  "footer.social.github": {
+    "message": "GitHub"
+  },
+  "footer.social.discord": {
+    "message": "Discord"
+  },
+  "footer.social.twitter": {
+    "message": "X (Twitter)"
+  },
+  "footer.columns.project": {
+    "message": "Project"
+  },
+  "footer.columns.explore": {
+    "message": "Explore"
+  },
+  "footer.columns.getHelp": {
+    "message": "Get Help"
+  },
+  "footer.columns.connect": {
+    "message": "Connect"
+  },
+  "theme.navbar.apiVersionLink.label": {
+    "message": "API Reference"
+  },
+  "demos.index.woocommerce.title": {
+    "message": "Headless WooCommerce store"
+  },
+  "demos.index.woocommerce.desc": {
+    "message": "Manage products, add to cart, and check out with only a JWT - no consumer key/secret and no nonce."
+  },
+  "demos.index.todo.title": {
+    "message": "Todo app"
+  },
+  "demos.index.todo.desc": {
+    "message": "A minimal todo app where each todo is a private WordPress post, authenticated with a JWT."
+  },
+  "demos.index.todo.tagPrivatePosts": {
+    "message": "Private posts"
+  },
+  "demos.index.userManagement.title": {
+    "message": "WordPress user management"
+  },
+  "demos.index.userManagement.desc": {
+    "message": "List, search, and delete WordPress users with only a JWT - Administrator role required."
+  },
+  "demos.index.userManagement.tagUsers": {
+    "message": "Users"
+  },
+  "demos.index.meta.title": {
+    "message": "Interactive Demos"
+  },
+  "demos.index.meta.description": {
+    "message": "Run Simple JWT Login demos live in your browser - a headless WooCommerce store and a JWT-authenticated todo app, both in vanilla JavaScript."
+  },
+  "demos.index.eyebrow": {
+    "message": "Try it live"
+  },
+  "demos.index.title": {
+    "message": "Interactive Demos"
+  },
+  "demos.index.lead": {
+    "message": "Run each demo right here in your browser against your own WordPress site. Nothing is sent anywhere except the WordPress URL you provide - the demos run entirely client-side and talk directly to your install."
+  },
+  "demos.index.openDemo": {
+    "message": "Open demo"
+  },
+  "demos.todo.meta.title": {
+    "message": "Todo app - Interactive demo"
+  },
+  "demos.todo.meta.description": {
+    "message": "Try a JWT-authenticated todo app in your browser. Each todo is a private WordPress post, created and listed through the WordPress REST API."
+  },
+  "demos.todo.back": {
+    "message": "All demos"
+  },
+  "demos.todo.title": {
+    "message": "Todo app"
+  },
+  "demos.todo.lead": {
+    "message": "Sign in with your WordPress credentials and manage todos - each one is stored as a private WordPress post, readable only by the authenticated user."
+  },
+  "demos.todo.notice": {
+    "message": "{before} on your WordPress site: enable {allowAuth}, turn on {allEndpoints} (so {postsCode} accepts the token), and enable CORS for this origin. See the {guideLink}."
+  },
+  "demos.todo.notice.before": {
+    "message": "Before it works,"
+  },
+  "demos.todo.notice.allowAuth": {
+    "message": "Allow Authentication"
+  },
+  "demos.todo.notice.allEndpoints": {
+    "message": "All WordPress endpoints check for JWT"
+  },
+  "demos.todo.notice.guideLink": {
+    "message": "Todo App guide"
+  },
+  "demos.todo.privacy": {
+    "message": "{strong} This website does not store any data you enter in the live example - your WordPress URL, credentials, and any details you submit are kept in your browser and sent only to your own WordPress site."
+  },
+  "demos.todo.privacy.strong": {
+    "message": "Your data stays private."
+  },
+  "demos.todo.frameTitle": {
+    "message": "Todo app demo"
+  },
+  "demos.todo.download": {
+    "message": "Download example"
+  },
+  "demos.userManagement.meta.title": {
+    "message": "WordPress User Management Demo"
+  },
+  "demos.userManagement.meta.description": {
+    "message": "List, search, and delete WordPress users with only a JWT, live in your browser - administrator access required."
+  },
+  "demos.userManagement.back": {
+    "message": "All demos"
+  },
+  "demos.userManagement.title": {
+    "message": "WordPress user management"
+  },
+  "demos.userManagement.lead": {
+    "message": "Sign in with your WordPress credentials, then list, search, and delete user accounts - all authenticated with a JWT in the Authorization header. Requires an Administrator account; any other role is denied access."
+  },
+  "demos.userManagement.notice": {
+    "message": "{before} on your WordPress site: enable CORS for this origin and sign in with an {admin} account - listing and deleting other users needs the {listUsers} / {deleteUsers} capability. Deleting a user reassigns their posts to the signed-in admin (the REST API's {reassign} parameter). Use HTTPS."
+  },
+  "demos.userManagement.notice.before": {
+    "message": "Before it works,"
+  },
+  "demos.userManagement.notice.admin": {
+    "message": "Administrator"
+  },
+  "demos.userManagement.privacy": {
+    "message": "{strong} This website does not store any data you enter in the live example - your WordPress URL, credentials, and any details you submit are kept in your browser and sent only to your own WordPress site."
+  },
+  "demos.userManagement.privacy.strong": {
+    "message": "Your data stays private."
+  },
+  "demos.userManagement.frameTitle": {
+    "message": "User management headless demo"
+  },
+  "demos.userManagement.download": {
+    "message": "Download example"
+  },
+  "demos.woocommerce.meta.title": {
+    "message": "Headless WooCommerce Demo"
+  },
+  "demos.woocommerce.meta.description": {
+    "message": "Try a headless WooCommerce store in your browser - manage products, cart, and checkout through the WooCommerce APIs with only a JWT."
+  },
+  "demos.woocommerce.back": {
+    "message": "All demos"
+  },
+  "demos.woocommerce.title": {
+    "message": "Headless WooCommerce store"
+  },
+  "demos.woocommerce.lead": {
+    "message": "Sign in with your WordPress credentials, then manage products, add items to the cart, and place an order - all authenticated with a JWT in the Authorization header."
+  },
+  "demos.woocommerce.notice": {
+    "message": "{before} on your WordPress site: activate WooCommerce (with a payment method such as Cash on Delivery), enable the {integrationLink} and its {storeApi} toggle, and enable CORS for this origin. Product management needs an Administrator / Shop Manager account. Use HTTPS."
+  },
+  "demos.woocommerce.notice.before": {
+    "message": "Before it works,"
+  },
+  "demos.woocommerce.notice.integrationLink": {
+    "message": "WooCommerce integration"
+  },
+  "demos.woocommerce.notice.storeApi": {
+    "message": "Store API cart & checkout"
+  },
+  "demos.woocommerce.privacy": {
+    "message": "{strong} This website does not store any data you enter in the live example - your WordPress URL, credentials, and any details you submit are kept in your browser and sent only to your own WordPress site."
+  },
+  "demos.woocommerce.privacy.strong": {
+    "message": "Your data stays private."
+  },
+  "demos.woocommerce.frameTitle": {
+    "message": "WooCommerce headless demo"
+  },
+  "demos.woocommerce.download": {
+    "message": "Download example"
+  },
+  "ecosystem.cli.commands.login.headline": {
+    "message": "Authenticate & get a token"
+  },
+  "ecosystem.cli.commands.login.description": {
+    "message": "Authenticate any WordPress user by username, email, or a combined login flag and receive a signed JWT immediately. Pipe it directly into curl, store it in a variable, or forward it to other tools."
+  },
+  "ecosystem.cli.commands.decode.headline": {
+    "message": "Inspect a JWT payload"
+  },
+  "ecosystem.cli.commands.decode.description": {
+    "message": "Decode any JWT and display its claims as a readable key/value table or JSON. Signature is not verified - use validate for that. Perfect for debugging token contents without a browser."
+  },
+  "ecosystem.cli.commands.validate.headline": {
+    "message": "Verify signature & expiry"
+  },
+  "ecosystem.cli.commands.validate.description": {
+    "message": "Verify the token signature against the plugin decryption key and confirm it has not expired. Exits 0 in all cases - check the valid field in the output to drive conditional logic in scripts."
+  },
+  "ecosystem.cli.commands.revoke.headline": {
+    "message": "Invalidate a token instantly"
+  },
+  "ecosystem.cli.commands.revoke.description": {
+    "message": "Revoke a token so it can never be used again. The signature is verified before revocation to prevent spoofed revocation attempts. Ideal for forced log-out flows and post-deployment security sweeps."
+  },
+  "ecosystem.cli.commands.config.headline": {
+    "message": "Manage plugin settings"
+  },
+  "ecosystem.cli.commands.config.description": {
+    "message": "Get, set, list, export, and import every Simple JWT Login setting without touching the WordPress admin UI. Use dot notation for nested keys. Export/import enables reproducible config across environments."
+  },
+  "ecosystem.cli.commands.fullDocsTitle": {
+    "message": "Full CLI documentation"
+  },
+  "ecosystem.cli.commands.fullDocs": {
+    "message": "Full docs →"
+  },
+  "ecosystem.cli.useCases.ciCd.title": {
+    "message": "CI / CD pipelines"
+  },
+  "ecosystem.cli.useCases.ciCd.description": {
+    "message": "Generate a short-lived JWT inside your pipeline to seed test data, run authenticated smoke tests, or hit protected API endpoints - no browser, no cookies."
+  },
+  "ecosystem.cli.useCases.migration.title": {
+    "message": "Staging → production migrations"
+  },
+  "ecosystem.cli.useCases.migration.description": {
+    "message": "Export the full plugin config from staging with one command, preview the diff on production in dry-run mode, then apply - fully non-interactive."
+  },
+  "ecosystem.cli.useCases.healthChecks.title": {
+    "message": "Automated health checks"
+  },
+  "ecosystem.cli.useCases.healthChecks.description": {
+    "message": "Add a cron job or monitoring script that logs in, validates the token, and alerts your team when JWT authentication breaks."
+  },
+  "ecosystem.cli.meta.title": {
+    "message": "WP-CLI Add-on - Simple JWT Login"
+  },
+  "ecosystem.cli.meta.description": {
+    "message": "Manage Simple JWT Login from the command line - generate tokens, validate JWTs, revoke sessions, and configure the plugin."
+  },
+  "ecosystem.cli.hero.badge": {
+    "message": "WP-CLI Add-on"
+  },
+  "ecosystem.cli.hero.titleLead": {
+    "message": "JWT auth at your"
+  },
+  "ecosystem.cli.hero.titleAccent": {
+    "message": "fingertips"
+  },
+  "ecosystem.cli.hero.subtitle": {
+    "message": "Generate tokens, validate JWTs, revoke sessions, and manage every plugin setting directly from your terminal - no WordPress admin UI required."
+  },
+  "ecosystem.cli.hero.readDocsTitle": {
+    "message": "Read the CLI documentation"
+  },
+  "ecosystem.cli.hero.readDocs": {
+    "message": "Read the docs →"
+  },
+  "ecosystem.cli.hero.githubTitle": {
+    "message": "View on GitHub"
+  },
+  "ecosystem.cli.hero.github": {
+    "message": "View on GitHub"
+  },
+  "ecosystem.cli.highlights.worksAnywhere": {
+    "message": "Works anywhere WP-CLI runs"
+  },
+  "ecosystem.cli.highlights.commands": {
+    "message": "8 commands, everything covered"
+  },
+  "ecosystem.cli.highlights.requires": {
+    "message": "Requires Simple JWT Login plugin"
+  },
+  "ecosystem.cli.highlights.free": {
+    "message": "Free & open source"
+  },
+  "ecosystem.cli.commandsSection.title": {
+    "message": "Every command you need"
+  },
+  "ecosystem.cli.commandsSection.lead": {
+    "message": "From token generation to full config management - the CLI covers the complete JWT lifecycle."
+  },
+  "ecosystem.cli.useCasesSection.title": {
+    "message": "Built for real workflows"
+  },
+  "ecosystem.cli.useCasesSection.lead": {
+    "message": "The CLI is designed for the scenarios where speed and automation matter most."
+  },
+  "ecosystem.cli.install.title": {
+    "message": "Get started in 60 seconds"
+  },
+  "ecosystem.cli.install.requirements": {
+    "message": "Requirements"
+  },
+  "ecosystem.cli.install.req.active": {
+    "message": "active"
+  },
+  "ecosystem.cli.install.req.anyStable": {
+    "message": "any recent stable"
+  },
+  "ecosystem.cli.install.step1.title": {
+    "message": "Install from WordPress.org"
+  },
+  "ecosystem.cli.install.step1.text": {
+    "message": "Go to {menu}, search for {plugin}, and click Install Now."
+  },
+  "ecosystem.cli.install.step1.menu": {
+    "message": "Plugins → Add New"
+  },
+  "ecosystem.cli.install.step2.title": {
+    "message": "Activate the plugin"
+  },
+  "ecosystem.cli.install.step2.text": {
+    "message": "The add-on registers its commands automatically once activated. Simple JWT Login must be active on the same site."
+  },
+  "ecosystem.cli.install.step3.title": {
+    "message": "Verify the commands"
+  },
+  "ecosystem.cli.reference.title": {
+    "message": "Complete command reference"
+  },
+  "ecosystem.cli.reference.lead": {
+    "message": "All 8 commands at a glance."
+  },
+  "ecosystem.cli.reference.login": {
+    "message": "Authenticate a user and return a JWT"
+  },
+  "ecosystem.cli.reference.decode": {
+    "message": "Decode a JWT payload (signature not verified)"
+  },
+  "ecosystem.cli.reference.validate": {
+    "message": "Verify signature and expiry of a token"
+  },
+  "ecosystem.cli.reference.revoke": {
+    "message": "Permanently revoke a token"
+  },
+  "ecosystem.cli.reference.configGet": {
+    "message": "Read a single plugin setting"
+  },
+  "ecosystem.cli.reference.configSet": {
+    "message": "Update a plugin setting"
+  },
+  "ecosystem.cli.reference.configList": {
+    "message": "List all settings as key/value pairs"
+  },
+  "ecosystem.cli.reference.configExport": {
+    "message": "Export full config as JSON to stdout or file"
+  },
+  "ecosystem.cli.reference.configImport": {
+    "message": "Import config from a JSON file"
+  },
+  "ecosystem.cli.reference.fullDocsTitle": {
+    "message": "Full CLI documentation"
+  },
+  "ecosystem.cli.reference.fullDocs": {
+    "message": "Full documentation →"
+  },
+  "ecosystem.cli.cta.title": {
+    "message": "Ready to automate your JWT workflow?"
+  },
+  "ecosystem.cli.cta.subtitle": {
+    "message": "Install the add-on in minutes and bring the full power of Simple JWT Login to your terminal."
+  },
+  "ecosystem.cli.cta.readDocsTitle": {
+    "message": "Read the CLI documentation"
+  },
+  "ecosystem.cli.cta.getStarted": {
+    "message": "Get started →"
+  },
+  "ecosystem.cli.cta.githubTitle": {
+    "message": "View source on GitHub"
+  },
+  "ecosystem.cli.cta.github": {
+    "message": "View on GitHub"
+  },
+  "ecosystem.exportImport.jsonLd.description": {
+    "message": "Copy your entire Simple JWT Login configuration - Auth Codes, protection rules, and settings - from one WordPress site to another in a few clicks."
+  },
+  "ecosystem.exportImport.exported.authCodes.label": {
+    "message": "Auth Codes"
+  },
+  "ecosystem.exportImport.exported.authCodes.desc": {
+    "message": "All your authentication codes and their permissions."
+  },
+  "ecosystem.exportImport.exported.rules.label": {
+    "message": "Protection Rules"
+  },
+  "ecosystem.exportImport.exported.rules.desc": {
+    "message": "Every endpoint protection rule and HTTP method filter."
+  },
+  "ecosystem.exportImport.exported.general.label": {
+    "message": "General Settings"
+  },
+  "ecosystem.exportImport.exported.general.desc": {
+    "message": "Algorithms, TTL, CORS rules, token delivery, and more."
+  },
+  "ecosystem.exportImport.exported.jwt.label": {
+    "message": "JWT Configuration"
+  },
+  "ecosystem.exportImport.exported.jwt.desc": {
+    "message": "Payload fields, signing keys, and algorithm selection."
+  },
+  "ecosystem.exportImport.exported.lists.label": {
+    "message": "Allow / Deny Lists"
+  },
+  "ecosystem.exportImport.exported.lists.desc": {
+    "message": "IP allow/deny rules and user-role restrictions."
+  },
+  "ecosystem.exportImport.exported.redirects.label": {
+    "message": "Redirect URLs"
+  },
+  "ecosystem.exportImport.exported.redirects.desc": {
+    "message": "Autologin and post-action redirect targets."
+  },
+  "ecosystem.exportImport.useCases.staging.title": {
+    "message": "Staging → production"
+  },
+  "ecosystem.exportImport.useCases.staging.description": {
+    "message": "Perfect your configuration on staging, export it in one click, and apply it to production. No risk of config drift, no manual re-entry of settings."
+  },
+  "ecosystem.exportImport.useCases.multisite.title": {
+    "message": "Multi-site replication"
+  },
+  "ecosystem.exportImport.useCases.multisite.description": {
+    "message": "Running a WordPress network? Export once and import to every node. Keep all your sites in sync with a single source of truth."
+  },
+  "ecosystem.exportImport.useCases.backup.title": {
+    "message": "Backup & restore"
+  },
+  "ecosystem.exportImport.useCases.backup.description": {
+    "message": "Before a major update or plugin change, export your configuration as a safety net. Restore it in seconds if anything goes wrong."
+  },
+  "ecosystem.exportImport.meta.title": {
+    "message": "Export & Import Add-on - Simple JWT Login"
+  },
+  "ecosystem.exportImport.meta.description": {
+    "message": "Copy your entire Simple JWT Login configuration - Auth Codes, protection rules, and all settings - from one WordPress site to another in a few clicks."
+  },
+  "ecosystem.exportImport.hero.badge": {
+    "message": "Export & Import Add-on"
+  },
+  "ecosystem.exportImport.hero.title1": {
+    "message": "Move your config"
+  },
+  "ecosystem.exportImport.hero.title2": {
+    "message": "in one click"
+  },
+  "ecosystem.exportImport.hero.subtitle": {
+    "message": "Export your complete Simple JWT Login setup - Auth Codes, rules, and settings - and reproduce it on any WordPress site instantly."
+  },
+  "ecosystem.exportImport.hero.downloadTitle": {
+    "message": "Download the add-on"
+  },
+  "ecosystem.exportImport.hero.download": {
+    "message": "Download free →"
+  },
+  "ecosystem.exportImport.hero.docsTitle": {
+    "message": "Read the documentation"
+  },
+  "ecosystem.exportImport.hero.docs": {
+    "message": "Documentation"
+  },
+  "ecosystem.exportImport.workflow.source": {
+    "message": "Source site"
+  },
+  "ecosystem.exportImport.workflow.export": {
+    "message": "Export"
+  },
+  "ecosystem.exportImport.workflow.exportPath": {
+    "message": "Simple JWT Login → Export"
+  },
+  "ecosystem.exportImport.workflow.destination": {
+    "message": "Destination site"
+  },
+  "ecosystem.exportImport.workflow.import": {
+    "message": "Import"
+  },
+  "ecosystem.exportImport.workflow.importPath": {
+    "message": "Simple JWT Login → Import"
+  },
+  "ecosystem.exportImport.highlights.fullConfig": {
+    "message": "Full config in one file"
+  },
+  "ecosystem.exportImport.highlights.authCodes": {
+    "message": "Auth Codes included"
+  },
+  "ecosystem.exportImport.highlights.noReentry": {
+    "message": "No manual re-entry"
+  },
+  "ecosystem.exportImport.highlights.free": {
+    "message": "Free & open source"
+  },
+  "ecosystem.exportImport.how.eyebrow": {
+    "message": "How it works"
+  },
+  "ecosystem.exportImport.how.title": {
+    "message": "Four steps to a perfect copy"
+  },
+  "ecosystem.exportImport.how.install.title": {
+    "message": "Install on both sites"
+  },
+  "ecosystem.exportImport.how.install.desc": {
+    "message": "Install Simple JWT Login and the Export-Import add-on on both the source and destination WordPress sites."
+  },
+  "ecosystem.exportImport.how.export.title": {
+    "message": "Export from source"
+  },
+  "ecosystem.exportImport.how.export.desc": {
+    "message": "Go to Simple JWT Login settings on the source site and click Export to download your configuration."
+  },
+  "ecosystem.exportImport.how.review.title": {
+    "message": "Review the diff"
+  },
+  "ecosystem.exportImport.how.review.desc": {
+    "message": "On the destination site paste the config. The add-on shows a diff of every change before you confirm."
+  },
+  "ecosystem.exportImport.how.confirm.title": {
+    "message": "Confirm & done"
+  },
+  "ecosystem.exportImport.how.confirm.desc": {
+    "message": "Click Import. All settings, Auth Codes, and rules are applied instantly - no page reloads needed."
+  },
+  "ecosystem.exportImport.coverage.eyebrow": {
+    "message": "Coverage"
+  },
+  "ecosystem.exportImport.coverage.title": {
+    "message": "Everything, nothing left behind"
+  },
+  "ecosystem.exportImport.coverage.lead": {
+    "message": "The export captures your complete configuration - every setting that matters."
+  },
+  "ecosystem.exportImport.useCases.eyebrow": {
+    "message": "Use Cases"
+  },
+  "ecosystem.exportImport.useCases.title": {
+    "message": "Any time consistency matters"
+  },
+  "ecosystem.exportImport.install.eyebrow": {
+    "message": "Getting Started"
+  },
+  "ecosystem.exportImport.install.title": {
+    "message": "Up and running in 4 steps"
+  },
+  "ecosystem.exportImport.install.core.title": {
+    "message": "Install Simple JWT Login"
+  },
+  "ecosystem.exportImport.install.core.desc": {
+    "message": "Make sure the core plugin is installed and active on all WordPress sites involved."
+  },
+  "ecosystem.exportImport.install.download.title": {
+    "message": "Download the add-on"
+  },
+  "ecosystem.exportImport.install.download.desc": {
+    "message": "Grab the zip from GitHub and upload it via Plugins → Add New → Upload Plugin on each site."
+  },
+  "ecosystem.exportImport.install.export.title": {
+    "message": "Export your configuration"
+  },
+  "ecosystem.exportImport.install.export.desc": {
+    "message": "On the source site go to Simple JWT Login settings and click Export. Save the generated JSON."
+  },
+  "ecosystem.exportImport.install.import.title": {
+    "message": "Import on the destination"
+  },
+  "ecosystem.exportImport.install.import.desc": {
+    "message": "On the destination site paste the JSON into the Import field, review the diff, and confirm."
+  },
+  "ecosystem.exportImport.install.downloadTitle": {
+    "message": "Download the add-on"
+  },
+  "ecosystem.exportImport.install.download": {
+    "message": "Download free →"
+  },
+  "ecosystem.exportImport.cta.title": {
+    "message": "Stop re-entering config by hand"
+  },
+  "ecosystem.exportImport.cta.subtitle": {
+    "message": "Install the free Export-Import add-on and move your complete Simple JWT Login setup to any site in seconds."
+  },
+  "ecosystem.exportImport.cta.downloadTitle": {
+    "message": "Download the add-on"
+  },
+  "ecosystem.exportImport.cta.download": {
+    "message": "Download free →"
+  },
+  "ecosystem.exportImport.cta.docsTitle": {
+    "message": "Read the documentation"
+  },
+  "ecosystem.exportImport.cta.docs": {
+    "message": "Documentation"
+  },
+  "ecosystem.index.addons.cli.name": {
+    "message": "WP-CLI Add-on"
+  },
+  "ecosystem.index.addons.cli.tagline": {
+    "message": "JWT from the command line"
+  },
+  "ecosystem.index.addons.cli.description": {
+    "message": "Manage Simple JWT Login without ever opening the WordPress admin. Generate tokens, validate JWTs, revoke sessions, and push config between environments - all scriptable, all automatable."
+  },
+  "ecosystem.index.addons.cli.tags.0": {
+    "message": "DevOps"
+  },
+  "ecosystem.index.addons.cli.tags.1": {
+    "message": "CI/CD"
+  },
+  "ecosystem.index.addons.cli.tags.2": {
+    "message": "Automation"
+  },
+  "ecosystem.index.addons.cli.primaryLabel": {
+    "message": "Learn more"
+  },
+  "ecosystem.index.addons.cli.highlights.0": {
+    "message": "Generate & validate tokens"
+  },
+  "ecosystem.index.addons.cli.highlights.1": {
+    "message": "Revoke sessions instantly"
+  },
+  "ecosystem.index.addons.cli.highlights.2": {
+    "message": "Export / import config"
+  },
+  "ecosystem.index.addons.cli.highlights.3": {
+    "message": "Staging → production migration"
+  },
+  "ecosystem.index.addons.mailpoet.name": {
+    "message": "MailPoet Add-on"
+  },
+  "ecosystem.index.addons.mailpoet.tagline": {
+    "message": "Magic-link emails, zero friction"
+  },
+  "ecosystem.index.addons.mailpoet.description": {
+    "message": "Drop a shortcode into any MailPoet campaign and every subscriber gets a personalized, one-click login link. No passwords, no friction - just a seamless email-to-site experience."
+  },
+  "ecosystem.index.addons.mailpoet.tags.0": {
+    "message": "Email"
+  },
+  "ecosystem.index.addons.mailpoet.tags.1": {
+    "message": "Magic Links"
+  },
+  "ecosystem.index.addons.mailpoet.primaryLabel": {
+    "message": "Learn more"
+  },
+  "ecosystem.index.addons.mailpoet.secondaryLabel": {
+    "message": "Download"
+  },
+  "ecosystem.index.addons.mailpoet.highlights.0": {
+    "message": "personalized login links per recipient"
+  },
+  "ecosystem.index.addons.mailpoet.highlights.1": {
+    "message": "Works with any MailPoet template"
+  },
+  "ecosystem.index.addons.mailpoet.highlights.2": {
+    "message": "Time-limited, single-use tokens"
+  },
+  "ecosystem.index.addons.mailpoet.highlights.3": {
+    "message": "No custom code needed"
+  },
+  "ecosystem.index.addons.exportImport.name": {
+    "message": "Export & Import Add-on"
+  },
+  "ecosystem.index.addons.exportImport.tagline": {
+    "message": "Move your config in one command"
+  },
+  "ecosystem.index.addons.exportImport.description": {
+    "message": "Back up your complete Simple JWT Login configuration - Auth Codes, protection rules, and all settings - and restore it on any site. Ideal for staging migrations and multi-site setups."
+  },
+  "ecosystem.index.addons.exportImport.tags.0": {
+    "message": "Migration"
+  },
+  "ecosystem.index.addons.exportImport.tags.1": {
+    "message": "DevOps"
+  },
+  "ecosystem.index.addons.exportImport.tags.2": {
+    "message": "Backup"
+  },
+  "ecosystem.index.addons.exportImport.primaryLabel": {
+    "message": "Learn more"
+  },
+  "ecosystem.index.addons.exportImport.secondaryLabel": {
+    "message": "Download"
+  },
+  "ecosystem.index.addons.exportImport.highlights.0": {
+    "message": "Full config backup & restore"
+  },
+  "ecosystem.index.addons.exportImport.highlights.1": {
+    "message": "Auth Codes included"
+  },
+  "ecosystem.index.addons.exportImport.highlights.2": {
+    "message": "Works across any WP installs"
+  },
+  "ecosystem.index.addons.exportImport.highlights.3": {
+    "message": "JSON-based, human-readable"
+  },
+  "ecosystem.index.integrations.wpgraphql.tagline": {
+    "message": "JWT authentication for GraphQL"
+  },
+  "ecosystem.index.integrations.wpgraphql.description": {
+    "message": "Use the same JWTs you issue through Simple JWT Login to authenticate any WPGraphQL query or mutation. Enable it with a single checkbox - no code, no custom middleware."
+  },
+  "ecosystem.index.integrations.wpgraphql.logoAlt": {
+    "message": "WPGraphQL logo"
+  },
+  "ecosystem.index.integrations.wpgraphql.tags.1": {
+    "message": "Headless"
+  },
+  "ecosystem.index.integrations.wpgraphql.tags.2": {
+    "message": "REST-free"
+  },
+  "ecosystem.index.integrations.wpgraphql.primaryLabel": {
+    "message": "Read the docs"
+  },
+  "ecosystem.index.integrations.wpgraphql.highlights.0": {
+    "message": "Authenticate queries & mutations"
+  },
+  "ecosystem.index.integrations.wpgraphql.highlights.1": {
+    "message": "One-checkbox setup"
+  },
+  "ecosystem.index.integrations.wpgraphql.highlights.2": {
+    "message": "Works with React, Vue, Next.js"
+  },
+  "ecosystem.index.integrations.wpgraphql.highlights.3": {
+    "message": "Same tokens as REST API"
+  },
+  "ecosystem.index.integrations.google.tagline": {
+    "message": "Sign in with Google"
+  },
+  "ecosystem.index.integrations.google.description": {
+    "message": "Let users authenticate with their Google Account. Simple JWT Login exchanges a Google ID token for a WordPress JWT, giving you full control over the session without storing passwords."
+  },
+  "ecosystem.index.integrations.google.tags.0": {
+    "message": "OAuth"
+  },
+  "ecosystem.index.integrations.google.tags.1": {
+    "message": "Social Login"
+  },
+  "ecosystem.index.integrations.google.tags.2": {
+    "message": "Passwordless"
+  },
+  "ecosystem.index.integrations.google.primaryLabel": {
+    "message": "Read the docs"
+  },
+  "ecosystem.index.integrations.google.highlights.0": {
+    "message": "Google ID token → WordPress JWT"
+  },
+  "ecosystem.index.integrations.google.highlights.1": {
+    "message": "Passwordless login flow"
+  },
+  "ecosystem.index.integrations.google.highlights.2": {
+    "message": "Use Google JWT on all endpoints"
+  },
+  "ecosystem.index.integrations.google.highlights.3": {
+    "message": "Full token lifecycle control"
+  },
+  "ecosystem.index.sdks.php.name": {
+    "message": "PHP Client"
+  },
+  "ecosystem.index.sdks.php.tagline": {
+    "message": "One Composer package, any PHP framework"
+  },
+  "ecosystem.index.sdks.php.description": {
+    "message": "Integrate Simple JWT Login into any PHP app with a single dependency. Works out of the box with Laravel, Yii, CodeIgniter, Slim, and plain PHP."
+  },
+  "ecosystem.index.sdks.php.primaryLabel": {
+    "message": "Learn more"
+  },
+  "ecosystem.index.sdks.js.name": {
+    "message": "JavaScript Client"
+  },
+  "ecosystem.index.sdks.js.tagline": {
+    "message": "npm package for any JS framework"
+  },
+  "ecosystem.index.sdks.js.description": {
+    "message": "Add Simple JWT Login authentication to React, Vue, Angular, or any JavaScript app with a handful of lines. Works in the browser and in Node.js."
+  },
+  "ecosystem.index.sdks.js.primaryLabel": {
+    "message": "Learn more"
+  },
+  "ecosystem.index.status.beta": {
+    "message": "Beta"
+  },
+  "ecosystem.index.status.stable": {
+    "message": "Stable"
+  },
+  "ecosystem.index.addonCard.whatItDoes": {
+    "message": "What it does"
+  },
+  "ecosystem.index.addonCard.viewDocsTitle": {
+    "message": "View documentation"
+  },
+  "ecosystem.index.addonCard.viewDocs": {
+    "message": "View documentation →"
+  },
+  "ecosystem.index.meta.title": {
+    "message": "Ecosystem - Add-ons, Integrations & SDKs"
+  },
+  "ecosystem.index.meta.description": {
+    "message": "Explore every add-on, integration, and SDK for Simple JWT Login - WP-CLI, Google OAuth, MailPoet, WPGraphQL, PHP and JS clients."
+  },
+  "ecosystem.index.meta.ogTitle": {
+    "message": "Ecosystem - Simple JWT Login"
+  },
+  "ecosystem.index.meta.ogDescription": {
+    "message": "Add-ons, integrations, and SDKs that extend Simple JWT Login."
+  },
+  "ecosystem.index.hero.eyebrow": {
+    "message": "Ecosystem"
+  },
+  "ecosystem.index.hero.title": {
+    "message": "Extend Simple JWT Login"
+  },
+  "ecosystem.index.hero.subtitle": {
+    "message": "Add-ons, integrations, and client SDKs that bring JWT authentication to every corner of your stack - CLI pipelines, headless frontends, email campaigns, and more."
+  },
+  "ecosystem.index.hero.stats.addons": {
+    "message": "Add-ons"
+  },
+  "ecosystem.index.hero.stats.integrations": {
+    "message": "Integrations"
+  },
+  "ecosystem.index.hero.stats.sdks": {
+    "message": "Client SDKs"
+  },
+  "ecosystem.index.hero.stats.free": {
+    "message": "Free & open source"
+  },
+  "ecosystem.index.addons.eyebrow": {
+    "message": "WordPress plugins"
+  },
+  "ecosystem.index.addons.title": {
+    "message": "Add-ons"
+  },
+  "ecosystem.index.addons.lead": {
+    "message": "Standalone WordPress plugins that extend Simple JWT Login with new capabilities. Install them the same way you install any WordPress plugin."
+  },
+  "ecosystem.index.integrations.eyebrow": {
+    "message": "Third-party services"
+  },
+  "ecosystem.index.integrations.title": {
+    "message": "Integrations"
+  },
+  "ecosystem.index.integrations.lead": {
+    "message": "Connect Simple JWT Login to the tools you already use. Each integration is built into the core plugin - no extra downloads needed."
+  },
+  "ecosystem.index.sdks.eyebrow": {
+    "message": "Client libraries"
+  },
+  "ecosystem.index.sdks.title": {
+    "message": "SDKs"
+  },
+  "ecosystem.index.sdks.lead": {
+    "message": "Drop-in client libraries for your frontend or backend application. Available on Packagist and npm."
+  },
+  "ecosystem.index.cta.title": {
+    "message": "Don't see what you need?"
+  },
+  "ecosystem.index.cta.subtitle": {
+    "message": "Simple JWT Login exposes 16 action and filter hooks. Build your own integration - or open an issue on GitHub and let's discuss it."
+  },
+  "ecosystem.index.cta.hooksTitle": {
+    "message": "Browse hooks documentation"
+  },
+  "ecosystem.index.cta.hooks": {
+    "message": "Browse Hooks →"
+  },
+  "ecosystem.index.cta.issueTitle": {
+    "message": "Open an issue on GitHub"
+  },
+  "ecosystem.index.cta.issue": {
+    "message": "Open an issue"
+  },
+  "ecosystem.jsSdk.examples.auth.label": {
+    "message": "Authenticate"
+  },
+  "ecosystem.jsSdk.examples.auth.headline": {
+    "message": "Exchange credentials for a JWT"
+  },
+  "ecosystem.jsSdk.examples.auth.description": {
+    "message": "Authenticate any WordPress user by email or username and receive a signed JWT. Store it in memory or in local storage and attach it to every subsequent request via the Authorization header."
+  },
+  "ecosystem.jsSdk.examples.register.label": {
+    "message": "Register User"
+  },
+  "ecosystem.jsSdk.examples.register.headline": {
+    "message": "Create WordPress accounts via API"
+  },
+  "ecosystem.jsSdk.examples.register.description": {
+    "message": "Register new WordPress users from your frontend. Optionally assign a role and receive a JWT immediately - no admin UI, no custom backend code required."
+  },
+  "ecosystem.jsSdk.examples.validate.label": {
+    "message": "Validate Token"
+  },
+  "ecosystem.jsSdk.examples.validate.headline": {
+    "message": "Verify a JWT is still valid"
+  },
+  "ecosystem.jsSdk.examples.validate.description": {
+    "message": "Check that a token has not expired and its signature is intact. Call this on page load or before any protected API request to avoid unnecessary 401 errors."
+  },
+  "ecosystem.jsSdk.examples.refresh.label": {
+    "message": "Refresh Token"
+  },
+  "ecosystem.jsSdk.examples.refresh.headline": {
+    "message": "Keep sessions alive without re-login"
+  },
+  "ecosystem.jsSdk.examples.refresh.description": {
+    "message": "Exchange an expiring token for a fresh one without asking the user to log in again. Schedule this before expiry to maintain seamless sessions in SPAs and mobile web apps."
+  },
+  "ecosystem.jsSdk.examples.revoke.label": {
+    "message": "Revoke Token"
+  },
+  "ecosystem.jsSdk.examples.revoke.headline": {
+    "message": "Sign out & invalidate a token"
+  },
+  "ecosystem.jsSdk.examples.revoke.description": {
+    "message": "Permanently revoke a JWT on sign-out so it can never be reused - even if someone has a copy. Pair with clearing local storage for a complete logout flow."
+  },
+  "ecosystem.jsSdk.examples.npmTitle": {
+    "message": "View on npm"
+  },
+  "ecosystem.jsSdk.examples.npm": {
+    "message": "npm →"
+  },
+  "ecosystem.jsSdk.useCases.react.description": {
+    "message": "Authenticate users from a React SPA or a Next.js app. Store the JWT in a context provider and attach it to every fetch or Axios call to your WordPress REST API."
+  },
+  "ecosystem.jsSdk.useCases.vue.description": {
+    "message": "Integrate JWT authentication into a Vue 3 or Nuxt application. Use a Pinia store to hold the token and a composable to expose login/logout actions."
+  },
+  "ecosystem.jsSdk.useCases.node.description": {
+    "message": "Use the client on the server side to validate tokens in Express middleware, script WordPress user creation in CI, or build a BFF that proxies authenticated WP API calls."
+  },
+  "ecosystem.jsSdk.frameworks.vanillaJs": {
+    "message": "Vanilla JS"
+  },
+  "ecosystem.jsSdk.meta.title": {
+    "message": "JavaScript Client SDK - Simple JWT Login"
+  },
+  "ecosystem.jsSdk.meta.description": {
+    "message": "Official JavaScript client for Simple JWT Login. Authenticate, register, validate and revoke tokens from React, Vue, Angular, or Node.js."
+  },
+  "ecosystem.jsSdk.hero.badge": {
+    "message": "JavaScript Client SDK"
+  },
+  "ecosystem.jsSdk.hero.titleAccent": {
+    "message": "for JavaScript"
+  },
+  "ecosystem.jsSdk.hero.subtitle": {
+    "message": "One npm package to authenticate users, manage tokens, and call the WordPress REST API from any JavaScript application - browser or Node.js."
+  },
+  "ecosystem.jsSdk.hero.npmTitle": {
+    "message": "View on npm"
+  },
+  "ecosystem.jsSdk.hero.npm": {
+    "message": "View on npm →"
+  },
+  "ecosystem.jsSdk.hero.githubTitle": {
+    "message": "View on GitHub"
+  },
+  "ecosystem.jsSdk.highlights.npm": {
+    "message": "One npm package"
+  },
+  "ecosystem.jsSdk.highlights.browserNode": {
+    "message": "Browser & Node.js"
+  },
+  "ecosystem.jsSdk.highlights.framework": {
+    "message": "Works with any JS framework"
+  },
+  "ecosystem.jsSdk.highlights.free": {
+    "message": "Free & open source"
+  },
+  "ecosystem.jsSdk.compat.eyebrow": {
+    "message": "Compatibility"
+  },
+  "ecosystem.jsSdk.compat.title": {
+    "message": "Works with any JavaScript framework"
+  },
+  "ecosystem.jsSdk.compat.lead": {
+    "message": "A zero-dependency library with full ESM and CommonJS support - works in React, Vue, Angular, Svelte, or a plain script tag."
+  },
+  "ecosystem.jsSdk.api.eyebrow": {
+    "message": "API Reference"
+  },
+  "ecosystem.jsSdk.api.title": {
+    "message": "Everything in the token lifecycle"
+  },
+  "ecosystem.jsSdk.api.lead": {
+    "message": "Async / await API covering authentication, registration, and the full token lifecycle."
+  },
+  "ecosystem.jsSdk.useCases.eyebrow": {
+    "message": "Use Cases"
+  },
+  "ecosystem.jsSdk.useCases.title": {
+    "message": "Built for real JavaScript workflows"
+  },
+  "ecosystem.jsSdk.useCases.lead": {
+    "message": "From React SPAs to server-side Node.js middleware - the client handles the auth layer so you can focus on your application."
+  },
+  "ecosystem.jsSdk.install.eyebrow": {
+    "message": "Getting Started"
+  },
+  "ecosystem.jsSdk.install.title": {
+    "message": "Up and running in minutes"
+  },
+  "ecosystem.jsSdk.install.requirements": {
+    "message": "Requirements"
+  },
+  "ecosystem.jsSdk.install.reqAny": {
+    "message": "any"
+  },
+  "ecosystem.jsSdk.install.reqActive": {
+    "message": "active"
+  },
+  "ecosystem.jsSdk.install.step1.title": {
+    "message": "Install via npm"
+  },
+  "ecosystem.jsSdk.install.step1.desc": {
+    "message": "Add the package to your project."
+  },
+  "ecosystem.jsSdk.install.step2.title": {
+    "message": "Instantiate the client"
+  },
+  "ecosystem.jsSdk.install.step2.desc": {
+    "message": "Pass your WordPress site URL and Simple JWT Login Auth Code."
+  },
+  "ecosystem.jsSdk.install.step3.title": {
+    "message": "Call the API"
+  },
+  "ecosystem.jsSdk.install.step3.desc": {
+    "message": "Use the async API to authenticate, register, or manage tokens."
+  },
+  "ecosystem.jsSdk.methods.eyebrow": {
+    "message": "Methods"
+  },
+  "ecosystem.jsSdk.methods.title": {
+    "message": "Complete method reference"
+  },
+  "ecosystem.jsSdk.methods.lead": {
+    "message": "All available client methods at a glance."
+  },
+  "ecosystem.jsSdk.methods.login": {
+    "message": "Exchange credentials for a JWT"
+  },
+  "ecosystem.jsSdk.methods.validateToken": {
+    "message": "Verify a token signature and expiry"
+  },
+  "ecosystem.jsSdk.methods.refreshToken": {
+    "message": "Get a new token from an expiring one"
+  },
+  "ecosystem.jsSdk.methods.revokeToken": {
+    "message": "Permanently invalidate a token"
+  },
+  "ecosystem.jsSdk.methods.register": {
+    "message": "Create a new WordPress user account"
+  },
+  "ecosystem.jsSdk.methods.delete": {
+    "message": "Delete a user via a verified JWT"
+  },
+  "ecosystem.jsSdk.methods.autologin": {
+    "message": "Generate a one-click auto-login URL"
+  },
+  "ecosystem.jsSdk.methods.changePassword": {
+    "message": "Change the authenticated user's password"
+  },
+  "ecosystem.jsSdk.methods.resetPassword": {
+    "message": "Trigger a password reset email"
+  },
+  "ecosystem.jsSdk.methods.npmTitle": {
+    "message": "View on npm"
+  },
+  "ecosystem.jsSdk.methods.npm": {
+    "message": "View on npm →"
+  },
+  "ecosystem.jsSdk.cta.title": {
+    "message": "Add JWT to your JavaScript app today"
+  },
+  "ecosystem.jsSdk.cta.subtitle": {
+    "message": "One npm install and a few lines of code - that's all it takes to add WordPress JWT authentication to any JavaScript project."
+  },
+  "ecosystem.jsSdk.cta.npmTitle": {
+    "message": "View on npm"
+  },
+  "ecosystem.jsSdk.cta.getStarted": {
+    "message": "Get started →"
+  },
+  "ecosystem.jsSdk.cta.githubTitle": {
+    "message": "View source on GitHub"
+  },
+  "ecosystem.jsSdk.cta.github": {
+    "message": "View on GitHub"
+  },
+  "ecosystem.mailpoet.jsonLd.description": {
+    "message": "Add magic-link login to your MailPoet email campaigns. Subscribers click once and land on your site already logged in - no password required."
+  },
+  "ecosystem.mailpoet.params.text.desc": {
+    "message": "Visible link text shown to the subscriber."
+  },
+  "ecosystem.mailpoet.params.authCode.desc": {
+    "message": "The Auth Code from Simple JWT Login → Auth Codes."
+  },
+  "ecosystem.mailpoet.params.validity.desc": {
+    "message": "Token lifetime in seconds. Default: 604800 (1 week)."
+  },
+  "ecosystem.mailpoet.params.redirectUrl.desc": {
+    "message": "Override the default redirect URL after login."
+  },
+  "ecosystem.mailpoet.params.class.desc": {
+    "message": "CSS class(es) to apply to the link element."
+  },
+  "ecosystem.mailpoet.params.style.desc": {
+    "message": "Inline CSS styles for the link."
+  },
+  "ecosystem.mailpoet.useCases.newsletter.title": {
+    "message": "Newsletter re-engagement"
+  },
+  "ecosystem.mailpoet.useCases.newsletter.description": {
+    "message": "Include a one-click \"Read your exclusive content\" link in your newsletter. Subscribers land on a members-only page already logged in - no friction, higher engagement."
+  },
+  "ecosystem.mailpoet.useCases.cart.title": {
+    "message": "Abandoned cart recovery"
+  },
+  "ecosystem.mailpoet.useCases.cart.description": {
+    "message": "Send a cart-recovery email with a magic link that logs the customer in and redirects them straight to checkout - remove every barrier between the email and the purchase."
+  },
+  "ecosystem.mailpoet.useCases.welcome.title": {
+    "message": "Welcome & onboarding emails"
+  },
+  "ecosystem.mailpoet.useCases.welcome.description": {
+    "message": "Welcome new members with a single click that logs them in and drops them on your onboarding page. First impressions matter - make the journey seamless from day one."
+  },
+  "ecosystem.mailpoet.meta.title": {
+    "message": "MailPoet Add-on - Simple JWT Login"
+  },
+  "ecosystem.mailpoet.meta.description": {
+    "message": "Add personalized magic-link login to your MailPoet email campaigns. One shortcode, zero passwords - subscribers click and land on your site already logged in."
+  },
+  "ecosystem.mailpoet.hero.badge": {
+    "message": "MailPoet Add-on"
+  },
+  "ecosystem.mailpoet.hero.title1": {
+    "message": "Magic-link login"
+  },
+  "ecosystem.mailpoet.hero.title2": {
+    "message": "inside your emails"
+  },
+  "ecosystem.mailpoet.hero.subtitle": {
+    "message": "Drop one shortcode into any MailPoet template. Every subscriber gets a personalized, one-click login link - no password, no friction."
+  },
+  "ecosystem.mailpoet.hero.downloadTitle": {
+    "message": "Download from WordPress.org"
+  },
+  "ecosystem.mailpoet.hero.download": {
+    "message": "Download free →"
+  },
+  "ecosystem.mailpoet.hero.docsTitle": {
+    "message": "Read the documentation"
+  },
+  "ecosystem.mailpoet.hero.docs": {
+    "message": "Documentation"
+  },
+  "ecosystem.mailpoet.code.title": {
+    "message": "MailPoet shortcode"
+  },
+  "ecosystem.mailpoet.highlights.shortcode": {
+    "message": "One shortcode, any template"
+  },
+  "ecosystem.mailpoet.highlights.passwordless": {
+    "message": "Passwordless login"
+  },
+  "ecosystem.mailpoet.highlights.lifetime": {
+    "message": "Configurable token lifetime"
+  },
+  "ecosystem.mailpoet.highlights.free": {
+    "message": "Free & open source"
+  },
+  "ecosystem.mailpoet.how.eyebrow": {
+    "message": "How it works"
+  },
+  "ecosystem.mailpoet.how.title": {
+    "message": "From shortcode to seamless login"
+  },
+  "ecosystem.mailpoet.how.install.title": {
+    "message": "Install & configure"
+  },
+  "ecosystem.mailpoet.how.install.desc": {
+    "message": "Install the add-on, activate it, and copy your Auth Code from Simple JWT Login settings."
+  },
+  "ecosystem.mailpoet.how.shortcode.title": {
+    "message": "Add the shortcode"
+  },
+  "ecosystem.mailpoet.how.shortcode.desc": {
+    "message": "Drop the shortcode into any MailPoet email template. Set the link text, validity period, and redirect URL."
+  },
+  "ecosystem.mailpoet.how.send.title": {
+    "message": "Send your campaign"
+  },
+  "ecosystem.mailpoet.how.send.desc": {
+    "message": "MailPoet renders a unique, personalized autologin URL for each subscriber when the email is sent."
+  },
+  "ecosystem.mailpoet.how.click.title": {
+    "message": "Subscriber clicks - done"
+  },
+  "ecosystem.mailpoet.how.click.desc": {
+    "message": "One click logs them in and redirects them to any page on your site. No passwords, no forms."
+  },
+  "ecosystem.mailpoet.useCases.eyebrow": {
+    "message": "Use Cases"
+  },
+  "ecosystem.mailpoet.useCases.title": {
+    "message": "Everywhere a smooth login matters"
+  },
+  "ecosystem.mailpoet.ref.eyebrow": {
+    "message": "Reference"
+  },
+  "ecosystem.mailpoet.ref.title": {
+    "message": "Shortcode parameters"
+  },
+  "ecosystem.mailpoet.ref.lead": {
+    "message": "All available parameters for the {code} shortcode."
+  },
+  "ecosystem.mailpoet.ref.required": {
+    "message": "required"
+  },
+  "ecosystem.mailpoet.install.eyebrow": {
+    "message": "Getting Started"
+  },
+  "ecosystem.mailpoet.install.title": {
+    "message": "Up and running in 4 steps"
+  },
+  "ecosystem.mailpoet.install.core.title": {
+    "message": "Install Simple JWT Login"
+  },
+  "ecosystem.mailpoet.install.core.desc": {
+    "message": "Make sure the core plugin is installed and active on your WordPress site."
+  },
+  "ecosystem.mailpoet.install.addon.title": {
+    "message": "Install the MailPoet add-on"
+  },
+  "ecosystem.mailpoet.install.addon.desc": {
+    "message": "Search for \"Simple JWT Login MailPoet\" on WordPress.org, install, and activate."
+  },
+  "ecosystem.mailpoet.install.authCode.title": {
+    "message": "Copy your Auth Code"
+  },
+  "ecosystem.mailpoet.install.authCode.desc": {
+    "message": "Go to Simple JWT Login → Auth Codes. Copy the code you want to use for autologin links."
+  },
+  "ecosystem.mailpoet.install.template.title": {
+    "message": "Add the shortcode to your template"
+  },
+  "ecosystem.mailpoet.install.template.desc": {
+    "message": "Open a MailPoet email template, paste the shortcode with your auth code and desired parameters."
+  },
+  "ecosystem.mailpoet.install.downloadTitle": {
+    "message": "Download from WordPress.org"
+  },
+  "ecosystem.mailpoet.install.download": {
+    "message": "Download free →"
+  },
+  "ecosystem.mailpoet.cta.title": {
+    "message": "Turn every email into a one-click login"
+  },
+  "ecosystem.mailpoet.cta.subtitle": {
+    "message": "Install the free MailPoet add-on, paste one shortcode, and give every subscriber a frictionless path back to your site."
+  },
+  "ecosystem.mailpoet.cta.downloadTitle": {
+    "message": "Download from WordPress.org"
+  },
+  "ecosystem.mailpoet.cta.download": {
+    "message": "Download free →"
+  },
+  "ecosystem.mailpoet.cta.docsTitle": {
+    "message": "Read the documentation"
+  },
+  "ecosystem.mailpoet.cta.docs": {
+    "message": "Documentation"
+  },
+  "ecosystem.phpSdk.examples.auth.label": {
+    "message": "Authenticate"
+  },
+  "ecosystem.phpSdk.examples.auth.headline": {
+    "message": "Exchange credentials for a JWT"
+  },
+  "ecosystem.phpSdk.examples.auth.description": {
+    "message": "Authenticate any WordPress user by email or username and receive a signed JWT. Pass the token in the Authorization header for all subsequent requests to protected endpoints."
+  },
+  "ecosystem.phpSdk.examples.register.label": {
+    "message": "Register User"
+  },
+  "ecosystem.phpSdk.examples.register.headline": {
+    "message": "Create WordPress accounts via API"
+  },
+  "ecosystem.phpSdk.examples.register.description": {
+    "message": "Register new WordPress users programmatically. Optionally assign a role at creation time and receive a JWT immediately after registration - no admin UI required."
+  },
+  "ecosystem.phpSdk.examples.validate.label": {
+    "message": "Validate Token"
+  },
+  "ecosystem.phpSdk.examples.validate.headline": {
+    "message": "Verify a JWT is still valid"
+  },
+  "ecosystem.phpSdk.examples.validate.description": {
+    "message": "Check that a token has not expired and its signature matches the plugin decryption key. Use this on every request to protected resources in your application."
+  },
+  "ecosystem.phpSdk.examples.refresh.label": {
+    "message": "Refresh Token"
+  },
+  "ecosystem.phpSdk.examples.refresh.headline": {
+    "message": "Keep sessions alive without re-login"
+  },
+  "ecosystem.phpSdk.examples.refresh.description": {
+    "message": "Exchange an expiring token for a fresh one without requiring the user to enter credentials again. Perfect for long-running sessions in SPAs and mobile apps."
+  },
+  "ecosystem.phpSdk.examples.revoke.label": {
+    "message": "Revoke Token"
+  },
+  "ecosystem.phpSdk.examples.revoke.headline": {
+    "message": "Force-expire a token immediately"
+  },
+  "ecosystem.phpSdk.examples.revoke.description": {
+    "message": "Revoke a token so it can never be used again - useful for implementing sign-out, account suspension, or post-deployment security sweeps."
+  },
+  "ecosystem.phpSdk.examples.packagistTitle": {
+    "message": "View on Packagist"
+  },
+  "ecosystem.phpSdk.examples.packagist": {
+    "message": "Packagist →"
+  },
+  "ecosystem.phpSdk.useCases.headless.title": {
+    "message": "Headless WordPress"
+  },
+  "ecosystem.phpSdk.useCases.headless.description": {
+    "message": "Build a decoupled frontend in Laravel, Symfony, or plain PHP while WordPress handles content. Authenticate users from your PHP app and pass JWTs to the WP REST API."
+  },
+  "ecosystem.phpSdk.useCases.registration.title": {
+    "message": "User registration flow"
+  },
+  "ecosystem.phpSdk.useCases.registration.description": {
+    "message": "Register users from your own sign-up form and immediately issue a JWT - all in one round trip, without touching the WordPress admin."
+  },
+  "ecosystem.phpSdk.useCases.testing.title": {
+    "message": "Automated testing"
+  },
+  "ecosystem.phpSdk.useCases.testing.description": {
+    "message": "Generate tokens in PHPUnit or Pest fixtures to test authenticated flows against a real WordPress instance - no browser, no cookies, no mocking."
+  },
+  "ecosystem.phpSdk.frameworks.plainPhp": {
+    "message": "Plain PHP"
+  },
+  "ecosystem.phpSdk.meta.title": {
+    "message": "PHP Client SDK - Simple JWT Login"
+  },
+  "ecosystem.phpSdk.meta.description": {
+    "message": "Official PHP client for Simple JWT Login. Authenticate, register, validate and revoke tokens from any PHP app - one Composer package."
+  },
+  "ecosystem.phpSdk.hero.badge": {
+    "message": "PHP Client SDK"
+  },
+  "ecosystem.phpSdk.hero.titleAccent": {
+    "message": "for PHP"
+  },
+  "ecosystem.phpSdk.hero.subtitle": {
+    "message": "One Composer package to authenticate users, manage tokens, and call the WordPress REST API from any PHP application - no boilerplate required."
+  },
+  "ecosystem.phpSdk.hero.packagistTitle": {
+    "message": "View on Packagist"
+  },
+  "ecosystem.phpSdk.hero.packagist": {
+    "message": "View on Packagist →"
+  },
+  "ecosystem.phpSdk.hero.githubTitle": {
+    "message": "View on GitHub"
+  },
+  "ecosystem.phpSdk.highlights.composer": {
+    "message": "One Composer package"
+  },
+  "ecosystem.phpSdk.highlights.php": {
+    "message": "PHP 5.5+ compatible"
+  },
+  "ecosystem.phpSdk.highlights.framework": {
+    "message": "Works with any framework"
+  },
+  "ecosystem.phpSdk.highlights.free": {
+    "message": "Free & open source"
+  },
+  "ecosystem.phpSdk.compat.eyebrow": {
+    "message": "Compatibility"
+  },
+  "ecosystem.phpSdk.compat.title": {
+    "message": "Works with any PHP framework"
+  },
+  "ecosystem.phpSdk.compat.lead": {
+    "message": "The client is a plain PHP library with zero framework dependencies - drop it into Laravel, Yii, CodeIgniter, Symfony, or a standalone script."
+  },
+  "ecosystem.phpSdk.api.eyebrow": {
+    "message": "API Reference"
+  },
+  "ecosystem.phpSdk.api.title": {
+    "message": "Everything in the token lifecycle"
+  },
+  "ecosystem.phpSdk.api.lead": {
+    "message": "Fluent, chainable API covering authentication, registration, and the full token lifecycle."
+  },
+  "ecosystem.phpSdk.useCases.eyebrow": {
+    "message": "Use Cases"
+  },
+  "ecosystem.phpSdk.useCases.title": {
+    "message": "Built for real PHP workflows"
+  },
+  "ecosystem.phpSdk.useCases.lead": {
+    "message": "From headless WordPress to automated testing - the client handles the auth layer so you can focus on your app."
+  },
+  "ecosystem.phpSdk.install.eyebrow": {
+    "message": "Getting Started"
+  },
+  "ecosystem.phpSdk.install.title": {
+    "message": "Up and running in minutes"
+  },
+  "ecosystem.phpSdk.install.requirements": {
+    "message": "Requirements"
+  },
+  "ecosystem.phpSdk.install.reqAny": {
+    "message": "any"
+  },
+  "ecosystem.phpSdk.install.reqActive": {
+    "message": "active"
+  },
+  "ecosystem.phpSdk.install.step1.title": {
+    "message": "Install via Composer"
+  },
+  "ecosystem.phpSdk.install.step1.desc": {
+    "message": "Add the package to your project with a single command."
+  },
+  "ecosystem.phpSdk.install.step2.title": {
+    "message": "Instantiate the client"
+  },
+  "ecosystem.phpSdk.install.step2.desc": {
+    "message": "Pass your WordPress site URL and Simple JWT Login Auth Code."
+  },
+  "ecosystem.phpSdk.install.step3.title": {
+    "message": "Call the API"
+  },
+  "ecosystem.phpSdk.install.step3.desc": {
+    "message": "Use the fluent interface to authenticate, register, or manage tokens."
+  },
+  "ecosystem.phpSdk.methods.eyebrow": {
+    "message": "Methods"
+  },
+  "ecosystem.phpSdk.methods.title": {
+    "message": "Complete method reference"
+  },
+  "ecosystem.phpSdk.methods.lead": {
+    "message": "All available client methods at a glance."
+  },
+  "ecosystem.phpSdk.methods.authenticate": {
+    "message": "Exchange credentials for a JWT"
+  },
+  "ecosystem.phpSdk.methods.register": {
+    "message": "Create a new WordPress user account"
+  },
+  "ecosystem.phpSdk.methods.deleteUser": {
+    "message": "Delete a user via a verified JWT"
+  },
+  "ecosystem.phpSdk.methods.validateToken": {
+    "message": "Verify a token signature and expiry"
+  },
+  "ecosystem.phpSdk.methods.refreshToken": {
+    "message": "Get a new token from an expiring one"
+  },
+  "ecosystem.phpSdk.methods.revokeToken": {
+    "message": "Permanently invalidate a token"
+  },
+  "ecosystem.phpSdk.methods.autologin": {
+    "message": "Generate a one-click auto-login URL"
+  },
+  "ecosystem.phpSdk.methods.changePassword": {
+    "message": "Change the authenticated user's password"
+  },
+  "ecosystem.phpSdk.methods.resetPassword": {
+    "message": "Trigger a password reset email"
+  },
+  "ecosystem.phpSdk.methods.packagistTitle": {
+    "message": "View on Packagist"
+  },
+  "ecosystem.phpSdk.methods.packagist": {
+    "message": "View on Packagist →"
+  },
+  "ecosystem.phpSdk.cta.title": {
+    "message": "Add JWT to your PHP app today"
+  },
+  "ecosystem.phpSdk.cta.subtitle": {
+    "message": "One Composer install and a few lines of code - that's all it takes to add WordPress JWT authentication to any PHP project."
+  },
+  "ecosystem.phpSdk.cta.packagistTitle": {
+    "message": "View on Packagist"
+  },
+  "ecosystem.phpSdk.cta.getStarted": {
+    "message": "Get started →"
+  },
+  "ecosystem.phpSdk.cta.githubTitle": {
+    "message": "View source on GitHub"
+  },
+  "ecosystem.phpSdk.cta.github": {
+    "message": "View on GitHub"
   }
 }

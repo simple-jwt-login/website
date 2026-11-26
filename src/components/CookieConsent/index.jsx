@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Translate, {translate} from '@docusaurus/Translate';
 import {
   getStoredConsent,
   storeConsent,
@@ -39,10 +40,11 @@ export default function CookieConsent() {
   }
 
   return (
-    <div className={styles.banner} role="dialog" aria-label="Cookie consent">
+    <div className={styles.banner} role="dialog" aria-label={translate({id: 'cookieConsent.ariaLabel', message: 'Cookie consent'})}>
       <p className={styles.text}>
-        We use Google Analytics to see which pages are useful and which
-        aren't - no cookies are set until you hit "Accept".
+        <Translate id="cookieConsent.text">
+          {'We use Google Analytics to see which pages are useful and which aren\'t - no cookies are set until you hit "Accept".'}
+        </Translate>
       </p>
       <div className={styles.actions}>
         <button
@@ -50,10 +52,10 @@ export default function CookieConsent() {
           className={styles.decline}
           onClick={handleDecline}
         >
-          Decline
+          <Translate id="cookieConsent.decline">Decline</Translate>
         </button>
         <button type="button" className={styles.accept} onClick={handleAccept}>
-          Accept
+          <Translate id="cookieConsent.accept">Accept</Translate>
         </button>
       </div>
     </div>

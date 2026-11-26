@@ -1,21 +1,22 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import Link from '@docusaurus/Link';
+import {translate} from '@docusaurus/Translate';
 import clsx from 'clsx';
 import styles from './index.module.css';
 
 const VERSIONS = [
   {
     id: 'v4',
-    label: 'Download v4',
+    label: translate({id: 'downloadButton.v4.label', message: 'Download v4'}),
     url: 'https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true',
-    hint: 'Latest - API Keys, 2FA, Webhooks, Audit Logs',
+    hint: translate({id: 'downloadButton.v4.hint', message: 'Latest - API Keys, 2FA, Webhooks, Audit Logs'}),
   },
   {
     id: 'v3',
-    label: 'Download v3',
+    label: translate({id: 'downloadButton.v3.label', message: 'Download v3'}),
     url: 'https://github.com/nicumicle/simple-jwt-login/blob/v3/download/simple-jwt-login.zip?raw=true',
-    hint: 'Stable release',
+    hint: translate({id: 'downloadButton.v3.hint', message: 'Stable release'}),
   },
 ];
 
@@ -81,7 +82,7 @@ export default function DownloadButton() {
         className={styles.toggle}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label="Choose plugin version to download"
+        aria-label={translate({id: 'downloadButton.ariaLabel', message: 'Choose plugin version to download'})}
         onClick={() => setOpen((value) => !value)}
       >
         <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true">

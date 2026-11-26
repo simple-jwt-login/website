@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Translate from '@docusaurus/Translate';
 
 const cardWidth = 320;
 const borderRadius = 8;
@@ -115,7 +116,7 @@ const Card = ({ hexa, title, description, image, link = null }) => (
             <Title>{title}</Title>
             <Description>{description}</Description>
             <BottomBar background={hexa} >
-                <a href={link}>Read more</a>
+                <a href={link}><Translate id="card.readMore">Read more</Translate></a>
             </BottomBar>
         </Content>
     </Style>

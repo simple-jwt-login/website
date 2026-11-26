@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
+import Translate, {translate} from '@docusaurus/Translate';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTerminal, faEnvelope, faBoxArchive } from '@fortawesome/free-solid-svg-icons';
@@ -15,65 +16,65 @@ import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 const addons = [
   {
     id: 'cli',
-    name: 'WP-CLI Add-on',
-    tagline: 'JWT from the command line',
+    name: translate({id: 'ecosystem.index.addons.cli.name', message: 'WP-CLI Add-on'}),
+    tagline: translate({id: 'ecosystem.index.addons.cli.tagline', message: 'JWT from the command line'}),
     description:
-      'Manage Simple JWT Login without ever opening the WordPress admin. Generate tokens, validate JWTs, revoke sessions, and push config between environments - all scriptable, all automatable.',
+      translate({id: 'ecosystem.index.addons.cli.description', message: 'Manage Simple JWT Login without ever opening the WordPress admin. Generate tokens, validate JWTs, revoke sessions, and push config between environments - all scriptable, all automatable.'}),
     icon: faTerminal,
-    tags: ['DevOps', 'CI/CD', 'Automation'],
+    tags: [translate({id: 'ecosystem.index.addons.cli.tags.0', message: 'DevOps'}), translate({id: 'ecosystem.index.addons.cli.tags.1', message: 'CI/CD'}), translate({id: 'ecosystem.index.addons.cli.tags.2', message: 'Automation'})],
     status: 'stable',
     docsHref: '/docs/cli/',
     primaryHref: '/ecosystem/cli',
-    primaryLabel: 'Learn more',
+    primaryLabel: translate({id: 'ecosystem.index.addons.cli.primaryLabel', message: 'Learn more'}),
     secondaryHref: 'https://github.com/simple-jwt-login/simple-jwt-login-cli',
     secondaryLabel: 'GitHub',
     highlights: [
-      'Generate & validate tokens',
-      'Revoke sessions instantly',
-      'Export / import config',
-      'Staging → production migration',
+      translate({id: 'ecosystem.index.addons.cli.highlights.0', message: 'Generate & validate tokens'}),
+      translate({id: 'ecosystem.index.addons.cli.highlights.1', message: 'Revoke sessions instantly'}),
+      translate({id: 'ecosystem.index.addons.cli.highlights.2', message: 'Export / import config'}),
+      translate({id: 'ecosystem.index.addons.cli.highlights.3', message: 'Staging → production migration'}),
     ],
   },
   {
     id: 'mailpoet',
-    name: 'MailPoet Add-on',
-    tagline: 'Magic-link emails, zero friction',
+    name: translate({id: 'ecosystem.index.addons.mailpoet.name', message: 'MailPoet Add-on'}),
+    tagline: translate({id: 'ecosystem.index.addons.mailpoet.tagline', message: 'Magic-link emails, zero friction'}),
     description:
-      'Drop a shortcode into any MailPoet campaign and every subscriber gets a personalized, one-click login link. No passwords, no friction - just a seamless email-to-site experience.',
+      translate({id: 'ecosystem.index.addons.mailpoet.description', message: 'Drop a shortcode into any MailPoet campaign and every subscriber gets a personalized, one-click login link. No passwords, no friction - just a seamless email-to-site experience.'}),
     icon: faEnvelope,
-    tags: ['Email', 'Magic Links', 'MailPoet'],
+    tags: [translate({id: 'ecosystem.index.addons.mailpoet.tags.0', message: 'Email'}), translate({id: 'ecosystem.index.addons.mailpoet.tags.1', message: 'Magic Links'}), 'MailPoet'],
     status: 'stable',
     docsHref: '/docs/mailpoet/',
     primaryHref: '/ecosystem/mailpoet',
-    primaryLabel: 'Learn more',
+    primaryLabel: translate({id: 'ecosystem.index.addons.mailpoet.primaryLabel', message: 'Learn more'}),
     secondaryHref: 'https://wordpress.org/plugins/simple-jwt-login-mailpoet',
-    secondaryLabel: 'Download',
+    secondaryLabel: translate({id: 'ecosystem.index.addons.mailpoet.secondaryLabel', message: 'Download'}),
     highlights: [
-      'personalized login links per recipient',
-      'Works with any MailPoet template',
-      'Time-limited, single-use tokens',
-      'No custom code needed',
+      translate({id: 'ecosystem.index.addons.mailpoet.highlights.0', message: 'personalized login links per recipient'}),
+      translate({id: 'ecosystem.index.addons.mailpoet.highlights.1', message: 'Works with any MailPoet template'}),
+      translate({id: 'ecosystem.index.addons.mailpoet.highlights.2', message: 'Time-limited, single-use tokens'}),
+      translate({id: 'ecosystem.index.addons.mailpoet.highlights.3', message: 'No custom code needed'}),
     ],
   },
   {
     id: 'export-import',
-    name: 'Export & Import Add-on',
-    tagline: 'Move your config in one command',
+    name: translate({id: 'ecosystem.index.addons.exportImport.name', message: 'Export & Import Add-on'}),
+    tagline: translate({id: 'ecosystem.index.addons.exportImport.tagline', message: 'Move your config in one command'}),
     description:
-      'Back up your complete Simple JWT Login configuration - Auth Codes, protection rules, and all settings - and restore it on any site. Ideal for staging migrations and multi-site setups.',
+      translate({id: 'ecosystem.index.addons.exportImport.description', message: 'Back up your complete Simple JWT Login configuration - Auth Codes, protection rules, and all settings - and restore it on any site. Ideal for staging migrations and multi-site setups.'}),
     icon: faBoxArchive,
-    tags: ['Migration', 'DevOps', 'Backup'],
+    tags: [translate({id: 'ecosystem.index.addons.exportImport.tags.0', message: 'Migration'}), translate({id: 'ecosystem.index.addons.exportImport.tags.1', message: 'DevOps'}), translate({id: 'ecosystem.index.addons.exportImport.tags.2', message: 'Backup'})],
     status: 'stable',
     docsHref: '/docs/export-import/',
     primaryHref: '/ecosystem/export-import',
-    primaryLabel: 'Learn more',
+    primaryLabel: translate({id: 'ecosystem.index.addons.exportImport.primaryLabel', message: 'Learn more'}),
     secondaryHref: 'https://github.com/simple-jwt-login/export-import/archive/refs/heads/master.zip',
-    secondaryLabel: 'Download',
+    secondaryLabel: translate({id: 'ecosystem.index.addons.exportImport.secondaryLabel', message: 'Download'}),
     highlights: [
-      'Full config backup & restore',
-      'Auth Codes included',
-      'Works across any WP installs',
-      'JSON-based, human-readable',
+      translate({id: 'ecosystem.index.addons.exportImport.highlights.0', message: 'Full config backup & restore'}),
+      translate({id: 'ecosystem.index.addons.exportImport.highlights.1', message: 'Auth Codes included'}),
+      translate({id: 'ecosystem.index.addons.exportImport.highlights.2', message: 'Works across any WP installs'}),
+      translate({id: 'ecosystem.index.addons.exportImport.highlights.3', message: 'JSON-based, human-readable'}),
     ],
   },
 ];
@@ -82,41 +83,41 @@ const integrations = [
   {
     id: 'wpgraphql',
     name: 'WPGraphQL',
-    tagline: 'JWT authentication for GraphQL',
+    tagline: translate({id: 'ecosystem.index.integrations.wpgraphql.tagline', message: 'JWT authentication for GraphQL'}),
     description:
-      'Use the same JWTs you issue through Simple JWT Login to authenticate any WPGraphQL query or mutation. Enable it with a single checkbox - no code, no custom middleware.',
+      translate({id: 'ecosystem.index.integrations.wpgraphql.description', message: 'Use the same JWTs you issue through Simple JWT Login to authenticate any WPGraphQL query or mutation. Enable it with a single checkbox - no code, no custom middleware.'}),
     logo: 'assets/images/screenshots/third-party-integrations/wpgraphql-logo.png',
-    logoAlt: 'WPGraphQL logo',
-    tags: ['GraphQL', 'Headless', 'REST-free'],
+    logoAlt: translate({id: 'ecosystem.index.integrations.wpgraphql.logoAlt', message: 'WPGraphQL logo'}),
+    tags: ['GraphQL', translate({id: 'ecosystem.index.integrations.wpgraphql.tags.1', message: 'Headless'}), translate({id: 'ecosystem.index.integrations.wpgraphql.tags.2', message: 'REST-free'})],
     status: 'stable',
     docsHref: '/docs/integrations/third-party/wpgraphql/',
     primaryHref: '/docs/integrations/third-party/wpgraphql/',
-    primaryLabel: 'Read the docs',
+    primaryLabel: translate({id: 'ecosystem.index.integrations.wpgraphql.primaryLabel', message: 'Read the docs'}),
     highlights: [
-      'Authenticate queries & mutations',
-      'One-checkbox setup',
-      'Works with React, Vue, Next.js',
-      'Same tokens as REST API',
+      translate({id: 'ecosystem.index.integrations.wpgraphql.highlights.0', message: 'Authenticate queries & mutations'}),
+      translate({id: 'ecosystem.index.integrations.wpgraphql.highlights.1', message: 'One-checkbox setup'}),
+      translate({id: 'ecosystem.index.integrations.wpgraphql.highlights.2', message: 'Works with React, Vue, Next.js'}),
+      translate({id: 'ecosystem.index.integrations.wpgraphql.highlights.3', message: 'Same tokens as REST API'}),
     ],
   },
   {
     id: 'google',
     name: 'Google OAuth',
-    tagline: 'Sign in with Google',
+    tagline: translate({id: 'ecosystem.index.integrations.google.tagline', message: 'Sign in with Google'}),
     description:
-      'Let users authenticate with their Google Account. Simple JWT Login exchanges a Google ID token for a WordPress JWT, giving you full control over the session without storing passwords.',
+      translate({id: 'ecosystem.index.integrations.google.description', message: 'Let users authenticate with their Google Account. Simple JWT Login exchanges a Google ID token for a WordPress JWT, giving you full control over the session without storing passwords.'}),
     logo: 'assets/images/features/google-plus.png',
     logoAlt: 'Google OAuth',
-    tags: ['OAuth', 'Social Login', 'Passwordless'],
+    tags: [translate({id: 'ecosystem.index.integrations.google.tags.0', message: 'OAuth'}), translate({id: 'ecosystem.index.integrations.google.tags.1', message: 'Social Login'}), translate({id: 'ecosystem.index.integrations.google.tags.2', message: 'Passwordless'})],
     status: 'beta',
     docsHref: '/docs/integrations/oauth/google/setup',
     primaryHref: '/docs/integrations/oauth/google/setup',
-    primaryLabel: 'Read the docs',
+    primaryLabel: translate({id: 'ecosystem.index.integrations.google.primaryLabel', message: 'Read the docs'}),
     highlights: [
-      'Google ID token → WordPress JWT',
-      'Passwordless login flow',
-      'Use Google JWT on all endpoints',
-      'Full token lifecycle control',
+      translate({id: 'ecosystem.index.integrations.google.highlights.0', message: 'Google ID token → WordPress JWT'}),
+      translate({id: 'ecosystem.index.integrations.google.highlights.1', message: 'Passwordless login flow'}),
+      translate({id: 'ecosystem.index.integrations.google.highlights.2', message: 'Use Google JWT on all endpoints'}),
+      translate({id: 'ecosystem.index.integrations.google.highlights.3', message: 'Full token lifecycle control'}),
     ],
   },
 ];
@@ -124,10 +125,10 @@ const integrations = [
 const sdks = [
   {
     id: 'php',
-    name: 'PHP Client',
-    tagline: 'One Composer package, any PHP framework',
+    name: translate({id: 'ecosystem.index.sdks.php.name', message: 'PHP Client'}),
+    tagline: translate({id: 'ecosystem.index.sdks.php.tagline', message: 'One Composer package, any PHP framework'}),
     description:
-      'Integrate Simple JWT Login into any PHP app with a single dependency. Works out of the box with Laravel, Yii, CodeIgniter, Slim, and plain PHP.',
+      translate({id: 'ecosystem.index.sdks.php.description', message: 'Integrate Simple JWT Login into any PHP app with a single dependency. Works out of the box with Laravel, Yii, CodeIgniter, Slim, and plain PHP.'}),
     tags: ['PHP', 'Laravel', 'Yii', 'Composer'],
     logos: [
       { src: 'assets/images/frameworks/php.png', alt: 'PHP' },
@@ -137,16 +138,16 @@ const sdks = [
     ],
     install: 'composer require "nicumicle/simple-jwt-login-client-php"',
     primaryHref: '/ecosystem/php-sdk',
-    primaryLabel: 'Learn more',
+    primaryLabel: translate({id: 'ecosystem.index.sdks.php.primaryLabel', message: 'Learn more'}),
     secondaryHref: 'https://packagist.org/packages/nicumicle/simple-jwt-login-client-php',
     secondaryLabel: 'Packagist',
   },
   {
     id: 'js',
-    name: 'JavaScript Client',
-    tagline: 'npm package for any JS framework',
+    name: translate({id: 'ecosystem.index.sdks.js.name', message: 'JavaScript Client'}),
+    tagline: translate({id: 'ecosystem.index.sdks.js.tagline', message: 'npm package for any JS framework'}),
     description:
-      'Add Simple JWT Login authentication to React, Vue, Angular, or any JavaScript app with a handful of lines. Works in the browser and in Node.js.',
+      translate({id: 'ecosystem.index.sdks.js.description', message: 'Add Simple JWT Login authentication to React, Vue, Angular, or any JavaScript app with a handful of lines. Works in the browser and in Node.js.'}),
     tags: ['JavaScript', 'React', 'Vue', 'Angular'],
     logos: [
       { src: 'assets/images/frameworks/javascript.png', alt: 'JavaScript' },
@@ -156,7 +157,7 @@ const sdks = [
     ],
     install: 'npm install simple-jwt-login',
     primaryHref: '/ecosystem/js-sdk',
-    primaryLabel: 'Learn more',
+    primaryLabel: translate({id: 'ecosystem.index.sdks.js.primaryLabel', message: 'Learn more'}),
     secondaryHref: 'https://www.npmjs.com/package/simple-jwt-login',
     secondaryLabel: 'npm',
   },
@@ -168,7 +169,9 @@ function StatusBadge({ status }) {
   if (!status) return null;
   return (
     <span className={clsx(styles.badge, status === 'beta' && styles.badgeBeta)}>
-      {status === 'beta' ? 'Beta' : 'Stable'}
+      {status === 'beta'
+        ? <Translate id="ecosystem.index.status.beta">Beta</Translate>
+        : <Translate id="ecosystem.index.status.stable">Stable</Translate>}
     </span>
   );
 }
@@ -202,10 +205,10 @@ function AddonCard({ name, tagline, description, icon, tags, status, docsHref, p
           </div>
         </div>
         <div className={styles.addonRight}>
-          <p className={styles.highlightsLabel}>What it does</p>
+          <p className={styles.highlightsLabel}><Translate id="ecosystem.index.addonCard.whatItDoes">What it does</Translate></p>
           <CheckList items={highlights} className={styles.checkList} />
-          <Link to={docsHref} className={styles.docsLink} title="View documentation">
-            View documentation →
+          <Link to={docsHref} className={styles.docsLink} title={translate({id: 'ecosystem.index.addonCard.viewDocsTitle', message: 'View documentation'})}>
+            <Translate id="ecosystem.index.addonCard.viewDocs">View documentation →</Translate>
           </Link>
         </div>
       </div>
@@ -279,35 +282,33 @@ function SdkCard({ name, tagline, description, tags, logos, install, primaryHref
 export default function EcosystemPage() {
   return (
     <Layout
-      title="Ecosystem - Add-ons, Integrations & SDKs"
-      description="Explore every add-on, integration, and SDK for Simple JWT Login - WP-CLI, Google OAuth, MailPoet, WPGraphQL, PHP and JS clients."
+      title={translate({id: 'ecosystem.index.meta.title', message: 'Ecosystem - Add-ons, Integrations & SDKs'})}
+      description={translate({id: 'ecosystem.index.meta.description', message: 'Explore every add-on, integration, and SDK for Simple JWT Login - WP-CLI, Google OAuth, MailPoet, WPGraphQL, PHP and JS clients.'})}
     >
       <Head>
-        <meta property="og:title" content="Ecosystem - Simple JWT Login" />
-        <meta property="og:description" content="Add-ons, integrations, and SDKs that extend Simple JWT Login." />
+        <meta property="og:title" content={translate({id: 'ecosystem.index.meta.ogTitle', message: 'Ecosystem - Simple JWT Login'})} />
+        <meta property="og:description" content={translate({id: 'ecosystem.index.meta.ogDescription', message: 'Add-ons, integrations, and SDKs that extend Simple JWT Login.'})} />
       </Head>
 
       {/* ── Hero ──────────────────────────────────────────── */}
       <header className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
         <div className="container">
-          <div className={styles.heroEyebrow}>Ecosystem</div>
+          <div className={styles.heroEyebrow}><Translate id="ecosystem.index.hero.eyebrow">Ecosystem</Translate></div>
           <h1 className={styles.heroTitle}>
-            Extend Simple JWT Login
+            <Translate id="ecosystem.index.hero.title">Extend Simple JWT Login</Translate>
           </h1>
           <p className={styles.heroSubtitle}>
-            Add-ons, integrations, and client SDKs that bring JWT authentication
-            to every corner of your stack - CLI pipelines, headless frontends,
-            email campaigns, and more.
+            <Translate id="ecosystem.index.hero.subtitle">{'Add-ons, integrations, and client SDKs that bring JWT authentication to every corner of your stack - CLI pipelines, headless frontends, email campaigns, and more.'}</Translate>
           </p>
           <div className={styles.heroStats}>
             {[
-              { n: addons.length, label: 'Add-ons' },
-              { n: integrations.length, label: 'Integrations' },
-              { n: sdks.length, label: 'Client SDKs' },
-              { n: '100%', label: 'Free & open source' },
-            ].map(({ n, label }) => (
-              <div key={label} className={styles.heroStat}>
+              { n: addons.length, label: translate({id: 'ecosystem.index.hero.stats.addons', message: 'Add-ons'}) },
+              { n: integrations.length, label: translate({id: 'ecosystem.index.hero.stats.integrations', message: 'Integrations'}) },
+              { n: sdks.length, label: translate({id: 'ecosystem.index.hero.stats.sdks', message: 'Client SDKs'}) },
+              { n: '100%', label: translate({id: 'ecosystem.index.hero.stats.free', message: 'Free & open source'}) },
+            ].map(({ n, label }, i) => (
+              <div key={i} className={styles.heroStat}>
                 <span className={styles.heroStatNum}>{n}</span>
                 <span className={styles.heroStatLabel}>{label}</span>
               </div>
@@ -322,11 +323,10 @@ export default function EcosystemPage() {
         <section className={clsx(sharedStyles.sectionPadding, sharedStyles.sectionGray)}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionEyebrow}>WordPress plugins</span>
-              <h2 className={sharedStyles.sectionTitle}>Add-ons</h2>
+              <span className={styles.sectionEyebrow}><Translate id="ecosystem.index.addons.eyebrow">WordPress plugins</Translate></span>
+              <h2 className={sharedStyles.sectionTitle}><Translate id="ecosystem.index.addons.title">Add-ons</Translate></h2>
               <p className={styles.sectionLead}>
-                Standalone WordPress plugins that extend Simple JWT Login with new capabilities.
-                Install them the same way you install any WordPress plugin.
+                <Translate id="ecosystem.index.addons.lead">{'Standalone WordPress plugins that extend Simple JWT Login with new capabilities. Install them the same way you install any WordPress plugin.'}</Translate>
               </p>
             </div>
             <div className={styles.addonList}>
@@ -341,11 +341,10 @@ export default function EcosystemPage() {
         <section className={sharedStyles.sectionPadding}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionEyebrow}>Third-party services</span>
-              <h2 className={sharedStyles.sectionTitle}>Integrations</h2>
+              <span className={styles.sectionEyebrow}><Translate id="ecosystem.index.integrations.eyebrow">Third-party services</Translate></span>
+              <h2 className={sharedStyles.sectionTitle}><Translate id="ecosystem.index.integrations.title">Integrations</Translate></h2>
               <p className={styles.sectionLead}>
-                Connect Simple JWT Login to the tools you already use. Each integration
-                is built into the core plugin - no extra downloads needed.
+                <Translate id="ecosystem.index.integrations.lead">{'Connect Simple JWT Login to the tools you already use. Each integration is built into the core plugin - no extra downloads needed.'}</Translate>
               </p>
             </div>
             <div className={styles.integrationGrid}>
@@ -360,11 +359,10 @@ export default function EcosystemPage() {
         <section className={clsx(sharedStyles.sectionPadding, sharedStyles.sectionGray)}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionEyebrow}>Client libraries</span>
-              <h2 className={sharedStyles.sectionTitle}>SDKs</h2>
+              <span className={styles.sectionEyebrow}><Translate id="ecosystem.index.sdks.eyebrow">Client libraries</Translate></span>
+              <h2 className={sharedStyles.sectionTitle}><Translate id="ecosystem.index.sdks.title">SDKs</Translate></h2>
               <p className={styles.sectionLead}>
-                Drop-in client libraries for your frontend or backend application.
-                Available on Packagist and npm.
+                <Translate id="ecosystem.index.sdks.lead">{'Drop-in client libraries for your frontend or backend application. Available on Packagist and npm.'}</Translate>
               </p>
             </div>
             <div className={styles.sdkGrid}>
@@ -381,22 +379,21 @@ export default function EcosystemPage() {
             <div className={styles.ctaInner}>
               <div className={styles.ctaGlow} aria-hidden="true" />
               <div className={styles.ctaText}>
-                <h2 className={styles.ctaTitle}>Don't see what you need?</h2>
+                <h2 className={styles.ctaTitle}><Translate id="ecosystem.index.cta.title">{"Don't see what you need?"}</Translate></h2>
                 <p className={styles.ctaSubtitle}>
-                  Simple JWT Login exposes 16 action and filter hooks. Build your own
-                  integration - or open an issue on GitHub and let's discuss it.
+                  <Translate id="ecosystem.index.cta.subtitle">{"Simple JWT Login exposes 16 action and filter hooks. Build your own integration - or open an issue on GitHub and let's discuss it."}</Translate>
                 </p>
               </div>
               <div className={styles.ctaButtons}>
-                <Link to="/docs/hooks/" className={sharedStyles.actionButton} title="Browse hooks documentation">
-                  Browse Hooks →
+                <Link to="/docs/hooks/" className={sharedStyles.actionButton} title={translate({id: 'ecosystem.index.cta.hooksTitle', message: 'Browse hooks documentation'})}>
+                  <Translate id="ecosystem.index.cta.hooks">Browse Hooks →</Translate>
                 </Link>
                 <Link
                   to="https://github.com/nicumicle/simple-jwt-login/issues"
                   className={sharedStyles.btn}
-                  title="Open an issue on GitHub"
+                  title={translate({id: 'ecosystem.index.cta.issueTitle', message: 'Open an issue on GitHub'})}
                 >
-                  Open an issue
+                  <Translate id="ecosystem.index.cta.issue">Open an issue</Translate>
                 </Link>
               </div>
             </div>

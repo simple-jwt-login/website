@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
+import Translate, {translate} from '@docusaurus/Translate';
 import CodeBlock from '@theme/CodeBlock';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,39 +17,39 @@ import styles from './headless-wordpress.module.css';
 const PLUGIN_URL = 'https://wordpress.org/plugins/simple-jwt-login/';
 
 const steps = [
-  { title: 'Install the plugin', text: 'Add Simple JWT Login to WordPress, set a signing key, and turn on authentication.' },
-  { title: 'Get a JWT', text: 'Your front end sends the user credentials to the REST API and gets a signed token back.' },
-  { title: 'Call WordPress', text: 'Send the token as a Bearer header. WordPress treats the request as coming from that user.' },
+  { title: translate({id: 'headlessWordpress.steps.install.title', message: 'Install the plugin'}), text: translate({id: 'headlessWordpress.steps.install.text', message: 'Add Simple JWT Login to WordPress, set a signing key, and turn on authentication.'}) },
+  { title: translate({id: 'headlessWordpress.steps.token.title', message: 'Get a JWT'}), text: translate({id: 'headlessWordpress.steps.token.text', message: 'Your front end sends the user credentials to the REST API and gets a signed token back.'}) },
+  { title: translate({id: 'headlessWordpress.steps.call.title', message: 'Call WordPress'}), text: translate({id: 'headlessWordpress.steps.call.text', message: 'Send the token as a Bearer header. WordPress treats the request as coming from that user.'}) },
 ];
 
 const features = [
-  { icon: faKey, title: 'Login for any client', text: 'Log in by email or username, or with Google, GitHub, Facebook, and Auth0.', to: '/docs/authentication/', link: 'JWT authentication' },
-  { icon: faUserPlus, title: 'User accounts over REST', text: 'Register users, reset passwords, and delete accounts without opening wp-login.php.', to: '/docs/register-user/', link: 'User registration' },
-  { icon: faLock, title: 'Protected endpoints', text: 'Require a valid JWT for any WordPress REST API route.', to: '/docs/protect-endpoints/', link: 'Endpoint protection' },
-  { icon: faArrowsRotate, title: 'Token lifecycle', text: 'Refresh tokens to keep users logged in, and revoke them on logout.', to: '/docs/refresh-token/', link: 'Refresh tokens' },
-  { icon: faGlobe, title: 'CORS built in', text: 'Choose which front-end origins can call the plugin and authenticate with a JWT.', to: '/docs/cors/', link: 'CORS settings' },
-  { icon: faShieldHalved, title: 'Two-factor login', text: 'Ask for a second factor before WordPress issues the final token.', to: '/docs/integrations/third-party/two-factor/', link: 'Two-factor login' },
+  { icon: faKey, title: translate({id: 'headlessWordpress.features.login.title', message: 'Login for any client'}), text: translate({id: 'headlessWordpress.features.login.text', message: 'Log in by email or username, or with Google, GitHub, Facebook, and Auth0.'}), to: '/docs/authentication/', link: translate({id: 'headlessWordpress.features.login.link', message: 'JWT authentication'}) },
+  { icon: faUserPlus, title: translate({id: 'headlessWordpress.features.accounts.title', message: 'User accounts over REST'}), text: translate({id: 'headlessWordpress.features.accounts.text', message: 'Register users, reset passwords, and delete accounts without opening wp-login.php.'}), to: '/docs/register-user/', link: translate({id: 'headlessWordpress.features.accounts.link', message: 'User registration'}) },
+  { icon: faLock, title: translate({id: 'headlessWordpress.features.protected.title', message: 'Protected endpoints'}), text: translate({id: 'headlessWordpress.features.protected.text', message: 'Require a valid JWT for any WordPress REST API route.'}), to: '/docs/protect-endpoints/', link: translate({id: 'headlessWordpress.features.protected.link', message: 'Endpoint protection'}) },
+  { icon: faArrowsRotate, title: translate({id: 'headlessWordpress.features.lifecycle.title', message: 'Token lifecycle'}), text: translate({id: 'headlessWordpress.features.lifecycle.text', message: 'Refresh tokens to keep users logged in, and revoke them on logout.'}), to: '/docs/refresh-token/', link: translate({id: 'headlessWordpress.features.lifecycle.link', message: 'Refresh tokens'}) },
+  { icon: faGlobe, title: translate({id: 'headlessWordpress.features.cors.title', message: 'CORS built in'}), text: translate({id: 'headlessWordpress.features.cors.text', message: 'Choose which front-end origins can call the plugin and authenticate with a JWT.'}), to: '/docs/cors/', link: translate({id: 'headlessWordpress.features.cors.link', message: 'CORS settings'}) },
+  { icon: faShieldHalved, title: translate({id: 'headlessWordpress.features.twoFactor.title', message: 'Two-factor login'}), text: translate({id: 'headlessWordpress.features.twoFactor.text', message: 'Ask for a second factor before WordPress issues the final token.'}), to: '/docs/integrations/third-party/two-factor/', link: translate({id: 'headlessWordpress.features.twoFactor.link', message: 'Two-factor login'}) },
 ];
 
 const stacks = [
-  { icon: faCode, title: 'Next.js', text: 'Server-side login with an HttpOnly cookie.', to: '/docs/code-examples/nextjs', link: 'Next.js example' },
-  { icon: faLayerGroup, title: 'Flutter', text: 'Mobile login with secure token storage.', to: '/docs/code-examples/flutter', link: 'Flutter example' },
-  { icon: faMobileScreen, title: 'React Native', text: 'Expo app with secure token storage.', to: '/docs/code-examples/react-native', link: 'React Native example' },
-  { icon: faReact, title: 'React', text: 'Browser login with a Vite app.', to: '/docs/code-examples/react', link: 'React example' },
-  { icon: faVuejs, title: 'Vue', text: 'Browser login with a Vue 3 app.', to: '/docs/code-examples/vuejs', link: 'Vue example' },
-  { icon: faAngular, title: 'Angular', text: 'Browser login with HttpClient.', to: '/docs/code-examples/angular', link: 'Angular example' },
-  { icon: faCode, title: 'JavaScript', text: 'A todo app with no framework.', to: '/docs/code-examples/todo-app', link: 'JavaScript example' },
-  { icon: faCartShopping, title: 'WooCommerce', text: 'Products, cart, and checkout with a JWT.', to: '/docs/code-examples/woocommerce-headless-store', link: 'Headless store example' },
-  { icon: faLayerGroup, title: 'WPGraphQL', text: 'Authenticated queries and mutations.', to: '/docs/integrations/third-party/wpgraphql/', link: 'WPGraphQL guide' },
-  { icon: faRobot, title: 'AI agents', text: 'Manage the plugin through MCP.', to: '/docs/integrations/third-party/ai-abilities/', link: 'MCP guide' },
+  { icon: faCode, title: translate({id: 'headlessWordpress.stacks.nextjs.title', message: 'Next.js'}), text: translate({id: 'headlessWordpress.stacks.nextjs.text', message: 'Server-side login with an HttpOnly cookie.'}), to: '/docs/code-examples/nextjs', link: translate({id: 'headlessWordpress.stacks.nextjs.link', message: 'Next.js example'}) },
+  { icon: faLayerGroup, title: translate({id: 'headlessWordpress.stacks.flutter.title', message: 'Flutter'}), text: translate({id: 'headlessWordpress.stacks.flutter.text', message: 'Mobile login with secure token storage.'}), to: '/docs/code-examples/flutter', link: translate({id: 'headlessWordpress.stacks.flutter.link', message: 'Flutter example'}) },
+  { icon: faMobileScreen, title: translate({id: 'headlessWordpress.stacks.reactNative.title', message: 'React Native'}), text: translate({id: 'headlessWordpress.stacks.reactNative.text', message: 'Expo app with secure token storage.'}), to: '/docs/code-examples/react-native', link: translate({id: 'headlessWordpress.stacks.reactNative.link', message: 'React Native example'}) },
+  { icon: faReact, title: translate({id: 'headlessWordpress.stacks.react.title', message: 'React'}), text: translate({id: 'headlessWordpress.stacks.react.text', message: 'Browser login with a Vite app.'}), to: '/docs/code-examples/react', link: translate({id: 'headlessWordpress.stacks.react.link', message: 'React example'}) },
+  { icon: faVuejs, title: translate({id: 'headlessWordpress.stacks.vue.title', message: 'Vue'}), text: translate({id: 'headlessWordpress.stacks.vue.text', message: 'Browser login with a Vue 3 app.'}), to: '/docs/code-examples/vuejs', link: translate({id: 'headlessWordpress.stacks.vue.link', message: 'Vue example'}) },
+  { icon: faAngular, title: translate({id: 'headlessWordpress.stacks.angular.title', message: 'Angular'}), text: translate({id: 'headlessWordpress.stacks.angular.text', message: 'Browser login with HttpClient.'}), to: '/docs/code-examples/angular', link: translate({id: 'headlessWordpress.stacks.angular.link', message: 'Angular example'}) },
+  { icon: faCode, title: translate({id: 'headlessWordpress.stacks.javascript.title', message: 'JavaScript'}), text: translate({id: 'headlessWordpress.stacks.javascript.text', message: 'A todo app with no framework.'}), to: '/docs/code-examples/todo-app', link: translate({id: 'headlessWordpress.stacks.javascript.link', message: 'JavaScript example'}) },
+  { icon: faCartShopping, title: translate({id: 'headlessWordpress.stacks.woocommerce.title', message: 'WooCommerce'}), text: translate({id: 'headlessWordpress.stacks.woocommerce.text', message: 'Products, cart, and checkout with a JWT.'}), to: '/docs/code-examples/woocommerce-headless-store', link: translate({id: 'headlessWordpress.stacks.woocommerce.link', message: 'Headless store example'}) },
+  { icon: faLayerGroup, title: translate({id: 'headlessWordpress.stacks.wpgraphql.title', message: 'WPGraphQL'}), text: translate({id: 'headlessWordpress.stacks.wpgraphql.text', message: 'Authenticated queries and mutations.'}), to: '/docs/integrations/third-party/wpgraphql/', link: translate({id: 'headlessWordpress.stacks.wpgraphql.link', message: 'WPGraphQL guide'}) },
+  { icon: faRobot, title: translate({id: 'headlessWordpress.stacks.aiAgents.title', message: 'AI agents'}), text: translate({id: 'headlessWordpress.stacks.aiAgents.text', message: 'Manage the plugin through MCP.'}), to: '/docs/integrations/third-party/ai-abilities/', link: translate({id: 'headlessWordpress.stacks.aiAgents.link', message: 'MCP guide'}) },
 ];
 
 const faqs = [
-  { q: 'What is headless WordPress?', a: 'Headless WordPress uses WordPress to manage content and users, while a separate front end, such as a Next.js site or a mobile app, shows it. The two communicate through the REST API or GraphQL.' },
-  { q: 'Why use JWT authentication with headless WordPress?', a: 'WordPress login cookies are made for pages that WordPress serves. A JWT is a signed token that any client can send with a request, so it also works for separate front ends, mobile apps, and servers.' },
-  { q: 'Does it work with WooCommerce and WPGraphQL?', a: 'Yes. The same JWT can authenticate the WooCommerce REST and Store APIs and WPGraphQL requests.' },
-  { q: 'Where should the front end store the JWT?', a: 'For websites, keep it in an HttpOnly cookie set by your server. For mobile apps, use the secure storage of the device. Avoid browser local storage for sensitive apps.' },
-  { q: 'Is Simple JWT Login free?', a: 'Yes. It is free and open-source, forever, with no paid tier.' },
+  { q: translate({id: 'headlessWordpress.faq.q1.q', message: 'What is headless WordPress?'}), a: translate({id: 'headlessWordpress.faq.q1.a', message: 'Headless WordPress uses WordPress to manage content and users, while a separate front end, such as a Next.js site or a mobile app, shows it. The two communicate through the REST API or GraphQL.'}) },
+  { q: translate({id: 'headlessWordpress.faq.q2.q', message: 'Why use JWT authentication with headless WordPress?'}), a: translate({id: 'headlessWordpress.faq.q2.a', message: 'WordPress login cookies are made for pages that WordPress serves. A JWT is a signed token that any client can send with a request, so it also works for separate front ends, mobile apps, and servers.'}) },
+  { q: translate({id: 'headlessWordpress.faq.q3.q', message: 'Does it work with WooCommerce and WPGraphQL?'}), a: translate({id: 'headlessWordpress.faq.q3.a', message: 'Yes. The same JWT can authenticate the WooCommerce REST and Store APIs and WPGraphQL requests.'}) },
+  { q: translate({id: 'headlessWordpress.faq.q4.q', message: 'Where should the front end store the JWT?'}), a: translate({id: 'headlessWordpress.faq.q4.a', message: 'For websites, keep it in an HttpOnly cookie set by your server. For mobile apps, use the secure storage of the device. Avoid browser local storage for sensitive apps.'}) },
+  { q: translate({id: 'headlessWordpress.faq.q5.q', message: 'Is Simple JWT Login free?'}), a: translate({id: 'headlessWordpress.faq.q5.a', message: 'Yes. It is free and open-source, forever, with no paid tier.'}) },
 ];
 
 const jsonLd = {
@@ -106,8 +107,8 @@ function Section({ eyebrow, title, gray, children }) {
 function Actions() {
   return (
     <div className={styles.actions}>
-      <Link to="/docs/quick-start/" className={sharedStyles.actionButton}>Start in 5 minutes →</Link>
-      <Link to={PLUGIN_URL} className={sharedStyles.btn}>Get the free plugin</Link>
+      <Link to="/docs/quick-start/" className={sharedStyles.actionButton}><Translate id="headlessWordpress.actions.start">Start in 5 minutes →</Translate></Link>
+      <Link to={PLUGIN_URL} className={sharedStyles.btn}><Translate id="headlessWordpress.actions.plugin">Get the free plugin</Translate></Link>
     </div>
   );
 }
@@ -115,8 +116,8 @@ function Actions() {
 export default function HeadlessWordPressPage() {
   return (
     <Layout
-      title="Headless WordPress Authentication"
-      description="Add JWT authentication to headless WordPress - login, registration, and protected REST API endpoints for Next.js, React, Angular, Flutter, and WooCommerce."
+      title={translate({id: 'headlessWordpress.meta.title', message: 'Headless WordPress Authentication'})}
+      description={translate({id: 'headlessWordpress.meta.description', message: 'Add JWT authentication to headless WordPress - login, registration, and protected REST API endpoints for Next.js, React, Angular, Flutter, and WooCommerce.'})}
     >
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -124,20 +125,28 @@ export default function HeadlessWordPressPage() {
 
       <header className={styles.hero}>
         <div className="container">
-          <h1>Headless WordPress <span>authentication with JWT</span></h1>
+          <h1>
+            <Translate id="headlessWordpress.hero.title" values={{highlight: <span><Translate id="headlessWordpress.hero.title.highlight">authentication with JWT</Translate></span>}}>
+              {'Headless WordPress {highlight}'}
+            </Translate>
+          </h1>
           <p>
-            Keep WordPress for content and users. Build the front end with any
-            framework, and log users in through the REST API.
+            <Translate id="headlessWordpress.hero.subtitle">
+              Keep WordPress for content and users. Build the front end with any framework, and log users in through the REST API.
+            </Translate>
           </p>
           <Actions />
         </div>
       </header>
 
       <main>
-        <Section eyebrow="How it works" title="From WordPress login to API call">
+        <Section
+          eyebrow={translate({id: 'headlessWordpress.how.eyebrow', message: 'How it works'})}
+          title={translate({id: 'headlessWordpress.how.title', message: 'From WordPress login to API call'})}
+        >
           <ol className={styles.grid}>
             {steps.map(({ title, text }, index) => (
-              <li key={title} className={styles.card}>
+              <li key={index} className={styles.card}>
                 <span className={styles.number} aria-hidden="true">{index + 1}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
@@ -145,24 +154,41 @@ export default function HeadlessWordPressPage() {
             ))}
           </ol>
           <div className={styles.code}>
-            <CodeBlock language="js" title="Log in and call WordPress">{example}</CodeBlock>
+            <CodeBlock language="js" title={translate({id: 'headlessWordpress.how.codeTitle', message: 'Log in and call WordPress'})}>{example}</CodeBlock>
             <p>
-              Calling from the browser? Add your front-end origin in{' '}
-              <Link to="/docs/cors/">CORS</Link> and turn on the{' '}
-              <Link to="/docs/configuration#jwt-middleware-for-all-wordpress-endpoints">JWT middleware</Link>.
+              <Translate
+                id="headlessWordpress.how.cors"
+                values={{
+                  cors: <Link to="/docs/cors/"><Translate id="headlessWordpress.how.cors.cors">CORS</Translate></Link>,
+                  middleware: <Link to="/docs/configuration#jwt-middleware-for-all-wordpress-endpoints"><Translate id="headlessWordpress.how.cors.middleware">JWT middleware</Translate></Link>,
+                }}
+              >
+                {'Calling from the browser? Add your front-end origin in {cors} and turn on the {middleware}.'}
+              </Translate>
             </p>
           </div>
         </Section>
 
-        <Section eyebrow="Features" title="What a headless site needs" gray>
+        <Section
+          eyebrow={translate({id: 'headlessWordpress.features.eyebrow', message: 'Features'})}
+          title={translate({id: 'headlessWordpress.features.title', message: 'What a headless site needs'})}
+          gray
+        >
           <CardGrid items={features} />
         </Section>
 
-        <Section eyebrow="Examples" title="Pick your stack">
+        <Section
+          eyebrow={translate({id: 'headlessWordpress.stacks.eyebrow', message: 'Examples'})}
+          title={translate({id: 'headlessWordpress.stacks.title', message: 'Pick your stack'})}
+        >
           <CardGrid items={stacks} />
         </Section>
 
-        <Section eyebrow="FAQ" title="Headless WordPress questions" gray>
+        <Section
+          eyebrow={translate({id: 'headlessWordpress.faq.eyebrow', message: 'FAQ'})}
+          title={translate({id: 'headlessWordpress.faq.title', message: 'Headless WordPress questions'})}
+          gray
+        >
           <div className={styles.faq}>
             {faqs.map(({ q, a }) => (
               <div key={q} className={styles.card}>
@@ -175,8 +201,8 @@ export default function HeadlessWordPressPage() {
 
         <section className={styles.hero}>
           <div className="container">
-            <h2>Go headless with WordPress</h2>
-            <p>Free and open-source, forever.</p>
+            <h2><Translate id="headlessWordpress.cta.title">Go headless with WordPress</Translate></h2>
+            <p><Translate id="headlessWordpress.cta.text">Free and open-source, forever.</Translate></p>
             <Actions />
           </div>
         </section>

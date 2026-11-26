@@ -45,7 +45,8 @@ function BlogTagsPostsPageContent({
       {tag.unlisted && <Unlisted />}
       <header className={styles.header}>
         <div className={styles.heroBadge}>
-          <FontAwesomeIcon icon={faTag} aria-hidden="true" /> Tag
+          <FontAwesomeIcon icon={faTag} aria-hidden="true" />{' '}
+          <Translate id="theme.blogTagsPostsPage.badge">Tag</Translate>
         </div>
         <Heading as="h1" className={styles.heroTitle}>{title}</Heading>
         {tag.description && <p className={styles.heroSubtitle}>{tag.description}</p>}
