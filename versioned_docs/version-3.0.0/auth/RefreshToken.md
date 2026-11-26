@@ -1,6 +1,8 @@
 ---
 slug: /refresh-token/
-title: Refresh token
+title: v3 Refresh token
+description: Refresh a JWT in Simple JWT Login v3 - exchange an expired or expiring token for a new one without asking for credentials again.
+sidebar_label: Refresh token
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---

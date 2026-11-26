@@ -1,15 +1,15 @@
 ---
 title: "A Faster, Smarter New Website Design"
-description: We've redesigned the Simple JWT Login website with a cleaner UI, built-in search, AI-friendly content, and improved SEO.
+description: The Simple JWT Login website has a new design, with a cleaner UI, built-in search, AI-friendly content, and improved SEO.
 slug: /new-website-design-2026/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [news, wordpress-plugin]
 keywords: [Simple JWT Login website, new design, Docusaurus, documentation, search, LLMs.txt]
-image: /assets/favicons/android-chrome-192x192.png
+image: /assets/images/social-card.png
 ---
 
-We just shipped a major update to the Simple JWT Login website. The plugin hasn't changed - but everything around it has. From the homepage to the blog to the docs navigation, here's a look at what's new and why we made these changes.
+The Simple JWT Login website just got a major update. The plugin hasn't changed - but everything around it has. From the homepage to the blog to the docs navigation, here's a look at what's new and why it changed.
 
 <!-- truncate -->
 
@@ -19,7 +19,7 @@ The entire visual design has been overhauled. Every page - homepage, contact, do
 
 The homepage in particular got a lot of attention. Feature cards now have sharper copy that explains *what the feature does* rather than just naming it. The stats section (active installs, downloads, ratings) gives newcomers quick confidence, and the CTA buttons are more prominent.
 
-The blog also has a custom layout: post cards show the author, date, tags, and a description at a glance - no more barebones list.
+The blog also has a custom layout: post cards show the author, date, tags, and a description at a glance - no more bare-bones list.
 
 ## Built-in Search
 
@@ -35,7 +35,7 @@ If you're using an AI assistant to help integrate Simple JWT Login into your app
 
 ## Release Notes
 
-The [Releases](/releases) section is now live with structured changelogs for recent plugin versions (3.6.2, 3.6.3, 3.6.4, 3.6.5). Going forward, every plugin release will have a corresponding entry there.
+The [Releases](/releases) section is now live with structured changelogs for recent plugin versions (3.6.2, 3.6.3, 3.6.4, 3.6.5). Going forward, every plugin release gets a matching entry there.
 
 ---
 

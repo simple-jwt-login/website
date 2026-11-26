@@ -1,9 +1,9 @@
 ---
 slug: /integrations/oauth/google/exchange-code
-title: Exchange OAuth Code for id_token
-sidebar_position: 2
-description: Exchange the Google OAuth authorization code for a Google id_token using Simple JWT Login.
-keywords: [Google OAuth code, Google id_token, exchange code, WordPress REST API, Simple JWT Login]
+title: Exchange a Google OAuth Code for Tokens
+sidebar_label: Exchange OAuth Code for id_token
+description: Exchange a Google OAuth authorization code for Google tokens through the WordPress REST API - endpoint, parameters, curl request, and responses.
+keywords: [Google OAuth code exchange, Google authorization code, Google id_token, Google OAuth WordPress REST API]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -84,3 +84,8 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   }
 }
 ```
+
+## Next steps
+
+- [Exchange the Google token for a WordPress JWT](./03_Exchange_Token.md)
+- [Check the Google OAuth setup](./01_Setup.md)

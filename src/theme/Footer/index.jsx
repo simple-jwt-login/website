@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import Translate, {translate} from '@docusaurus/Translate';
 import {useCdnUrl} from '@site/src/utils/cdn';
 import styles from './index.module.css';
 
@@ -7,32 +8,35 @@ const PAYPAL_URL =
   'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PK9BCD6AYF58Y&source=url';
 
 const productLinks = [
-  { label: 'Documentation', to: '/docs/' },
-  { label: 'API Reference', to: '/api/v4/simple-jwt-login' },
-  { label: 'Releases', to: '/releases/' },
-  { label: 'Donate', to: '/donate/' },
-  { label: 'Sponsors', to: '/sponsors/' },
+  { label: translate({id: 'footer.product.documentation', message: 'Documentation'}), to: '/docs/' },
+  { label: translate({id: 'footer.product.apiReference', message: 'API Reference'}), to: '/api/v4/simple-jwt-login' },
+  { label: translate({id: 'footer.product.releases', message: 'Releases'}), to: '/releases/' },
+  { label: translate({id: 'footer.product.donate', message: 'Donate'}), to: '/donate/' },
+  { label: translate({id: 'footer.product.sponsors', message: 'Sponsors'}), to: '/sponsors/' },
 ];
 
 const exploreLinks = [
-  { label: 'Deploy WordPress', to: '/deploy-wordpress' },
-  { label: 'Demos', to: '/demos/' },
-  { label: 'Ecosystem', to: '/ecosystem/' },
+  { label: translate({id: 'footer.explore.headlessWordpress', message: 'Headless WordPress'}), to: '/headless-wordpress' },
+  { label: translate({id: 'footer.explore.compareJwtPlugins', message: 'Compare JWT Plugins'}), to: '/wordpress-jwt-plugin-comparison' },
+  { label: translate({id: 'footer.explore.deployWordpress', message: 'Deploy WordPress'}), to: '/deploy-wordpress' },
+  { label: translate({id: 'footer.explore.demos', message: 'Demos'}), to: '/demos/' },
+  { label: translate({id: 'footer.explore.ecosystem', message: 'Ecosystem'}), to: '/ecosystem/' },
 ];
 
 const helpLinks = [
-  { label: 'WordPress Plugin Page', href: 'https://wordpress.org/plugins/simple-jwt-login' },
-  { label: 'Support Forum', href: 'https://wordpress.org/support/plugin/simple-jwt-login' },
-  { label: 'Report an Issue', href: 'https://github.com/nicumicle/simple-jwt-login/issues' },
-  { label: 'Report a Security Issue', href: 'https://github.com/nicumicle/simple-jwt-login/security/advisories/new' },
-  { label: 'Contact', to: '/contact/' },
+  { label: translate({id: 'footer.help.pluginPage', message: 'WordPress Plugin Page'}), href: 'https://wordpress.org/plugins/simple-jwt-login' },
+  { label: translate({id: 'footer.help.supportForum', message: 'Support Forum'}), href: 'https://wordpress.org/support/plugin/simple-jwt-login' },
+  { label: translate({id: 'footer.help.reportIssue', message: 'Report an Issue'}), href: 'https://github.com/nicumicle/simple-jwt-login/issues' },
+  { label: translate({id: 'footer.help.reportSecurity', message: 'Report a Security Issue'}), to: '/security' },
+  { label: translate({id: 'footer.help.faq', message: 'FAQ'}), to: '/faq' },
+  { label: translate({id: 'footer.help.contact', message: 'Contact'}), to: '/contact/' },
 ];
 
 const connectLinks = [
-  { label: 'GitHub Repository', href: 'https://github.com/nicumicle/simple-jwt-login' },
-  { label: 'Discord Community', href: 'https://discord.gg/c4AeefD8Dr' },
-  { label: 'X (Twitter)', href: 'https://twitter.com/simplejwtlogin' },
-  { label: 'Blog', to: '/blog/' },
+  { label: translate({id: 'footer.connect.githubRepo', message: 'GitHub Repository'}), href: 'https://github.com/nicumicle/simple-jwt-login' },
+  { label: translate({id: 'footer.connect.discord', message: 'Discord Community'}), href: 'https://discord.gg/c4AeefD8Dr' },
+  { label: translate({id: 'footer.connect.twitter', message: 'X (Twitter)'}), href: 'https://twitter.com/simplejwtlogin' },
+  { label: translate({id: 'footer.connect.blog', message: 'Blog'}), to: '/blog/' },
 ];
 
 const GitHubIcon = () => (
@@ -74,7 +78,7 @@ function LinkColumn({ title, links }) {
       <h3 className={styles.colTitle}>{title}</h3>
       <ul className={styles.linkList}>
         {links.map((l) => (
-          <li key={l.label}>
+          <li key={l.to || l.href}>
             <FooterLink {...l} />
           </li>
         ))}
@@ -94,7 +98,7 @@ export default function Footer() {
           <div className={styles.sponsorsInner}>
             <div className={styles.sponsorsLabel}>
               <span className={styles.sponsorsDot} />
-                This project is supported by:
+                <Translate id="footer.sponsors.label">This project is supported by:</Translate>
             </div>
             <div className={styles.sponsorsLogos}>
               <a
@@ -102,7 +106,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.sponsorLogo}
-                title="DigitalOcean - cloud infrastructure sponsor"
+                title={translate({id: 'footer.sponsors.digitalOceanTitle', message: 'DigitalOcean - cloud infrastructure sponsor'})}
               >
                 <img
                   src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg"
@@ -116,7 +120,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.sponsorLogo}
-                title="CodeRabbit - AI code review sponsor"
+                title={translate({id: 'footer.sponsors.codeRabbitTitle', message: 'CodeRabbit - AI code review sponsor'})}
               >
                 {/* Footer is always dark, so use the white (reverse) logo */}
                 <img
@@ -129,7 +133,7 @@ export default function Footer() {
             </div>
             <div className={styles.sponsorsBecome}>
               <Link to="/sponsors/" className={styles.sponsorsBecomeCta}>
-                Become a sponsor →
+                <Translate id="footer.sponsors.become">Become a sponsor →</Translate>
               </Link>
             </div>
           </div>
@@ -150,15 +154,16 @@ export default function Footer() {
                 <span className={styles.brandName}>Simple JWT Login</span>
               </div>
               <p className={styles.brandDesc}>
-                JWT authentication for WordPress - REST API, headless WP, WPGraphQL,
-                and WP-CLI. Free and open-source, forever.
+                <Translate id="footer.brand.description">
+                  {'JWT authentication for WordPress - REST API, headless WP, WPGraphQL, and WP-CLI. Free and open-source, forever.'}
+                </Translate>
               </p>
               <div className={styles.socialIcons}>
                 <a
                   href="https://github.com/nicumicle/simple-jwt-login"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="GitHub"
+                  title={translate({id: 'footer.social.github', message: 'GitHub'})}
                   className={styles.socialIcon}
                 >
                   <GitHubIcon />
@@ -167,7 +172,7 @@ export default function Footer() {
                   href="https://discord.gg/c4AeefD8Dr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Discord"
+                  title={translate({id: 'footer.social.discord', message: 'Discord'})}
                   className={styles.socialIcon}
                 >
                   <DiscordIcon />
@@ -176,7 +181,7 @@ export default function Footer() {
                   href="https://twitter.com/simplejwtlogin"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="X (Twitter)"
+                  title={translate({id: 'footer.social.twitter', message: 'X (Twitter)'})}
                   className={styles.socialIcon}
                 >
                   <TwitterIcon />
@@ -184,10 +189,10 @@ export default function Footer() {
               </div>
             </div>
 
-            <LinkColumn title="Project" links={productLinks} />
-            <LinkColumn title="Explore" links={exploreLinks} />
-            <LinkColumn title="Get Help" links={helpLinks} />
-            <LinkColumn title="Connect" links={connectLinks} />
+            <LinkColumn title={translate({id: 'footer.columns.project', message: 'Project'})} links={productLinks} />
+            <LinkColumn title={translate({id: 'footer.columns.explore', message: 'Explore'})} links={exploreLinks} />
+            <LinkColumn title={translate({id: 'footer.columns.getHelp', message: 'Get Help'})} links={helpLinks} />
+            <LinkColumn title={translate({id: 'footer.columns.connect', message: 'Connect'})} links={connectLinks} />
 
           </div>
         </div>

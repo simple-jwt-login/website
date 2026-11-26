@@ -1,12 +1,12 @@
 ---
-title: "Authenticate WPGraphQL with JWT Tokens"
-description: A step-by-step guide to securing your WPGraphQL API with JWT tokens - setup, authenticated queries, mutations, and token handling.
+title: "Authenticate WPGraphQL Requests with JWT"
+description: A step-by-step guide to securing your WPGraphQL API with JWTs - setup, authenticated queries, mutations, and token handling.
 slug: /wpgraphql-jwt-authentication/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [tutorials, wpgraphql, jwt-authentication, headless-wordpress]
 keywords: [WPGraphQL JWT authentication, WordPress GraphQL auth, Simple JWT Login WPGraphQL, GraphQL bearer token, headless WordPress GraphQL, Apollo Client WordPress]
-image: /assets/favicons/android-chrome-192x192.png
+image: /assets/images/social-card.png
 ---
 
 GraphQL and headless WordPress are a natural match. WPGraphQL gives you a flexible, typed query layer over all your WordPress data. But like the REST API, it's unauthenticated by default - anyone can query it. Simple JWT Login solves that.
@@ -41,7 +41,7 @@ Navigate to **Simple JWT Login** in your WordPress admin. The core settings you 
 **General tab:**
 - Set a strong **JWT Decryption Key**
 - Choose **HS256** as your algorithm (or RS256 for asymmetric setups)
-- Set a sensible **JWT expiration** (e.g. 3600 seconds / 1 hour)
+- Set a sensible **JWT expiration** (for example, 3600 seconds / 1 hour)
 
 **WPGraphQL tab:**
 
@@ -51,7 +51,7 @@ Enable the WPGraphQL integration:
 Settings > Simple JWT Login > WPGraphQL > Enable WPGraphQL authentication
 ```
 
-That's the only required toggle. The plugin will now validate JWT tokens on every request to your GraphQL endpoint.
+That's the only required toggle. The plugin now validates JWTs on every request to your GraphQL endpoint.
 
 ---
 
@@ -260,7 +260,7 @@ This ensures every GraphQL request - including introspection - must carry a vali
 
 ## Token Refresh for Long-Running Sessions
 
-GraphQL apps often run as SPAs where the user stays on the page for extended periods. Implement proactive token refresh to avoid mid-session 401s:
+GraphQL apps often run as SPAs where the user stays on the page for extended periods. Implement proactive token refresh to avoid mid-session `401` errors:
 
 ```js
 function isTokenExpiringSoon(token, bufferSeconds = 300) {

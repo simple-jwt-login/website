@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import Translate, {translate} from '@docusaurus/Translate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt, faBug, faLightbulb, faHandshake, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import styles from './contact.module.css';
@@ -13,9 +14,9 @@ const channels = [
       </svg>
     ),
     label: 'Discord',
-    title: 'Community chat',
-    description: 'The fastest way to get an answer. Ask questions, share ideas, and chat with the maintainer and other users in real time.',
-    cta: 'Join the server',
+    title: translate({id: 'contact.channels.discord.title', message: 'Community chat'}),
+    description: translate({id: 'contact.channels.discord.description', message: 'The fastest way to get an answer. Ask questions, share ideas, and chat with the maintainer and other users in real time.'}),
+    cta: translate({id: 'contact.channels.discord.cta', message: 'Join the server'}),
     href: 'https://discord.gg/c4AeefD8Dr',
     accent: '#5865f2',
   },
@@ -26,9 +27,9 @@ const channels = [
       </svg>
     ),
     label: 'GitHub',
-    title: 'Bug reports & features',
-    description: 'Found a bug or have a feature request? Open an issue on GitHub. Browse existing issues before submitting a new one.',
-    cta: 'Open an issue',
+    title: translate({id: 'contact.channels.github.title', message: 'Bug reports & features'}),
+    description: translate({id: 'contact.channels.github.description', message: 'Found a bug or have a feature request? Open an issue on GitHub. Browse existing issues before submitting a new one.'}),
+    cta: translate({id: 'contact.channels.github.cta', message: 'Open an issue'}),
     href: 'https://github.com/nicumicle/simple-jwt-login/issues',
     accent: '#42b983',
     recommended: true,
@@ -40,9 +41,9 @@ const channels = [
       </svg>
     ),
     label: 'WordPress Forum',
-    title: 'Plugin support forum',
-    description: "The official WordPress.org support forum for Simple JWT Login. Great for plugin-specific questions that the broader WordPress community can benefit from.",
-    cta: 'Visit the forum',
+    title: translate({id: 'contact.channels.forum.title', message: 'Plugin support forum'}),
+    description: translate({id: 'contact.channels.forum.description', message: 'The official WordPress.org support forum for Simple JWT Login. Great for plugin-specific questions that the broader WordPress community can benefit from.'}),
+    cta: translate({id: 'contact.channels.forum.cta', message: 'Visit the forum'}),
     href: 'https://wordpress.org/support/plugin/simple-jwt-login',
     accent: '#3858e9',
   },
@@ -51,19 +52,19 @@ const channels = [
 function ContactPage() {
   return (
     <Layout
-      title="Contact Us"
-      description="Get help with Simple JWT Login - join our Discord, open a GitHub issue, or visit the WordPress support forum."
+      title={translate({id: 'contact.meta.title', message: 'Contact Us'})}
+      description={translate({id: 'contact.meta.description', message: 'Get help with Simple JWT Login - join our Discord, open a GitHub issue, or visit the WordPress support forum.'})}
     >
       {/* ── Hero ─────────────────────────────────────────── */}
       <header className={styles.hero}>
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className="container">
-          <div className={styles.heroBadge}>Support</div>
-          <h1 className={styles.heroTitle}>How can we help?</h1>
+          <div className={styles.heroBadge}><Translate id="contact.hero.badge">Support</Translate></div>
+          <h1 className={styles.heroTitle}><Translate id="contact.hero.title">How can we help?</Translate></h1>
           <p className={styles.heroSubtitle}>
-            Choose the channel that fits your question best. We're an
-            open-source project, so community support is at the heart of
-            everything - you're not alone.
+            <Translate id="contact.hero.subtitle">
+              {"Choose the channel that fits your question best. We're an open-source project, so community support is at the heart of everything - you're not alone."}
+            </Translate>
           </p>
         </div>
       </header>
@@ -76,7 +77,7 @@ function ContactPage() {
               {channels.map((ch) => (
                 <div key={ch.label} className={styles.card} style={{'--accent': ch.accent}}>
                   {ch.recommended && (
-                    <div className={styles.badge}>Fastest response</div>
+                    <div className={styles.badge}><Translate id="contact.card.fastest">Fastest response</Translate></div>
                   )}
                   <div className={styles.iconWrap} style={{color: ch.accent}}>
                     {ch.icon}
@@ -104,10 +105,11 @@ function ContactPage() {
             <div className={styles.notice}>
               <div className={styles.noticeIcon} aria-hidden="true"><FontAwesomeIcon icon={faCircleInfo} /></div>
               <div>
-                <strong>Email support was discontinued on December 1, 2024.</strong>
-                {' '}Please use Discord, GitHub, or the WordPress forum for all
-                support requests - responses there are faster and help the
-                whole community.
+                <strong><Translate id="contact.notice.title">Email support was discontinued on December 1, 2024.</Translate></strong>
+                {' '}
+                <Translate id="contact.notice.body">
+                  Please use Discord, GitHub, or the WordPress forum for all support requests - responses there are faster and help the whole community.
+                </Translate>
               </div>
             </div>
           </div>
@@ -116,27 +118,31 @@ function ContactPage() {
         {/* ── Response time expectations ─────────────────── */}
         <section className={styles.section}>
           <div className="container">
-            <h2 className={styles.sectionTitle}>What to expect</h2>
+            <h2 className={styles.sectionTitle}><Translate id="contact.expect.title">What to expect</Translate></h2>
             <div className={styles.expectGrid}>
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faBolt} /></span>
-                <h3>Quick questions</h3>
-                <p>Discord is your best bet - conversations happen fast and the community is active.</p>
+                <h3><Translate id="contact.expect.quick.title">Quick questions</Translate></h3>
+                <p><Translate id="contact.expect.quick.text">Discord is your best bet - conversations happen fast and the community is active.</Translate></p>
               </div>
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faBug} /></span>
-                <h3>Bugs & reproducible issues</h3>
-                <p>Open a GitHub issue with steps to reproduce. Include your PHP version, WordPress version, and plugin version.</p>
+                <h3><Translate id="contact.expect.bugs.title">Bugs & reproducible issues</Translate></h3>
+                <p><Translate id="contact.expect.bugs.text">Open a GitHub issue with steps to reproduce. Include your PHP version, WordPress version, and plugin version.</Translate></p>
               </div>
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faLightbulb} /></span>
-                <h3>Feature requests</h3>
-                <p>Submit a GitHub issue tagged <code>enhancement</code>. Upvotes and comments help prioritize what gets built next.</p>
+                <h3><Translate id="contact.expect.features.title">Feature requests</Translate></h3>
+                <p>
+                  <Translate id="contact.expect.features.text" values={{enhancement: <code>enhancement</code>}}>
+                    {'Submit a GitHub issue tagged {enhancement}. Upvotes and comments help prioritize what gets built next.'}
+                  </Translate>
+                </p>
               </div>
               <div className={styles.expectItem}>
                 <span className={styles.expectEmoji}><FontAwesomeIcon icon={faHandshake} /></span>
-                <h3>General help</h3>
-                <p>The WordPress forum is great for configuration questions that future users might search for too.</p>
+                <h3><Translate id="contact.expect.help.title">General help</Translate></h3>
+                <p><Translate id="contact.expect.help.text">The WordPress forum is great for configuration questions that future users might search for too.</Translate></p>
               </div>
             </div>
           </div>

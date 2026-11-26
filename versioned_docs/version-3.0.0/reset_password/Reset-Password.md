@@ -1,6 +1,8 @@
 ---
 slug: /reset-password/
-title: Reset password
+title: v3 Reset password
+description: Start a WordPress password reset in Simple JWT Login v3 - send or save a reset code through a REST API request.
+sidebar_label: Reset password
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -9,9 +11,9 @@ This endpoint initiates the password reset flow for an existing WordPress user. 
 
 **METHOD** : `POST`
 
-**ENDPOINT** : `/simple-jwt-login/v1/users/reset_password`
+**ENDPOINT** : `/simple-jwt-login/v1/user/reset_password`
 
-**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users/reset_password&email={{email}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
+**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/user/reset_password&email={{email}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
 
 **PARAMETERS**:
 
@@ -56,7 +58,7 @@ This endpoint initiates the password reset flow for an existing WordPress user. 
 
 ### SHELL
 ```bash
-curl -X POST https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users/reset_password \
+curl -X POST https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_password \
   -H "Content-type: application/json" \
   -d '{"email":"test@simplejwtlogin.com", "AUTH_CODE": "123"}'
 ```
@@ -89,7 +91,7 @@ xhr.addEventListener("readystatechange", function() {
     }
 });
 
-xhr.open("POST", "https://simplejwtlogin.com" + "/simple-jwt-login/v1/users/reset_password");
+xhr.open("POST", "https://simplejwtlogin.com" + "/simple-jwt-login/v1/user/reset_password");
 xhr.setRequestHeader("Content-Type", "application/json");
 
 xhr.send(data);

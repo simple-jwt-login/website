@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import Translate, {translate} from '@docusaurus/Translate';
 import {useLocation} from '@docusaurus/router';
 import {useDocsPreferredVersion} from '@docusaurus/theme-common';
 import clsx from 'clsx';
@@ -41,7 +42,7 @@ export default function ApiVersionLink({mobile, className}: Props) {
       )}
       to={to}
     >
-      API Reference
+      <Translate id="theme.navbar.apiVersionLink.label">API Reference</Translate>
     </Link>
   );
 }

@@ -37,3 +37,7 @@ camelCase
 snake_case
 Patchstack
 Wordfence
+WPGlob
+docsify
+Codecov
+unsanitized

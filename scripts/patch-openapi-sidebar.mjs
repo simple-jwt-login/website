@@ -76,7 +76,9 @@ const docRe =
 const items = new Map();
 let m;
 while ((m = docRe.exec(src)) !== null) {
-  const [, id, label, className] = m;
+  const [, rawId, label, className] = m;
+  // openapi-docs v5 prefixes ids with outputDir ("api/v4/"), but api/v4 is the docs root.
+  const id = rawId.replace(/^api\/v4\//, '');
   items.set(id, { id, label: label ?? '', className });
 }
 

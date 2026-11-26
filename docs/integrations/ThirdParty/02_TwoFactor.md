@@ -1,12 +1,14 @@
 ---
 slug: /integrations/third-party/two-factor/
-title: Two-Factor
-sidebar_position: 2
+title: WordPress Two-Factor JWT Login
+sidebar_label: Two-Factor
 description: Require two-factor authentication before issuing a WordPress JWT using Simple JWT Login and the Two Factor plugin.
 keywords: [WordPress 2FA JWT, two factor authentication JWT, WordPress two factor login, Simple JWT Login 2FA]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
+
+Require two-factor authentication before WordPress issues a JWT.
 
 Requires the [Two Factor](https://wordpress.org/plugins/two-factor/) plugin to be installed and activated.
 
@@ -35,7 +37,7 @@ Since version 4.2.0, these rules apply to `POST /auth/2fa` and to the OAuth two-
 
 How long the interim JWT (issued after the password check, before 2FA verification) remains valid. Range: 1-60 minutes.
 
-A short TTL (for example, 5 minutes) minimises the window in which an intercepted interim JWT could be misused.
+A short TTL (for example, 5 minutes) minimizes the window in which an intercepted interim JWT could be misused.
 
 ## 2FA Endpoint
 

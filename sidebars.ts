@@ -8,6 +8,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'Introduction',
+        'What-Is-JWT',
         'Quick-Start',
         'Configuration',
         'Dashboard',
@@ -124,6 +125,8 @@ const sidebars: SidebarsConfig = {
       label: 'Reference',
       collapsed: false,
       items: [
+        'Upgrade-v3-to-v4',
+        'Troubleshooting',
         'Error-Codes',
         'Hooks',
         'Webhooks',

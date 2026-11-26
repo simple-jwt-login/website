@@ -59,9 +59,17 @@ jobs:
           REACT_APP_GA_MEASUREMENT_ID: "G-5XPQMK41CP"
         run: yarn build
 
-      - name: 🚀 Deploy
+      # The DEPLOY_TARGET repository variable picks the host: "cloudflare" for
+      # Cloudflare Workers, anything else (or unset) for GitHub Pages.
+      - name: 🚀 Deploy to GitHub Pages
+        if: vars.DEPLOY_TARGET != 'cloudflare'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build # The folder the action should deploy.
 
-
+      - name: 🚀 Deploy to Cloudflare Workers
+        if: vars.DEPLOY_TARGET == 'cloudflare'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4.168.0 deploy

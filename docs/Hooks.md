@@ -1,17 +1,22 @@
 ---
 slug: /hooks/
-title: Hooks
-sidebar_position: 97
-description: Simple JWT Login exposes 16 WordPress action and filter hooks to customize JWT payloads, auth responses, registration, redirects, and more.
+title: WordPress JWT Hooks and Filters
+sidebar_label: Hooks
+description: Simple JWT Login exposes 39 WordPress action and filter hooks to customize JWT payloads, auth responses, registration, redirects, and audit events.
 keywords: [WordPress JWT hooks, Simple JWT Login filters, custom JWT payload, WordPress authentication hooks, JWT plugin customization, WordPress action hooks, WordPress filter hooks]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Simple JWT Login exposes **22 WordPress action and filter hooks** that let you extend or customize the plugin's behaviour without modifying its source code. Use them to enrich JWT payloads, send notifications, apply business logic, gate requests, or build fully custom flows on top of the plugin.
+Simple JWT Login exposes **39 WordPress action and filter hooks** that let you extend or customize the plugin's behavior without modifying its source code. Use them to enrich JWT payloads, send notifications, apply business logic, gate requests, or build fully custom flows on top of the plugin.
+
+The hooks come in two groups, and each group is switched on in a different place:
+
+- **19 general hooks** (the [Quick Reference](#quick-reference) table) - enable each one in **Settings → Simple JWT Login → Hooks**.
+- **20 audit hooks** (see [Audit Hooks](#audit-hooks)) - they fire when [audit logging](./AuditLogs.md) is enabled and the matching event is selected.
 
 :::warning Enable hooks first
-Hooks must be enabled individually in the plugin settings before they fire. **All hooks are disabled by default.**
+**All hooks are disabled by default.** A hook that isn't enabled never fires, even if your code calls `add_action()` or `add_filter()` for it.
 :::
 
 
@@ -36,9 +41,6 @@ Hooks must be enabled individually in the plugin settings before they fire. **Al
 | [`simple_jwt_login_response_revoke_token`](#simple_jwt_login_response_revoke_token) | filter | Before the revoke-token response is returned |
 | [`simple_jwt_login_response_validate_token`](#simple_jwt_login_response_validate_token) | filter | Before the validate-token response is returned |
 | [`simple_jwt_login_generate_payload`](#simple_jwt_login_generate_payload) | filter | Before a JWT payload is generated (any endpoint) |
-| [`simple_jwt_login_audit_2fa_challenge_issued`](#simple_jwt_login_audit_2fa_challenge_issued) | action | When a 2FA challenge code has been issued |
-| [`simple_jwt_login_audit_2fa_verify_success`](#simple_jwt_login_audit_2fa_verify_success) | action | After a successful 2FA verification |
-| [`simple_jwt_login_audit_2fa_verify_failed`](#simple_jwt_login_audit_2fa_verify_failed) | action | When a 2FA verification attempt fails |
 | [`simple_jwt_login_response_2fa_challenge`](#simple_jwt_login_response_2fa_challenge) | filter | Before the 2FA challenge response is returned |
 | [`simple_jwt_login_response_2fa_verify`](#simple_jwt_login_response_2fa_verify) | filter | Before the 2FA verify response is returned |
 
@@ -278,7 +280,74 @@ Fires before the JWT payload is generated on any endpoint (not just `/auth`). Us
 
 ## 2FA Hooks
 
-These hooks relate to the Two-Factor Authentication integration. Enable Two-Factor in **Settings → Integrations → Third Party → Two-Factor**.
+These filters work with the Two-Factor Authentication integration. Enable Two-Factor in **Settings → Integrations → Third Party → Two-Factor**, then enable each filter in **Settings → Simple JWT Login → Hooks**.
+
+### `simple_jwt_login_response_2fa_challenge`
+
+Fires before `POST /auth` returns the interim 2FA token (instead of a JWT) for a user who has two-factor authentication set up. Use it to add extra fields or transform the response.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` - the modified response.
+
+---
+
+### `simple_jwt_login_response_2fa_verify`
+
+Fires before the `POST /auth/2fa` response is returned.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$response` | `array` | The response data (modify and return) |
+| `$user` | `WP_User` | The user associated with the request |
+
+**Returns:** `array` - the modified response.
+
+---
+
+## Audit Hooks
+
+Audit hooks are actions that fire for each [audit log](./AuditLogs.md) event. They are not listed in the **Hooks** settings. Instead, a hook fires only when **Enable Audit Logging** is on and its event is selected under **Settings → Simple JWT Login → Audit Logs → Config**. Use them to send authentication events to your own monitoring or alerting system.
+
+All audit hooks receive the same arguments:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$userId` | `int` or `null` | WordPress user ID, or `null` when the user is unknown |
+| `$userEmail` | `string` or `null` | User's email address (on failures, the email that was attempted), or `null` when unknown |
+| `$message` | `string` | Failure reason. Passed to `*_failed` hooks only |
+
+| Hook | Audit event | Fires when |
+|------|-------------|------------|
+| `simple_jwt_login_audit_auth_login_success` | `auth.login.success` | `/auth` issues a JWT |
+| `simple_jwt_login_audit_auth_login_failed` | `auth.login.failed` | `/auth` rejects the credentials |
+| `simple_jwt_login_audit_auth_logout_success` | `auth.logout.success` | `/auth/revoke` revokes a JWT |
+| `simple_jwt_login_audit_auth_logout_failed` | `auth.logout.failed` | `/auth/revoke` fails |
+| `simple_jwt_login_audit_auth_register_success` | `auth.register.success` | `/users` creates a user |
+| `simple_jwt_login_audit_auth_register_failed` | `auth.register.failed` | `/users` fails to create a user |
+| `simple_jwt_login_audit_password_reset_request` | `auth.password_reset.request` | A password reset code is requested |
+| `simple_jwt_login_audit_password_reset_success` | `auth.password_reset.success` | A password is changed |
+| `simple_jwt_login_audit_password_reset_failed` | `auth.password_reset.failed` | A password reset or change fails |
+| `simple_jwt_login_audit_delete_user_success` | `auth.delete_user.success` | `DELETE /users` deletes a user |
+| `simple_jwt_login_audit_delete_user_failed` | `auth.delete_user.failed` | `DELETE /users` fails |
+| `simple_jwt_login_audit_login_session_success` | `auth.login_session.success` | `/autologin` logs a user in |
+| `simple_jwt_login_audit_login_session_failed` | `auth.login_session.failed` | `/autologin` fails |
+| `simple_jwt_login_audit_refresh_token_success` | `auth.refresh_token.success` | `/auth/refresh` issues a new JWT |
+| `simple_jwt_login_audit_refresh_token_failed` | `auth.refresh_token.failed` | `/auth/refresh` fails |
+| `simple_jwt_login_audit_oauth_success` | `auth.oauth.success` | An OAuth login succeeds |
+| `simple_jwt_login_audit_oauth_failed` | `auth.oauth.failed` | An OAuth login fails |
+| [`simple_jwt_login_audit_2fa_challenge_issued`](#simple_jwt_login_audit_2fa_challenge_issued) | `auth.2fa.challenge_issued` | A 2FA challenge is issued |
+| [`simple_jwt_login_audit_2fa_verify_success`](#simple_jwt_login_audit_2fa_verify_success) | `auth.2fa.verify_success` | A 2FA code is verified |
+| [`simple_jwt_login_audit_2fa_verify_failed`](#simple_jwt_login_audit_2fa_verify_failed) | `auth.2fa.verify_failed` | A 2FA verification fails |
+
+```php
+add_action('simple_jwt_login_audit_auth_login_failed', function ($userId, $userEmail, $message) {
+    error_log(sprintf('JWT login failed for %s: %s', $userEmail ?? 'unknown', $message));
+}, 10, 3);
+```
 
 ### `simple_jwt_login_audit_2fa_challenge_issued`
 
@@ -311,32 +380,6 @@ Fires when a two-factor authentication verification attempt fails.
 | `$userId` | `int` | WordPress user ID |
 | `$userEmail` | `string` | User's email address |
 | `$message` | `string` | Human-readable failure reason |
-
----
-
-### `simple_jwt_login_response_2fa_challenge`
-
-Fires before the `POST /auth/2fa` challenge response is returned. Use it to add extra fields or transform the response.
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$response` | `array` | The response data (modify and return) |
-| `$user` | `WP_User` | The user associated with the request |
-
-**Returns:** `array` - the modified response.
-
----
-
-### `simple_jwt_login_response_2fa_verify`
-
-Fires before the 2FA verify endpoint response is returned.
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$response` | `array` | The response data (modify and return) |
-| `$user` | `WP_User` | The user associated with the request |
-
-**Returns:** `array` - the modified response.
 
 ---
 
@@ -450,3 +493,7 @@ add_filter('simple_jwt_login_response_auth_user', function (array $response, WP_
     return $response;
 }, 10, 2);
 ```
+
+## Next steps
+
+- [Notify external services with webhooks](./Webhooks.md)

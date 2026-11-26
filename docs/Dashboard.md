@@ -1,7 +1,7 @@
 ---
 slug: /dashboard/
-title: Dashboard
-sidebar_position: 0
+title: JWT Plugin Dashboard Overview
+sidebar_label: Dashboard
 description: Overview of Simple JWT Login plugin status - see at a glance which routes, security features, integrations, and monitoring options are active.
 keywords: [Simple JWT Login dashboard, WordPress JWT plugin status, JWT plugin overview]
 author: Nicu Micle
@@ -81,3 +81,8 @@ Webhooks and audit logging.
 ## Quick start
 
 If this is your first time setting up the plugin, start with **General Settings** to set your JWT signing key and algorithm, then enable the specific routes your application needs.
+
+## Next steps
+
+- [Follow the WordPress JWT quick start](./Quick-Start.md)
+- [Manage the plugin with WP-CLI](./integrations/CLI.md)

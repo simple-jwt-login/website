@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
+import Translate from '@docusaurus/Translate';
 import {useCdnUrl} from '@site/src/utils/cdn';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
@@ -39,7 +40,7 @@ const Feature =({ title, description ,image, faIcon, alt, link, version}) => {
         <p className={styles.description}>{description}</p>
 
         <div className={styles.readmore}>
-          {link ? <Link to={link} title={alt}>read more</Link> : <></>}
+          {link ? <Link to={link} title={alt}><Translate id="feature.readMore">read more</Translate></Link> : <></>}
         </div>
       </div>
     </div>

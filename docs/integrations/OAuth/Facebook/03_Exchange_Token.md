@@ -1,9 +1,9 @@
 ---
 slug: /integrations/oauth/facebook/exchange-token
-title: Exchange access_token for WordPress JWT
-sidebar_position: 3
-description: Exchange a Facebook access_token for a WordPress JWT using Simple JWT Login.
-keywords: [Facebook access_token, WordPress JWT, OAuth token exchange, Simple JWT Login, headless WordPress]
+title: Exchange a Facebook Token for a JWT
+sidebar_label: Exchange access_token for WordPress JWT
+description: Exchange a Facebook access_token for a WordPress JWT through the REST API - endpoint, parameters, curl request, and success and error responses.
+keywords: [Facebook access_token to WordPress JWT, Facebook token exchange, Facebook login headless WordPress, Facebook JWT WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -71,3 +71,9 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   }
 }
 ```
+
+## Next steps
+
+- [Protect WordPress REST API endpoints with the JWT](../../../Protect-Endpoints.md)
+- [Refresh the JWT](../../../auth/RefreshToken.md)
+- [Look up error codes](../../../Error-Codes.md)

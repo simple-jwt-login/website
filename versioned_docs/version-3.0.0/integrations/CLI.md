@@ -1,8 +1,9 @@
 ---
 slug: /cli/
-title: WP-CLI Add-on
+title: v3 WP-CLI Add-on
+sidebar_label: WP-CLI Add-on
 sidebar_position: 10
-description: Manage Simple JWT Login from the command line - generate tokens, validate JWTs, and configure the plugin without touching the WordPress admin UI.
+description: Manage Simple JWT Login v3 with WP-CLI - generate tokens, inspect payloads, revoke sessions, and change plugin settings.
 keywords: [simple-jwt-login cli, wp-cli jwt, wp jwt login, jwt command line, wordpress jwt cli, wpcli jwt token]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

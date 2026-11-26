@@ -1,6 +1,8 @@
 ---
 slug: /auth-codes/
-title: Auth Codes
+title: v3 Auth Codes
+description: Simple JWT Login v3 Auth Codes - add a shared secret to your API requests so only callers with the right AUTH_CODE can use the plugin endpoints.
+sidebar_label: Auth Codes
 sidebar_position: 3
 author: Nicu Micle
 author_url: https://github.com/nicumicle

@@ -5,15 +5,34 @@ slug: /simple-jwt-login-security-hardening/
 hide_table_of_contents: false
 authors: nicumicle
 tags: [tutorials, security]
-image: /assets/favicons/android-chrome-192x192.png
+image: /assets/images/social-card.png
 keywords: [Simple JWT Login, security hardening, WordPress REST API, JWT authentication, Auth Codes]
 ---
 
 Installing Simple JWT Login takes minutes. Configuring it securely for production takes a bit more thought. The plugin ships with most sensitive features **disabled by default**, which is the right approach - but it also means the defaults aren't always sufficient for a hardened deployment.
 
-This guide works through every security-relevant setting in Simple JWT Login, explains the trade-offs, and gives you a concrete checklist to work from before you go live.
+This guide works through the main security settings in Simple JWT Login, explains the trade-offs, and gives you a concrete checklist to work from before you go live.
 
 <!--truncate-->
+
+:::note
+This guide covers Simple JWT Login v4. Settings that need a specific release are marked with its version.
+:::
+
+## Threats and Defenses at a Glance
+
+Start from what an attacker might do, then check that the matching defense is on:
+
+| Attack | Defense | Default |
+|---|---|---|
+| Guess the key and forge an admin token | Long random key, outside the database ([section 2](#2-use-a-strong-decryption-key)) | You set the key |
+| Replay a stolen JWT | Short expiration and revocation ([3](#3-set-a-short-token-expiration), [8](#8-use-token-revocation-for-logout-and-password-changes)) | 60 minutes; revoke endpoint off |
+| Reuse a JWT issued for another site or app | Expected audience, `aud` (4.2.0) ([11](#11-bind-tokens-to-your-site)) | Off |
+| Make a visitor's browser send their cookie JWT (CSRF) | Cross-site request checks (4.1.1) ([9](#9-configure-cors-carefully)) | Always on |
+| Log in with a stolen password | Two-factor authentication ([12](#12-add-a-second-factor-and-watch-the-logs)) | Off |
+| Create accounts in bulk | Auth Codes, IP and email domain allowlists ([4](#4-restrict-operations-with-auth-codes), [7](#7-restrict-registration-by-ip-and-email-domain)) | Registration off |
+| List usernames through `/wp/v2/users` | Protect Endpoints ([5](#5-enable-endpoint-protection)) | Off |
+| Spoof an IP address to pass an allowlist | Leave proxy headers untrusted ([6](#6-restrict-auto-login-by-ip-address)) | Proxy headers ignored |
 
 ## 1. Choose the Right Signing Algorithm
 
@@ -30,7 +49,7 @@ For most applications, **HS256 is the right default**. If you go this route, the
 
 **Configuration:**
 ```
-Settings > Simple JWT Login > General > JWT Algorithm
+Settings > Simple JWT Login > General > JWT Verification Rules > ELSE
 ```
 
 ---
@@ -43,7 +62,7 @@ Rules for production keys:
 - **Minimum 32 characters**, ideally 64+
 - Use a cryptographically random generator, not a human-chosen phrase
 - Never commit it to version control
-- Rotate it if you suspect compromise (this will invalidate all existing tokens - have a plan for active sessions)
+- Rotate it if you suspect compromise (this invalidates all existing tokens - have a plan for active sessions)
 
 Generate a suitable key from your terminal:
 
@@ -51,7 +70,13 @@ Generate a suitable key from your terminal:
 openssl rand -base64 48
 ```
 
-Store it in an environment variable and read it into your plugin configuration via `wp-config.php` if possible, rather than keeping it only in the database.
+To keep the key out of the database, set the [key source](/docs/configuration#the-else-rule-required-default) to **Code** and define it in `wp-config.php`, for example from an environment variable:
+
+```php
+define('SIMPLE_JWT_PRIVATE_KEY', getenv('SIMPLE_JWT_PRIVATE_KEY'));
+```
+
+A database leak then doesn't include your signing key. If you enable refresh tokens, give them their own secret: never reuse the signing key.
 
 ---
 
@@ -63,28 +88,28 @@ Long-lived tokens are a liability. If a token is stolen, the attacker has access
 
 | Application type | Token TTL |
 |---|---|
-| Web SPA (frequent use) | 15–60 minutes |
-| Mobile app | 1–24 hours |
-| Server-to-server | 5–15 minutes |
-| Auto-login links (email campaigns) | 10–30 minutes |
+| Web SPA (frequent use) | 15-60 minutes |
+| Mobile app | 1-24 hours |
+| Server-to-server | 5-15 minutes |
+| Auto-login links (email campaigns) | 10-30 minutes |
 
-Pair short expiration with a **token refresh** flow so legitimate users aren't constantly forced to re-authenticate.
+Pair short expiration with a **token refresh** flow so legitimate users aren't constantly forced to re-authenticate. Each refresh token works once: a successful refresh invalidates it and returns a new one. The default refresh window is 2 weeks and rolls forward on each use.
 
 ```
-Settings > Simple JWT Login > General > JWT Expiration (seconds)
+Settings > Simple JWT Login > Authentication > JWT Expiration (minutes)
 ```
 
 ---
 
 ## 4. Restrict Operations with Auth Codes
 
-Auth Codes are optional API keys that gate specific plugin operations: auto-login, user registration, user deletion, and password resets. If an operation requires an Auth Code and the caller doesn't provide a valid one, the request is rejected - regardless of whether a valid JWT is present.
+Auth Codes are optional shared secrets that gate specific plugin operations: authentication, auto-login, user registration, user deletion, and password resets. If an operation requires an Auth Code and the caller doesn't provide a valid one, the request is rejected - regardless of whether a valid JWT is present.
 
 **Always use Auth Codes for:**
 
 - **User registration** - without one, anyone who discovers your endpoint can create WordPress accounts
 - **User deletion** - even with JWT auth, an extra key adds a meaningful barrier
-- **Auto-login** - prevents token-crafting attacks against your autologin endpoint
+- **Auto-login** - a leaked JWT alone is then not enough to open a WordPress session
 
 Auth Code configuration lets you:
 - Assign each code a **WordPress role** (new users created with that code get that role)
@@ -94,6 +119,8 @@ Auth Code configuration lets you:
 ```
 Settings > Simple JWT Login > Auth Codes
 ```
+
+An Auth Code shipped inside a browser or mobile app is not a secret, because users can extract it. There it only tells clients apart. It is a real barrier only when your own backend makes the call.
 
 A practical pattern: one Auth Code per external system that interacts with your API. If a system is compromised, revoke its code without affecting others.
 
@@ -105,9 +132,9 @@ The WordPress REST API leaks more data than most developers realise. Endpoints l
 
 **Two protection modes:**
 
-**Protect all, whitelist exceptions:** Start from a closed position. Every REST request requires a JWT unless you explicitly whitelist the route. Recommended for private APIs and admin tools.
+**Require a valid JWT by default:** Start from a closed position. Every REST request requires a JWT unless the route has a **Public** rule. Recommended for private APIs and admin tools.
 
-**Protect specific routes:** Only named routes require authentication. Everything else is public. Suitable for content sites that need public read access but authenticated writes.
+**Allow access by default:** Only routes with a **JWT required** or **JWT + Roles** rule require authentication. Everything else is public. Suitable for content sites that need public read access but authenticated writes.
 
 Configure per-HTTP-method granularity. A common setup for a content API:
 
@@ -121,19 +148,23 @@ Configure per-HTTP-method granularity. A common setup for a content API:
 Settings > Simple JWT Login > Protect Endpoints
 ```
 
+Rules are evaluated top to bottom and the first match wins, so put specific rules above broad ones. Since version 4.2.0, rules match the route and method WordPress actually dispatches, so `?_method=` overrides, batch requests, and `_embed` sub-requests can't get around them.
+
 ---
 
 ## 6. Restrict Auto-Login by IP Address
 
-Auto-login is powerful and therefore worth extra hardening. If you're using it exclusively for server-side integrations (e.g., generating login links from a specific application server), lock it down to that server's IP address.
+Auto-login opens a full WordPress session, so it deserves extra hardening. If only people on a known network use it, such as an office or a VPN, accept it only from those addresses.
 
 ```
-Settings > Simple JWT Login > Auto Login > Allow auto-login only from these IPs
+Settings > Simple JWT Login > Autologin > Access Control
 ```
 
-This renders stolen auto-login links useless from any other network, even if the token itself hasn't expired.
+A stolen auto-login link then fails from any other network, even if the token hasn't expired. The check uses the IP address of whoever opens the link.
 
-For email campaign auto-login where users click from arbitrary IPs, leave IP restriction disabled - but compensate with a short token TTL (10–15 minutes is reasonable for a one-time login link).
+Behind a reverse proxy, WordPress sees the proxy's IP address. Enable [Trust reverse proxy IP headers](/docs/configuration#trust-reverse-proxy-ip-headers) only if a proxy you control appends to `X-Forwarded-For`. On a directly exposed server, clients can forge that header and pass your allowlist.
+
+For email campaigns where users click from arbitrary IPs, leave the restriction disabled and use a short token TTL instead (10-15 minutes). Also enable **safe redirects** under General, so a crafted link can't send users to another site.
 
 ---
 
@@ -144,67 +175,63 @@ Two independent controls protect the registration endpoint:
 **IP allowlist:** Only allow registration requests from known origins - your front-end server, your CI pipeline, etc.
 
 ```
-Settings > Simple JWT Login > Register User > Allow register only from these IPs
+Settings > Simple JWT Login > Register User > Access Control > Allowed IP Addresses
 ```
 
 **Email domain allowlist:** Restrict registrations to specific email domains. Useful for internal tools or invite-only platforms where only company email addresses should be allowed.
 
 ```
-Settings > Simple JWT Login > Register User > Allowed email domains
+Settings > Simple JWT Login > Register User > Access Control > Allowed Email Domains
 ```
 
-Example: allow only `@yourcompany.com` and `@partner.com` addresses. Any registration attempt with a Gmail or other address is rejected at the plugin level before WordPress processes it.
+Example: allow only `@yourcompany.com` and `@partner.com` addresses. Registrations with any other address are rejected. The check reads the submitted address and is not proof that the caller owns it.
 
 ---
 
 ## 8. Use Token Revocation for Logout and Password Changes
 
-JWT tokens are stateless by design, which means a standard logout (just deleting the client-side token) doesn't actually invalidate the token server-side. If the token was copied before logout, it remains valid until expiry.
+JWTs are stateless by design, which means a standard logout (just deleting the client-side token) doesn't actually invalidate the token server-side. If the token was copied before logout, it remains valid until expiry.
 
-Simple JWT Login's revoke endpoint adds server-side blacklisting:
+Enable the revoke endpoint to reject a token on the server before it expires:
 
 ```bash
-curl -X DELETE "https://example.com/wp-json/simple-jwt-login/v1/auth/revoke" \
+curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/auth/revoke" \
   -H "Authorization: Bearer <token>"
 ```
 
-**Call this endpoint on:**
-- User-initiated logout
-- Password change
-- Account suspension or deletion
-- Any security event that should terminate existing sessions
+This call revokes the one token you send. To end **all** of a user's sessions, turn on **Revoke sessions on password change** (4.2.0, off by default) under Authentication. A password change then deletes the user's refresh tokens and rejects every JWT issued before it, including a stolen copy you never saw.
 
-This won't help if you don't call it, so it's worth building into your logout flow as a required step rather than a best-effort one.
+Revoking a JWT on logout won't help if you don't call it, so it's worth building into your logout flow as a required step rather than a best-effort one.
 
 ---
 
 ## 9. Configure CORS Carefully
 
-Simple JWT Login can add `Access-Control-Allow-Origin: *` headers to remove cross-origin friction during development. In production, this setting is a security liability - it allows any website to make authenticated requests to your API on behalf of your users.
+CORS decides which websites can read your API from a browser. Since version 4.1.1 it also decides which sites the plugin trusts with a JWT:
+
+- A header, cookie, or session JWT on a cross-site request is ignored unless **Allow origin** lists that origin.
+- A `*` entry accepts header JWTs from any origin, but never cookie or session JWTs.
+- JWTs in the URL or body are not covered by this check.
 
 **For production:**
 
-1. Disable the wildcard CORS setting in the plugin.
-2. Configure CORS at the web server level (Apache or Nginx) to allow only your specific front-end origin(s).
+1. If your front end is on another domain, enable CORS and list its exact origin.
+2. Replace `*` with that list.
+3. If your front end shares your WordPress domain, leave CORS disabled.
 
-**Apache example:**
-
-```apache
-<IfModule mod_headers.c>
-  SetEnvIf Origin "https://yourfrontend.com" CORS_ALLOWED=1
-  Header set Access-Control-Allow-Origin "https://yourfrontend.com" env=CORS_ALLOWED
-  Header set Access-Control-Allow-Headers "Authorization, Content-Type"
-  Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-</IfModule>
+```
+Settings > Simple JWT Login > CORS
 ```
 
-**Nginx example:**
-
-```nginx
-add_header Access-Control-Allow-Origin "https://yourfrontend.com";
-add_header Access-Control-Allow-Headers "Authorization, Content-Type";
-add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
 ```
+Access-Control-Allow-Origin:  https://yourfrontend.com
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: Content-Type, Authorization
+```
+
+Don't move this to Apache or Nginx only: the plugin reads its own **Allow origin** list, so your front end's JWTs would be ignored. See [Cross-site requests](/docs/configuration/#cross-site-requests).
+
+Where possible, send tokens as `Authorization: Bearer` and disable the JWT input sources you don't use. Tokens in URLs end up in access logs and browser history.
 
 ---
 
@@ -224,20 +251,46 @@ The fewer endpoints active, the smaller the attack surface.
 
 ---
 
+## 11. Bind Tokens to Your Site
+
+If two sites share a signing key, or you accept tokens from an identity provider, a token meant for one app can be valid in another. Since version 4.2.0, set **Expected audience (aud)** so a JWT is only accepted when its `aud` claim contains your value:
+
+- For tokens your site signs, set it under **Authentication**. Your site URL is a good value. Users must log in again, because older JWTs have no `aud`.
+- For tokens from another issuer, set it on the [JWT Verification Rule](/docs/configuration#jwt-verification-rules) - typically your app's client ID.
+
+---
+
+## 12. Add a Second Factor and Watch the Logs
+
+**Two-factor authentication.** With the [Two Factor](/docs/integrations/third-party/two-factor/) plugin, `/auth` returns a short-lived interim JWT, and only a valid code turns it into a full JWT. Since version 4.2.0, wrong codes count toward that plugin's rate limit, and an interim JWT can be exchanged only once. Users without 2FA configured still log in with a password.
+
+**Audit logs.** [Audit logging](/docs/audit-logs/) is off by default. At minimum, log failed logins, failed 2FA codes, user deletions, API key changes, and settings changes.
+
+**API keys.** For server-to-server calls, use [API keys](/docs/api-keys/) with only the permissions the caller needs and an expiry date, instead of an administrator's JWT.
+
+---
+
 ## Security Hardening Checklist
 
 Use this before every production deployment:
 
 - [ ] Decryption key is 32+ characters, randomly generated, not in version control
 - [ ] Algorithm selected matches your use case (HS256 for simple, RS256 for shared verification)
+- [ ] Every request that carries a JWT uses HTTPS
 - [ ] Token expiration is set to the shortest practical TTL for your application
 - [ ] Auth Codes are enabled for registration, deletion, and auto-login
 - [ ] Each Auth Code is scoped to the minimum required role
-- [ ] Endpoint protection is configured - protect all with whitelist, or named routes
-- [ ] Auto-login IP restriction is set if used for server-side integrations only
+- [ ] Endpoint protection is configured, and `/wp/v2/users` is not public unless you need it
+- [ ] Auto-login is limited by IP when used from known networks, and safe redirects are on
+- [ ] Reverse proxy headers are trusted only behind a proxy you control
 - [ ] Registration IP and email domain restrictions are configured if applicable
-- [ ] Token revocation is integrated into your logout and password-change flows
-- [ ] Wildcard CORS is disabled; web server handles CORS with specific origins
+- [ ] Your logout flow calls the revoke endpoint
+- [ ] Revoke sessions on password change is on
+- [ ] CORS lists exact origins instead of `*`, or is disabled
+- [ ] Unused JWT input sources are disabled
+- [ ] Expected audience (`aud`) is set when keys or issuers are shared
+- [ ] Administrators use 2FA, and audit logging is on
+- [ ] API keys have minimal permissions and an expiry date
 - [ ] All unused features (register, delete, auto-login, reset password) are disabled
 - [ ] Auth Code expiration dates are set for time-limited integrations
 

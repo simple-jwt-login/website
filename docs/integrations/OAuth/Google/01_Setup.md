@@ -1,8 +1,8 @@
 ---
 slug: /integrations/oauth/google/setup
-title: Setup
-sidebar_position: 1
-description: Configure Google OAuth credentials in Simple JWT Login to enable Google sign-in for your WordPress site.
+title: Google OAuth Setup for WordPress
+sidebar_label: Setup
+description: Set up Google login for WordPress - create a Google OAuth app, copy the credentials into Simple JWT Login, and enable the provider.
 keywords: [Google OAuth WordPress, Google Cloud Console, Google Client ID, Google Client Secret, social login WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
@@ -35,3 +35,9 @@ Keep your credentials secure - never commit them to version control or expose th
 ![Google OAuth Credentials](/assets/images/screenshots/oauth/credentials.png)
 
 4. Toggle **Enable** to activate the Google provider.
+
+## Next steps
+
+- [Exchange a Google OAuth code for tokens](./02_Exchange_Code.md)
+- [Exchange a Google token for a WordPress JWT](./03_Exchange_Token.md)
+- [Add a Google login button with the shortcode](./04_Shortcode.md)

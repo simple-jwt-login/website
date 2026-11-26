@@ -1,19 +1,19 @@
 ---
 slug: /authentication/
-title: Authentication
-sidebar_position: 2
-description: Generate, refresh, validate, and revoke JWT tokens via the WordPress REST API using Simple JWT Login. Supports HS256/384/512 and RS256/384/512 algorithms.
+title: WordPress REST API JWT Authentication
+sidebar_label: Authentication
+description: Get a JWT from WordPress credentials through the REST API with Simple JWT Login. Supports email, username, custom claims, HS256 and RS256 signing.
 keywords: [WordPress JWT authentication, generate JWT token WordPress, JWT REST API WordPress, HS256 WordPress, RS256 WordPress, token-based login WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Use this endpoint to exchange WordPress credentials for a signed JWT. The returned token can then be included in subsequent requests to protected endpoints or used to auto-login users.
+WordPress REST API JWT authentication starts here: send WordPress credentials to this endpoint and get back a signed JWT. The returned token can then be included in subsequent requests to protected endpoints or used to auto-login users.
 
 You can authenticate using any of the following combinations:
 - **email** + **password** - standard credential pair
 - **username** + **password** - use the WordPress username instead of email
-- **login** + **password** - mirrors the WordPress login page behaviour; accepts either email or username
+- **login** + **password** - mirrors the WordPress login page behavior; accepts either email or username
 
 :::tip[API Reference]
 Explore and test this endpoint using the [interactive API reference →](/api/v4/get-jwt)
@@ -28,7 +28,7 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 **URL Example**: `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/auth`
 
 :::warning[Keep credentials out of the URL]
-Send the email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history and monitoring tools.
+Send the email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history, and monitoring tools.
 :::
 
 **PARAMETERS**:
@@ -359,3 +359,9 @@ The wildcard `*` is supported in any octet, which is useful for allowing an enti
 ```
 85.*.*.*, 86.*.*.*
 ```
+
+## Next steps
+
+- [Refresh the JWT](./RefreshToken.md) or [revoke it on logout](./RevokeToken.md)
+- [Use the JWT in a Next.js app](../code_examples/nextjs.md) or [a Flutter app](../code_examples/flutter.md)
+- [Troubleshoot JWT errors](../Troubleshooting.md)

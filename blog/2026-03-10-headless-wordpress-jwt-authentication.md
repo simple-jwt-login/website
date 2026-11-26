@@ -6,16 +6,16 @@ hide_table_of_contents: false
 authors: nicumicle
 tags: [tutorials, headless-wordpress, jwt-authentication, security]
 keywords: [headless WordPress, JWT authentication, WordPress REST API, Simple JWT Login, token-based auth, headless CMS, Next.js WordPress, React WordPress]
-image: /assets/favicons/android-chrome-192x192.png
+image: /assets/images/social-card.png
 ---
 
-Headless WordPress has gone mainstream. Teams reach for it when they want WordPress's content management experience paired with a modern front-end - React, Next.js, Vue, or a mobile app. The REST API makes that possible, but it leaves one critical piece unresolved: **authentication**.
+[Headless WordPress](/headless-wordpress) has gone mainstream. Teams reach for it when they want WordPress's content management experience paired with a modern front-end - React, Next.js, Vue, or a mobile app. The REST API makes that possible, but it leaves one critical piece unresolved: **authentication**.
 
 WordPress's built-in auth is cookie-based and browser-centric. It doesn't translate cleanly to API-first architectures. That's the gap Simple JWT Login fills, and in this article I'll walk through a complete, realistic setup.
 
 <!--truncate-->
 
-## What We're Building
+## What You'll Build
 
 A headless WordPress backend with:
 
@@ -34,15 +34,15 @@ All of this is handled by [Simple JWT Login](https://wordpress.org/plugins/simpl
 
 Install Simple JWT Login from the WordPress plugin repository, then navigate to **Simple JWT Login** in your WordPress admin sidebar.
 
-The first setting to configure is the **JWT Decryption Key** - this is the secret used to sign and verify tokens. Treat it like a database password: long, random, and stored in a secrets manager rather than hardcoded.
+The first setting to configure is the signing key, in the **ELSE** row of **JWT Verification Rules**. This secret signs and verifies tokens. Treat it like a database password: long, random, and kept out of the database where possible - the plugin can read it from `wp-config.php`.
 
 ```
-Settings > Simple JWT Login > General > JWT Decryption Key
+Settings > Simple JWT Login > General > JWT Verification Rules
 ```
 
-Next, select your **algorithm**. For most setups `HS256` (HMAC SHA-256) is the right default. If you need asymmetric signing - for example, to let a third-party service verify tokens without knowing the secret - switch to `RS256` and configure your public/private key pair.
+In the same row, select your **algorithm**. For most setups `HS256` (HMAC SHA-256) is the right default. If you need asymmetric signing - for example, to let a third-party service verify tokens without knowing the secret - switch to `RS256` and configure your public/private key pair.
 
-Set a reasonable **JWT expiration time**. Sixty minutes is a sensible starting point for most web apps; mobile apps often use longer windows paired with token refresh.
+Then turn on **Allow JWT Authentication** under **Authentication** - every endpoint is disabled by default. While you're there, set a reasonable **JWT Expiration**. Sixty minutes is a sensible starting point for most web apps; mobile apps often use longer windows paired with token refresh.
 
 ---
 
@@ -66,45 +66,41 @@ A successful response looks like this:
   "success": true,
   "data": {
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "user": {
-      "ID": 42,
-      "user_email": "user@example.com",
-      "display_name": "Jane Doe"
-    }
+    "refresh_token": "a1b2c3d4e5f6..."
   }
 }
 ```
 
-Store this token client-side (memory or an `HttpOnly` cookie - avoid `localStorage` for sensitive apps) and attach it to subsequent requests.
+The `refresh_token` is only there when refresh tokens are turned on. Store the JWT client-side (memory or an `HttpOnly` cookie - avoid `localStorage` for sensitive apps) and attach it to subsequent requests.
 
-The plugin also supports **username** and a combined **login field** (email or username) for the initial auth call, configurable under `General > Login by`.
+Instead of `email`, you can send `username`, or `login`, which accepts either one.
 
 ---
 
 ## Making Authenticated Requests
 
-Once you have a token, include it in the `Authorization` header on every protected request:
+Once you have a token, include it in the `Authorization` header on every protected request. To use it on WordPress's own routes such as `/wp/v2/users/me`, turn on **JWT Middleware for all WordPress endpoints** under **General → Integration Options**:
 
 ```bash
 curl "https://example.com/wp-json/wp/v2/users/me" \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 ```
 
-The plugin also accepts the token as a query parameter (`?JWT=<token>`) or in the request body (`{"JWT": "<token>"}`), which is handy for scenarios where setting custom headers is awkward - like certain webhook consumers.
+The plugin can also read the token from a query parameter (`?JWT=<token>`), a cookie, or the session - see [JWT Input Sources](/docs/configuration#jwt-input-sources). Prefer the header: URLs end up in server logs.
 
 ---
 
 ## Refreshing Tokens
 
-Short-lived tokens are more secure, but they require your client to handle expiry gracefully. Simple JWT Login provides a dedicated refresh endpoint:
+Short-lived tokens are more secure, but they require your client to handle expiry gracefully. Turn on refresh tokens, and `/auth` returns a `refresh_token` next to the JWT. Exchange it at the refresh endpoint:
 
 ```bash
 curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/auth/refresh" \
   -H "Content-Type: application/json" \
-  -d '{"JWT": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}'
+  -d '{"refresh_token": "a1b2c3d4e5f6..."}'
 ```
 
-The response is a new token with a fresh expiry. A typical front-end pattern: check the token's `exp` claim before each request, and if it's within a few minutes of expiry, refresh proactively rather than reacting to a 401.
+The response contains a new JWT and a new refresh token. See [Refresh token](/docs/refresh-token/) for the details. A typical front-end pattern: check the token's `exp` claim before each request, and if it's within a few minutes of expiry, refresh proactively rather than reacting to a 401.
 
 ---
 
@@ -127,7 +123,7 @@ For a typical blog-style API you might whitelist:
 
 Every other route - user data, media uploads, post creation - requires a valid JWT.
 
-You can also protect routes **by HTTP method**. If your front-end needs `GET` on posts to be public but `POST` (creating posts) to be authenticated, that's a single checkbox per method. No custom middleware needed.
+You can also protect routes **by HTTP method**. If your front-end needs `GET` on posts to be public but `POST` (creating posts) to be authenticated, add a rule for each method. Browser apps should prefer specific methods over **ALL**, because an **ALL** rule also blocks the CORS preflight - see [Troubleshooting](/docs/troubleshooting/).
 
 ---
 
@@ -149,11 +145,11 @@ curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/users" \
     "password": "initial_password",
     "first_name": "Jane",
     "last_name": "Doe",
-    "auth_code": "YOUR_REGISTRATION_AUTH_CODE"
+    "AUTH_KEY": "YOUR_REGISTRATION_AUTH_CODE"
   }'
 ```
 
-You can also configure the plugin to **generate a random password** and return it in the response - useful if you want to issue a temporary password and immediately prompt the user to change it.
+You can also turn on **Generate a random password**, so the request doesn't need a `password` at all.
 
 IP address restrictions and email domain allowlists add further layers of control over who can register.
 
@@ -166,7 +162,7 @@ The plugin ships a full password reset flow accessible via API, which is often m
 **Step 1 - Request a reset code:**
 
 ```bash
-curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/users/reset_password" \
+curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/user/reset_password" \
   -H "Content-Type: application/json" \
   -d '{"email": "user@example.com"}'
 ```
@@ -174,7 +170,7 @@ curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/users/reset_passwo
 **Step 2 - Submit the new password with the code:**
 
 ```bash
-curl -X PUT "https://example.com/wp-json/simple-jwt-login/v1/users/reset_password" \
+curl -X PUT "https://example.com/wp-json/simple-jwt-login/v1/user/reset_password" \
   -H "Content-Type: application/json" \
   -d '{
     "email": "user@example.com",
@@ -183,11 +179,11 @@ curl -X PUT "https://example.com/wp-json/simple-jwt-login/v1/users/reset_passwor
   }'
 ```
 
-Three reset modes are available:
+Three reset flows are available:
 
-- **Silent**: The reset code is returned directly in the API response (for custom email delivery).
-- **Default WordPress email**: Uses WordPress's built-in email template.
-- **Custom email template**: You define the subject and body using variables like `{{CODE}}`, `{{NAME}}`, and `{{EMAIL}}`.
+- **Save code in database only**: No email is sent, so your front end can deliver the code its own way.
+- **Send default WordPress reset email**: Uses WordPress's built-in email template.
+- **Send custom email**: You define the subject and body using variables like `{{CODE}}`, `{{NAME}}`, and `{{EMAIL}}`.
 
 The custom template mode is ideal for headless apps that have their own transactional email design system and don't want WordPress's default styling.
 
@@ -200,29 +196,33 @@ One of the most underrated features: generate a URL that logs a user in automati
 Enable auto-login under:
 
 ```
-Settings > Simple JWT Login > Auto Login
+Settings > Simple JWT Login > Autologin
 ```
 
 Then generate a JWT for the target user and construct the URL:
 
 ```
-https://example.com/?JWT=<user_jwt>&redirectUrl={{site_url}}/account/dashboard
+https://example.com/?rest_route=/simple-jwt-login/v1/autologin&JWT=<user_jwt>&redirectUrl={{site_url}}/account/dashboard
 ```
 
 When the user clicks that link, Simple JWT Login authenticates them silently and redirects them to their dashboard - already logged in.
 
-The `redirectUrl` parameter supports dynamic variables (`{{user_id}}`, `{{user_email}}`, `{{user_first_name}}`, and more), so each link can route the user to a personalized destination. Pair this with the **MailPoet add-on** and you have one-click autologin directly inside email campaigns without a single line of custom code.
+The `redirectUrl` parameter works when **Honor the `redirectUrl` parameter** is on, and supports dynamic variables (`{{user_id}}`, `{{user_email}}`, `{{user_first_name}}`, and more), so each link can route the user to a personalized destination. Pair this with the **MailPoet add-on** and you have one-click autologin directly inside email campaigns without a single line of custom code.
 
 ---
 
 ## Enriching the JWT with Custom Data
 
-Out of the box, the JWT payload contains standard claims (`sub`, `iat`, `exp`). For most front-ends you'll want to include additional user data to avoid extra API calls after login.
+The JWT payload carries the claims you select under **Authentication → JWT payload parameters**, such as `id`, `email`, and `exp`. For most front-ends you'll want to include additional user data to avoid extra API calls after login.
 
-Use the `simple_jwt_login_jwt_payload` filter:
+Use the `simple_jwt_login_jwt_payload_auth` filter, which runs on `/auth` (turn it on under **Hooks** first):
 
 ```php
-add_filter('simple_jwt_login_jwt_payload', function($payload, $user) {
+add_filter('simple_jwt_login_jwt_payload_auth', function($payload, $request) {
+    $user = get_user_by('id', $payload['id']);
+    if (!$user) {
+        return $payload;
+    }
     $payload['display_name'] = $user->display_name;
     $payload['roles']        = $user->roles;
     $payload['avatar']       = get_avatar_url($user->ID);
@@ -230,7 +230,7 @@ add_filter('simple_jwt_login_jwt_payload', function($payload, $user) {
 }, 10, 2);
 ```
 
-Your front-end can now decode the JWT and immediately render the user's name and avatar without an additional `/users/me` request.
+This example assumes `id` is one of the selected payload claims. Your front-end can now decode the JWT and immediately render the user's name and avatar without an additional `/users/me` request.
 
 ---
 
@@ -239,23 +239,23 @@ Your front-end can now decode the JWT and immediately render the user's name and
 When a user logs out or changes their password, you'll want to invalidate their existing tokens. Simple JWT Login provides a revoke endpoint:
 
 ```bash
-curl -X DELETE "https://example.com/wp-json/simple-jwt-login/v1/auth/revoke" \
+curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/auth/revoke" \
   -H "Authorization: Bearer <token>"
 ```
 
-Revoked tokens are blacklisted server-side and will be rejected on subsequent requests, even if they haven't technically expired yet.
+Revoked tokens are blocked server-side and rejected on later requests, even if they haven't technically expired yet.
 
 ---
 
 ## A Note on CORS
 
-If your front-end is served from a different domain than WordPress - which is almost always the case in headless setups - you'll need CORS headers. Simple JWT Login can add `Access-Control-Allow-Origin: *` automatically:
+If your front-end is served from a different domain than WordPress - which is almost always the case in headless setups - you'll need CORS headers. Configure them in the plugin:
 
 ```
-Settings > Simple JWT Login > General > Allow CORS
+Settings > Simple JWT Login > CORS
 ```
 
-For production, you'll typically want to restrict this to your front-end domain via your web server config (Apache or Nginx), using the plugin's CORS setting as a development convenience only.
+List your front-end origin, such as `https://app.example.com`, in **Allow origin**, and include `Authorization` in **Allow headers**. Use the plugin setting rather than only your web server config: since version 4.1.1, the plugin also uses the **Allow origin** list to decide which cross-site requests may authenticate with a JWT. See [CORS](/docs/cors/) for the details.
 
 ---
 
@@ -263,6 +263,6 @@ For production, you'll typically want to restrict this to your front-end domain 
 
 Simple JWT Login takes what would otherwise be hundreds of lines of custom authentication code and turns it into a configuration exercise. Token generation, refresh, revocation, endpoint protection, user registration, password resets, and auto-login are all covered out of the box.
 
-For teams building headless WordPress - whether the front-end is React, Next.js, Vue, or a native mobile app - it's one of the highest-leverage plugins available. The [documentation](/docs/) is thorough, the plugin is actively maintained, and the hooks system means you're never painted into a corner when requirements get complex.
+For teams building headless WordPress - whether the front-end is React, Next.js, Angular, or a Flutter app - it's one of the highest-leverage plugins available. Each of those has a [complete, downloadable example](/docs/code-examples/), and the [headless WordPress guide](/headless-wordpress) collects them in one place. The [documentation](/docs/) is thorough, the plugin is actively maintained, and the hooks system means you're never painted into a corner when requirements get complex.
 
-Install it, spend an hour on the settings, and your WordPress REST API will have authentication that actually fits modern development patterns.
+Install it, spend an hour on the settings, and your WordPress REST API gets authentication that actually fits modern development patterns.

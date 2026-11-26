@@ -1,8 +1,9 @@
 ---
 slug: /autologin/
-title: Autologin
+title: v3 Autologin
+sidebar_label: Autologin
 sidebar_position: 3
-description: Use Simple JWT Login to auto-login WordPress users via a tokenized URL - perfect for magic links, email campaigns, and single sign-on (SSO) flows.
+description: Auto-login WordPress users with a JWT in Simple JWT Login v3 - magic links, SSO redirects, and webview sessions from a tokenized URL.
 keywords: [WordPress auto login, magic link WordPress, JWT auto login, WordPress SSO, tokenized login URL, auto-login WordPress plugin]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

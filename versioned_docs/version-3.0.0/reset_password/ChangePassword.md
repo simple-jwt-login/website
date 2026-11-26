@@ -1,6 +1,8 @@
 ---
 slug: /change-password/
-title: Change password
+title: v3 Change password
+description: Change a WordPress password in Simple JWT Login v3 - send the reset code from the email with the new password to the REST API.
+sidebar_label: Change password
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -11,9 +13,9 @@ Alternatively, if **"Allow Reset password with JWT"** is enabled in the plugin s
 
 **METHOD** : `PUT`
 
-**ENDPOINT** : `/simple-jwt-login/v1/users/reset_password`
+**ENDPOINT** : `/simple-jwt-login/v1/user/reset_password`
 
-**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/users/reset_password&email={{email}}&code={{code}}&new_password={{new_password}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
+**URL Example** : `https://{{yoursite}}/?rest_route=/simple-jwt-login/v1/user/reset_password&email={{email}}&code={{code}}&new_password={{new_password}}&AUTH_KEY={{AUTH_KEY_VALUE}}`
 
 **PARAMETERS**:
 
@@ -64,7 +66,7 @@ Alternatively, if **"Allow Reset password with JWT"** is enabled in the plugin s
 ### SHELL
 
 ```bash
-curl -X PUT https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users/reset_password \
+curl -X PUT https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_password \
   -H "Content-type: application/json" \
   -d '{"email":"test@simplejwtlogin.com", "code": "123", "new_password": "test"}'
 ```
@@ -97,7 +99,7 @@ xhr.addEventListener("readystatechange", function() {
     }
 });
 
-xhr.open("PUT", "https://simplejwtlogin.com" + "/simple-jwt-login/v1/users/reset_password");
+xhr.open("PUT", "https://simplejwtlogin.com" + "/simple-jwt-login/v1/user/reset_password");
 xhr.setRequestHeader("Content-Type", "application/json");
 
 xhr.send(data);

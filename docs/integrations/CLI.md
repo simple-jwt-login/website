@@ -1,14 +1,14 @@
 ---
 slug: /cli/
-title: WP-CLI Add-on
-sidebar_position: 10
+title: WP-CLI Commands for WordPress JWT
+sidebar_label: WP-CLI Add-on
 description: Manage Simple JWT Login from the command line - generate tokens, validate JWTs, and configure the plugin without touching the WordPress admin UI.
 keywords: [simple-jwt-login cli, wp-cli jwt, wp jwt login, jwt command line, wordpress jwt cli, wpcli jwt token]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-**Simple-JWT-Login CLI** is a [WP-CLI](https://wp-cli.org/) add-on that brings the full power of Simple JWT Login to your terminal. Generate tokens, inspect payloads, revoke sessions, and manage every plugin setting - all without opening the WordPress admin UI.
+**Simple JWT Login CLI** is a [WP-CLI](https://wp-cli.org/) add-on that brings the full power of Simple JWT Login to your terminal. Generate tokens, inspect payloads, revoke sessions, and manage every plugin setting - all without opening the WordPress admin UI.
 
 It is the go-to companion for DevOps pipelines, staging-to-production migrations, automated testing, and any workflow where speed and automation matter.
 
@@ -50,7 +50,7 @@ wp jwt config --help
 
 ### `wp jwt login`
 
-Authenticate a WordPress user and print a JWT token.
+Authenticate a WordPress user and print a JWT.
 
 > Authentication must be enabled in **Admin → Simple JWT Login → Authentication → Allow Authentication**.
 
@@ -95,7 +95,7 @@ wp jwt decode <token> [--format=<format>]
 
 | Argument / Option | Required | Description |
 |-------------------|----------|-------------|
-| `<token>` | Yes | The JWT token to decode |
+| `<token>` | Yes | The JWT to decode |
 | `--format` | No | `text` (default) or `json` |
 
 ```bash
@@ -120,7 +120,7 @@ wp jwt validate <token> [--format=<format>]
 
 | Argument / Option | Required | Description |
 |-------------------|----------|-------------|
-| `<token>` | Yes | The JWT token to validate |
+| `<token>` | Yes | The JWT to validate |
 | `--format` | No | `text` (default) or `json` |
 
 The command always exits `0` - check the `valid` field to determine the result.
@@ -142,7 +142,7 @@ fi
 
 ### `wp jwt revoke`
 
-Revoke a JWT token so it can no longer be used. The token signature is verified before revocation.
+Revoke a JWT so it can no longer be used. The token signature is verified before revocation.
 
 ```
 wp jwt revoke <token> [--format=<format>]
@@ -150,7 +150,7 @@ wp jwt revoke <token> [--format=<format>]
 
 | Argument / Option | Required | Description |
 |-------------------|----------|-------------|
-| `<token>` | Yes | The JWT token to revoke |
+| `<token>` | Yes | The JWT to revoke |
 | `--format` | No | `text` (default) or `json` |
 
 ```bash
@@ -382,3 +382,8 @@ composer run check-plugin
 ```
 
 See the [README](https://github.com/simple-jwt-login/simple-jwt-login-cli) for more information.
+
+## Next steps
+
+- [Export and import plugin settings](./ExportImport.mdx)
+- [Configure Simple JWT Login](../Configuration.mdx)

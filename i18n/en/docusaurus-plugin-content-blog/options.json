@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "WordPress JWT Authentication Blog",
+    "description": "The title for the blog used in SEO"
+  },
+  "description": {
+    "message": "News and tutorials about WordPress JWT authentication, headless WordPress, WPGraphQL, and REST API security with Simple JWT Login.",
+    "description": "The description for the blog used in SEO"
+  },
+  "sidebar.title": {
+    "message": "All posts",
+    "description": "The label for the left sidebar"
+  }
+}

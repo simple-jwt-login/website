@@ -1,12 +1,14 @@
 ---
 slug: /integrations/third-party/woocommerce/
-title: WooCommerce
-sidebar_position: 4
+title: WooCommerce REST API JWT Auth
+sidebar_label: WooCommerce
 description: Use a JWT to authenticate the WooCommerce REST and Store API - manage products and run a headless cart & checkout, no consumer key/secret.
 keywords: [WooCommerce JWT authentication, headless WooCommerce, WooCommerce Store API JWT, WooCommerce REST API JWT, Simple JWT Login WooCommerce, headless checkout WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
+
+Authenticate the WooCommerce REST API and Store API with a JWT.
 
 Requires the [WooCommerce](https://woocommerce.com/) plugin to be installed and activated.
 

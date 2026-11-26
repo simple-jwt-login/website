@@ -1,7 +1,7 @@
 ---
 slug: /delete-user/
-title: Delete User
-sidebar_position: 7
+title: Delete WordPress Users via REST API
+sidebar_label: Delete User
 description: Delete WordPress user accounts via a JWT-authenticated REST API call. Useful for self-service account deletion in mobile apps and headless front-ends.
 keywords: [WordPress delete user API, REST API delete user WordPress, JWT delete account, headless WordPress user deletion]
 author: Nicu Micle

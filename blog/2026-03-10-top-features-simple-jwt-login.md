@@ -6,12 +6,12 @@ hide_table_of_contents: false
 authors: nicumicle
 tags: [tutorials, jwt-authentication, wordpress-plugin, security]
 keywords: [Simple JWT Login features, WordPress JWT plugin, auth codes, auto login WordPress, endpoint protection, WordPress REST API authentication]
-image: /assets/favicons/android-chrome-192x192.png
+image: /assets/images/social-card.png
 ---
 
 JWT authentication for WordPress doesn't have to be complicated. Simple JWT Login has been quietly powering headless WordPress sites, mobile backends, and SPA integrations for years - and it does so with a level of configurability that most teams never fully explore.
 
-Here are the five features I consider the most powerful, and why they matter for real-world projects.
+Here are the five most powerful features, and why they matter for real-world projects.
 
 <!--truncate-->
 
@@ -38,7 +38,7 @@ The practical use case: you're integrating a third-party signup funnel. You issu
 
 ## 2. Auto-Login with Dynamic Redirects
 
-Auto-login is the feature that consistently surprises people. Send a user a URL with a valid JWT, and Simple JWT Login will authenticate them silently and redirect them wherever you need - no password prompt, no login page friction.
+Autologin is the feature that consistently surprises people. Send a user a URL with a valid JWT, and Simple JWT Login authenticates them silently and redirects them wherever you need - no password prompt, no login page friction.
 
 What makes it genuinely powerful is the **redirect URL variables**. Your redirect target can be dynamically built using the authenticated user's data:
 

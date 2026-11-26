@@ -281,37 +281,9 @@ html[data-theme='dark'] .addonRight {
 }
 
 .checkList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
   flex: 1;
-}
-
-.checkItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.55rem;
   font-size: 0.85rem;
   color: var(--ifm-heading-color);
-  line-height: 1.45;
-}
-
-.checkIcon {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #42b983, #2da866);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1px;
 }
 
 .docsLink {

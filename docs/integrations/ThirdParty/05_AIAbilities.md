@@ -1,7 +1,7 @@
 ---
 slug: /integrations/third-party/ai-abilities/
-title: AI Abilities (MCP)
-sidebar_position: 5
+title: WordPress MCP and AI Abilities
+sidebar_label: AI Abilities (MCP)
 description: Let AI agents like Claude, Cursor and Copilot manage and troubleshoot Simple JWT Login through the WordPress Abilities API and MCP.
 keywords: [WordPress MCP, WordPress Abilities API, AI agent WordPress, Claude WordPress, MCP Adapter, Simple JWT Login AI, JWT troubleshooting AI, WordPress REST API AI]
 author: Nicu Micle

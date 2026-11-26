@@ -20,6 +20,8 @@
   --sjl-surface:       #ffffff;
   --sjl-surface-alt:   #f6f8fa;
   --sjl-border:        #e1e7ef;
+  /* Logo yellow, also used for the announcement bar star. */
+  --sjl-star:          #ffda0d;
   --sjl-text:          #1a202c;
   --sjl-text-muted:    #64748b;
   --sjl-shadow-sm:     0 1px 3px 0 rgba(0,0,0,.08), 0 1px 2px -1px rgba(0,0,0,.06);
@@ -300,6 +302,14 @@ html[data-theme='dark'] code {
 div[class*='announcementBar'] {
   font-size: 0.875rem;
   font-weight: 500;
+}
+
+.announcement-star {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.25rem;
+  vertical-align: -0.125em;
+  color: var(--sjl-star);
 }
 
 article header { margin-bottom: 2rem; }

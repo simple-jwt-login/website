@@ -1,6 +1,8 @@
 ---
 slug: /cors/
-title: CORS
+title: v3 CORS
+description: Configure CORS in Simple JWT Login v3 - control which origins, methods, and headers browser clients can use with the plugin REST endpoints.
+sidebar_label: CORS
 sidebar_position: 98
 author: Nicu Micle
 author_url: https://github.com/nicumicle

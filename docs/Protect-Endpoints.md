@@ -1,7 +1,7 @@
 ---
 slug: /protect-endpoints/
-title: Protect Endpoints
-sidebar_position: 11
+title: Protect WordPress REST API Endpoints
+sidebar_label: Protect Endpoints
 description: Require a valid JWT for any WordPress REST API route using Simple JWT Login. Lock down sensitive endpoints by HTTP method with exact or prefix matching.
 keywords: [protect WordPress REST API, require JWT WordPress, WordPress endpoint protection, secure REST API WordPress, JWT middleware WordPress]
 author: Nicu Micle
@@ -119,7 +119,7 @@ Since version 4.1.0, requests from users already logged in to WordPress (cookie 
 
 ## How to Pass the JWT
 
-The JWT token can be provided in multiple ways, depending on the options set in the plugin’s General settings:
+The JWT can be provided in multiple ways, depending on the options set in the plugin’s General settings:
 - Header
 - Request URI
 - Request Body

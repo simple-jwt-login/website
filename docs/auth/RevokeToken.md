@@ -1,14 +1,14 @@
 ---
 slug: /revoke-token/
-title: Revoke token
-sidebar_position: 4
+title: Revoke a WordPress JWT Token
+sidebar_label: Revoke Token
 description: Immediately invalidate a JWT so it's rejected by future requests - use on logout or when responding to suspicious activity.
 keywords: [WordPress revoke JWT, invalidate JWT WordPress, logout WordPress JWT, revoke token WordPress REST API, Simple JWT Login revoke]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Revoking a token immediately invalidates it - the plugin rejects any later request that uses that token. Call this endpoint when a user logs out or when you need to end a specific session (for example, after a password change or suspicious activity).
+Revoking a WordPress JWT immediately invalidates it - the plugin rejects any later request that uses that token. Call this endpoint when a user logs out or when you need to end a specific session (for example, after a password change or suspicious activity).
 
 :::note
 A revoked token stays rejected until it expires. The user must authenticate again to obtain a new token. Only an administrator can undo a revocation, by [deleting the revoked token entry](#manage-revoked-tokens).

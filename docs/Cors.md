@@ -1,7 +1,7 @@
 ---
 slug: /cors/
-title: CORS
-sidebar_position: 98
+title: WordPress REST API CORS Settings
+sidebar_label: CORS
 description: Configure CORS headers for Simple JWT Login REST endpoints - control allowed origins, methods, and headers for browser clients.
 keywords: [WordPress CORS, Cross-Origin Resource Sharing WordPress, JWT CORS headers, headless WordPress CORS, Access-Control-Allow-Origin WordPress]
 author: Nicu Micle
@@ -76,7 +76,7 @@ Lists which HTTP request headers can be used during the actual cross-origin requ
 
 Example value: `Content-Type, Authorization`
 
-Include `Authorization` if you send JWT tokens via the `Authorization: Bearer` header.
+Include `Authorization` if you send JWTs via the `Authorization: Bearer` header.
 
 [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers)
 
@@ -90,5 +90,5 @@ Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
 Access-Control-Allow-Headers: Content-Type, Authorization
 ```
 
-A wildcard `Access-Control-Allow-Origin: *` is simpler to configure and generally safe for JWT-protected APIs (tokens cannot be forged), but restricting to your specific front-end origin is a good defence-in-depth measure.
+A wildcard `Access-Control-Allow-Origin: *` is simpler to configure and generally safe for JWT-protected APIs (tokens cannot be forged), but restricting to your specific front-end origin is a good defense-in-depth measure.
 

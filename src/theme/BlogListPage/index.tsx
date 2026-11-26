@@ -6,6 +6,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faPenNib } from '@fortawesome/free-solid-svg-icons';
+import Translate, {translate} from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {
   PageMetadata,
@@ -44,15 +45,21 @@ function BlogHero({metadata}: {metadata: Props['metadata']}) {
     <div className={styles.hero}>
       <div className={styles.heroBadge}>
         <FontAwesomeIcon icon={isReleases ? faBox : faPenNib} />
-        {isReleases ? ' Changelog' : ' Blog'}
+        {' '}
+        {isReleases
+          ? <Translate id="theme.blogListPage.badge.changelog">Changelog</Translate>
+          : <Translate id="theme.blogListPage.badge.blog">Blog</Translate>}
       </div>
       <h1 className={styles.heroTitle}>
-        {isReleases ? 'Release Notes' : 'Blog'}
+        {isReleases
+          ? <Translate id="theme.blogListPage.title.releases">Release Notes</Translate>
+          : <Translate id="theme.blogListPage.title.blog">Blog</Translate>}
       </h1>
       <p className={styles.heroSubtitle}>
         {isReleases
-          ? `Full changelog and release history for Simple JWT Login.${totalCount > 0 ? ` ${totalCount} releases and counting.` : ''}`
-          : 'Tutorials, deep dives, and updates from the Simple JWT Login team.'}
+          ? translate({id: 'theme.blogListPage.subtitle.releases', message: 'Full changelog and release history for Simple JWT Login.'}) +
+            (totalCount > 0 ? ' ' + translate({id: 'theme.blogListPage.subtitle.releasesCount', message: '{count} releases and counting.'}, {count: totalCount}) : '')
+          : translate({id: 'theme.blogListPage.subtitle.blog', message: 'Tutorials, deep dives, and updates from the Simple JWT Login team.'})}
       </p>
     </div>
   );

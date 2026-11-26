@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "Releases",
+    "description": "The title for the blog used in SEO"
+  },
+  "description": {
+    "message": "Release notes for Simple JWT Login, the free WordPress JWT authentication plugin - new features, security fixes, and bug fixes.",
+    "description": "The description for the blog used in SEO"
+  },
+  "sidebar.title": {
+    "message": "Recent posts",
+    "description": "The label for the left sidebar"
+  }
+}

@@ -1,9 +1,9 @@
 ---
 slug: /integrations/oauth/auth0/exchange-token
-title: Exchange access_token for WordPress JWT
-sidebar_position: 3
-description: Exchange an Auth0 access_token for a WordPress JWT using Simple JWT Login.
-keywords: [Auth0 access_token, WordPress JWT, OAuth token exchange, Simple JWT Login, headless WordPress]
+title: Exchange an Auth0 Token for a JWT
+sidebar_label: Exchange access_token for WordPress JWT
+description: Exchange an Auth0 access_token for a WordPress JWT through the REST API - endpoint, parameters, curl request, and success and error responses.
+keywords: [Auth0 access_token to WordPress JWT, Auth0 token exchange, Auth0 login headless WordPress, Auth0 JWT WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
@@ -71,3 +71,9 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
   }
 }
 ```
+
+## Next steps
+
+- [Protect WordPress REST API endpoints with the JWT](../../../Protect-Endpoints.md)
+- [Refresh the JWT](../../../auth/RefreshToken.md)
+- [Look up error codes](../../../Error-Codes.md)

@@ -1,14 +1,16 @@
 ---
 slug: /error-codes/
-title: Error codes
-description: Full reference of Simple JWT Login error codes - what each numeric error code means and how to resolve it.
+title: WordPress JWT Error Codes
+sidebar_label: Error Codes
+description: Look up every Simple JWT Login error code - what each numeric code in a WordPress JWT response means and how to fix it.
 keywords: [error codes, JWT errors, WordPress REST API, troubleshooting]
-sidebar_position: 99
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Every error response from Simple-JWT-Login includes a numeric `error_code` field. Use the table below to look up the meaning of a specific code and how to resolve it.
+Every error response from Simple JWT Login includes a numeric `error_code` field. Use the table below to look up the meaning of a specific code and how to resolve it.
+
+Not sure where to start? See [JWT troubleshooting](./Troubleshooting.md).
 
 Error responses follow this format:
 

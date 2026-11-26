@@ -3,6 +3,11 @@ name: CI-validate
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
 
 jobs:
   check-build:
@@ -18,9 +23,6 @@ jobs:
       - name: 📚 Spellcheck 
         run: yarn spellcheck
 
-      - name: 🔧 Check Install and Build 
-        run: |
-          yarn gen-api
-          yarn build
-          
-      
+      # Also generates the API reference (prebuild)
+      - name: 🔧 Check Build
+        run: yarn build

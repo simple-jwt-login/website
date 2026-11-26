@@ -1,6 +1,7 @@
 ---
 slug: /endpoints/
-title: Endpoints Overview
+title: WordPress JWT REST API Endpoints
+sidebar_label: Endpoints Overview
 description: Every Simple JWT Login REST endpoint on one page - method, path, the setting that enables it, and links to the guide and the API reference.
 keywords: [Simple JWT Login endpoints, WordPress JWT REST API routes, simple-jwt-login/v1, JWT auth endpoint WordPress, REST API reference]
 author: Nicu Micle

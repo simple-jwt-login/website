@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import Layout from '@theme/Layout';
+import Translate, {translate} from '@docusaurus/Translate';
 import Link from '@docusaurus/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -59,8 +60,14 @@ async function doApi(path, token, options = {}) {
     const message =
       (body && body.message) ||
       (res.status === 401
-        ? 'Invalid or expired token. Make sure it has write scope.'
-        : `DigitalOcean API error (${res.status}).`);
+        ? translate({
+            id: 'deployWordpress.error.invalidToken',
+            message: 'Invalid or expired token. Make sure it has write scope.',
+          })
+        : translate(
+            {id: 'deployWordpress.error.api', message: 'DigitalOcean API error ({status}).'},
+            {status: res.status},
+          ));
     throw new Error(message);
   }
 
@@ -355,6 +362,15 @@ function CopyRow({ label, value, href }) {
     }
   }, [value]);
 
+  const openLabel = translate(
+    {id: 'deployWordpress.copyRow.open', message: 'Open {label} in a new tab'},
+    {label: label.toLowerCase()},
+  );
+  const copyLabel = translate(
+    {id: 'deployWordpress.copyRow.copy', message: 'Copy {label}'},
+    {label: label.toLowerCase()},
+  );
+
   return (
     <div className={styles.resultRow}>
       <span>{label}</span>
@@ -372,8 +388,8 @@ function CopyRow({ label, value, href }) {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.iconBtn}
-            title={`Open ${label.toLowerCase()} in a new tab`}
-            aria-label={`Open ${label.toLowerCase()} in a new tab`}
+            title={openLabel}
+            aria-label={openLabel}
           >
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </a>
@@ -382,8 +398,8 @@ function CopyRow({ label, value, href }) {
             type="button"
             className={styles.iconBtn}
             onClick={copy}
-            title={`Copy ${label.toLowerCase()}`}
-            aria-label={`Copy ${label.toLowerCase()}`}
+            title={copyLabel}
+            aria-label={copyLabel}
           >
             <FontAwesomeIcon icon={copied ? faCheck : faCopy} />
           </button>
@@ -471,7 +487,12 @@ function DeployWordPressPage() {
 
         const ubuntu = pickUbuntuImage(imagesRes.images);
         if (!ubuntu) {
-          throw new Error('Could not find an Ubuntu base image on this account.');
+          throw new Error(
+            translate({
+              id: 'deployWordpress.error.noUbuntu',
+              message: 'Could not find an Ubuntu base image on this account.',
+            }),
+          );
         }
 
         const sizeMap = {};
@@ -542,7 +563,7 @@ function DeployWordPressPage() {
       setBusy(true);
       setError('');
       setStage('deploying');
-      setStatusText('Creating your droplet…');
+      setStatusText(translate({id: 'deployWordpress.status.creating', message: 'Creating your droplet…'}));
       const tk = token.trim();
 
       const adminPassword = generatePassword();
@@ -584,7 +605,7 @@ function DeployWordPressPage() {
         const id = created.droplet.id;
 
         // Poll for the droplet to become active and report its IP.
-        setStatusText('Booting your server…');
+        setStatusText(translate({id: 'deployWordpress.status.booting', message: 'Booting your server…'}));
         let ip = null;
         for (let attempt = 0; attempt < 96; attempt += 1) {
           // eslint-disable-next-line no-await-in-loop
@@ -601,7 +622,11 @@ function DeployWordPressPage() {
 
         if (!ip) {
           throw new Error(
-            'The droplet was created but did not report an IP in time. Check your DigitalOcean dashboard.',
+            translate({
+              id: 'deployWordpress.error.noIp',
+              message:
+                'The droplet was created but did not report an IP in time. Check your DigitalOcean dashboard.',
+            }),
           );
         }
 
@@ -658,7 +683,14 @@ function DeployWordPressPage() {
       return;
     }
     const ok = window.confirm(
-      `Permanently destroy "${result.name}" (${result.ip})? This deletes the server and all its data. This cannot be undone.`,
+      translate(
+        {
+          id: 'deployWordpress.destroy.confirm',
+          message:
+            'Permanently destroy "{name}" ({ip})? This deletes the server and all its data. This cannot be undone.',
+        },
+        {name: result.name, ip: result.ip},
+      ),
     );
     if (!ok) {
       return;
@@ -680,25 +712,44 @@ function DeployWordPressPage() {
 
   return (
     <Layout
-      title="One-Click WordPress on DigitalOcean"
-      description="Spin up a fully installed WordPress site on DigitalOcean in one click, with Simple JWT Login pre-installed. Your API token never leaves your browser."
+      title={translate({
+        id: 'deployWordpress.meta.title',
+        message: 'One-Click WordPress on DigitalOcean',
+      })}
+      description={translate({
+        id: 'deployWordpress.meta.description',
+        message:
+          'Spin up a fully installed WordPress site on DigitalOcean in one click, with Simple JWT Login pre-installed. Your API token never leaves your browser.',
+      })}
     >
       {/* ── Hero ─────────────────────────────────────────── */}
       <header className={styles.hero}>
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className="container">
           <div className={styles.heroBadge}>
-            <FontAwesomeIcon icon={faCloud} /> Powered by DigitalOcean
+            <FontAwesomeIcon icon={faCloud} />{' '}
+            <Translate id="deployWordpress.hero.badge">Powered by DigitalOcean</Translate>
           </div>
           <h1 className={styles.heroTitle}>
-            Launch WordPress in <span className={styles.heroAccent}>one click</span>
+            <Translate
+              id="deployWordpress.hero.title"
+              values={{
+                accent: (
+                  <span className={styles.heroAccent}>
+                    <Translate id="deployWordpress.hero.titleAccent">one click</Translate>
+                  </span>
+                ),
+              }}
+            >
+              {'Launch WordPress in {accent}'}
+            </Translate>
           </h1>
           <a
             href="https://www.digitalocean.com/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.heroLogo}
-            title="DigitalOcean - cloud infrastructure"
+            title={translate({id: 'deployWordpress.hero.logoTitle', message: 'DigitalOcean - cloud infrastructure'})}
           >
             <img
               src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_white.svg"
@@ -708,10 +759,9 @@ function DeployWordPressPage() {
             />
           </a>
           <p className={styles.heroSubtitle}>
-            Spin up a fully installed WordPress server on DigitalOcean - with
-            Simple JWT Login ready for headless and REST API authentication. No
-            Marketplace setup, no terminal, no install wizard. We hand you the
-            login.
+            <Translate id="deployWordpress.hero.subtitle">
+              {'Spin up a fully installed WordPress server on DigitalOcean - with Simple JWT Login ready for headless and REST API authentication. No Marketplace setup, no terminal, no install wizard. We hand you the login.'}
+            </Translate>
           </p>
         </div>
       </header>
@@ -727,27 +777,49 @@ function DeployWordPressPage() {
                 {stage === 'token' && (
                   <form onSubmit={handleConnect}>
                     <h2 className={styles.cardTitle}>
-                      <FontAwesomeIcon icon={faKey} /> Connect your account
+                      <FontAwesomeIcon icon={faKey} />{' '}
+                      <Translate id="deployWordpress.token.title">Connect your account</Translate>
                     </h2>
                     <p className={styles.cardLead}>
-                      Paste a DigitalOcean Personal Access Token with{' '}
-                      <strong>write</strong> scope to get started.
+                      <Translate
+                        id="deployWordpress.token.lead"
+                        values={{
+                          write: (
+                            <strong>
+                              <Translate id="deployWordpress.token.leadWrite">write</Translate>
+                            </strong>
+                          ),
+                        }}
+                      >
+                        {'Paste a DigitalOcean Personal Access Token with {write} scope to get started.'}
+                      </Translate>
                     </p>
                     <p className={styles.infoHint}>
-                      <FontAwesomeIcon icon={faShieldHalved} /> Your API token
-                      is used only in your browser to talk to DigitalOcean. It
-                      is never sent to us or stored anywhere.
+                      <FontAwesomeIcon icon={faShieldHalved} />{' '}
+                      <Translate id="deployWordpress.token.privacy">
+                        {'Your API token is used only in your browser to talk to DigitalOcean. It is never sent to us or stored anywhere.'}
+                      </Translate>
                     </p>
                     <Field
-                      label="DigitalOcean API token"
+                      label={translate({id: 'deployWordpress.token.label', message: 'DigitalOcean API token'})}
                       hint={
-                        <>
-                          Create one at{' '}
-                          <Link to={TOKEN_URL}>
-                            cloud.digitalocean.com/account/api/tokens
-                          </Link>{' '}
-                          (enable the <em>Write</em> scope).
-                        </>
+                        <Translate
+                          id="deployWordpress.token.hint"
+                          values={{
+                            link: (
+                              <Link to={TOKEN_URL}>
+                                cloud.digitalocean.com/account/api/tokens
+                              </Link>
+                            ),
+                            write: (
+                              <em>
+                                <Translate id="deployWordpress.token.hintWrite">Write</Translate>
+                              </em>
+                            ),
+                          }}
+                        >
+                          {'Create one at {link} (enable the {write} scope).'}
+                        </Translate>
                       }
                     >
                       <input
@@ -768,11 +840,13 @@ function DeployWordPressPage() {
                     >
                       {busy ? (
                         <>
-                          <FontAwesomeIcon icon={faSpinner} spin /> Connecting…
+                          <FontAwesomeIcon icon={faSpinner} spin />{' '}
+                          <Translate id="deployWordpress.token.connecting">Connecting…</Translate>
                         </>
                       ) : (
                         <>
-                          Connect <FontAwesomeIcon icon={faArrowRight} />
+                          <Translate id="deployWordpress.token.connect">Connect</Translate>{' '}
+                          <FontAwesomeIcon icon={faArrowRight} />
                         </>
                       )}
                     </button>
@@ -782,16 +856,24 @@ function DeployWordPressPage() {
                 {(stage === 'config' || stage === 'deploying') && (
                   <form onSubmit={handleDeploy}>
                     <h2 className={styles.cardTitle}>
-                      <FontAwesomeIcon icon={faServer} /> Configure your server
+                      <FontAwesomeIcon icon={faServer} />{' '}
+                      <Translate id="deployWordpress.config.title">Configure your server</Translate>
                     </h2>
                     {account && (
                       <p className={styles.cardLead}>
-                        Connected as <strong>{account.email}</strong>. Base image:{' '}
-                        <code>{imageSlug}</code>
+                        <Translate
+                          id="deployWordpress.config.connected"
+                          values={{
+                            email: <strong>{account.email}</strong>,
+                            image: <code>{imageSlug}</code>,
+                          }}
+                        >
+                          {'Connected as {email}. Base image: {image}'}
+                        </Translate>
                       </p>
                     )}
 
-                    <Field label="Server name">
+                    <Field label={translate({id: 'deployWordpress.config.serverName', message: 'Server name'})}>
                       <input
                         type="text"
                         className={styles.input}
@@ -801,7 +883,7 @@ function DeployWordPressPage() {
                       />
                     </Field>
 
-                    <Field label="Site title">
+                    <Field label={translate({id: 'deployWordpress.config.siteTitle', message: 'Site title'})}>
                       <input
                         type="text"
                         className={styles.input}
@@ -811,7 +893,7 @@ function DeployWordPressPage() {
                       />
                     </Field>
 
-                    <Field label="Region">
+                    <Field label={translate({id: 'deployWordpress.config.region', message: 'Region'})}>
                       <select
                         className={styles.input}
                         value={region}
@@ -827,8 +909,11 @@ function DeployWordPressPage() {
                     </Field>
 
                     <Field
-                      label="Plan"
-                      hint="WordPress needs at least 1 GB RAM. 512 MB plans may fail to install."
+                      label={translate({id: 'deployWordpress.config.plan', message: 'Plan'})}
+                      hint={translate({
+                        id: 'deployWordpress.config.planHint',
+                        message: 'WordPress needs at least 1 GB RAM. 512 MB plans may fail to install.',
+                      })}
                     >
                       <select
                         className={styles.input}
@@ -838,8 +923,18 @@ function DeployWordPressPage() {
                       >
                         {availableSizes.map((s) => (
                           <option key={s.slug} value={s.slug}>
-                            {s.vcpus} vCPU · {s.memory / 1024} GB RAM · {s.disk} GB
-                            SSD - ${s.price_monthly}/mo
+                            {translate(
+                              {
+                                id: 'deployWordpress.config.planOption',
+                                message: '{vcpus} vCPU · {memory} GB RAM · {disk} GB SSD - ${price}/mo',
+                              },
+                              {
+                                vcpus: s.vcpus,
+                                memory: s.memory / 1024,
+                                disk: s.disk,
+                                price: s.price_monthly,
+                              },
+                            )}
                           </option>
                         ))}
                       </select>
@@ -847,8 +942,11 @@ function DeployWordPressPage() {
 
                     {sshKeys.length > 0 ? (
                       <Field
-                        label="SSH keys"
-                        hint="Selected keys are added so you can SSH in."
+                        label={translate({id: 'deployWordpress.config.sshKeys', message: 'SSH keys'})}
+                        hint={translate({
+                          id: 'deployWordpress.config.sshKeysHint',
+                          message: 'Selected keys are added so you can SSH in.',
+                        })}
                       >
                         <div className={styles.keyList}>
                           {sshKeys.map((k) => (
@@ -866,9 +964,10 @@ function DeployWordPressPage() {
                       </Field>
                     ) : (
                       <p className={styles.infoHint}>
-                        <FontAwesomeIcon icon={faKey} /> No SSH keys on your
-                        account - that is fine, you will get your WordPress admin
-                        login here when the deploy finishes.
+                        <FontAwesomeIcon icon={faKey} />{' '}
+                        <Translate id="deployWordpress.config.noSshKeys">
+                          {'No SSH keys on your account - that is fine, you will get your WordPress admin login here when the deploy finishes.'}
+                        </Translate>
                       </p>
                     )}
 
@@ -880,15 +979,21 @@ function DeployWordPressPage() {
                         disabled={busy}
                       />
                       <span>
-                        <FontAwesomeIcon icon={faPlug} /> Pre-install &amp;
-                        activate Simple JWT Login
+                        <FontAwesomeIcon icon={faPlug} />{' '}
+                        <Translate id="deployWordpress.config.installPlugin">
+                          {'Pre-install & activate Simple JWT Login'}
+                        </Translate>
                       </span>
                     </label>
 
                     {installPlugin && (
                       <Field
-                        label="Plugin version"
-                        hint="Stable is the latest release from WordPress.org. v4 adds API Keys, 2FA, Audit Logs, and Webhooks."
+                        label={translate({id: 'deployWordpress.config.pluginVersion', message: 'Plugin version'})}
+                        hint={translate({
+                          id: 'deployWordpress.config.pluginVersionHint',
+                          message:
+                            'Stable is the latest release from WordPress.org. v4 adds API Keys, 2FA, Audit Logs, and Webhooks.',
+                        })}
                       >
                         <select
                           className={styles.input}
@@ -896,13 +1001,15 @@ function DeployWordPressPage() {
                           onChange={(e) => setPluginVersion(e.target.value)}
                           disabled={busy}
                         >
-                          <option value="stable">Stable (WordPress.org)</option>
+                          <option value="stable">
+                            {translate({id: 'deployWordpress.config.pluginStable', message: 'Stable (WordPress.org)'})}
+                          </option>
                           <option value="v4-rc">v4</option>
                         </select>
                       </Field>
                     )}
 
-                    <Field label="Web server">
+                    <Field label={translate({id: 'deployWordpress.config.webServer', message: 'Web server'})}>
                       <select
                         className={styles.input}
                         value={webServer}
@@ -915,13 +1022,24 @@ function DeployWordPressPage() {
                     </Field>
 
                     <Field
-                      label="PHP handler"
+                      label={translate({id: 'deployWordpress.config.phpHandler', message: 'PHP handler'})}
                       hint={
                         webServer === 'nginx'
-                          ? 'Nginx requires PHP-FPM - mod_php is not available.'
+                          ? translate({
+                              id: 'deployWordpress.config.phpHandlerHintNginx',
+                              message: 'Nginx requires PHP-FPM - mod_php is not available.',
+                            })
                           : phpMode === 'fastcgi'
-                            ? 'PHP-FPM runs as a separate process pool. Apache proxies .php requests to it via mod_proxy_fcgi.'
-                            : 'mod_php embeds PHP directly inside Apache. Simpler setup, works reliably on any size droplet.'
+                            ? translate({
+                                id: 'deployWordpress.config.phpHandlerHintFpm',
+                                message:
+                                  'PHP-FPM runs as a separate process pool. Apache proxies .php requests to it via mod_proxy_fcgi.',
+                              })
+                            : translate({
+                                id: 'deployWordpress.config.phpHandlerHintModPhp',
+                                message:
+                                  'mod_php embeds PHP directly inside Apache. Simpler setup, works reliably on any size droplet.',
+                              })
                       }
                     >
                       <select
@@ -936,11 +1054,20 @@ function DeployWordPressPage() {
                     </Field>
 
                     <Field
-                      label="PHP version"
+                      label={translate({id: 'deployWordpress.config.phpVersion', message: 'PHP version'})}
                       hint={
                         phpVersion !== 'latest' && parseFloat(phpVersion) < 8.0
-                          ? `PHP ${phpVersion} is end-of-life. Use only for compatibility testing.`
-                          : 'Specific versions are installed from the ondrej/php PPA.'
+                          ? translate(
+                              {
+                                id: 'deployWordpress.config.phpVersionHintEol',
+                                message: 'PHP {version} is end-of-life. Use only for compatibility testing.',
+                              },
+                              {version: phpVersion},
+                            )
+                          : translate({
+                              id: 'deployWordpress.config.phpVersionHint',
+                              message: 'Specific versions are installed from the ondrej/php PPA.',
+                            })
                       }
                     >
                       <select
@@ -949,7 +1076,9 @@ function DeployWordPressPage() {
                         onChange={(e) => setPhpVersion(e.target.value)}
                         disabled={busy}
                       >
-                        <option value="latest">Latest (distro default)</option>
+                        <option value="latest">
+                          {translate({id: 'deployWordpress.config.phpLatest', message: 'Latest (distro default)'})}
+                        </option>
                         <option value="8.3">PHP 8.3</option>
                         <option value="8.2">PHP 8.2</option>
                         <option value="8.1">PHP 8.1</option>
@@ -961,11 +1090,17 @@ function DeployWordPressPage() {
                     </Field>
 
                     <Field
-                      label="WordPress version"
+                      label={translate({id: 'deployWordpress.config.wpVersion', message: 'WordPress version'})}
                       hint={
                         wpVersion !== 'latest'
-                          ? 'Older versions may be missing security patches. Use only for testing.'
-                          : 'Always installs the latest stable WordPress release.'
+                          ? translate({
+                              id: 'deployWordpress.config.wpVersionHintOld',
+                              message: 'Older versions may be missing security patches. Use only for testing.',
+                            })
+                          : translate({
+                              id: 'deployWordpress.config.wpVersionHintLatest',
+                              message: 'Always installs the latest stable WordPress release.',
+                            })
                       }
                     >
                       <select
@@ -974,7 +1109,9 @@ function DeployWordPressPage() {
                         onChange={(e) => setWpVersion(e.target.value)}
                         disabled={busy}
                       >
-                        <option value="latest">Latest</option>
+                        <option value="latest">
+                          {translate({id: 'deployWordpress.config.wpLatest', message: 'Latest'})}
+                        </option>
                         <option value="6.7">WordPress 6.7</option>
                         <option value="6.6">WordPress 6.6</option>
                         <option value="6.5">WordPress 6.5</option>
@@ -995,26 +1132,31 @@ function DeployWordPressPage() {
                         disabled={busy}
                       />
                       <span>
-                        <FontAwesomeIcon icon={faShieldHalved} /> Set up free
-                        HTTPS (Let&apos;s Encrypt)
+                        <FontAwesomeIcon icon={faShieldHalved} />{' '}
+                        <Translate id="deployWordpress.config.https">
+                          {"Set up free HTTPS (Let's Encrypt)"}
+                        </Translate>
                       </span>
                     </label>
                     {enableHttps && (
                       <p className={styles.infoHint}>
                         <span>
-                          Since the droplet has no domain, we use a free{' '}
-                          <code>nip.io</code> hostname (e.g.{' '}
-                          <code>your-ip.nip.io</code>) and get a real
-                          Let&apos;s Encrypt certificate for it. Your site URL
-                          becomes that HTTPS address. If certification fails,
-                          the deploy still completes over HTTP.
+                          <Translate
+                            id="deployWordpress.config.httpsHint"
+                            values={{
+                              host: <code>nip.io</code>,
+                              example: <code>your-ip.nip.io</code>,
+                            }}
+                          >
+                            {"Since the droplet has no domain, we use a free {host} hostname (e.g. {example}) and get a real Let's Encrypt certificate for it. Your site URL becomes that HTTPS address. If certification fails, the deploy still completes over HTTP."}
+                          </Translate>
                         </span>
                       </p>
                     )}
 
                     {selectedSize && (
                       <div className={styles.priceRow}>
-                        <span>Estimated cost</span>
+                        <span><Translate id="deployWordpress.config.estimatedCost">Estimated cost</Translate></span>
                         <strong>
                           ${selectedSize.price_monthly}/mo · $
                           {selectedSize.price_hourly?.toFixed(3)}/hr
@@ -1033,14 +1175,16 @@ function DeployWordPressPage() {
                         </>
                       ) : (
                         <>
-                          <FontAwesomeIcon icon={faRocket} /> Deploy WordPress
+                          <FontAwesomeIcon icon={faRocket} />{' '}
+                          <Translate id="deployWordpress.config.deploy">Deploy WordPress</Translate>
                         </>
                       )}
                     </button>
                     {stage === 'deploying' && (
                       <p className={styles.infoHint}>
-                        Provisioning the server usually takes 2-4 minutes. Keep
-                        this tab open - your login appears here when it is ready.
+                        <Translate id="deployWordpress.config.provisioning">
+                          {'Provisioning the server usually takes 2-4 minutes. Keep this tab open - your login appears here when it is ready.'}
+                        </Translate>
                       </p>
                     )}
                   </form>
@@ -1051,42 +1195,51 @@ function DeployWordPressPage() {
                     <div className={styles.successIcon}>
                       <FontAwesomeIcon icon={faCircleCheck} />
                     </div>
-                    <h2 className={styles.cardTitle}>Your WordPress server is live</h2>
+                    <h2 className={styles.cardTitle}>
+                      <Translate id="deployWordpress.done.title">Your WordPress server is live</Translate>
+                    </h2>
                     <p className={styles.cardLead}>
-                      <strong>{result.name}</strong> is up. WordPress finishes
-                      installing in the background - usually 2-4 minutes.
+                      <Translate
+                        id="deployWordpress.done.lead"
+                        values={{name: <strong>{result.name}</strong>}}
+                      >
+                        {'{name} is up. WordPress finishes installing in the background - usually 2-4 minutes.'}
+                      </Translate>
                     </p>
 
                     <p className={styles.credsLabel}>
-                      <FontAwesomeIcon icon={faKey} /> WordPress login
+                      <FontAwesomeIcon icon={faKey} />{' '}
+                      <Translate id="deployWordpress.done.wpLogin">WordPress login</Translate>
                     </p>
                     <div className={styles.creds}>
                       <CopyRow
-                        label="Site"
+                        label={translate({id: 'deployWordpress.done.site', message: 'Site'})}
                         value={result.siteUrl}
                         href={result.siteUrl}
                       />
                       <CopyRow
-                        label="Admin"
+                        label={translate({id: 'deployWordpress.done.admin', message: 'Admin'})}
                         value={result.adminUrl}
                         href={result.adminUrl}
                       />
-                      <CopyRow label="Username" value={result.username} />
-                      <CopyRow label="Password" value={result.password} />
+                      <CopyRow label={translate({id: 'deployWordpress.done.username', message: 'Username'})} value={result.username} />
+                      <CopyRow label={translate({id: 'deployWordpress.done.password', message: 'Password'})} value={result.password} />
                     </div>
 
                     <p className={styles.credsLabel}>
-                      <FontAwesomeIcon icon={faServer} /> SSH access
+                      <FontAwesomeIcon icon={faServer} />{' '}
+                      <Translate id="deployWordpress.done.sshAccess">SSH access</Translate>
                     </p>
                     <div className={styles.creds}>
-                      <CopyRow label="Command" value={`ssh root@${result.ip}`} />
-                      <CopyRow label="Root password" value={result.rootPassword} />
+                      <CopyRow label={translate({id: 'deployWordpress.done.command', message: 'Command'})} value={`ssh root@${result.ip}`} />
+                      <CopyRow label={translate({id: 'deployWordpress.done.rootPassword', message: 'Root password'})} value={result.rootPassword} />
                     </div>
 
                     <p className={styles.warnHint}>
-                      <FontAwesomeIcon icon={faTriangleExclamation} /> Save the
-                      admin and SSH root passwords now - they are shown only once
-                      and never leave this page.
+                      <FontAwesomeIcon icon={faTriangleExclamation} />{' '}
+                      <Translate id="deployWordpress.done.saveWarning">
+                        {'Save the admin and SSH root passwords now - they are shown only once and never leave this page.'}
+                      </Translate>
                     </p>
 
                     <a
@@ -1095,19 +1248,24 @@ function DeployWordPressPage() {
                       rel="noopener noreferrer"
                       className={styles.primaryBtn}
                     >
-                      Open wp-admin <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                      <Translate id="deployWordpress.done.openAdmin">Open wp-admin</Translate>{' '}
+                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                     </a>
                     <p className={styles.infoHint}>
-                      You will first see an "Installing WordPress" page that
-                      auto-refreshes. A brief connection error just means the
-                      server is still booting - give it a few minutes.
-                      {result.pluginInstalled
-                        ? ` Simple JWT Login${
-                            result.pluginVersion === 'v4-rc'
-                              ? ' (v4)'
-                              : ''
-                          } is activated automatically once the install finishes.`
-                        : ''}
+                      <Translate id="deployWordpress.done.booting">
+                        {'You will first see an "Installing WordPress" page that auto-refreshes. A brief connection error just means the server is still booting - give it a few minutes.'}
+                      </Translate>
+                      {result.pluginInstalled && (
+                        <>
+                          {' '}
+                          <Translate
+                            id="deployWordpress.done.pluginActivated"
+                            values={{version: result.pluginVersion === 'v4-rc' ? ' (v4)' : ''}}
+                          >
+                            {'Simple JWT Login{version} is activated automatically once the install finishes.'}
+                          </Translate>
+                        </>
+                      )}
                     </p>
                     <div className={styles.successActions}>
                       <button
@@ -1116,7 +1274,7 @@ function DeployWordPressPage() {
                         onClick={reset}
                         disabled={busy}
                       >
-                        Deploy another
+                        <Translate id="deployWordpress.done.deployAnother">Deploy another</Translate>
                       </button>
                       <button
                         type="button"
@@ -1126,11 +1284,13 @@ function DeployWordPressPage() {
                       >
                         {busy ? (
                           <>
-                            <FontAwesomeIcon icon={faSpinner} spin /> Destroying…
+                            <FontAwesomeIcon icon={faSpinner} spin />{' '}
+                            <Translate id="deployWordpress.done.destroying">Destroying…</Translate>
                           </>
                         ) : (
                           <>
-                            <FontAwesomeIcon icon={faTrash} /> Destroy droplet
+                            <FontAwesomeIcon icon={faTrash} />{' '}
+                            <Translate id="deployWordpress.done.destroy">Destroy droplet</Translate>
                           </>
                         )}
                       </button>
@@ -1141,28 +1301,31 @@ function DeployWordPressPage() {
 
               {/* ── Right: context / no-account path ───────── */}
               <aside className={styles.sideCard}>
-                <h3 className={styles.sideTitle}>How it works</h3>
+                <h3 className={styles.sideTitle}><Translate id="deployWordpress.side.howTitle">How it works</Translate></h3>
                 <ol className={styles.howList}>
-                  <li>Paste a DigitalOcean API token (write scope).</li>
-                  <li>Pick a region and a plan.</li>
+                  <li><Translate id="deployWordpress.side.step1">Paste a DigitalOcean API token (write scope).</Translate></li>
+                  <li><Translate id="deployWordpress.side.step2">Pick a region and a plan.</Translate></li>
                   <li>
-                    We provision an Ubuntu server, install WordPress + Simple JWT
-                    Login automatically, and hand you the admin login.
+                    <Translate id="deployWordpress.side.step3">
+                      {'We provision an Ubuntu server, install WordPress + Simple JWT Login automatically, and hand you the admin login.'}
+                    </Translate>
                   </li>
                 </ol>
 
                 <div className={styles.divider} />
 
-                <h3 className={styles.sideTitle}>No DigitalOcean account?</h3>
+                <h3 className={styles.sideTitle}><Translate id="deployWordpress.side.noAccountTitle">No DigitalOcean account?</Translate></h3>
                 <p className={styles.sideText}>
-                  Sign up with our link and get free credit to launch your first
-                  WordPress server.
+                  <Translate id="deployWordpress.side.noAccountText">
+                    {'Sign up with our link and get free credit to launch your first WordPress server.'}
+                  </Translate>
                 </p>
                 <Link to={REFERRAL_URL} className={styles.referralBtn}>
-                  Get Free Credits <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                  <Translate id="deployWordpress.side.credits">Get Free Credits</Translate>{' '}
+                  <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                 </Link>
                 <p className={styles.sideFinePrint}>
-                  Already have an account? Just paste your token on the left.
+                  <Translate id="deployWordpress.side.haveAccount">Already have an account? Just paste your token on the left.</Translate>
                 </p>
               </aside>
             </div>

@@ -1,14 +1,14 @@
 ---
 slug: /validate-token/
-title: Validate token
-sidebar_position: 3
+title: Validate a WordPress JWT Token
+sidebar_label: Validate Token
 description: Verify a JWT and retrieve the associated WordPress user profile, roles, and decoded token claims via the REST API using Simple JWT Login.
 keywords: [WordPress validate JWT, verify JWT WordPress, JWT token validation WordPress, Simple JWT Login validate, headless WordPress token check]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---
 
-Use this endpoint to verify whether a JWT is valid. On success, the response includes the corresponding WordPress user's profile, their roles, and the decoded JWT header and payload.
+Validate a WordPress JWT with this REST API endpoint. On success, the response includes the corresponding WordPress user's profile, their roles, and the decoded JWT header and payload.
 
 This endpoint is useful for:
 - **Server-side token verification** before granting access to resources

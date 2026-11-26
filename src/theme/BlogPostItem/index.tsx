@@ -5,7 +5,9 @@
  */
 import React from 'react';
 import Link from '@docusaurus/Link';
+import Translate, {translate} from '@docusaurus/Translate';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
+import {useDateTimeFormat} from '@docusaurus/theme-common/internal';
 import BlogPostItemContainer from '@theme/BlogPostItem/Container';
 import BlogPostItemHeader from '@theme/BlogPostItem/Header';
 import BlogPostItemContent from '@theme/BlogPostItem/Content';
@@ -20,12 +22,14 @@ function BlogPostCard(): JSX.Element {
     title,
     permalink,
     date,
-    formattedDate,
     readingTime,
     tags,
     description,
     authors,
   } = metadata;
+
+  // Blog metadata no longer includes formattedDate, so format the date the way the theme does.
+  const dateTimeFormat = useDateTimeFormat({day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'});
 
   const firstAuthor = authors && authors.length > 0 ? authors[0] : null;
 
@@ -49,10 +53,13 @@ function BlogPostCard(): JSX.Element {
 
       {/* Meta: date + reading time */}
       <div className={styles.meta}>
-        <time dateTime={date}>{formattedDate}</time>
+        <time dateTime={date}>{dateTimeFormat.format(new Date(date))}</time>
         {typeof readingTime !== 'undefined' && (
           <span className={styles.readingTime}>
-            &nbsp;·&nbsp;{Math.ceil(readingTime)} min read
+            &nbsp;·&nbsp;
+            <Translate id="theme.blogPostItem.readingTime" values={{minutes: Math.ceil(readingTime)}}>
+              {'{minutes} min read'}
+            </Translate>
           </span>
         )}
       </div>
@@ -78,8 +85,8 @@ function BlogPostCard(): JSX.Element {
             )}
           </div>
         )}
-        <Link to={permalink} className={styles.readMore} aria-label={`Read more about ${title}`}>
-          Read more →
+        <Link to={permalink} className={styles.readMore} aria-label={translate({id: 'theme.blogPostItem.readMoreAbout', message: 'Read more about {title}'}, {title})}>
+          <Translate id="theme.blogPostItem.readMore">Read more →</Translate>
         </Link>
       </div>
     </article>

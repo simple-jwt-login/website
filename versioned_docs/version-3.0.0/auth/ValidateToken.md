@@ -1,6 +1,8 @@
 ---
 slug: /validate-token/
-title: Validate token
+title: v3 Validate token
+description: Validate a JWT in Simple JWT Login v3 and get the WordPress user profile, roles, and the decoded token header and payload.
+sidebar_label: Validate token
 author: Nicu Micle
 author_url: https://github.com/nicumicle
 ---

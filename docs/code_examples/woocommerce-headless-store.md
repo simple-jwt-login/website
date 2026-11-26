@@ -104,7 +104,7 @@ python3 -m http.server 8080
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WooCommerce + Simple-JWT-Login - Vanilla JS demo</title>
+    <title>WooCommerce + Simple JWT Login - Vanilla JS demo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -224,7 +224,7 @@ python3 -m http.server 8080
 ### app.js
 
 ```js
-/* WooCommerce + Simple-JWT-Login - vanilla JS demo.
+/* WooCommerce + Simple JWT Login - vanilla JS demo.
  * Everything is authenticated with a JWT in the Authorization header:
  *   - Products  : /wc/v3/products        (CRUD, needs an admin/shop-manager token)
  *   - Cart      : /wc/store/v1/cart       (Store API)

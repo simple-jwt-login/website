@@ -1,8 +1,9 @@
 ---
 slug: /authentication/
-title: Authentication
+title: v3 Authentication
+sidebar_label: Authentication
 sidebar_position: 2
-description: Generate, refresh, validate, and revoke JWT tokens via the WordPress REST API using Simple JWT Login. Supports HS256/384/512 and RS256/384/512 algorithms.
+description: Exchange WordPress credentials for a signed JWT in Simple JWT Login v3, then use it on protected endpoints or for auto login.
 keywords: [WordPress JWT authentication, generate JWT token WordPress, JWT REST API WordPress, HS256 WordPress, RS256 WordPress, token-based login WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle

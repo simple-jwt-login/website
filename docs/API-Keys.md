@@ -1,7 +1,7 @@
 ---
 slug: /api-keys/
-title: API Keys
-sidebar_position: 9
+title: WordPress REST API Keys
+sidebar_label: API Keys
 description: Create long-lived API keys in Simple JWT Login to authenticate REST API requests without a JWT - scoped permissions, expiry dates.
 keywords: [WordPress API keys, REST API authentication WordPress, long-lived token WordPress, API key authentication, headless WordPress API key, WordPress plugin API key management]
 author: Nicu Micle

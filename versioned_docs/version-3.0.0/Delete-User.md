@@ -1,6 +1,8 @@
 ---
 slug: /delete-user/
-title: Delete WordPress User
+title: v3 Delete WordPress User
+description: Delete WordPress users with Simple JWT Login v3 through a JWT-authenticated REST API call, for mobile apps and headless front ends.
+sidebar_label: Delete WordPress User
 sidebar_position: 7
 author: Nicu Micle
 author_url: https://github.com/nicumicle

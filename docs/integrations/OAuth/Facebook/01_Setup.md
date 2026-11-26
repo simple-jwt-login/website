@@ -1,8 +1,8 @@
 ---
 slug: /integrations/oauth/facebook/setup
-title: Setup
-sidebar_position: 1
-description: Configure Facebook OAuth credentials in Simple JWT Login to enable Facebook sign-in for your WordPress site.
+title: Facebook OAuth Setup for WordPress
+sidebar_label: Setup
+description: Set up Facebook login for WordPress - create a Facebook OAuth app, copy the credentials into Simple JWT Login, and enable the provider.
 keywords: [Facebook OAuth WordPress, Meta for Developers, Facebook App ID, Facebook App Secret, social login WordPress]
 author: Nicu Micle
 author_url: https://github.com/nicumicle
@@ -11,7 +11,7 @@ author_url: https://github.com/nicumicle
 ## Create a Facebook App
 
 1. Log in to the [Meta for Developers](https://developers.facebook.com/) console.
-2. Click **My Apps → Create App**.
+2. Open **My Apps** and click **Create App**.
 3. Choose **Consumer** as the app type and click **Next**.
 4. Fill in the app name and contact email, then click **Create App**.
 5. In the app dashboard, go to **Settings → Basic** and copy the **App ID** and **App Secret**.
@@ -38,3 +38,8 @@ Keep your credentials secure - never commit them to version control or expose th
 | :---- | :---------- |
 | **App ID** | The Facebook App ID |
 | **App Secret** | The Facebook App Secret |
+
+## Next steps
+
+- [Exchange a Facebook OAuth code for tokens](./02_Exchange_Code.md)
+- [Exchange a Facebook token for a WordPress JWT](./03_Exchange_Token.md)

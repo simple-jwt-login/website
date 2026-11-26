@@ -40,6 +40,25 @@ The project is structured as follows:
 - **sidebars.js**: Defines the structure and sidebar items for the documentation.
 
 
+## Deployment
+
+Pushing a tag deploys production (`.github/workflows/deploy.yaml`). These settings (Settings, Secrets and variables, Actions) control the hosting:
+
+| Name | Kind | Value |
+|---|---|---|
+| `DEPLOY_TARGET` | Variable | `cloudflare` deploys production to Cloudflare Workers. Anything else, or unset, deploys to GitHub Pages |
+| `PREVIEWS_ENABLED` | Variable | `true` allows pull request previews. Anything else, or unset, turns them off. Existing previews are still cleaned up |
+| `CLOUDFLARE_ACCOUNT_ID` | Variable | Cloudflare account ID. Cleanup is off while it is unset |
+| `CLOUDFLARE_API_TOKEN` | Secret | API token with the "Edit Cloudflare Workers" permissions |
+
+Before switching production, deploy once and add `simplejwtlogin.com` under the Worker's Settings, Domains & Routes.
+
+### Pull request previews
+
+- **Start:** Actions, CI-preview, Run workflow, then enter the pull request number. Only people with write access can do this. Review the changes first, then run it again after new commits.
+- **Link:** posted as a comment on the pull request.
+- **Stop:** deleted when the pull request is merged or closed, or 2 days after the last deploy (checked hourly).
+
 ## Contributing
 We welcome contributions to improve and expand the documentation! Here’s how you can get involved:
 
