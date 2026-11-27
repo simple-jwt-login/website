@@ -418,6 +418,7 @@ paths:
                 $ref: '#/components/schemas/ResponseError'
   /users:
     post:
+      operationId: registerUser
       tags:
         - register_user
       summary: Register a new WordPress user
@@ -806,6 +807,8 @@ paths:
                     success: true
                     data:
                       message: "The Code has been saved into the database."
+        '400':
+          $ref: '#/components/responses/RestInvalidJson'
         '401':
           description: |
             Unauthorized. The provided auth code is wrong (`error_code` 27).
@@ -1464,10 +1467,10 @@ paths:
                                 description: User email. Present only when enabled in plugin settings.
                                 example: "myuser@simplejwtlogin.com"
                               id:
-                                type: number
+                                type: string
                                 nullable: true
-                                description: WordPress user ID. Present only when enabled in plugin settings.
-                                example: 1
+                                description: WordPress user ID, as a numeric string (as WordPress stores it). Present only when enabled in plugin settings.
+                                example: "1"
                               site:
                                 type: string
                                 nullable: true
@@ -1483,6 +1486,11 @@ paths:
                                 nullable: true
                                 description: Issuer claim. Present only when enabled in plugin settings.
                                 example: "https://simplejwtlogin.com"
+                              jti:
+                                type: string
+                                nullable: true
+                                description: Unique, random JWT ID (32 hexadecimal characters), new for every issued token. Enabled by default; present unless turned off in plugin settings.
+                                example: "9f86d081884c7d659a2feaa0c55ad015"
                           expire_in:
                             type: integer
                             nullable: true
@@ -2554,6 +2562,24 @@ paths:
                         nullable: true
                         description: Expiry in UTC `Y-m-d H:i:s`, or null for no expiry.
                         example: "2027-01-01 00:00:00"
+          links:
+            UpdateApiKey:
+              operationId: updateApiKey
+              description: Update the key that was just created.
+              parameters:
+                id: '$response.body#/data/id'
+            RevokeApiKey:
+              operationId: revokeApiKey
+              description: Revoke the key that was just created.
+              parameters:
+                id: '$response.body#/data/id'
+            DeleteApiKey:
+              operationId: deleteApiKey
+              description: Delete the key that was just created.
+              parameters:
+                id: '$response.body#/data/id'
+        '400':
+          $ref: '#/components/responses/RestInvalidJson'
         '401':
           $ref: '#/components/responses/RestForbidden'
         '403':
@@ -2614,6 +2640,8 @@ paths:
               example:
                 success: true
                 message: "API key updated successfully."
+        '400':
+          $ref: '#/components/responses/RestInvalidJson'
         '401':
           $ref: '#/components/responses/RestForbidden'
         '403':
@@ -2810,6 +2838,12 @@ paths:
                   total: 1
                   page: 1
                   per_page: 20
+          links:
+            DeleteRevokedToken:
+              operationId: deleteRevokedToken
+              description: Delete the first revoked-token record of the page.
+              parameters:
+                id: '$response.body#/data/items/0/id'
         '401':
           $ref: '#/components/responses/RestForbidden'
         '403':
@@ -2902,6 +2936,19 @@ components:
         minimum: 1
       example: 7
   responses:
+    RestInvalidJson:
+      description: |
+        WordPress core error: the `application/json` body is not valid JSON (for example,
+        malformed UTF-8). The plugin is not called.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WpRestError'
+          example:
+            code: rest_invalid_json
+            message: "Invalid JSON body passed."
+            data:
+              status: 400
     RestForbidden:
       description: |
         WordPress core error: the request is not authenticated (no logged-in session with a

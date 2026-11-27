@@ -34,7 +34,7 @@ Every endpoint except `/revoked-tokens` is **disabled by default**. Enable the o
 | Method | Endpoint | What it does | Enable in | Guide | API |
 | :----- | :------- | :----------- | :-------- | :---- | :-- |
 | `GET` | `/autologin` | Log a user into WordPress with a JWT and redirect | Autologin | [Autologin](./Login-User.md) | [Try it](/api/v4/autologin) |
-| `POST` | `/users` | Register a new WordPress user | Register User | [Register user](./Register-User.md) | [Try it](/api/v4/register-a-new-word-press-user) |
+| `POST` | `/users` | Register a new WordPress user | Register User | [Register user](./Register-User.md) | [Try it](/api/v4/register-user) |
 | `DELETE` | `/users` | Delete the user identified by the JWT | Delete User | [Delete user](./Delete-User.md) | [Try it](/api/v4/delete-user) |
 | `POST` | `/user/reset_password` | Send a password reset code by email | Reset Password | [Reset password](./Reset-Password.md#step-1---request-reset-code) | [Try it](/api/v4/send-reset-password-code) |
 | `PUT` | `/user/reset_password` | Set a new password with a reset code or a JWT | Reset Password | [Reset password](./Reset-Password.md#step-2---set-new-password) | [Try it](/api/v4/change-user-password) |
