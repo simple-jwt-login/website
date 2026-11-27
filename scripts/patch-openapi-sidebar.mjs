@@ -32,7 +32,7 @@ const GROUPS = [
     collapsed: false,
     ids: [
       'autologin',
-      'register-a-new-word-press-user',
+      'register-user',
       'delete-user',
       'send-reset-password-code',
       'change-user-password',

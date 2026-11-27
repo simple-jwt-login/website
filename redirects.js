@@ -12,6 +12,8 @@ const redirects = [
   {from: '/docs/applications/google/shortcode', to: '/docs/3.0.0/applications/google/shortcode'},
   // Old standalone OAuth page, superseded by the OAuth integration docs.
   {from: '/docs/oauth', to: '/docs/integrations/oauth/'},
+  // API page slug changed when the spec gained `operationId: registerUser` (OpenAPI 4.2.1).
+  {from: '/api/v4/register-a-new-word-press-user', to: '/api/v4/register-user'},
 ];
 
 module.exports = redirects;

@@ -13,7 +13,7 @@ The Register User endpoint lets you create new WordPress users programmatically 
 Registration is **disabled by default**. Enable it in **Settings → Simple JWT Login → Register User**.
 
 :::tip[API Reference]
-Explore and test this endpoint using the [interactive API reference →](/api/v4/register-a-new-word-press-user)
+Explore and test this endpoint using the [interactive API reference →](/api/v4/register-user)
 :::
 
 ## Endpoint
