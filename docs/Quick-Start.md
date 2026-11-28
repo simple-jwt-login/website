@@ -22,6 +22,15 @@ wp plugin install simple-jwt-login --activate
 
 For more options, see the [Installation guide](./Introduction.md#installation-guide).
 
+:::tip
+With shell access, steps 2 and 3 can be done from WP-CLI. `wp jwt setup` generates a signing key and enables authentication; the second command enables the validate endpoint used in step 5. See [WP-CLI Commands](./integrations/CLI.md#wp-jwt-setup).
+
+```bash
+wp jwt setup
+wp jwt config set authorization.validate_token_enabled 1
+```
+:::
+
 ## 2. Set the signing key
 
 Go to **Settings → Simple JWT Login → General** and find **JWT Verification Rules**. The rules are checked top to bottom, and the last row, labeled **ELSE**, is the default that applies to every JWT no other rule matches. On a fresh install it is the only rule. In the ELSE row:

@@ -116,7 +116,6 @@ const sidebars: SidebarsConfig = {
       label: 'Add-ons',
       items: [
         'integrations/MailPoet',
-        'integrations/CLI',
         'integrations/ExportImport',
       ],
     },
@@ -129,6 +128,7 @@ const sidebars: SidebarsConfig = {
         'Troubleshooting',
         'Error-Codes',
         'Hooks',
+        'integrations/CLI',
         'Webhooks',
         'AuditLogs',
         {
