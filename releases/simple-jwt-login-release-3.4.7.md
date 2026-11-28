@@ -6,9 +6,9 @@ October 4, 2022 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,7 +16,7 @@ Creator of Simple JWT Login
 
 The version `3.4.7` has been released today on [WordPress](https://wordpress.org/plugins/simple-jwt-login).
 
-This is a **security release** following a WordPress team review. We recommend updating immediately.
+This is a **security release** following a WordPress team review. Update immediately.
 
 ## Security Fixes[​](#security-fixes "Direct link to Security Fixes")
 
@@ -39,5 +39,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [bugfix](/releases/tags/bugfix.md)
-* [security](/releases/tags/security.md)
+* [bugfix](/releases/tags/bugfix)
+* [security](/releases/tags/security)

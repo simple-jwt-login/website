@@ -1,4 +1,4 @@
-# Authenticate WPGraphQL with JWT Tokens
+# Authenticate WPGraphQL Requests with JWT
 
 March 10, 2026 ·
 
@@ -6,9 +6,9 @@ March 10, 2026 ·
 
 6 min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle)
 
-[Nicu Micle](/blog/authors/nicumicle.md)
+[Nicu Micle](/blog/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -45,7 +45,7 @@ Navigate to **Simple JWT Login** in your WordPress admin. The core settings you 
 
 * Set a strong **JWT Decryption Key**
 * Choose **HS256** as your algorithm (or RS256 for asymmetric setups)
-* Set a sensible **JWT expiration** (e.g. 3600 seconds / 1 hour)
+* Set a sensible **JWT expiration** (for example, 3600 seconds / 1 hour)
 
 **WPGraphQL tab:**
 
@@ -55,7 +55,7 @@ Enable the WPGraphQL integration:
 Settings > Simple JWT Login > WPGraphQL > Enable WPGraphQL authentication
 ```
 
-That's the only required toggle. The plugin will now validate JWT tokens on every request to your GraphQL endpoint.
+That's the only required toggle. The plugin now validates JWTs on every request to your GraphQL endpoint.
 
 ***
 
@@ -65,10 +65,15 @@ Use the standard auth endpoint to get a token:
 
 ```
 curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/auth" \
+
   -H "Content-Type: application/json" \
+
   -d '{
+
     "email": "editor@example.com",
+
     "password": "their_password"
+
   }'
 ```
 
@@ -76,10 +81,15 @@ Response:
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
   }
+
 }
 ```
 
@@ -91,10 +101,15 @@ Pass the token as a bearer token in the `Authorization` header on every GraphQL 
 
 ```
 curl -X POST "https://example.com/graphql" \
+
   -H "Content-Type: application/json" \
+
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." \
+
   -d '{
+
     "query": "{ viewer { id name email roles { nodes { name } } } }"
+
   }'
 ```
 
@@ -102,16 +117,27 @@ Without the token, `viewer` returns `null`. With it, you get the full authentica
 
 ```
 {
+
   "data": {
+
     "viewer": {
+
       "id": "dXNlcjoyNQ==",
+
       "name": "Jane Editor",
+
       "email": "editor@example.com",
+
       "roles": {
+
         "nodes": [{ "name": "editor" }]
+
       }
+
     }
+
   }
+
 }
 ```
 
@@ -123,18 +149,31 @@ This is where the integration becomes genuinely useful. Many WPGraphQL mutations
 
 ```
 curl -X POST "https://example.com/graphql" \
+
   -H "Content-Type: application/json" \
+
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." \
+
   -d '{
+
     "query": "mutation CreatePost($input: CreatePostInput!) { createPost(input: $input) { post { id title status } } }",
+
     "variables": {
+
       "input": {
+
         "title": "My First API Post",
+
         "content": "Written via GraphQL with JWT auth.",
+
         "status": "PUBLISH",
+
         "clientMutationId": "create-post-1"
+
       }
+
     }
+
   }'
 ```
 
@@ -149,43 +188,83 @@ In a Next.js or React app, you'll typically store the JWT after login and attach
 ```
 const GQL_ENDPOINT = 'https://example.com/graphql';
 
+
+
 async function graphqlRequest(query, variables = {}, token = null) {
+
   const headers = { 'Content-Type': 'application/json' };
+
   if (token) {
+
     headers['Authorization'] = `Bearer ${token}`;
+
   }
 
+
+
   const response = await fetch(GQL_ENDPOINT, {
+
     method: 'POST',
+
     headers,
+
     body: JSON.stringify({ query, variables }),
+
   });
 
+
+
   return response.json();
+
 }
+
+
 
 // Login and get a token
+
 async function login(email, password) {
+
   const response = await fetch(
+
     'https://example.com/wp-json/simple-jwt-login/v1/auth',
+
     {
+
       method: 'POST',
+
       headers: { 'Content-Type': 'application/json' },
+
       body: JSON.stringify({ email, password }),
+
     }
+
   );
+
   const data = await response.json();
+
   return data.data.jwt;
+
 }
 
+
+
 // Example usage
+
 const token = await login('editor@example.com', 'password');
 
+
+
 const { data } = await graphqlRequest(
+
   `{ viewer { name email } }`,
+
   {},
+
   token
+
 );
+
+
 
 console.log(data.viewer); // { name: 'Jane Editor', email: 'editor@example.com' }
 ```
@@ -194,23 +273,41 @@ If you're using Apollo Client, set the token in your auth link:
 
 ```
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+
 import { setContext } from '@apollo/client/link/context';
+
+
 
 const httpLink = createHttpLink({ uri: 'https://example.com/graphql' });
 
+
+
 const authLink = setContext((_, { headers }) => {
+
   const token = localStorage.getItem('jwt'); // or however you store it
+
   return {
+
     headers: {
+
       ...headers,
+
       authorization: token ? `Bearer ${token}` : '',
+
     },
+
   };
+
 });
 
+
+
 const client = new ApolloClient({
+
   link: authLink.concat(httpLink),
+
   cache: new InMemoryCache(),
+
 });
 ```
 
@@ -222,10 +319,15 @@ Sometimes you want to avoid an extra `viewer` query on page load by embedding us
 
 ```
 add_filter('simple_jwt_login_jwt_payload', function($payload, $user) {
+
     $payload['wp_roles']     = $user->roles;
+
     $payload['display_name'] = $user->display_name;
+
     $payload['avatar_url']   = get_avatar_url($user->ID, ['size' => 48]);
+
     return $payload;
+
 }, 10, 2);
 ```
 
@@ -233,12 +335,19 @@ Your Apollo or fetch client can decode the JWT (it's just base64) and read these
 
 ```
 function decodeJwtPayload(token) {
+
   const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+
   return JSON.parse(atob(base64));
+
 }
 
+
+
 const payload = decodeJwtPayload(token);
+
 console.log(payload.display_name); // "Jane Editor"
+
 console.log(payload.wp_roles);     // ["editor"]
 ```
 
@@ -254,7 +363,9 @@ By default, WPGraphQL allows unauthenticated introspection queries, which expose
 
 ```
 Settings > Simple JWT Login > Protect Endpoints
+
 Add route: /graphql
+
 Methods: GET, POST
 ```
 
@@ -264,31 +375,53 @@ This ensures every GraphQL request - including introspection - must carry a vali
 
 ## Token Refresh for Long-Running Sessions[​](#token-refresh-for-long-running-sessions "Direct link to Token Refresh for Long-Running Sessions")
 
-GraphQL apps often run as SPAs where the user stays on the page for extended periods. Implement proactive token refresh to avoid mid-session 401s:
+GraphQL apps often run as SPAs where the user stays on the page for extended periods. Implement proactive token refresh to avoid mid-session `401` errors:
 
 ```
 function isTokenExpiringSoon(token, bufferSeconds = 300) {
+
   const { exp } = decodeJwtPayload(token);
+
   return (exp - bufferSeconds) < (Date.now() / 1000);
+
 }
+
+
 
 async function refreshToken(currentToken) {
+
   const response = await fetch(
+
     'https://example.com/wp-json/simple-jwt-login/v1/auth/refresh',
+
     {
+
       method: 'POST',
+
       headers: { 'Content-Type': 'application/json' },
+
       body: JSON.stringify({ JWT: currentToken }),
+
     }
+
   );
+
   const data = await response.json();
+
   return data.data.jwt;
+
 }
 
+
+
 // Before each GraphQL request:
+
 if (isTokenExpiringSoon(storedToken)) {
+
   storedToken = await refreshToken(storedToken);
+
   // persist updated token
+
 }
 ```
 
@@ -302,9 +435,9 @@ From there, the hooks system gives you room to customize the JWT payload, and th
 
 **Tags:**
 
-* [Tutorial](/blog/tags/tags/tutorial.md "Tutorials and guides for Simple JWT Login")
-* [WPGraphQL](/blog/tags/tags/wpgraphql.md "Integrating Simple JWT Login with WPGraphQL")
-* [JWT Authentication](/blog/tags/tags/jwt-authentication.md "Articles about JSON Web Token (JWT) authentication")
-* [Headless WordPress](/blog/tags/tags/headless-wordpress.md "Articles about headless WordPress architecture and JWT authentication")
+* [Tutorial](/blog/tags/tags/tutorial "Tutorials and guides for Simple JWT Login")
+* [WPGraphQL](/blog/tags/tags/wpgraphql "Integrating Simple JWT Login with WPGraphQL")
+* [JWT Authentication](/blog/tags/tags/jwt-authentication "Articles about JSON Web Token (JWT) authentication")
+* [Headless WordPress](/blog/tags/tags/headless-wordpress "Articles about headless WordPress architecture and JWT authentication")
 
 [Edit this page](https://github.com/simple-jwt-login/website/tree/main/blog/2026-03-10-wpgraphql-jwt-authentication.md)

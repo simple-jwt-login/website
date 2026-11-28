@@ -1,4 +1,4 @@
-# Register User
+# Register WordPress Users via REST API
 
 The Register User endpoint lets you create new WordPress users programmatically via the REST API. Useful for headless registration forms, mobile app sign-ups, or any external system that needs to provision WordPress accounts without going through the standard WordPress UI.
 
@@ -6,7 +6,7 @@ Registration is **disabled by default**. Enable it in **Settings → Simple JWT 
 
 API Reference
 
-Explore and test this endpoint using the [interactive API reference →](/api/v4/register-a-new-word-press-user.md)
+Explore and test this endpoint using the [interactive API reference →](/api/v4/register-user.md)
 
 ## Endpoint[​](#endpoint "Direct link to Endpoint")
 
@@ -18,7 +18,7 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 
 Keep credentials out of the URL
 
-Send the new user's email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history and monitoring tools.
+Send the new user's email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history, and monitoring tools.
 
 **PARAMETERS**:
 
@@ -50,8 +50,11 @@ Minimal registration:
 
 ```
 {
+
   "email": "test@simplejwtlogin.com",
+
   "password": "SomeSuperSecretPassword"
+
 }
 ```
 
@@ -59,12 +62,19 @@ Full registration with optional fields:
 
 ```
 {
+
   "email": "test@simplejwtlogin.com",
+
   "password": "SomeSuperSecretPassword",
+
   "user_login": "myuser",
+
   "first_name": "John",
+
   "last_name": "Doe",
+
   "user_meta": "{\"plan\":\"premium\",\"referral_source\":\"landing_page\"}"
+
 }
 ```
 
@@ -74,24 +84,37 @@ Full registration with optional fields:
 
 ```
 {
+
   "success": true,
-  "id": 1,
-  "message": "User was successfully created.",
-  "user": {
-    "ID": 1,
-    "user_login": "myuser",
-    "user_nicename": "myuser",
-    "user_email": "myuser@simplejwtlogin.com",
-    "user_url": "https://simplejwtlogin.com/myuser",
-    "user_registered": "2021-01-01 23:31:50",
-    "user_status": "0",
+
+  "data": {
+
+    "id": 1,
+
+    "login": "myuser",
+
+    "nicename": "myuser",
+
+    "email": "myuser@simplejwtlogin.com",
+
+    "url": "https://simplejwtlogin.com/myuser",
+
+    "registered": "2021-01-01 23:31:50",
+
+    "status": "0",
+
     "display_name": "myuser",
-    "user_level": 0
-  },
-  "roles": [
-    "subscriber"
-  ],
-  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+    "roles": [
+
+      "subscriber"
+
+    ],
+
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+  }
+
 }
 ```
 
@@ -103,11 +126,17 @@ Required parameters are missing.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "The email address or password is missing.",
+
     "error_code": 35
+
   }
+
 }
 ```
 
@@ -117,11 +146,17 @@ Auth code is invalid or missing when required.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Invalid auth code.",
+
     "error_code": 32
+
   }
+
 }
 ```
 
@@ -131,11 +166,17 @@ Registration is disabled, or the client IP is not on the allow-list.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Register is not allowed.",
+
     "error_code": 31
+
   }
+
 }
 ```
 
@@ -145,11 +186,17 @@ A user with this email already exists.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "User already exists.",
+
     "error_code": 38
+
   }
+
 }
 ```
 
@@ -159,11 +206,17 @@ Email format is invalid or the email domain is not on the allow-list.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "The email address is invalid.",
+
     "error_code": 36
+
   }
+
 }
 ```
 
@@ -173,11 +226,17 @@ Email format is invalid or the email domain is not on the allow-list.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "User could not be created.",
+
     "error_code": 52
+
   }
+
 }
 ```
 
@@ -187,7 +246,9 @@ Email format is invalid or the email domain is not on the allow-list.
 
 ```
 curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
+
   -H "Content-type: application/json" \
+
   -d '{"email":"myemail@simplejwtlogin.com","password":"test"}'
 ```
 
@@ -195,9 +256,13 @@ curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
 
 ```
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $result = $simpleJwtLogin->registerUser('email@simplejwtlogin.com', 'password', 'AUTH CODE');
 ```
 
@@ -205,13 +270,21 @@ $result = $simpleJwtLogin->registerUser('email@simplejwtlogin.com', 'password', 
 
 ```
 fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users', {
+
   method: 'POST',
+
   headers: { 'Content-Type': 'application/json' },
+
   body: JSON.stringify({
+
     email: 'email@simplejwtlogin.com',
+
     password: 'my-secret-password',
+
     AUTH_KEY: 'my-auth-code'
+
   })
+
 }).then(r => r.json()).then(console.log);
 ```
 
@@ -307,3 +380,8 @@ note
 Since version 4.1.0, meta keys that grant privileges or hold sessions - `{prefix}capabilities`, `{prefix}user_level` and `session_tokens` - are never set from a registration request, even if you list them here.
 
 Since version 4.2.0, the `user_activation_key`, `user_registered` and `spam` user properties are not accepted from the request either, so a registrant can't plant a password reset key and take over an account.
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Register a user from PHP](/docs/code-examples/register-and-get-jwt.md)
+* [Send a webhook on registration](/docs/webhooks.md)

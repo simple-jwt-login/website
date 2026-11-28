@@ -2,7 +2,7 @@
 
 ```
 POST 
-/simple-jwt-login/v1/auth/revoke
+/auth/revoke
 ```
 
 Revoke JWT
@@ -13,7 +13,10 @@ Revoke JWT
 
 * 200
 * 400
+* 401
 
 Token has been revoked
 
-Error
+Error. Also returned when the JWT was already revoked.
+
+The JWT is expired or not valid yet.

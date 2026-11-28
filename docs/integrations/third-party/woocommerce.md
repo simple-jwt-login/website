@@ -1,4 +1,6 @@
-# WooCommerce
+# WooCommerce REST API JWT Auth
+
+Authenticate the WooCommerce REST API and Store API with a JWT.
 
 Requires the [WooCommerce](https://woocommerce.com/) plugin to be installed and activated.
 
@@ -27,13 +29,21 @@ Send the token in the `Authorization` header (no consumer key/secret needed):
 
 ```
 # List products as an admin/shop-manager
+
 curl "https://example.com/wp-json/wc/v3/products" \
+
   -H "Authorization: Bearer YOUR_JWT"
 
+
+
 # Create a product
+
 curl -X POST "https://example.com/wp-json/wc/v3/products" \
+
   -H "Authorization: Bearer YOUR_JWT" \
+
   -H "Content-Type: application/json" \
+
   -d '{"name":"Demo product","type":"simple","regular_price":"12.99"}'
 ```
 
@@ -47,18 +57,31 @@ Enable **Store API cart & checkout** (second toggle on the WooCommerce card) to 
 
 ```
 # Add an item to the cart - JWT only, no nonce
+
 curl -X POST "https://example.com/wp-json/wc/store/v1/cart/add-item" \
+
   -H "Authorization: Bearer YOUR_JWT" \
+
   -H "Content-Type: application/json" \
+
   -d '{"id":123,"quantity":1}'
 
+
+
 # Place the order
+
 curl -X POST "https://example.com/wp-json/wc/store/v1/checkout" \
+
   -H "Authorization: Bearer YOUR_JWT" \
+
   -H "Content-Type: application/json" \
+
   -d '{
+
         "billing_address":{"first_name":"Jane","last_name":"Doe","address_1":"123 Main St","city":"Springfield","state":"CA","postcode":"12345","country":"US","email":"jane@example.com","phone":"5551234567"},
+
         "payment_method":"cod"
+
       }'
 ```
 

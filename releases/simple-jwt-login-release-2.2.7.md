@@ -6,9 +6,9 @@ August 5, 2020 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -24,7 +24,7 @@ This release adds support for base64-encoded decryption keys and fixes a couple 
 
 ## Bug Fixes[​](#bug-fixes "Direct link to Bug Fixes")
 
-* Fix the warning "register\_rest\_route was called incorrectly"
+* Fix the warning "`register_rest_route` was called incorrectly"
 * Ignore white space when reading the JWT from the header
 
 ***
@@ -33,5 +33,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [feature](/releases/tags/feature.md)
-* [bugfix](/releases/tags/bugfix.md)
+* [feature](/releases/tags/feature)
+* [bugfix](/releases/tags/bugfix)

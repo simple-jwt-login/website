@@ -1,4 +1,4 @@
-Version: 4.2.0
+Version: 4.3.0
 
 # Simple-JWT-Login
 
@@ -60,11 +60,17 @@ All error responses share a common envelope:
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Human-readable error description",
+
     "error_code": 42
+
   }
+
 }
 ```
 

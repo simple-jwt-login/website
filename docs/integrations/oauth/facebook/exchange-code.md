@@ -1,4 +1,4 @@
-# Exchange OAuth Code for Facebook Tokens
+# Exchange a Facebook OAuth Code for Tokens
 
 ## Overview[​](#overview "Direct link to Overview")
 
@@ -30,7 +30,9 @@ The `redirect_uri` used here must exactly match the one registered in your Faceb
 
 ```
 curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
+
   -H "Content-Type: application/json" \
+
   -d '{"provider":"facebook","code":"YOUR_FACEBOOK_AUTH_CODE","redirect_uri":"https://your-site.com/callback"}'
 ```
 
@@ -42,12 +44,19 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "access_token": "EAABwzLixnjYBO...",
+
     "token_type": "bearer",
+
     "expires_in": 5183944
+
   }
+
 }
 ```
 
@@ -55,10 +64,21 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "The code you provided is invalid.",
+
     "error_code": 72
+
   }
+
 }
 ```
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Exchange the Facebook token for a WordPress JWT](/docs/integrations/oauth/facebook/exchange-token.md)
+* [Check the Facebook OAuth setup](/docs/integrations/oauth/facebook/setup.md)

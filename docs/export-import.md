@@ -1,6 +1,6 @@
-# Simple-JWT-Login Export-Import Add-on
+# Export and Import JWT Plugin Settings
 
-The Export-Import add-on lets you copy your Simple-JWT-Login configuration - including Auth Codes, protection rules, and all general settings - from one WordPress site to another in just a few steps. This is especially useful when setting up staging environments, migrating sites, or replicating a configuration across a network of sites.
+The Export-Import add-on lets you copy your Simple JWT Login configuration - including Auth Codes, protection rules, and all general settings - from one WordPress site to another in just a few steps. This is especially useful when setting up staging environments, migrating sites, or replicating a configuration across a network of sites.
 
 [Download](https://github.com/simple-jwt-login/export-import/archive/refs/heads/master.zip)
 
@@ -21,15 +21,20 @@ The Export-Import add-on lets you copy your Simple-JWT-Login configuration - inc
 
 **On the source site:**
 
-1. Go to the Simple-JWT-Login settings page.
+1. Go to the Simple JWT Login settings page.
 2. Click **Export** to generate a configuration snapshot.
 3. Copy the generated code.
 
 **On the destination site:**
 
-1. Install and activate both Simple-JWT-Login and the Export-Import add-on.
-2. Go to the Simple-JWT-Login settings page.
+1. Install and activate both Simple JWT Login and the Export-Import add-on.
+2. Go to the Simple JWT Login settings page.
 3. Paste the copied code into the import field.
 4. Click **Import** and confirm the prompt.
 
 The destination site now has the same configuration as the source.
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Manage settings with WP-CLI](/docs/cli.md)
+* [Review the configuration reference](/docs/configuration.md)

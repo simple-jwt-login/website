@@ -4,100 +4,108 @@ October 26, 2022 ·
 
 <!-- -->
 
-2 min read
+3 min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle)
 
-[Nicu Micle](/blog/authors/nicumicle.md)
+[Nicu Micle](/blog/authors/nicumicle)
 
 Creator of Simple JWT Login
 
 [](https://x.com/nicumicle "X")[](https://github.com/nicumicle "GitHub")
 
-All the time I have issues setting up [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) on my server. I was always struggling with this, and this time I was thinking maybe it is a good time to create a blog article about this.
+Updated November 2026
 
-So, In this tutorial, we are going to set up CORS on an apache server.
+This post was written for Simple JWT Login 3.x. On current versions, set CORS in the plugin under **Settings → Simple JWT Login → CORS** instead of Apache - see [CORS](/docs/cors.md). Since version 4.1.1, a browser app on another domain can authenticate with a JWT only when its origin is listed in **Allow origin**, and a `*` origin never trusts cookie or session JWTs. Use the Apache setup below only for routes the plugin doesn't handle.
 
-## How to know that there is a CORS issue?[​](#how-to-know-that-there-is-a-cors-issue "Direct link to How to know that there is a CORS issue?")
+Browsers block JavaScript calls from one domain to another unless the server allows them with [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) headers. This tutorial shows how to add those headers on an Apache server.
 
-First, try to call your endpoint from the browser using Javascript. If you see in your console something like:
+## How to Spot a CORS Issue[​](#how-to-spot-a-cors-issue "Direct link to How to Spot a CORS Issue")
+
+Call your endpoint from the browser with JavaScript. A CORS issue shows an error like this in the console:
 
 ```
-Access to ... at 'http://....' from origin 'http://..' has been blocked 
+Access to ... at 'http://....' from origin 'http://..' has been blocked
+
 by CORS policy: Response to preflight request doesn't pass access control
+
 check: No 'Access-Control-Allow-Origin' header is present in the requested resource.
 ```
 
-So, if you see something related to 'CORS' in the console, that means that you have some CORS issues on your server.
+## Fix It in Apache[​](#fix-it-in-apache "Direct link to Fix It in Apache")
 
-## How to fix this?[​](#how-to-fix-this "Direct link to How to fix this?")
-
-The first step that you need to do, is to connect to your server via SSH.
-
-On your server, you have to make sure that the headers mod is enabled.
+Connect to your server over SSH and enable the Apache `headers` module:
 
 ```
 sudo a2enmod headers
 ```
 
-After this, you will see something like this:
+Apache confirms it:
 
 ```
 Enabling module headers.
+
 To activate the new configuration, you need to run:
+
   service apache2 restart
 ```
 
-If the headers have been enabled before, you will get a message like this:
+If the module is already on, the output is `Module headers already enabled`.
+
+Next, open the Apache configuration file:
 
 ```
-Module headers already enabled
+sudo vi /etc/apache2/apache2.conf
 ```
 
-The next step is to edit the apache2 conf file.
-
-```
-vi /etc/apache2/apache2.conf
-```
-
-If your website is running from `/var/www/html`, in this file, search for:
-
-```
-<Directory /var/www/html">
-```
-
-If you can not find that, just add it at the end of the file:
+If your site runs from `/var/www/html`, find the `<Directory "/var/www/html">` block, or add it at the end of the file. Replace `https://app.example.com` with the origin of your front-end:
 
 ```
 <Directory "/var/www/html">
-    AllowOverride None
+
+    AllowOverride All
+
     Require all granted
 
-    Header set Access-Control-Allow-Origin "*"
+
+
+    Header set Access-Control-Allow-Origin "https://app.example.com"
+
     Header set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-    Header set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"
-    Header set Access-Control-Expose-Headers "Content-Security-Policy, Location"
+
+    Header set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept"
+
+    Header set Access-Control-Expose-Headers "Location"
+
     Header set Access-Control-Max-Age "600"
 
+    Header merge Vary "Origin"
+
+
+
     RewriteEngine On
+
     RewriteCond %{REQUEST_METHOD} OPTIONS
+
     RewriteRule ^(.*)$ $1 [R=200,L]
 
 </Directory>
 ```
 
-Now, you just need to restart the apache:
+Keep `AllowOverride All`: WordPress needs its `.htaccess` file for pretty permalinks and the `/wp-json/` routes. Avoid `Access-Control-Allow-Origin "*"`, because it lets any website call your API from a visitor's browser.
+
+Don't set the same headers in Apache and in the plugin's CORS settings. Browsers reject a response that has two `Access-Control-Allow-Origin` headers.
+
+Restart Apache to apply the changes:
 
 ```
 sudo service apache2 restart
 ```
 
-After this, you will be able to make HTTP calls to your server from the browser.
-
-Enjoy.
+Your front-end can now call the server from the browser.
 
 **Tags:**
 
-* [Tutorial](/blog/tags/tags/tutorial.md "Tutorials and guides for Simple JWT Login")
+* [Tutorial](/blog/tags/tags/tutorial "Tutorials and guides for Simple JWT Login")
 
 [Edit this page](https://github.com/simple-jwt-login/website/tree/main/blog/2022-10-26-CORS-setup.md)

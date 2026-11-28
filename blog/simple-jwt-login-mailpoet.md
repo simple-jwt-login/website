@@ -1,4 +1,4 @@
-# MailPoet add-on released
+# MailPoet Add-on Released
 
 April 25, 2022 ·
 
@@ -6,31 +6,29 @@ April 25, 2022 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle)
 
-[Nicu Micle](/blog/authors/nicumicle.md)
+[Nicu Micle](/blog/authors/nicumicle)
 
 Creator of Simple JWT Login
 
 [](https://x.com/nicumicle "X")[](https://github.com/nicumicle "GitHub")
 
-The first add-on for Simple JWT Login plugin has been released.
+The first add-on for the Simple JWT Login plugin is out.
 
-MailPoet add on allows you to generate Autologin links in your newsletters.
+The MailPoet add-on adds autologin links to your newsletters.
 
 ![Simple JWT Login MailPoet add-on banner](https://ps.w.org/simple-jwt-login-mailpoet/assets/banner-1544x500.png)
 
-The MailPoet add-on allows you to automatically login users from the newsletter sent by MailPoet into a WordPress website using a JWT.
+Subscribers who click the link in a MailPoet newsletter are logged in to your WordPress site with a JWT, with no password needed.
 
-This add-on will generate short codes that can be used in your MailPoet templates.
+The add-on provides shortcodes to use in your MailPoet templates.
 
-Check more details in the documentation.
-
-[Read more about MailPoet](/docs/mailpoet.md)
+[Read the MailPoet add-on documentation](/docs/mailpoet.md)
 
 **Tags:**
 
-* [News](/blog/tags/tags/news.md "Plugin news")
-* [Add-on](/blog/tags/tags/add-on.md "Plugin Addons")
+* [News](/blog/tags/tags/news "Plugin news")
+* [Add-on](/blog/tags/tags/add-on "Plugin Addons")
 
 [Edit this page](https://github.com/simple-jwt-login/website/tree/main/blog/2022-04-25-mailpoet-addon.md)

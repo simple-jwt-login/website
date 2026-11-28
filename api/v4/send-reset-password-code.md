@@ -25,12 +25,15 @@ An email that does not belong to a WordPress user gets the same `200` answer as 
 ## Responses[​](#responses "Direct link to Responses")
 
 * 200
+* 400
 * 401
 * 403
 * 422
 * 500
 
 Request accepted (also for emails without an account). The message depends on the "Reset password flow" setting.
+
+WordPress core error: the `application/json` body is not valid JSON (for example, malformed UTF-8). The plugin is not called.
 
 Unauthorized. The provided auth code is wrong (`error_code` 27).
 

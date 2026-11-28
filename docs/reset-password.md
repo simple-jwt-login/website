@@ -1,4 +1,4 @@
-# Reset password
+# Reset WordPress Password via REST API
 
 Simple JWT Login exposes a two-step password reset flow entirely through the REST API. Step 1 requests a reset code and delivers it by email; Step 2 applies the new password using that code. Both steps share the same endpoint URL with different HTTP methods.
 
@@ -37,7 +37,9 @@ Explore and test this step using the [interactive API reference →](/api/v4/sen
 
 ```
 {
+
   "email": "test@simplejwtlogin.com"
+
 }
 ```
 
@@ -45,8 +47,11 @@ With optional Auth Code:
 
 ```
 {
+
   "email": "test@simplejwtlogin.com",
+
   "AUTH_KEY": "MY_SECRET_AUTH_KEY"
+
 }
 ```
 
@@ -56,8 +61,11 @@ With optional Auth Code:
 
 ```
 {
+
   "success": true,
+
   "message": "Reset password email has been sent."
+
 }
 ```
 
@@ -67,11 +75,17 @@ Bad request - the `email` field is missing.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Email is required.",
+
     "error_code": 59
+
   }
+
 }
 ```
 
@@ -81,11 +95,17 @@ Unauthorized - the provided auth code is invalid or missing when required.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Invalid auth code.",
+
     "error_code": 58
+
   }
+
 }
 ```
 
@@ -95,11 +115,17 @@ Forbidden - password reset is disabled in plugin settings.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Reset password is not allowed.",
+
     "error_code": 56
+
   }
+
 }
 ```
 
@@ -109,11 +135,17 @@ Internal server error (for example, email sending failure).
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "An unexpected error occurred.",
+
     "error_code": 22
+
   }
+
 }
 ```
 
@@ -123,7 +155,9 @@ Internal server error (for example, email sending failure).
 
 ```
 curl -X POST https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_password \
+
   -H "Content-type: application/json" \
+
   -d '{"email":"test@simplejwtlogin.com"}'
 ```
 
@@ -131,9 +165,13 @@ curl -X POST https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_p
 
 ```
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $result = $simpleJwtLogin->resetPassword('email@simplejwtlogin.com', 'AUTH CODE');
 ```
 
@@ -141,9 +179,13 @@ $result = $simpleJwtLogin->resetPassword('email@simplejwtlogin.com', 'AUTH CODE'
 
 ```
 fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_password', {
+
   method: 'POST',
+
   headers: { 'Content-Type': 'application/json' },
+
   body: JSON.stringify({ email: 'test@simplejwtlogin.com' })
+
 }).then(r => r.json()).then(console.log);
 ```
 
@@ -177,7 +219,7 @@ Explore and test this step using the [interactive API reference →](/api/v4/cha
 
 Keep credentials out of the URL
 
-Send the reset code and new password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history and monitoring tools.
+Send the reset code and new password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history, and monitoring tools.
 
 **PARAMETERS**:
 
@@ -193,9 +235,13 @@ Send the reset code and new password in the request body (JSON, as shown below),
 
 ```
 {
+
   "email": "test@simplejwtlogin.com",
+
   "code": "MY_CODE",
+
   "new_password": "YOUR_SECRET_PASSWORD"
+
 }
 ```
 
@@ -203,9 +249,13 @@ Using a JWT instead of a reset code:
 
 ```
 {
+
   "email": "test@simplejwtlogin.com",
+
   "JWT": "YOUR_JWT_HERE",
+
   "new_password": "YOUR_SECRET_PASSWORD"
+
 }
 ```
 
@@ -215,8 +265,11 @@ Using a JWT instead of a reset code:
 
 ```
 {
+
   "success": true,
+
   "message": "User password has been changed."
+
 }
 ```
 
@@ -226,11 +279,17 @@ Bad request - `email`, `code`, or `new_password` is missing.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "New password is required.",
+
     "error_code": 61
+
   }
+
 }
 ```
 
@@ -240,11 +299,17 @@ Unauthorized - the JWT is invalid or expired, or was already used for a password
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "This JWT cannot be used to change the password.",
+
     "error_code": 93
+
   }
+
 }
 ```
 
@@ -254,11 +319,17 @@ Forbidden - password reset is disabled in plugin settings.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Reset password is not allowed.",
+
     "error_code": 56
+
   }
+
 }
 ```
 
@@ -268,11 +339,17 @@ No WordPress user with the provided email address was found.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "User not found.",
+
     "error_code": 64
+
   }
+
 }
 ```
 
@@ -282,11 +359,17 @@ Unprocessable entity - the one-time reset code is invalid or expired.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Invalid reset password code.",
+
     "error_code": 62
+
   }
+
 }
 ```
 
@@ -296,11 +379,17 @@ Internal server error.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "An unexpected error occurred.",
+
     "error_code": 22
+
   }
+
 }
 ```
 
@@ -310,7 +399,9 @@ Internal server error.
 
 ```
 curl -X PUT https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_password \
+
   -H "Content-type: application/json" \
+
   -d '{"email":"test@simplejwtlogin.com","code":"123","new_password":"test"}'
 ```
 
@@ -318,9 +409,13 @@ curl -X PUT https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_pa
 
 ```
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $result = $simpleJwtLogin->changePassword('email@simplejwtlogin.com', 'new password', 'code', null, 'AUTH CODE');
 ```
 
@@ -328,13 +423,21 @@ $result = $simpleJwtLogin->changePassword('email@simplejwtlogin.com', 'new passw
 
 ```
 fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/user/reset_password', {
+
   method: 'PUT',
+
   headers: { 'Content-Type': 'application/json' },
+
   body: JSON.stringify({
+
     email: 'test@simplejwtlogin.com',
+
     code: '123',
+
     new_password: 'test'
+
   })
+
 }).then(r => r.json()).then(console.log);
 ```
 
@@ -425,7 +528,11 @@ Example body:
 ```
 Welcome {{FIRST_NAME}},
 
+
+
 Your reset code for {{SITE}} is {{CODE}}.
+
+
 
 This request was made from: {{IP}}
 ```
@@ -434,11 +541,18 @@ To use a fully custom template via code, use the `simple_jwt_login_reset_passwor
 
 ```
 add_filter('simple_jwt_login_reset_password_custom_email_template', function($template, $request) {
+
     return "
+
         Hello {{FIRST_NAME}},
+
         Here is your reset password code.
 
+
+
         <b>Your code</b>: {{CODE}}
+
     ";
+
 }, 10, 2);
 ```

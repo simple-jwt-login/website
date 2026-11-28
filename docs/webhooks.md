@@ -1,4 +1,4 @@
-# Webhooks
+# WordPress Login and User Webhooks
 
 Webhooks let you push notifications to any external HTTP endpoint when plugin events occur - no polling required. Use them to sync user activity to a CRM, trigger CI pipelines, send Slack alerts, or integrate with any service that accepts HTTP calls.
 
@@ -61,6 +61,7 @@ Example:
 
 ```
 X-Secret-Token : my-shared-secret
+
 Content-Type   : application/json
 ```
 
@@ -82,10 +83,15 @@ Example custom payload:
 
 ```
 {
+
   "user_id": "{{user_id}}",
+
   "email": "{{user_email}}",
+
   "event": "{{event}}",
+
   "source": "my-wordpress-site"
+
 }
 ```
 
@@ -150,8 +156,15 @@ If your site runs on Apache with `mod_php` and you have slow webhook endpoints, 
 
 ```
 {
+
   "text": "New user registered: {{user_email}}"
+
 }
 ```
 
 Slack displays the message in your chosen channel each time a new user registers.
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Review events in the audit logs](/docs/audit-logs.md)
+* [Run custom PHP with hooks](/docs/hooks.md)

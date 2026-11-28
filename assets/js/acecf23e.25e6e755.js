@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunksimple_jwt_login_website=globalThis.webpackChunksimple_jwt_login_website||[]).push([[1903],{1912(s){s.exports=JSON.parse('{"blogBasePath":"/blog","blogTitle":"WordPress JWT Authentication Blog","authorsListPath":"/blog/authors"}')}}]);

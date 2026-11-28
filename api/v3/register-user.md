@@ -2,7 +2,7 @@
 
 ```
 POST 
-/simple-jwt-login/v1/users
+/users
 ```
 
 Register WordPress user

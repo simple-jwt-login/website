@@ -1,6 +1,6 @@
-# Validate token
+# Validate a WordPress JWT Token
 
-Use this endpoint to verify whether a JWT is valid. On success, the response includes the corresponding WordPress user's profile, their roles, and the decoded JWT header and payload.
+Validate a WordPress JWT with this REST API endpoint. On success, the response includes the corresponding WordPress user's profile, their roles, and the decoded JWT header and payload.
 
 This endpoint is useful for:
 
@@ -31,7 +31,9 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 
 ```
 {
+
   "JWT": "YOUR_JWT_HERE"
+
 }
 ```
 
@@ -39,8 +41,11 @@ With optional Auth Code:
 
 ```
 {
+
   "JWT": "YOUR_JWT_HERE",
+
   "AUTH_KEY": "MySecretAuthCode"
+
 }
 ```
 
@@ -50,38 +55,71 @@ With optional Auth Code:
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "user": {
+
       "ID": "1",
+
       "user_login": "myuser",
+
       "user_nicename": "myuser",
+
       "user_email": "myuser@simplejwtlogin.com",
+
       "user_url": "https://simplejwtlogin.com/myuser",
+
       "user_registered": "2021-01-01 23:31:50",
+
       "user_status": "0",
+
       "display_name": "myuser"
+
     },
+
     "roles": [
+
       "administrator"
+
     ],
+
     "jwt": [
+
       {
+
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+
         "header": {
+
           "typ": "JWT",
+
           "alg": "HS256"
+
         },
+
         "payload": {
+
           "iat": 1516239022,
+
           "email": "myuser@simplejwtlogin.com",
+
           "id": 1,
+
           "site": "https://simplejwtlogin.com",
+
           "username": "myuser"
+
         }
+
       }
+
     ]
+
   }
+
 }
 ```
 
@@ -91,11 +129,17 @@ Bad request - the `JWT` parameter is missing.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "JWT is missing.",
+
     "error_code": 53
+
   }
+
 }
 ```
 
@@ -105,11 +149,17 @@ Unauthorized - JWT is invalid, has a bad signature, is expired, or has been revo
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "JWT has expired.",
+
     "error_code": 14
+
   }
+
 }
 ```
 
@@ -119,11 +169,17 @@ Forbidden - token validation is disabled in plugin settings.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Validate token is not enabled.",
+
     "error_code": 82
+
   }
+
 }
 ```
 
@@ -133,11 +189,17 @@ Internal server error.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "An unexpected error occurred.",
+
     "error_code": 22
+
   }
+
 }
 ```
 
@@ -147,7 +209,9 @@ Internal server error.
 
 ```
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/validate \
+
   -H "Content-type: application/json" \
+
   -d '{"JWT":"YOUR_JWT"}'
 ```
 
@@ -155,9 +219,13 @@ curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/va
 
 ```
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $result = $simpleJwtLogin->validateToken('your JWT here', 'AUTH CODE');
 ```
 
@@ -165,9 +233,13 @@ $result = $simpleJwtLogin->validateToken('your JWT here', 'AUTH CODE');
 
 ```
 fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/auth/validate', {
+
   method: 'POST',
+
   headers: { 'Content-Type': 'application/json' },
+
   body: JSON.stringify({ JWT: 'YOUR_JWT_HERE' })
+
 }).then(r => r.json()).then(console.log);
 ```
 

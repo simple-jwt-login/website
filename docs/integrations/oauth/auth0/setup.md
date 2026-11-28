@@ -1,4 +1,4 @@
-# Setup
+# Auth0 OAuth Setup for WordPress
 
 ## Create an Auth0 Application[​](#create-an-auth0-application "Direct link to Create an Auth0 Application")
 
@@ -35,3 +35,8 @@ Keep your credentials secure - never commit them to version control or expose th
 note
 
 Since version 4.2.0, the login is rejected when Auth0's userinfo answer has no `email_verified` claim, unless unverified emails are allowed in the Auth0 settings.
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Exchange an Auth0 OAuth code for tokens](/docs/integrations/oauth/auth0/exchange-code.md)
+* [Exchange an Auth0 token for a WordPress JWT](/docs/integrations/oauth/auth0/exchange-token.md)

@@ -1,4 +1,4 @@
-# Protect Endpoints
+# Protect WordPress REST API Endpoints
 
 The Protect Endpoints feature lets you require a valid JWT for any WordPress REST API route. Use it to lock down sensitive data, such as user profiles, private posts, or custom post types, so only authenticated callers can access it, optionally restricted to specific WordPress roles.
 
@@ -6,11 +6,17 @@ When a protected endpoint is called without a valid JWT, the plugin returns a `4
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "You are not authorized to access this endpoint.",
+
     "error_code": 75
+
   }
+
 }
 ```
 
@@ -18,11 +24,17 @@ If a valid JWT is provided but the user doesn't have one of the roles required b
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "You do not have the required role to access this endpoint.",
+
     "error_code": 114
+
   }
+
 }
 ```
 
@@ -118,7 +130,7 @@ Since version 4.1.0, requests from users already logged in to WordPress (cookie 
 
 ## How to Pass the JWT[​](#how-to-pass-the-jwt "Direct link to How to Pass the JWT")
 
-The JWT token can be provided in multiple ways, depending on the options set in the plugin’s General settings:
+The JWT can be provided in multiple ways, depending on the options set in the plugin’s General settings:
 
 * Header
 * Request URI
@@ -134,6 +146,7 @@ Since version 4.1.1, header, cookie and session JWTs are ignored on requests fro
 
 ```
 curl -X POST "http://localhost/wp-json/wp/v2/users" \
+
   -H "Authorization: Bearer YOUR_JWT"
 ```
 
@@ -153,6 +166,8 @@ curl -X POST "http://localhost/?rest_route=/wp/v2/users&jwt=YOUR_JWT"
 
 ```
 curl -X POST "http://localhost/wp-json/wp/v2/users" \
+
   -H "Content-type: application/json" \
+
   -d '{"JWT":"YOUR_JWT"}'
 ```

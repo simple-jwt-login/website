@@ -1,6 +1,6 @@
-# Refresh token
+# Refresh a WordPress JWT Token
 
-Use this endpoint to exchange a refresh token for a new JWT, without requiring the user to re-enter their credentials. This is the standard mechanism for keeping long-running sessions alive.
+Refresh a WordPress JWT by exchanging a refresh token for a new one, without requiring the user to re-enter their credentials. This is the standard mechanism for keeping long-running sessions alive.
 
 A `refresh_token` is returned alongside the JWT whenever you call the Authentication endpoint (`POST /auth`), provided the Refresh Token feature is enabled.
 
@@ -28,7 +28,9 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 
 ```
 {
+
   "refresh_token": "YOUR_REFRESH_TOKEN_HERE"
+
 }
 ```
 
@@ -36,9 +38,13 @@ With an Auth Code and custom payload:
 
 ```
 {
+
   "refresh_token": "YOUR_REFRESH_TOKEN_HERE",
+
   "AUTH_KEY": "MySecretAuthCode",
+
   "payload": "{\"custom_claim\": \"value\"}"
+
 }
 ```
 
@@ -48,11 +54,17 @@ With an Auth Code and custom payload:
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+
     "refresh_token": "f6e7g8h9i0j123456789012345678901234567890123456789012345678901234567"
+
   }
+
 }
 ```
 
@@ -64,11 +76,17 @@ The `refresh_token` parameter is missing from the request.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Refresh token is missing.",
+
     "error_code": 51
+
   }
+
 }
 ```
 
@@ -78,11 +96,17 @@ The refresh token was not found or has expired.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Invalid refresh token.",
+
     "error_code": 51
+
   }
+
 }
 ```
 
@@ -92,11 +116,17 @@ The refresh token feature is disabled in plugin settings.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Refresh Token endpoint is not enabled.",
+
     "error_code": 81
+
   }
+
 }
 ```
 
@@ -106,11 +136,17 @@ Internal server error.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "An unexpected error occurred.",
+
     "error_code": 22
+
   }
+
 }
 ```
 
@@ -120,7 +156,9 @@ Internal server error.
 
 ```
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/refresh \
+
   -H "Content-type: application/json" \
+
   -d '{"refresh_token":"YOUR_REFRESH_TOKEN"}'
 ```
 
@@ -128,9 +166,13 @@ curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/re
 
 ```
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $result = $simpleJwtLogin->refreshToken('your refresh token here', 'AUTH CODE');
 ```
 
@@ -138,9 +180,13 @@ $result = $simpleJwtLogin->refreshToken('your refresh token here', 'AUTH CODE');
 
 ```
 fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/auth/refresh', {
+
   method: 'POST',
+
   headers: { 'Content-Type': 'application/json' },
+
   body: JSON.stringify({ refresh_token: 'YOUR_REFRESH_TOKEN_HERE' })
+
 }).then(r => r.json()).then(console.log);
 ```
 

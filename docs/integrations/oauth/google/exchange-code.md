@@ -1,4 +1,4 @@
-# Exchange OAuth Code for id\_token
+# Exchange a Google OAuth Code for Tokens
 
 ## Overview[​](#overview "Direct link to Overview")
 
@@ -32,7 +32,9 @@ The `redirect_uri` used here must exactly match the one registered in your Googl
 
 ```
 curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
+
   -H "Content-Type: application/json" \
+
   -d '{"provider":"google","code":"YOUR_GOOGLE_AUTH_CODE","redirect_uri":"https://your-site.com/callback"}'
 ```
 
@@ -44,14 +46,23 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "access_token": "ya29.access_token_here",
+
     "expires_in": 3599,
+
     "scope": "openid https://www.googleapis.com/auth/userinfo.email",
+
     "token_type": "Bearer",
+
     "id_token": "eyJhbGciOi..."
+
   }
+
 }
 ```
 
@@ -59,20 +70,37 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "The code you provided is invalid. Bad Request. Invalid_grant",
+
     "error_code": 72
+
   }
+
 }
 ```
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "The code you provided is invalid. Bad Request. Redirect_uri_mismatch",
+
     "error_code": 72
+
   }
+
 }
 ```
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Exchange the Google token for a WordPress JWT](/docs/integrations/oauth/google/exchange-token.md)
+* [Check the Google OAuth setup](/docs/integrations/oauth/google/setup.md)

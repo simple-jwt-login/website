@@ -1,16 +1,24 @@
-# Error codes
+# WordPress JWT Error Codes
 
-Every error response from Simple-JWT-Login includes a numeric `error_code` field. Use the table below to look up the meaning of a specific code and how to resolve it.
+Every error response from Simple JWT Login includes a numeric `error_code` field. Use the table below to look up the meaning of a specific code and how to resolve it.
+
+Not sure where to start? See [JWT troubleshooting](/docs/troubleshooting.md).
 
 Error responses follow this format:
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Human-readable error message",
+
     "error_code": 48
+
   }
+
 }
 ```
 
@@ -18,12 +26,19 @@ Errors raised while authenticating a request to **another** REST route (for exam
 
 ```
 {
+
   "code": "simple_jwt_login_api_key_error",
+
   "message": "Human-readable error message",
+
   "data": {
+
     "status": 401,
+
     "error_code": 84
+
   }
+
 }
 ```
 

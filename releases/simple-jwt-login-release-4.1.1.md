@@ -6,9 +6,9 @@ November 15, 2026 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -41,5 +41,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [security](/releases/tags/security.md)
-* [bugfix](/releases/tags/bugfix.md)
+* [security](/releases/tags/security)
+* [bugfix](/releases/tags/bugfix)

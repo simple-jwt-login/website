@@ -1,4 +1,4 @@
-# AI Abilities (MCP)
+# WordPress MCP and AI Abilities
 
 Simple JWT Login registers its actions with the [WordPress Abilities API](https://developer.wordpress.org/apis/abilities-api/), so AI agents can manage and troubleshoot the plugin for you. With the [MCP Adapter](https://github.com/WordPress/mcp-adapter) plugin installed, the abilities are available to any MCP client - Claude, Codex, Cursor, Gemini CLI, GitHub Copilot, and others.
 
@@ -59,12 +59,19 @@ The client starts WP-CLI on the server, so only someone who can already run comm
 
 ```
 # Same machine
+
 claude mcp add my-site -- wp mcp-adapter serve --server=mcp-adapter-default-server --user=admin --path=/path/to/wordpress
 
+
+
 # Remote server over SSH
+
 claude mcp add my-site -- ssh user@your-server wp mcp-adapter serve --server=mcp-adapter-default-server --user=admin --path=/path/to/wordpress
 
+
+
 # WordPress in Docker
+
 claude mcp add my-site -- docker exec -i wordpress wp mcp-adapter serve --server=mcp-adapter-default-server --user=admin --allow-root --path=/var/www/html
 ```
 
@@ -72,6 +79,7 @@ Other clients use the same command. For SSH or Docker, start it through `ssh` or
 
 ```
 # Codex CLI
+
 codex mcp add my-site -- wp mcp-adapter serve --server=mcp-adapter-default-server --user=admin --path=/path/to/wordpress
 ```
 
@@ -79,12 +87,19 @@ Cursor (`.cursor/mcp.json`), Claude Desktop (`claude_desktop_config.json`), Gemi
 
 ```
 {
+
     "mcpServers": {
+
         "my-site": {
+
             "command": "wp",
+
             "args": ["mcp-adapter", "serve", "--server=mcp-adapter-default-server", "--user=admin", "--path=/path/to/wordpress"]
+
         }
+
     }
+
 }
 ```
 
@@ -92,13 +107,21 @@ VS Code / GitHub Copilot (`.vscode/mcp.json`):
 
 ```
 {
+
     "servers": {
+
         "my-site": {
+
             "type": "stdio",
+
             "command": "wp",
+
             "args": ["mcp-adapter", "serve", "--server=mcp-adapter-default-server", "--user=admin", "--path=/path/to/wordpress"]
+
         }
+
     }
+
 }
 ```
 
@@ -112,6 +135,7 @@ https://example.com/wp-json/mcp/mcp-adapter-default-server
 
 ```
 claude mcp add --transport http my-site https://example.com/wp-json/mcp/mcp-adapter-default-server \
+
   --header "Authorization: Basic $(printf '%s' 'admin:APPLICATION_PASSWORD' | base64 | tr -d '\n')"
 ```
 
@@ -119,6 +143,7 @@ Other clients use the same endpoint and header. `BASE64_CREDENTIALS` is the outp
 
 ```
 # Gemini CLI
+
 gemini mcp add --transport http --header "Authorization: Basic BASE64_CREDENTIALS" my-site https://example.com/wp-json/mcp/mcp-adapter-default-server
 ```
 
@@ -126,7 +151,9 @@ Codex CLI (`~/.codex/config.toml`):
 
 ```
 [mcp_servers.my-site]
+
 url = "https://example.com/wp-json/mcp/mcp-adapter-default-server"
+
 http_headers = { "Authorization" = "Basic BASE64_CREDENTIALS" }
 ```
 
@@ -134,12 +161,19 @@ Cursor (`.cursor/mcp.json`) and other clients that use `mcpServers` with a `url`
 
 ```
 {
+
     "mcpServers": {
+
         "my-site": {
+
             "url": "https://example.com/wp-json/mcp/mcp-adapter-default-server",
+
             "headers": { "Authorization": "Basic BASE64_CREDENTIALS" }
+
         }
+
     }
+
 }
 ```
 
@@ -147,13 +181,21 @@ VS Code / GitHub Copilot (`.vscode/mcp.json`):
 
 ```
 {
+
     "servers": {
+
         "my-site": {
+
             "type": "http",
+
             "url": "https://example.com/wp-json/mcp/mcp-adapter-default-server",
+
             "headers": { "Authorization": "Basic BASE64_CREDENTIALS" }
+
         }
+
     }
+
 }
 ```
 
@@ -214,13 +256,21 @@ Auth codes and JWT rules mix secret and non-secret fields, so `update-settings` 
 
 ```
 {
+
   "section": "auth_codes",
+
   "values": {
+
     "codes": [
+
       {"index": 0, "match": {"role": "subscriber"}, "set": {"role": "editor"}},
+
       {"index": 1, "match": {"role": "author"}, "remove": true}
+
     ]
+
   }
+
 }
 ```
 
@@ -232,6 +282,7 @@ The MCP Adapter is only needed for MCP clients. The abilities are part of the Wo
 
 ```
 curl -u admin:APPLICATION_PASSWORD \
+
   "https://example.com/wp-json/wp-abilities/v1/abilities/simple-jwt-login/explain-error/run?input[error_code]=48"
 ```
 

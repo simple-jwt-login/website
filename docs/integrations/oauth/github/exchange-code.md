@@ -1,4 +1,4 @@
-# Exchange OAuth Code for GitHub Tokens
+# Exchange a GitHub OAuth Code for Tokens
 
 ## Overview[​](#overview "Direct link to Overview")
 
@@ -30,7 +30,9 @@ The `redirect_uri` used here must exactly match the one registered in your GitHu
 
 ```
 curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
+
   -H "Content-Type: application/json" \
+
   -d '{"provider":"github","code":"YOUR_GITHUB_AUTH_CODE","redirect_uri":"https://your-site.com/callback"}'
 ```
 
@@ -42,12 +44,19 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "access_token": "gho_16C7e42F292c6912E7710c838347Ae178B4a",
+
     "token_type": "bearer",
+
     "scope": "user:email"
+
   }
+
 }
 ```
 
@@ -55,10 +64,21 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "The code you provided is invalid.",
+
     "error_code": 72
+
   }
+
 }
 ```
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Exchange the GitHub token for a WordPress JWT](/docs/integrations/oauth/github/exchange-token.md)
+* [Check the GitHub OAuth setup](/docs/integrations/oauth/github/setup.md)

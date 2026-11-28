@@ -2,7 +2,7 @@
 
 ```
 POST 
-/simple-jwt-login/v1/users/reset_password
+/user/reset_password
 ```
 
 Send reset password code

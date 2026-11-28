@@ -1,12 +1,12 @@
-# Authentication
+# WordPress REST API JWT Authentication
 
-Use this endpoint to exchange WordPress credentials for a signed JWT. The returned token can then be included in subsequent requests to protected endpoints or used to auto-login users.
+WordPress REST API JWT authentication starts here: send WordPress credentials to this endpoint and get back a signed JWT. The returned token can then be included in subsequent requests to protected endpoints or used to auto-login users.
 
 You can authenticate using any of the following combinations:
 
 * **email** + **password** - standard credential pair
 * **username** + **password** - use the WordPress username instead of email
-* **login** + **password** - mirrors the WordPress login page behaviour; accepts either email or username
+* **login** + **password** - mirrors the WordPress login page behavior; accepts either email or username
 
 API Reference
 
@@ -22,7 +22,7 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 
 Keep credentials out of the URL
 
-Send the email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history and monitoring tools.
+Send the email and password in the request body (JSON, as shown below), never in the query string. URLs are written to server logs, proxy logs, browser history, and monitoring tools.
 
 **PARAMETERS**:
 
@@ -40,8 +40,11 @@ Send the email and password in the request body (JSON, as shown below), never in
 
 ```
 {
+
   "email": "test@simplejwtlogin.com",
+
   "password": "SomeSuperSecretPassword"
+
 }
 ```
 
@@ -49,8 +52,11 @@ With username and password hash:
 
 ```
 {
+
   "username": "myuser",
+
   "password_hash": "PasswordStoredInTheDB"
+
 }
 ```
 
@@ -58,9 +64,13 @@ With login (accepts email or username) and auth code:
 
 ```
 {
+
   "login": "username or email",
+
   "password": "SomeSuperSecretPassword",
+
   "AUTH_KEY": "MySecretAuthCode"
+
 }
 ```
 
@@ -68,12 +78,19 @@ With extra payload claims (JSON body - native object):
 
 ```
 {
+
   "email": "test@simplejwtlogin.com",
+
   "password": "SomeSuperSecretPassword",
+
   "payload": {
+
     "department": "engineering",
+
     "region": "eu"
+
   }
+
 }
 ```
 
@@ -89,11 +106,17 @@ email=test@simplejwtlogin.com&password=SomeSuperSecretPassword&payload={"departm
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+
     "refresh_token": "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"
+
   }
+
 }
 ```
 
@@ -105,11 +128,17 @@ Bad request - required parameters are missing.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Email or username is required.",
+
     "error_code": 46
+
   }
+
 }
 ```
 
@@ -119,11 +148,17 @@ Unauthorized - credentials are incorrect or the auth code is invalid.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Wrong user credentials.",
+
     "error_code": 48
+
   }
+
 }
 ```
 
@@ -133,11 +168,17 @@ Forbidden - authentication is disabled in plugin settings.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Authentication is not enabled.",
+
     "error_code": 45
+
   }
+
 }
 ```
 
@@ -147,11 +188,17 @@ Internal server error.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "An unexpected error occurred.",
+
     "error_code": 16
+
   }
+
 }
 ```
 
@@ -161,7 +208,9 @@ Internal server error.
 
 ```
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth \
+
   -H "Content-type: application/json" \
+
   -d '{"email":"test@simplejwtlogin.com","password":"mySecretPassword"}'
 ```
 
@@ -169,9 +218,13 @@ curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth \
 
 ```
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $result = $simpleJwtLogin->authenticate('email@simplejwtlogin.com', 'your password', 'AUTH CODE');
 ```
 
@@ -181,11 +234,17 @@ All error responses follow the standard envelope:
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Human-readable error description",
+
     "error_code": 48
+
   }
+
 }
 ```
 
@@ -251,9 +310,13 @@ The following header fields are reserved and cannot be overwritten by custom cla
 
 ```
 {
+
   "alg": "HS256",
+
   "typ": "JWT",
+
   "x-app-id": "my-app"
+
 }
 ```
 
@@ -289,12 +352,19 @@ The following payload keys are reserved and cannot be overwritten - either from 
 
 ```
 {
+
   "iat": 1718000000,
+
   "exp": 1718003600,
+
   "email": "user@example.com",
+
   "id": 42,
+
   "department": "engineering",
+
   "app_version": "2.1.0"
+
 }
 ```
 
@@ -352,3 +422,9 @@ The wildcard `*` is supported in any octet, which is useful for allowing an enti
 ```
 85.*.*.*, 86.*.*.*
 ```
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Refresh the JWT](/docs/refresh-token.md) or [revoke it on logout](/docs/revoke-token.md)
+* [Use the JWT in a Next.js app](/docs/code-examples/nextjs.md) or [a Flutter app](/docs/code-examples/flutter.md)
+* [Troubleshoot JWT errors](/docs/troubleshooting.md)

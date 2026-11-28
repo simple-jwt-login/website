@@ -6,9 +6,9 @@ April 11, 2022 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -25,7 +25,7 @@ This update introduces two new Autologin features: a redirect on failure and a s
 
 ## Redirect on Fail[​](#redirect-on-fail "Direct link to Redirect on Fail")
 
-This feature allows you to set a redirect URL for when Autologin fails - for example, when the JWT is invalid or expired - so you can show users a helpful error page instead of a blank screen.
+This feature allows you to set a redirect URL for when Autologin fails (for example, when the JWT is invalid or expired). Use it to show users a helpful error page instead of a blank screen.
 
 ## Shortcode for Autologin Errors[​](#shortcode-for-autologin-errors "Direct link to Shortcode for Autologin Errors")
 
@@ -59,4 +59,4 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [feature](/releases/tags/feature.md)
+* [feature](/releases/tags/feature)

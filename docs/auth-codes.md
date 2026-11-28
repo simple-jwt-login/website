@@ -1,4 +1,4 @@
-# Auth Codes
+# Auth Codes for WordPress Endpoints
 
 Auth Codes are an optional security layer that adds a shared secret to your API requests. Think of them as API keys: a caller must include the correct code alongside their request, otherwise the plugin rejects it.
 

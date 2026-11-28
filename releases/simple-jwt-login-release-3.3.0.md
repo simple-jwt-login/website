@@ -6,9 +6,9 @@ October 13, 2021 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,7 +16,7 @@ Creator of Simple JWT Login
 
 The version `3.3.0` has been released today on [WordPress](https://wordpress.org/plugins/simple-jwt-login).
 
-This release sanitizes every text shown by the plugin, updates translations and makes random passwords stronger.
+This release sanitizes every text shown by the plugin, updates translations, and makes random passwords stronger.
 
 ## Security[​](#security "Direct link to Security")
 
@@ -34,5 +34,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [security](/releases/tags/security.md)
-* [maintenance](/releases/tags/maintenance.md)
+* [security](/releases/tags/security)
+* [maintenance](/releases/tags/maintenance)

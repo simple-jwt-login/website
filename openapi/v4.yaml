@@ -1,40 +1,40 @@
 openapi: 3.0.1
 x-servers:
-  - url: '{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}'
+  - url: "{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}"
     variables:
       protocol:
         enum:
-          - http
-          - https
-        default: http
+          - 'http'
+          - 'https'
+        default: 'http'
       domain:
-        default: localhost
+        default: 'localhost'
         description: Website Domain
       APIPath:
         enum:
-          - wp-json
-          - '?rest_route='
-        default: wp-json
+          - "wp-json"
+          - "?rest_route="
+        default: 'wp-json'
       simplejwtloginprefix:
-        default: simple-jwt-login/v1
+        default: "simple-jwt-login/v1"
 servers:
-  - url: '{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}'
+  - url: "{protocol}://{domain}/{APIPath}/{simplejwtloginprefix}"
     variables:
       protocol:
         enum:
-          - http
-          - https
-        default: http
+          - 'http'
+          - 'https'
+        default: 'http'
       domain:
-        default: localhost
+        default: 'localhost'
         description: Website Domain
       APIPath:
         enum:
-          - wp-json
-          - '?rest_route='
-        default: wp-json
+          - "wp-json"
+          - "?rest_route="
+        default: 'wp-json'
       simplejwtloginprefix:
-        default: simple-jwt-login/v1
+        default: "simple-jwt-login/v1"
 info:
   title: Simple-JWT-Login
   description: |
@@ -122,14 +122,14 @@ info:
     email: contact@simplejwtlogin.com
   license:
     name: GPL 3.0
-    url: 'https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE'
-  version: 4.2.0
+    url: https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE
+  version: 4.3.0
   x-logo:
     url: 'https://simplejwtlogin.com/assets/favicons/android-chrome-192x192.png'
     altText: Simple JWT Login Logo
 externalDocs:
   description: Find out more about Simple-JWT-Login
-  url: 'https://simplejwtlogin.com/docs'
+  url: https://simplejwtlogin.com/docs
 tags:
   - name: login_user
     description: |
@@ -138,7 +138,7 @@ tags:
       (or a custom URL). Useful for passwordless login flows in mobile apps and email links.
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/autologin'
+      url: https://simplejwtlogin.com/docs/autologin
   - name: register_user
     description: |
       Register a new WordPress user account. The caller supplies at minimum an email address
@@ -147,7 +147,7 @@ tags:
       response includes the new user's profile and, optionally, a JWT.
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/register-user'
+      url: https://simplejwtlogin.com/docs/register-user
   - name: delete_user
     description: |
       Permanently delete a WordPress user identified by the JWT payload. The JWT must be
@@ -155,7 +155,7 @@ tags:
       An optional auth code can be required.
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/delete_user'
+      url: https://simplejwtlogin.com/docs/delete_user
   - name: reset_password
     description: |
       Two-step password reset flow. First, `POST /user/reset_password` sends a one-time
@@ -163,7 +163,7 @@ tags:
       (or a valid JWT when JWT-based reset is enabled) to set a new password.
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/change-password'
+      url: https://simplejwtlogin.com/docs/change-password
   - name: authenticate_user
     description: |
       Exchange WordPress credentials for a signed JWT (and optional refresh token). Related
@@ -171,7 +171,7 @@ tags:
       and revoke a token so it is rejected by future requests.
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/authentication'
+      url: https://simplejwtlogin.com/docs/authentication
   - name: oauth
     description: |
       OAuth 2.0 authorization-code flow for third-party providers (Google, Auth0, Facebook,
@@ -179,7 +179,7 @@ tags:
       a WordPress JWT. The provider must be enabled and configured in the plugin settings.
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/oauth'
+      url: https://simplejwtlogin.com/docs/oauth
   - name: api_keys
     description: |
       Manage long-lived API keys that can authenticate REST requests to any WordPress
@@ -188,7 +188,7 @@ tags:
       require an authenticated WordPress user (logged-in session or JWT).
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/api-keys'
+      url: https://simplejwtlogin.com/docs/api-keys
   - name: revoked_tokens
     description: |
       List and delete revoked-JWT records. Tokens are revoked via `POST /auth/revoke` and
@@ -212,67 +212,39 @@ x-tags:
     description: Login user in WordPress
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/autologin'
+      url: https://simplejwtlogin.com/docs/autologin
   - name: register_user
     description: Register WordPress user
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/register-user'
+      url: https://simplejwtlogin.com/docs/register-user
   - name: delete_user
     description: Delete WordPress user
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/delete_user'
+      url: https://simplejwtlogin.com/docs/delete_user
   - name: reset_password
     description: Reset User Password
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/change-password'
+      url: https://simplejwtlogin.com/docs/change-password
   - name: authenticate_user
     description: Authenticate user
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/authentication'
+      url: https://simplejwtlogin.com/docs/authentication
   - name: oauth
-    description: 'OAuth 2.0 token exchange (Google, Auth0, Facebook, GitHub)'
+    description: OAuth 2.0 token exchange (Google, Auth0, Facebook, GitHub)
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/oauth'
+      url: https://simplejwtlogin.com/docs/oauth
   - name: api_keys
     description: API key management
     externalDocs:
       description: Find out more
-      url: 'https://simplejwtlogin.com/docs/api-keys'
-  - name: internal
-    description: Internal endpoints used by the plugin admin screens
+      url: https://simplejwtlogin.com/docs/api-keys
   - name: revoked_tokens
     description: Revoked token management
-components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: |
-        JWT passed in the `Authorization` header as `Bearer <token>`.
-        The header key name is configurable in plugin General Settings (default: `Authorization`).
-        This scheme must be enabled in the plugin General Settings under **JWT from Header**.
-    QueryJWT:
-      type: apiKey
-      in: query
-      name: JWT
-      description: |
-        JWT passed as a URL query parameter. The parameter name defaults to `JWT` but is
-        configurable in plugin General Settings under **Request Keys**.
-    WordPressSession:
-      type: apiKey
-      in: cookie
-      name: wordpress_logged_in
-      description: |
-        WordPress logged-in cookie (`wordpress_logged_in_<hash>`). For REST calls WordPress
-        also needs the `X-WP-Nonce` header (`wp_rest` nonce), otherwise the request is
-        treated as logged out. Used by the `/api-keys` and `/revoked-tokens` endpoints,
-        which also accept a JWT (`BearerAuth`).
 paths:
   /autologin:
     get:
@@ -315,12 +287,12 @@ paths:
             A valid signed JWT identifying the WordPress user to log in.
             Alternative to the `Authorization: Bearer` header.
           required: false
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
           schema:
             type: string
         - name: AUTH_KEY
           in: query
-          example: MY_SUPER_SECRET_AUTH_CODE
+          example: "MY_SUPER_SECRET_AUTH_CODE"
           description: |
             Required when "Auto-Login Requires Auth Code" is enabled in the plugin settings.
             The parameter name defaults to `AUTH_KEY` but is configurable in the plugin's
@@ -329,7 +301,7 @@ paths:
             type: string
         - name: redirectUrl
           in: query
-          example: 'https://simplejwtlogin.com'
+          example: "https://simplejwtlogin.com"
           description: |
             Overrides the redirect URL configured in the plugin settings. The "Allow redirect
             URL override" option must be enabled for this parameter to take effect.
@@ -344,7 +316,7 @@ paths:
             application/json:
               example:
                 success: true
-                message: User was logged in.
+                message: "User was logged in."
         '302':
           description: |
             Two cases:
@@ -356,7 +328,7 @@ paths:
             Location:
               schema:
                 type: string
-              example: 'https://example.com/wp-admin/'
+              example: "https://example.com/wp-admin/"
         '400':
           description: |
             The JWT could not be decoded or validated (all JWT library errors return 400):
@@ -367,19 +339,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 expired:
                   value:
                     success: false
                     data:
-                      message: Expired token
+                      message: "Expired token"
                       error_code: 14
                 malformed:
                   value:
                     success: false
                     data:
-                      message: Wrong number of segments
+                      message: "Wrong number of segments"
                       error_code: 2
         '401':
           description: |
@@ -393,11 +365,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: This JWT is invalid.
+                  message: "This JWT is invalid."
                   error_code: 55
         '403':
           description: |
@@ -407,22 +379,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Auto-login is not enabled on this website.
+                  message: "Auto-login is not enabled on this website."
                   error_code: 26
         '404':
           description: The WordPress user identified by the JWT payload could not be found (`error_code` 24).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: User not found.
+                  message: "User not found."
                   error_code: 24
         '422':
           description: |
@@ -432,20 +404,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: JWT is missing.
+                  message: "JWT is missing."
                   error_code: 23
         '500':
           description: Internal server error (any other unexpected error).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
   /users:
     post:
+      operationId: registerUser
       tags:
         - register_user
       summary: Register a new WordPress user
@@ -469,125 +442,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              description: |
-                Only the fields below are passed to `wp_insert_user()`; any other field is ignored.
-                Roles come from the plugin settings (or from the auth code), never from the request.
-              required:
-                - email
-              properties:
-                email:
-                  type: string
-                  example: test@simplejwtlogin.com
-                  description: 'User email address. Must be unique, well-formed and at most 60 characters when `user_login` is omitted.'
-                password:
-                  type: string
-                  description: |
-                    Plaintext password for the new account. Required unless "Random password" is
-                    enabled in the plugin settings (then it is ignored and a random one is generated).
-                  example: MyS3cretP@ss
-                user_login:
-                  type: string
-                  nullable: true
-                  description: The user's login username (max 60 characters). Defaults to the email address if omitted.
-                  example: myuser
-                user_nicename:
-                  type: string
-                  nullable: true
-                  description: URL-friendly version of the username (used in author URLs).
-                  example: myuser
-                user_url:
-                  type: string
-                  nullable: true
-                  description: URL associated with the user's profile.
-                  example: 'https://simplejwtlogin.com'
-                display_name:
-                  type: string
-                  nullable: true
-                  description: The user's display name. Defaults to `user_login` if omitted.
-                  example: My User
-                nickname:
-                  type: string
-                  nullable: true
-                  description: The user's nickname. Defaults to `user_login` if omitted.
-                  example: myuser
-                first_name:
-                  type: string
-                  nullable: true
-                  description: The user's first name.
-                  example: John
-                last_name:
-                  type: string
-                  nullable: true
-                  description: The user's last name.
-                  example: Doe
-                description:
-                  type: string
-                  nullable: true
-                  description: The user's biographical description.
-                  example: This is a sample description
-                rich_editing:
-                  type: string
-                  nullable: true
-                  description: Whether to enable the rich-editor. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
-                  example: 'true'
-                syntax_highlighting:
-                  type: string
-                  nullable: true
-                  description: Whether to enable the rich code editor. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
-                  example: 'true'
-                comment_shortcuts:
-                  type: string
-                  nullable: true
-                  description: Whether to enable comment moderation keyboard shortcuts. Accepts `'true'` or `'false'` as a string literal. Defaults to `'false'`.
-                  example: 'false'
-                admin_color:
-                  type: string
-                  nullable: true
-                  description: Admin color scheme for the user. Defaults to `'fresh'`.
-                  example: fresh
-                use_ssl:
-                  type: boolean
-                  nullable: true
-                  description: Whether the user should always access the admin over HTTPS. Defaults to `false`.
-                  example: false
-                show_admin_bar_front:
-                  type: string
-                  nullable: true
-                  description: Whether to display the Admin Bar on the front end. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
-                  example: 'true'
-                locale:
-                  type: string
-                  nullable: true
-                  description: User's locale. Defaults to empty (inherits site locale).
-                  example: en_US
-                user_meta:
-                  nullable: true
-                  description: |
-                    Optional user meta to set on the new account. Accepted as a JSON-encoded
-                    object string or as a plain object. Only keys listed in "Allowed user meta"
-                    in the plugin settings are stored; all others are silently discarded.
-                  example: '{"billing_city":"New York"}'
-                  oneOf:
-                    - type: string
-                    - type: object
-                      additionalProperties:
-                        type: string
-                AUTH_KEY:
-                  type: string
-                  nullable: true
-                  example: MY_SUPER_SECRET_AUTH_CODE
-                  description: |
-                    Required when "Register Requires Auth Code" is enabled in the plugin settings.
-                    When sent, it is always validated (`401`, `error_code` 27 if wrong), and the role
-                    linked to the auth code, if any, is given to the new user. The parameter name
-                    defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes settings.
+              $ref: '#/components/schemas/registerUserBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1users/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/registerUserBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1users/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/registerUserBody'
         required: true
       responses:
         '200':
@@ -610,36 +471,36 @@ paths:
                         example: 1
                       login:
                         type: string
-                        example: myuser
+                        example: "myuser"
                       nicename:
                         type: string
-                        example: myuser
+                        example: "myuser"
                       email:
                         type: string
-                        example: myuser@simplejwtlogin.com
+                        example: "myuser@simplejwtlogin.com"
                       url:
                         type: string
                         description: User URL. Empty string when not set.
-                        example: ''
+                        example: ""
                       registered:
                         type: string
-                        example: '2021-01-01 23:31:50'
+                        example: "2021-01-01 23:31:50"
                       status:
                         type: string
-                        example: '0'
+                        example: "0"
                       display_name:
                         type: string
-                        example: myuser
+                        example: "myuser"
                       roles:
                         type: array
                         items:
                           type: string
-                          example: subscriber
+                          example: "subscriber"
                       jwt:
                         type: string
                         nullable: true
                         description: Only present when "Generate JWT on register" is enabled.
-                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
         '302':
           description: |
             User registered and logged in. Returned when auto-login is enabled together with
@@ -649,7 +510,7 @@ paths:
             Location:
               schema:
                 type: string
-              example: 'https://example.com/wp-admin/'
+              example: "https://example.com/wp-admin/"
         '400':
           description: |
             The JWT for the new user could not be signed (JWT library error, for example, OpenSSL
@@ -657,11 +518,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: OpenSSL unable to sign data
+                  message: "OpenSSL unable to sign data"
                   error_code: 16
         '401':
           description: |
@@ -670,11 +531,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Invalid Auth Code ( AUTH_KEY ) provided.
+                  message: "Invalid Auth Code ( AUTH_KEY ) provided."
                   error_code: 27
         '403':
           description: |
@@ -684,22 +545,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Register is not allowed.
+                  message: "Register is not allowed."
                   error_code: 31
         '409':
           description: A WordPress user with the provided email address or `user_login` already exists (`error_code` 38).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: User already exists.
+                  message: "User already exists."
                   error_code: 38
         '422':
           description: |
@@ -714,25 +575,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 missingEmail:
                   value:
                     success: false
                     data:
-                      message: Missing email.
+                      message: "Missing email."
                       error_code: 35
                 invalidEmail:
                   value:
                     success: false
                     data:
-                      message: Invalid email address.
+                      message: "Invalid email address."
                       error_code: 36
                 domainNotAllowed:
                   value:
                     success: false
                     data:
-                      message: This website does not allows users from this domain.
+                      message: "This website does not allows users from this domain."
                       error_code: 37
         '500':
           description: |
@@ -741,11 +602,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: 'Sorry, that username already exists!'
+                  message: "Sorry, that username already exists!"
                   error_code: 52
     delete:
       tags:
@@ -769,12 +630,12 @@ paths:
             A valid signed JWT identifying the WordPress user to delete. Can also be sent in the
             `Authorization` header, cookie, or session (when enabled in General Settings).
           required: false
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
           schema:
             type: string
         - name: AUTH_KEY
           in: query
-          example: MY_SUPER_SECRET_AUTH_CODE
+          example: "MY_SUPER_SECRET_AUTH_CODE"
           description: |
             Required when "Delete User Requires Auth Code" is enabled in the plugin settings.
             The parameter name defaults to `AUTH_KEY` but is configurable in the plugin's
@@ -809,11 +670,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Expired token
+                  message: "Expired token"
                   error_code: 14
         '401':
           description: |
@@ -826,11 +687,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: This JWT is invalid.
+                  message: "This JWT is invalid."
                   error_code: 55
         '403':
           description: |
@@ -840,22 +701,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Delete is not enabled.
+                  message: "Delete is not enabled."
                   error_code: 39
         '404':
           description: The WordPress user identified by the JWT payload could not be found (`error_code` 24).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: User not found.
+                  message: "User not found."
                   error_code: 24
         '422':
           description: |
@@ -865,18 +726,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: The `jwt` parameter is missing.
+                  message: "The `jwt` parameter is missing."
                   error_code: 42
         '500':
           description: Internal server error (any other unexpected error).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
   /user/reset_password:
     post:
       tags:
@@ -906,28 +767,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - email
-              properties:
-                email:
-                  type: string
-                  example: contact@simplejwtlogin.com
-                  description: Email address of the account to reset.
-                AUTH_KEY:
-                  type: string
-                  nullable: true
-                  example: MY_SUPER_SECRET_AUTH_CODE
-                  description: |
-                    Required when "Reset Password Requires Auth Code" is enabled. The parameter
-                    name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
-                    settings.
+              $ref: '#/components/schemas/resetPasswordBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1user~1reset_password/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/resetPasswordBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1user~1reset_password/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/resetPasswordBody'
         required: true
       responses:
         '200':
@@ -954,24 +800,26 @@ paths:
                   value:
                     success: true
                     data:
-                      message: Reset password email has been sent.
+                      message: "Reset password email has been sent."
                 codeSaved:
                   summary: Flow "just save the code in the database"
                   value:
                     success: true
                     data:
-                      message: The Code has been saved into the database.
+                      message: "The Code has been saved into the database."
+        '400':
+          $ref: '#/components/responses/RestInvalidJson'
         '401':
           description: |
             Unauthorized. The provided auth code is wrong (`error_code` 27).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Invalid Auth Code ( AUTH_KEY ) provided.
+                  message: "Invalid Auth Code ( AUTH_KEY ) provided."
                   error_code: 27
         '403':
           description: |
@@ -979,11 +827,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Reset Password is not allowed.
+                  message: "Reset Password is not allowed."
                   error_code: 56
         '422':
           description: |
@@ -995,19 +843,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 missingEmail:
                   value:
                     success: false
                     data:
-                      message: Missing email parameter.
+                      message: "Missing email parameter."
                       error_code: 63
                 invalidEmail:
                   value:
                     success: false
                     data:
-                      message: Invalid email parameter.
+                      message: "Invalid email parameter."
                       error_code: 96
         '500':
           description: |
@@ -1016,7 +864,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
     put:
       tags:
         - reset_password
@@ -1049,51 +897,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - email
-                - new_password
-              properties:
-                email:
-                  type: string
-                  example: contact@simplejwtlogin.com
-                  description: Email address of the account whose password to change.
-                code:
-                  type: string
-                  nullable: true
-                  example: MY_SECRET_CODE_RECEIVED_BY_EMAIL
-                  description: |
-                    One-time reset code received by email (from `POST /user/reset_password`).
-                    Required in code-based reset flow; not required when `JWT` is provided and
-                    JWT-based reset is enabled.
-                new_password:
-                  type: string
-                  example: NewSecurePassword123!
-                  description: |
-                    The new password to set for the account. Base64-encoded when "Password is base64
-                    encoded" is enabled in the authentication settings.
-                JWT:
-                  type: string
-                  nullable: true
-                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-                  description: |
-                    Valid JWT for the user. Used only when "Allow Reset Password with JWT" is enabled
-                    and `code` is empty; the JWT user email must equal `email`. Can also be sent in the
-                    `Authorization` header, cookie, or session.
-                AUTH_KEY:
-                  type: string
-                  nullable: true
-                  example: MY_SUPER_SECRET_AUTH_CODE
-                  description: |
-                    Required when "Reset Password Requires Auth Code" is enabled. The parameter
-                    name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
-                    settings.
+              $ref: '#/components/schemas/changePasswordBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1user~1reset_password/put/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/changePasswordBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1user~1reset_password/put/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/changePasswordBody'
         required: true
       responses:
         '200':
@@ -1121,11 +931,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Expired token
+                  message: "Expired token"
                   error_code: 14
         '401':
           description: |
@@ -1138,11 +948,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: This JWT can not change your password.
+                  message: "This JWT can not change your password."
                   error_code: 93
         '403':
           description: |
@@ -1150,11 +960,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Reset Password is not allowed.
+                  message: "Reset Password is not allowed."
                   error_code: 56
         '422':
           description: |
@@ -1172,32 +982,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 invalidCode:
                   value:
                     success: false
                     data:
-                      message: Invalid code provided.
+                      message: "Invalid code provided."
                       error_code: 62
                 missingNewPassword:
                   value:
                     success: false
                     data:
-                      message: Missing new_password parameter.
+                      message: "Missing new_password parameter."
                       error_code: 61
                 missingCodeOrJwt:
                   value:
                     success: false
                     data:
-                      message: Missing code or jwt parameter.
+                      message: "Missing code or jwt parameter."
                       error_code: 53
         '500':
           description: Internal server error (any other unexpected error).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
   /auth:
     post:
       tags:
@@ -1241,72 +1051,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  nullable: true
-                  example: john@doe.com
-                  description: User email address. Required when neither `username` nor `login` is provided.
-                username:
-                  type: string
-                  nullable: true
-                  example: myuser
-                  description: WordPress login username. Required when neither `email` nor `login` is provided.
-                login:
-                  type: string
-                  nullable: true
-                  example: myuser
-                  description: |
-                    Combined identifier accepted as either an email address or a WordPress login
-                    username. Required when neither `email` nor `username` is provided.
-                password:
-                  type: string
-                  nullable: true
-                  description: |
-                    User plaintext password. Required when `password_hash` is not provided.
-                    When "Base64-encoded password" is enabled in the plugin settings, supply the
-                    password base64-encoded and it is decoded server-side before verification.
-                password_hash:
-                  type: string
-                  nullable: true
-                  description: |
-                    Hashed password as stored in the WordPress database. Requires "Allow login with
-                    password hash" to be enabled in the plugin settings (`error_code` 113 when not
-                    enabled). Required when `password` is not provided. When "Base64-encoded
-                    password" is enabled, supply the hash base64-encoded.
-                AUTH_KEY:
-                  type: string
-                  nullable: true
-                  example: MY_SUPER_SECRET_AUTH_CODE
-                  description: |
-                    Required when "Authentication Requires Auth Code" is enabled. The parameter
-                    name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
-                    settings.
-                payload:
-                  nullable: true
-                  oneOf:
-                    - type: string
-                      example: '{"department":"engineering","region":"eu"}'
-                    - type: object
-                      example:
-                        department: engineering
-                        region: eu
-                  description: |
-                    Optional extra claims merged into the JWT payload. Accepted either as a
-                    JSON-encoded string (form-encoded/query-string requests) or as a native
-                    JSON object (JSON body requests).
-                    Reserved identity claims configured in the plugin's payload settings (for example,
-                    `email`, `id`, `username`, `site`, `iss`, `exp`, `iat`) and the custom
-                    "Login by parameter" claim, if configured, are always stripped from this
-                    value and set from the authenticated user instead - they cannot be
-                    overridden by the caller.
+              $ref: '#/components/schemas/authBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1auth/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/authBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/authBody'
         required: true
       responses:
         '200':
@@ -1334,7 +1085,7 @@ paths:
                         description: |
                           Signed JWT for use in subsequent requests, or a short-lived
                           interim JWT when `two_factor_required` is `true`.
-                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
                       refresh_token:
                         type: string
                         nullable: true
@@ -1342,7 +1093,7 @@ paths:
                           Opaque refresh token for obtaining new JWTs without re-authenticating.
                           Only present when the refresh-token feature is enabled and 2FA is
                           not required.
-                        example: a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012
+                        example: "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"
                       two_factor_required:
                         type: boolean
                         nullable: true
@@ -1357,23 +1108,23 @@ paths:
                         description: |
                           Fully qualified class name of the user's primary 2FA provider.
                           Only present when `two_factor_required` is `true`.
-                        example: Two_Factor_Totp
+                        example: "Two_Factor_Totp"
               examples:
                 jwt:
                   summary: Regular login (refresh tokens enabled)
                   value:
                     success: true
                     data:
-                      jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjMyOTk0MDAsImVtYWlsIjoiam9obkBkb2UuY29tIiwiaWQiOjEsInVzZXJuYW1lIjoibXl1c2VyIn0.signature
-                      refresh_token: a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012
+                      jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjMyOTk0MDAsImVtYWlsIjoiam9obkBkb2UuY29tIiwiaWQiOjEsInVzZXJuYW1lIjoibXl1c2VyIn0.signature"
+                      refresh_token: "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"
                 twoFactorChallenge:
                   summary: User has Two-Factor enabled
                   value:
                     success: true
                     data:
-                      jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0ZmFfcGVuZGluZyI6MX0.signature
+                      jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0ZmFfcGVuZGluZyI6MX0.signature"
                       two_factor_required: true
-                      provider: Two_Factor_Totp
+                      provider: "Two_Factor_Totp"
         '400':
           description: |
             The JWT could not be signed (JWT library error, for example, OpenSSL signing failure
@@ -1381,29 +1132,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                    description: Always `false` for error responses.
-                  data:
-                    type: object
-                    properties:
-                      message:
-                        type: string
-                        description: Human-readable error description.
-                        example: An error occurred.
-                      error_code:
-                        type: number
-                        description: |
-                          Internal error code. Use this for programmatic error handling.
-                          See the plugin source (`ErrorCodes.php`) for the full list of codes.
-                        example: 22
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: OpenSSL unable to sign data
+                  message: "OpenSSL unable to sign data"
                   error_code: 16
         '401':
           description: |
@@ -1415,11 +1148,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Wrong user credentials.
+                  message: "Wrong user credentials."
                   error_code: 48
         '403':
           description: |
@@ -1430,11 +1163,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Authentication is not enabled.
+                  message: "Authentication is not enabled."
                   error_code: 45
         '422':
           description: |
@@ -1447,11 +1180,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: 'The email, username, or login parameter is missing from the request.'
+                  message: "The email, username, or login parameter is missing from the request."
                   error_code: 46
         '500':
           description: |
@@ -1461,11 +1194,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Unable to save the refresh token.
+                  message: "Unable to save the refresh token."
                   error_code: 131
   /auth/refresh:
     post:
@@ -1491,51 +1224,18 @@ paths:
         newly issued JWT. Reserved identity claims are always derived from the
         authenticated user and cannot be overridden this way.
       operationId: refreshJWT
-      requestBody:
+      requestBody:  
         description: Refresh token obtained from a prior `/auth` response.
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - refresh_token
-              properties:
-                refresh_token:
-                  type: string
-                  example: a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012
-                  description: Refresh token obtained from a prior `/auth` response.
-                AUTH_KEY:
-                  type: string
-                  nullable: true
-                  example: MY_SUPER_SECRET_AUTH_CODE
-                  description: |
-                    Required when "Refresh Token Requires Auth Code" is enabled. The parameter
-                    name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
-                    settings.
-                payload:
-                  nullable: true
-                  oneOf:
-                    - type: string
-                      example: '{"department":"engineering","region":"eu"}'
-                    - type: object
-                      example:
-                        department: engineering
-                        region: eu
-                  description: |
-                    Optional extra claims merged into the newly issued JWT payload. Accepted
-                    either as a JSON-encoded string (form-encoded/query-string requests) or as a
-                    native JSON object (JSON body requests).
-                    Reserved identity claims configured in the plugin's payload settings (for example,
-                    `email`, `id`, `username`, `site`, `iss`, `exp`, `iat`) and the custom
-                    "Login by parameter" claim, if configured, are always stripped from this
-                    value and set from the authenticated user instead - they cannot be
-                    overridden by the caller.
+              $ref: '#/components/schemas/authRefreshBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1auth~1refresh/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/authRefreshBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1refresh/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/authRefreshBody'
         required: true
       responses:
         '200':
@@ -1555,11 +1255,11 @@ paths:
                       jwt:
                         type: string
                         description: Newly issued JWT.
-                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
                       refresh_token:
                         type: string
                         description: New refresh token replacing the one that was consumed.
-                        example: f6e7a8b9c0d123456789012345678901234567890123456789012345678901234567
+                        example: "f6e7a8b9c0d123456789012345678901234567890123456789012345678901234567"
         '400':
           description: |
             The new JWT could not be signed (JWT library error, for example, OpenSSL signing failure
@@ -1567,11 +1267,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: OpenSSL unable to sign data
+                  message: "OpenSSL unable to sign data"
                   error_code: 16
         '401':
           description: |
@@ -1586,11 +1286,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Invalid refresh token.
+                  message: "Invalid refresh token."
                   error_code: 51
         '403':
           description: |
@@ -1601,11 +1301,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Refresh Token endpoint is not enabled.
+                  message: "Refresh Token endpoint is not enabled."
                   error_code: 81
         '422':
           description: |
@@ -1615,11 +1315,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Refresh token is missing.
+                  message: "Refresh token is missing."
                   error_code: 51
         '500':
           description: |
@@ -1628,11 +1328,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Unable to save the refresh token.
+                  message: "Unable to save the refresh token."
                   error_code: 131
   /auth/validate:
     get:
@@ -1674,14 +1374,14 @@ paths:
       parameters:
         - name: JWT
           in: query
-          description: 'The JWT to validate. Alternative to the `Authorization: Bearer` header.'
+          description: "The JWT to validate. Alternative to the `Authorization: Bearer` header."
           required: false
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
           schema:
             type: string
         - name: AUTH_KEY
           in: query
-          example: MY_SUPER_SECRET_AUTH_CODE
+          example: "MY_SUPER_SECRET_AUTH_CODE"
           description: |
             Required when "Validate Token Requires Auth Code" is enabled. The parameter
             name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
@@ -1707,48 +1407,48 @@ paths:
                         properties:
                           ID:
                             type: string
-                            example: '1'
+                            example: "1"
                           user_login:
                             type: string
-                            example: myuser
+                            example: "myuser"
                           user_nicename:
                             type: string
-                            example: myuser
+                            example: "myuser"
                           user_email:
                             type: string
-                            example: myuser@simplejwtlogin.com
+                            example: "myuser@simplejwtlogin.com"
                           user_url:
                             type: string
-                            example: 'https://simplejwtlogin.com/myuser'
+                            example: "https://simplejwtlogin.com/myuser"
                           user_registered:
                             type: string
-                            example: '2021-01-01 23:31:50'
+                            example: "2021-01-01 23:31:50"
                           user_status:
                             type: string
-                            example: '0'
+                            example: "0"
                           display_name:
                             type: string
-                            example: myuser
+                            example: "myuser"
                       roles:
                         type: array
                         items:
                           type: string
-                          example: administrator
+                          example: "administrator"
                       jwt:
                         type: object
                         properties:
                           token:
                             type: string
-                            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
                           header:
                             type: object
                             properties:
                               typ:
                                 type: string
-                                example: JWT
+                                example: "JWT"
                               alg:
                                 type: string
-                                example: HS256
+                                example: "HS256"
                           payload:
                             type: object
                             properties:
@@ -1765,27 +1465,32 @@ paths:
                                 type: string
                                 nullable: true
                                 description: User email. Present only when enabled in plugin settings.
-                                example: myuser@simplejwtlogin.com
+                                example: "myuser@simplejwtlogin.com"
                               id:
-                                type: number
+                                type: string
                                 nullable: true
-                                description: WordPress user ID. Present only when enabled in plugin settings.
-                                example: 1
+                                description: WordPress user ID, as a numeric string (as WordPress stores it). Present only when enabled in plugin settings.
+                                example: "1"
                               site:
                                 type: string
                                 nullable: true
                                 description: Site URL. Present only when enabled in plugin settings.
-                                example: 'https://simplejwtlogin.com'
+                                example: "https://simplejwtlogin.com"
                               username:
                                 type: string
                                 nullable: true
                                 description: WordPress login username. Present only when enabled in plugin settings.
-                                example: myuser
+                                example: "myuser"
                               iss:
                                 type: string
                                 nullable: true
                                 description: Issuer claim. Present only when enabled in plugin settings.
-                                example: 'https://simplejwtlogin.com'
+                                example: "https://simplejwtlogin.com"
+                              jti:
+                                type: string
+                                nullable: true
+                                description: Unique, random JWT ID (32 hexadecimal characters), new for every issued token. Enabled by default; present unless turned off in plugin settings.
+                                example: "9f86d081884c7d659a2feaa0c55ad015"
                           expire_in:
                             type: integer
                             nullable: true
@@ -1803,19 +1508,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 expired:
                   value:
                     success: false
                     data:
-                      message: Expired token
+                      message: "Expired token"
                       error_code: 14
                 badSignature:
                   value:
                     success: false
                     data:
-                      message: Signature verification failed
+                      message: "Signature verification failed"
                       error_code: 11
         '401':
           description: |
@@ -1828,11 +1533,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: This JWT is invalid.
+                  message: "This JWT is invalid."
                   error_code: 55
         '403':
           description: |
@@ -1843,22 +1548,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Validate Token endpoint is not enabled.
+                  message: "Validate Token endpoint is not enabled."
                   error_code: 82
         '404':
           description: The WordPress user identified by the JWT payload could not be found (`error_code` 24).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: User not found.
+                  message: "User not found."
                   error_code: 24
         '422':
           description: |
@@ -1868,18 +1573,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: The `jwt` parameter is missing.
+                  message: "The `jwt` parameter is missing."
                   error_code: 53
         '500':
           description: Internal server error (any other unexpected error).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
     post:
       tags:
         - authenticate_user
@@ -1902,28 +1607,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                JWT:
-                  type: string
-                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-                  description: |
-                    The JWT to validate. Optional when the JWT is sent in the `Authorization` header,
-                    cookie, or session instead.
-                AUTH_KEY:
-                  type: string
-                  nullable: true
-                  example: MY_SUPER_SECRET_AUTH_CODE
-                  description: |
-                    Required when "Validate Token Requires Auth Code" is enabled. The parameter
-                    name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
-                    settings.
+              $ref: '#/components/schemas/validateBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1auth~1validate/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/validateBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1validate/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/validateBody'
         required: true
       responses:
         '200':
@@ -1949,19 +1639,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 expired:
                   value:
                     success: false
                     data:
-                      message: Expired token
+                      message: "Expired token"
                       error_code: 14
                 badSignature:
                   value:
                     success: false
                     data:
-                      message: Signature verification failed
+                      message: "Signature verification failed"
                       error_code: 11
         '401':
           description: |
@@ -1974,11 +1664,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: This JWT is invalid.
+                  message: "This JWT is invalid."
                   error_code: 55
         '403':
           description: |
@@ -1989,22 +1679,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Validate Token endpoint is not enabled.
+                  message: "Validate Token endpoint is not enabled."
                   error_code: 82
         '404':
           description: The WordPress user identified by the JWT payload could not be found (`error_code` 24).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: User not found.
+                  message: "User not found."
                   error_code: 24
         '422':
           description: |
@@ -2014,18 +1704,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: The `jwt` parameter is missing.
+                  message: "The `jwt` parameter is missing."
                   error_code: 53
         '500':
           description: Internal server error (any other unexpected error).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
   /auth/revoke:
     post:
       tags:
@@ -2055,32 +1745,17 @@ paths:
       security:
         - BearerAuth: []
       requestBody:
-        description: 'The JWT to revoke, plus optional auth code.'
+        description: The JWT to revoke, plus optional auth code.
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                JWT:
-                  type: string
-                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-                  description: |
-                    The JWT to revoke. It must be valid and not expired. Optional when the JWT is sent
-                    in the `Authorization` header, cookie, or session instead.
-                AUTH_KEY:
-                  type: string
-                  nullable: true
-                  example: MY_SUPER_SECRET_AUTH_CODE
-                  description: |
-                    Required when "Revoke Token Requires Auth Code" is enabled. The parameter
-                    name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
-                    settings.
+              $ref: '#/components/schemas/authRevokeBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1auth~1revoke/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/authRevokeBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~1revoke/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/authRevokeBody'
         required: true
       responses:
         '200':
@@ -2097,7 +1772,7 @@ paths:
                   message:
                     type: string
                     description: Confirmation message.
-                    example: Token was revoked.
+                    example: "Token was revoked."
                   data:
                     type: object
                     properties:
@@ -2106,7 +1781,7 @@ paths:
                         description: Array containing the revoked JWT string.
                         items:
                           type: string
-                          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
         '400':
           description: |
             The JWT could not be decoded or validated (all JWT library errors return 400):
@@ -2117,19 +1792,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 expired:
                   value:
                     success: false
                     data:
-                      message: Expired token
+                      message: "Expired token"
                       error_code: 14
                 badSignature:
                   value:
                     success: false
                     data:
-                      message: Signature verification failed
+                      message: "Signature verification failed"
                       error_code: 11
         '401':
           description: |
@@ -2142,11 +1817,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Token was already revoked.
+                  message: "Token was already revoked."
                   error_code: 55
         '403':
           description: |
@@ -2157,22 +1832,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Revoke Token endpoint is not enabled.
+                  message: "Revoke Token endpoint is not enabled."
                   error_code: 83
         '404':
           description: The WordPress user identified by the JWT payload could not be found (`error_code` 24).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: User not found.
+                  message: "User not found."
                   error_code: 24
         '422':
           description: |
@@ -2182,18 +1857,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: The `jwt` parameter is missing.
+                  message: "The `jwt` parameter is missing."
                   error_code: 53
         '500':
           description: Internal server error (any other unexpected error).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
   /auth/2fa:
     post:
       tags:
@@ -2235,30 +1910,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - code
-              properties:
-                JWT:
-                  type: string
-                  nullable: true
-                  description: |
-                    The interim JWT received in the `POST /auth` Two-Factor challenge response.
-                    Can be supplied here in the request body or via the `Authorization: Bearer`
-                    header.
-                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-                code:
-                  type: string
-                  description: |
-                    The 2FA verification code. Accepted formats depend on the user's configured
-                    provider: a TOTP code (6-digit), an email token, or a backup code.
-                  example: '123456'
+              $ref: '#/components/schemas/twoFactorVerifyBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1auth~12fa/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/twoFactorVerifyBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1auth~12fa/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/twoFactorVerifyBody'
       responses:
         '200':
           description: 2FA verification successful. Returns a signed JWT and optional refresh token.
@@ -2276,14 +1934,14 @@ paths:
                       jwt:
                         type: string
                         description: Signed JWT for use in subsequent requests.
-                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
                       refresh_token:
                         type: string
                         nullable: true
                         description: |
                           Opaque refresh token. Only present when the refresh-token feature
                           is enabled in the plugin settings.
-                        example: a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012
+                        example: "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"
         '400':
           description: |
             The interim JWT could not be decoded or validated (JWT library error), for example, it
@@ -2292,11 +1950,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Expired token
+                  message: "Expired token"
                   error_code: 14
         '401':
           description: |
@@ -2308,19 +1966,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 wrongCode:
                   value:
                     success: false
                     data:
-                      message: Invalid two-factor code.
+                      message: "Invalid two-factor code."
                       error_code: 109
                 sessionExpired:
                   value:
                     success: false
                     data:
-                      message: Invalid or expired two-factor session. Please authenticate again.
+                      message: "Invalid or expired two-factor session. Please authenticate again."
                       error_code: 107
         '403':
           description: |
@@ -2330,22 +1988,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Two-factor authentication plugin is not active.
+                  message: "Two-factor authentication plugin is not active."
                   error_code: 105
         '404':
           description: The WordPress user referenced by the interim JWT could not be found (`error_code` 24).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: User not found.
+                  message: "User not found."
                   error_code: 24
         '422':
           description: |
@@ -2356,36 +2014,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 missingJwt:
                   value:
                     success: false
                     data:
-                      message: Interim JWT is missing.
+                      message: "Interim JWT is missing."
                       error_code: 23
                 notInterim:
                   value:
                     success: false
                     data:
-                      message: A valid interim two-factor JWT is required.
+                      message: "A valid interim two-factor JWT is required."
                       error_code: 106
                 missingCode:
                   value:
                     success: false
                     data:
-                      message: The two-factor code is missing.
+                      message: "The two-factor code is missing."
                       error_code: 109
         '429':
-          description: 'Too many failed attempts, the Two Factor plugin rate limit applies (`error_code` 108).'
+          description: Too many failed attempts, the Two Factor plugin rate limit applies (`error_code` 108).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Too many failed attempts. Please wait 60 seconds.
+                  message: "Too many failed attempts. Please wait 60 seconds."
                   error_code: 108
   /oauth/token:
     get:
@@ -2420,7 +2078,7 @@ paths:
         WordPress login page.
 
         > **Note**: this endpoint is designed for browser redirect callbacks (OAuth consent
-        > screen redirect_uri). To obtain a JWT programmatically, use `POST /oauth/token`
+        > screen `redirect_uri`). To obtain a JWT programmatically, use `POST /oauth/token`
         > instead.
       operationId: oauthTokenGet
       parameters:
@@ -2430,11 +2088,7 @@ paths:
           description: OAuth provider slug.
           schema:
             type: string
-            enum:
-              - google
-              - auth0
-              - facebook
-              - github
+            enum: [google, auth0, facebook, github]
           example: google
         - name: code
           in: query
@@ -2478,17 +2132,17 @@ paths:
             Location:
               schema:
                 type: string
-              example: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=...&redirect_uri=...&response_type=code&scope=...&state=...'
+              example: "https://accounts.google.com/o/oauth2/v2/auth?client_id=...&redirect_uri=...&response_type=code&scope=...&state=..."
         '403':
           description: The requested OAuth provider is not enabled in the plugin settings (`error_code` 70).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: This Oauth provider is not available.
+                  message: "This Oauth provider is not available."
                   error_code: 70
         '422':
           description: |
@@ -2500,19 +2154,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 invalidProvider:
                   value:
                     success: false
                     data:
-                      message: The Oauth provider is invalid.
+                      message: "The Oauth provider is invalid."
                       error_code: 69
                 missingCode:
                   value:
                     success: false
                     data:
-                      message: The code or id_token parameter is missing from request.
+                      message: "The code or id_token parameter is missing from request."
                       error_code: 71
     post:
       tags:
@@ -2556,51 +2210,17 @@ paths:
         new user is created automatically.
       operationId: oauthTokenPost
       requestBody:
-        description: 'OAuth provider and authorization code, ID token, or access token.'
+        description: OAuth provider and authorization code, ID token, or access token.
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - provider
-              properties:
-                provider:
-                  type: string
-                  enum:
-                    - google
-                    - auth0
-                    - facebook
-                    - github
-                  description: OAuth provider slug.
-                  example: google
-                code:
-                  type: string
-                  nullable: true
-                  description: |
-                    Authorization code returned by the OAuth provider's consent screen.
-                    Used by Google, Auth0, Facebook, and GitHub.
-                  example: 4/0AfJohXmX...
-                id_token:
-                  type: string
-                  nullable: true
-                  description: |
-                    Google ID token from Sign In With Google (Google provider only). Can be
-                    supplied instead of `code` to obtain a WordPress JWT directly.
-                  example: eyJhbGci...
-                access_token:
-                  type: string
-                  nullable: true
-                  description: |
-                    Provider access token passed directly by the client. Used by Auth0
-                    (`provider=auth0`), Facebook (`provider=facebook`) and GitHub (`provider=github`)
-                    instead of `code`.
-                  example: EAABs...
+              $ref: '#/components/schemas/oauthBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1oauth~1token/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/oauthBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1oauth~1token/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/oauthBody'
         required: true
       responses:
         '200':
@@ -2613,69 +2233,42 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  data:
-                    type: object
-                    description: |
-                      For the `code` flow, `data` is the provider's token response as returned by the
-                      provider (for example, `access_token`, `id_token`, `expires_in`, `token_type`).
-                    properties:
-                      jwt:
-                        type: string
-                        description: |
-                          WordPress JWT (`id_token` / `access_token` flow), or a short-lived interim JWT
-                          when `two_factor_required` is `true`.
-                        example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjMyOTk0MDAsImVtYWlsIjoiam9obkBkb2UuY29tIn0.signature
-                      two_factor_required:
-                        type: boolean
-                        nullable: true
-                        description: Present and `true` only for a 2FA challenge.
-                        example: true
-                      provider:
-                        type: string
-                        nullable: true
-                        description: Class name of the user's primary 2FA provider. Only with `two_factor_required`.
-                        example: Two_Factor_Totp
-                    additionalProperties: true
+                $ref: '#/components/schemas/OAuthResponse'
               examples:
                 jwt:
                   summary: id_token / access_token flow
                   value:
                     success: true
                     data:
-                      jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjMyOTk0MDAsImVtYWlsIjoiam9obkBkb2UuY29tIn0.signature
+                      jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjMyOTk0MDAsImVtYWlsIjoiam9obkBkb2UuY29tIn0.signature"
                 twoFactorChallenge:
                   summary: User has Two-Factor enabled
                   value:
                     success: true
                     data:
-                      jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0ZmFfcGVuZGluZyI6MX0.signature
+                      jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0ZmFfcGVuZGluZyI6MX0.signature"
                       two_factor_required: true
-                      provider: Two_Factor_Totp
+                      provider: "Two_Factor_Totp"
                 code:
                   summary: code flow (Google example)
                   value:
                     success: true
                     data:
-                      access_token: ya29.a0Af...
+                      access_token: "ya29.a0Af..."
                       expires_in: 3599
-                      scope: 'openid https://www.googleapis.com/auth/userinfo.email'
-                      token_type: Bearer
-                      id_token: eyJhbGciOiJSUzI1NiIs...
+                      scope: "openid https://www.googleapis.com/auth/userinfo.email"
+                      token_type: "Bearer"
+                      id_token: "eyJhbGciOiJSUzI1NiIs..."
         '400':
-          description: 'The WordPress JWT could not be signed (JWT library error, for example, `error_code` 16).'
+          description: The WordPress JWT could not be signed (JWT library error, for example, `error_code` 16).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: OpenSSL unable to sign data
+                  message: "OpenSSL unable to sign data"
                   error_code: 16
         '401':
           description: |
@@ -2689,31 +2282,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 invalidIdToken:
                   value:
                     success: false
                     data:
-                      message: The provided id_token is invalid
+                      message: "The provided id_token is invalid"
                       error_code: 73
                 invalidGithubToken:
                   value:
                     success: false
                     data:
-                      message: The provided GitHub access_token is invalid.
+                      message: "The provided GitHub access_token is invalid."
                       error_code: 103
                 wrongAudience:
                   value:
                     success: false
                     data:
-                      message: The provided id_token was not issued for this website.
+                      message: "The provided id_token was not issued for this website."
                       error_code: 118
                 invalidCode:
                   value:
                     success: false
                     data:
-                      message: The code you provided is invalid.Bad Request. Invalid_grant
+                      message: "The code you provided is invalid.Bad Request. Invalid_grant"
                       error_code: 72
         '403':
           description: |
@@ -2724,19 +2317,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 providerDisabled:
                   value:
                     success: false
                     data:
-                      message: This Oauth provider is not available.
+                      message: "This Oauth provider is not available."
                       error_code: 70
                 emailNotVerified:
                   value:
                     success: false
                     data:
-                      message: The email address of this Google account is not verified.
+                      message: "The email address of this Google account is not verified."
                       error_code: 119
         '404':
           description: |
@@ -2745,11 +2338,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Wrong user credentials.
+                  message: "Wrong user credentials."
                   error_code: 74
         '422':
           description: |
@@ -2760,19 +2353,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               examples:
                 invalidProvider:
                   value:
                     success: false
                     data:
-                      message: The Oauth provider is invalid.
+                      message: "The Oauth provider is invalid."
                       error_code: 69
                 missingParam:
                   value:
                     success: false
                     data:
-                      message: The code or access_token parameter is missing from request.
+                      message: "The code or access_token parameter is missing from request."
                       error_code: 97
         '500':
           description: |
@@ -2782,11 +2375,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Unable to create two-factor nonce.
+                  message: "Unable to create two-factor nonce."
                   error_code: 133
   /api-keys:
     get:
@@ -2849,56 +2442,7 @@ paths:
                       items:
                         type: array
                         items:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                              description: Database ID of the key.
-                              example: 7
-                            name:
-                              type: string
-                              description: Human-readable key name.
-                              example: My integration key
-                            key_prefix:
-                              type: string
-                              description: First 8 characters of the key followed by `****`.
-                              example: sjl_a1b2****
-                            permissions:
-                              type: array
-                              items:
-                                type: string
-                                enum:
-                                  - read
-                                  - create
-                                  - update
-                                  - delete
-                              example:
-                                - read
-                                - create
-                            expires_at:
-                              type: string
-                              nullable: true
-                              description: 'Expiry timestamp in `Y-m-d H:i:s` format, or `null`.'
-                              example: null
-                            last_used_at:
-                              type: string
-                              nullable: true
-                              description: 'Timestamp of last successful use, or `null` if never used.'
-                              example: '2026-04-15 10:30:00'
-                            created_at:
-                              type: string
-                              description: Timestamp when the key was created.
-                              example: '2026-01-01 12:00:00'
-                            revoked_at:
-                              type: string
-                              nullable: true
-                              description: 'Timestamp when the key was revoked, or `null` if still active.'
-                              example: null
-                            user_id:
-                              type: integer
-                              nullable: true
-                              description: WordPress user ID who owns this key. Only present in admin responses.
-                              example: 3
+                          $ref: '#/components/schemas/ApiKeyItem'
                       total:
                         type: integer
                         description: Total number of matching keys.
@@ -2914,65 +2458,28 @@ paths:
                 data:
                   items:
                     - id: 7
-                      name: My integration key
-                      key_prefix: sjl_a1b2****
-                      permissions:
-                        - read
-                        - create
+                      name: "My integration key"
+                      key_prefix: "sjl_a1b2****"
+                      permissions: ["read", "create"]
                       expires_at: null
-                      last_used_at: '2026-11-15 20:11:38'
-                      created_at: '2026-11-15 20:11:37'
+                      last_used_at: "2026-11-15 20:11:38"
+                      created_at: "2026-11-15 20:11:37"
                       revoked_at: null
                       user_id: 1
                   total: 1
                   page: 1
                   per_page: 20
         '401':
-          description: |
-            WordPress core error: the request is not authenticated (no logged-in session with a
-            valid `X-WP-Nonce`, and no valid JWT in the header or cookie). The plugin is not called.
-          content:
-            application/json:
-              schema:
-                type: object
-                description: Standard WordPress REST API error.
-                properties:
-                  code:
-                    type: string
-                    example: rest_forbidden
-                  message:
-                    type: string
-                    example: 'Sorry, you are not allowed to do that.'
-                  data:
-                    type: object
-                    properties:
-                      status:
-                        type: integer
-                        example: 401
-                      error_code:
-                        type: integer
-                        description: Plugin error code. Only on plugin errors.
-                        example: 84
-              example:
-                code: rest_forbidden
-                message: 'Sorry, you are not allowed to do that.'
-                data:
-                  status: 401
+          $ref: '#/components/responses/RestForbidden'
         '403':
           description: The user is not logged in (`error_code` 84).
           content:
             application/json:
               schema:
-                description: |
-                  API key endpoint error. A `WP_Error` (`code: simple_jwt_login_api_key_error`) by
-                  default; rewritten into the plugin envelope (`ResponseError`) when the API middleware
-                  or API keys are enabled in the plugin settings.
-                anyOf:
-                  - $ref: '#/paths/~1api-keys/get/responses/401/content/application~1json/schema'
-                  - $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ApiKeyError'
               example:
                 code: simple_jwt_login_api_key_error
-                message: You must be logged in to manage API keys.
+                message: "You must be logged in to manage API keys."
                 data:
                   status: 403
                   error_code: 84
@@ -3006,47 +2513,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - name
-                - permissions
-              properties:
-                name:
-                  type: string
-                  description: Human-readable name to identify the key.
-                  example: My integration key
-                permissions:
-                  description: |
-                    Array (or comma-separated string) of permissions to grant.
-                    Valid values: `read`, `create`, `update`, `delete`.
-                  oneOf:
-                    - type: array
-                      items:
-                        type: string
-                        enum:
-                          - read
-                          - create
-                          - update
-                          - delete
-                    - type: string
-                  example:
-                    - read
-                    - create
-                expires_at:
-                  type: string
-                  nullable: true
-                  description: |
-                    Optional expiry date/time, in UTC. Accepted forms: `Y-m-d`, `Y-m-d H:i[:s]` or
-                    ISO 8601 with an optional zone (`2027-01-01T00:00:00Z`, `+02:00`). A value without
-                    a zone is read as UTC; it is stored as UTC `Y-m-d H:i:s`. Any other value is
-                    rejected with `422` (`error_code` 132). Omit (or pass `null`) for a non-expiring key.
-                  example: '2027-01-01 00:00:00'
+              $ref: '#/components/schemas/createApiKeyBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1api-keys/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/createApiKeyBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1api-keys/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/createApiKeyBody'
       responses:
         '200':
           description: |
@@ -3070,95 +2543,63 @@ paths:
                       key:
                         type: string
                         description: Full plaintext API key. Store securely - shown only once.
-                        example: sjl_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4
+                        example: "sjl_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"
                       name:
                         type: string
-                        example: My integration key
+                        example: "My integration key"
                       key_prefix:
                         type: string
-                        description: 'First 8 characters of the key, for identification.'
-                        example: sjl_a1b2
+                        description: First 8 characters of the key, for identification.
+                        example: "sjl_a1b2"
                       permissions:
                         type: array
                         items:
                           type: string
-                          enum:
-                            - read
-                            - create
-                            - update
-                            - delete
-                        example:
-                          - read
-                          - create
+                          enum: [read, create, update, delete]
+                        example: ["read", "create"]
                       expires_at:
                         type: string
                         nullable: true
-                        description: 'Expiry in UTC `Y-m-d H:i:s`, or null for no expiry.'
-                        example: '2027-01-01 00:00:00'
+                        description: Expiry in UTC `Y-m-d H:i:s`, or null for no expiry.
+                        example: "2027-01-01 00:00:00"
+          links:
+            UpdateApiKey:
+              operationId: updateApiKey
+              description: Update the key that was just created.
+              parameters:
+                id: '$response.body#/data/id'
+            RevokeApiKey:
+              operationId: revokeApiKey
+              description: Revoke the key that was just created.
+              parameters:
+                id: '$response.body#/data/id'
+            DeleteApiKey:
+              operationId: deleteApiKey
+              description: Delete the key that was just created.
+              parameters:
+                id: '$response.body#/data/id'
+        '400':
+          $ref: '#/components/responses/RestInvalidJson'
         '401':
-          $ref: '#/paths/~1api-keys/get/responses/401'
+          $ref: '#/components/responses/RestForbidden'
         '403':
-          description: |
-            Forbidden (`error_code` 84). One of:
-            - The user is not logged in.
-            - The user does not own this API key and is not an administrator.
-            - A non-administrator tries to grant a permission they do not have.
-          content:
-            application/json:
-              schema:
-                $ref: '#/paths/~1api-keys/get/responses/403/content/application~1json/schema'
-              example:
-                code: simple_jwt_login_api_key_error
-                message: You are not allowed to manage this API key.
-                data:
-                  status: 403
-                  error_code: 84
+          $ref: '#/components/responses/ApiKeyForbidden'
         '422':
-          description: |
-            Unprocessable entity. One of:
-            - `name` is empty (`error_code` 85).
-            - No permission was given (`error_code` 86) or a permission is unknown (`error_code` 87).
-            - `expires_at` is not a valid date (`error_code` 132).
-          content:
-            application/json:
-              schema:
-                $ref: '#/paths/~1api-keys/get/responses/403/content/application~1json/schema'
-              examples:
-                missingName:
-                  value:
-                    code: simple_jwt_login_api_key_error
-                    message: API key name is required.
-                    data:
-                      status: 422
-                      error_code: 85
-                invalidPermission:
-                  value:
-                    code: simple_jwt_login_api_key_error
-                    message: 'Invalid permission: admin'
-                    data:
-                      status: 422
-                      error_code: 87
-                invalidExpiry:
-                  value:
-                    code: simple_jwt_login_api_key_error
-                    message: 'The expires_at value must be a date such as 2030-01-31 or 2030-01-31 23:59:00 (UTC).'
-                    data:
-                      status: 422
-                      error_code: 132
+          $ref: '#/components/responses/ApiKeyInvalidInput'
         '500':
           description: |
             The database insert failed (`error_code` 88).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1api-keys/get/responses/403/content/application~1json/schema'
+                $ref: '#/components/schemas/ApiKeyError'
               example:
                 code: simple_jwt_login_api_key_error
-                message: Failed to create API key.
+                message: "Failed to create API key."
                 data:
                   status: 500
                   error_code: 88
-  '/api-keys/{id}':
+  /api-keys/{id}:
     put:
       tags:
         - api_keys
@@ -3175,95 +2616,40 @@ paths:
         - WordPressSession: []
         - BearerAuth: []
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Numeric ID of the API key.
-          schema:
-            type: integer
-            minimum: 1
-          example: 7
+        - $ref: '#/components/parameters/ApiKeyId'
       requestBody:
         description: Updated API key fields.
         required: true
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - name
-                - permissions
-              properties:
-                name:
-                  type: string
-                  description: New human-readable name for the key.
-                  example: Updated key name
-                permissions:
-                  description: |
-                    Updated permission set. Same format as for key creation.
-                    Valid values: `read`, `create`, `update`, `delete`.
-                  oneOf:
-                    - type: array
-                      items:
-                        type: string
-                        enum:
-                          - read
-                          - create
-                          - update
-                          - delete
-                    - type: string
-                  example:
-                    - read
-                    - create
-                    - update
-                expires_at:
-                  type: string
-                  nullable: true
-                  description: |
-                    Updated expiry date/time in UTC (same forms as for key creation; invalid values
-                    get `422`, `error_code` 132), or `null` to remove the expiry.
-                  example: '2028-06-01 00:00:00'
+              $ref: '#/components/schemas/updateApiKeyBody'
           multipart/form-data:
             schema:
-              $ref: '#/paths/~1api-keys~1%7Bid%7D/put/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/updateApiKeyBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/paths/~1api-keys~1%7Bid%7D/put/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/updateApiKeyBody'
       responses:
         '200':
           description: API key updated successfully.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: API key updated successfully.
+                $ref: '#/components/schemas/ApiKeyActionResponse'
               example:
                 success: true
-                message: API key updated successfully.
+                message: "API key updated successfully."
+        '400':
+          $ref: '#/components/responses/RestInvalidJson'
         '401':
-          $ref: '#/paths/~1api-keys/get/responses/401'
+          $ref: '#/components/responses/RestForbidden'
         '403':
-          $ref: '#/paths/~1api-keys/post/responses/403'
+          $ref: '#/components/responses/ApiKeyForbidden'
         '404':
-          description: The id is not a positive number (`error_code` 89).
-          content:
-            application/json:
-              schema:
-                $ref: '#/paths/~1api-keys/get/responses/403/content/application~1json/schema'
-              example:
-                code: simple_jwt_login_api_key_error
-                message: Invalid API key ID.
-                data:
-                  status: 404
-                  error_code: 89
+          $ref: '#/components/responses/ApiKeyNotFound'
         '422':
-          $ref: '#/paths/~1api-keys/post/responses/422'
+          $ref: '#/components/responses/ApiKeyInvalidInput'
         '500':
           description: |
             The update failed, including an administrator updating a key id that does not
@@ -3271,12 +2657,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1api-keys/get/responses/403/content/application~1json/schema'
+                $ref: '#/components/schemas/ApiKeyError'
               examples:
                 updateFailed:
                   value:
                     code: simple_jwt_login_api_key_error
-                    message: Failed to update API key.
+                    message: "Failed to update API key."
                     data:
                       status: 500
                       error_code: 90
@@ -3296,23 +2682,23 @@ paths:
         - WordPressSession: []
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1api-keys~1%7Bid%7D/put/parameters/0'
+        - $ref: '#/components/parameters/ApiKeyId'
       responses:
         '200':
           description: API key permanently deleted.
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1api-keys~1%7Bid%7D/put/responses/200/content/application~1json/schema'
+                $ref: '#/components/schemas/ApiKeyActionResponse'
               example:
                 success: true
-                message: API key deleted successfully.
+                message: "API key deleted successfully."
         '401':
-          $ref: '#/paths/~1api-keys/get/responses/401'
+          $ref: '#/components/responses/RestForbidden'
         '403':
-          $ref: '#/paths/~1api-keys/post/responses/403'
+          $ref: '#/components/responses/ApiKeyForbidden'
         '404':
-          $ref: '#/paths/~1api-keys~1%7Bid%7D/put/responses/404'
+          $ref: '#/components/responses/ApiKeyNotFound'
         '500':
           description: |
             The delete failed, including an administrator deleting a key id that does not
@@ -3320,14 +2706,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1api-keys/get/responses/403/content/application~1json/schema'
+                $ref: '#/components/schemas/ApiKeyError'
               example:
                 code: simple_jwt_login_api_key_error
-                message: Failed to delete API key.
+                message: "Failed to delete API key."
                 data:
                   status: 500
                   error_code: 92
-  '/api-keys/{id}/revoke':
+  /api-keys/{id}/revoke:
     post:
       tags:
         - api_keys
@@ -3344,23 +2730,23 @@ paths:
         - WordPressSession: []
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1api-keys~1%7Bid%7D/put/parameters/0'
+        - $ref: '#/components/parameters/ApiKeyId'
       responses:
         '200':
           description: API key revoked successfully.
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1api-keys~1%7Bid%7D/put/responses/200/content/application~1json/schema'
+                $ref: '#/components/schemas/ApiKeyActionResponse'
               example:
                 success: true
-                message: API key revoked successfully.
+                message: "API key revoked successfully."
         '401':
-          $ref: '#/paths/~1api-keys/get/responses/401'
+          $ref: '#/components/responses/RestForbidden'
         '403':
-          $ref: '#/paths/~1api-keys/post/responses/403'
+          $ref: '#/components/responses/ApiKeyForbidden'
         '404':
-          $ref: '#/paths/~1api-keys~1%7Bid%7D/put/responses/404'
+          $ref: '#/components/responses/ApiKeyNotFound'
         '500':
           description: |
             The revoke failed, including an administrator revoking a key id that does not
@@ -3368,10 +2754,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1api-keys/get/responses/403/content/application~1json/schema'
+                $ref: '#/components/schemas/ApiKeyError'
               example:
                 code: simple_jwt_login_api_key_error
-                message: Failed to revoke API key.
+                message: "Failed to revoke API key."
                 data:
                   status: 500
                   error_code: 91
@@ -3429,33 +2815,7 @@ paths:
                       items:
                         type: array
                         items:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                              description: Database ID of the revoked-token record.
-                              example: 7
-                            user_id:
-                              type: integer
-                              description: WordPress user ID the revoked JWT belonged to.
-                              example: 3
-                            token_hash_masked:
-                              type: string
-                              description: |
-                                First 8 and last 4 characters of the SHA-256 hash of the revoked JWT, separated
-                                by `...`. The full hash and the raw JWT are never returned.
-                              example: a1b2c3d4...ef01
-                            expires_at:
-                              type: string
-                              nullable: true
-                              description: |
-                                Expiry timestamp (from the JWT's `exp` claim) in `Y-m-d H:i:s` format, or `null`
-                                if the JWT had no expiry claim.
-                              example: '2027-01-01 00:00:00'
-                            revoked_at:
-                              type: string
-                              description: Timestamp when the token was revoked.
-                              example: '2026-01-01 12:00:00'
+                          $ref: '#/components/schemas/RevokedTokenItem'
                       total:
                         type: integer
                         description: Total number of revoked-token records.
@@ -3472,27 +2832,33 @@ paths:
                   items:
                     - id: 1713
                       user_id: 12
-                      token_hash_masked: cdac64f6...8738
-                      expires_at: '2026-11-16 05:25:32'
-                      revoked_at: '2026-11-16 04:25:33'
+                      token_hash_masked: "cdac64f6...8738"
+                      expires_at: "2026-11-16 05:25:32"
+                      revoked_at: "2026-11-16 04:25:33"
                   total: 1
                   page: 1
                   per_page: 20
+          links:
+            DeleteRevokedToken:
+              operationId: deleteRevokedToken
+              description: Delete the first revoked-token record of the page.
+              parameters:
+                id: '$response.body#/data/items/0/id'
         '401':
-          $ref: '#/paths/~1api-keys/get/responses/401'
+          $ref: '#/components/responses/RestForbidden'
         '403':
           description: |
             The user is not an administrator (`error_code` 115).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: You must be an administrator to manage revoked tokens.
+                  message: "You must be an administrator to manage revoked tokens."
                   error_code: 115
-  '/revoked-tokens/{id}':
+  /revoked-tokens/{id}:
     delete:
       tags:
         - revoked_tokens
@@ -3519,42 +2885,731 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1api-keys~1%7Bid%7D/put/responses/200/content/application~1json/schema'
+                $ref: '#/components/schemas/ApiKeyActionResponse'
               example:
                 success: true
-                message: 'Revoked token entry deleted. If the token has not expired, it is valid again.'
+                message: "Revoked token entry deleted. If the token has not expired, it is valid again."
         '401':
-          $ref: '#/paths/~1api-keys/get/responses/401'
+          $ref: '#/components/responses/RestForbidden'
         '403':
           description: The user is not an administrator (`error_code` 115).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: You must be an administrator to manage revoked tokens.
+                  message: "You must be an administrator to manage revoked tokens."
                   error_code: 115
         '404':
-          description: 'The id is invalid, or no record has it (`error_code` 116).'
+          description: The id is invalid, or no record has it (`error_code` 116).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Invalid revoked token ID.
+                  message: "Invalid revoked token ID."
                   error_code: 116
         '500':
           description: The database delete failed (`error_code` 117).
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1auth/post/responses/400/content/application~1json/schema'
+                $ref: '#/components/schemas/ResponseError'
               example:
                 success: false
                 data:
-                  message: Failed to delete revoked token entry.
+                  message: "Failed to delete revoked token entry."
                   error_code: 117
+components:
+  parameters:
+    ApiKeyId:
+      name: id
+      in: path
+      required: true
+      description: Numeric ID of the API key.
+      schema:
+        type: integer
+        minimum: 1
+      example: 7
+  responses:
+    RestInvalidJson:
+      description: |
+        WordPress core error: the `application/json` body is not valid JSON (for example,
+        malformed UTF-8). The plugin is not called.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WpRestError'
+          example:
+            code: rest_invalid_json
+            message: "Invalid JSON body passed."
+            data:
+              status: 400
+    RestForbidden:
+      description: |
+        WordPress core error: the request is not authenticated (no logged-in session with a
+        valid `X-WP-Nonce`, and no valid JWT in the header or cookie). The plugin is not called.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WpRestError'
+          example:
+            code: rest_forbidden
+            message: "Sorry, you are not allowed to do that."
+            data:
+              status: 401
+    ApiKeyForbidden:
+      description: |
+        Forbidden (`error_code` 84). One of:
+        - The user is not logged in.
+        - The user does not own this API key and is not an administrator.
+        - A non-administrator tries to grant a permission they do not have.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiKeyError'
+          example:
+            code: simple_jwt_login_api_key_error
+            message: "You are not allowed to manage this API key."
+            data:
+              status: 403
+              error_code: 84
+    ApiKeyNotFound:
+      description: The id is not a positive number (`error_code` 89).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiKeyError'
+          example:
+            code: simple_jwt_login_api_key_error
+            message: "Invalid API key ID."
+            data:
+              status: 404
+              error_code: 89
+    ApiKeyInvalidInput:
+      description: |
+        Unprocessable entity. One of:
+        - `name` is empty (`error_code` 85).
+        - No permission was given (`error_code` 86) or a permission is unknown (`error_code` 87).
+        - `expires_at` is not a valid date (`error_code` 132).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiKeyError'
+          examples:
+            missingName:
+              value:
+                code: simple_jwt_login_api_key_error
+                message: "API key name is required."
+                data:
+                  status: 422
+                  error_code: 85
+            invalidPermission:
+              value:
+                code: simple_jwt_login_api_key_error
+                message: "Invalid permission: admin"
+                data:
+                  status: 422
+                  error_code: 87
+            invalidExpiry:
+              value:
+                code: simple_jwt_login_api_key_error
+                message: "The expires_at value must be a date such as 2030-01-31 or 2030-01-31 23:59:00 (UTC)."
+                data:
+                  status: 422
+                  error_code: 132
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT passed in the `Authorization` header as `Bearer <token>`.
+        The header key name is configurable in plugin General Settings (default: `Authorization`).
+        This scheme must be enabled in the plugin General Settings under **JWT from Header**.
+    QueryJWT:
+      type: apiKey
+      in: query
+      name: JWT
+      description: |
+        JWT passed as a URL query parameter. The parameter name defaults to `JWT` but is
+        configurable in plugin General Settings under **Request Keys**.
+    WordPressSession:
+      type: apiKey
+      in: cookie
+      name: wordpress_logged_in
+      description: |
+        WordPress logged-in cookie (`wordpress_logged_in_<hash>`). For REST calls WordPress
+        also needs the `X-WP-Nonce` header (`wp_rest` nonce), otherwise the request is
+        treated as logged out. Used by the `/api-keys` and `/revoked-tokens` endpoints,
+        which also accept a JWT (`BearerAuth`).
+  schemas:
+    WpRestError:
+      type: object
+      description: Standard WordPress REST API error.
+      properties:
+        code:
+          type: string
+          example: rest_forbidden
+        message:
+          type: string
+          example: "Sorry, you are not allowed to do that."
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 401
+            error_code:
+              type: integer
+              description: Plugin error code. Only on plugin errors.
+              example: 84
+    ApiKeyError:
+      description: |
+        API key endpoint error. A `WP_Error` (`code: simple_jwt_login_api_key_error`) by
+        default; rewritten into the plugin envelope (`ResponseError`) when the API middleware
+        or API keys are enabled in the plugin settings.
+      anyOf:
+        - $ref: '#/components/schemas/WpRestError'
+        - $ref: '#/components/schemas/ResponseError'
+    ApiKeyActionResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "API key updated successfully."
+    ResponseError:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+          description: Always `false` for error responses.
+        data:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Human-readable error description.
+              example: "An error occurred."
+            error_code:
+              type: number
+              description: |
+                Internal error code. Use this for programmatic error handling.
+                See the plugin source (`ErrorCodes.php`) for the full list of codes.
+              example: 22
+    registerUserBody:
+      type: object
+      description: |
+        Only the fields below are passed to `wp_insert_user()`; any other field is ignored.
+        Roles come from the plugin settings (or from the auth code), never from the request.
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          example: test@simplejwtlogin.com
+          description: User email address. Must be unique, well-formed and at most 60 characters when `user_login` is omitted.
+        password:
+          type: string
+          description: |
+            Plaintext password for the new account. Required unless "Random password" is
+            enabled in the plugin settings (then it is ignored and a random one is generated).
+          example: "MyS3cretP@ss"
+        user_login:
+          type: string
+          nullable: true
+          description: The user's login username (max 60 characters). Defaults to the email address if omitted.
+          example: myuser
+        user_nicename:
+          type: string
+          nullable: true
+          description: URL-friendly version of the username (used in author URLs).
+          example: myuser
+        user_url:
+          type: string
+          nullable: true
+          description: URL associated with the user's profile.
+          example: https://simplejwtlogin.com
+        display_name:
+          type: string
+          nullable: true
+          description: The user's display name. Defaults to `user_login` if omitted.
+          example: My User
+        nickname:
+          type: string
+          nullable: true
+          description: The user's nickname. Defaults to `user_login` if omitted.
+          example: myuser
+        first_name:
+          type: string
+          nullable: true
+          description: The user's first name.
+          example: John
+        last_name:
+          type: string
+          nullable: true
+          description: The user's last name.
+          example: Doe
+        description:
+          type: string
+          nullable: true
+          description: The user's biographical description.
+          example: This is a sample description
+        rich_editing:
+          type: string
+          nullable: true
+          description: Whether to enable the rich-editor. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
+          example: "true"
+        syntax_highlighting:
+          type: string
+          nullable: true
+          description: Whether to enable the rich code editor. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
+          example: "true"
+        comment_shortcuts:
+          type: string
+          nullable: true
+          description: Whether to enable comment moderation keyboard shortcuts. Accepts `'true'` or `'false'` as a string literal. Defaults to `'false'`.
+          example: "false"
+        admin_color:
+          type: string
+          nullable: true
+          description: Admin color scheme for the user. Defaults to `'fresh'`.
+          example: fresh
+        use_ssl:
+          type: boolean
+          nullable: true
+          description: Whether the user should always access the admin over HTTPS. Defaults to `false`.
+          example: false
+        show_admin_bar_front:
+          type: string
+          nullable: true
+          description: Whether to display the Admin Bar on the front end. Accepts `'true'` or `'false'` as a string literal. Defaults to `'true'`.
+          example: "true"
+        locale:
+          type: string
+          nullable: true
+          description: User's locale. Defaults to empty (inherits site locale).
+          example: "en_US"
+        user_meta:
+          description: |
+            Optional user meta to set on the new account. Accepted as a JSON-encoded
+            object string or as a plain object. Only keys listed in "Allowed user meta"
+            in the plugin settings are stored; all others are silently discarded.
+          example: '{"billing_city":"New York"}'
+          oneOf:
+            - type: string
+              nullable: true
+            - type: object
+              additionalProperties:
+                type: string
+        AUTH_KEY:
+          type: string
+          nullable: true
+          example: "MY_SUPER_SECRET_AUTH_CODE"
+          description: |
+            Required when "Register Requires Auth Code" is enabled in the plugin settings.
+            When sent, it is always validated (`401`, `error_code` 27 if wrong), and the role
+            linked to the auth code, if any, is given to the new user. The parameter name
+            defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes settings.
+    authBody:
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+          example: john@doe.com
+          description: User email address. Required when neither `username` nor `login` is provided.
+        username:
+          type: string
+          nullable: true
+          example: myuser
+          description: WordPress login username. Required when neither `email` nor `login` is provided.
+        login:
+          type: string
+          nullable: true
+          example: myuser
+          description: |
+            Combined identifier accepted as either an email address or a WordPress login
+            username. Required when neither `email` nor `username` is provided.
+        password:
+          type: string
+          nullable: true
+          description: |
+            User plaintext password. Required when `password_hash` is not provided.
+            When "Base64-encoded password" is enabled in the plugin settings, supply the
+            password base64-encoded and it is decoded server-side before verification.
+        password_hash:
+          type: string
+          nullable: true
+          description: |
+            Hashed password as stored in the WordPress database. Requires "Allow login with
+            password hash" to be enabled in the plugin settings (`error_code` 113 when not
+            enabled). Required when `password` is not provided. When "Base64-encoded
+            password" is enabled, supply the hash base64-encoded.
+        AUTH_KEY:
+          type: string
+          nullable: true
+          example: "MY_SUPER_SECRET_AUTH_CODE"
+          description: |
+            Required when "Authentication Requires Auth Code" is enabled. The parameter
+            name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+            settings.
+        payload:
+          oneOf:
+            - type: string
+              nullable: true
+              example: '{"department":"engineering","region":"eu"}'
+            - type: object
+              example: {"department": "engineering", "region": "eu"}
+          description: |
+            Optional extra claims merged into the JWT payload. Accepted either as a
+            JSON-encoded string (form-encoded/query-string requests) or as a native
+            JSON object (JSON body requests).
+            Reserved identity claims configured in the plugin's payload settings (for example,
+            `email`, `id`, `username`, `site`, `iss`, `exp`, `iat`) and the custom
+            "Login by parameter" claim, if configured, are always stripped from this
+            value and set from the authenticated user instead - they cannot be
+            overridden by the caller.
+    authRefreshBody:
+      type: object
+      required:
+        - refresh_token
+      properties:
+        refresh_token:
+          type: string
+          example: "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789012"
+          description: Refresh token obtained from a prior `/auth` response.
+        AUTH_KEY:
+          type: string
+          nullable: true
+          example: "MY_SUPER_SECRET_AUTH_CODE"
+          description: |
+            Required when "Refresh Token Requires Auth Code" is enabled. The parameter
+            name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+            settings.
+        payload:
+          oneOf:
+            - type: string
+              nullable: true
+              example: '{"department":"engineering","region":"eu"}'
+            - type: object
+              example: {"department": "engineering", "region": "eu"}
+          description: |
+            Optional extra claims merged into the newly issued JWT payload. Accepted
+            either as a JSON-encoded string (form-encoded/query-string requests) or as a
+            native JSON object (JSON body requests).
+            Reserved identity claims configured in the plugin's payload settings (for example,
+            `email`, `id`, `username`, `site`, `iss`, `exp`, `iat`) and the custom
+            "Login by parameter" claim, if configured, are always stripped from this
+            value and set from the authenticated user instead - they cannot be
+            overridden by the caller.
+    validateBody:
+      type: object
+      properties:
+        JWT:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          description: |
+            The JWT to validate. Optional when the JWT is sent in the `Authorization` header,
+            cookie, or session instead.
+        AUTH_KEY:
+          type: string
+          nullable: true
+          example: "MY_SUPER_SECRET_AUTH_CODE"
+          description: |
+            Required when "Validate Token Requires Auth Code" is enabled. The parameter
+            name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+            settings.
+    authRevokeBody:
+      type: object
+      properties:
+        JWT:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          description: |
+            The JWT to revoke. It must be valid and not expired. Optional when the JWT is sent
+            in the `Authorization` header, cookie, or session instead.
+        AUTH_KEY:
+          type: string
+          nullable: true
+          example: "MY_SUPER_SECRET_AUTH_CODE"
+          description: |
+            Required when "Revoke Token Requires Auth Code" is enabled. The parameter
+            name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+            settings.
+    resetPasswordBody:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          example: contact@simplejwtlogin.com
+          description: Email address of the account to reset.
+        AUTH_KEY:
+          type: string
+          nullable: true
+          example: "MY_SUPER_SECRET_AUTH_CODE"
+          description: |
+            Required when "Reset Password Requires Auth Code" is enabled. The parameter
+            name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+            settings.
+    changePasswordBody:
+      type: object
+      required:
+        - email
+        - new_password
+      properties:
+        email:
+          type: string
+          example: contact@simplejwtlogin.com
+          description: Email address of the account whose password to change.
+        code:
+          type: string
+          nullable: true
+          example: "MY_SECRET_CODE_RECEIVED_BY_EMAIL"
+          description: |
+            One-time reset code received by email (from `POST /user/reset_password`).
+            Required in code-based reset flow; not required when `JWT` is provided and
+            JWT-based reset is enabled.
+        new_password:
+          type: string
+          example: "NewSecurePassword123!"
+          description: |
+            The new password to set for the account. Base64-encoded when "Password is base64
+            encoded" is enabled in the authentication settings.
+        JWT:
+          type: string
+          nullable: true
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          description: |
+            Valid JWT for the user. Used only when "Allow Reset Password with JWT" is enabled
+            and `code` is empty; the JWT user email must equal `email`. Can also be sent in the
+            `Authorization` header, cookie, or session.
+        AUTH_KEY:
+          type: string
+          nullable: true
+          example: "MY_SUPER_SECRET_AUTH_CODE"
+          description: |
+            Required when "Reset Password Requires Auth Code" is enabled. The parameter
+            name defaults to `AUTH_KEY` but is configurable in the plugin's Auth Codes
+            settings.
+    oauthBody:
+      type: object
+      required:
+        - provider
+      properties:
+        provider:
+          type: string
+          enum: [google, auth0, facebook, github]
+          description: OAuth provider slug.
+          example: google
+        code:
+          type: string
+          nullable: true
+          description: |
+            Authorization code returned by the OAuth provider's consent screen.
+            Used by Google, Auth0, Facebook, and GitHub.
+          example: "4/0AfJohXmX..."
+        id_token:
+          type: string
+          nullable: true
+          description: |
+            Google ID token from Sign In With Google (Google provider only). Can be
+            supplied instead of `code` to obtain a WordPress JWT directly.
+          example: "eyJhbGci..."
+        access_token:
+          type: string
+          nullable: true
+          description: |
+            Provider access token passed directly by the client. Used by Auth0
+            (`provider=auth0`), Facebook (`provider=facebook`) and GitHub (`provider=github`)
+            instead of `code`.
+          example: "EAABs..."
+    OAuthResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          description: |
+            For the `code` flow, `data` is the provider's token response as returned by the
+            provider (for example, `access_token`, `id_token`, `expires_in`, `token_type`).
+          properties:
+            jwt:
+              type: string
+              description: |
+                WordPress JWT (`id_token` / `access_token` flow), or a short-lived interim JWT
+                when `two_factor_required` is `true`.
+              example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NjMyOTk0MDAsImVtYWlsIjoiam9obkBkb2UuY29tIn0.signature"
+            two_factor_required:
+              type: boolean
+              nullable: true
+              description: Present and `true` only for a 2FA challenge.
+              example: true
+            provider:
+              type: string
+              nullable: true
+              description: Class name of the user's primary 2FA provider. Only with `two_factor_required`.
+              example: "Two_Factor_Totp"
+          additionalProperties: true
+    createApiKeyBody:
+      type: object
+      required:
+        - name
+        - permissions
+      properties:
+        name:
+          type: string
+          description: Human-readable name to identify the key.
+          example: "My integration key"
+        permissions:
+          description: |
+            Array (or comma-separated string) of permissions to grant.
+            Valid values: `read`, `create`, `update`, `delete`.
+          oneOf:
+            - type: array
+              items:
+                type: string
+                enum: [read, create, update, delete]
+            - type: string
+          example: ["read", "create"]
+        expires_at:
+          type: string
+          nullable: true
+          description: |
+            Optional expiry date/time, in UTC. Accepted forms: `Y-m-d`, `Y-m-d H:i[:s]` or
+            ISO 8601 with an optional zone (`2027-01-01T00:00:00Z`, `+02:00`). A value without
+            a zone is read as UTC; it is stored as UTC `Y-m-d H:i:s`. Any other value is
+            rejected with `422` (`error_code` 132). Omit (or pass `null`) for a non-expiring key.
+          example: "2027-01-01 00:00:00"
+    updateApiKeyBody:
+      type: object
+      required:
+        - name
+        - permissions
+      properties:
+        name:
+          type: string
+          description: New human-readable name for the key.
+          example: "Updated key name"
+        permissions:
+          description: |
+            Updated permission set. Same format as for key creation.
+            Valid values: `read`, `create`, `update`, `delete`.
+          oneOf:
+            - type: array
+              items:
+                type: string
+                enum: [read, create, update, delete]
+            - type: string
+          example: ["read", "create", "update"]
+        expires_at:
+          type: string
+          nullable: true
+          description: |
+            Updated expiry date/time in UTC (same forms as for key creation; invalid values
+            get `422`, `error_code` 132), or `null` to remove the expiry.
+          example: "2028-06-01 00:00:00"
+    twoFactorVerifyBody:
+      type: object
+      required:
+        - code
+      properties:
+        JWT:
+          type: string
+          nullable: true
+          description: |
+            The interim JWT received in the `POST /auth` Two-Factor challenge response.
+            Can be supplied here in the request body or via the `Authorization: Bearer`
+            header.
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        code:
+          type: string
+          description: |
+            The 2FA verification code. Accepted formats depend on the user's configured
+            provider: a TOTP code (6-digit), an email token, or a backup code.
+          example: "123456"
+    ApiKeyItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Database ID of the key.
+          example: 7
+        name:
+          type: string
+          description: Human-readable key name.
+          example: "My integration key"
+        key_prefix:
+          type: string
+          description: First 8 characters of the key followed by `****`.
+          example: "sjl_a1b2****"
+        permissions:
+          type: array
+          items:
+            type: string
+            enum: [read, create, update, delete]
+          example: ["read", "create"]
+        expires_at:
+          type: string
+          nullable: true
+          description: Expiry timestamp in `Y-m-d H:i:s` format, or `null`.
+          example: null
+        last_used_at:
+          type: string
+          nullable: true
+          description: Timestamp of last successful use, or `null` if never used.
+          example: "2026-04-15 10:30:00"
+        created_at:
+          type: string
+          description: Timestamp when the key was created.
+          example: "2026-01-01 12:00:00"
+        revoked_at:
+          type: string
+          nullable: true
+          description: Timestamp when the key was revoked, or `null` if still active.
+          example: null
+        user_id:
+          type: integer
+          nullable: true
+          description: WordPress user ID who owns this key. Only present in admin responses.
+          example: 3
+    RevokedTokenItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Database ID of the revoked-token record.
+          example: 7
+        user_id:
+          type: integer
+          description: WordPress user ID the revoked JWT belonged to.
+          example: 3
+        token_hash_masked:
+          type: string
+          description: |
+            First 8 and last 4 characters of the SHA-256 hash of the revoked JWT, separated
+            by `...`. The full hash and the raw JWT are never returned.
+          example: "a1b2c3d4...ef01"
+        expires_at:
+          type: string
+          nullable: true
+          description: |
+            Expiry timestamp (from the JWT's `exp` claim) in `Y-m-d H:i:s` format, or `null`
+            if the JWT had no expiry claim.
+          example: "2027-01-01 00:00:00"
+        revoked_at:
+          type: string
+          description: Timestamp when the token was revoked.
+          example: "2026-01-01 12:00:00"

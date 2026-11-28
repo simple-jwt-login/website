@@ -1,4 +1,6 @@
-# Force Login
+# Force Login and REST API JWT Access
+
+Keep the JWT endpoints reachable when Force Login restricts your WordPress REST API.
 
 Requires the [Force Login](https://wordpress.org/plugins/force-login/) plugin (or a similar plugin that restricts REST API access to authenticated users only).
 

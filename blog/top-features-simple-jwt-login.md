@@ -6,9 +6,9 @@ March 10, 2026 ·
 
 5 min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle)
 
-[Nicu Micle](/blog/authors/nicumicle.md)
+[Nicu Micle](/blog/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,7 +16,7 @@ Creator of Simple JWT Login
 
 JWT authentication for WordPress doesn't have to be complicated. Simple JWT Login has been quietly powering headless WordPress sites, mobile backends, and SPA integrations for years - and it does so with a level of configurability that most teams never fully explore.
 
-Here are the five features I consider the most powerful, and why they matter for real-world projects.
+Here are the five most powerful features, and why they matter for real-world projects.
 
 ## 1. Auth Codes - Fine-Grained API Key Control[​](#1-auth-codes---fine-grained-api-key-control "Direct link to 1. Auth Codes - Fine-Grained API Key Control")
 
@@ -26,12 +26,19 @@ Each Auth Code can be scoped to a specific action, assigned a WordPress user rol
 
 ```
 # Register a user only when a valid auth_code is present
+
 curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/users" \
+
   -H "Content-Type: application/json" \
+
   -d '{
+
     "email": "jane@example.com",
+
     "password": "securepassword",
+
     "auth_code": "YOUR_AUTH_CODE"
+
   }'
 ```
 
@@ -41,7 +48,7 @@ The practical use case: you're integrating a third-party signup funnel. You issu
 
 ## 2. Auto-Login with Dynamic Redirects[​](#2-auto-login-with-dynamic-redirects "Direct link to 2. Auto-Login with Dynamic Redirects")
 
-Auto-login is the feature that consistently surprises people. Send a user a URL with a valid JWT, and Simple JWT Login will authenticate them silently and redirect them wherever you need - no password prompt, no login page friction.
+Autologin is the feature that consistently surprises people. Send a user a URL with a valid JWT, and Simple JWT Login authenticates them silently and redirects them wherever you need - no password prompt, no login page friction.
 
 What makes it genuinely powerful is the **redirect URL variables**. Your redirect target can be dynamically built using the authenticated user's data:
 
@@ -76,7 +83,9 @@ Both modes support per-HTTP-method granularity. You might want `GET /wp-json/wp/
 
 ```
 Protected:  POST   /wp-json/wp/v2/posts
+
 Protected:  DELETE /wp-json/wp/v2/posts/{id}
+
 Public:     GET    /wp-json/wp/v2/posts
 ```
 
@@ -94,9 +103,13 @@ A few practical examples:
 
 ```
 add_filter('simple_jwt_login_jwt_payload', function($payload, $user) {
+
     $payload['role']       = implode(',', $user->roles);
+
     $payload['company_id'] = get_user_meta($user->ID, 'company_id', true);
+
     return $payload;
+
 }, 10, 2);
 ```
 
@@ -104,11 +117,17 @@ add_filter('simple_jwt_login_jwt_payload', function($payload, $user) {
 
 ```
 add_action('simple_jwt_login_register_hook', function($user, $request) {
+
     wp_mail(
+
         $user->user_email,
+
         'Welcome aboard!',
+
         'Your account is ready. Log in at ' . get_site_url()
+
     );
+
 }, 10, 2);
 ```
 
@@ -116,9 +135,13 @@ add_action('simple_jwt_login_register_hook', function($user, $request) {
 
 ```
 add_filter('simple_jwt_login_response_auth', function($response, $user, $jwt) {
+
     $response['avatar_url'] = get_avatar_url($user->ID);
+
     $response['display_name'] = $user->display_name;
+
     return $response;
+
 }, 10, 3);
 ```
 
@@ -152,9 +175,9 @@ The plugin is free, actively maintained, and the [full documentation](/docs.md) 
 
 **Tags:**
 
-* [Tutorial](/blog/tags/tags/tutorial.md "Tutorials and guides for Simple JWT Login")
-* [JWT Authentication](/blog/tags/tags/jwt-authentication.md "Articles about JSON Web Token (JWT) authentication")
-* [WordPress Plugin](/blog/tags/tags/wordpress-plugin.md "WordPress plugin tips, features, and usage guides")
-* [Security](/blog/tags/tags/security.md "WordPress REST API security and authentication best practices")
+* [Tutorial](/blog/tags/tags/tutorial "Tutorials and guides for Simple JWT Login")
+* [JWT Authentication](/blog/tags/tags/jwt-authentication "Articles about JSON Web Token (JWT) authentication")
+* [WordPress Plugin](/blog/tags/tags/wordpress-plugin "WordPress plugin tips, features, and usage guides")
+* [Security](/blog/tags/tags/security "WordPress REST API security and authentication best practices")
 
 [Edit this page](https://github.com/simple-jwt-login/website/tree/main/blog/2026-03-10-top-features-simple-jwt-login.md)

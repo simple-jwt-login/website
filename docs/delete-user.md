@@ -1,4 +1,4 @@
-# Delete User
+# Delete WordPress Users via REST API
 
 The Delete User endpoint removes a WordPress user account via a REST API call authenticated with a valid JWT. The user to delete is identified from the claims inside the JWT.
 
@@ -36,8 +36,11 @@ The JWT can be passed in any of these ways:
 
 ```
 {
+
   "JWT": "YOUR_JWT_HERE",
+
   "AUTH_KEY": "SUPER_SECRET_AUTH_CODE"
+
 }
 ```
 
@@ -45,6 +48,7 @@ Or via Authorization header:
 
 ```
 DELETE /wp-json/simple-jwt-login/v1/users
+
 Authorization: Bearer YOUR_JWT_HERE
 ```
 
@@ -54,9 +58,13 @@ Authorization: Bearer YOUR_JWT_HERE
 
 ```
 {
+
   "success": true,
+
   "message": "User was successfully deleted.",
+
   "id": 1
+
 }
 ```
 
@@ -66,11 +74,17 @@ JWT parameter is missing or cannot be decoded.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "JWT is missing.",
+
     "error_code": 42
+
   }
+
 }
 ```
 
@@ -80,11 +94,17 @@ JWT is invalid, has a bad signature, is expired, is revoked, or the auth code is
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "JWT has expired.",
+
     "error_code": 14
+
   }
+
 }
 ```
 
@@ -94,11 +114,17 @@ User deletion is disabled in plugin settings, or the client IP is not on the all
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Delete is not enabled.",
+
     "error_code": 39
+
   }
+
 }
 ```
 
@@ -108,11 +134,17 @@ No WordPress user matches the claims in the JWT.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "User not found.",
+
     "error_code": 24
+
   }
+
 }
 ```
 
@@ -122,11 +154,17 @@ Internal server error.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "An unexpected error occurred.",
+
     "error_code": 22
+
   }
+
 }
 ```
 
@@ -136,7 +174,9 @@ Internal server error.
 
 ```
 curl -X DELETE 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
+
   -H "Content-type: application/json" \
+
   -d '{"JWT":"YOUR_JWT","AUTH_KEY":"SECRET_AUTH_CODE"}'
 ```
 
@@ -144,6 +184,7 @@ Or using the Authorization header:
 
 ```
 curl -X DELETE 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
+
   -H "Authorization: Bearer YOUR_JWT"
 ```
 
@@ -151,9 +192,13 @@ curl -X DELETE 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users' \
 
 ```
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $simpleJwtLogin->deleteUser('Your JWT');
 ```
 
@@ -161,11 +206,17 @@ $simpleJwtLogin->deleteUser('Your JWT');
 
 ```
 fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/users', {
+
   method: 'DELETE',
+
   headers: {
+
     'Content-Type': 'application/json',
+
     'Authorization': 'Bearer YOUR_JWT'
+
   }
+
 }).then(r => r.json()).then(console.log);
 ```
 

@@ -6,9 +6,9 @@ December 4, 2022 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,7 +16,7 @@ Creator of Simple JWT Login
 
 The version `3.4.9` has been released today on [WordPress](https://wordpress.org/plugins/simple-jwt-login).
 
-This update introduces several new features around password handling, autologin flexibility, and a new plugin lifecycle hook.
+This update introduces new features around password handling, autologin flexibility, and a new plugin lifecycle hook.
 
 ## New Features[​](#new-features "Direct link to New Features")
 
@@ -36,5 +36,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [bugfix](/releases/tags/bugfix.md)
-* [feature](/releases/tags/feature.md)
+* [bugfix](/releases/tags/bugfix)
+* [feature](/releases/tags/feature)

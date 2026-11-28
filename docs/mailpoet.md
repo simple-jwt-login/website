@@ -1,6 +1,6 @@
-# MailPoet
+# MailPoet Magic Link Autologin
 
-The Simple-JWT-Login MailPoet add-on lets you embed personalized, one-click login links inside your MailPoet email campaigns. When a subscriber clicks the link, they are automatically logged into your WordPress site - no password entry required.
+The Simple JWT Login MailPoet add-on lets you embed personalized, one-click login links inside your MailPoet email campaigns. When a subscriber clicks the link, they are automatically logged into your WordPress site - no password entry required.
 
 The add-on generates a shortcode that you drop into your MailPoet email template. Each time an email is sent, the shortcode is rendered into a unique, time-limited autologin URL for that recipient.
 
@@ -14,8 +14,8 @@ The add-on generates a shortcode that you drop into your MailPoet email template
 | `class`       | CSS class(es) to apply to the link element                                                                                |
 | `style`       | Inline CSS styles for the link                                                                                            |
 | `validity`    | How long the generated JWT is valid, in seconds. Default: `604800` (one week)                                             |
-| `authCode`    | The Auth Code required by the Autologin endpoint. Find your codes under **Simple-JWT-Login → Auth Codes**.                |
-| `redirectUrl` | Overrides the redirect URL set in Simple-JWT-Login settings. The plugin sends the user here after a successful autologin. |
+| `authCode`    | The Auth Code required by the Autologin endpoint. Find your codes under **Simple JWT Login → Auth Codes**.                |
+| `redirectUrl` | Overrides the redirect URL set in Simple JWT Login settings. The plugin sends the user here after a successful autologin. |
 
 ```
 [custom:simple-jwt-login text="Login" class="myClassName" style="color:red;" validity="604800" authCode="1" redirectUrl="https://simplejwtlogin.com"]
@@ -41,3 +41,8 @@ The add-on generates a shortcode that you drop into your MailPoet email template
 ### Email preview[​](#email-preview "Direct link to Email preview")
 
 ![Preview of a MailPoet newsletter email with autologin link](https://ps.w.org/simple-jwt-login-mailpoet/assets/screenshot-3.png)
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [How JWT autologin works](/docs/autologin.md)
+* [Other integrations](/docs/integrations/third-party.md)

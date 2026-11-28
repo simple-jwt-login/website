@@ -1,4 +1,4 @@
-Version: 3.6.5
+Version: 3.6.9
 
 # Simple-JWT-Login
 
@@ -26,6 +26,10 @@ This API features Cross-Origin Resource Sharing (CORS) implemented in compliance
 And that allows cross-domain communication from the browser.
 
 All responses have a wildcard same-origin which makes them public and accessible to everyone, including any code on any site.
+
+### Contact
+
+<contact@simplejwtlogin.com>
 
 ### License
 

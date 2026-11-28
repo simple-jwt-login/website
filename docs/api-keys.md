@@ -1,4 +1,4 @@
-# API Keys
+# WordPress REST API Keys
 
 API Keys are long-lived credentials that authenticate REST requests to any WordPress endpoint when the API key middleware is enabled. Unlike JWTs - which expire and carry user claims in the token - an API key is an opaque secret that maps to a WordPress user and a set of permissions.
 
@@ -118,24 +118,43 @@ Returns a paginated list of API keys. Only the key prefix (first 8 characters) i
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "items": [
+
       {
+
         "id": 7,
+
         "name": "My integration key",
+
         "key_prefix": "sjl_a1b2****",
+
         "permissions": ["read", "create"],
+
         "expires_at": null,
+
         "last_used_at": "2026-04-15 10:30:00",
+
         "created_at": "2026-01-01 12:00:00",
+
         "revoked_at": null
+
       }
+
     ],
+
     "total": 1,
+
     "page": 1,
+
     "per_page": 20
+
   }
+
 }
 ```
 
@@ -143,6 +162,7 @@ Returns a paginated list of API keys. Only the key prefix (first 8 characters) i
 
 ```
 curl 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys' \
+
   --cookie "wordpress_logged_in_xxx=..."
 ```
 
@@ -150,6 +170,7 @@ curl 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys' \
 
 ```
 curl 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys' \
+
   -H "Authorization: Bearer <your-jwt>"
 ```
 
@@ -167,9 +188,13 @@ Generates a new API key. The full plaintext key is returned **only in this respo
 
 ```
 {
+
   "name": "My integration key",
+
   "permissions": ["read", "create"],
+
   "expires_at": "2027-01-01 00:00:00"
+
 }
 ```
 
@@ -183,15 +208,25 @@ Generates a new API key. The full plaintext key is returned **only in this respo
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "id": 7,
+
     "key": "sjl_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4",
+
     "name": "My integration key",
+
     "key_prefix": "sjl_a1b2",
+
     "permissions": ["read", "create"],
+
     "expires_at": "2027-01-01 00:00:00"
+
   }
+
 }
 ```
 
@@ -199,8 +234,11 @@ Generates a new API key. The full plaintext key is returned **only in this respo
 
 ```
 curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys' \
+
   --cookie "wordpress_logged_in_xxx=..." \
+
   -H "Content-Type: application/json" \
+
   -d '{"name":"CI pipeline","permissions":["read","create"]}'
 ```
 
@@ -208,8 +246,11 @@ curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys' \
 
 ```
 curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys' \
+
   -H "Authorization: Bearer <your-jwt>" \
+
   -H "Content-Type: application/json" \
+
   -d '{"name":"CI pipeline","permissions":["read","create"]}'
 ```
 
@@ -229,9 +270,13 @@ Updates the name, permissions, and/or expiry of an existing key. The key secret 
 
 ```
 {
+
   "name": "Updated key name",
+
   "permissions": ["read", "create", "update"],
+
   "expires_at": "2028-06-01 00:00:00"
+
 }
 ```
 
@@ -239,8 +284,11 @@ Updates the name, permissions, and/or expiry of an existing key. The key secret 
 
 ```
 {
+
   "success": true,
+
   "message": "API key updated successfully."
+
 }
 ```
 
@@ -248,8 +296,11 @@ Updates the name, permissions, and/or expiry of an existing key. The key secret 
 
 ```
 curl -X PUT 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7' \
+
   --cookie "wordpress_logged_in_xxx=..." \
+
   -H "Content-Type: application/json" \
+
   -d '{"name":"Readonly key","permissions":["read"]}'
 ```
 
@@ -257,8 +308,11 @@ curl -X PUT 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7' 
 
 ```
 curl -X PUT 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7' \
+
   -H "Authorization: Bearer <your-jwt>" \
+
   -H "Content-Type: application/json" \
+
   -d '{"name":"Readonly key","permissions":["read"]}'
 ```
 
@@ -278,8 +332,11 @@ Soft-deletes the key by recording a `revoked_at` timestamp. The record is kept i
 
 ```
 {
+
   "success": true,
+
   "message": "API key revoked successfully."
+
 }
 ```
 
@@ -287,6 +344,7 @@ Soft-deletes the key by recording a `revoked_at` timestamp. The record is kept i
 
 ```
 curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7/revoke' \
+
   --cookie "wordpress_logged_in_xxx=..."
 ```
 
@@ -294,6 +352,7 @@ curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7/
 
 ```
 curl -X POST 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7/revoke' \
+
   -H "Authorization: Bearer <your-jwt>"
 ```
 
@@ -313,8 +372,11 @@ Permanently removes the key record from the database. This action is irreversibl
 
 ```
 {
+
   "success": true,
+
   "message": "API key deleted successfully."
+
 }
 ```
 
@@ -322,6 +384,7 @@ Permanently removes the key record from the database. This action is irreversibl
 
 ```
 curl -X DELETE 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7' \
+
   --cookie "wordpress_logged_in_xxx=..."
 ```
 
@@ -329,6 +392,7 @@ curl -X DELETE 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/
 
 ```
 curl -X DELETE 'https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/api-keys/7' \
+
   -H "Authorization: Bearer <your-jwt>"
 ```
 
@@ -340,6 +404,7 @@ Once you have a key, include it in the configured header on every request:
 
 ```
 curl 'https://simplejwtlogin.com/wp-json/wp/v2/posts' \
+
   -H "X-API-Key: sjl_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"
 ```
 
@@ -351,11 +416,17 @@ All error responses from the API key endpoints follow the standard envelope:
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Human-readable error description",
+
     "error_code": 84
+
   }
+
 }
 ```
 

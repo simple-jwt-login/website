@@ -1,4 +1,4 @@
-# Exchange OAuth Code for Auth0 Tokens
+# Exchange an Auth0 OAuth Code for Tokens
 
 ## Overview[​](#overview "Direct link to Overview")
 
@@ -30,7 +30,9 @@ The `redirect_uri` used here must exactly match the one registered in your Auth0
 
 ```
 curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
+
   -H "Content-Type: application/json" \
+
   -d '{"provider":"auth0","code":"YOUR_AUTH0_AUTH_CODE","redirect_uri":"https://your-site.com/callback"}'
 ```
 
@@ -42,13 +44,21 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "access_token": "eyJhbGciOiJSUzI1NiIs...",
+
     "id_token": "eyJhbGciOiJSUzI1NiIs...",
+
     "expires_in": 86400,
+
     "token_type": "Bearer"
+
   }
+
 }
 ```
 
@@ -56,10 +66,21 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "The code you provided is invalid.",
+
     "error_code": 72
+
   }
+
 }
 ```
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Exchange the Auth0 token for a WordPress JWT](/docs/integrations/oauth/auth0/exchange-token.md)
+* [Check the Auth0 OAuth setup](/docs/integrations/oauth/auth0/setup.md)

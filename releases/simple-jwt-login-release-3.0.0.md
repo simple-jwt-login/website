@@ -6,9 +6,9 @@ July 11, 2021 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,7 +16,7 @@ Creator of Simple JWT Login
 
 The version `3.0.0` has been released today on [WordPress](https://wordpress.org/plugins/simple-jwt-login).
 
-A major release with a rewritten plugin core, support for JSON request bodies, the Force Login integration and more ways to restrict authentication.
+A major release with a rewritten plugin core, support for JSON request bodies, the Force Login integration, and more ways to restrict authentication.
 
 ## New Features[​](#new-features "Direct link to New Features")
 
@@ -46,5 +46,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [feature](/releases/tags/feature.md)
-* [bugfix](/releases/tags/bugfix.md)
+* [feature](/releases/tags/feature)
+* [bugfix](/releases/tags/bugfix)

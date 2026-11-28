@@ -2,7 +2,7 @@
 
 ```
 GET 
-/simple-jwt-login/v1/auth/validate
+/auth/validate
 ```
 
 Validate JWT
@@ -13,7 +13,10 @@ Validate JWT
 
 * 200
 * 400
+* 401
 
 Validate token
 
 Error.
+
+The JWT is expired, revoked, or not valid yet.

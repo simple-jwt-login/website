@@ -168,7 +168,7 @@
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.2</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.2</guid>
             <pubDate>Fri, 09 Oct 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 4.0.2 - WooCommerce fix and WordPress 7.1 compatibility]]></description>
+            <description><![CDATA[Simple JWT Login 4.0.2 release notes for the WordPress JWT authentication plugin - WooCommerce fix and WordPress 7.1 compatibility.]]></description>
             <content:encoded><![CDATA[<p>The version <code>4.0.2</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>A small maintenance release that fixes the WooCommerce integration and confirms compatibility with WordPress 7.1.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.2#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
@@ -190,7 +190,7 @@
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.1</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.1</guid>
             <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 4.0.1 - Protect Endpoints fix and Google OAuth security improvement]]></description>
+            <description><![CDATA[Simple JWT Login 4.0.1 release notes for the WordPress JWT authentication plugin - Protect Endpoints fix and Google OAuth security improvement.]]></description>
             <content:encoded><![CDATA[<p>The version <code>4.0.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>The first patch release for the 4.x line. It narrows Protect Endpoints to REST requests, hardens Google OAuth and improves how reserved JWT claims are handled.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="security">Security<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.1#security" class="hash-link" aria-label="Direct link to Security" title="Direct link to Security" translate="no">​</a></h2>
@@ -215,15 +215,15 @@
             <pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Released version 4.0.0 - major redesign, new features, OAuth expansion, 2FA, API Keys, Audit Logs, Webhooks, and more]]></description>
             <content:encoded><![CDATA[<p>The version <code>4.0.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This is a <strong>major release</strong> packed with new features, a completely redesigned admin interface, expanded OAuth provider support, and important security and usability improvements.
+<p>This is a <strong>major release</strong> packed with new features, a redesigned admin interface, expanded OAuth provider support, and important security and usability improvements.
 Please read the breaking changes section carefully before upgrading.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="completely-redesigned-admin-interface">Completely Redesigned Admin Interface<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#completely-redesigned-admin-interface" class="hash-link" aria-label="Direct link to Completely Redesigned Admin Interface" title="Direct link to Completely Redesigned Admin Interface" translate="no">​</a></h3>
-<p>The plugin settings interface has been completely redesigned to provide a cleaner, more modern, and intuitive user experience.
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="redesigned-admin-interface">Redesigned Admin Interface<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#redesigned-admin-interface" class="hash-link" aria-label="Direct link to Redesigned Admin Interface" title="Direct link to Redesigned Admin Interface" translate="no">​</a></h3>
+<p>The plugin settings interface has been redesigned to provide a cleaner, more modern, and intuitive user experience.
 Settings are now better organized, easier to discover, and simpler to configure, reducing the need to consult documentation for common setup tasks.
 The refreshed layout improves navigation and helps users configure JWT authentication more efficiently.</p>
 <p>The new admin UI also includes full <strong>Light</strong> and <strong>Dark Mode</strong> support, automatically adapting to your preferred WordPress admin theme for a consistent and comfortable experience.</p>
-<p>Behind the scenes, all frontend assets (CSS, JavaScript, and images) have been reorganized into a dedicated <code>assets/</code> directory, resulting in a cleaner, more maintainable plugin structure and improved developer experience.</p>
+<p>Behind the scenes, all frontend assets (CSS, JavaScript, and images) have been reorganized into a dedicated <code>assets/</code> directory, resulting in a cleaner, more maintainable plugin structure, and improved developer experience.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="audit-logs">Audit Logs<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#audit-logs" class="hash-link" aria-label="Direct link to Audit Logs" title="Direct link to Audit Logs" translate="no">​</a></h3>
 <p>A new <strong>Audit Logs</strong> section gives you visibility into authentication events across your WordPress site. You can now track login attempts, token refreshes, user registrations, password resets, and more - all with timestamps and relevant metadata. Audit log entries are stored in a dedicated database table and can be browsed directly from the plugin settings.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="webhooks">Webhooks<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#webhooks" class="hash-link" aria-label="Direct link to Webhooks" title="Direct link to Webhooks" translate="no">​</a></h3>
@@ -277,28 +277,28 @@ This eliminates duplication and ensures consistent behavior across all endpoints
 <ul>
 <li class="">Fix double encoding for Reset Password email body (<a href="https://github.com/nicumicle/simple-jwt-login/issues/165" target="_blank" rel="noopener noreferrer" class="">#165</a>) - the email body was being base64-encoded twice, producing garbled content in some mail clients</li>
 <li class="">Fix passwords with special characters on register, authenticate, and reset password - special characters in passwords no longer break authentication due to incorrect <code>wp_slash()</code> handling</li>
-<li class="">Replace variables in reset password email subject - template variables (e.g. <code>{site_name}</code>) are now correctly substituted in the email subject line, not just the body</li>
+<li class="">Replace variables in reset password email subject - template variables (for example, <code>{site_name}</code>) are now correctly substituted in the email subject line, not just the body</li>
 <li class="">Fix reset password response - the endpoint now returns a consistent and correctly structured JSON response</li>
 <li class="">Fix OAuth + 2FA integration - OAuth login flows now correctly trigger the 2FA check when the authenticated user has 2FA enabled</li>
 <li class="">Fix "Try Now" when permalink is disabled - the feature now works correctly on WordPress installations using plain (query string) permalinks</li>
 <li class="">Fix WordPress data dependency issue affecting some edge cases in the authentication flow</li>
 <li class="">Fix CSS compatibility for WordPress 7.0</li>
-<li class="">Fix status codes - HTTP response codes are now accurate and consistent across all endpoints (e.g. <code>401</code> for unauthorized, <code>403</code> for forbidden, <code>422</code> for validation errors)</li>
+<li class="">Fix status codes - HTTP response codes are now accurate and consistent across all endpoints (for example, <code>401</code> for unauthorized, <code>403</code> for forbidden, <code>422</code> for validation errors)</li>
 <li class="">Fix validation error responses - invalid request payloads now return structured error messages instead of generic failures</li>
 <li class="">Address WordPress Plugin Checker issues - the plugin now passes the official WordPress Plugin Check tool with no critical errors</li>
 </ul>
 <hr>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="breaking-changes">Breaking Changes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#breaking-changes" class="hash-link" aria-label="Direct link to Breaking Changes" title="Direct link to Breaking Changes" translate="no">​</a></h2>
-<p>Version 4.0.0 introduces several breaking changes. If you are upgrading from version 3.x, review each item below and update your client applications accordingly.</p>
+<p>Version 4.0.0 introduces breaking changes. If you are upgrading from version 3.x, review each item below and update your client applications accordingly.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="settings-structure-reorganized-in-the-database">Settings Structure Reorganized in the Database<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#settings-structure-reorganized-in-the-database" class="hash-link" aria-label="Direct link to Settings Structure Reorganized in the Database" title="Direct link to Settings Structure Reorganized in the Database" translate="no">​</a></h3>
 <p>The internal format of the plugin's settings record in the WordPress options table has been restructured.
-<strong>A settings migration runs automatically on plugin activation</strong>, but if you have custom code that reads <code>simple_jwt_login_settings</code> directly from the database, it will need to be updated to match the new structure.</p>
+<strong>A settings migration runs automatically on plugin activation</strong>, but if you have custom code that reads <code>simple_jwt_login_settings</code> directly from the database, update it to match the new structure.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="register-user-response-format-changed">Register User Response Format Changed<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#register-user-response-format-changed" class="hash-link" aria-label="Direct link to Register User Response Format Changed" title="Direct link to Register User Response Format Changed" translate="no">​</a></h3>
 <p>The register endpoint response has changed:</p>
 <p><strong>Before (3.x):</strong></p>
-<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"success"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">true</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"ID"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"user_login"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"john"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> ... </span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"success"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">true</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"ID"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"user_login"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"john"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> ... </span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
 <p><strong>After (4.0.0):</strong></p>
-<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"success"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">true</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"data"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"id"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"user_login"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"john"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> ... </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"success"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">true</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"data"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"id"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">"user_login"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"john"</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> ... </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
 <p>Update any client code that reads fields directly from the register response root.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="old-register-endpoint-removed">Old <code>/register</code> Endpoint Removed<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#old-register-endpoint-removed" class="hash-link" aria-label="Direct link to old-register-endpoint-removed" title="Direct link to old-register-endpoint-removed" translate="no">​</a></h3>
 <p>The legacy <code>GET/POST /simple-jwt-login/v1/register</code> endpoint has been removed.</p>
@@ -309,10 +309,10 @@ The plugin now uses the single <strong>General Settings &gt; User Identification
 <p>If you had a different identification strategy configured specifically for delete, review your General Settings to ensure the correct value is set.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="refresh-token-added-to-authentication-response">Refresh Token Added to Authentication Response<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#refresh-token-added-to-authentication-response" class="hash-link" aria-label="Direct link to Refresh Token Added to Authentication Response" title="Direct link to Refresh Token Added to Authentication Response" translate="no">​</a></h3>
 <p>The authenticate endpoint now returns a <code>refresh_token</code> field in addition to the JWT.
-While this is additive, clients that strictly validate the response shape (e.g. with JSON Schema) may need to be updated to allow the new field.</p>
+While this is additive, clients that strictly validate the response shape (for example, with JSON Schema) may need to be updated to allow the new field.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2fa-enforcement-on-authentication">2FA Enforcement on Authentication<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-4.0.0#2fa-enforcement-on-authentication" class="hash-link" aria-label="Direct link to 2FA Enforcement on Authentication" title="Direct link to 2FA Enforcement on Authentication" translate="no">​</a></h3>
 <p>If your site has a 2FA plugin installed and a user has 2FA enabled, the JWT authentication flow now <strong>requires</strong> the second factor before issuing a token.
-Applications that bypassed 2FA by using the plugin's authentication endpoint will now be blocked until they implement the 2FA challenge/response flow.</p>
+Applications that bypassed 2FA by using the plugin's authentication endpoint are now blocked until they implement the 2FA challenge/response flow.</p>
 <hr>
 <p>If you encounter any issues after updating, please open an <a href="https://github.com/nicumicle/simple-jwt-login/issues" target="_blank" rel="noopener noreferrer" class="">issue</a> on GitHub.</p>]]></content:encoded>
             <category>feature</category>
@@ -324,7 +324,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.6</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.6</guid>
             <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.6.6 - WordPress 7.0 compatibility]]></description>
+            <description><![CDATA[Simple JWT Login 3.6.6 release notes for the WordPress JWT authentication plugin - WordPress 7.0 compatibility.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.6</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>A maintenance release for the 3.x line that confirms compatibility with WordPress 7.0.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.6#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility" translate="no">​</a></h2>
@@ -340,9 +340,9 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.5</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.5</guid>
             <pubDate>Sat, 14 Mar 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.6.5 - security patch, bug fixes, and WordPress 6.9 compatibility]]></description>
+            <description><![CDATA[Simple JWT Login 3.6.5 release notes for the WordPress JWT authentication plugin - security patch, bug fixes, and WordPress 6.9 compatibility.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This is a <strong>security and maintenance release</strong>. We strongly recommend updating immediately.</p>
+<p>This is a <strong>security and maintenance release</strong>. Update immediately.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="security-fix">Security Fix<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.5#security-fix" class="hash-link" aria-label="Direct link to Security Fix" title="Direct link to Security Fix" translate="no">​</a></h2>
 <p>This release addresses a <strong>Stored Cross-Site Scripting (XSS)</strong> vulnerability identified as <strong>CVE-2025-58648</strong>. Stored XSS vulnerabilities allow an attacker to inject malicious scripts that are persisted on the server and executed in the browsers of other users. This fix prevents unsanitized input from being stored and rendered as HTML.</p>
 <p>If you are running an older version, please update as soon as possible to protect your site and users.</p>
@@ -368,7 +368,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.4</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.4</guid>
             <pubDate>Thu, 17 Apr 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.6.4]]></description>
+            <description><![CDATA[Simple JWT Login 3.6.4 release notes for the WordPress JWT authentication plugin - WordPress 6.8 compatibility.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.4</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This is a compatibility release for WordPress 6.8.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.4#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility" translate="no">​</a></h2>
@@ -384,7 +384,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.3</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.3</guid>
             <pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.6.3]]></description>
+            <description><![CDATA[Simple JWT Login 3.6.3 release notes for the WordPress JWT authentication plugin - a Protect Endpoints fix.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.3</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This update includes a fix for the Protect Endpoints feature.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.3#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
@@ -401,7 +401,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.2</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.2</guid>
             <pubDate>Wed, 09 Apr 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.6.2]]></description>
+            <description><![CDATA[Simple JWT Login 3.6.2 release notes for the WordPress JWT authentication plugin - Protect Endpoints fixes for admin routes and session JWTs.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.2</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This update fixes issues with the Protect Endpoints feature blocking WordPress admin requests and missing JWT session lookup.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.2#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
@@ -419,7 +419,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.1</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.1</guid>
             <pubDate>Tue, 01 Apr 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.6.1]]></description>
+            <description><![CDATA[Simple JWT Login 3.6.1 release notes - JWT validation on protected endpoints and exact or prefix matching for endpoint rules.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.1</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This update strengthens the Protect Endpoints feature with JWT validation and restores backward compatibility for existing configurations.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.1#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
@@ -441,7 +441,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.0</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.0</guid>
             <pubDate>Mon, 24 Mar 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.6.0]]></description>
+            <description><![CDATA[Simple JWT Login 3.6.0 release notes - request methods per protected endpoint, WPGraphQL authentication, and login by username or email.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.6.0</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This update brings better flexibility for Protect Endpoints, WPGraphQL authentication support, username/email login parity with WordPress, and PHP 8.3/8.4 CI coverage.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.6.0#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
@@ -464,7 +464,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.8</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.8</guid>
             <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.8]]></description>
+            <description><![CDATA[Simple JWT Login 3.5.8 release notes - safe redirects against open redirect attacks and a JWT middleware that runs once per request.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.8</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This update improves redirect security and ensures the JWT middleware only runs once per request.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.8#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
@@ -481,7 +481,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.7</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.7</guid>
             <pubDate>Sun, 22 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.7]]></description>
+            <description><![CDATA[Simple JWT Login 3.5.7 release notes for the WordPress JWT authentication plugin - WordPress 6.7 compatibility.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.7</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This is a compatibility release for WordPress 6.7.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="compatibility">Compatibility<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.7#compatibility" class="hash-link" aria-label="Direct link to Compatibility" title="Direct link to Compatibility" translate="no">​</a></h2>
@@ -497,7 +497,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.6</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.6</guid>
             <pubDate>Sat, 03 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.6]]></description>
+            <description><![CDATA[Simple JWT Login 3.5.6 release notes for the WordPress JWT authentication plugin - revoked token checks with the JWT middleware and WordPress 6.6 compatibility.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.6</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This update adds WordPress 6.6 compatibility and fixes revoked token validation when the JWT middleware is enabled.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.6#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
@@ -517,7 +517,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.5</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.5</guid>
             <pubDate>Sat, 04 May 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.5]]></description>
+            <description><![CDATA[Simple JWT Login 3.5.5 release notes for the WordPress JWT authentication plugin - a Protect Endpoints refactor and README updates.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.5</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This is a maintenance release with documentation updates and a Protect Endpoints refactor.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="improvements">Improvements<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.5#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements" translate="no">​</a></h2>
@@ -535,7 +535,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.4</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.4</guid>
             <pubDate>Fri, 03 May 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.4]]></description>
+            <description><![CDATA[Simple JWT Login 3.5.4 release notes for the WordPress JWT authentication plugin - Google OAuth login and the correct status code for expired tokens.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.4</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This update adds OAuth support for Google login and fixes the HTTP status code returned for expired tokens.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.4#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
@@ -560,7 +560,7 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.3</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.3</guid>
             <pubDate>Thu, 16 Nov 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.3]]></description>
+            <description><![CDATA[Simple JWT Login 3.5.3 release notes for the WordPress JWT authentication plugin - a license fix in composer.json and WordPress 6.4 compatibility.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.3</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
 <p>This is a maintenance release with a minor fix and WordPress 6.4 compatibility.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bug-fixes">Bug Fixes<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.3#bug-fixes" class="hash-link" aria-label="Direct link to Bug Fixes" title="Direct link to Bug Fixes" translate="no">​</a></h2>
@@ -580,9 +580,9 @@ Applications that bypassed 2FA by using the plugin's authentication endpoint wil
             <link>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.2</link>
             <guid>https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.2</guid>
             <pubDate>Thu, 02 Nov 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Released version 3.5.2]]></description>
+            <description><![CDATA[Simple JWT Login 3.5.2 release notes - a configurable `iss` claim and fixes that reject revoked JWTs on protected endpoints.]]></description>
             <content:encoded><![CDATA[<p>The version <code>3.5.2</code> has been released today on <a href="https://wordpress.org/plugins/simple-jwt-login" target="_blank" rel="noopener noreferrer" class="">WordPress</a>.</p>
-<p>This update adds <code>iss</code> support to the JWT payload, tightens revoked token enforcement, and fixes several bugs.</p>
+<p>This update adds <code>iss</code> support to the JWT payload, tightens revoked token enforcement, and fixes bugs.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="new-features">New Features<a href="https://simplejwtlogin.com/releases/simple-jwt-login-release-3.5.2#new-features" class="hash-link" aria-label="Direct link to New Features" title="Direct link to New Features" translate="no">​</a></h2>
 <ul>
 <li class="">Add <code>iss</code> (issuer) claim to the JWT payload with a configurable value</li>

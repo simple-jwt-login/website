@@ -1,9 +1,9 @@
-# Setup
+# Facebook OAuth Setup for WordPress
 
 ## Create a Facebook App[​](#create-a-facebook-app "Direct link to Create a Facebook App")
 
 1. Log in to the [Meta for Developers](https://developers.facebook.com/) console.
-2. Click **My Apps → Create App**.
+2. Open **My Apps** and click **Create App**.
 3. Choose **Consumer** as the app type and click **Next**.
 4. Fill in the app name and contact email, then click **Create App**.
 5. In the app dashboard, go to **Settings → Basic** and copy the **App ID** and **App Secret**.
@@ -31,3 +31,8 @@ Keep your credentials secure - never commit them to version control or expose th
 | -------------- | ----------------------- |
 | **App ID**     | The Facebook App ID     |
 | **App Secret** | The Facebook App Secret |
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Exchange a Facebook OAuth code for tokens](/docs/integrations/oauth/facebook/exchange-code.md)
+* [Exchange a Facebook token for a WordPress JWT](/docs/integrations/oauth/facebook/exchange-token.md)

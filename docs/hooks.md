@@ -1,10 +1,15 @@
-# Hooks
+# WordPress JWT Hooks and Filters
 
-Simple JWT Login exposes **22 WordPress action and filter hooks** that let you extend or customize the plugin's behaviour without modifying its source code. Use them to enrich JWT payloads, send notifications, apply business logic, gate requests, or build fully custom flows on top of the plugin.
+Simple JWT Login exposes **39 WordPress action and filter hooks** that let you extend or customize the plugin's behavior without modifying its source code. Use them to enrich JWT payloads, send notifications, apply business logic, gate requests, or build fully custom flows on top of the plugin.
+
+The hooks come in two groups, and each group is switched on in a different place:
+
+* **19 general hooks** (the [Quick Reference](#quick-reference) table) - enable each one in **Settings → Simple JWT Login → Hooks**.
+* **20 audit hooks** (see [Audit Hooks](#audit-hooks)) - they fire when [audit logging](/docs/audit-logs.md) is enabled and the matching event is selected.
 
 Enable hooks first
 
-Hooks must be enabled individually in the plugin settings before they fire. **All hooks are disabled by default.**
+**All hooks are disabled by default.** A hook that isn't enabled never fires, even if your code calls `add_action()` or `add_filter()` for it.
 
 ## Quick Reference[​](#quick-reference "Direct link to Quick Reference")
 
@@ -27,9 +32,6 @@ Hooks must be enabled individually in the plugin settings before they fire. **Al
 | [`simple_jwt_login_response_revoke_token`](#simple_jwt_login_response_revoke_token)                               | filter | Before the revoke-token response is returned        |
 | [`simple_jwt_login_response_validate_token`](#simple_jwt_login_response_validate_token)                           | filter | Before the validate-token response is returned      |
 | [`simple_jwt_login_generate_payload`](#simple_jwt_login_generate_payload)                                         | filter | Before a JWT payload is generated (any endpoint)    |
-| [`simple_jwt_login_audit_2fa_challenge_issued`](#simple_jwt_login_audit_2fa_challenge_issued)                     | action | When a 2FA challenge code has been issued           |
-| [`simple_jwt_login_audit_2fa_verify_success`](#simple_jwt_login_audit_2fa_verify_success)                         | action | After a successful 2FA verification                 |
-| [`simple_jwt_login_audit_2fa_verify_failed`](#simple_jwt_login_audit_2fa_verify_failed)                           | action | When a 2FA verification attempt fails               |
 | [`simple_jwt_login_response_2fa_challenge`](#simple_jwt_login_response_2fa_challenge)                             | filter | Before the 2FA challenge response is returned       |
 | [`simple_jwt_login_response_2fa_verify`](#simple_jwt_login_response_2fa_verify)                                   | filter | Before the 2FA verify response is returned          |
 
@@ -269,7 +271,76 @@ Fires before the JWT payload is generated on any endpoint (not just `/auth`). Us
 
 ## 2FA Hooks[​](#2fa-hooks "Direct link to 2FA Hooks")
 
-These hooks relate to the Two-Factor Authentication integration. Enable Two-Factor in **Settings → Integrations → Third Party → Two-Factor**.
+These filters work with the Two-Factor Authentication integration. Enable Two-Factor in **Settings → Integrations → Third Party → Two-Factor**, then enable each filter in **Settings → Simple JWT Login → Hooks**.
+
+### `simple_jwt_login_response_2fa_challenge`[​](#simple_jwt_login_response_2fa_challenge "Direct link to simple_jwt_login_response_2fa_challenge")
+
+Fires before `POST /auth` returns the interim 2FA token (instead of a JWT) for a user who has two-factor authentication set up. Use it to add extra fields or transform the response.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` - the modified response.
+
+***
+
+### `simple_jwt_login_response_2fa_verify`[​](#simple_jwt_login_response_2fa_verify "Direct link to simple_jwt_login_response_2fa_verify")
+
+Fires before the `POST /auth/2fa` response is returned.
+
+| Parameter   | Type      | Description                           |
+| ----------- | --------- | ------------------------------------- |
+| `$response` | `array`   | The response data (modify and return) |
+| `$user`     | `WP_User` | The user associated with the request  |
+
+**Returns:** `array` - the modified response.
+
+***
+
+## Audit Hooks[​](#audit-hooks "Direct link to Audit Hooks")
+
+Audit hooks are actions that fire for each [audit log](/docs/audit-logs.md) event. They are not listed in the **Hooks** settings. Instead, a hook fires only when **Enable Audit Logging** is on and its event is selected under **Settings → Simple JWT Login → Audit Logs → Config**. Use them to send authentication events to your own monitoring or alerting system.
+
+All audit hooks receive the same arguments:
+
+| Parameter    | Type               | Description                                                                              |
+| ------------ | ------------------ | ---------------------------------------------------------------------------------------- |
+| `$userId`    | `int` or `null`    | WordPress user ID, or `null` when the user is unknown                                    |
+| `$userEmail` | `string` or `null` | User's email address (on failures, the email that was attempted), or `null` when unknown |
+| `$message`   | `string`           | Failure reason. Passed to `*_failed` hooks only                                          |
+
+| Hook                                                                                          | Audit event                   | Fires when                         |
+| --------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------------- |
+| `simple_jwt_login_audit_auth_login_success`                                                   | `auth.login.success`          | `/auth` issues a JWT               |
+| `simple_jwt_login_audit_auth_login_failed`                                                    | `auth.login.failed`           | `/auth` rejects the credentials    |
+| `simple_jwt_login_audit_auth_logout_success`                                                  | `auth.logout.success`         | `/auth/revoke` revokes a JWT       |
+| `simple_jwt_login_audit_auth_logout_failed`                                                   | `auth.logout.failed`          | `/auth/revoke` fails               |
+| `simple_jwt_login_audit_auth_register_success`                                                | `auth.register.success`       | `/users` creates a user            |
+| `simple_jwt_login_audit_auth_register_failed`                                                 | `auth.register.failed`        | `/users` fails to create a user    |
+| `simple_jwt_login_audit_password_reset_request`                                               | `auth.password_reset.request` | A password reset code is requested |
+| `simple_jwt_login_audit_password_reset_success`                                               | `auth.password_reset.success` | A password is changed              |
+| `simple_jwt_login_audit_password_reset_failed`                                                | `auth.password_reset.failed`  | A password reset or change fails   |
+| `simple_jwt_login_audit_delete_user_success`                                                  | `auth.delete_user.success`    | `DELETE /users` deletes a user     |
+| `simple_jwt_login_audit_delete_user_failed`                                                   | `auth.delete_user.failed`     | `DELETE /users` fails              |
+| `simple_jwt_login_audit_login_session_success`                                                | `auth.login_session.success`  | `/autologin` logs a user in        |
+| `simple_jwt_login_audit_login_session_failed`                                                 | `auth.login_session.failed`   | `/autologin` fails                 |
+| `simple_jwt_login_audit_refresh_token_success`                                                | `auth.refresh_token.success`  | `/auth/refresh` issues a new JWT   |
+| `simple_jwt_login_audit_refresh_token_failed`                                                 | `auth.refresh_token.failed`   | `/auth/refresh` fails              |
+| `simple_jwt_login_audit_oauth_success`                                                        | `auth.oauth.success`          | An OAuth login succeeds            |
+| `simple_jwt_login_audit_oauth_failed`                                                         | `auth.oauth.failed`           | An OAuth login fails               |
+| [`simple_jwt_login_audit_2fa_challenge_issued`](#simple_jwt_login_audit_2fa_challenge_issued) | `auth.2fa.challenge_issued`   | A 2FA challenge is issued          |
+| [`simple_jwt_login_audit_2fa_verify_success`](#simple_jwt_login_audit_2fa_verify_success)     | `auth.2fa.verify_success`     | A 2FA code is verified             |
+| [`simple_jwt_login_audit_2fa_verify_failed`](#simple_jwt_login_audit_2fa_verify_failed)       | `auth.2fa.verify_failed`      | A 2FA verification fails           |
+
+```
+add_action('simple_jwt_login_audit_auth_login_failed', function ($userId, $userEmail, $message) {
+
+    error_log(sprintf('JWT login failed for %s: %s', $userEmail ?? 'unknown', $message));
+
+}, 10, 3);
+```
 
 ### `simple_jwt_login_audit_2fa_challenge_issued`[​](#simple_jwt_login_audit_2fa_challenge_issued "Direct link to simple_jwt_login_audit_2fa_challenge_issued")
 
@@ -305,32 +376,6 @@ Fires when a two-factor authentication verification attempt fails.
 
 ***
 
-### `simple_jwt_login_response_2fa_challenge`[​](#simple_jwt_login_response_2fa_challenge "Direct link to simple_jwt_login_response_2fa_challenge")
-
-Fires before the `POST /auth/2fa` challenge response is returned. Use it to add extra fields or transform the response.
-
-| Parameter   | Type      | Description                           |
-| ----------- | --------- | ------------------------------------- |
-| `$response` | `array`   | The response data (modify and return) |
-| `$user`     | `WP_User` | The user associated with the request  |
-
-**Returns:** `array` - the modified response.
-
-***
-
-### `simple_jwt_login_response_2fa_verify`[​](#simple_jwt_login_response_2fa_verify "Direct link to simple_jwt_login_response_2fa_verify")
-
-Fires before the 2FA verify endpoint response is returned.
-
-| Parameter   | Type      | Description                           |
-| ----------- | --------- | ------------------------------------- |
-| `$response` | `array`   | The response data (modify and return) |
-| `$user`     | `WP_User` | The user associated with the request  |
-
-**Returns:** `array` - the modified response.
-
-***
-
 ## Settings Screenshot[​](#settings-screenshot "Direct link to Settings Screenshot")
 
 ![Hooks settings panel](/assets/images/wordpress-hooks-integration-26bc1dff7e03524d96af1b6827dc33c6.png)
@@ -345,12 +390,19 @@ Enrich the token with user metadata (roles, plan, tenant ID) so downstream servi
 
 ```
 add_filter('simple_jwt_login_jwt_payload_auth', function (array $payload, array $request): array {
+
     $user = get_user_by('email', $request['email'] ?? '');
+
     if ($user) {
+
         $payload['roles'] = $user->roles;
+
         $payload['display_name'] = $user->display_name;
+
     }
+
     return $payload;
+
 }, 10, 2);
 ```
 
@@ -360,16 +412,27 @@ add_filter('simple_jwt_login_jwt_payload_auth', function (array $payload, array 
 
 ```
 add_action('simple_jwt_login_register_hook', function (WP_User $user, string $password): void {
+
     wp_mail(
+
         $user->user_email,
+
         'Welcome to My Site',
+
         sprintf(
+
             "Hi %s,\n\nYour account is ready.\n\nEmail: %s\nPassword: %s",
+
             $user->display_name,
+
             $user->user_email,
+
             $password
+
         )
+
     );
+
 }, 10, 2);
 ```
 
@@ -381,14 +444,23 @@ Enable **"Include request parameters in the redirect URL"** in Login settings, t
 
 ```
 add_action('simple_jwt_login_redirect_hook', function (string $url, array $request): void {
+
     $page = $request['page'] ?? null;
 
+
+
     $destinations = [
+
         'dashboard' => 'https://mysite.com/dashboard',
+
         'profile'   => 'https://mysite.com/profile',
+
     ];
 
+
+
     wp_redirect($destinations[$page] ?? $url);
+
 }, 10, 2);
 ```
 
@@ -398,15 +470,25 @@ add_action('simple_jwt_login_redirect_hook', function (string $url, array $reque
 
 ```
 add_action('simple_jwt_login_before_endpoint', function (string $method, string $endpoint, array $request): void {
+
     if ($method !== 'POST' || $endpoint !== 'auth') {
+
         return;
+
     }
+
+
 
     $blocked = ['banned@example.com'];
 
+
+
     if (in_array($request['email'] ?? '', $blocked, true)) {
+
         throw new Exception('This account has been suspended.');
+
     }
+
 }, 10, 3);
 ```
 
@@ -416,16 +498,27 @@ add_action('simple_jwt_login_before_endpoint', function (string $method, string 
 
 ```
 add_action('simple_jwt_login_before_endpoint', function (string $method, string $endpoint, array $request): void {
+
     if ($method !== 'POST' || $endpoint !== 'users') {
+
         return;
+
     }
+
+
 
     $minLength = 8;
+
     $password  = $request['password'] ?? '';
 
+
+
     if (strlen($password) < $minLength) {
+
         throw new Exception("Password must be at least {$minLength} characters.");
+
     }
+
 }, 10, 3);
 ```
 
@@ -435,9 +528,18 @@ add_action('simple_jwt_login_before_endpoint', function (string $method, string 
 
 ```
 add_filter('simple_jwt_login_response_auth_user', function (array $response, WP_User $user): array {
+
     $response['user_id']      = $user->ID;
+
     $response['display_name'] = $user->display_name;
+
     $response['avatar_url']   = get_avatar_url($user->ID);
+
     return $response;
+
 }, 10, 2);
 ```
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Notify external services with webhooks](/docs/webhooks.md)

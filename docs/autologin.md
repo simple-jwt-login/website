@@ -1,4 +1,4 @@
-# Autologin
+# WordPress Autologin with JWT
 
 The Autologin endpoint lets you log a user into WordPress by passing a valid JWT - no username or password form needed. This is ideal for:
 
@@ -39,6 +39,7 @@ Or via Authorization header:
 
 ```
 GET /wp-json/simple-jwt-login/v1/autologin
+
 Authorization: Bearer YOUR_JWT_HERE
 ```
 
@@ -54,11 +55,17 @@ Bad request - unclassified error (for example, malformed JWT encoding).
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Invalid JWT.",
+
     "error_code": 25
+
   }
+
 }
 ```
 
@@ -68,11 +75,17 @@ Unauthorized - JWT is invalid, has a bad signature, is expired, is revoked, or t
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "JWT has expired.",
+
     "error_code": 14
+
   }
+
 }
 ```
 
@@ -82,11 +95,17 @@ Forbidden - auto-login is disabled in plugin settings, or the client IP is not o
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Auto-login is not enabled.",
+
     "error_code": 26
+
   }
+
 }
 ```
 
@@ -96,11 +115,17 @@ The WordPress user identified by the JWT payload could not be found.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "User not found.",
+
     "error_code": 24
+
   }
+
 }
 ```
 
@@ -110,11 +135,17 @@ Internal server error.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "An unexpected error occurred.",
+
     "error_code": 22
+
   }
+
 }
 ```
 
@@ -132,10 +163,15 @@ Using the simple-jwt-login PHP Client:
 
 ```
 $simpleJWT = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $url = $simpleJWT->login('Your JWT');
+
 header('Location: ' . $url);
 ```
 
@@ -143,9 +179,13 @@ header('Location: ' . $url);
 
 ```
 var JWT = 'myJWT';
+
 var AUTH_KEY = 'MY_SECRET_AUTH_CODE';
 
+
+
 window.location.href =
+
   'https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/autologin&JWT=' + JWT + '&AUTH_KEY=' + AUTH_KEY;
 ```
 
@@ -155,11 +195,17 @@ All error responses follow the standard envelope:
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Human-readable error description",
+
     "error_code": 26
+
   }
+
 }
 ```
 
@@ -283,10 +329,18 @@ For example, if your JWT payload looks like this:
 
 ```
 {
+
   "sub": "1234567890",
+
   "name": "John Doe",
+
   "UserID": 123456
+
 }
 ```
 
 Set **JWT Parameter Key** to `UserID`. The plugin uses that value to look up the WordPress user.
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Send magic links with MailPoet](/docs/mailpoet.md)

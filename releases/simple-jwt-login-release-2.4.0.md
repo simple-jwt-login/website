@@ -6,9 +6,9 @@ October 20, 2020 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,7 +16,7 @@ Creator of Simple JWT Login
 
 The version `2.4.0` has been released today on [WordPress](https://wordpress.org/plugins/simple-jwt-login).
 
-This release adds the redirectUrl parameter and URL variables for autologin.
+This release adds the `redirectUrl` parameter and URL variables for autologin.
 
 ## New Features[​](#new-features "Direct link to New Features")
 
@@ -35,5 +35,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [feature](/releases/tags/feature.md)
-* [bugfix](/releases/tags/bugfix.md)
+* [feature](/releases/tags/feature)
+* [bugfix](/releases/tags/bugfix)

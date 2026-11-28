@@ -17,7 +17,7 @@ Auth codes, IP allow-lists and the "Authentication enabled" setting do not apply
 
 If the OAuth identity matches an existing WordPress user (by email), the user is logged in. If no match is found and "Register on OAuth login" is enabled, a new user is created automatically. On failure the browser is redirected to the WordPress login page.
 
-> **Note**: this endpoint is designed for browser redirect callbacks (OAuth consent screen redirect\_uri). To obtain a JWT programmatically, use `POST /oauth/token` instead.
+> **Note**: this endpoint is designed for browser redirect callbacks (OAuth consent screen `redirect_uri`). To obtain a JWT programmatically, use `POST /oauth/token` instead.
 
 ## Request[​](#request "Direct link to request")
 

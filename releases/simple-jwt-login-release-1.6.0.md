@@ -6,9 +6,9 @@ May 17, 2020 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -20,7 +20,7 @@ This release adds hooks for login and registration and lets you send the JWT in 
 
 ## New Features[​](#new-features "Direct link to New Features")
 
-* Add hooks for login, register and create user
+* Add hooks for login, register, and create user
 * Send the JWT in a header
 * Read the JWT parameter name case-insensitively
 
@@ -40,5 +40,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [feature](/releases/tags/feature.md)
-* [bugfix](/releases/tags/bugfix.md)
+* [feature](/releases/tags/feature)
+* [bugfix](/releases/tags/bugfix)

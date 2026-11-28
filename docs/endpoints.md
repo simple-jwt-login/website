@@ -1,9 +1,10 @@
-# Endpoints Overview
+# WordPress JWT REST API Endpoints
 
 All endpoints live under the `simple-jwt-login/v1` namespace (configurable in [Route Namespace](/docs/configuration.md#route-namespace)):
 
 ```
 https://example.com/wp-json/simple-jwt-login/v1/{endpoint}
+
 https://example.com/?rest_route=/simple-jwt-login/v1/{endpoint}
 ```
 
@@ -23,13 +24,13 @@ Every endpoint except `/revoked-tokens` is **disabled by default**. Enable the o
 
 ## Users[​](#users "Direct link to Users")
 
-| Method   | Endpoint               | What it does                                      | Enable in      | Guide                                                                 | API                                                 |
-| -------- | ---------------------- | ------------------------------------------------- | -------------- | --------------------------------------------------------------------- | --------------------------------------------------- |
-| `GET`    | `/autologin`           | Log a user into WordPress with a JWT and redirect | Autologin      | [Autologin](/docs/autologin.md)                                       | [Try it](/api/v4/autologin.md)                      |
-| `POST`   | `/users`               | Register a new WordPress user                     | Register User  | [Register user](/docs/register-user.md)                               | [Try it](/api/v4/register-a-new-word-press-user.md) |
-| `DELETE` | `/users`               | Delete the user identified by the JWT             | Delete User    | [Delete user](/docs/delete-user.md)                                   | [Try it](/api/v4/delete-user.md)                    |
-| `POST`   | `/user/reset_password` | Send a password reset code by email               | Reset Password | [Reset password](/docs/reset-password.md#step-1---request-reset-code) | [Try it](/api/v4/send-reset-password-code.md)       |
-| `PUT`    | `/user/reset_password` | Set a new password with a reset code or a JWT     | Reset Password | [Reset password](/docs/reset-password.md#step-2---set-new-password)   | [Try it](/api/v4/change-user-password.md)           |
+| Method   | Endpoint               | What it does                                      | Enable in      | Guide                                                                 | API                                           |
+| -------- | ---------------------- | ------------------------------------------------- | -------------- | --------------------------------------------------------------------- | --------------------------------------------- |
+| `GET`    | `/autologin`           | Log a user into WordPress with a JWT and redirect | Autologin      | [Autologin](/docs/autologin.md)                                       | [Try it](/api/v4/autologin.md)                |
+| `POST`   | `/users`               | Register a new WordPress user                     | Register User  | [Register user](/docs/register-user.md)                               | [Try it](/api/v4/register-user.md)            |
+| `DELETE` | `/users`               | Delete the user identified by the JWT             | Delete User    | [Delete user](/docs/delete-user.md)                                   | [Try it](/api/v4/delete-user.md)              |
+| `POST`   | `/user/reset_password` | Send a password reset code by email               | Reset Password | [Reset password](/docs/reset-password.md#step-1---request-reset-code) | [Try it](/api/v4/send-reset-password-code.md) |
+| `PUT`    | `/user/reset_password` | Set a new password with a reset code or a JWT     | Reset Password | [Reset password](/docs/reset-password.md#step-2---set-new-password)   | [Try it](/api/v4/change-user-password.md)     |
 
 ## OAuth (social login)[​](#oauth-social-login "Direct link to OAuth (social login)")
 

@@ -1,4 +1,4 @@
-# Audit Logs
+# WordPress Authentication Audit Logs
 
 Audit Logs give you a detailed, searchable record of authentication events on your site. Every login attempt, registration, password reset, OAuth flow, 2FA challenge, API key action, and settings change can be captured and stored in your WordPress database.
 
@@ -81,6 +81,15 @@ Since version 4.1.0, the **Settings Saved** entry never stores secrets in plain 
 | `ai.ability.success` | AI Ability Executed | An AI agent ran a [Simple JWT Login ability](/docs/integrations/third-party/ai-abilities.md) successfully |
 | `ai.ability.failed`  | AI Ability Failed   | An AI agent ran an ability and it failed                                                                  |
 
+#### WP-CLI events[​](#wp-cli-events "Direct link to WP-CLI events")
+
+Available since version 4.3.0. Only commands that change data are recorded. The user is the one passed with the global WP-CLI `--user=<user>` flag.
+
+| Event key             | Label                   | Description                                  |
+| --------------------- | ----------------------- | -------------------------------------------- |
+| `cli.command.success` | WP-CLI Command Executed | A [`wp jwt` command](/docs/cli.md) completed |
+| `cli.command.failed`  | WP-CLI Command Failed   | A `wp jwt` command failed                    |
+
 ***
 
 ### Retention Period[​](#retention-period "Direct link to Retention Period")
@@ -134,3 +143,12 @@ The plugin uses PHP's `fastcgi_finish_request()` to flush the response first, th
 * **Compliance** - demonstrate an audit trail for authentication events
 * **Debugging** - reproduce exact event sequences when troubleshooting user-reported issues
 * **Change tracking** - see exactly which settings were modified and when via `settings.save.success`
+
+## Hooks for Audit Events[​](#hooks-for-audit-events "Direct link to Hooks for Audit Events")
+
+Every authentication and 2FA event above also fires a WordPress action, such as `simple_jwt_login_audit_auth_login_failed`, so your own code can react to it. The action fires only when audit logging is enabled and the event is selected. See [Audit Hooks](/docs/hooks.md#audit-hooks) for the full list and arguments.
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Send events to other services with webhooks](/docs/webhooks.md)
+* [React to audit events in PHP with audit hooks](/docs/hooks.md#audit-hooks)

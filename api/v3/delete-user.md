@@ -2,7 +2,7 @@
 
 ```
 DELETE 
-/simple-jwt-login/v1/users
+/users
 ```
 
 Delete user
@@ -13,7 +13,10 @@ Delete user
 
 * 200
 * 400
+* 401
 
 Successfully deleted
 
 Error.
+
+The JWT is expired, revoked, or not valid yet.

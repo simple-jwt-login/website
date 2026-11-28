@@ -1,4 +1,4 @@
-# CORS
+# WordPress REST API CORS Settings
 
 Simple JWT Login includes built-in Cross-Origin Resource Sharing (CORS) support, implemented in compliance with the [W3C CORS specification](https://www.w3.org/TR/cors/).
 
@@ -68,7 +68,7 @@ Lists which HTTP request headers can be used during the actual cross-origin requ
 
 Example value: `Content-Type, Authorization`
 
-Include `Authorization` if you send JWT tokens via the `Authorization: Bearer` header.
+Include `Authorization` if you send JWTs via the `Authorization: Bearer` header.
 
 [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers)
 
@@ -78,8 +78,10 @@ Include `Authorization` if you send JWT tokens via the `Authorization: Bearer` h
 
 ```
 Access-Control-Allow-Origin:  https://your-frontend-domain.com
+
 Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+
 Access-Control-Allow-Headers: Content-Type, Authorization
 ```
 
-A wildcard `Access-Control-Allow-Origin: *` is simpler to configure and generally safe for JWT-protected APIs (tokens cannot be forged), but restricting to your specific front-end origin is a good defence-in-depth measure.
+A wildcard `Access-Control-Allow-Origin: *` is simpler to configure and generally safe for JWT-protected APIs (tokens cannot be forged), but restricting to your specific front-end origin is a good defense-in-depth measure.

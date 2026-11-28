@@ -1,4 +1,4 @@
-# Exchange id\_token for WordPress JWT
+# Exchange a Google Token for a JWT
 
 ## Overview[​](#overview "Direct link to Overview")
 
@@ -35,7 +35,9 @@ Turn on **Allow tokens issued for other Google clients** (off by default) to kee
 
 ```
 curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
+
   -H "Content-Type: application/json" \
+
   -d '{"provider":"google","id_token":"YOUR_GOOGLE_ID_TOKEN"}'
 ```
 
@@ -47,10 +49,15 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
   }
+
 }
 ```
 
@@ -58,10 +65,22 @@ curl -X POST "https://your-site.com/wp-json/simple-jwt-login/v1/oauth/token" \
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "The code or jwt parameter is missing from request.",
+
     "error_code": 71
+
   }
+
 }
 ```
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Protect WordPress REST API endpoints with the JWT](/docs/protect-endpoints.md)
+* [Refresh the JWT](/docs/refresh-token.md)
+* [Look up error codes](/docs/error-codes.md)

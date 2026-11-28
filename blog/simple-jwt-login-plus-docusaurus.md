@@ -4,38 +4,40 @@ February 27, 2022 ·
 
 <!-- -->
 
-2 min read
+One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle)
 
-[Nicu Micle](/blog/authors/nicumicle.md)
+[Nicu Micle](/blog/authors/nicumicle)
 
 Creator of Simple JWT Login
 
 [](https://x.com/nicumicle "X")[](https://github.com/nicumicle "GitHub")
 
-I'm very excited about this new website for Simple JWT Login, using [**Docusaurus 2**](https://docusaurus.io/).
+Update
 
-Docusaurus offered me a simple way, to write documentation, and also build the website in the same place. The learning curve was fast, and I enjoyed writing code in React.
+The site was redesigned again in 2026 - see [A Faster, Smarter New Website Design](/blog/new-website-design-2026.md).
 
-## Previous website[​](#previous-website "Direct link to Previous website")
+The Simple JWT Login website now runs on [**Docusaurus 2**](https://docusaurus.io/).
 
-Previously, I've used [docsify](https://docsify.js.org/) ( Also, a very cool site documentation generator) and the website has been made in PHP.
+Docusaurus makes it simple to write the documentation and build the website in one place. It was quick to learn, and writing the site in React is fun.
 
-It was very hard to do changes, and add new pages because that involved a lot of coding, writing routes, and loading content.
+## Previous Website[​](#previous-website "Direct link to Previous Website")
 
-## About the blog[​](#about-the-blog "Direct link to About the blog")
+The previous documentation used [docsify](https://docsify.js.org/), another good documentation generator, and the website itself was written in PHP.
 
-While writing documentation, it came to my mind that it will also be cool to start a blog. In this blog I'm planning to write real world use-cases of the plugin and write announcements about the plugin.
+Changing or adding pages was hard, because every page needed code for routes and for loading content.
 
-So, if you are interested on what features have been implemented, or what tips\&tricks you can use while you develop your website, keep an eye on this blog.
+## About the Blog[​](#about-the-blog "Direct link to About the Blog")
 
-Also, I'm planning to publish the documentation to GitHub, so that, anybody can add/modify the things there. In fact, this documentation is made for you to understand.
+Writing the documentation was a good moment to start a blog too. It covers real-world use cases of the plugin and announces new releases.
 
-I hope that, with the help of the community, there will be much easier for new users to use this plugin.
+To learn about new features, or tips and tricks for building your site, follow this blog.
+
+The documentation is also going to be public on GitHub, so anybody can suggest a fix or an improvement. It's written for you, so help from the community makes it easier for every new user to get started.
 
 **Tags:**
 
-* [News](/blog/tags/tags/news.md "Plugin news")
+* [News](/blog/tags/tags/news "Plugin news")
 
 [Edit this page](https://github.com/simple-jwt-login/website/tree/main/blog/2022-02-27-hello-docusaurus-v2.md)

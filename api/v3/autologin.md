@@ -2,7 +2,7 @@
 
 ```
 GET 
-/simple-jwt-login/v1/autologin
+/autologin
 ```
 
 Authenticate and automatically log in a user to WordPress using a valid JSON Web Token (JWT).
@@ -13,7 +13,10 @@ Authenticate and automatically log in a user to WordPress using a valid JSON Web
 
 * 200
 * 400
+* 401
 
 Successful login. The plugin redirects the user to the WordPress website.
 
 Invalid request or authentication failure.
+
+The JWT is expired, revoked, or not valid yet.

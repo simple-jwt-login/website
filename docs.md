@@ -1,8 +1,8 @@
-# Introduction
+# WordPress JWT Authentication Plugin
 
-**Simple-JWT-Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT) authentication to the WordPress REST API. It lets mobile apps, single-page applications, and external services securely interact with your WordPress site - without exposing admin credentials.
+**Simple JWT Login** is a free, open-source WordPress plugin that adds JSON Web Token (JWT) authentication to the WordPress REST API. It lets mobile apps, single-page applications, and external services securely interact with your WordPress site - without exposing admin credentials.
 
-With Simple-JWT-Login you can:
+With Simple JWT Login you can:
 
 * **Authenticate** users and receive a signed JWT
 * **Auto-login** users via a tokenized link
@@ -11,7 +11,7 @@ With Simple-JWT-Login you can:
 * **Protect any REST endpoint** so it requires a valid JWT
 * **Refresh, validate, and revoke** tokens to manage session lifecycle
 
-Whether you're building a headless WordPress site, a React/Vue front-end, a mobile app, or a third-party integration, Simple-JWT-Login provides a clean, standards-based authentication layer.
+Whether you're building a [headless WordPress](/headless-wordpress.md) site, a React/Vue front-end, a mobile app, or a third-party integration, Simple JWT Login provides a clean, standards-based authentication layer.
 
 New here?
 
@@ -48,10 +48,20 @@ Follow the [Quick Start](/docs/quick-start.md) - get a JWT and make your first a
 
 ### Minimum requirements[​](#minimum-requirements "Direct link to Minimum requirements")
 
-* WordPress **6.2** or higher (since plugin version 4.2.0, previously 4.4.0)
+* WordPress **6.2** or higher (required since plugin version 4.2.0; earlier plugin versions supported WordPress 4.4 and later)
 * PHP **5.5** or higher for the plugin code itself
 
 The plugin code stays compatible with PHP 5.5, but WordPress sets its own PHP floor. WordPress 6.2 requires PHP **5.6.20+**, and WordPress 6.6 and later require PHP **7.2.24+**. In practice, your PHP version is set by the WordPress version you run.
+
+### Compatibility[​](#compatibility "Direct link to Compatibility")
+
+|                                                                      | Supported                      | How it is checked                                                                                                                              |
+| -------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| WordPress                                                            | 6.2 and later                  | Tested up to WordPress 7.1                                                                                                                     |
+| PHP                                                                  | 5.5 to 8.5                     | Syntax-checked on PHP 5.5, 5.6, and 7.1 to 8.5 for every change                                                                                |
+| Full API test suite                                                  | PHP 8.4 and 8.5                | Runs against a real WordPress on Apache for every change                                                                                       |
+| Web servers                                                          | Any server that runs WordPress | Apache may need a setting to pass the `Authorization` header - see [Troubleshooting](/docs/troubleshooting.md#authorization-header-is-missing) |
+| [AI abilities (MCP)](/docs/integrations/third-party/ai-abilities.md) | WordPress 6.9 and later        | Uses the WordPress Abilities API                                                                                                               |
 
 ### Recommended for production[​](#recommended-for-production "Direct link to Recommended for production")
 
@@ -59,13 +69,9 @@ The plugin code stays compatible with PHP 5.5, but WordPress sets its own PHP fl
 * A PHP version that still receives security updates (PHP **8.2** or newer)
 * HTTPS on every request that carries a JWT
 
-## License[​](#license "Direct link to License")
-
-Simple-JWT-Login is open-source and distributed under the [GPL 3.0](https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE) License.
-
 ## Installation Guide[​](#installation-guide "Direct link to Installation Guide")
 
-Setting up Simple-JWT-Login is quick and easy. Choose one of the following installation methods:
+Setting up Simple JWT Login is quick and easy. Choose one of the following installation methods:
 
 ### Method 1 - Install from WordPress.org (Recommended)[​](#method-1---install-from-wordpressorg-recommended "Direct link to Method 1 - Install from WordPress.org (Recommended)")
 
@@ -75,7 +81,7 @@ Setting up Simple-JWT-Login is quick and easy. Choose one of the following insta
 
 * Search for **Simple JWT Login** and select **Install Now**.
 
-  ![Search for Simple-JWT-Login plugin](/assets/images/search_simple-jwt-login-plugin-cd661449b75fea062cadc9b06a95ec56.png "Search for simple-jwt-login")
+  ![Search for Simple JWT Login plugin](/assets/images/search_simple-jwt-login-plugin-cd661449b75fea062cadc9b06a95ec56.png "Search for simple-jwt-login")
 
 * **Activate** the plugin when prompted.
 
@@ -85,7 +91,7 @@ Setting up Simple-JWT-Login is quick and easy. Choose one of the following insta
 
 * Access <https://wordpress.org/plugins/simple-jwt-login/>.
 
-* Click "**Download**" to get the latest Simple-JWT-Login plugin version.
+* Click "**Download**" to get the latest Simple JWT Login plugin version.
 
   ![Download the plugin](/assets/images/download_from_wordpress.org-ee53800943f2461fe90cb5310aa519de.png "Download the plugin")
 
@@ -97,4 +103,8 @@ Setting up Simple-JWT-Login is quick and easy. Choose one of the following insta
 
   ![Activate the plugin](/assets/images/activate-simple-jwt-login-plugin-1791dcddc527f822646b147e96592331.png "Activate the plugin")
 
-Now that you've installed **Simple-JWT-Login**, follow the [Quick Start](/docs/quick-start.md) to get your first JWT, or see the [Configuration guide](/docs/configuration.md) to set up your JWT secret key and enable the features you need.
+Now that you've installed **Simple JWT Login**, follow the [Quick Start](/docs/quick-start.md) to get your first JWT, or see the [Configuration guide](/docs/configuration.md) to set up your JWT secret key and enable the features you need.
+
+## License[​](#license "Direct link to License")
+
+Simple JWT Login is open-source and distributed under the [GPL 3.0](https://github.com/nicumicle/simple-jwt-login/blob/master/LICENSE) License.

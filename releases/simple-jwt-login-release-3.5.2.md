@@ -6,9 +6,9 @@ November 2, 2023 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,7 +16,7 @@ Creator of Simple JWT Login
 
 The version `3.5.2` has been released today on [WordPress](https://wordpress.org/plugins/simple-jwt-login).
 
-This update adds `iss` support to the JWT payload, tightens revoked token enforcement, and fixes several bugs.
+This update adds `iss` support to the JWT payload, tightens revoked token enforcement, and fixes bugs.
 
 ## New Features[​](#new-features "Direct link to New Features")
 
@@ -35,5 +35,5 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [bugfix](/releases/tags/bugfix.md)
-* [feature](/releases/tags/feature.md)
+* [bugfix](/releases/tags/bugfix)
+* [feature](/releases/tags/feature)

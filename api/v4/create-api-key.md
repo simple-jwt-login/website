@@ -20,12 +20,15 @@ Generates a new API key for the authenticated WordPress user. The full key value
 ## Responses[​](#responses "Direct link to Responses")
 
 * 200
+* 400
 * 401
 * 403
 * 422
 * 500
 
 API key created. The `key` field contains the full plaintext key - save it now as it isn't returned again.
+
+WordPress core error: the `application/json` body is not valid JSON (for example, malformed UTF-8). The plugin is not called.
 
 WordPress core error: the request is not authenticated (no logged-in session with a valid `X-WP-Nonce`, and no valid JWT in the header or cookie). The plugin is not called.
 

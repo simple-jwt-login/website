@@ -1,4 +1,4 @@
-# Quick Start
+# WordPress JWT Quick Start
 
 This page takes you from a fresh install to an authenticated REST API call in five steps. Each step links to the full reference if you need more options.
 
@@ -14,9 +14,19 @@ wp plugin install simple-jwt-login --activate
 
 For more options, see the [Installation guide](/docs.md#installation-guide).
 
+tip
+
+With shell access, steps 2 and 3 can be done from WP-CLI. `wp jwt setup` generates a signing key and enables authentication; the second command enables the validate endpoint used in step 5. See [WP-CLI Commands](/docs/cli.md#wp-jwt-setup).
+
+```
+wp jwt setup
+
+wp jwt config set authorization.validate_token_enabled 1
+```
+
 ## 2. Set the signing key[​](#2-set-the-signing-key "Direct link to 2. Set the signing key")
 
-Go to **Settings → Simple JWT Login → General**. In the **JWT Verification Rules** ELSE row:
+Go to **Settings → Simple JWT Login → General** and find **JWT Verification Rules**. The rules are checked top to bottom, and the last row, labeled **ELSE**, is the default that applies to every JWT no other rule matches. On a fresh install it is the only rule. In the ELSE row:
 
 1. Choose an algorithm - `HS256` is the simplest choice.
 2. Enter a long, random secret key.
@@ -32,7 +42,7 @@ Go to **Settings → Simple JWT Login → Authentication**, turn on **Allow JWT 
 
 info
 
-Every endpoint is **disabled by default**. A disabled endpoint returns a `403` with an error code such as `45` (authentication) or `82` (validate token). The [Endpoints overview](/docs/endpoints.md) lists the setting that enables each one.
+Every endpoint except `/revoked-tokens` is **disabled by default**. A disabled endpoint returns a `403` with an error code such as `45` (authentication) or `82` (validate token). The [Endpoints overview](/docs/endpoints.md) lists the setting that enables each one.
 
 ## 4. Get a JWT[​](#4-get-a-jwt "Direct link to 4. Get a JWT")
 
@@ -40,7 +50,9 @@ Send the user's credentials to the `/auth` endpoint:
 
 ```
 curl -X POST "https://example.com/wp-json/simple-jwt-login/v1/auth" \
+
   -H "Content-Type: application/json" \
+
   -d '{"email":"user@example.com","password":"the-user-password"}'
 ```
 
@@ -48,10 +60,15 @@ Response:
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+
   }
+
 }
 ```
 
@@ -63,6 +80,7 @@ Send the token in the `Authorization` header:
 
 ```
 curl "https://example.com/wp-json/simple-jwt-login/v1/auth/validate" \
+
   -H "Authorization: Bearer YOUR_JWT"
 ```
 
@@ -72,6 +90,7 @@ To use the token with the **WordPress REST API** (such as `/wp/v2/posts` or `/wp
 
 ```
 curl "https://example.com/wp-json/wp/v2/users/me" \
+
   -H "Authorization: Bearer YOUR_JWT"
 ```
 
@@ -83,11 +102,17 @@ Plugin endpoints return errors in this shape. Branch on `data.error_code`, not o
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Wrong user credentials.",
+
     "error_code": 48
+
   }
+
 }
 ```
 

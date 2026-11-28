@@ -1,6 +1,6 @@
-# Revoke token
+# Revoke a WordPress JWT Token
 
-Revoking a token immediately invalidates it - the plugin rejects any later request that uses that token. Call this endpoint when a user logs out or when you need to end a specific session (for example, after a password change or suspicious activity).
+Revoking a WordPress JWT immediately invalidates it - the plugin rejects any later request that uses that token. Call this endpoint when a user logs out or when you need to end a specific session (for example, after a password change or suspicious activity).
 
 note
 
@@ -29,7 +29,9 @@ Explore and test this endpoint using the [interactive API reference →](/api/v4
 
 ```
 {
+
   "JWT": "YOUR_JWT_HERE"
+
 }
 ```
 
@@ -37,8 +39,11 @@ With optional Auth Code:
 
 ```
 {
+
   "JWT": "YOUR_JWT_HERE",
+
   "AUTH_KEY": "MySecretAuthCode"
+
 }
 ```
 
@@ -48,10 +53,15 @@ With optional Auth Code:
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+
   }
+
 }
 ```
 
@@ -61,11 +71,17 @@ Bad request - the `JWT` field is missing from the request body.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "JWT is missing.",
+
     "error_code": 42
+
   }
+
 }
 ```
 
@@ -75,11 +91,17 @@ Unauthorized - JWT is structurally invalid, has a bad signature, or the auth cod
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "JWT signature verification failed.",
+
     "error_code": 11
+
   }
+
 }
 ```
 
@@ -89,11 +111,17 @@ Forbidden - token revocation is disabled in plugin settings.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "Revoke token is not enabled.",
+
     "error_code": 83
+
   }
+
 }
 ```
 
@@ -103,11 +131,17 @@ Internal server error.
 
 ```
 {
+
   "success": false,
+
   "data": {
+
     "message": "An unexpected error occurred.",
+
     "error_code": 22
+
   }
+
 }
 ```
 
@@ -117,7 +151,9 @@ Internal server error.
 
 ```
 curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/revoke \
+
   -H "Content-type: application/json" \
+
   -d '{"JWT":"YOUR_JWT"}'
 ```
 
@@ -125,9 +161,13 @@ curl -X POST https://simplejwtlogin.com/?rest_route=/simple-jwt-login/v1/auth/re
 
 ```
 $simpleJwtLogin = new \SimpleJwtLoginClient\SimpleJwtLoginClient(
+
     'https://simplejwtlogin.com',
+
     '/simple-jwt-login/v1'
+
 );
+
 $result = $simpleJwtLogin->revokeToken('Your JWT here', 'AUTH CODE');
 ```
 
@@ -135,9 +175,13 @@ $result = $simpleJwtLogin->revokeToken('Your JWT here', 'AUTH CODE');
 
 ```
 fetch('https://simplejwtlogin.com/wp-json/simple-jwt-login/v1/auth/revoke', {
+
   method: 'POST',
+
   headers: { 'Content-Type': 'application/json' },
+
   body: JSON.stringify({ JWT: 'YOUR_JWT_HERE' })
+
 }).then(r => r.json()).then(console.log);
 ```
 
@@ -193,26 +237,43 @@ Other logged-in users get `403` (`error_code` `115`), and a logged-out call gets
 
 ```
 curl "https://{{yoursite}}/wp-json/simple-jwt-login/v1/revoked-tokens?page=1&per_page=20" \
+
   -H "Authorization: Bearer <admin-jwt>"
 ```
 
 ```
 {
+
   "success": true,
+
   "data": {
+
     "items": [
+
       {
+
         "id": 12,
+
         "user_id": 5,
+
         "token_hash_masked": "a1b2c3d4...9f0e",
+
         "expires_at": "2026-11-12 10:00:00",
+
         "revoked_at": "2026-11-11 09:15:00"
+
       }
+
     ],
+
     "total": 1,
+
     "page": 1,
+
     "per_page": 20
+
   }
+
 }
 ```
 
@@ -226,13 +287,17 @@ The token itself is never returned - only a masked hash.
 
 ```
 curl -X DELETE "https://{{yoursite}}/wp-json/simple-jwt-login/v1/revoked-tokens/12" \
+
   -H "Authorization: Bearer <admin-jwt>"
 ```
 
 ```
 {
+
   "success": true,
+
   "message": "Revoked token entry deleted. If the token has not expired, it is valid again."
+
 }
 ```
 

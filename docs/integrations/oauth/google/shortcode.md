@@ -1,4 +1,4 @@
-# Shortcode
+# Google Login Shortcode for WordPress
 
 ## Usage[​](#usage "Direct link to Usage")
 
@@ -28,3 +28,8 @@ Place this shortcode anywhere on your WordPress site to render a "Continue with 
 ```
 [simple-jwt-login-oauth provider="google" background="#c8c8c8" color="#f2f2f2" width="250px" height="40px" border="1px dotted blue"]
 ```
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Set up Google OAuth](/docs/integrations/oauth/google/setup.md)
+* [Compare all OAuth providers](/docs/integrations/oauth.md)

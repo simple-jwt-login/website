@@ -1,4 +1,4 @@
-# Setup
+# GitHub OAuth Setup for WordPress
 
 ## Create a GitHub OAuth App[​](#create-a-github-oauth-app "Direct link to Create a GitHub OAuth App")
 
@@ -30,3 +30,8 @@ Keep your credentials secure - never commit them to version control or expose th
 | ----------------- | --------------------------- |
 | **Client ID**     | The OAuth App Client ID     |
 | **Client Secret** | The OAuth App Client Secret |
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Exchange a GitHub OAuth code for tokens](/docs/integrations/oauth/github/exchange-code.md)
+* [Exchange a GitHub token for a WordPress JWT](/docs/integrations/oauth/github/exchange-token.md)

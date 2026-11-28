@@ -2,7 +2,7 @@
 
 ```
 PUT 
-/simple-jwt-login/v1/users/reset_password
+/user/reset_password
 ```
 
 Change user password
@@ -13,7 +13,10 @@ Change user password
 
 * 200
 * 400
+* 401
 
 User password has been changed.
 
 Error.
+
+The JWT is expired, revoked, or not valid yet.

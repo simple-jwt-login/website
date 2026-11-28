@@ -6,15 +6,15 @@ March 11, 2026 ·
 
 2 min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/blog/authors/nicumicle)
 
-[Nicu Micle](/blog/authors/nicumicle.md)
+[Nicu Micle](/blog/authors/nicumicle)
 
 Creator of Simple JWT Login
 
 [](https://x.com/nicumicle "X")[](https://github.com/nicumicle "GitHub")
 
-We just shipped a major update to the Simple JWT Login website. The plugin hasn't changed - but everything around it has. From the homepage to the blog to the docs navigation, here's a look at what's new and why we made these changes.
+The Simple JWT Login website just got a major update. The plugin hasn't changed - but everything around it has. From the homepage to the blog to the docs navigation, here's a look at what's new and why it changed.
 
 ## Refreshed UI[​](#refreshed-ui "Direct link to Refreshed UI")
 
@@ -22,7 +22,7 @@ The entire visual design has been overhauled. Every page - homepage, contact, do
 
 The homepage in particular got a lot of attention. Feature cards now have sharper copy that explains *what the feature does* rather than just naming it. The stats section (active installs, downloads, ratings) gives newcomers quick confidence, and the CTA buttons are more prominent.
 
-The blog also has a custom layout: post cards show the author, date, tags, and a description at a glance - no more barebones list.
+The blog also has a custom layout: post cards show the author, date, tags, and a description at a glance - no more bare-bones list.
 
 ## Built-in Search[​](#built-in-search "Direct link to Built-in Search")
 
@@ -38,7 +38,7 @@ If you're using an AI assistant to help integrate Simple JWT Login into your app
 
 ## Release Notes[​](#release-notes "Direct link to Release Notes")
 
-The [Releases](/releases.md) section is now live with structured changelogs for recent plugin versions (3.6.2, 3.6.3, 3.6.4, 3.6.5). Going forward, every plugin release will have a corresponding entry there.
+The [Releases](/releases.md) section is now live with structured changelogs for recent plugin versions (3.6.2, 3.6.3, 3.6.4, 3.6.5). Going forward, every plugin release gets a matching entry there.
 
 ***
 
@@ -46,7 +46,7 @@ The plugin itself hasn't changed - but if you haven't visited the docs in a whil
 
 **Tags:**
 
-* [News](/blog/tags/tags/news.md "Plugin news")
-* [WordPress Plugin](/blog/tags/tags/wordpress-plugin.md "WordPress plugin tips, features, and usage guides")
+* [News](/blog/tags/tags/news "Plugin news")
+* [WordPress Plugin](/blog/tags/tags/wordpress-plugin "WordPress plugin tips, features, and usage guides")
 
 [Edit this page](https://github.com/simple-jwt-login/website/tree/main/blog/2026-03-11-new-website-design.md)

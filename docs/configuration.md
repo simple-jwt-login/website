@@ -1,4 +1,4 @@
-# Configuration
+# WordPress JWT Configuration
 
 The **General** settings page is the foundation of Simple JWT Login. It controls the API route prefix, how JWTs are signed and verified, where the plugin looks for tokens in incoming requests, and global security options.
 
@@ -8,7 +8,7 @@ Go to **Settings → Simple JWT Login → General** to configure these options.
 
 ## Server[​](#server "Direct link to Server")
 
-The Simple-JWT-Login REST API is accessible via two URL formats. Both are equivalent - choose the one that fits your WordPress permalink configuration:
+The Simple JWT Login REST API is accessible via two URL formats. Both are equivalent - choose the one that fits your WordPress permalink configuration:
 
 * **Pretty permalinks** (recommended):
   <!-- -->
@@ -53,7 +53,9 @@ Change this only if you need to avoid a conflict with another plugin. The value 
 
 ```
 https://example.com/wp-json/simple-jwt-login/v1/auth
+
                              ^^^^^^^^^^^^^^^^^^^
+
                              route namespace
 ```
 
@@ -126,6 +128,7 @@ Storing the key in code keeps it out of the database. Example for `wp-config.php
 
 ```
 define('SIMPLE_JWT_PRIVATE_KEY', 'my-super-secret-key');
+
 define('SIMPLE_JWT_PUBLIC_KEY', '-----BEGIN PUBLIC KEY-----\n...');
 ```
 
@@ -201,11 +204,21 @@ Since version 4.1.0, the middleware decides whether a request is a REST request 
 
 ```
 curl -X POST "https://example.com/wp-json/wp/v2/posts" \
+
   -H "Authorization: Bearer YOUR_JWT" \
+
   --form title="Hello World" \
+
   --form content="Post body here" \
+
   --form status="publish"
 ```
+
+### WP-CLI[​](#wp-cli "Direct link to WP-CLI")
+
+Available since version 4.3.0, enabled by default. Registers the `wp jwt` commands in WP-CLI - see [WP-CLI Commands](/docs/cli.md). Setting key: `cli.enabled`.
+
+While the deprecated **Simple JWT Login CLI** add-on is active, the built-in commands are not registered and this card shows a warning. Deactivate and delete the add-on.
 
 ***
 

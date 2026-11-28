@@ -1,4 +1,4 @@
-# OAuth
+# WordPress OAuth Login with JWT
 
 Simple JWT Login supports OAuth 2.0 authentication with four providers - **Google**, **Auth0**, **Facebook**, and **GitHub**. When configured, users can sign in with their existing provider accounts and receive a WordPress JWT in return.
 

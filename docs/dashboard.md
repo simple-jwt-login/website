@@ -1,4 +1,4 @@
-# Dashboard
+# JWT Plugin Dashboard Overview
 
 The Dashboard is the first page you see when you open Simple JWT Login (**Settings → Simple JWT Login → Dashboard**). It gives you an at-a-glance status view of every feature in the plugin, organized into four groups. Each card links directly to the corresponding settings page.
 
@@ -73,3 +73,8 @@ Webhooks and audit logging.
 ## Quick start[​](#quick-start "Direct link to Quick start")
 
 If this is your first time setting up the plugin, start with **General Settings** to set your JWT signing key and algorithm, then enable the specific routes your application needs.
+
+## Next steps[​](#next-steps "Direct link to Next steps")
+
+* [Follow the WordPress JWT quick start](/docs/quick-start.md)
+* [Manage the plugin with WP-CLI](/docs/cli.md)

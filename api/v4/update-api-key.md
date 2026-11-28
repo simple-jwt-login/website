@@ -12,6 +12,7 @@ Replaces the `name`, `permissions` and `expires_at` of an existing API key. All 
 ## Responses[​](#responses "Direct link to Responses")
 
 * 200
+* 400
 * 401
 * 403
 * 404
@@ -19,6 +20,8 @@ Replaces the `name`, `permissions` and `expires_at` of an existing API key. All 
 * 500
 
 API key updated successfully.
+
+WordPress core error: the `application/json` body is not valid JSON (for example, malformed UTF-8). The plugin is not called.
 
 WordPress core error: the request is not authenticated (no logged-in session with a valid `X-WP-Nonce`, and no valid JWT in the header or cookie). The plugin is not called.
 

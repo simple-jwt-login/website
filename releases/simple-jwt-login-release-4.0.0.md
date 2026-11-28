@@ -6,9 +6,9 @@ June 5, 2026 ·
 
 7 min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,17 +16,17 @@ Creator of Simple JWT Login
 
 The version `4.0.0` has been released today on [WordPress](https://wordpress.org/plugins/simple-jwt-login).
 
-This is a **major release** packed with new features, a completely redesigned admin interface, expanded OAuth provider support, and important security and usability improvements. Please read the breaking changes section carefully before upgrading.
+This is a **major release** packed with new features, a redesigned admin interface, expanded OAuth provider support, and important security and usability improvements. Please read the breaking changes section carefully before upgrading.
 
 ## New Features[​](#new-features "Direct link to New Features")
 
-### Completely Redesigned Admin Interface[​](#completely-redesigned-admin-interface "Direct link to Completely Redesigned Admin Interface")
+### Redesigned Admin Interface[​](#redesigned-admin-interface "Direct link to Redesigned Admin Interface")
 
-The plugin settings interface has been completely redesigned to provide a cleaner, more modern, and intuitive user experience. Settings are now better organized, easier to discover, and simpler to configure, reducing the need to consult documentation for common setup tasks. The refreshed layout improves navigation and helps users configure JWT authentication more efficiently.
+The plugin settings interface has been redesigned to provide a cleaner, more modern, and intuitive user experience. Settings are now better organized, easier to discover, and simpler to configure, reducing the need to consult documentation for common setup tasks. The refreshed layout improves navigation and helps users configure JWT authentication more efficiently.
 
 The new admin UI also includes full **Light** and **Dark Mode** support, automatically adapting to your preferred WordPress admin theme for a consistent and comfortable experience.
 
-Behind the scenes, all frontend assets (CSS, JavaScript, and images) have been reorganized into a dedicated `assets/` directory, resulting in a cleaner, more maintainable plugin structure and improved developer experience.
+Behind the scenes, all frontend assets (CSS, JavaScript, and images) have been reorganized into a dedicated `assets/` directory, resulting in a cleaner, more maintainable plugin structure, and improved developer experience.
 
 ### Audit Logs[​](#audit-logs "Direct link to Audit Logs")
 
@@ -102,13 +102,13 @@ The hooks/actions reference view now includes a **search field**, making it easy
 
 * Fix double encoding for Reset Password email body ([#165](https://github.com/nicumicle/simple-jwt-login/issues/165)) - the email body was being base64-encoded twice, producing garbled content in some mail clients
 * Fix passwords with special characters on register, authenticate, and reset password - special characters in passwords no longer break authentication due to incorrect `wp_slash()` handling
-* Replace variables in reset password email subject - template variables (e.g. `{site_name}`) are now correctly substituted in the email subject line, not just the body
+* Replace variables in reset password email subject - template variables (for example, `{site_name}`) are now correctly substituted in the email subject line, not just the body
 * Fix reset password response - the endpoint now returns a consistent and correctly structured JSON response
 * Fix OAuth + 2FA integration - OAuth login flows now correctly trigger the 2FA check when the authenticated user has 2FA enabled
 * Fix "Try Now" when permalink is disabled - the feature now works correctly on WordPress installations using plain (query string) permalinks
 * Fix WordPress data dependency issue affecting some edge cases in the authentication flow
 * Fix CSS compatibility for WordPress 7.0
-* Fix status codes - HTTP response codes are now accurate and consistent across all endpoints (e.g. `401` for unauthorized, `403` for forbidden, `422` for validation errors)
+* Fix status codes - HTTP response codes are now accurate and consistent across all endpoints (for example, `401` for unauthorized, `403` for forbidden, `422` for validation errors)
 * Fix validation error responses - invalid request payloads now return structured error messages instead of generic failures
 * Address WordPress Plugin Checker issues - the plugin now passes the official WordPress Plugin Check tool with no critical errors
 
@@ -116,11 +116,11 @@ The hooks/actions reference view now includes a **search field**, making it easy
 
 ## Breaking Changes[​](#breaking-changes "Direct link to Breaking Changes")
 
-Version 4.0.0 introduces several breaking changes. If you are upgrading from version 3.x, review each item below and update your client applications accordingly.
+Version 4.0.0 introduces breaking changes. If you are upgrading from version 3.x, review each item below and update your client applications accordingly.
 
 ### Settings Structure Reorganized in the Database[​](#settings-structure-reorganized-in-the-database "Direct link to Settings Structure Reorganized in the Database")
 
-The internal format of the plugin's settings record in the WordPress options table has been restructured. **A settings migration runs automatically on plugin activation**, but if you have custom code that reads `simple_jwt_login_settings` directly from the database, it will need to be updated to match the new structure.
+The internal format of the plugin's settings record in the WordPress options table has been restructured. **A settings migration runs automatically on plugin activation**, but if you have custom code that reads `simple_jwt_login_settings` directly from the database, update it to match the new structure.
 
 ### Register User Response Format Changed[​](#register-user-response-format-changed "Direct link to Register User Response Format Changed")
 
@@ -154,11 +154,11 @@ If you had a different identification strategy configured specifically for delet
 
 ### Refresh Token Added to Authentication Response[​](#refresh-token-added-to-authentication-response "Direct link to Refresh Token Added to Authentication Response")
 
-The authenticate endpoint now returns a `refresh_token` field in addition to the JWT. While this is additive, clients that strictly validate the response shape (e.g. with JSON Schema) may need to be updated to allow the new field.
+The authenticate endpoint now returns a `refresh_token` field in addition to the JWT. While this is additive, clients that strictly validate the response shape (for example, with JSON Schema) may need to be updated to allow the new field.
 
 ### 2FA Enforcement on Authentication[​](#2fa-enforcement-on-authentication "Direct link to 2FA Enforcement on Authentication")
 
-If your site has a 2FA plugin installed and a user has 2FA enabled, the JWT authentication flow now **requires** the second factor before issuing a token. Applications that bypassed 2FA by using the plugin's authentication endpoint will now be blocked until they implement the 2FA challenge/response flow.
+If your site has a 2FA plugin installed and a user has 2FA enabled, the JWT authentication flow now **requires** the second factor before issuing a token. Applications that bypassed 2FA by using the plugin's authentication endpoint are now blocked until they implement the 2FA challenge/response flow.
 
 ***
 
@@ -166,6 +166,6 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [feature](/releases/tags/feature.md)
-* [bugfix](/releases/tags/bugfix.md)
-* [breaking-change](/releases/tags/breaking-change.md)
+* [feature](/releases/tags/feature)
+* [bugfix](/releases/tags/bugfix)
+* [breaking-change](/releases/tags/breaking-change)

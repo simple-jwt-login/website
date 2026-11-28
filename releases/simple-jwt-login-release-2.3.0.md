@@ -6,9 +6,9 @@ August 25, 2020 ·
 
 One min read
 
-[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle.md)
+[![Nicu Micle](https://github.com/nicumicle.png)](/releases/authors/nicumicle)
 
-[Nicu Micle](/releases/authors/nicumicle.md)
+[Nicu Micle](/releases/authors/nicumicle)
 
 Creator of Simple JWT Login
 
@@ -16,7 +16,7 @@ Creator of Simple JWT Login
 
 The version `2.3.0` has been released today on [WordPress](https://wordpress.org/plugins/simple-jwt-login).
 
-This release adds token revocation, custom payload data and user meta on registration.
+This release adds token revocation, custom payload data, and user meta on registration.
 
 ## New Features[​](#new-features "Direct link to New Features")
 
@@ -39,4 +39,4 @@ If you encounter any issues after updating, please open an [issue](https://githu
 
 **Tags:**
 
-* [feature](/releases/tags/feature.md)
+* [feature](/releases/tags/feature)

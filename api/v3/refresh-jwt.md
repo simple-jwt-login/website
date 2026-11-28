@@ -2,7 +2,7 @@
 
 ```
 POST 
-/simple-jwt-login/v1/auth/refresh
+/auth/refresh
 ```
 
 Refresh expired JWT
@@ -13,7 +13,10 @@ Refresh expired JWT
 
 * 200
 * 400
+* 401
 
 Token has been refreshed successfully
 
 Error
+
+The JWT is revoked or not valid yet.
