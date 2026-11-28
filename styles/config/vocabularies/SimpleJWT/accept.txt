@@ -41,3 +41,4 @@ WPGlob
 docsify
 Codecov
 unsanitized
+wp jwt
