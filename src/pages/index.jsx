@@ -566,12 +566,11 @@ export default function HomePage() {
                 },
                 {
                   title: 'WP-CLI',
-                  desc: translate({id: 'homepage.ecosystem.cli.desc', message: 'Generate tokens, validate JWTs, revoke sessions, and manage every setting from your terminal - ideal for CI/CD.'}),
+                  desc: translate({id: 'homepage.ecosystem.cli.desc', message: 'Built into the plugin since 4.3.0. Issue and revoke JWTs, rotate signing keys, manage API keys and settings, and read audit logs with wp jwt.'}),
                   logos: [],
-                  code: 'wp jwt login --username=admin --password=secret',
+                  code: 'wp jwt generate admin --ttl=10',
                   href: '/ecosystem/cli',
                   cta: translate({id: 'homepage.ecosystem.cli.cta', message: 'Learn more'}),
-                  download: 'https://github.com/simple-jwt-login/simple-jwt-login-cli',
                 },
               ].map(({ title, desc, logos, code, href, cta, download }) => (
                 <div className="col col--4" key={href}>

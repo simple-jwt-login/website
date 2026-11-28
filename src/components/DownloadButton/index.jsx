@@ -10,13 +10,13 @@ const VERSIONS = [
     id: 'v4',
     label: translate({id: 'downloadButton.v4.label', message: 'Download v4'}),
     url: 'https://github.com/nicumicle/simple-jwt-login/blob/master/download/simple-jwt-login.zip?raw=true',
-    hint: translate({id: 'downloadButton.v4.hint', message: 'Latest - API Keys, 2FA, Webhooks, Audit Logs'}),
+    hint: translate({id: 'downloadButton.v4.hint', message: 'Stable release - API Keys, 2FA, Webhooks, Audit Logs'}),
   },
   {
     id: 'v3',
-    label: translate({id: 'downloadButton.v3.label', message: 'Download v3'}),
+    label: translate({id: 'downloadButton.v3.label', message: 'Download v3 (deprecated)'}),
     url: 'https://github.com/nicumicle/simple-jwt-login/blob/v3/download/simple-jwt-login.zip?raw=true',
-    hint: translate({id: 'downloadButton.v3.hint', message: 'Stable release'}),
+    hint: translate({id: 'downloadButton.v3.hint', message: 'Deprecated - security fixes only until Jan 31, 2027'}),
   },
 ];
 

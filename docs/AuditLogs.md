@@ -89,6 +89,15 @@ Since version 4.1.0, the **Settings Saved** entry never stores secrets in plain 
 | `ai.ability.success` | AI Ability Executed | An AI agent ran a [Simple JWT Login ability](/docs/integrations/third-party/ai-abilities/) successfully |
 | `ai.ability.failed` | AI Ability Failed | An AI agent ran an ability and it failed |
 
+#### WP-CLI events
+
+Available since version 4.3.0. Only commands that change data are recorded. The user is the one passed with the global WP-CLI `--user=<user>` flag.
+
+| Event key | Label | Description |
+|-----------|-------|-------------|
+| `cli.command.success` | WP-CLI Command Executed | A [`wp jwt` command](/docs/cli/) completed |
+| `cli.command.failed` | WP-CLI Command Failed | A `wp jwt` command failed |
+
 ---
 
 ### Retention Period

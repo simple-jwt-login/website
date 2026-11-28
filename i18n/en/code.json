@@ -1750,12 +1750,6 @@
   "homepage.ecosystem.exportImport.cta": {
     "message": "Learn more"
   },
-  "homepage.ecosystem.cli.desc": {
-    "message": "Generate tokens, validate JWTs, revoke sessions, and manage every setting from your terminal - ideal for CI/CD."
-  },
-  "homepage.ecosystem.cli.cta": {
-    "message": "Learn more"
-  },
   "homepage.ecosystem.downloadTitle": {
     "message": "Download {title}"
   },
@@ -2759,13 +2753,13 @@
     "message": "Download v4"
   },
   "downloadButton.v4.hint": {
-    "message": "Latest - API Keys, 2FA, Webhooks, Audit Logs"
+    "message": "Stable release - API Keys, 2FA, Webhooks, Audit Logs"
   },
   "downloadButton.v3.label": {
-    "message": "Download v3"
+    "message": "Download v3 (deprecated)"
   },
   "downloadButton.v3.hint": {
-    "message": "Stable release"
+    "message": "Deprecated - security fixes only until Jan 31, 2027"
   },
   "downloadButton.ariaLabel": {
     "message": "Choose plugin version to download"
@@ -3070,201 +3064,6 @@
   "demos.woocommerce.download": {
     "message": "Download example"
   },
-  "ecosystem.cli.commands.login.headline": {
-    "message": "Authenticate & get a token"
-  },
-  "ecosystem.cli.commands.login.description": {
-    "message": "Authenticate any WordPress user by username, email, or a combined login flag and receive a signed JWT immediately. Pipe it directly into curl, store it in a variable, or forward it to other tools."
-  },
-  "ecosystem.cli.commands.decode.headline": {
-    "message": "Inspect a JWT payload"
-  },
-  "ecosystem.cli.commands.decode.description": {
-    "message": "Decode any JWT and display its claims as a readable key/value table or JSON. Signature is not verified - use validate for that. Perfect for debugging token contents without a browser."
-  },
-  "ecosystem.cli.commands.validate.headline": {
-    "message": "Verify signature & expiry"
-  },
-  "ecosystem.cli.commands.validate.description": {
-    "message": "Verify the token signature against the plugin decryption key and confirm it has not expired. Exits 0 in all cases - check the valid field in the output to drive conditional logic in scripts."
-  },
-  "ecosystem.cli.commands.revoke.headline": {
-    "message": "Invalidate a token instantly"
-  },
-  "ecosystem.cli.commands.revoke.description": {
-    "message": "Revoke a token so it can never be used again. The signature is verified before revocation to prevent spoofed revocation attempts. Ideal for forced log-out flows and post-deployment security sweeps."
-  },
-  "ecosystem.cli.commands.config.headline": {
-    "message": "Manage plugin settings"
-  },
-  "ecosystem.cli.commands.config.description": {
-    "message": "Get, set, list, export, and import every Simple JWT Login setting without touching the WordPress admin UI. Use dot notation for nested keys. Export/import enables reproducible config across environments."
-  },
-  "ecosystem.cli.commands.fullDocsTitle": {
-    "message": "Full CLI documentation"
-  },
-  "ecosystem.cli.commands.fullDocs": {
-    "message": "Full docs →"
-  },
-  "ecosystem.cli.useCases.ciCd.title": {
-    "message": "CI / CD pipelines"
-  },
-  "ecosystem.cli.useCases.ciCd.description": {
-    "message": "Generate a short-lived JWT inside your pipeline to seed test data, run authenticated smoke tests, or hit protected API endpoints - no browser, no cookies."
-  },
-  "ecosystem.cli.useCases.migration.title": {
-    "message": "Staging → production migrations"
-  },
-  "ecosystem.cli.useCases.migration.description": {
-    "message": "Export the full plugin config from staging with one command, preview the diff on production in dry-run mode, then apply - fully non-interactive."
-  },
-  "ecosystem.cli.useCases.healthChecks.title": {
-    "message": "Automated health checks"
-  },
-  "ecosystem.cli.useCases.healthChecks.description": {
-    "message": "Add a cron job or monitoring script that logs in, validates the token, and alerts your team when JWT authentication breaks."
-  },
-  "ecosystem.cli.meta.title": {
-    "message": "WP-CLI Add-on - Simple JWT Login"
-  },
-  "ecosystem.cli.meta.description": {
-    "message": "Manage Simple JWT Login from the command line - generate tokens, validate JWTs, revoke sessions, and configure the plugin."
-  },
-  "ecosystem.cli.hero.badge": {
-    "message": "WP-CLI Add-on"
-  },
-  "ecosystem.cli.hero.titleLead": {
-    "message": "JWT auth at your"
-  },
-  "ecosystem.cli.hero.titleAccent": {
-    "message": "fingertips"
-  },
-  "ecosystem.cli.hero.subtitle": {
-    "message": "Generate tokens, validate JWTs, revoke sessions, and manage every plugin setting directly from your terminal - no WordPress admin UI required."
-  },
-  "ecosystem.cli.hero.readDocsTitle": {
-    "message": "Read the CLI documentation"
-  },
-  "ecosystem.cli.hero.readDocs": {
-    "message": "Read the docs →"
-  },
-  "ecosystem.cli.hero.githubTitle": {
-    "message": "View on GitHub"
-  },
-  "ecosystem.cli.hero.github": {
-    "message": "View on GitHub"
-  },
-  "ecosystem.cli.highlights.worksAnywhere": {
-    "message": "Works anywhere WP-CLI runs"
-  },
-  "ecosystem.cli.highlights.commands": {
-    "message": "8 commands, everything covered"
-  },
-  "ecosystem.cli.highlights.requires": {
-    "message": "Requires Simple JWT Login plugin"
-  },
-  "ecosystem.cli.highlights.free": {
-    "message": "Free & open source"
-  },
-  "ecosystem.cli.commandsSection.title": {
-    "message": "Every command you need"
-  },
-  "ecosystem.cli.commandsSection.lead": {
-    "message": "From token generation to full config management - the CLI covers the complete JWT lifecycle."
-  },
-  "ecosystem.cli.useCasesSection.title": {
-    "message": "Built for real workflows"
-  },
-  "ecosystem.cli.useCasesSection.lead": {
-    "message": "The CLI is designed for the scenarios where speed and automation matter most."
-  },
-  "ecosystem.cli.install.title": {
-    "message": "Get started in 60 seconds"
-  },
-  "ecosystem.cli.install.requirements": {
-    "message": "Requirements"
-  },
-  "ecosystem.cli.install.req.active": {
-    "message": "active"
-  },
-  "ecosystem.cli.install.req.anyStable": {
-    "message": "any recent stable"
-  },
-  "ecosystem.cli.install.step1.title": {
-    "message": "Install from WordPress.org"
-  },
-  "ecosystem.cli.install.step1.text": {
-    "message": "Go to {menu}, search for {plugin}, and click Install Now."
-  },
-  "ecosystem.cli.install.step1.menu": {
-    "message": "Plugins → Add New"
-  },
-  "ecosystem.cli.install.step2.title": {
-    "message": "Activate the plugin"
-  },
-  "ecosystem.cli.install.step2.text": {
-    "message": "The add-on registers its commands automatically once activated. Simple JWT Login must be active on the same site."
-  },
-  "ecosystem.cli.install.step3.title": {
-    "message": "Verify the commands"
-  },
-  "ecosystem.cli.reference.title": {
-    "message": "Complete command reference"
-  },
-  "ecosystem.cli.reference.lead": {
-    "message": "All 8 commands at a glance."
-  },
-  "ecosystem.cli.reference.login": {
-    "message": "Authenticate a user and return a JWT"
-  },
-  "ecosystem.cli.reference.decode": {
-    "message": "Decode a JWT payload (signature not verified)"
-  },
-  "ecosystem.cli.reference.validate": {
-    "message": "Verify signature and expiry of a token"
-  },
-  "ecosystem.cli.reference.revoke": {
-    "message": "Permanently revoke a token"
-  },
-  "ecosystem.cli.reference.configGet": {
-    "message": "Read a single plugin setting"
-  },
-  "ecosystem.cli.reference.configSet": {
-    "message": "Update a plugin setting"
-  },
-  "ecosystem.cli.reference.configList": {
-    "message": "List all settings as key/value pairs"
-  },
-  "ecosystem.cli.reference.configExport": {
-    "message": "Export full config as JSON to stdout or file"
-  },
-  "ecosystem.cli.reference.configImport": {
-    "message": "Import config from a JSON file"
-  },
-  "ecosystem.cli.reference.fullDocsTitle": {
-    "message": "Full CLI documentation"
-  },
-  "ecosystem.cli.reference.fullDocs": {
-    "message": "Full documentation →"
-  },
-  "ecosystem.cli.cta.title": {
-    "message": "Ready to automate your JWT workflow?"
-  },
-  "ecosystem.cli.cta.subtitle": {
-    "message": "Install the add-on in minutes and bring the full power of Simple JWT Login to your terminal."
-  },
-  "ecosystem.cli.cta.readDocsTitle": {
-    "message": "Read the CLI documentation"
-  },
-  "ecosystem.cli.cta.getStarted": {
-    "message": "Get started →"
-  },
-  "ecosystem.cli.cta.githubTitle": {
-    "message": "View source on GitHub"
-  },
-  "ecosystem.cli.cta.github": {
-    "message": "View on GitHub"
-  },
   "ecosystem.exportImport.jsonLd.description": {
     "message": "Copy your entire Simple JWT Login configuration - Auth Codes, protection rules, and settings - from one WordPress site to another in a few clicks."
   },
@@ -3480,39 +3279,6 @@
   },
   "ecosystem.exportImport.cta.docs": {
     "message": "Documentation"
-  },
-  "ecosystem.index.addons.cli.name": {
-    "message": "WP-CLI Add-on"
-  },
-  "ecosystem.index.addons.cli.tagline": {
-    "message": "JWT from the command line"
-  },
-  "ecosystem.index.addons.cli.description": {
-    "message": "Manage Simple JWT Login without ever opening the WordPress admin. Generate tokens, validate JWTs, revoke sessions, and push config between environments - all scriptable, all automatable."
-  },
-  "ecosystem.index.addons.cli.tags.0": {
-    "message": "DevOps"
-  },
-  "ecosystem.index.addons.cli.tags.1": {
-    "message": "CI/CD"
-  },
-  "ecosystem.index.addons.cli.tags.2": {
-    "message": "Automation"
-  },
-  "ecosystem.index.addons.cli.primaryLabel": {
-    "message": "Learn more"
-  },
-  "ecosystem.index.addons.cli.highlights.0": {
-    "message": "Generate & validate tokens"
-  },
-  "ecosystem.index.addons.cli.highlights.1": {
-    "message": "Revoke sessions instantly"
-  },
-  "ecosystem.index.addons.cli.highlights.2": {
-    "message": "Export / import config"
-  },
-  "ecosystem.index.addons.cli.highlights.3": {
-    "message": "Staging → production migration"
   },
   "ecosystem.index.addons.mailpoet.name": {
     "message": "MailPoet Add-on"
@@ -4392,5 +4158,293 @@
   },
   "ecosystem.phpSdk.cta.github": {
     "message": "View on GitHub"
+  },
+  "homepage.ecosystem.cli.desc": {
+    "message": "Built into the plugin since 4.3.0. Issue and revoke JWTs, rotate signing keys, manage API keys and settings, and read audit logs with wp jwt."
+  },
+  "homepage.ecosystem.cli.cta": {
+    "message": "Learn more"
+  },
+  "ecosystem.cli.commands.setup.headline": {
+    "message": "Initial setup"
+  },
+  "ecosystem.cli.commands.setup.description": {
+    "message": "Generates a signing key when the configured algorithm has none, enables the /auth endpoint, and prints the endpoint URL with a sample curl request. An existing key is kept unless --force or a different --algorithm is passed."
+  },
+  "ecosystem.cli.commands.generate.headline": {
+    "message": "Issue a JWT without a password"
+  },
+  "ecosystem.cli.commands.generate.description": {
+    "message": "Issues a JWT for a user ID, login or email with the same claims and signing key as /auth. --ttl sets the expiration in minutes. Use wp jwt login instead when the password must be checked."
+  },
+  "ecosystem.cli.commands.validate.headline": {
+    "message": "Validate a token"
+  },
+  "ecosystem.cli.commands.validate.description": {
+    "message": "Runs the same checks as the plugin endpoints: JWT rules, signature, expiry, audience, user, and revocation. Exits with code 1 when the token is not valid. wp jwt decode prints the claims without verifying the signature."
+  },
+  "ecosystem.cli.commands.revoke.headline": {
+    "message": "Revoke tokens"
+  },
+  "ecosystem.cli.commands.revoke.description": {
+    "message": "wp jwt revoke blocks one JWT and deletes the user's refresh tokens. wp jwt revoke-all blocks every JWT and refresh token issued to a user so far, whether or not \"Revoke tokens on password change\" is enabled."
+  },
+  "ecosystem.cli.commands.key.headline": {
+    "message": "Rotate the signing key"
+  },
+  "ecosystem.cli.commands.key.description": {
+    "message": "Saves a new signing key. The old key is moved to a JWT rule for tokens with an earlier iat, so issued tokens stay valid until they expire; the daily cleanup removes the rule. --immediate rejects every token signed with the old key."
+  },
+  "ecosystem.cli.commands.config.headline": {
+    "message": "Read and change settings"
+  },
+  "ecosystem.cli.commands.config.description": {
+    "message": "get, set, list, export and import, with dot-notation keys. set and import validate the new settings like an admin save. import prints a diff with secrets masked, and --dry-run saves nothing."
+  },
+  "ecosystem.cli.commands.diagnostics.headline": {
+    "message": "Diagnostics"
+  },
+  "ecosystem.cli.commands.diagnostics.description": {
+    "message": "doctor reports versions, REST URLs, endpoint status, and configuration warnings. security-report scores the configuration from 0 to 100. explain-error maps an API errorCode to its meaning and the settings to check."
+  },
+  "ecosystem.cli.commands.fullDocsTitle": {
+    "message": "Full CLI documentation"
+  },
+  "ecosystem.cli.commands.fullDocs": {
+    "message": "Full docs →"
+  },
+  "ecosystem.cli.useCases.localEnv.title": {
+    "message": "Local and preview environments"
+  },
+  "ecosystem.cli.useCases.localEnv.description": {
+    "message": "Provisioning scripts and Docker entrypoints can produce a site that issues JWTs, with the project settings applied, without anyone opening the admin."
+  },
+  "ecosystem.cli.useCases.ciCd.title": {
+    "message": "CI tests without a stored password"
+  },
+  "ecosystem.cli.useCases.ciCd.description": {
+    "message": "The pipeline issues a 10-minute token for a test user and revokes it after the run. No WordPress password is kept in CI secrets."
+  },
+  "ecosystem.cli.useCases.configAsCode.title": {
+    "message": "Configuration as code"
+  },
+  "ecosystem.cli.useCases.configAsCode.description": {
+    "message": "Settings live in the repository and go through code review. The deploy step previews the diff, then applies it. Keep secrets out of the committed file."
+  },
+  "ecosystem.cli.useCases.securityGate.title": {
+    "message": "Security checks in CI"
+  },
+  "ecosystem.cli.useCases.securityGate.description": {
+    "message": "Fail the build when the configuration has critical findings, such as a short signing key or an endpoint without an auth code."
+  },
+  "ecosystem.cli.useCases.incident.title": {
+    "message": "Incident response"
+  },
+  "ecosystem.cli.useCases.incident.description": {
+    "message": "Revoke a user's sessions, invalidate a leaked signing key, and export failed requests from the audit log for the post-mortem."
+  },
+  "ecosystem.cli.useCases.partners.title": {
+    "message": "Partner API keys"
+  },
+  "ecosystem.cli.useCases.partners.description": {
+    "message": "Create a read-only key with an expiration date for an integration, track its last use, and revoke it when the contract ends."
+  },
+  "ecosystem.cli.reference.setup": {
+    "message": "Generate a signing key if there is none and enable /auth"
+  },
+  "ecosystem.cli.reference.login": {
+    "message": "Authenticate a user with a password and print a JWT"
+  },
+  "ecosystem.cli.reference.generate": {
+    "message": "Issue a JWT for a user without a password"
+  },
+  "ecosystem.cli.reference.refresh": {
+    "message": "Exchange a refresh token for a new JWT"
+  },
+  "ecosystem.cli.reference.decode": {
+    "message": "Print the claims of a JWT (signature not verified)"
+  },
+  "ecosystem.cli.reference.validate": {
+    "message": "Verify signature, expiry, audience, user, and revocation"
+  },
+  "ecosystem.cli.reference.revoke": {
+    "message": "Revoke a JWT and delete the user's refresh tokens"
+  },
+  "ecosystem.cli.reference.revokeAll": {
+    "message": "Revoke every JWT and refresh token of a user"
+  },
+  "ecosystem.cli.reference.key": {
+    "message": "Print a new signing key, or replace the stored one"
+  },
+  "ecosystem.cli.reference.apiKey": {
+    "message": "Manage API keys"
+  },
+  "ecosystem.cli.reference.authCode": {
+    "message": "Manage auth codes"
+  },
+  "ecosystem.cli.reference.config": {
+    "message": "Read and change the settings"
+  },
+  "ecosystem.cli.reference.doctor": {
+    "message": "Versions, REST URLs, endpoint status, and configuration warnings"
+  },
+  "ecosystem.cli.reference.securityReport": {
+    "message": "Security score (0-100, grade A-F) and findings"
+  },
+  "ecosystem.cli.reference.explainError": {
+    "message": "Meaning, HTTP status and related settings of an error code"
+  },
+  "ecosystem.cli.reference.log": {
+    "message": "Query and summarize the audit log"
+  },
+  "ecosystem.cli.reference.webhook": {
+    "message": "List webhooks, send a test call, read the call log"
+  },
+  "ecosystem.cli.reference.cleanup": {
+    "message": "Run the daily cleanup job immediately"
+  },
+  "ecosystem.cli.meta.title": {
+    "message": "WP-CLI Commands for JWT Authentication"
+  },
+  "ecosystem.cli.meta.description": {
+    "message": "Built-in WP-CLI commands for Simple JWT Login: issue and revoke JWTs, rotate signing keys, manage API keys and settings, and read audit logs from WP-CLI."
+  },
+  "ecosystem.cli.hero.badge": {
+    "message": "Built in since 4.3.0"
+  },
+  "ecosystem.cli.hero.titleLead": {
+    "message": "Simple JWT Login"
+  },
+  "ecosystem.cli.hero.titleAccent": {
+    "message": "in WP-CLI"
+  },
+  "ecosystem.cli.hero.subtitle": {
+    "message": "The WP-CLI commands cover setup, token issuing and revocation, signing key rotation, API keys, auth codes, settings, diagnostics, and audit logs. They ship with the plugin - no add-on to install."
+  },
+  "ecosystem.cli.hero.readDocsTitle": {
+    "message": "Read the CLI documentation"
+  },
+  "ecosystem.cli.hero.readDocs": {
+    "message": "Read the docs →"
+  },
+  "ecosystem.cli.hero.githubTitle": {
+    "message": "View CLI.md on GitHub"
+  },
+  "ecosystem.cli.hero.github": {
+    "message": "View on GitHub"
+  },
+  "ecosystem.cli.highlights.builtIn": {
+    "message": "Part of the plugin since 4.3.0"
+  },
+  "ecosystem.cli.highlights.commands": {
+    "message": "30 commands in 18 groups"
+  },
+  "ecosystem.cli.highlights.formats": {
+    "message": "Table, JSON, CSV, and YAML output"
+  },
+  "ecosystem.cli.highlights.free": {
+    "message": "Free & open source"
+  },
+  "ecosystem.cli.commandsSection.title": {
+    "message": "Main commands"
+  },
+  "ecosystem.cli.commandsSection.lead": {
+    "message": "Single results support text and JSON output. Lists support table, CSV, JSON, YAML, and count output, and column selection with --fields."
+  },
+  "ecosystem.cli.useCasesSection.title": {
+    "message": "Use cases for teams"
+  },
+  "ecosystem.cli.useCasesSection.lead": {
+    "message": "The REST API serves client applications. The CLI serves the people who operate the site: developers, DevOps, support, and security."
+  },
+  "ecosystem.cli.install.title": {
+    "message": "Enable the commands"
+  },
+  "ecosystem.cli.install.requirements": {
+    "message": "Requirements"
+  },
+  "ecosystem.cli.install.req.anyStable": {
+    "message": "any recent stable"
+  },
+  "ecosystem.cli.install.req.enabled": {
+    "message": "enabled (default)"
+  },
+  "ecosystem.cli.install.step1.title": {
+    "message": "Update Simple JWT Login"
+  },
+  "ecosystem.cli.install.step1.text": {
+    "message": "The commands are registered by the plugin from version 4.3.0. No other plugin is needed."
+  },
+  "ecosystem.cli.install.step2.title": {
+    "message": "Remove the old add-on"
+  },
+  "ecosystem.cli.install.step2.text": {
+    "message": "The Simple JWT Login CLI plugin is deprecated. While it is active, the built-in commands are not registered. Deactivate and delete it, then check that General > CLI is on."
+  },
+  "ecosystem.cli.install.step3.title": {
+    "message": "Verify the commands"
+  },
+  "ecosystem.cli.reference.title": {
+    "message": "Command reference"
+  },
+  "ecosystem.cli.reference.lead": {
+    "message": "Every command and subcommand."
+  },
+  "ecosystem.cli.reference.fullDocsTitle": {
+    "message": "Full CLI documentation"
+  },
+  "ecosystem.cli.reference.fullDocs": {
+    "message": "Full documentation →"
+  },
+  "ecosystem.cli.cta.title": {
+    "message": "Options, output formats, and error messages"
+  },
+  "ecosystem.cli.cta.subtitle": {
+    "message": "The documentation lists every option, the add-on migration notes and a troubleshooting table."
+  },
+  "ecosystem.cli.cta.readDocsTitle": {
+    "message": "Read the CLI documentation"
+  },
+  "ecosystem.cli.cta.getStarted": {
+    "message": "Read the docs →"
+  },
+  "ecosystem.cli.cta.githubTitle": {
+    "message": "View CLI.md on GitHub"
+  },
+  "ecosystem.cli.cta.github": {
+    "message": "View on GitHub"
+  },
+  "ecosystem.index.addons.cli.name": {
+    "message": "WP-CLI (built-in)"
+  },
+  "ecosystem.index.addons.cli.tagline": {
+    "message": "wp jwt commands, part of the plugin since 4.3.0"
+  },
+  "ecosystem.index.addons.cli.description": {
+    "message": "Set up the plugin, issue and revoke JWTs, rotate signing keys, manage API keys, auth codes and settings, and read audit logs from WP-CLI. Replaces the deprecated Simple JWT Login CLI add-on."
+  },
+  "ecosystem.index.addons.cli.tags.0": {
+    "message": "DevOps"
+  },
+  "ecosystem.index.addons.cli.tags.1": {
+    "message": "CI/CD"
+  },
+  "ecosystem.index.addons.cli.tags.2": {
+    "message": "Automation"
+  },
+  "ecosystem.index.addons.cli.primaryLabel": {
+    "message": "Learn more"
+  },
+  "ecosystem.index.addons.cli.highlights.0": {
+    "message": "Issue, validate and revoke JWTs"
+  },
+  "ecosystem.index.addons.cli.highlights.1": {
+    "message": "Signing key rotation"
+  },
+  "ecosystem.index.addons.cli.highlights.2": {
+    "message": "Config export / import with diff"
+  },
+  "ecosystem.index.addons.cli.highlights.3": {
+    "message": "Diagnostics and audit log queries"
   }
 }

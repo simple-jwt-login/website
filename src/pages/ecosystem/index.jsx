@@ -16,23 +16,23 @@ import {useCdnUrl, useCdnBase, resolveCdnUrl} from '@site/src/utils/cdn';
 const addons = [
   {
     id: 'cli',
-    name: translate({id: 'ecosystem.index.addons.cli.name', message: 'WP-CLI Add-on'}),
-    tagline: translate({id: 'ecosystem.index.addons.cli.tagline', message: 'JWT from the command line'}),
+    name: translate({id: 'ecosystem.index.addons.cli.name', message: 'WP-CLI (built-in)'}),
+    tagline: translate({id: 'ecosystem.index.addons.cli.tagline', message: 'wp jwt commands, part of the plugin since 4.3.0'}),
     description:
-      translate({id: 'ecosystem.index.addons.cli.description', message: 'Manage Simple JWT Login without ever opening the WordPress admin. Generate tokens, validate JWTs, revoke sessions, and push config between environments - all scriptable, all automatable.'}),
+      translate({id: 'ecosystem.index.addons.cli.description', message: 'Set up the plugin, issue and revoke JWTs, rotate signing keys, manage API keys, auth codes and settings, and read audit logs from WP-CLI. Replaces the deprecated Simple JWT Login CLI add-on.'}),
     icon: faTerminal,
     tags: [translate({id: 'ecosystem.index.addons.cli.tags.0', message: 'DevOps'}), translate({id: 'ecosystem.index.addons.cli.tags.1', message: 'CI/CD'}), translate({id: 'ecosystem.index.addons.cli.tags.2', message: 'Automation'})],
     status: 'stable',
     docsHref: '/docs/cli/',
     primaryHref: '/ecosystem/cli',
     primaryLabel: translate({id: 'ecosystem.index.addons.cli.primaryLabel', message: 'Learn more'}),
-    secondaryHref: 'https://github.com/simple-jwt-login/simple-jwt-login-cli',
+    secondaryHref: 'https://github.com/nicumicle/simple-jwt-login/blob/master/CLI.md',
     secondaryLabel: 'GitHub',
     highlights: [
-      translate({id: 'ecosystem.index.addons.cli.highlights.0', message: 'Generate & validate tokens'}),
-      translate({id: 'ecosystem.index.addons.cli.highlights.1', message: 'Revoke sessions instantly'}),
-      translate({id: 'ecosystem.index.addons.cli.highlights.2', message: 'Export / import config'}),
-      translate({id: 'ecosystem.index.addons.cli.highlights.3', message: 'Staging → production migration'}),
+      translate({id: 'ecosystem.index.addons.cli.highlights.0', message: 'Issue, validate and revoke JWTs'}),
+      translate({id: 'ecosystem.index.addons.cli.highlights.1', message: 'Signing key rotation'}),
+      translate({id: 'ecosystem.index.addons.cli.highlights.2', message: 'Config export / import with diff'}),
+      translate({id: 'ecosystem.index.addons.cli.highlights.3', message: 'Diagnostics and audit log queries'}),
     ],
   },
   {
